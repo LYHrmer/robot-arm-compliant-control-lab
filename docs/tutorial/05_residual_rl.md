@@ -1,7 +1,9 @@
 # 05｜Residual RL：何时值得做，怎样不破坏经典控制器
 
-本章是设计规范，不宣称仓库当前已经训练出 RL improvement。完整 go/no-go 证据见
-[`residual_rl_decision.md`](../residual_rl_decision.md)。
+本章同时覆盖设计规范和 v0.4 的实际结果。仓库已经实现自适应经典基线、带安全包络的
+Residual RL、ARS 训练器和同一 24-case 比较；结果表明策略学到了切向补偿，但尚未达到
+部署门槛。完整公式与结果见
+[`adaptive_residual_rl.md`](../adaptive_residual_rl.md)。
 
 ## 1. 为什么不是端到端 torque RL
 
@@ -43,7 +45,9 @@ impact-aware fixed hybrid 在 nominal 中表现稳定，但固定 holdout 只通
 - adaptive admittance；
 - MPC 或 passivity-based adaptation。
 
-因此 v0.4 必须加入至少一个 adaptive classical baseline。
+因此 v0.4 加入了 bias/contact-stiffness/force-rate estimator 和 gain scheduling 组成的
+`adaptive_hybrid`。它把切向 P95 从 21.98 mm 降到 18.42 mm，但仍只有 6/24 case 通过，
+说明“不用 RL 的强基线”本身也必须保留失败证据。
 
 ## 3. 推荐动作空间：有界 Cartesian residual
 
@@ -58,14 +62,15 @@ impact-aware fixed hybrid 在 nominal 中表现稳定，但固定 holdout 只通
 \mathbf w_{cmd}=\mathbf w_{hybrid}+S\,\mathrm{clip}(\Delta\mathbf w).
 \]
 
-初始建议 bounds：
+v0.4 冻结 bounds：
 
 - normal residual：+/-4 N；
 - 每个 tangential residual：+/-6 N；
 - residual rate 另行限幅并低通。
 
 为什么不先学习 stiffness matrix？学习 gain 更容易保持物理可解释性，但正定性、阻尼关系和
-快速变化都要额外约束。最小版本先用 bounded wrench residual，更容易做零残差回退和消融。
+快速变化都要额外约束。当前版本先用 bounded wrench residual，并在经典 contact blend 完成
+100 ms 后才启用；丢失接触、非有限输出或超时会立即归零。
 
 ## 4. Observation
 
@@ -106,6 +111,10 @@ r_t=-w_f e_F^2-w_p\|\mathbf e_t\|^2
 - 算法选择的重要性低于 action bounds、domain randomization、reward、safety layer 和多 seed
   统计。
 
+当前仓库先采用 ARS 训练 `3×14` 线性 `tanh` policy。它不是 SAC/TD3 的替代结论，而是一个
+无需深度学习依赖、权重可直接检查、能快速验证 residual seam 的最小 RL baseline。冻结训练
+将物理 rollout cost 从 2.0221 降到 1.6744。
+
 至少使用 5 个 training seeds，报告均值和 95% confidence interval。只挑一条最好曲线没有
 统计意义。
 
@@ -118,8 +127,8 @@ blind holdout      final claim, evaluate once
 ```
 
 随机化变量沿用压力测试，但 train range 与真实可能范围必须有物理依据。过宽会让策略保守，
-过窄会 overfit simulator。seed 29 已在开发中多次查看，严格论文流程中应把它视为 validation，
-再生成新的 blind holdout。
+过窄会 overfit simulator。seed 29 已在开发中多次查看，因此 v0.4 把它准确标为 frozen
+public holdout，而不是 blind holdout。训练使用 seed 101 和独立 simulation seeds。
 
 ## 8. Safety envelope
 
@@ -149,13 +158,17 @@ RL 输出进入机器人前至少经过：
 成功条件不是“return 更高”，而是 blind holdout pass rate >= 90%，且不新增 force/torque
 violation。否则应诚实报告失败并分析原因。
 
+实际同 case 结果为 fixed `6/24`、adaptive `6/24`、bounded Residual RL `7/24`。Residual RL
+把切向 P95 降到 14.80 mm，但 raw peak P95 仍为 57.04 N，最差力矩饱和升到 15.91%。因此
+它是“机制实现成功、部署判定失败”，不能写成 RL 已经解决柔顺接触。
+
 ## 10. 推荐实施顺序
 
-1. 把 MuJoCo trial 包成 Gymnasium environment，但复用现有 controller/simulation，不复制公式；
-2. 先实现 action=0 的环境回归测试，指标必须等于 classical baseline；
-3. 加 action bounds/safety filter 的单元测试；
-4. 小规模 train/validation smoke run；
-5. 多 seed 正式训练；
-6. 冻结 policy，再运行 blind holdout；
-7. 导出 ONNX/TorchScript 前后做 inference parity；
-8. 最后才考虑 ROS 2/真机部署。
+1. 已完成：action=0 与 adaptive baseline 的 `1e-12` 回归测试；
+2. 已完成：action bounds、rate limit、contact gate、force guard 和 watchdog 单元测试；
+3. 已完成：独立训练场景上的 ARS rollout 和冻结 checkpoint；
+4. 已完成：同一 seed-29 24-case public holdout 对比；
+5. 待完成：加入新的真正 blind holdout 和至少五个 training seeds；
+6. 待完成：把 torque headroom 纳入安全投影，而不是只在事后统计饱和；
+7. 待完成：非线性 SAC/TD3 policy 与线性 ARS 的公平消融；
+8. 上述门槛通过后才考虑 ROS 2/真机部署。

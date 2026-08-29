@@ -205,6 +205,14 @@ class FrankaHybridController:
     _force_blend: float = field(default=0.0, init=False, repr=False)
     _in_contact: bool = field(default=False, init=False, repr=False)
 
+    @property
+    def in_contact(self) -> bool:
+        return self._in_contact
+
+    @property
+    def force_blend(self) -> float:
+        return self._force_blend
+
     def reset(self, state: FrankaState) -> None:
         self.normal = self.normal / np.linalg.norm(self.normal)
         self._force_integral = 0.0

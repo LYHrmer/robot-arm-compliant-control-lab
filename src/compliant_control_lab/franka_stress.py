@@ -72,7 +72,7 @@ def failed_gate_checks(
     return tuple(name for passed, name in checks if not passed)
 
 
-def _scenario_values(scenario: FrankaScenario) -> dict[str, float | int]:
+def scenario_values(scenario: FrankaScenario) -> dict[str, float | int]:
     return {
         "wall_time_constant_s": scenario.wall_time_constant,
         "wall_sliding_friction": scenario.wall_sliding_friction,
@@ -215,7 +215,7 @@ def run_stress_benchmark(
         row: dict[str, float | int | str] = {
             "case": scenario.name,
             "simulation_seed": seed + index,
-            **_scenario_values(scenario),
+            **scenario_values(scenario),
             **metrics,
             "gate_pass": "yes" if not failures else "no",
             "failed_checks": ";".join(failures),

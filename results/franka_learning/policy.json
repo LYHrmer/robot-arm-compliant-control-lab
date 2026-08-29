@@ -1,0 +1,108 @@
+{
+  "bias": [
+    0.2064058526834346,
+    0.07653812094117539,
+    -0.24664435068020651
+  ],
+  "format_version": 1,
+  "metadata": {
+    "algorithm": "augmented_random_search",
+    "directions": 6,
+    "duration": 3.2,
+    "iterations": 8,
+    "noise_std": 0.06,
+    "policy_seed": 17,
+    "residual_safety": {
+      "action_bounds_n": [
+        4.0,
+        6.0,
+        6.0
+      ],
+      "action_rate_limits_n_s": [
+        40.0,
+        60.0,
+        60.0
+      ],
+      "filter_time_constant_s": 0.04,
+      "force_guard_margin_n": 3.0,
+      "force_guard_rate_n_s": 150.0,
+      "inference_deadline_us": 5000.0,
+      "max_total_normal_wrench_n": 25.0,
+      "min_total_normal_wrench_n": -4.0,
+      "policy_period_s": 0.02,
+      "residual_enable_delay_s": 0.1
+    },
+    "scenario_seed": 101,
+    "simulation_seed": 1001,
+    "step_size": 0.04,
+    "top_directions": 3,
+    "training_cases": 6
+  },
+  "observation_names": [
+    "normal_force_error",
+    "normal_force",
+    "normal_force_rate",
+    "normal_position_error",
+    "normal_velocity_error",
+    "tangent_y_position_error",
+    "tangent_z_position_error",
+    "tangent_y_velocity_error",
+    "tangent_z_velocity_error",
+    "target_normal_force",
+    "contact_blend",
+    "previous_normal_action",
+    "previous_tangent_y_action",
+    "previous_tangent_z_action"
+  ],
+  "policy_type": "linear_tanh",
+  "weights": [
+    [
+      0.09252845375212992,
+      -0.01649290460625842,
+      0.06786623585450832,
+      0.04171735941538628,
+      0.017906305378396284,
+      0.16682317662633298,
+      0.41147009414912794,
+      -0.10338912672479192,
+      0.03825878263014284,
+      -0.06392640180644407,
+      0.07013532888765665,
+      0.057775584730231616,
+      0.046452784748692424,
+      0.027065122868437104
+    ],
+    [
+      -0.13483720340209596,
+      0.07196873692112937,
+      0.07913657297804594,
+      -0.14497444242282326,
+      -0.1976098526795892,
+      -0.023389822535934603,
+      0.1230002941466959,
+      0.1659569401563665,
+      -0.14087288759039396,
+      -0.10099728435573271,
+      0.15160047954422295,
+      0.12356285682553268,
+      0.35634074917683617,
+      0.09275126342074821
+    ],
+    [
+      -0.052893609780005894,
+      -0.08275921212441276,
+      0.09407750042747995,
+      -0.06592254050409008,
+      -0.25494591118589516,
+      -0.20302737258111136,
+      0.2345908072045628,
+      -0.19742123095975608,
+      0.16972153351995925,
+      -0.1163100637884432,
+      -0.15270858078467292,
+      0.004560992562912581,
+      -0.05398447026828576,
+      0.0965884697355388
+    ]
+  ]
+}

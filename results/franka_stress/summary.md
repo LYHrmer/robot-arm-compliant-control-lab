@@ -13,9 +13,9 @@
 
 - Cases: 24
 - Case pass rate: 25.0%
-- Force RMSE P50 / P95 / worst: 1.55 / 2.32 / 5.87 N
+- Force RMSE P50 / P95 / worst: 1.54 / 2.32 / 5.87 N
 - Contact ratio P05 / worst: 100.0 / 100.0%
-- Raw peak force P95 / worst: 57.74 / 65.75 N
+- Raw peak force P95 / worst: 57.79 / 66.30 N
 - Tangential RMSE P95 / worst: 21.98 / 29.16 mm
 - Saturation worst: 12.53%
 

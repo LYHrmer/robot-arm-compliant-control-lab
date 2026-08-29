@@ -90,13 +90,21 @@ hardware interface、deadline、watchdog、torque-rate limit。当前仓库不�
 mismatch holdout 只通过 25%。Residual policy 只补偿这一 remainder，经典 controller 保留
 稳定结构和 fallback；同时必须和 adaptive classical baseline 公平比较。
 
+### 为什么当前 Residual RL 不能部署？
+
+它虽然把切向 P95 从 adaptive 的 18.42 mm 降到 14.80 mm，但只通过 7/24 cases，raw peak
+P95 仍为 57.04 N，最差 torque saturation 为 15.91%。训练 cost 下降只能证明 optimizer
+找到了策略，不能覆盖未通过的物理安全 gate。
+
 ## 4. 30 秒项目介绍
 
 > 我做了一个 Franka 7-DOF 柔顺接触控制实验平台，用 MuJoCo 比较 6D 阻抗、导纳和力位
 > 混合控制。控制器通过 Jacobian transpose 映射到关节力矩，包含 bias compensation、阻尼
 > null-space posture、接触状态机和安全指标。我还写了 C++17/Eigen 等价核心，用逐分量
 > parity test 防止 Python 与部署实现漂移。随机 contact/model mismatch holdout 暴露了固定
-> gain 的失败，因此下一步是 bounded Residual RL 与 adaptive admittance 的公平对比。
+> gain 的失败，因此又实现了 bias/接触刚度自适应基线和有界 Residual RL。策略改善了切向
+> 跟踪，但相同 24-case gate 仍失败，所以我保留了 checkpoint、逐 case 结果和失败分析，
+> 没有把训练 return 当成部署结论。
 
 这段介绍包含问题、方法、工程验证、真实失败和下一步，而不是堆技术名词。
 
@@ -107,7 +115,9 @@ mismatch holdout 只通过 25%。Residual policy 只补偿这一 remainder，经
 > 构建 Franka Panda 7-DOF MuJoCo 柔顺接触控制平台，实现 6D 阻抗、导纳与力位混合控制、
 > Jacobian-transpose torque mapping、bias/null-space compensation 和接触状态机；开发
 > C++17/Eigen 控制核心及 Python/C++ 1e-12 数值一致性测试，并以 24 个随机未见工况量化
-> force tracking、raw impact、trajectory error 与 saturation。
+> force tracking、raw impact、trajectory error 与 saturation；进一步实现在线偏置/刚度
+> gain scheduling 和带接触门控、限幅、rate limit、watchdog 的 Residual RL，在如实保留
+> 安全 gate 失败的前提下将切向 P95 误差从 18.42 mm 降至 14.80 mm。
 
 English:
 
@@ -115,10 +125,12 @@ English:
 > impedance, admittance, hybrid force-position control, Jacobian-transpose torque mapping,
 > bias/null-space compensation, and contact-phase transitions. Developed a C++17/Eigen controller
 > core with component-wise Python parity tests and evaluated robustness on 24 randomized holdout
-> contact/model-mismatch cases using physical tracking and safety metrics.
+> contact/model-mismatch cases. Added an adaptive gain-scheduled baseline and a bounded residual
+> policy trained with ARS; documented improved tangential tracking alongside failed impact-force and
+> torque-saturation gates instead of overstating deployment readiness.
 
-只写已经完成的内容。Residual RL 在训练与 holdout 改进完成前，应写成“designed/evaluating”，
-不能写成“improved”。
+简历可写“improved tangential tracking”，但不能概括成“improved safety”或“ready for
+deployment”，因为峰值力和饱和 gate 没有通过。
 
 ## 6. 真正的“精通”检查表
 

@@ -94,10 +94,20 @@ to the force PI command over 150 ms. A separate release threshold and 50 ms debo
 mode chatter. This reduced nominal full-trial peak force from 33.83 N to 26.72 N while preserving
 100% contact and approximately 1 N steady-state force RMSE.
 
-## 6. Measurement and evaluation
+## 6. Adaptive and learned residual layers
+
+v0.4 keeps the same Cartesian controller seam and adds two wrappers. `adaptive_hybrid` estimates
+pre-contact force bias, local force rate and contact stiffness, then schedules the force/tangential
+gains. `bounded_residual_rl` adds a learned three-axis translational wrench only after the classical
+contact transition is stable, with component/rate limits and zero-residual fallback. The estimator,
+ARS update equations and frozen comparison are derived in
+[Adaptive compliance and bounded Residual RL](adaptive_residual_rl.md).
+
+## 7. Measurement and evaluation
 
 MuJoCo provides raw contact impulses at 500 Hz. A 20 ms first-order low-pass filter approximates
-force-sensor bandwidth. Scenario noise and delay are applied after filtering.
+force-sensor bandwidth. Scenario noise, signed bias and delay are applied after filtering; retaining
+the sign is necessary for the pre-contact bias estimator to observe negative offsets.
 
 - `force_rmse_n`: filtered force versus the 12 N target after the 1.5 s approach window.
 - `peak_force_n`: unfiltered raw solver force over the complete trial, including first contact, so
@@ -111,7 +121,7 @@ The final gains deliberately trade a few millimetres of tangential error for zer
 saturation in the 20 ms delay scenario. This change reduced the initial delayed-controller
 saturation from over 40% to 0%.
 
-## 7. Model provenance
+## 8. Model provenance
 
 The Panda geometry and inertial parameters come from Google DeepMind's MuJoCo Menagerie at commit
 `da76818e269b82289eba39808e2fb91d679d6994` under Apache-2.0. The local

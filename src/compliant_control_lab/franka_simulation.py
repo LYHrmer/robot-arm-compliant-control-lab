@@ -252,11 +252,10 @@ def run_franka_trial(
         measured_position = measured_position + rng.normal(
             0.0, scenario.position_noise_std, size=3
         )
-        measured_force = max(
-            0.0,
+        measured_force = (
             measured_force
             + scenario.force_bias_n
-            + rng.normal(0.0, scenario.force_noise_std),
+            + rng.normal(0.0, scenario.force_noise_std)
         )
         state = FrankaState(
             position=measured_position,
