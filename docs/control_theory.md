@@ -1,4 +1,4 @@
-# Control theory and implementation notes
+# 2-DOF baseline control notes
 
 ## 1. Plant and task coordinates
 
@@ -82,14 +82,12 @@ F_k^{f}=F_{k-1}^{f}+\alpha(F_k-F_{k-1}^{f}),\qquad
 Noise and delay are applied after this physical sensor filter. Force RMSE is computed from the
 filtered signal, while peak force is computed from the unfiltered solver output.
 
-## 7. Limitations
+## 7. Scope
 
 - The robot is planar and uses ideal torque actuation.
 - Link flexibility, motor current loops, encoder quantization and communication jitter are omitted.
 - Contact parameters are phenomenological MuJoCo parameters rather than identified hardware values.
-- A 7-DOF arm additionally requires orientation error, 6D wrench transforms, gravity compensation,
-  null-space objectives, singularity handling and safety supervision.
+- The 7-DOF Franka extension adds orientation error, 6D wrench mapping, gravity compensation,
+  null-space posture control and torque-limit monitoring. See `docs/franka_control.md`.
 
-These limitations are deliberate: the repository is a controlled experiment for comparing the
-control structures, not a claim of production-ready force control.
-
+This planar model remains as a small analytic reference implementation and regression test.

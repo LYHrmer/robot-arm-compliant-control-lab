@@ -1,14 +1,15 @@
 [build-system]
-requires = ["setuptools>=68", "wheel"]
+requires = ["setuptools>=77", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "compliant-control-lab"
-version = "0.1.0"
+version = "0.2.0"
 description = "Reproducible MuJoCo lab for impedance, admittance, and hybrid force-position control."
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "MIT" }
+license = "MIT"
+license-files = ["LICENSE"]
 dependencies = [
   "matplotlib>=3.7,<4",
   "mujoco>=3.1,<4",
@@ -20,6 +21,7 @@ dev = ["pytest>=7,<9", "ruff>=0.6,<1"]
 
 [project.scripts]
 compliant-control-lab = "compliant_control_lab.experiments:main"
+franka-control-lab = "compliant_control_lab.franka_experiments:main"
 
 [tool.setuptools]
 package-dir = { "" = "src" }
@@ -28,7 +30,16 @@ package-dir = { "" = "src" }
 where = ["src"]
 
 [tool.setuptools.package-data]
-compliant_control_lab = ["assets/*.xml"]
+compliant_control_lab = [
+  "assets/*.xml",
+  "assets/**/*.xml",
+  "assets/**/*.obj",
+  "assets/**/*.stl",
+  "assets/**/*.png",
+  "assets/**/LICENSE",
+  "assets/**/README.md",
+  "assets/**/UPSTREAM.md",
+]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
