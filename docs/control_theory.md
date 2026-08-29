@@ -80,7 +80,9 @@ F_k^{f}=F_{k-1}^{f}+\alpha(F_k-F_{k-1}^{f}),\qquad
 \]
 
 Noise and delay are applied after this physical sensor filter. Force RMSE is computed from the
-filtered signal, while peak force is computed from the unfiltered solver output.
+filtered signal after the approach window. Peak force uses the unfiltered solver output over the
+complete trial, and saturation percentage also covers the complete trial, so approach impacts are
+not hidden by the steady-state window.
 
 ## 7. Scope
 

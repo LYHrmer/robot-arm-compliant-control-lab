@@ -20,7 +20,7 @@ from compliant_control_lab.franka_simulation import (
 
 def _write_csv(rows: list[dict[str, float | str]], output_path: Path) -> None:
     with output_path.open("w", newline="", encoding="utf-8") as file:
-        writer = csv.DictWriter(file, fieldnames=list(rows[0]))
+        writer = csv.DictWriter(file, fieldnames=list(rows[0]), lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
@@ -111,4 +111,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

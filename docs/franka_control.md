@@ -78,19 +78,33 @@ The translational command explicitly separates the force and motion subspaces:
 +P_t\left(K_t\mathbf{e}_p+D_t\mathbf{e}_v\right).
 \]
 
-The force integral is frozen below 0.5 N and clamped. This prevents wind-up during approach or
-temporary contact loss. Orientation remains under impedance control.
+The force integral is updated only in confirmed contact and is clamped. This prevents wind-up during
+approach or temporary contact loss. Orientation remains under impedance control.
+
+The implementation also separates the approach and force-regulation phases. Before contact, a
+bounded normal position controller approaches the surface:
+
+\[
+F_a=\mathrm{clip}\left(K_a\,\mathbf{n}^T(\mathbf{p}_d-\mathbf{p})+
+D_a\,\mathbf{n}^T(\dot{\mathbf{p}}_d-\dot{\mathbf{p}}),0,F_{a,max}\right).
+\]
+
+Contact must remain above 3 N for 20 ms; then a blend factor transitions from the approach command
+to the force PI command over 150 ms. A separate release threshold and 50 ms debounce prevent noisy
+mode chatter. This reduced nominal full-trial peak force from 33.83 N to 26.72 N while preserving
+100% contact and approximately 1 N steady-state force RMSE.
 
 ## 6. Measurement and evaluation
 
 MuJoCo provides raw contact impulses at 500 Hz. A 20 ms first-order low-pass filter approximates
 force-sensor bandwidth. Scenario noise and delay are applied after filtering.
 
-- `force_rmse_n`: filtered force versus the 12 N target.
-- `peak_force_n`: unfiltered raw solver force, so filtering cannot hide impact.
+- `force_rmse_n`: filtered force versus the 12 N target after the 1.5 s approach window.
+- `peak_force_n`: unfiltered raw solver force over the complete trial, including first contact, so
+  neither filtering nor the steady-state evaluation window can hide impact.
 - `tangent_rmse_mm`: Euclidean y-z tracking error.
 - `orientation_rmse_deg`: norm of the small-angle orientation error.
-- `saturation_pct`: fraction of steps where any arm torque was clipped.
+- `saturation_pct`: fraction of all trial steps where any arm torque was clipped.
 - `controller_p95_us`: controller computation only; MuJoCo stepping and rendering are excluded.
 
 The final gains deliberately trade a few millimetres of tangential error for zero torque
@@ -103,4 +117,3 @@ The Panda geometry and inertial parameters come from Google DeepMind's MuJoCo Me
 `da76818e269b82289eba39808e2fb91d679d6994` under Apache-2.0. The local
 `panda_torque.xml` derivative replaces position actuators with torque motors and adds a rigid
 spherical tool and end-effector site. See the vendored `UPSTREAM.md` and `LICENSE`.
-

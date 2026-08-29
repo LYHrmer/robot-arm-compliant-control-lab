@@ -62,11 +62,11 @@ class TrialResult:
             "controller": self.controller,
             "scenario": self.scenario,
             "force_rmse_n": float(np.sqrt(np.mean(force_error**2))),
-            "peak_force_n": float(np.max(self.raw_normal_force[mask])),
+            "peak_force_n": float(np.max(self.raw_normal_force)),
             "y_rmse_mm": float(1_000.0 * np.sqrt(np.mean(y_error**2))),
             "contact_ratio_pct": float(100.0 * np.mean(self.normal_force[mask] > 0.5)),
             "torque_rms_nm": float(np.sqrt(np.mean(torque_norm**2))),
-            "saturation_pct": float(100.0 * np.mean(self.saturated[mask])),
+            "saturation_pct": float(100.0 * np.mean(self.saturated)),
             "controller_p95_us": float(np.percentile(self.controller_time_us[mask], 95)),
         }
 

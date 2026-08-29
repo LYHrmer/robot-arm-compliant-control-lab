@@ -170,6 +170,8 @@ class FrankaAdmittanceController:
 
 @dataclass
 class FrankaHybridController:
+    """Impact-aware normal-force control with tangential pose impedance."""
+
     normal: np.ndarray = field(default_factory=lambda: _array((1.0, 0.0, 0.0)))
     force_kp: float = 0.35
     force_ki: float = 1.5
@@ -188,33 +190,84 @@ class FrankaHybridController:
     )
     integral_limit: float = 2.0
     max_normal_command: float = 25.0
+    approach_stiffness: float = 800.0
+    approach_damping: float = 120.0
+    max_approach_command: float = 12.0
+    contact_threshold: float = 3.0
+    contact_confirm_time: float = 0.02
+    contact_release_threshold: float = 1.0
+    contact_release_time: float = 0.05
+    force_transition_time: float = 0.15
     name: str = "hybrid"
     _force_integral: float = field(default=0.0, init=False, repr=False)
+    _contact_confirm_elapsed: float = field(default=0.0, init=False, repr=False)
+    _contact_release_elapsed: float = field(default=0.0, init=False, repr=False)
+    _force_blend: float = field(default=0.0, init=False, repr=False)
+    _in_contact: bool = field(default=False, init=False, repr=False)
 
     def reset(self, state: FrankaState) -> None:
-        del state
         self.normal = self.normal / np.linalg.norm(self.normal)
         self._force_integral = 0.0
+        self._contact_confirm_elapsed = 0.0
+        self._contact_release_elapsed = 0.0
+        self._in_contact = state.normal_force >= self.contact_threshold
+        self._force_blend = 1.0 if self._in_contact else 0.0
 
     def compute(self, state: FrankaState, target: FrankaTarget, dt: float) -> np.ndarray:
+        safe_dt = max(0.0, dt)
+        if self._in_contact:
+            if state.normal_force < self.contact_release_threshold:
+                self._contact_release_elapsed += safe_dt
+                if self._contact_release_elapsed >= self.contact_release_time:
+                    self._in_contact = False
+                    self._contact_confirm_elapsed = 0.0
+            else:
+                self._contact_release_elapsed = 0.0
+        elif state.normal_force >= self.contact_threshold:
+            self._contact_confirm_elapsed += safe_dt
+            if self._contact_confirm_elapsed >= self.contact_confirm_time:
+                self._in_contact = True
+                self._contact_release_elapsed = 0.0
+        else:
+            self._contact_confirm_elapsed = 0.0
+
+        blend_step = safe_dt / self.force_transition_time
+        blend_target = 1.0 if self._in_contact else 0.0
+        self._force_blend += float(
+            np.clip(blend_target - self._force_blend, -blend_step, blend_step)
+        )
+
         force_error = target.normal_force - state.normal_force
-        if state.normal_force > 0.5:
+        if self._in_contact:
             self._force_integral = float(
                 np.clip(
-                    self._force_integral + force_error * dt,
+                    self._force_integral + force_error * safe_dt,
                     -self.integral_limit,
                     self.integral_limit,
                 )
             )
 
         normal_velocity = float(self.normal @ state.linear_velocity)
-        normal_command = (
+        force_command = (
             target.normal_force
             + self.force_kp * force_error
             + self.force_ki * self._force_integral
             - self.normal_damping * normal_velocity
         )
-        normal_command = float(np.clip(normal_command, 0.0, self.max_normal_command))
+        force_command = float(np.clip(force_command, 0.0, self.max_normal_command))
+        target_normal_velocity = float(self.normal @ target.linear_velocity)
+        normal_position_error = float(self.normal @ (target.position - state.position))
+        approach_command = self.approach_stiffness * normal_position_error
+        approach_command += self.approach_damping * (
+            target_normal_velocity - normal_velocity
+        )
+        approach_command = float(
+            np.clip(approach_command, 0.0, self.max_approach_command)
+        )
+        normal_command = (
+            (1.0 - self._force_blend) * approach_command
+            + self._force_blend * force_command
+        )
 
         tangent_projector = np.eye(3) - np.outer(self.normal, self.normal)
         position_error = tangent_projector @ (target.position - state.position)

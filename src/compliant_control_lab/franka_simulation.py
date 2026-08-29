@@ -27,9 +27,13 @@ CONTACT_CENTER_X = WALL_SURFACE_X - TOOL_RADIUS
 class FrankaScenario:
     name: str
     wall_time_constant: float = 0.012
+    wall_sliding_friction: float = 0.45
+    wall_yaw_deg: float = 0.0
     position_noise_std: float = 0.0
     force_noise_std: float = 0.05
+    force_bias_n: float = 0.0
     delay_steps: int = 0
+    bias_compensation_scale: float = 1.0
 
 
 @dataclass(frozen=True)
@@ -68,14 +72,14 @@ class FrankaTrialResult:
             "controller": self.controller,
             "scenario": self.scenario,
             "force_rmse_n": float(np.sqrt(np.mean(force_error**2))),
-            "peak_force_n": float(np.max(self.raw_normal_force[mask])),
+            "peak_force_n": float(np.max(self.raw_normal_force)),
             "tangent_rmse_mm": float(1_000.0 * np.sqrt(np.mean(tangent_error**2))),
             "orientation_rmse_deg": float(
                 np.rad2deg(np.sqrt(np.mean(self.orientation_error_rad[mask] ** 2)))
             ),
             "contact_ratio_pct": float(100.0 * np.mean(self.normal_force[mask] > 0.5)),
             "torque_rms_nm": float(np.sqrt(np.mean(torque_norm**2))),
-            "saturation_pct": float(100.0 * np.mean(self.saturated[mask])),
+            "saturation_pct": float(100.0 * np.mean(self.saturated)),
             "controller_p95_us": float(np.percentile(self.controller_time_us[mask], 95)),
         }
 
@@ -179,6 +183,15 @@ def run_franka_trial(
     tool_id = model.geom("tool_tip").id
     site_id = model.site("ee_site").id
     model.geom_solref[wall_id, 0] = scenario.wall_time_constant
+    model.geom_friction[wall_id, 0] = scenario.wall_sliding_friction
+    wall_yaw = np.deg2rad(scenario.wall_yaw_deg)
+    wall_normal = np.array([np.cos(wall_yaw), np.sin(wall_yaw)])
+    wall_half_thickness = model.geom_size[wall_id, 0]
+    model.geom_pos[wall_id, :2] = np.array([WALL_SURFACE_X, 0.0])
+    model.geom_pos[wall_id, :2] += wall_half_thickness * wall_normal
+    model.geom_quat[wall_id] = np.array(
+        [np.cos(0.5 * wall_yaw), 0.0, 0.0, np.sin(0.5 * wall_yaw)]
+    )
 
     data = mujoco.MjData(model)
     mujoco.mj_resetDataKeyframe(model, data, model.key("home").id)
@@ -239,7 +252,12 @@ def run_franka_trial(
         measured_position = measured_position + rng.normal(
             0.0, scenario.position_noise_std, size=3
         )
-        measured_force = max(0.0, measured_force + rng.normal(0.0, scenario.force_noise_std))
+        measured_force = max(
+            0.0,
+            measured_force
+            + scenario.force_bias_n
+            + rng.normal(0.0, scenario.force_noise_std),
+        )
         state = FrankaState(
             position=measured_position,
             rotation=measured_rotation,
@@ -256,7 +274,7 @@ def run_franka_trial(
         nullspace = damped_nullspace_projector(jacobian)
         posture_torque = 10.0 * (nominal_q - data.qpos[:7]) - 2.5 * data.qvel[:7]
         torque_unclipped = jacobian.T @ wrench
-        torque_unclipped += data.qfrc_bias[:7]
+        torque_unclipped += scenario.bias_compensation_scale * data.qfrc_bias[:7]
         torque_unclipped += nullspace @ posture_torque
         torque = np.clip(
             torque_unclipped,
@@ -295,4 +313,3 @@ def run_franka_trial(
         controller_time_us=controller_time_log,
         saturated=saturated_log,
     )
-

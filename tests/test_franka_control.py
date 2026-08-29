@@ -68,3 +68,14 @@ def test_hybrid_normal_command_does_not_depend_on_normal_position_error():
     np.testing.assert_allclose(first[0], second[0])
     assert first[1] > 0.0
 
+
+def test_hybrid_uses_bounded_position_control_before_contact():
+    controller = FrankaHybridController()
+    state = _state(force=0.0)
+    controller.reset(state)
+    near = controller.compute(state, _target(normal_position=0.37), dt=0.0)
+
+    controller.reset(state)
+    far = controller.compute(state, _target(normal_position=0.50), dt=0.0)
+    assert 0.0 < near[0] < far[0]
+    assert far[0] == controller.max_approach_command

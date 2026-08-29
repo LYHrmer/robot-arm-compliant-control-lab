@@ -2,13 +2,15 @@
 
 [![tests](https://github.com/LYHrmer/robot-arm-compliant-control-lab/actions/workflows/tests.yml/badge.svg)](https://github.com/LYHrmer/robot-arm-compliant-control-lab/actions/workflows/tests.yml)
 
-一个可复现的 MuJoCo 机械臂接触控制项目。当前 `v0.2` 使用 Franka Panda 7-DOF
-力矩模型，实现 6D 笛卡尔阻抗、导纳和力位混合控制，并在墙体刚度变化、传感器噪声及
-20 ms 延迟下评估力跟踪、切向轨迹、姿态误差、关节力矩和实时性。
+一个可复现的 MuJoCo 机械臂接触控制项目。当前 `v0.3` 使用 Franka Panda 7-DOF
+力矩模型，实现 6D 笛卡尔阻抗、导纳和力位混合控制；新增 C++17/Eigen 控制核心、
+Python/C++ 数值一致性测试，以及用于决定是否引入 Residual RL 的随机失配压力测试。
 
 ![Franka hybrid force-position control](results/franka/hybrid_demo.gif)
 
 ![Franka nominal benchmark](results/franka/nominal.png)
+
+![Franka randomized robustness gate](results/franka_stress/stress_summary.png)
 
 ## 主要结果
 
@@ -18,14 +20,28 @@ Franka 以 500 Hz 控制末端工具维持 12 N 法向接触力，同时沿墙�
 |---|---|---:|---:|---:|---:|
 | Impedance | nominal | 8.98 | 3.26 | 0.62 | 0% |
 | Admittance | nominal | 0.94 | 9.29 | 0.41 | 0% |
-| Hybrid | nominal | 0.91 | 9.50 | 0.40 | 0% |
-| Hybrid | noisy + 20 ms delay | 0.93 | 8.70 | 0.41 | 0% |
+| Hybrid | nominal | 0.95 | 9.55 | 0.40 | 0% |
+| Hybrid | noisy + 20 ms delay | 0.95 | 8.75 | 0.41 | 0% |
 
 阻抗控制不显式跟踪 12 N，因此接触峰值较低但力误差最大；导纳和力位混合控制的力跟踪
-更准确，但刚性墙场景的原始接触峰值更高。指标没有用滤波掩盖冲击：`force_rmse_n`
-来自低通后的传感器反馈，`peak_force_n` 来自 MuJoCo 原始接触力。
+更准确，但刚性墙场景的原始接触峰值更高。指标没有用滤波或稳态窗口掩盖冲击：
+`force_rmse_n` 来自接近结束后的低通反馈，`peak_force_n` 覆盖完整轨迹的 MuJoCo 原始
+接触力（包括首次接触）。
 
 完整结果见 [Franka metrics](results/franka/metrics.md)。
+
+### 随机失配与 Residual RL 决策
+
+在运行实验前固定了门槛：24 个未见工况中至少 90% 同时满足力 RMSE <= 2 N、接触率
+>= 95%、原始峰值力 <= 35 N、切向 RMSE <= 15 mm、力矩饱和 <= 1%。随机范围包含
+接触柔度/摩擦、墙面法向误差、传感器偏置与噪声、0--30 ms 延迟和动力学 bias 误差。
+
+加入接触确认、低速 approach 和 150 ms 力控切换后，固定增益 hybrid 仍只通过
+**6/24（25.0%）**；接触率始终为 100%，但峰值力 P95 为 57.74 N，切向 RMSE 最差
+29.16 mm，力矩饱和最差 12.53%。因此下一版值得把 Residual RL 作为实验项，但应作为
+有界 Cartesian wrench 残差叠加在经典控制器上，并与 adaptive-admittance classical
+baseline 对比，而不是直接改成端到端关节力矩策略。完整判断、动作空间、安全约束和消融协议见
+[Residual RL decision](docs/residual_rl_decision.md)。
 
 ## 实现内容
 
@@ -35,12 +51,30 @@ Franka 以 500 Hz 控制末端工具维持 12 N 法向接触力，同时沿墙�
 - 6D 末端位置与姿态阻抗。
 - 法向导纳外环和笛卡尔位置内环。
 - 法向力 PI 与切向位置 PD 的混合控制。
+- 接触确认、迟滞释放、限幅 approach 和无冲击的 position-to-force 平滑切换。
 - 阻尼零空间投影和关节姿态目标。
 - 接触感知 anti-windup、力传感器低通、噪声与延迟注入。
 - 关节力矩限幅、饱和率和控制器 P95 耗时统计。
-- 20 个运动学、控制器和 MuJoCo 闭环测试。
+- C++17/Eigen 固定尺寸控制核心，更新路径无日志、锁和显式堆分配。
+- CTest 原生测试，以及 Python/C++ 每个 wrench 分量 `1e-12` 容差的一致性测试。
+- 24 个固定 holdout 随机失配工况和预先声明的 Residual RL go/no-go 门槛。
 
 控制公式和实现对应关系见 [Franka 7-DOF control notes](docs/franka_control.md)。
+
+## 学习路线：从入门到进阶
+
+项目保留 2-DOF 解析模型建立直觉，再逐步进入 Franka 6D 控制、数值线性代数、C++ 实时
+实现和 Residual RL 实验设计。完整教程从
+[学习路线总览](docs/tutorial/README.md) 开始：
+
+1. [2-DOF FK、IK、Jacobian 与奇异性](docs/tutorial/01_2dof_kinematics.md)
+2. [阻抗、导纳、力位混合与接触状态机](docs/tutorial/02_compliant_control.md)
+3. [Franka wrench-to-torque、阻尼伪逆与 null space 解算](docs/tutorial/03_franka_numerics.md)
+4. [指标、随机 holdout 与可信实验方法](docs/tutorial/04_experiments_and_validation.md)
+5. [Residual RL 动作、奖励、安全层与消融协议](docs/tutorial/05_residual_rl.md)
+6. [分级练习、故障定位和面试表达](docs/tutorial/06_exercises_and_interview.md)
+
+每章都给出公式的离散实现、源码入口、验证命令和练习，不要求先会 ROS 2 或真机开发。
 
 ## 快速开始
 
@@ -51,6 +85,21 @@ pip install -e ".[dev]"
 
 pytest
 franka-control-lab --output results/franka --gif
+```
+
+C++17/Eigen 控制核心：
+
+```bash
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build --parallel
+ctest --test-dir build --output-on-failure
+pytest tests/test_cpp_parity.py
+```
+
+重新生成随机失配压力测试：
+
+```bash
+franka-stress-lab --output results/franka_stress --cases 24 --seed 29
 ```
 
 快速验证单个控制器：
@@ -89,8 +138,14 @@ src/compliant_control_lab/
 ├── franka_simulation.py      # 7-DOF dynamics, contact and metrics
 ├── franka_experiments.py     # Franka benchmark CLI
 ├── franka_plotting.py        # plots and MuJoCo renderer
+├── franka_stress.py          # randomized holdout and Residual RL gate
 ├── controllers.py            # 2-DOF pedagogical baseline
 └── simulation.py
+cpp/
+├── include/                  # public C++17/Eigen interface
+├── src/                      # controller implementation
+├── tests/                    # native CTest suite
+└── tools/                    # deterministic Python parity probe
 tests/
 docs/
 results/
@@ -120,12 +175,13 @@ Franka 模型来自 Google DeepMind
 - 使用理想力矩接口，没有模拟电流环、编码器量化和通信抖动。
 - 接触参数是 MuJoCo 参数，不是真机辨识结果。
 - 零空间投影是阻尼运动学投影，不是完整 operational-space inertia formulation。
-- 尚未包含 ROS2 realtime controller、watchdog 和真机碰撞安全状态机。
+- C++ 核心已经独立可编译，但尚未接入 `franka_semantic_components`、真机 watchdog 和
+  碰撞安全状态机；当前机器没有安装 Franka hardware/model 接口，不能声称完成真机插件。
+- Residual RL 当前完成了需求门槛和实验设计，尚未训练或宣称优于 classical baseline。
 
 ## 下一步
 
-- C++17/Eigen 控制器与 Python 参考实现一致性测试。
-- ROS2 controller、实时线程、watchdog 和配置 YAML。
+- 有界 Cartesian wrench Residual RL，采用独立训练/holdout 域和五组消融。
+- 安装 Franka ROS2 model interface 后实现 ros2_control controller、watchdog 和配置 YAML。
 - 用 Pinocchio 交叉验证 Jacobian、重力补偿和 operational-space dynamics。
 - 软垫、刚性墙和曲面上的 Sim-to-Real 参数辨识。
-
