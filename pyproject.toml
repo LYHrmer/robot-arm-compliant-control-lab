@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "compliant-control-lab"
+version = "0.1.0"
+description = "Reproducible MuJoCo lab for impedance, admittance, and hybrid force-position control."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+  "matplotlib>=3.7,<4",
+  "mujoco>=3.1,<4",
+  "numpy>=1.24,<3",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7,<9", "ruff>=0.6,<1"]
+
+[project.scripts]
+compliant-control-lab = "compliant_control_lab.experiments:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+compliant_control_lab = ["assets/*.xml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

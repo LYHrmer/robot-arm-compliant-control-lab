@@ -1,0 +1,14 @@
+| controller | scenario | force_rmse_n | peak_force_n | y_rmse_mm | contact_ratio_pct | torque_rms_nm | saturation_pct | controller_p95_us |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| position | nominal | 5.033 | 26.492 | 27.304 | 100.000 | 9.640 | 0.000 | 1.879 |
+| impedance | nominal | 8.416 | 12.322 | 12.214 | 100.000 | 2.406 | 0.000 | 1.894 |
+| admittance | nominal | 1.458 | 18.738 | 12.051 | 100.000 | 7.414 | 0.000 | 7.227 |
+| hybrid | nominal | 1.468 | 31.899 | 11.452 | 100.000 | 7.773 | 0.000 | 6.960 |
+| position | stiff_wall | 5.089 | 31.071 | 27.399 | 100.000 | 9.649 | 0.000 | 1.949 |
+| impedance | stiff_wall | 8.418 | 17.357 | 12.223 | 100.000 | 2.406 | 0.000 | 1.939 |
+| admittance | stiff_wall | 1.474 | 22.742 | 12.067 | 100.000 | 7.415 | 0.000 | 7.477 |
+| hybrid | stiff_wall | 1.457 | 37.069 | 11.513 | 100.000 | 7.800 | 0.000 | 7.140 |
+| position | noisy_delay | 5.108 | 45.720 | 26.661 | 100.000 | 9.622 | 0.000 | 1.917 |
+| impedance | noisy_delay | 8.431 | 24.270 | 11.304 | 100.000 | 2.434 | 0.000 | 1.994 |
+| admittance | noisy_delay | 1.682 | 35.825 | 10.829 | 100.000 | 7.340 | 0.000 | 7.455 |
+| hybrid | noisy_delay | 1.408 | 52.983 | 10.061 | 100.000 | 7.685 | 0.000 | 7.267 |
