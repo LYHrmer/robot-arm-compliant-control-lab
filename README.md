@@ -15,6 +15,8 @@ Residual RL。仓库同时保留 C++17/Eigen 控制核心、Python/C++ 数值一
 
 ![Fixed adaptive residual same-case comparison](results/franka_learning/comparison.png)
 
+![v0.5 torque-safe five-seed first reveal](results/franka_safety_blind/comparison.png)
+
 ## 主要结果
 
 Franka 以 500 Hz 控制末端工具维持 12 N 法向接触力，同时沿墙面执行二维擦拭轨迹。
@@ -38,7 +40,7 @@ Franka 以 500 Hz 控制末端工具维持 12 N 法向接触力，同时沿墙�
 v0.3 首次运行前固定了门槛：24 个工况中至少 90% 同时满足力 RMSE <= 2 N、接触率
 >= 95%、原始峰值力 <= 35 N、切向 RMSE <= 15 mm、力矩饱和 <= 1%。v0.4 沿用这套
 对策略训练未见的冻结工况；由于既往结果已经公开，它被准确标为 public holdout，而不是
-blind test。随机范围包含接触柔度/摩擦、墙面法向误差、传感器偏置与噪声、0--30 ms
+blind test。随机范围包含接触柔度/摩擦、墙面法向误差、传感器偏置与噪声、0–30 ms
 延迟和动力学 bias 误差。
 
 加入接触确认、低速 approach 和 150 ms 力控切换后，固定增益 hybrid 仍只通过
@@ -62,8 +64,26 @@ v0.5 先修正这个失败点：控制器拿到 `J`、bias/null-space torque 和
 3.12 N、raw peak P95 58.14 N、tangent P95 18.42 mm，最差饱和从 12.89% 降到 0%。
 Actuator clipping 已降到 0%，力和轨迹 gate 仍未通过。
 
-五个 ARS seed、开发集 checkpoint selection、新 48-case first reveal 和 drand 验签流程见
-[v0.5 reproduction protocol](docs/reproduction_plan_v0.5.md)；projection 推导和源码阅读顺序见
+`v0.5-preholdout` 在 drand Quicknet round `31756275` 发布前冻结了五个策略。首次 48-case
+揭盲结果如下；每行使用同一组 scenario/noise seed：
+
+| 方法 | 通过数 | Force P95 [N] | Raw peak P95 [N] | Tangent P95 [mm] | Saturation worst |
+|---|---:|---:|---:|---:|---:|
+| Fixed hybrid | 17/48 | 2.01 | 58.62 | 22.66 | 19.69% |
+| Adaptive hybrid | 23/48 | 2.21 | 58.99 | 18.89 | 20.71% |
+| Safe adaptive | 24/48 | 2.33 | 59.54 | 18.89 | 0.00% |
+| Torque residual run 00 | 22/48 | 2.00 | 59.54 | 16.04 | 0.00% |
+| Torque residual run 01 | 25/48 | 2.03 | 59.54 | 16.13 | 0.00% |
+| Torque residual run 02 | 26/48 | 2.10 | 59.54 | 15.98 | 0.00% |
+| Torque residual run 03 | 24/48 | 2.12 | 59.54 | 16.50 | 0.00% |
+| Torque residual run 04 | 25/48 | 1.98 | 59.54 | 16.43 | 0.00% |
+
+预注册规则要求每个 residual 都达到 44/48，实际为 22–26/48，结论是 `FAIL`。力矩投影把
+saturation 清到 0%，Residual RL 也把切向 P95 降到 15.98–16.50 mm，但没有处理约 59.54 N
+的接触峰值。五个 residual 的平均通过数是 24.4，safe adaptive 是 24；此版本保留为研究
+checkpoint，不用于真机。原始 384 行结果见
+[comparison.csv](results/franka_safety_blind/comparison.csv)，冻结与揭盲细节见
+[v0.5 reproduction protocol](docs/reproduction_plan_v0.5.md)，projection 推导见
 [torque-safe residual notes](docs/torque_safe_residual_v0.5.md)。
 
 ## 实现内容

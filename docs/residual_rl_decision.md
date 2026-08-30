@@ -23,7 +23,7 @@ The original fixed-gain trigger was:
 
 The complete conditions and metrics are in
 [`results/franka_stress/metrics.csv`](../results/franka_stress/metrics.csv). The randomization covers
-wall compliance and friction, +/-6 degree surface-normal error, sensor noise and bias, 0--30 ms
+wall compliance and friction, +/-6 degree surface-normal error, sensor noise and bias, 0–30 ms
 measurement delay, and +/-15% dynamics-bias mismatch. Seed 29 fixes scenario generation; each CSV
 row also records the simulation-noise seed used for that case.
 
@@ -81,3 +81,21 @@ The primary rule is fixed before reveal: every residual policy must pass at leas
 the existing force, contact, peak, tangential and torque-saturation gates. The repository keeps all
 five policy results; it does not replace this rule with the best seed or mean pass rate. SAC/TD3 and
 end-to-end RL are later comparisons, not part of this safety-baseline gate.
+
+## v0.5 decision after first reveal
+
+Do not deploy any v0.5 residual policy. The five pass counts were 22, 25, 26, 24 and 25/48, so every
+run failed the 44/48 rule. Their mean was 24.4 cases; safe adaptive passed 24. The hierarchical
+bootstrap interval for the mean residual pass rate was 36.2% to 65.0%.
+
+The torque-safe layer did one job: safe adaptive and all five residual policies had 0% worst
+actuator saturation and zero deadline, context or projection fallbacks. The residual policies
+reduced tangential P95 from 18.89 mm to 15.98–16.50 mm, but their raw peak P95 remained 59.54 N.
+Peak-force failures affected 20–24 cases per residual policy.
+
+Changing ARS to SAC or TD3 is not the next experiment. The residual is disabled for the first 100 ms
+of stable contact, and all torque-safe methods share the same peak P95. That points to the nominal
+approach and contact transition as the first place to instrument. The next version should record the
+peak timestamp and contact phase, reduce the pre-contact energy or reshape the reference governor,
+then freeze a new beacon round. The 48 revealed cases may be used for diagnosis, but not as another
+blind headline result.

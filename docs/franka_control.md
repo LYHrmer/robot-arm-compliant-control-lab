@@ -119,7 +119,8 @@ v0.5 adds `safe_adaptive_hybrid`, which limits pre-contact normal reference lead
 complete adaptive wrench into the reserved torque interval. The learned controller then projects its
 three-axis residual against the remaining interval. The 20 policy inputs are the v0.4 14 fields plus
 the feasible scales for positive and negative x/y/z residuals. Derivation and the freeze protocol
-are in [v0.5 pre-holdout protocol](reproduction_plan_v0.5.md).
+are in [v0.5 pre-holdout protocol](reproduction_plan_v0.5.md), together with the failed 48-case first
+reveal and its raw-result path.
 
 ## 7. Measurement and evaluation
 

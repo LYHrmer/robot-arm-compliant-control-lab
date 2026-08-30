@@ -111,9 +111,9 @@ v0.4 只有 45 个策略参数：`3×14` 权重加 3 个 bias。ARS 不需要神
 可复用同一组仿真噪声，checkpoint 也能直接检查。单次公开训练把 rollout cost 从 2.0221
 降到 1.6744，但一个 seed 不能回答稳定性问题。
 
-v0.5 先冻结五个 ARS seed 和新的 48-case blind set。只有安全投影与多 seed 结果明确以后，
-再让 SAC/TD3 使用相同 observation、动作包络、训练 case 和 rollout 预算；否则算法差异会
-和安全层、数据量差异混在一起。
+v0.5 冻结了五个 ARS seed 和新的 48-case blind set。五个策略全部未达到 44/48，主要
+失败项是 raw impact，而 residual 要等稳定接触 100 ms 才启用。此时直接换 SAC/TD3 会把
+名义入触瞬态和算法容量混在一起；先修 classical path，再比较非线性策略。
 
 ## 7. Domain randomization 和数据拆分
 
@@ -158,13 +158,18 @@ actuation context，名义 wrench 与 residual 都在映射到关节力矩后做
 把切向 P95 降到 14.80 mm，但 raw peak P95 仍为 57.04 N，最差力矩饱和升到 15.91%。
 它没有达到 22/24 的门槛，也不能用于真机。
 
+v0.5 first reveal 中，torque-safe adaptive 的 saturation 是 0%，五个 torque-projected
+residual 也都是 0%；但它们只通过 22、25、26、24、25/48，raw peak P95 均为 59.54 N。
+这说明 joint-torque safety layer 按设计工作，任务级 gate 仍然失败。
+
 ## 10. 推荐实施顺序
 
 1. 已完成：action=0 与 adaptive baseline 的 `1e-12` 回归测试；
 2. 已完成：action bounds、rate limit、contact gate、force guard 和 watchdog 单元测试；
 3. 已完成：独立训练场景上的 ARS rollout 和冻结 checkpoint；
 4. 已完成：同一 seed-29 24-case public holdout 对比；
-5. v0.5：五个 training seeds、开发集 checkpoint selection 和新的 48-case first reveal；
-6. v0.5：torque-headroom observation、名义 wrench 投影和 residual 二次投影；
-7. 待完成：非线性 SAC/TD3 policy 与线性 ARS 的公平消融；
-8. 上述门槛通过后才考虑 ROS 2/真机部署。
+5. 已完成：五个 training seeds、开发集 checkpoint selection 和新的 48-case first reveal；
+6. 已完成：torque-headroom observation、名义 wrench 投影和 residual 二次投影；
+7. 待完成：记录 peak 时间/接触相位，降低名义接近与切换阶段的冲击；
+8. 待完成：用新的未来 round 复测，再决定是否做 SAC/TD3 公平消融；
+9. 上述门槛通过后才考虑 ROS 2/真机部署。

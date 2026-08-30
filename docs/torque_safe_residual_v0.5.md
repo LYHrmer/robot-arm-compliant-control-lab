@@ -119,6 +119,26 @@ scenario seed 和 48 个 noise seed。
 `protocol.json`、删除四个 policy 或在 reveal 前改安全参数都会失败。48 个 case 一旦生成，
 它们就转为公开 validation 数据；后续实验要使用新的 protocol、tag 和未来 round。
 
+## first reveal 读出了什么
+
+round `31756275` 的 48-case 结果没有通过预注册门槛。safe adaptive 通过 24/48；五个
+residual 分别通过 22、25、26、24、25/48，平均 24.4。规则要求每个策略都达到 44/48，
+不能用最好 run 02 的 26/48 代替。
+
+安全层和学习层要分开看：
+
+- safe adaptive 与五个 residual 的最差 saturation 都是 0%，三类 fallback 总数也都是 0。
+  residual 自身最多有 15.71% 的控制周期触发 torque projection，最小平均缩放系数为 0.843。
+- residual 的切向 P95 为 15.98–16.50 mm，低于 safe adaptive 的 18.89 mm，但仍有 4–5
+  个 case 超过 15 mm。
+- 五个 residual 的 raw peak P95 都是 59.54 N，并有 20–24 个 case 超过 35 N。这一项是
+  通过数上不去的主要原因。
+
+residual 要等稳定接触 100 ms 才启用，而 safe adaptive 和五个 residual 的 peak P95 完全
+相同。两条证据都指向接近速度、reference governor 或接触切换阶段；这是根据结果做的诊断，
+还需要记录 peak 时间点才能定因。当前不急着把 ARS 换成 SAC/TD3。先修名义层的入触瞬态，
+再用新的未来 round 做第二次盲测，信息量更大。
+
 ## 建议从哪些测试读起
 
 - `tests/test_franka_torque_safety.py`：手算 projection、reserve、NaN/Inf、双层投影和真实

@@ -206,7 +206,7 @@ C=
 
 Final claims still use the original hard gates, not this weighted training cost.
 
-The frozen run uses six training scenarios from randomization seed 101, simulation seeds 1001--1006,
+The frozen run uses six training scenarios from randomization seed 101, simulation seeds 1001–1006,
 policy seed 17, eight iterations, six directions and three top directions. The seed-29 24-case set
 never enters training. Because its v0.3 results were already inspected, it is correctly labelled a
 frozen public holdout, not a blind test.
@@ -226,9 +226,11 @@ clear the full gate: raw impact force fails in 17 cases, force RMSE fails in thr
 saturation rises from 12.89% to 15.91%. The resulting 7/24 pass count is below the required 22/24.
 This checkpoint remains a simulation ablation and is marked unsafe for hardware use.
 
-v0.5 addresses the measured failure modes with a pre-contact reference governor, torque-headroom
-observations and wrench-to-joint-torque projection before testing a larger policy class. See
-[`reproduction_plan_v0.5.md`](reproduction_plan_v0.5.md).
+v0.5 added a pre-contact reference governor, torque-headroom observations and wrench-to-joint-torque
+projection. Its first reveal removed actuator saturation for the safe adaptive baseline and all five
+residual policies, but the policies passed only 22–26/48 cases against a 44/48 requirement. Raw
+impact P95 remained 59.54 N. The next experiment targets the nominal contact transient before testing
+a larger policy class. See [`reproduction_plan_v0.5.md`](reproduction_plan_v0.5.md).
 
 ## 6. Reproduction commands
 

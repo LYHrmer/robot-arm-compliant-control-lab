@@ -1,0 +1,11 @@
+{
+  "artifact_sha256": {
+    "comparison.csv": "4438970269075d25dfcf3361bccc7256cac96a48c44f12572d35c5f5530b2fb0",
+    "comparison.png": "99ab410a35d6dd89b317b21e42a50c96fc17eea02a730e2ea1a7ad75e1585544",
+    "reveal.json": "0e9a931769db42f687f549b2a8fac31520003d7f424fa23f629c6fee4b628ab7",
+    "summary.md": "32f1a8f39861f68b8a2aa5b9e3d7329ec640809d2c06ca16e7273d6101785f9f"
+  },
+  "experiment_id": "franka-torque-safe-residual-v0.5",
+  "freeze_tag": "v0.5-preholdout",
+  "protocol_sha256": "781839a62da0725bbe1ba8e321812dea2271ac7c8e646cdc9cf76732e4f02395"
+}

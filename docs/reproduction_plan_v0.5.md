@@ -89,6 +89,31 @@ The gate is unchanged: force RMSE at most 2 N, contact ratio at least 95%, raw p
 cases. The primary result passes only if all five policies reach that count. The report keeps the
 five raw results and a case-and-training-seed bootstrap interval; it does not select the best seed.
 
+## Recorded first reveal
+
+The frozen implementation is `f186a19`; the artifact commit and dereferenced
+`v0.5-preholdout` tag are `fa50f4d`. The protocol SHA256 is
+`781839a62da0725bbe1ba8e321812dea2271ac7c8e646cdc9cf76732e4f02395`. GitHub created the
+freeze CI run at `2026-08-30T06:12:33Z`; the run completed successfully before Quicknet round
+`31756275` at `2026-08-30T06:43:09Z`.
+
+| Method | Pass | Force P95 [N] | Raw peak P95 [N] | Tangent P95 [mm] | Saturation worst |
+|---|---:|---:|---:|---:|---:|
+| fixed_hybrid | 17/48 | 2.01 | 58.62 | 22.66 | 19.69% |
+| adaptive_hybrid | 23/48 | 2.21 | 58.99 | 18.89 | 20.71% |
+| safe_adaptive_hybrid | 24/48 | 2.33 | 59.54 | 18.89 | 0.00% |
+| torque_residual_run_00 | 22/48 | 2.00 | 59.54 | 16.04 | 0.00% |
+| torque_residual_run_01 | 25/48 | 2.03 | 59.54 | 16.13 | 0.00% |
+| torque_residual_run_02 | 26/48 | 2.10 | 59.54 | 15.98 | 0.00% |
+| torque_residual_run_03 | 24/48 | 2.12 | 59.54 | 16.50 | 0.00% |
+| torque_residual_run_04 | 25/48 | 1.98 | 59.54 | 16.43 | 0.00% |
+
+An independent CSV audit found 384 rows, eight methods with 48 rows each, one shared scenario/noise
+seed pair per case, matching policy hashes and matching recomputed gate labels. All deadline,
+torque-context and projection fallback counts were zero. The five residual policies passed 22, 25,
+26, 24 and 25 cases, so the frozen primary result is `FAIL`. The raw files are in
+`results/franka_safety_blind`; their hashes are listed in `manifest.json`.
+
 Once `reveal.json` exists, the 48 cases become validation data. Any later tuning must use another
 precommitted beacon round. A failed run may retry the same round; changing the round requires a new
 protocol and freeze tag.
