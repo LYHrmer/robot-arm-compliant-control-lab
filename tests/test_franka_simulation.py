@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 
-from compliant_control_lab.franka_control import default_franka_controllers
+from compliant_control_lab.franka_control import FrankaActuationContext, default_franka_controllers
 from compliant_control_lab.franka_simulation import (
     FrankaSimulationConfig,
     FrankaTrialResult,
@@ -19,6 +19,34 @@ def test_each_franka_controller_runs_in_mujoco(controller_name):
     assert result.q.shape == (30, 7)
     assert np.all(np.isfinite(result.position))
     assert np.all(np.isfinite(result.torque))
+
+
+class RecordingController:
+    name = "recording"
+
+    def __init__(self) -> None:
+        self.contexts: list[FrankaActuationContext] = []
+
+    def reset(self, state) -> None:
+        del state
+
+    def compute(self, state, target, dt):
+        del target, dt
+        assert state.actuation is not None
+        self.contexts.append(state.actuation)
+        return np.zeros(6)
+
+
+def test_simulation_adapter_supplies_actuation_context_each_cycle():
+    controller = RecordingController()
+    result = run_franka_trial(
+        controller,
+        config=FrankaSimulationConfig(duration=0.01),
+    )
+
+    assert len(controller.contexts) == len(result.time) == 5
+    assert all(context.cartesian_jacobian.shape == (6, 7) for context in controller.contexts)
+    assert all(context.joint_torque(np.zeros(6)).shape == (7,) for context in controller.contexts)
 
 
 def test_franka_hybrid_controller_tracks_contact_force():

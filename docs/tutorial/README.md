@@ -62,8 +62,10 @@ pytest tests/test_cpp_parity.py
 Franka 7-DOF lab
 ├── src/compliant_control_lab/franka_control.py
 ├── src/compliant_control_lab/franka_adaptive.py
+├── src/compliant_control_lab/franka_torque_safety.py
 ├── src/compliant_control_lab/residual_rl.py
 ├── src/compliant_control_lab/franka_learning.py
+├── src/compliant_control_lab/franka_safety_learning.py
 ├── src/compliant_control_lab/franka_simulation.py
 ├── src/compliant_control_lab/franka_stress.py
 └── cpp/                         # C++17/Eigen 等价实现

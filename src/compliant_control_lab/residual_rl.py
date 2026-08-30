@@ -10,8 +10,15 @@ from typing import Any, Protocol
 
 import numpy as np
 
-from compliant_control_lab.franka_adaptive import FrankaAdaptiveHybridController
+from compliant_control_lab.franka_adaptive import (
+    FrankaAdaptiveHybridController,
+    FrankaSafeAdaptiveController,
+)
 from compliant_control_lab.franka_control import FrankaController, FrankaState, FrankaTarget
+from compliant_control_lab.franka_torque_safety import (
+    project_residual_force,
+    residual_torque_headroom,
+)
 
 OBSERVATION_NAMES = (
     "normal_force_error",
@@ -30,6 +37,16 @@ OBSERVATION_NAMES = (
     "previous_tangent_z_action",
 )
 OBSERVATION_DIM = len(OBSERVATION_NAMES)
+TORQUE_HEADROOM_NAMES = (
+    "normal_positive_torque_headroom",
+    "normal_negative_torque_headroom",
+    "tangent_y_positive_torque_headroom",
+    "tangent_y_negative_torque_headroom",
+    "tangent_z_positive_torque_headroom",
+    "tangent_z_negative_torque_headroom",
+)
+TORQUE_AWARE_OBSERVATION_NAMES = OBSERVATION_NAMES + TORQUE_HEADROOM_NAMES
+TORQUE_AWARE_OBSERVATION_DIM = len(TORQUE_AWARE_OBSERVATION_NAMES)
 ACTION_DIM = 3
 
 
@@ -43,13 +60,18 @@ class LinearResidualPolicy:
 
     weights: np.ndarray
     bias: np.ndarray
+    observation_names: tuple[str, ...] = OBSERVATION_NAMES
 
     def __post_init__(self) -> None:
         weights = np.asarray(self.weights, dtype=float)
         bias = np.asarray(self.bias, dtype=float)
-        if weights.shape != (ACTION_DIM, OBSERVATION_DIM):
+        observation_names = tuple(self.observation_names)
+        if not observation_names or len(set(observation_names)) != len(observation_names):
+            raise ValueError("observation_names must be nonempty and unique")
+        expected_shape = (ACTION_DIM, len(observation_names))
+        if weights.shape != expected_shape:
             raise ValueError(
-                f"weights must have shape {(ACTION_DIM, OBSERVATION_DIM)}, got {weights.shape}"
+                f"weights must have shape {expected_shape}, got {weights.shape}"
             )
         if bias.shape != (ACTION_DIM,):
             raise ValueError(f"bias must have shape {(ACTION_DIM,)}, got {bias.shape}")
@@ -57,34 +79,52 @@ class LinearResidualPolicy:
             raise ValueError("policy parameters must be finite")
         object.__setattr__(self, "weights", weights.copy())
         object.__setattr__(self, "bias", bias.copy())
+        object.__setattr__(self, "observation_names", observation_names)
 
     @classmethod
-    def zero(cls) -> LinearResidualPolicy:
-        return cls(np.zeros((ACTION_DIM, OBSERVATION_DIM)), np.zeros(ACTION_DIM))
+    def zero(
+        cls,
+        observation_names: tuple[str, ...] = OBSERVATION_NAMES,
+    ) -> LinearResidualPolicy:
+        return cls(
+            np.zeros((ACTION_DIM, len(observation_names))),
+            np.zeros(ACTION_DIM),
+            observation_names,
+        )
 
     @classmethod
-    def from_parameter_vector(cls, parameters: np.ndarray) -> LinearResidualPolicy:
+    def from_parameter_vector(
+        cls,
+        parameters: np.ndarray,
+        observation_names: tuple[str, ...] = OBSERVATION_NAMES,
+    ) -> LinearResidualPolicy:
         parameters = np.asarray(parameters, dtype=float)
-        expected_size = ACTION_DIM * OBSERVATION_DIM + ACTION_DIM
+        observation_dim = len(observation_names)
+        expected_size = ACTION_DIM * observation_dim + ACTION_DIM
         if parameters.shape != (expected_size,):
             raise ValueError(f"parameter vector must have shape {(expected_size,)}")
-        split = ACTION_DIM * OBSERVATION_DIM
-        return cls(parameters[:split].reshape(ACTION_DIM, OBSERVATION_DIM), parameters[split:])
+        split = ACTION_DIM * observation_dim
+        return cls(
+            parameters[:split].reshape(ACTION_DIM, observation_dim),
+            parameters[split:],
+            observation_names,
+        )
 
     def parameter_vector(self) -> np.ndarray:
         return np.concatenate((self.weights.ravel(), self.bias))
 
     def action(self, observation: np.ndarray) -> np.ndarray:
         observation = np.asarray(observation, dtype=float)
-        if observation.shape != (OBSERVATION_DIM,):
-            raise ValueError(f"observation must have shape {(OBSERVATION_DIM,)}")
+        expected_shape = (len(self.observation_names),)
+        if observation.shape != expected_shape:
+            raise ValueError(f"observation must have shape {expected_shape}")
         return np.tanh(self.weights @ observation + self.bias)
 
     def save(self, path: Path, metadata: dict[str, Any] | None = None) -> None:
         payload = {
-            "format_version": 1,
+            "format_version": 2,
             "policy_type": "linear_tanh",
-            "observation_names": list(OBSERVATION_NAMES),
+            "observation_names": list(self.observation_names),
             "weights": self.weights.tolist(),
             "bias": self.bias.tolist(),
             "metadata": metadata or {},
@@ -94,11 +134,17 @@ class LinearResidualPolicy:
     @classmethod
     def load(cls, path: Path) -> LinearResidualPolicy:
         payload = json.loads(path.read_text(encoding="utf-8"))
-        if payload.get("format_version") != 1 or payload.get("policy_type") != "linear_tanh":
+        if (
+            payload.get("format_version") not in (1, 2)
+            or payload.get("policy_type") != "linear_tanh"
+        ):
             raise ValueError("unsupported residual policy format")
-        if tuple(payload.get("observation_names", ())) != OBSERVATION_NAMES:
-            raise ValueError("checkpoint observation schema does not match this version")
-        return cls(np.asarray(payload["weights"], dtype=float), np.asarray(payload["bias"], dtype=float))
+        observation_names = tuple(payload.get("observation_names", ()))
+        return cls(
+            np.asarray(payload["weights"], dtype=float),
+            np.asarray(payload["bias"], dtype=float),
+            observation_names,
+        )
 
 
 def encode_residual_observation(
@@ -173,7 +219,18 @@ class BoundedResidualController:
     _residual_squared_sum: float = field(default=0.0, init=False, repr=False)
     _residual_sample_count: int = field(default=0, init=False, repr=False)
 
+    def _expected_policy_observation_names(self) -> tuple[str, ...]:
+        return OBSERVATION_NAMES
+
+    def _policy_schema_error(self) -> str:
+        return "bounded residual policy observation schema does not match"
+
     def __post_init__(self) -> None:
+        if (
+            isinstance(self.policy, LinearResidualPolicy)
+            and self.policy.observation_names != self._expected_policy_observation_names()
+        ):
+            raise ValueError(self._policy_schema_error())
         self.normal = np.asarray(self.normal, dtype=float)
         self.action_bounds = np.asarray(self.action_bounds, dtype=float)
         self.action_rate_limits = np.asarray(self.action_rate_limits, dtype=float)
@@ -247,15 +304,15 @@ class BoundedResidualController:
         normal_force: float,
         force_rate: float,
         contact_blend: float,
+        nominal_wrench: np.ndarray,
     ) -> bool:
-        observation = encode_residual_observation(
+        observation = self._encode_policy_observation(
             state,
             target,
-            self.normal,
             normal_force,
             force_rate,
             contact_blend,
-            self._normalized_action,
+            nominal_wrench,
         )
         start_ns = perf_counter_ns()
         try:
@@ -284,10 +341,69 @@ class BoundedResidualController:
         self._policy_update_count += 1
         return True
 
+    def _encode_policy_observation(
+        self,
+        state: FrankaState,
+        target: FrankaTarget,
+        normal_force: float,
+        force_rate: float,
+        contact_blend: float,
+        nominal_wrench: np.ndarray,
+    ) -> np.ndarray:
+        del nominal_wrench
+        return encode_residual_observation(
+            state,
+            target,
+            self.normal,
+            normal_force,
+            force_rate,
+            contact_blend,
+            self._normalized_action,
+        )
+
+    def _prepare_policy_context(
+        self,
+        state: FrankaState,
+        nominal_wrench: np.ndarray,
+    ) -> bool:
+        del state, nominal_wrench
+        return True
+
+    def _residual_context_available(self, state: FrankaState) -> bool:
+        del state
+        return True
+
+    def _project_residual(
+        self,
+        state: FrankaState,
+        nominal_wrench: np.ndarray,
+    ) -> None:
+        del state, nominal_wrench
+
+    def _constrain_total_normal_residual(self, nominal_wrench: np.ndarray) -> None:
+        nominal_normal = float(self.normal @ nominal_wrench[:3])
+        residual_normal = float(self.normal @ self._residual)
+        if self.min_total_normal_wrench <= nominal_normal <= self.max_total_normal_wrench:
+            safe_residual_normal = float(
+                np.clip(
+                    residual_normal,
+                    self.min_total_normal_wrench - nominal_normal,
+                    self.max_total_normal_wrench - nominal_normal,
+                )
+            )
+        else:
+            safe_residual_normal = 0.0
+        self._residual += self.normal * (safe_residual_normal - residual_normal)
+
     def compute(self, state: FrankaState, target: FrankaTarget, dt: float) -> np.ndarray:
         safe_dt = max(0.0, dt)
         nominal_wrench = self.nominal.compute(state, target, dt)
         normal_force, force_rate, contact_blend = self._nominal_feedback(state, safe_dt)
+        context_ok = self._residual_context_available(state)
+        if not context_ok:
+            self._desired_residual = np.zeros(3)
+            self._residual = np.zeros(3)
+            self._normalized_action = np.zeros(3)
         if contact_blend >= 0.99:
             self._contact_ready_elapsed += safe_dt
         else:
@@ -297,15 +413,18 @@ class BoundedResidualController:
 
         self._policy_elapsed += safe_dt
         policy_ok = True
-        if self._policy_elapsed + 1.0e-12 >= self.policy_period:
+        if context_ok and self._policy_elapsed + 1.0e-12 >= self.policy_period:
             self._policy_elapsed %= self.policy_period
-            policy_ok = self._update_policy(
-                state,
-                target,
-                normal_force,
-                force_rate,
-                contact_blend,
-            )
+            policy_ok = self._prepare_policy_context(state, nominal_wrench)
+            if policy_ok:
+                policy_ok = self._update_policy(
+                    state,
+                    target,
+                    normal_force,
+                    force_rate,
+                    contact_blend,
+                    nominal_wrench,
+                )
 
         force_guard_active = (
             normal_force > target.normal_force + self.force_guard_margin
@@ -323,17 +442,141 @@ class BoundedResidualController:
             max_delta = self.action_rate_limits * safe_dt
             self._residual += np.clip(filtered_target - self._residual, -max_delta, max_delta)
 
+        self._constrain_total_normal_residual(nominal_wrench)
+        self._project_residual(state, nominal_wrench)
         wrench = nominal_wrench.copy()
         wrench[:3] += self._residual
-        total_normal = float(self.normal @ wrench[:3])
-        safe_total_normal = float(
-            np.clip(
-                total_normal,
-                self.min_total_normal_wrench,
-                self.max_total_normal_wrench,
-            )
-        )
-        wrench[:3] += self.normal * (safe_total_normal - total_normal)
         self._residual_squared_sum += float(self._residual @ self._residual)
         self._residual_sample_count += 1
         return wrench
+
+
+@dataclass
+class TorqueProjectedResidualController(BoundedResidualController):
+    """Bounded residual control with directional torque headroom and ray projection."""
+
+    policy: ResidualPolicy = field(
+        default_factory=lambda: LinearResidualPolicy.zero(TORQUE_AWARE_OBSERVATION_NAMES)
+    )
+    nominal: FrankaController = field(default_factory=FrankaSafeAdaptiveController)
+    torque_reserve_fraction: float = 0.10
+    name: str = "torque_projected_residual_rl"
+
+    _torque_headroom: np.ndarray = field(
+        default_factory=lambda: np.zeros(6), init=False, repr=False
+    )
+    _last_torque_projection_scale: float = field(default=1.0, init=False, repr=False)
+    _torque_projection_count: int = field(default=0, init=False, repr=False)
+    _torque_projection_samples: int = field(default=0, init=False, repr=False)
+    _torque_projection_scale_sum: float = field(default=0.0, init=False, repr=False)
+    _torque_context_fallback_count: int = field(default=0, init=False, repr=False)
+
+    def _expected_policy_observation_names(self) -> tuple[str, ...]:
+        return TORQUE_AWARE_OBSERVATION_NAMES
+
+    def _policy_schema_error(self) -> str:
+        return "torque-aware policy observation schema does not match"
+
+    def __post_init__(self) -> None:
+        super().__post_init__()
+        if not 0.0 <= self.torque_reserve_fraction < 1.0:
+            raise ValueError("torque_reserve_fraction must be in [0, 1)")
+
+    @property
+    def last_torque_headroom(self) -> np.ndarray:
+        return self._torque_headroom.copy()
+
+    @property
+    def last_torque_projection_scale(self) -> float:
+        return self._last_torque_projection_scale
+
+    @property
+    def torque_projection_pct(self) -> float:
+        if self._torque_projection_samples == 0:
+            return 0.0
+        return 100.0 * self._torque_projection_count / self._torque_projection_samples
+
+    @property
+    def mean_torque_projection_scale(self) -> float:
+        if self._torque_projection_samples == 0:
+            return 1.0
+        return self._torque_projection_scale_sum / self._torque_projection_samples
+
+    @property
+    def torque_context_fallback_count(self) -> int:
+        return self._torque_context_fallback_count
+
+    def reset(self, state: FrankaState) -> None:
+        super().reset(state)
+        self._torque_headroom = np.zeros(6)
+        self._last_torque_projection_scale = 1.0
+        self._torque_projection_count = 0
+        self._torque_projection_samples = 0
+        self._torque_projection_scale_sum = 0.0
+        self._torque_context_fallback_count = 0
+
+    def _prepare_policy_context(
+        self,
+        state: FrankaState,
+        nominal_wrench: np.ndarray,
+    ) -> bool:
+        assert state.actuation is not None
+        self._torque_headroom = residual_torque_headroom(
+            state.actuation,
+            nominal_wrench,
+            self.action_bounds,
+            self.torque_reserve_fraction,
+        )
+        return True
+
+    def _residual_context_available(self, state: FrankaState) -> bool:
+        if state.actuation is not None:
+            return True
+        self._torque_headroom = np.zeros(6)
+        self._torque_context_fallback_count += 1
+        return False
+
+    def _encode_policy_observation(
+        self,
+        state: FrankaState,
+        target: FrankaTarget,
+        normal_force: float,
+        force_rate: float,
+        contact_blend: float,
+        nominal_wrench: np.ndarray,
+    ) -> np.ndarray:
+        observation = super()._encode_policy_observation(
+            state,
+            target,
+            normal_force,
+            force_rate,
+            contact_blend,
+            nominal_wrench,
+        )
+        return np.concatenate((observation, self._torque_headroom))
+
+    def _project_residual(
+        self,
+        state: FrankaState,
+        nominal_wrench: np.ndarray,
+    ) -> None:
+        projection = project_residual_force(
+            state.actuation,
+            nominal_wrench,
+            self._residual,
+            self.torque_reserve_fraction,
+        )
+        candidate_was_active = bool(np.linalg.norm(self._residual) > 1.0e-12)
+        self._residual = projection.residual_force
+        self._last_torque_projection_scale = projection.scale
+        if candidate_was_active:
+            self._torque_projection_samples += 1
+            self._torque_projection_scale_sum += projection.scale
+            if projection.status == "scaled":
+                self._torque_projection_count += 1
+        self._normalized_action = np.divide(
+            self._residual,
+            self.action_bounds,
+            out=np.zeros(3),
+            where=self.action_bounds > 0.0,
+        )

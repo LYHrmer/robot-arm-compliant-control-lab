@@ -7,7 +7,7 @@
 1. 写有限差分 Jacobian test，并避开 (q_2=0,\pi)；
 2. 画 2-DOF 工作空间与 elbow-up/elbow-down 两支 IK；
 3. 证明 (det J=l_1l_2\sin q_2)；
-4. 用虚功推导 (	au=J^Tw)。
+4. 用虚功推导 $\tau=J^T w$。
 
 验收：测试可重复，能解释 rad/m/N/Nm 单位，不只贴代码输出。
 

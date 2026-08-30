@@ -12,11 +12,19 @@ jobs:
       - uses: actions/setup-python@v7
         with:
           python-version: "3.11"
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+          cache: npm
       - name: Install Eigen3
         run: |
           sudo apt-get update
           sudo apt-get install -y libeigen3-dev
       - run: pip install -e ".[dev]"
+      - name: Check pinned drand verifier
+        run: |
+          npm ci --ignore-scripts --no-audit --no-fund
+          node --check tools/verify_drand_beacon.mjs
       - name: Build and test C++ core
         run: |
           cmake -S . -B build -DCMAKE_BUILD_TYPE=Release

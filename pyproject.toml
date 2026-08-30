@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "compliant-control-lab"
-version = "0.4.0"
+version = "0.5.0"
 description = "Reproducible MuJoCo lab for impedance, admittance, and hybrid force-position control."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -24,6 +24,7 @@ compliant-control-lab = "compliant_control_lab.experiments:main"
 franka-control-lab = "compliant_control_lab.franka_experiments:main"
 franka-stress-lab = "compliant_control_lab.franka_stress:main"
 franka-learning-lab = "compliant_control_lab.franka_learning:main"
+franka-safety-learning-lab = "compliant_control_lab.franka_safety_learning:main"
 
 [tool.setuptools]
 package-dir = { "" = "src" }

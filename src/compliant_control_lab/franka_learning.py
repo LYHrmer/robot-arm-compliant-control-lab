@@ -33,9 +33,13 @@ from compliant_control_lab.franka_stress import (
     scenario_values,
 )
 from compliant_control_lab.residual_rl import (
+    OBSERVATION_NAMES,
     BoundedResidualController,
     LinearResidualPolicy,
 )
+
+PolicyControllerFactory = Callable[[LinearResidualPolicy], BoundedResidualController]
+SIMULATION_SEED_ITERATION_STRIDE = 100_000
 
 
 @dataclass(frozen=True)
@@ -52,6 +56,7 @@ class ArsTrainingConfig:
     scenario_seed: int = 101
     simulation_seed: int = 1_001
     policy_seed: int = 17
+    enforce_inference_deadline_during_training: bool = False
 
     def validate(self) -> None:
         if self.iterations <= 0 or self.directions <= 0:
@@ -69,6 +74,9 @@ class TrainingRecord:
     iteration: int
     mean_cost: float
     best_cost: float
+    validation_cost: float | None = None
+    training_simulation_seed: int | None = None
+    validation_simulation_seed: int | None = None
 
 
 def residual_safety_manifest() -> dict[str, float | list[float]]:
@@ -126,13 +134,21 @@ def evaluate_policy_cost(
     scenarios: Sequence[FrankaScenario],
     duration: float,
     simulation_seed: int,
+    controller_factory: PolicyControllerFactory | None = None,
+    enforce_inference_deadline: bool = True,
 ) -> float:
-    costs = []
-    for index, scenario in enumerate(scenarios):
-        controller = BoundedResidualController(
-            policy=policy,
+    """Evaluate a policy, optionally disabling wall-clock fallback for deterministic training."""
+    controller_factory = controller_factory or (
+        lambda candidate: BoundedResidualController(
+            policy=candidate,
             nominal=FrankaAdaptiveHybridController(),
         )
+    )
+    costs = []
+    for index, scenario in enumerate(scenarios):
+        controller = controller_factory(policy)
+        if not enforce_inference_deadline:
+            controller.inference_deadline_us = float("inf")
         result = run_franka_trial(
             controller,
             scenario=scenario,
@@ -145,46 +161,119 @@ def evaluate_policy_cost(
     return float(np.mean(costs))
 
 
+def _scheduled_simulation_seed(
+    base_seed: int,
+    iteration: int,
+    resample_each_iteration: bool,
+) -> int:
+    offset = SIMULATION_SEED_ITERATION_STRIDE * iteration if resample_each_iteration else 0
+    return base_seed + offset
+
+
+def _validation_simulation_seed(
+    base_seed: int,
+    run_simulation_seed: int,
+    iteration: int,
+    resample_each_iteration: bool,
+) -> int:
+    return _scheduled_simulation_seed(
+        base_seed + run_simulation_seed,
+        iteration,
+        resample_each_iteration,
+    )
+
+
 def train_residual_policy(
     config: ArsTrainingConfig | None = None,
+    controller_factory: PolicyControllerFactory | None = None,
+    observation_names: tuple[str, ...] = OBSERVATION_NAMES,
+    validation_scenarios: Sequence[FrankaScenario] | None = None,
+    validation_simulation_seed: int | None = None,
+    resample_simulation_noise: bool = False,
 ) -> tuple[LinearResidualPolicy, list[TrainingRecord], tuple[FrankaScenario, ...]]:
-    """Train a bounded linear residual policy with Augmented Random Search."""
+    """Train with deterministic per-run seeds and common random numbers for each +/- pair."""
     config = config or ArsTrainingConfig()
     config.validate()
     scenarios = sample_training_scenarios(config.training_cases, config.scenario_seed)
     rng = np.random.default_rng(config.policy_seed)
-    parameters = LinearResidualPolicy.zero().parameter_vector()
+    parameters = LinearResidualPolicy.zero(observation_names).parameter_vector()
+    training_rollout_seed = _scheduled_simulation_seed(
+        config.simulation_seed,
+        iteration=0,
+        resample_each_iteration=resample_simulation_noise,
+    )
     current_cost = evaluate_policy_cost(
-        LinearResidualPolicy.from_parameter_vector(parameters),
+        LinearResidualPolicy.from_parameter_vector(parameters, observation_names),
         scenarios,
         config.duration,
-        config.simulation_seed,
+        training_rollout_seed,
+        controller_factory,
+        enforce_inference_deadline=config.enforce_inference_deadline_during_training,
     )
+    validation_cost = None
+    validation_rollout_seed = None
+    if validation_scenarios is not None:
+        if validation_simulation_seed is None:
+            raise ValueError("validation_simulation_seed is required with validation scenarios")
+        validation_rollout_seed = _validation_simulation_seed(
+            validation_simulation_seed,
+            config.simulation_seed,
+            iteration=0,
+            resample_each_iteration=resample_simulation_noise,
+        )
+        validation_cost = evaluate_policy_cost(
+            LinearResidualPolicy.from_parameter_vector(parameters, observation_names),
+            validation_scenarios,
+            config.duration,
+            validation_rollout_seed,
+            controller_factory,
+            enforce_inference_deadline=config.enforce_inference_deadline_during_training,
+        )
     best_parameters = parameters.copy()
-    best_cost = current_cost
-    records = [TrainingRecord(iteration=0, mean_cost=current_cost, best_cost=best_cost)]
+    best_cost = validation_cost if validation_cost is not None else current_cost
+    records = [
+        TrainingRecord(
+            iteration=0,
+            mean_cost=current_cost,
+            best_cost=best_cost,
+            validation_cost=validation_cost,
+            training_simulation_seed=training_rollout_seed,
+            validation_simulation_seed=validation_rollout_seed,
+        )
+    ]
 
     for iteration in range(1, config.iterations + 1):
+        rollout_seed = _scheduled_simulation_seed(
+            config.simulation_seed,
+            iteration,
+            resample_simulation_noise,
+        )
         directions = rng.normal(size=(config.directions, parameters.size))
         rollouts = []
         for direction in directions:
             plus_policy = LinearResidualPolicy.from_parameter_vector(
-                parameters + config.noise_std * direction
+                parameters + config.noise_std * direction,
+                observation_names,
             )
             minus_policy = LinearResidualPolicy.from_parameter_vector(
-                parameters - config.noise_std * direction
+                parameters - config.noise_std * direction,
+                observation_names,
             )
             plus_score = -evaluate_policy_cost(
                 plus_policy,
                 scenarios,
                 config.duration,
-                config.simulation_seed,
+                rollout_seed,
+                controller_factory,
+                enforce_inference_deadline=config.enforce_inference_deadline_during_training,
             )
             minus_score = -evaluate_policy_cost(
                 minus_policy,
                 scenarios,
                 config.duration,
-                config.simulation_seed,
+                rollout_seed,
+                controller_factory,
+                enforce_inference_deadline=config.enforce_inference_deadline_during_training,
             )
             rollouts.append((plus_score, minus_score, direction))
 
@@ -200,31 +289,60 @@ def train_residual_policy(
                 config.step_size / (config.top_directions * reward_std)
             ) * update
 
-        current_policy = LinearResidualPolicy.from_parameter_vector(parameters)
+        current_policy = LinearResidualPolicy.from_parameter_vector(parameters, observation_names)
         current_cost = evaluate_policy_cost(
             current_policy,
             scenarios,
             config.duration,
-            config.simulation_seed,
+            rollout_seed,
+            controller_factory,
+            enforce_inference_deadline=config.enforce_inference_deadline_during_training,
         )
-        if current_cost < best_cost:
-            best_cost = current_cost
+        validation_cost = None
+        validation_rollout_seed = None
+        if validation_scenarios is not None:
+            assert validation_simulation_seed is not None
+            validation_rollout_seed = _validation_simulation_seed(
+                validation_simulation_seed,
+                config.simulation_seed,
+                iteration,
+                resample_simulation_noise,
+            )
+            validation_cost = evaluate_policy_cost(
+                current_policy,
+                validation_scenarios,
+                config.duration,
+                validation_rollout_seed,
+                controller_factory,
+                enforce_inference_deadline=config.enforce_inference_deadline_during_training,
+            )
+        selection_cost = validation_cost if validation_cost is not None else current_cost
+        if selection_cost < best_cost:
+            best_cost = selection_cost
             best_parameters = parameters.copy()
         records.append(
             TrainingRecord(
                 iteration=iteration,
                 mean_cost=current_cost,
                 best_cost=best_cost,
+                validation_cost=validation_cost,
+                training_simulation_seed=rollout_seed,
+                validation_simulation_seed=validation_rollout_seed,
             )
+        )
+        validation_text = (
+            ""
+            if validation_cost is None
+            else f" validation={validation_cost:.4f}"
         )
         print(
             f"ARS iteration {iteration:02d}/{config.iterations}: "
-            f"cost={current_cost:.4f} best={best_cost:.4f}",
+            f"training={current_cost:.4f}{validation_text} best_selection={best_cost:.4f}",
             flush=True,
         )
 
     return (
-        LinearResidualPolicy.from_parameter_vector(best_parameters),
+        LinearResidualPolicy.from_parameter_vector(best_parameters, observation_names),
         records,
         scenarios,
     )
@@ -378,8 +496,15 @@ def _write_comparison_summary(
 def _plot_training(records: Sequence[TrainingRecord], path: Path) -> None:
     iterations = [record.iteration for record in records]
     fig, axis = plt.subplots(figsize=(7.0, 4.0))
-    axis.plot(iterations, [record.mean_cost for record in records], marker="o", label="current")
-    axis.plot(iterations, [record.best_cost for record in records], label="best so far")
+    axis.plot(iterations, [record.mean_cost for record in records], marker="o", label="training")
+    if any(record.validation_cost is not None for record in records):
+        axis.plot(
+            iterations,
+            [float(record.validation_cost) for record in records],
+            marker="s",
+            label="development validation",
+        )
+    axis.plot(iterations, [record.best_cost for record in records], label="best selection cost")
     axis.set_xlabel("ARS iteration")
     axis.set_ylabel("Mean physical rollout cost")
     axis.set_title("Bounded residual policy training")

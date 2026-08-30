@@ -11,6 +11,7 @@ import mujoco
 import numpy as np
 
 from compliant_control_lab.franka_control import (
+    FrankaActuationContext,
     FrankaController,
     FrankaState,
     FrankaTarget,
@@ -257,12 +258,24 @@ def run_franka_trial(
             + scenario.force_bias_n
             + rng.normal(0.0, scenario.force_noise_std)
         )
+        nullspace = damped_nullspace_projector(jacobian)
+        posture_torque = 10.0 * (nominal_q - data.qpos[:7]) - 2.5 * data.qvel[:7]
+        actuation = FrankaActuationContext(
+            cartesian_jacobian=jacobian,
+            joint_torque_offset=(
+                scenario.bias_compensation_scale * data.qfrc_bias[:7]
+                + nullspace @ posture_torque
+            ),
+            lower_torque_limit=actuator_limits[:, 0],
+            upper_torque_limit=actuator_limits[:, 1],
+        )
         state = FrankaState(
             position=measured_position,
             rotation=measured_rotation,
             linear_velocity=measured_linear,
             angular_velocity=measured_angular,
             normal_force=measured_force,
+            actuation=actuation,
         )
         target = _target_at(time, initial_position, initial_rotation, config)
 
@@ -270,11 +283,7 @@ def run_franka_trial(
         wrench = controller.compute(state, target, config.timestep)
         controller_time_log[step] = (perf_counter_ns() - start_ns) / 1_000.0
 
-        nullspace = damped_nullspace_projector(jacobian)
-        posture_torque = 10.0 * (nominal_q - data.qpos[:7]) - 2.5 * data.qvel[:7]
-        torque_unclipped = jacobian.T @ wrench
-        torque_unclipped += scenario.bias_compensation_scale * data.qfrc_bias[:7]
-        torque_unclipped += nullspace @ posture_torque
+        torque_unclipped = actuation.joint_torque(wrench)
         torque = np.clip(
             torque_unclipped,
             actuator_limits[:, 0],

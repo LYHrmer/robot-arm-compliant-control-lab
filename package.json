@@ -1,0 +1,8 @@
+{
+  "name": "robot-arm-compliant-control-lab-beacon-verifier",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "drand-client": "1.4.2"
+  }
+}

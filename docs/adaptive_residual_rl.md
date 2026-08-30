@@ -19,8 +19,8 @@ The MuJoCo adapter remains unchanged after that seam:
 \tau = J(q)^T w + \alpha h(q,\dot q) + N(q)\tau_{posture},
 \]
 
-followed by the same actuator torque clamp. The comparison therefore changes only the Cartesian
-controller; robot model, trajectory, measurement delay, random seed and safety metrics are shared.
+followed by the same actuator torque clamp. Only the Cartesian controller changes; robot model,
+trajectory, measurement delay, random seed and safety metrics are shared.
 
 ```text
 measured Cartesian state
@@ -96,7 +96,7 @@ s=\operatorname{clip}(s_Ks_{\dot F},0.65,1.10).
 The normal proportional and integral gains are multiplied by `s`; normal damping is divided by
 `sqrt(s)`. Tangential stiffness rises by at most 25% as tangential error approaches 20 mm, with
 damping scaled by the square root of the same factor. The position-to-force transition is extended
-to 500 ms for this robust baseline.
+to 500 ms for this adaptive baseline.
 
 An independent impact guard reduces the normal command when corrected force exceeds the target by
 6 N or when positive force rate exceeds 150 N/s. The guarded command remains in `[-2, 25] N`.
@@ -209,7 +209,7 @@ Final claims still use the original hard gates, not this weighted training cost.
 The frozen run uses six training scenarios from randomization seed 101, simulation seeds 1001--1006,
 policy seed 17, eight iterations, six directions and three top directions. The seed-29 24-case set
 never enters training. Because its v0.3 results were already inspected, it is correctly labelled a
-**frozen public holdout**, not a blind test.
+frozen public holdout, not a blind test.
 
 ## 5. Same-case result
 
@@ -221,15 +221,14 @@ Frozen artifacts: `results/franka_learning/`.
 | Adaptive hybrid | 6/24 | 3.01 | 56.80 | 18.42 | 12.89% |
 | Bounded Residual RL | 7/24 | 2.30 | 57.04 | 14.80 | 15.91% |
 
-What the policy learned is measurable: tangential P95 crosses from above the 15 mm gate to 14.80 mm,
-and pass count rises by one case. What it did **not** solve is more important: raw impact force still
-fails in 17 cases, force RMSE fails in three, and the worst torque-saturation percentage increases.
-The 29.2% pass rate is far below the pre-declared 90% target.
+The residual lowers tangential P95 from 18.42 mm to 14.80 mm and adds one passing case. It does not
+clear the full gate: raw impact force fails in 17 cases, force RMSE fails in three, and worst torque
+saturation rises from 12.89% to 15.91%. The resulting 7/24 pass count is below the required 22/24.
+This checkpoint remains a simulation ablation and is marked unsafe for hardware use.
 
-Therefore this policy is a successful implementation experiment and a failed deployment candidate.
-The next research question is not “use a bigger network” by default; it is whether an impact-aware
-reference governor, torque-headroom observation/safety projection, or a better contact-normal model
-can remove the peak-force mechanism before increasing policy capacity.
+v0.5 addresses the measured failure modes with a pre-contact reference governor, torque-headroom
+observations and wrench-to-joint-torque projection before testing a larger policy class. See
+[`reproduction_plan_v0.5.md`](reproduction_plan_v0.5.md).
 
 ## 6. Reproduction commands
 

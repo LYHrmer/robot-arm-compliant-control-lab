@@ -2,9 +2,10 @@
 
 [![tests](https://github.com/LYHrmer/robot-arm-compliant-control-lab/actions/workflows/tests.yml/badge.svg)](https://github.com/LYHrmer/robot-arm-compliant-control-lab/actions/workflows/tests.yml)
 
-一个可复现的 MuJoCo 机械臂接触控制项目。当前 `v0.4` 使用 Franka Panda 7-DOF
-力矩模型，实现 6D 笛卡尔阻抗、导纳、力位混合、自适应增益调度和 bounded Residual RL；
-同时保留 C++17/Eigen 控制核心、Python/C++ 数值一致性测试和冻结随机失配评测。
+一个可复现的 MuJoCo 机械臂接触控制项目。当前 `v0.5` 使用 Franka Panda 7-DOF
+力矩模型，实现 6D 笛卡尔阻抗、导纳、力位混合、自适应增益调度和 torque-aware bounded
+Residual RL。仓库同时保留 C++17/Eigen 控制核心、Python/C++ 数值一致性测试，以及从
+公开验证集到五 seed / 48-case first reveal 的实验记录。
 
 ![Franka hybrid force-position control](results/franka/hybrid_demo.gif)
 
@@ -25,14 +26,14 @@ Franka 以 500 Hz 控制末端工具维持 12 N 法向接触力，同时沿墙�
 | Hybrid | nominal | 0.95 | 9.55 | 0.40 | 0% |
 | Hybrid | noisy + 20 ms delay | 0.95 | 8.75 | 0.41 | 0% |
 
-阻抗控制不显式跟踪 12 N，因此接触峰值较低但力误差最大；导纳和力位混合控制的力跟踪
+阻抗控制不显式跟踪 12 N，所以接触峰值较低但力误差最大；导纳和力位混合控制的力跟踪
 更准确，但刚性墙场景的原始接触峰值更高。指标没有用滤波或稳态窗口掩盖冲击：
 `force_rmse_n` 来自接近结束后的低通反馈，`peak_force_n` 覆盖完整轨迹的 MuJoCo 原始
 接触力（包括首次接触）。
 
 完整结果见 [Franka metrics](results/franka/metrics.md)。
 
-### 随机失配与 Residual RL 决策
+### 随机失配与 Residual RL
 
 v0.3 首次运行前固定了门槛：24 个工况中至少 90% 同时满足力 RMSE <= 2 N、接触率
 >= 95%、原始峰值力 <= 35 N、切向 RMSE <= 15 mm、力矩饱和 <= 1%。v0.4 沿用这套
@@ -50,39 +51,38 @@ blind test。随机范围包含接触柔度/摩擦、墙面法向误差、传感
 | Adaptive hybrid | 6/24 | 3.01 | 56.80 | 18.42 | 12.89% |
 | Bounded Residual RL | 7/24 | 2.30 | 57.04 | 14.80 | 15.91% |
 
-Residual RL 明显学到了切向补偿，但仍远未达到预先声明的 90% pass gate，而且最差力矩
-饱和更高。因此结论是：**机制实现成功，部署判定失败**，不能声称 RL 已经解决柔顺接触。
-完整估计器、增益调度、ARS 更新、安全层和失败分析见
+v0.4 residual 把切向 P95 降到 14.80 mm，但只增加一个通过 case，最差力矩饱和还升到
+15.91%。这个 checkpoint 没达到 22/24 门槛，禁止用于真机。完整估计器、增益调度、ARS
+更新和逐项失败记录见
 [Adaptive compliance and bounded Residual RL](docs/adaptive_residual_rl.md)。
+
+v0.5 先修正这个失败点：控制器拿到 `J`、bias/null-space torque 和 actuator limits 后，
+先投影完整名义 wrench，再用剩余力矩余量投影 residual；策略输入加入 `+x/-x/+y/-y/+z/-z`
+六个方向的可用余量。公开 seed-29 验证集上，safe adaptive 为 7/24，force P95
+3.12 N、raw peak P95 58.14 N、tangent P95 18.42 mm，最差饱和从 12.89% 降到 0%。
+Actuator clipping 已降到 0%，力和轨迹 gate 仍未通过。
+
+五个 ARS seed、开发集 checkpoint selection、新 48-case first reveal 和 drand 验签流程见
+[v0.5 reproduction protocol](docs/reproduction_plan_v0.5.md)；projection 推导和源码阅读顺序见
+[torque-safe residual notes](docs/torque_safe_residual_v0.5.md)。
 
 ## 实现内容
 
-- Franka Panda 7-DOF 官方几何、惯量和关节限制。
-- 7 个关节力矩执行器、重力/科氏偏置补偿。
-- MuJoCo 计算的 `6×7` geometric Jacobian。
-- 6D 末端位置与姿态阻抗。
-- 法向导纳外环和笛卡尔位置内环。
-- 法向力 PI 与切向位置 PD 的混合控制。
-- 接触确认、迟滞释放、限幅 approach 和无冲击的 position-to-force 平滑切换。
-- 阻尼零空间投影和关节姿态目标。
-- 接触感知 anti-windup、力传感器低通、噪声与延迟注入。
-- 关节力矩限幅、饱和率和控制器 P95 耗时统计。
-- C++17/Eigen 固定尺寸控制核心，更新路径无日志、锁和显式堆分配。
-- CTest 原生测试，以及 Python/C++ 每个 wrench 分量 `1e-12` 容差的一致性测试。
-- 24 个固定 holdout 随机失配工况和预先声明的 Residual RL go/no-go 门槛。
-- 预接触力偏置、接触刚度与力变化率在线估计，以及可解释的经典 gain scheduling。
-- `3×14` 线性 `tanh` residual policy 和 dependency-free Augmented Random Search 训练器。
-- 50 Hz policy / 500 Hz nominal 双速率控制，动作幅值、变化率、接触启用、force guard、
-  deadline watchdog 和零残差回退。
-- 独立训练场景、冻结 policy/manifest、逐 case 对比 CSV 和训练/评测可视化。
+- 控制：Franka 7-DOF torque model、`6×7` Jacobian、bias compensation、阻尼 null space，
+  以及 impedance、admittance、hybrid force-position 和 adaptive gain scheduling。
+- 接触与安全：接触确认/释放、anti-windup、传感器低通与延迟、reference governor、完整
+  wrench 与 residual 的 joint-torque ray projection、10% torque reserve 和 fail-closed 回退。
+- 学习：50 Hz `3×20` 线性 `tanh` residual policy、500 Hz nominal loop、五 seed ARS、
+  独立 train/development/blind seed、动作幅值/速率/force guard/deadline 限制。
+- 验证：C++17/Eigen 固定尺寸核心、Python/C++ `1e-12` parity、逐 case CSV、物理 gate、
+  冻结 tag、SHA256 manifest 和双 relay drand BLS 验签。
 
 控制公式和实现对应关系见 [Franka 7-DOF control notes](docs/franka_control.md)。
 
-## 学习路线：从入门到进阶
+## 阅读顺序
 
-项目保留 2-DOF 解析模型建立直觉，再逐步进入 Franka 6D 控制、数值线性代数、C++ 实时
-实现和 Residual RL 实验设计。完整教程从
-[学习路线总览](docs/tutorial/README.md) 开始：
+项目先用 2-DOF 解析模型解释运动学和接触控制，再进入 Franka 6D 解算、C++ 实现、实验
+拆分和 Residual RL。导航页在 [教程目录](docs/tutorial/README.md)：
 
 1. [2-DOF FK、IK、Jacobian 与奇异性](docs/tutorial/01_2dof_kinematics.md)
 2. [阻抗、导纳、力位混合与接触状态机](docs/tutorial/02_compliant_control.md)
@@ -91,7 +91,7 @@ Residual RL 明显学到了切向补偿，但仍远未达到预先声明的 90% 
 5. [Residual RL 动作、奖励、安全层与消融协议](docs/tutorial/05_residual_rl.md)
 6. [分级练习、故障定位和面试表达](docs/tutorial/06_exercises_and_interview.md)
 
-每章都给出公式的离散实现、源码入口、验证命令和练习，不要求先会 ROS 2 或真机开发。
+公式、源码入口和验证命令放在同一章；不要求先会 ROS 2 或真机开发。
 
 ## 快速开始
 
@@ -133,6 +133,25 @@ franka-learning-lab \
   --output results/franka_learning_eval
 ```
 
+v0.5 的 first-reveal 流程需要 Node.js 18+ 来运行官方 drand 客户端：
+
+```bash
+npm ci
+franka-safety-learning-lab prepare \
+  --output results/franka_safety_preholdout \
+  --beacon-round <至少在训练结束十分钟后才发布的 Quicknet round> \
+  --jobs 5
+
+# 提交上述目录并创建 v0.5-preholdout tag；信标发布后才运行：
+franka-safety-learning-lab evaluate \
+  --protocol results/franka_safety_preholdout/protocol.json \
+  --output results/franka_safety_blind
+```
+
+`evaluate` 会检查当前 `HEAD`、tag 中每个文件的字节和全部 hash；直接指向另一个 protocol
+或改过的 policy 会被拒绝。轮次计算、冻结顺序和重试规则写在
+[v0.5 protocol](docs/reproduction_plan_v0.5.md)。
+
 快速验证单个控制器：
 
 ```bash
@@ -171,8 +190,10 @@ src/compliant_control_lab/
 ├── franka_plotting.py        # plots and MuJoCo renderer
 ├── franka_stress.py          # randomized holdout and Residual RL gate
 ├── franka_adaptive.py        # bias/stiffness estimation and gain scheduling
+├── franka_torque_safety.py   # wrench/residual to joint-torque projection
 ├── residual_rl.py            # policy, observation and hard residual safety envelope
 ├── franka_learning.py        # ARS training and same-case comparison
+├── franka_safety_learning.py # five-seed freeze and 48-case first reveal
 ├── controllers.py            # 2-DOF pedagogical baseline
 └── simulation.py
 cpp/
@@ -211,16 +232,14 @@ Franka 模型来自 Google DeepMind
 - 零空间投影是阻尼运动学投影，不是完整 operational-space inertia formulation。
 - C++ 核心已经独立可编译，但尚未接入 `franka_semantic_components`、真机 watchdog 和
   碰撞安全状态机；当前机器没有安装 Franka hardware/model 接口，不能声称完成真机插件。
-- 当前只完成单个 training seed 的线性 ARS policy，不能替代五 seed 统计、SAC/TD3 对比或
-  真正未查看的 blind holdout。
-- bounded residual 仍会通过接触耦合增加个别峰值力和力矩饱和；当前 checkpoint 明确禁止
-  用于真机。
+- 线性 ARS 是可检查的安全基线，不代表 SAC/TD3 或非线性策略的上限。
+- torque projection 约束仿真中的关节力矩区间，但没有 torque-rate、碰撞阈值和硬件安全认证。
+- v0.4 checkpoint 会增加个别峰值力和力矩饱和；所有已训练 checkpoint 都禁止直接上真机。
 
 ## 下一步
 
-- 增加 torque-headroom observation 和 residual-to-torque safety projection，先解决饱和机制。
-- 新建真正 blind holdout，并完成至少五个 training seeds 的置信区间。
-- 在相同 observation、action bounds 和数据预算下比较线性 ARS、SAC 与 TD3。
+- 根据 v0.5 五 seed first reveal 的逐 case 失败项决定是否继续 Residual RL。
+- 若继续，在相同 observation、action bounds 和 rollout 预算下比较线性 ARS、SAC 与 TD3。
 - 安装 Franka ROS2 model interface 后实现 ros2_control controller、watchdog 和配置 YAML。
 - 用 Pinocchio 交叉验证 Jacobian、重力补偿和 operational-space dynamics。
 - 软垫、刚性墙和曲面上的 Sim-to-Real 参数辨识。

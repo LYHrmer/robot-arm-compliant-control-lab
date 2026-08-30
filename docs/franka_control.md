@@ -40,6 +40,18 @@ N=I-J^T\left(JJ^T+\lambda^2I\right)^{-1}J.
 
 The final torque is clipped to the Panda limits: 87 Nm for joints 1–4 and 12 Nm for joints 5–7.
 
+v0.5 exposes the numeric terms needed to check that limit before the controller returns its wrench:
+
+\[
+\tau(w)=J^Tw+\tau_{offset},\qquad
+\tau_{offset}=\mathbf h+N\tau_0.
+\]
+
+`FrankaActuationContext` contains copies of `J`, `tau_offset` and the lower/upper limits. It
+contains no MuJoCo object, so the controller seam stays simulator-independent. The torque safety
+module reserves 10% of each actuator interval and scales a requested wrench along its original ray.
+It never changes bias compensation or null-space posture torque.
+
 ## 3. 6D Cartesian impedance
 
 The impedance wrench is
@@ -102,6 +114,12 @@ gains. `bounded_residual_rl` adds a learned three-axis translational wrench only
 contact transition is stable, with component/rate limits and zero-residual fallback. The estimator,
 ARS update equations and frozen comparison are derived in
 [Adaptive compliance and bounded Residual RL](adaptive_residual_rl.md).
+
+v0.5 adds `safe_adaptive_hybrid`, which limits pre-contact normal reference lead and projects the
+complete adaptive wrench into the reserved torque interval. The learned controller then projects its
+three-axis residual against the remaining interval. The 20 policy inputs are the v0.4 14 fields plus
+the feasible scales for positive and negative x/y/z residuals. Derivation and the freeze protocol
+are in [v0.5 pre-holdout protocol](reproduction_plan_v0.5.md).
 
 ## 7. Measurement and evaluation
 

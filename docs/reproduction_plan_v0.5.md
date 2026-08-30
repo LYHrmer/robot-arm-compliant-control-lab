@@ -1,0 +1,90 @@
+# v0.5 pre-holdout protocol
+
+v0.4 improved tangential tracking but made the worst torque saturation larger. Its seed-29
+evaluation had also been read several times. v0.5 treats seed 29 as public validation data and
+creates a separate first-reveal experiment.
+
+## Controller change
+
+`FrankaState` now carries an optional numeric actuation context: the 6x7 Jacobian, bias and
+null-space torque, and the seven actuator limits. The controller interface remains
+`compute(state, target, dt)`. No MuJoCo object crosses that seam.
+
+The safe adaptive baseline limits the normal reference lead to 10 mm before contact. That value was
+chosen on the public seed-29 set after checking 3, 4.5, 6, 8, 10, 12 and 16 mm. Leads below 10 mm
+lost contact on tilted-wall cases. This tuning history is part of the record; seed 29 is not used in
+the v0.5 headline result.
+
+The safe adaptive controller scales its complete task wrench along the requested ray when needed to
+keep the same 10% joint-torque reserve. Bias compensation and null-space posture torque are left
+unchanged. This conservative step removes actuator clipping in the public validation run, although
+it can also increase tracking error.
+
+For a candidate residual force `r`, the actuation context gives
+
+\[
+\tau_b=J^T w_{nom}+\tau_{offset}, \qquad \Delta\tau=J_v^T r.
+\]
+
+The actuator interval is reduced by a 10% reserve. The safety module finds the largest
+`alpha` in `[0, 1]` for which
+
+\[
+\tau_{min,safe}\leq\tau_b+\alpha\Delta\tau\leq\tau_{max,safe}.
+\]
+
+It applies `alpha r`. A missing context, non-finite value or nominal torque outside the reserved
+interval clears the residual for that cycle. The policy cannot use its residual to repair an unsafe
+nominal command.
+
+Six observation fields record the available scale for `+x, -x, +y, -y, +z, -z` actions. Together
+with the v0.4 fields, the policy input has 20 values. A version-2 checkpoint stores the full schema;
+the loader still accepts the published 14-field v0.4 checkpoint.
+
+## Training freeze
+
+Five ARS runs use policy seeds `17, 23, 31, 43, 59`. They share eight training scenarios and eight
+development-validation scenarios. Simulation-noise streams differ by run and change at each ARS
+iteration. The development set selects the checkpoint. Neither training nor selection reads the
+blind beacon.
+
+`franka-safety-learning-lab prepare` writes the five policies, their SHA256 values, training curves
+and `protocol.json`. The protocol also records the implementation commit, controller settings,
+MuJoCo model hash, hard gate, verifier/lockfile hashes and a future drand Quicknet round. The target
+round must still be at least ten minutes away after training finishes. Generated files are committed
+in one child commit of the implementation commit and tagged `v0.5-preholdout` before that round is
+published.
+
+Evaluation accepts only the protocol, checksum, policies and curves whose bytes are present in that
+tag. It also recomputes the model and safety-manifest hashes. A protocol copied to `/tmp`, a policy
+edited after the tag, a one-policy contract or a changed `HEAD` is rejected before any blind case is
+derived.
+
+## First reveal
+
+After the frozen drand round appears, `tools/verify_drand_beacon.mjs` asks both
+`api.drand.sh` and `drand.cloudflare.com` for that exact round. The verifier uses the pinned
+`drand-client` 1.4.2 package and Quicknet chain hash/public key to check the BLS signature. Python
+requires both verified responses to contain identical round, signature and randomness, and also
+checks `randomness = SHA256(signature)`. There is no unverified fallback and the evaluator never
+uses `latest`.
+
+The blind root is
+
+\[
+SHA256(protocol\_sha256 \; || \; beacon\_randomness).
+\]
+
+HMAC-SHA256 namespaces derive 48 scenario seeds, 48 simulation-noise seeds and a reporting seed.
+One process evaluates the fixed hybrid controller, adaptive controller, safe adaptive controller
+and all five frozen policies. A case always uses the same physical parameters and noise seed across
+methods. Intermediate output reports progress only.
+
+The gate is unchanged: force RMSE at most 2 N, contact ratio at least 95%, raw peak force at most
+35 N, tangential RMSE at most 15 mm and torque saturation at most 1%. A policy needs 44/48 passing
+cases. The primary result passes only if all five policies reach that count. The report keeps the
+five raw results and a case-and-training-seed bootstrap interval; it does not select the best seed.
+
+Once `reveal.json` exists, the 48 cases become validation data. Any later tuning must use another
+precommitted beacon round. A failed run may retry the same round; changing the round requires a new
+protocol and freeze tag.

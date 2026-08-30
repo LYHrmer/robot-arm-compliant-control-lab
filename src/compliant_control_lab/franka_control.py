@@ -31,12 +31,48 @@ def damped_nullspace_projector(jacobian: np.ndarray, damping: float = 0.03) -> n
 
 
 @dataclass(frozen=True)
+class FrankaActuationContext:
+    """Numeric robot-model data needed to check a Cartesian wrench before actuation."""
+
+    cartesian_jacobian: np.ndarray
+    joint_torque_offset: np.ndarray
+    lower_torque_limit: np.ndarray
+    upper_torque_limit: np.ndarray
+
+    def __post_init__(self) -> None:
+        jacobian = np.asarray(self.cartesian_jacobian, dtype=float)
+        offset = np.asarray(self.joint_torque_offset, dtype=float)
+        lower = np.asarray(self.lower_torque_limit, dtype=float)
+        upper = np.asarray(self.upper_torque_limit, dtype=float)
+        if jacobian.ndim != 2 or jacobian.shape[0] != 6:
+            raise ValueError("cartesian_jacobian must have shape (6, dof)")
+        dof = jacobian.shape[1]
+        if offset.shape != (dof,) or lower.shape != (dof,) or upper.shape != (dof,):
+            raise ValueError("actuation vectors must match the Jacobian dof")
+        if not all(np.all(np.isfinite(values)) for values in (jacobian, offset, lower, upper)):
+            raise ValueError("actuation context must be finite")
+        if np.any(lower >= upper):
+            raise ValueError("lower torque limits must be below upper limits")
+        object.__setattr__(self, "cartesian_jacobian", jacobian.copy())
+        object.__setattr__(self, "joint_torque_offset", offset.copy())
+        object.__setattr__(self, "lower_torque_limit", lower.copy())
+        object.__setattr__(self, "upper_torque_limit", upper.copy())
+
+    def joint_torque(self, wrench: np.ndarray) -> np.ndarray:
+        wrench = np.asarray(wrench, dtype=float)
+        if wrench.shape != (6,) or not np.all(np.isfinite(wrench)):
+            raise ValueError("wrench must be a finite 6-vector")
+        return self.cartesian_jacobian.T @ wrench + self.joint_torque_offset
+
+
+@dataclass(frozen=True)
 class FrankaState:
     position: np.ndarray
     rotation: np.ndarray
     linear_velocity: np.ndarray
     angular_velocity: np.ndarray
     normal_force: float
+    actuation: FrankaActuationContext | None = None
 
 
 @dataclass(frozen=True)

@@ -11,6 +11,7 @@ from compliant_control_lab.franka_control import (
     FrankaState,
     FrankaTarget,
 )
+from compliant_control_lab.franka_torque_safety import project_wrench_to_torque_limits
 
 
 @dataclass
@@ -206,3 +207,127 @@ class FrankaAdaptiveHybridController:
         )
         wrench[:3] += self.base.normal * (normal_command - self.base.normal @ wrench[:3])
         return wrench
+
+
+@dataclass
+class FrankaSafeAdaptiveController:
+    """Adaptive hybrid control with an approach governor and torque-envelope scaling."""
+
+    base: FrankaAdaptiveHybridController = field(default_factory=FrankaAdaptiveHybridController)
+    max_normal_lead: float = 0.010
+    max_approach_velocity: float = 0.025
+    impact_force_margin: float = 3.0
+    impact_force_rate: float = 120.0
+    torque_reserve_fraction: float = 0.10
+    name: str = "safe_adaptive_hybrid"
+
+    _last_governed_normal_lead: float = field(default=0.0, init=False, repr=False)
+    _last_torque_projection_scale: float = field(default=1.0, init=False, repr=False)
+    _torque_projection_count: int = field(default=0, init=False, repr=False)
+    _torque_projection_samples: int = field(default=0, init=False, repr=False)
+    _torque_projection_scale_sum: float = field(default=0.0, init=False, repr=False)
+    _torque_projection_fallback_count: int = field(default=0, init=False, repr=False)
+
+    def __post_init__(self) -> None:
+        if self.max_normal_lead <= 0.0 or self.max_approach_velocity <= 0.0:
+            raise ValueError("reference-governor limits must be positive")
+        if self.impact_force_margin < 0.0 or self.impact_force_rate < 0.0:
+            raise ValueError("impact thresholds must be nonnegative")
+        if not 0.0 <= self.torque_reserve_fraction < 1.0:
+            raise ValueError("torque_reserve_fraction must be in [0, 1)")
+
+    @property
+    def corrected_force_n(self) -> float:
+        return self.base.corrected_force_n
+
+    @property
+    def filtered_force_rate_n_s(self) -> float:
+        return self.base.filtered_force_rate_n_s
+
+    @property
+    def contact_blend(self) -> float:
+        return self.base.contact_blend
+
+    @property
+    def last_governed_normal_lead_m(self) -> float:
+        return self._last_governed_normal_lead
+
+    @property
+    def last_torque_projection_scale(self) -> float:
+        return self._last_torque_projection_scale
+
+    @property
+    def torque_projection_pct(self) -> float:
+        if self._torque_projection_samples == 0:
+            return 0.0
+        return 100.0 * self._torque_projection_count / self._torque_projection_samples
+
+    @property
+    def mean_torque_projection_scale(self) -> float:
+        if self._torque_projection_samples == 0:
+            return 1.0
+        return self._torque_projection_scale_sum / self._torque_projection_samples
+
+    @property
+    def torque_projection_fallback_count(self) -> int:
+        return self._torque_projection_fallback_count
+
+    def reset(self, state: FrankaState) -> None:
+        self.base.reset(state)
+        self._last_governed_normal_lead = 0.0
+        self._last_torque_projection_scale = 1.0
+        self._torque_projection_count = 0
+        self._torque_projection_samples = 0
+        self._torque_projection_scale_sum = 0.0
+        self._torque_projection_fallback_count = 0
+
+    def _govern_target(self, state: FrankaState, target: FrankaTarget) -> FrankaTarget:
+        normal = self.base.base.normal
+        normal = normal / np.linalg.norm(normal)
+        position_error = float(normal @ (target.position - state.position))
+        normal_velocity = float(normal @ target.linear_velocity)
+        impact_guard = (
+            self.corrected_force_n > target.normal_force + self.impact_force_margin
+            or self.filtered_force_rate_n_s > self.impact_force_rate
+        )
+
+        governed_lead = min(position_error, self.max_normal_lead)
+        governed_velocity = float(
+            np.clip(
+                normal_velocity,
+                -self.max_approach_velocity,
+                self.max_approach_velocity,
+            )
+        )
+        if impact_guard and self.contact_blend < 0.99:
+            governed_lead = min(governed_lead, 0.0)
+            governed_velocity = min(governed_velocity, 0.0)
+
+        position = target.position + normal * (governed_lead - position_error)
+        linear_velocity = target.linear_velocity + normal * (
+            governed_velocity - normal_velocity
+        )
+        self._last_governed_normal_lead = governed_lead
+        return replace(target, position=position, linear_velocity=linear_velocity)
+
+    def compute(self, state: FrankaState, target: FrankaTarget, dt: float) -> np.ndarray:
+        governed_target = self._govern_target(state, target)
+        nominal_wrench = self.base.compute(state, governed_target, dt)
+        if state.actuation is None:
+            self._last_torque_projection_scale = 1.0
+            return nominal_wrench
+
+        projection = project_wrench_to_torque_limits(
+            state.actuation,
+            nominal_wrench=np.zeros(6),
+            additive_wrench=nominal_wrench,
+            reserve_fraction=self.torque_reserve_fraction,
+        )
+        self._last_torque_projection_scale = projection.scale
+        self._torque_projection_samples += 1
+        self._torque_projection_scale_sum += projection.scale
+        if projection.status == "scaled":
+            self._torque_projection_count += 1
+        elif projection.status not in {"unchanged"}:
+            self._torque_projection_fallback_count += 1
+        return projection.additive_wrench

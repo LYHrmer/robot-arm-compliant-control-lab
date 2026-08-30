@@ -2,14 +2,13 @@
 
 ## v0.4 decision
 
-**The research experiment is implemented; do not deploy the current learned policy. Keep the
-adaptive classical controller as nominal/fallback and continue only with stronger safety and
-multi-seed experiments.**
+Do not deploy the v0.4 checkpoint. Keep the adaptive controller as the nominal path and evaluate
+the residual again only after torque-aware projection and multi-seed training are frozen.
 
 The v0.3 result was an evidence-based `GO TO EXPERIMENT`, not proof that RL was necessary. The
 implemented v0.4 comparison now gives fixed/adaptive/residual pass counts of 6/24, 6/24 and 7/24.
 Residual RL reduces tangential P95 error to 14.80 mm, but raw peak P95 remains 57.04 N and worst
-torque saturation rises to 15.91%. It therefore misses the unchanged 90% gate by a wide margin.
+torque saturation rises to 15.91%. It misses the unchanged 90% gate by a wide margin.
 
 The original fixed-gain trigger was:
 
@@ -57,31 +56,28 @@ S\,\mathrm{clip}(\Delta\mathbf{w}_{RL}),
 [\Delta F_n,\Delta F_y,\Delta F_z,0,0,0]^T.
 \]
 
-- Observation: force error and short history, raw/filtered force, tangential pose/velocity error,
-  joint position/velocity, prior residual, and contact phase.
+- Observation: normal force error, corrected force and filtered force rate; normal/tangential
+  position and velocity errors; target force, contact blend and the prior three-axis action. There
+  are 14 ordered fields and no joint state or raw contact force.
 - Action: a bounded translational wrench residual; start with `+/-4 N` normal and `+/-6 N`
   tangential bounds. Orientation remains under the classical impedance loop.
 - Algorithm: an inspectable linear `tanh` policy trained from zero with Augmented Random Search and
   domain-randomized rollouts. SAC/TD3 remain future nonlinear baselines, not silently substituted
   claims.
-- Reward: force and tangential error, strong peak-force/saturation penalties, residual magnitude and
-  residual-rate penalties. Report each physical term separately, not only episodic return.
+- Cost: normalized force RMSE, raw peak force, tangential RMSE, saturation, contact shortfall and
+  residual RMS. Residual rate is hard-limited by the controller but is not a cost term.
 - Safety envelope: total normal-wrench clamp, low-pass/rate-limited residual,
   non-finite/deadline watchdog, 100 ms stable-contact enable delay, force-overshoot guard, and
   immediate zero-residual fallback. Joint torque remains limited by the existing simulation adapter.
 
-## Evaluation contract
+## v0.5 evaluation contract
 
-Training cases and the seed-29 holdout cases must be disjoint. Report mean and 95% confidence
-intervals over at least five training seeds for:
+Seed 29 is public validation data. v0.5 uses eight training cases, eight development cases and a new
+48-case first reveal derived from a future public random beacon. Five ARS seeds are frozen before
+the beacon is published. Fixed hybrid, adaptive hybrid, torque-safe adaptive and all five residual
+policies then run on the same physical cases and noise seeds.
 
-1. fixed hybrid baseline;
-2. gain-scheduled or adaptive-admittance classical baseline;
-3. end-to-end RL baseline;
-4. hybrid + residual RL;
-5. residual policy with domain randomization removed;
-6. zero-residual fallback.
-
-The learned controller succeeds only if it raises the same pre-declared holdout pass rate from 25.0%
-to at least 90%, introduces no new force/torque-limit violations, and retains nominal behavior when
-the residual is disabled. Until then, it is an experiment rather than a claimed improvement.
+The primary rule is fixed before reveal: every residual policy must pass at least 44/48 cases under
+the existing force, contact, peak, tangential and torque-saturation gates. The repository keeps all
+five policy results; it does not replace this rule with the best seed or mean pass rate. SAC/TD3 and
+end-to-end RL are later comparisons, not part of this safety-baseline gate.

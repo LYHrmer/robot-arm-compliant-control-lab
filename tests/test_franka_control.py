@@ -1,6 +1,7 @@
 import numpy as np
 
 from compliant_control_lab.franka_control import (
+    FrankaActuationContext,
     FrankaAdmittanceController,
     FrankaHybridController,
     FrankaState,
@@ -49,6 +50,27 @@ def test_damped_projector_removes_task_space_torque():
     jacobian = rng.normal(size=(6, 7))
     projector = damped_nullspace_projector(jacobian, damping=1e-6)
     np.testing.assert_allclose(jacobian @ projector, 0.0, atol=1e-8)
+
+
+def test_actuation_context_maps_wrench_and_rejects_bad_shapes():
+    jacobian = np.arange(42, dtype=float).reshape(6, 7) / 20.0
+    offset = np.linspace(-1.0, 1.0, 7)
+    context = FrankaActuationContext(
+        cartesian_jacobian=jacobian,
+        joint_torque_offset=offset,
+        lower_torque_limit=-np.ones(7) * 87.0,
+        upper_torque_limit=np.ones(7) * 87.0,
+    )
+    wrench = np.linspace(-2.0, 3.0, 6)
+    np.testing.assert_allclose(context.joint_torque(wrench), jacobian.T @ wrench + offset)
+
+    with np.testing.assert_raises_regex(ValueError, "shape"):
+        FrankaActuationContext(
+            cartesian_jacobian=np.zeros((3, 7)),
+            joint_torque_offset=offset,
+            lower_torque_limit=-np.ones(7),
+            upper_torque_limit=np.ones(7),
+        )
 
 
 def test_franka_admittance_moves_toward_wall_when_force_is_low():
