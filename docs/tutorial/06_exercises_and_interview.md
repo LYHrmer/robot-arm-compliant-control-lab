@@ -4,9 +4,9 @@
 
 ### Level 1：运动学入门
 
-1. 写有限差分 Jacobian test，并避开 (q_2=0,\pi)；
+1. 写有限差分 Jacobian test，并避开 $q_2=0,\pi$；
 2. 画 2-DOF 工作空间与 elbow-up/elbow-down 两支 IK；
-3. 证明 (det J=l_1l_2\sin q_2)；
+3. 证明 $\det J=l_1l_2\sin q_2$；
 4. 用虚功推导 $\tau=J^T w$。
 
 验收：测试可重复，能解释 rad/m/N/Nm 单位，不只贴代码输出。
@@ -66,9 +66,9 @@ force 映射为 motion reference，常放在稳定的位置内环外面。两者
 ### 为什么 hybrid control 要用 selection projector？
 
 同一 Cartesian 方向不能独立同时强制精确位置和精确接触力，否则约束可能冲突。用
-(S_f=nn^T) 在法向控力，用 (S_p=I-S_f) 在切向控位置，明确分离任务子空间。
+$S_f=nn^T$ 在法向控力，用 $S_p=I-S_f$ 在切向控位置，明确分离任务子空间。
 
-### 为什么 torque 是 (J^Tw)，不是 (J^{-1}w)？
+### 为什么 torque 是 $J^Tw$，不是 $J^{-1}w$？
 
 由虚功/功率对偶得到。Jacobian 把 joint velocity 映射为 task velocity，它的转置把 task
 wrench 映射为 generalized force；不要求 J 为方阵或可逆。
@@ -76,7 +76,7 @@ wrench 映射为 generalized force；不要求 J 为方阵或可逆。
 ### 阻尼伪逆解决什么问题？
 
 接近奇异位形时小奇异值会放大噪声和命令。阻尼最小二乘将增益限制为
-(\sigma/(\sigma^2+\lambda^2))，提高数值稳定性，但引入 task/null-space 泄漏。
+$\sigma/(\sigma^2+\lambda^2)$，提高数值稳定性，但引入 task/null-space 泄漏。
 
 ### 如何证明 controller 是实时可部署的？
 
@@ -139,7 +139,7 @@ English:
 ## 6. 真正的“精通”检查表
 
 - [ ] 能从 FK 推到 Jacobian，并解释 singular values；
-- [ ] 能从虚功推导 (J^Tw)；
+- [ ] 能从虚功推导 $J^Tw$；
 - [ ] 能从连续 admittance 写出离散 update；
 - [ ] 能说明 anti-windup、hysteresis 和 smooth transition 的必要性；
 - [ ] 能解释 orientation error 的 frame 与适用范围；

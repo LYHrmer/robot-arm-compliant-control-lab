@@ -22,16 +22,16 @@ it can also increase tracking error.
 
 For a candidate residual force `r`, the actuation context gives
 
-\[
+$$
 \tau_b=J^T w_{nom}+\tau_{offset}, \qquad \Delta\tau=J_v^T r.
-\]
+$$
 
 The actuator interval is reduced by a 10% reserve. The safety module finds the largest
 `alpha` in `[0, 1]` for which
 
-\[
+$$
 \tau_{min,safe}\leq\tau_b+\alpha\Delta\tau\leq\tau_{max,safe}.
-\]
+$$
 
 It applies `alpha r`. A missing context, non-finite value or nominal torque outside the reserved
 interval clears the residual for that cycle. The policy cannot use its residual to repair an unsafe
@@ -75,9 +75,9 @@ evidence stored in the frozen protocol.
 
 The blind root is
 
-\[
+$$
 SHA256(protocol\_sha256 \; || \; beacon\_randomness).
-\]
+$$
 
 HMAC-SHA256 namespaces derive 48 scenario seeds, 48 simulation-noise seeds and a reporting seed.
 One process evaluates the fixed hybrid controller, adaptive controller, safe adaptive controller

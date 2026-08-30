@@ -12,12 +12,12 @@
 
 Franka 有 7 个 arm joints，末端任务是 6D：
 
-\[
+$$
 \dot{\mathbf x}=
 \begin{bmatrix}\mathbf v\\\boldsymbol\omega\end{bmatrix}
 =J(\mathbf q)\dot{\mathbf q},
 \qquad J\in\mathbb R^{6\times7}.
-\]
+$$
 
 MuJoCo 的 `mj_jacSite` 分别返回 site position Jacobian 和 rotational Jacobian。代码将两者
 堆叠，再只取前 7 个 arm DoF。随后直接用 `twist = J @ qvel[:7]` 得到末端线速度和角速度。
@@ -29,23 +29,23 @@ Jacobian；但项目仍用独立单元测试检查形状、有限性和 null-spa
 
 控制器返回
 
-\[
+$$
 \mathbf w=[\mathbf f,\boldsymbol\mu]^T\in\mathbb R^6.
-\]
+$$
 
 由虚功关系得到 task torque：
 
-\[
+$$
 \boldsymbol\tau_{task}=J^T\mathbf w.
-\]
+$$
 
 最终命令为
 
-\[
+$$
 \boldsymbol\tau=
-J^T\mathbf w+mathbf h(\mathbf q,\dot{\mathbf q})
+J^T\mathbf w+\mathbf h(\mathbf q,\dot{\mathbf q})
 +N\boldsymbol\tau_0.
-\]
+$$
 
 - `J.T @ wrench`：完成当前 Cartesian task；
 - `qfrc_bias`：MuJoCo 给出的重力、科氏/离心 bias；
@@ -58,9 +58,9 @@ J^T\mathbf w+mathbf h(\mathbf q,\dot{\mathbf q})
 
 项目使用 torque-space projector：
 
-\[
+$$
 N=I-J^T(JJ^T+\lambda^2I)^{-1}J.
-\]
+$$
 
 维度检查：
 
@@ -72,14 +72,14 @@ J^T (...)^-1 J    7 x 7
 N                 7 x 7
 ```
 
-### 为什么加 (lambda^2I)
+### 为什么加 $\lambda^2I$
 
-当 Jacobian 接近降秩，(JJ^T) 的最小特征值接近零。直接求伪逆会极度放大噪声。
-加入阻尼后，奇异方向的增益从 (1/\sigma) 变为近似
+当 Jacobian 接近降秩， $JJ^T$ 的最小特征值接近零。直接求伪逆会极度放大噪声。
+加入阻尼后，奇异方向的增益从 $1/\sigma$ 变为近似
 
-\[
+$$
 \frac{\sigma}{\sigma^2+\lambda^2},
-\]
+$$
 
 牺牲一点严格投影精度换取有界数值结果。
 
@@ -87,32 +87,32 @@ N                 7 x 7
 
 Python 实际求解的是
 
-\[
+$$
 (JJ^T+\lambda^2I)X=J,
-\]
+$$
 
 使用 `np.linalg.solve(A, J)`；C++ 使用 Eigen `A.ldlt().solve(J)`。两者都不构造
-(A^{-1})。解线性方程通常更快、更稳定，也让底层库选择适合的分解。
+$A^{-1}$。解线性方程通常更快、更稳定，也让底层库选择适合的分解。
 
 `LDLT` 适用于这里的对称正定/半正定加阻尼矩阵。若实现改成一般非对称矩阵，就不能不加
 判断地继续用同一分解。
 
 ### 阻尼 projector 不是严格零
 
-当 (lambda>0)，一般只有 (JN\approx0)，而不是数学上的精确零。因此 posture gain 过大
+当 $\lambda>0$，一般只有 $JN\approx0$，而不是数学上的精确零。因此 posture gain 过大
 仍可能扰动末端 task。测试使用很小阻尼检查极限性质；实际控制使用 0.03 保持条件良好。
 
 ## 4. Posture torque
 
 关节姿态控制为
 
-\[
+$$
 \boldsymbol\tau_0=K_q(\mathbf q_{nom}-\mathbf q)-D_q\dot{\mathbf q}.
-\]
+$$
 
-它经 (N) 投影后加入主任务。常见错误包括：
+它经 $N$ 投影后加入主任务。常见错误包括：
 
-- 把 (N\tau_0) 写成 (N^T\tau_0) 而不确认 projector 定义；
+- 把 $N\tau_0$ 写成 $N^T\tau_0$ 而不确认 projector 定义；
 - posture gain 过大，使阻尼 projector 的泄漏不可忽略；
 - nominal pose 接近 joint limit；
 - 忘记最终 torque limits。
@@ -125,18 +125,18 @@ inverse 和 projector；本项目明确把它列为进阶项，而不把运动�
 Panda 模型中的 actuator range 是 joints 1--4 为 +/-87 Nm，joints 5--7 为 +/-12 Nm。命令
 按每个 actuator 的上下限裁剪：
 
-\[
+$$
 \tau_i\leftarrow\mathrm{clip}(\tau_i,\tau_{min,i},\tau_{max,i}).
-\]
+$$
 
 只看裁剪后的 torque 无法知道控制器原本要求了多少，因此代码先保留 `torque_unclipped`，
 并记录任意关节是否被裁剪。`saturation_pct` 覆盖完整 trial，包括 approach。
 
 真机还应加入 torque-rate limit：
 
-\[
+$$
 |\tau_{k}-\tau_{k-1}|\le \dot\tau_{max}\Delta t,
-\]
+$$
 
 以及通信 watchdog、非有限值检查和碰撞状态机。
 
@@ -156,11 +156,11 @@ wrench；第 0 分量是法向力。本项目累加所有工具-墙接触点的�
 
 一阶滤波为
 
-\[
+$$
 F_k^f=F_{k-1}^f+\alpha(F_k-F_{k-1}^f),
 \qquad
 \alpha=\frac{\Delta t}{\tau_f+\Delta t}.
-\]
+$$
 
 测量延迟用定长 `deque` 实现：先写入当前 measurement，控制器读取队首；10 steps 在
 500 Hz 下等于 20 ms。
@@ -190,7 +190,7 @@ pytest tests/test_cpp_parity.py -v
 
 建议练习：
 
-1. 扫描 (lambda\in[10^{-6},10^{-1}])，画出 `||J @ N||` 与 projector 条件性的取舍；
+1. 扫描 $\lambda\in[10^{-6},10^{-1}]$，画出 `||J @ N||` 与 projector 条件性的取舍；
 2. 故意把 `solve` 改为显式 `inv`，比较结果和运行时间，但不要提交退化版本；
 3. 增大 posture gain，观察末端误差和 torque saturation；
 4. 用 Pinocchio 计算同一姿态的 Jacobian/bias，注意 frame convention 后再交叉验证。

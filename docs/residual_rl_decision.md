@@ -48,13 +48,13 @@ increase training cost and weaken safety/debuggability.
 
 The trained policy runs at 50 Hz above the 500 Hz adaptive hybrid loop:
 
-\[
+$$
 \mathbf{w}_{cmd}=\mathbf{w}_{hybrid}+
 S\,\mathrm{clip}(\Delta\mathbf{w}_{RL}),
 \qquad
 \Delta\mathbf{w}_{RL}=
 [\Delta F_n,\Delta F_y,\Delta F_z,0,0,0]^T.
-\]
+$$
 
 - Observation: normal force error, corrected force and filtered force rate; normal/tangential
   position and velocity errors; target force, contact blend and the prior three-axis action. There

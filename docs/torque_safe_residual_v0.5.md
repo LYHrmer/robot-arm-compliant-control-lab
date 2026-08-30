@@ -32,28 +32,28 @@ Franka model handle 填充。
 
 ## ray projection 怎么算
 
-设安全余量比例为 \(\rho=0.1\)。原 actuator interval \([l,u]\) 缩成
+设安全余量比例为 $\rho=0.1$。原 actuator interval $[l,u]$ 缩成
 
-\[
+$$
 l_s=l+\frac{\rho}{2}(u-l),\qquad
 u_s=u-\frac{\rho}{2}(u-l).
-\]
+$$
 
-已知名义 wrench \(w_0\) 和待加入的 \(\Delta w\)：
+已知名义 wrench $w_0$ 和待加入的 $\Delta w$：
 
-\[
+$$
 \tau_0=J^Tw_0+\tau_{offset},\qquad d=J^T\Delta w.
-\]
+$$
 
-安全模块不改变方向，只求最大的 \(\alpha\in[0,1]\)：
+安全模块不改变方向，只求最大的 $\alpha\in[0,1]$：
 
-\[
+$$
 l_s\leq\tau_0+\alpha d\leq u_s.
-\]
+$$
 
-对第 \(i\) 个关节，若 \(d_i>0\)，上界是
-\((u_{s,i}-\tau_{0,i})/d_i\)；若 \(d_i<0\)，上界是
-\((l_{s,i}-\tau_{0,i})/d_i\)。取全部有限上界与 1 的最小值，再用
+对第 $i$ 个关节，若 $d_i>0$，上界是
+$(u_{s,i}-\tau_{0,i})/d_i$；若 $d_i<0$，上界是
+$(l_{s,i}-\tau_{0,i})/d_i$。取全部有限上界与 1 的最小值，再用
 `nextafter(alpha, 0)` 留出浮点误差。最后重新计算关节力矩；复核失败就返回零增量。
 
 名义关节力矩若已经在安全区间外，residual 不能反向“修好”它。该周期 residual 直接清零，
@@ -76,7 +76,7 @@ gate 仍有大量失败，所以这一改动只说明 actuator clipping 已被�
 ## 六个 torque-headroom 输入
 
 策略动作上界为 `[4, 6, 6] N`。在每个 50 Hz policy tick，控制器分别尝试
-`+x, -x, +y, -y, +z, -z` 六个满幅动作，并记录各自可行的 \(\alpha\)。例如 `+y` 字段为
+`+x, -x, +y, -y, +z, -z` 六个满幅动作，并记录各自可行的 $\alpha$。例如 `+y` 字段为
 0.25，表示当前位形最多安全施加 `+1.5 N` 的 y 向 residual。
 
 这六个数附加在 v0.4 的 14 个反馈量后面。策略文件保存全部 20 个字段名；维度相同但字段

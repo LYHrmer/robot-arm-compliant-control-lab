@@ -15,9 +15,9 @@ wrench_6d = controller.compute(state, target, dt)
 
 The MuJoCo adapter remains unchanged after that seam:
 
-\[
+$$
 \tau = J(q)^T w + \alpha h(q,\dot q) + N(q)\tau_{posture},
-\]
+$$
 
 followed by the same actuator torque clamp. Only the Cartesian controller changes; robot model,
 trajectory, measurement delay, random seed and safety metrics are shared.
@@ -45,17 +45,17 @@ The simulated force sensor now preserves signed noise and bias. Clipping a measu
 before estimation would make a negative bias unobservable. While the desired force is below 2 N and
 contact has not been confirmed, the controller updates
 
-\[
+$$
 \hat b_{k+1}=\hat b_k+
 \frac{\Delta t}{T_b+\Delta t}(F_{m,k}-\hat b_k),
 \qquad T_b=80\text{ ms},
-\]
+$$
 
 then uses
 
-\[
+$$
 F_k=\max(0,F_{m,k}-\hat b_k).
-\]
+$$
 
 The estimate is limited to +/-3 N. This is an engineering estimator, not a proof that all sensor
 drift is identifiable.
@@ -64,17 +64,17 @@ drift is identifiable.
 
 The filtered force rate is
 
-\[
+$$
 \dot{\hat F}_{k+1}=\dot{\hat F}_k+
 \frac{\Delta t}{T_{\dot F}+\Delta t}
 \left(\frac{F_k-F_{k-1}}{\Delta t}-\dot{\hat F}_k\right),
-\]
+$$
 
 with derivative samples clipped before filtering. During confirmed loading, a local secant estimate
 
-\[
+$$
 K_{e,k}=\left|\frac{F_k-F_{k-1}}{x_{n,k}-x_{n,k-1}}\right|
-\]
+$$
 
 is clipped to `[500, 30000] N/m` and low-pass filtered. Samples with tiny displacement or opposing
 force/displacement signs are rejected.
@@ -83,15 +83,15 @@ force/displacement signs are rejected.
 
 The force PI scale combines stiffness and force-rate terms:
 
-\[
+$$
 s_K=\sqrt{\frac{K_{ref}}{\max(\hat K_e,1)}},
 \qquad
 s_{\dot F}=\frac{1}{1+|\dot{\hat F}|/250},
-\]
+$$
 
-\[
+$$
 s=\operatorname{clip}(s_Ks_{\dot F},0.65,1.10).
-\]
+$$
 
 The normal proportional and integral gains are multiplied by `s`; normal damping is divided by
 `sqrt(s)`. Tangential stiffness rises by at most 25% as tangential error approaches 20 mm, with
@@ -108,9 +108,9 @@ Implementation: `src/compliant_control_lab/residual_rl.py`.
 The method follows the additive mechanism from
 [Residual Reinforcement Learning for Robot Control](https://arxiv.org/abs/1812.03201):
 
-\[
+$$
 w_{cmd}=w_{adaptive}+[\Delta F_x,\Delta F_y,\Delta F_z,0,0,0]^T.
-\]
+$$
 
 It also follows the structural motivation of
 [Online Admittance Residual Learning](https://proceedings.mlr.press/v229/zhang23e.html): retain an
@@ -141,15 +141,15 @@ other simulator-only parameter enters the policy.
 
 The first working policy is deliberately inspectable:
 
-\[
+$$
 a_k=\tanh(Wo_k+b), \qquad W\in\mathbb R^{3\times14}.
-\]
+$$
 
 The normalized action is hard-clipped and mapped to
 
-\[
+$$
 |\Delta F|\le[4,6,6]\text{ N}.
-\]
+$$
 
 This small linear policy is a baseline for the residual mechanism, not evidence that a linear policy
 is sufficient for general contact-rich manipulation.
@@ -179,22 +179,22 @@ The parameters are optimized with Augmented Random Search, following the static 
 in [Simple random search provides a competitive approach to reinforcement learning](https://arxiv.org/abs/1803.07055).
 For sampled directions `delta_i`, each iteration evaluates
 
-\[
+$$
 R_i^+=-C(\theta+\nu\delta_i), \qquad
 R_i^-=-C(\theta-\nu\delta_i),
-\]
+$$
 
 keeps the top directions and updates
 
-\[
+$$
 \theta\leftarrow\theta+
 \frac{\eta}{N_{top}\sigma_R}
 \sum_i(R_i^+-R_i^-)\delta_i.
-\]
+$$
 
 The dimensionless physical rollout cost is
 
-\[
+$$
 C=
 \left(\frac{e_F}{2}\right)^2+
 0.75\left(\frac{F_{peak}}{35}\right)^2+
@@ -202,7 +202,7 @@ C=
 2\left(\frac{s_{sat}}{1}\right)^2+
 4\left(\frac{[95-r_c]_+}{5}\right)^2+
 0.05\left(\frac{\Delta F_{rms}}{5}\right)^2.
-\]
+$$
 
 Final claims still use the original hard gates, not this weighted training cost.
 

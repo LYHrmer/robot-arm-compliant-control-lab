@@ -18,9 +18,9 @@ Residual RL、ARS 训练器和同一 24-case 比较；结果表明策略学到�
 RL 若直接输出 7 维 torque，会重新学习这些已知结构，增大样本量、调试和安全难度。
 Residual RL 保留 nominal controller，只学习未建模 remainder：
 
-\[
+$$
 \mathbf u=\pi_{classical}(\mathbf s)+\pi_\theta(\mathbf s).
-\]
+$$
 
 这一结构来自 Johannink et al. 的
 [Residual Reinforcement Learning for Robot Control](https://arxiv.org/abs/1812.03201)。他们的
@@ -53,14 +53,14 @@ v0.4 加入了 bias/contact-stiffness/force-rate estimator 和 gain scheduling �
 
 先只修正平移 wrench，姿态仍由 classical impedance 控制：
 
-\[
+$$
 \Delta\mathbf w=
 [\Delta F_n,\Delta F_y,\Delta F_z,0,0,0]^T,
-\]
+$$
 
-\[
+$$
 \mathbf w_{cmd}=\mathbf w_{hybrid}+S\,\mathrm{clip}(\Delta\mathbf w).
-\]
+$$
 
 v0.4 冻结 bounds：
 
@@ -91,7 +91,7 @@ y/z 位置误差、y/z 速度误差
 
 ARS 最小化每个 rollout 的物理 cost：
 
-\[
+$$
 C=
 \left(\frac{e_F}{2}\right)^2+
 0.75\left(\frac{F_{peak}}{35}\right)^2+
@@ -99,7 +99,7 @@ C=
 2\left(\frac{s_{sat}}{1}\right)^2+
 4\left(\frac{[95-r_c]_+}{5}\right)^2+
 0.05\left(\frac{\Delta F_{rms}}{5}\right)^2.
-\]
+$$
 
 `e_F`、`F_peak`、`e_t`、`s_sat`、`r_c` 分别对应力 RMSE、完整轨迹原始峰值、切向
 RMSE、饱和率和接触率。当前 cost 没有 residual-rate 项；动作变化率由控制器硬限幅。
