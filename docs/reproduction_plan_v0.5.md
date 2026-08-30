@@ -50,10 +50,13 @@ blind beacon.
 
 `franka-safety-learning-lab prepare` writes the five policies, their SHA256 values, training curves
 and `protocol.json`. The protocol also records the implementation commit, controller settings,
-MuJoCo model hash, hard gate, verifier/lockfile hashes and a future drand Quicknet round. The target
-round must still be at least ten minutes away after training finishes. Generated files are committed
-in one child commit of the implementation commit and tagged `v0.5-preholdout` before that round is
-published.
+MuJoCo model hash, hard gate, verifier/lockfile hashes and a future drand Quicknet round. Before and
+after training, the frozen Node.js verifier reads `latest` from both official relays and then fetches
+those advertised rounds again with BLS verification. The relays may differ by one three-second round;
+a larger gap fails closed. The target must be at least 201 rounds ahead of the freshest final
+reference, which guarantees ten unpublished minutes even if the next round is about to appear. This
+check does not use the host clock. Generated files are committed in one child commit of the
+implementation commit and tagged `v0.5-preholdout` before the target round is published.
 
 Evaluation accepts only the protocol, checksum, policies and curves whose bytes are present in that
 tag. It also recomputes the model and safety-manifest hashes. A protocol copied to `/tmp`, a policy
@@ -67,7 +70,8 @@ After the frozen drand round appears, `tools/verify_drand_beacon.mjs` asks both
 `drand-client` 1.4.2 package and Quicknet chain hash/public key to check the BLS signature. Python
 requires both verified responses to contain identical round, signature and randomness, and also
 checks `randomness = SHA256(signature)`. There is no unverified fallback and the evaluator never
-uses `latest`.
+uses `latest` to choose a blind seed. The only `latest` requests are the pre-reveal freshness
+evidence stored in the frozen protocol.
 
 The blind root is
 

@@ -30,7 +30,7 @@ function parseRound(value) {
   return round;
 }
 
-async function fetchAndVerify(baseUrl, round) {
+function clientFor(baseUrl) {
   const options = {
     disableBeaconVerification: false,
     noCache: true,
@@ -42,13 +42,47 @@ async function fetchAndVerify(baseUrl, round) {
   const chainUrl = `${baseUrl}/${CHAIN.hash}`;
   const chain = new HttpCachingChain(chainUrl, options);
   const client = new HttpChainClient(chain, options);
+  return { chainUrl, chain, client };
+}
+
+async function fetchAndVerify(baseUrl, round) {
+  const { chainUrl, chain, client } = clientFor(baseUrl);
   const chainInfo = await chain.info();
   const beacon = await fetchBeacon(client, round);
   return { base_url: baseUrl, chain_url: chainUrl, chain_info: chainInfo, beacon };
 }
 
+async function observeLatestRounds() {
+  return Promise.all(
+    RELAYS.map(async (relay) => {
+      const { client } = clientFor(relay);
+      const latest = await client.latest();
+      const verified = await fetchBeacon(client, latest.round);
+      return verified.round;
+    }),
+  );
+}
+
+async function latestReferenceRound() {
+  let observations = [];
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    observations = await observeLatestRounds();
+    const skew = Math.max(...observations) - Math.min(...observations);
+    if (skew <= 1) {
+      return {
+        round: Math.max(...observations),
+        observedLatestRounds: observations,
+      };
+    }
+  }
+  const skew = Math.max(...observations) - Math.min(...observations);
+  throw new Error(`official relays differ by ${skew} rounds after three attempts`);
+}
+
 async function main() {
-  const round = parseRound(process.argv[2]);
+  const requested = process.argv[2];
+  const latest = requested === "latest" ? await latestReferenceRound() : null;
+  const round = latest?.round ?? parseRound(requested);
   const responses = [];
   for (const relay of RELAYS) {
     responses.push(await fetchAndVerify(relay, round));
@@ -58,7 +92,11 @@ async function main() {
       verifier: "drand-client-js",
       verifier_version: "1.4.2",
       cryptographic_signature_verified: true,
+      mode: latest ? "latest-reference" : "exact-round",
       round,
+      ...(latest
+        ? { observed_latest_rounds: latest.observedLatestRounds }
+        : {}),
       responses,
     })}\n`,
   );

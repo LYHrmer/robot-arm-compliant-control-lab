@@ -64,6 +64,7 @@ def _historical_beacon_fixture() -> tuple[dict[str, Any], dict[str, Any]]:
         "verifier": safety_learning.BEACON_VERIFIER_NAME,
         "verifier_version": safety_learning.BEACON_VERIFIER_VERSION,
         "cryptographic_signature_verified": True,
+        "mode": "exact-round",
         "round": HISTORICAL_QUICKNET_ROUND,
         "responses": [
             {
@@ -76,6 +77,40 @@ def _historical_beacon_fixture() -> tuple[dict[str, Any], dict[str, Any]]:
         ],
     }
     return protocol, verifier_output
+
+
+def _latest_reference_fixture(reference_round: int) -> tuple[dict[str, Any], dict[str, Any]]:
+    chain_hash = safety_learning.QUICKNET_CHAIN_INFO["hash"]
+    signature = (f"verified latest round {reference_round}".encode() * 3).hex()
+    raw_beacon = {
+        "round": reference_round,
+        "randomness": hashlib.sha256(bytes.fromhex(signature)).hexdigest(),
+        "signature": signature,
+    }
+    verifier_output = {
+        "verifier": safety_learning.BEACON_VERIFIER_NAME,
+        "verifier_version": safety_learning.BEACON_VERIFIER_VERSION,
+        "cryptographic_signature_verified": True,
+        "mode": "latest-reference",
+        "round": reference_round,
+        "observed_latest_rounds": [reference_round - 1, reference_round],
+        "responses": [
+            {
+                "base_url": relay,
+                "chain_url": f"{relay}/{chain_hash}",
+                "chain_info": deepcopy(safety_learning.QUICKNET_CHAIN_INFO),
+                "beacon": deepcopy(raw_beacon),
+            }
+            for relay in safety_learning.BEACON_RELAYS
+        ],
+    }
+    beacon = {
+        "chain_hash": chain_hash,
+        "round": reference_round,
+        "signature": signature,
+        "randomness": raw_beacon["randomness"],
+    }
+    return beacon, verifier_output
 
 
 @pytest.fixture
@@ -125,13 +160,26 @@ def strict_protocol(tmp_path: Path) -> tuple[Path, dict[str, Any]]:
     verifier_path = repository_root / safety_learning.BEACON_VERIFIER
     lockfile_path = repository_root / safety_learning.BEACON_LOCKFILE
     scheduled_time = safety_learning.beacon_round_time(HISTORICAL_QUICKNET_ROUND)
+    reference_round = HISTORICAL_QUICKNET_ROUND - 201
+    reference_time = safety_learning.beacon_round_time(reference_round)
+    reference_beacon, reference_output = _latest_reference_fixture(reference_round)
+    reference_audit = {
+        "host_request_started_at_utc": safety_learning._utc_iso(reference_time),
+        "host_retrieved_at_utc": safety_learning._utc_iso(reference_time),
+        "command": ["node", str(verifier_path), "latest"],
+        "exit_code": 0,
+        "stdout_sha256": "0" * 64,
+        "stderr": "",
+        "stderr_sha256": hashlib.sha256(b"").hexdigest(),
+        "verifier_output": reference_output,
+        "relay_equality_verified": True,
+        "signature_hash_verified": True,
+    }
     protocol = {
         "format_version": safety_learning.PROTOCOL_FORMAT_VERSION,
         "experiment_id": EXPERIMENT_ID,
         "status": "preholdout_frozen",
-        "prepared_at_utc": safety_learning._utc_iso(
-            scheduled_time - safety_learning.MIN_BEACON_LEAD_SECONDS
-        ),
+        "prepared_at_utc": safety_learning._utc_iso(reference_time),
         "implementation_commit": "implementation-commit",
         "freeze_tag": safety_learning.FREEZE_TAG,
         "source_integrity": {
@@ -182,6 +230,16 @@ def strict_protocol(tmp_path: Path) -> tuple[Path, dict[str, Any]]:
                 "minimum_unpublished_lead_seconds_at_freeze": (
                     safety_learning.MIN_BEACON_LEAD_SECONDS
                 ),
+                "freshness_reference": {
+                    "round": reference_round,
+                    "scheduled_unix": reference_time,
+                    "scheduled_utc": safety_learning._utc_iso(reference_time),
+                    "guaranteed_unpublished_lead_seconds": (
+                        safety_learning.MIN_BEACON_LEAD_SECONDS
+                    ),
+                    "beacon": reference_beacon,
+                    "verification_audit": reference_audit,
+                },
                 "chain_info": deepcopy(safety_learning.QUICKNET_CHAIN_INFO),
                 "verification": {
                     "mode": "two-relay-cryptographic",
@@ -285,13 +343,42 @@ def test_two_official_relays_must_return_the_same_beacon() -> None:
         verify_beacon(protocol, verifier_output)
 
 
-def test_prepare_future_beacon_check_rejects_an_already_published_round() -> None:
-    scheduled_time = safety_learning.beacon_round_time(HISTORICAL_QUICKNET_ROUND)
+def test_latest_reference_accepts_adjacent_verified_relay_rounds() -> None:
+    expected, verifier_output = _latest_reference_fixture(HISTORICAL_QUICKNET_ROUND)
 
+    assert safety_learning.verify_latest_reference(verifier_output) == expected
+
+
+def test_latest_reference_rejects_relay_skew_above_one_round() -> None:
+    _, verifier_output = _latest_reference_fixture(HISTORICAL_QUICKNET_ROUND)
+    verifier_output["observed_latest_rounds"] = [
+        HISTORICAL_QUICKNET_ROUND - 2,
+        HISTORICAL_QUICKNET_ROUND,
+    ]
+
+    with pytest.raises(ValueError, match="too far apart"):
+        safety_learning.verify_latest_reference(verifier_output)
+
+
+def test_prepare_future_beacon_check_uses_verified_round_not_host_clock() -> None:
+    minimum_round_gap = (
+        safety_learning.MIN_BEACON_LEAD_SECONDS
+        + safety_learning.QUICKNET_CHAIN_INFO["period"]
+        - 1
+    ) // safety_learning.QUICKNET_CHAIN_INFO["period"] + 1
+    target_round = HISTORICAL_QUICKNET_ROUND + minimum_round_gap
+
+    assert safety_learning._require_future_beacon(
+        target_round,
+        reference_round=HISTORICAL_QUICKNET_ROUND,
+    ) == safety_learning.beacon_round_time(target_round)
+
+
+def test_prepare_future_beacon_check_rejects_short_verified_round_gap() -> None:
     with pytest.raises(ValueError, match="remain unpublished"):
         safety_learning._require_future_beacon(
-            HISTORICAL_QUICKNET_ROUND,
-            now=scheduled_time + 1,
+            HISTORICAL_QUICKNET_ROUND + 200,
+            reference_round=HISTORICAL_QUICKNET_ROUND,
         )
 
 
@@ -305,6 +392,20 @@ def test_strict_protocol_accepts_exactly_five_runs_and_48_cases(
     assert len(restored["training"]["runs"]) == 5
     assert restored["blind_contract"]["cases"] == 48
     assert restored_hash == hashlib.sha256(protocol_path.read_bytes()).hexdigest()
+
+
+def test_strict_protocol_rejects_tampered_freshness_evidence(
+    strict_protocol: tuple[Path, dict[str, Any]],
+) -> None:
+    protocol_path, original = strict_protocol
+    protocol = deepcopy(original)
+    protocol["blind_contract"]["beacon"]["freshness_reference"][
+        "verification_audit"
+    ]["verifier_output"]["observed_latest_rounds"][0] -= 2
+    _write_protocol(protocol_path, protocol)
+
+    with pytest.raises(ValueError, match="too far apart"):
+        verify_preholdout_protocol(protocol_path)
 
 
 def test_strict_protocol_rejects_any_run_count_other_than_five(

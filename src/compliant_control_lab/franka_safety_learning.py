@@ -56,7 +56,7 @@ from compliant_control_lab.residual_rl import (
 
 EXPERIMENT_ID = "franka-torque-safe-residual-v0.5"
 FREEZE_TAG = "v0.5-preholdout"
-PROTOCOL_FORMAT_VERSION = 2
+PROTOCOL_FORMAT_VERSION = 3
 TRAINING_POLICY_SEEDS = (17, 23, 31, 43, 59)
 TRAINING_SIMULATION_SEEDS = (10_001, 20_001, 30_001, 40_001, 50_001)
 TRAINING_SCENARIO_SEED = 101
@@ -69,6 +69,7 @@ BLIND_DURATION = 4.5
 BLIND_REQUIRED_PASSES = 44
 SEED_DERIVATION = "hmac-sha256-v1"
 MIN_BEACON_LEAD_SECONDS = 600
+MAX_REFERENCE_ROUND_SKEW = 1
 QUICKNET_CHAIN_INFO = {
     "public_key": (
         "83cf0f2896adee7eb8b5f01fcad3912212c437e0073e911fb90022d3e760183c8"
@@ -259,10 +260,14 @@ def _utc_iso(timestamp: float) -> str:
     )
 
 
-def _require_future_beacon(beacon_round: int, now: float | None = None) -> int:
-    current_time = datetime.now(tz=timezone.utc).timestamp() if now is None else now
+def _require_future_beacon(beacon_round: int, *, reference_round: int) -> int:
+    if reference_round <= 0:
+        raise ValueError("reference_round must be positive")
     scheduled_time = beacon_round_time(beacon_round)
-    if scheduled_time < current_time + MIN_BEACON_LEAD_SECONDS:
+    guaranteed_lead_seconds = (beacon_round - reference_round - 1) * int(
+        QUICKNET_CHAIN_INFO["period"]
+    )
+    if guaranteed_lead_seconds < MIN_BEACON_LEAD_SECONDS:
         raise ValueError(
             "beacon round must remain unpublished for at least "
             f"{MIN_BEACON_LEAD_SECONDS} seconds"
@@ -387,7 +392,6 @@ def prepare_preholdout(
         raise ValueError("beacon_chain_hash must be the pinned drand Quicknet chain")
     if not 1 <= jobs <= len(TRAINING_POLICY_SEEDS):
         raise ValueError("jobs must be between one and five")
-    _require_future_beacon(beacon_round)
 
     output_dir.parent.mkdir(parents=True, exist_ok=True)
     repository_root = Path(_git("rev-parse", "--show-toplevel"))
@@ -398,6 +402,11 @@ def prepare_preholdout(
     lockfile_path = repository_root / BEACON_LOCKFILE
     verifier_sha256 = _sha256(verifier_path)
     lockfile_sha256 = _sha256(lockfile_path)
+    starting_reference, _ = fetch_verified_reference_beacon(verifier_path)
+    _require_future_beacon(
+        beacon_round,
+        reference_round=int(starting_reference["round"]),
+    )
     with tempfile.TemporaryDirectory(prefix="franka-v05-prepare-", dir=output_dir.parent) as tmp:
         temporary_dir = Path(tmp)
         arguments = [(index, str(temporary_dir)) for index in range(len(TRAINING_POLICY_SEEDS))]
@@ -413,9 +422,14 @@ def prepare_preholdout(
             model_sha256,
             torque_safety_sha256,
         )
-        scheduled_time = _require_future_beacon(beacon_round)
         if _sha256(verifier_path) != verifier_sha256 or _sha256(lockfile_path) != lockfile_sha256:
             raise RuntimeError("beacon verifier files changed while policies were training")
+        final_reference, reference_audit = fetch_verified_reference_beacon(verifier_path)
+        scheduled_time = _require_future_beacon(
+            beacon_round,
+            reference_round=int(final_reference["round"]),
+        )
+        reference_time = beacon_round_time(int(final_reference["round"]))
 
         training = _training_scenarios()
         development = _development_scenarios()
@@ -424,7 +438,7 @@ def prepare_preholdout(
             "format_version": PROTOCOL_FORMAT_VERSION,
             "experiment_id": EXPERIMENT_ID,
             "status": "preholdout_frozen",
-            "prepared_at_utc": _utc_iso(datetime.now(tz=timezone.utc).timestamp()),
+            "prepared_at_utc": _utc_iso(reference_time),
             "implementation_commit": implementation_commit,
             "freeze_tag": FREEZE_TAG,
             "source_integrity": {
@@ -474,6 +488,17 @@ def prepare_preholdout(
                     "minimum_unpublished_lead_seconds_at_freeze": (
                         MIN_BEACON_LEAD_SECONDS
                     ),
+                    "freshness_reference": {
+                        "round": int(final_reference["round"]),
+                        "scheduled_unix": reference_time,
+                        "scheduled_utc": _utc_iso(reference_time),
+                        "guaranteed_unpublished_lead_seconds": (
+                            beacon_round - int(final_reference["round"]) - 1
+                        )
+                        * int(QUICKNET_CHAIN_INFO["period"]),
+                        "beacon": final_reference,
+                        "verification_audit": reference_audit,
+                    },
                     "chain_info": QUICKNET_CHAIN_INFO,
                     "verification": {
                         "mode": "two-relay-cryptographic",
@@ -661,14 +686,44 @@ def verify_preholdout_protocol(
     for field, expected in expected_beacon_fields.items():
         if beacon_contract.get(field) != expected:
             raise ValueError(f"beacon contract changed: {field}")
+
+    freshness = beacon_contract.get("freshness_reference", {})
+    reference_round = freshness.get("round")
+    if type(reference_round) is not int or reference_round <= 0:
+        raise ValueError("freshness reference round must be a positive integer")
+    reference_time = beacon_round_time(reference_round)
+    expected_freshness_fields = {
+        "scheduled_unix": reference_time,
+        "scheduled_utc": _utc_iso(reference_time),
+        "guaranteed_unpublished_lead_seconds": (
+            beacon_round - reference_round - 1
+        )
+        * int(QUICKNET_CHAIN_INFO["period"]),
+    }
+    for field, expected in expected_freshness_fields.items():
+        if freshness.get(field) != expected:
+            raise ValueError(f"freshness reference changed: {field}")
+    reference_audit = freshness.get("verification_audit", {})
+    if not isinstance(reference_audit, dict):
+        raise TypeError("freshness verification audit must be an object")
+    verifier_output = reference_audit.get("verifier_output", {})
+    if not isinstance(verifier_output, dict):
+        raise TypeError("freshness verifier output must be an object")
+    verified_reference = verify_latest_reference(verifier_output)
+    if verified_reference != freshness.get("beacon"):
+        raise ValueError("freshness beacon does not match its verification evidence")
+    if verified_reference["round"] != reference_round:
+        raise ValueError("freshness beacon round changed")
+    _require_future_beacon(beacon_round, reference_round=reference_round)
+
     try:
         prepared_time = datetime.fromisoformat(
             str(protocol["prepared_at_utc"]).replace("Z", "+00:00")
         ).timestamp()
     except (KeyError, ValueError) as error:
         raise ValueError("prepared_at_utc is malformed") from error
-    if scheduled_time < prepared_time + MIN_BEACON_LEAD_SECONDS:
-        raise ValueError("beacon round was not in the future when the protocol was prepared")
+    if prepared_time != reference_time:
+        raise ValueError("prepared_at_utc must match the verified freshness round")
 
     if require_tag_binding:
         tag = str(protocol["freeze_tag"])
@@ -678,9 +733,6 @@ def verify_preholdout_protocol(
         parents = _git("rev-list", "--parents", "-n", "1", tag_commit).split()
         if len(parents) != 2 or parents[1] != protocol.get("implementation_commit"):
             raise ValueError("freeze tag must be a single artifact commit on implementation_commit")
-        tag_time = int(_git("show", "-s", "--format=%ct", tag_commit))
-        if scheduled_time < tag_time + MIN_BEACON_LEAD_SECONDS:
-            raise ValueError("freeze tag was not published before the beacon lead window")
         for path in (protocol_path, checksum_path, *artifact_paths):
             _require_file_at_tag(path, tag)
         repository_root = Path(_git("rev-parse", "--show-toplevel"))
@@ -750,17 +802,37 @@ def verify_beacon(protocol: dict[str, Any], verifier_output: dict[str, Any]) -> 
     }
 
 
-def fetch_verified_beacon(
-    protocol: dict[str, Any],
+def verify_latest_reference(verifier_output: dict[str, Any]) -> dict[str, Any]:
+    if verifier_output.get("mode") != "latest-reference":
+        raise ValueError("beacon verifier did not use latest-reference mode")
+    observed = verifier_output.get("observed_latest_rounds")
+    if (
+        not isinstance(observed, list)
+        or len(observed) != len(BEACON_RELAYS)
+        or any(type(round_number) is not int or round_number <= 0 for round_number in observed)
+    ):
+        raise ValueError("latest-reference evidence must contain one round per relay")
+    reference_round = max(observed)
+    if max(observed) - min(observed) > MAX_REFERENCE_ROUND_SKEW:
+        raise ValueError("official drand relays are too far apart")
+    if verifier_output.get("round") != reference_round:
+        raise ValueError("latest-reference round must be the freshest observed relay round")
+    protocol = {
+        "blind_contract": {
+            "beacon": {
+                "chain_hash": QUICKNET_CHAIN_INFO["hash"],
+                "round": reference_round,
+            }
+        }
+    }
+    return verify_beacon(protocol, verifier_output)
+
+
+def _invoke_beacon_verifier(
     verifier_path: Path,
+    requested_round: str,
 ) -> tuple[dict[str, Any], dict[str, Any]]:
-    expected_round = int(protocol["blind_contract"]["beacon"]["round"])
-    scheduled_time = int(protocol["blind_contract"]["beacon"]["scheduled_unix"])
-    if datetime.now(tz=timezone.utc).timestamp() < scheduled_time:
-        raise RuntimeError(
-            f"drand round {expected_round} is scheduled for {_utc_iso(scheduled_time)}"
-        )
-    command = ["node", str(verifier_path), str(expected_round)]
+    command = ["node", str(verifier_path), requested_round]
     request_started_at = datetime.now(tz=timezone.utc).timestamp()
     result = subprocess.run(
         command,
@@ -774,10 +846,9 @@ def fetch_verified_beacon(
         verifier_output = json.loads(result.stdout)
     except json.JSONDecodeError as error:
         raise ValueError("beacon verifier returned malformed JSON") from error
-    beacon = verify_beacon(protocol, verifier_output)
     audit = {
-        "request_started_at_utc": _utc_iso(request_started_at),
-        "retrieved_at_utc": _utc_iso(retrieved_at),
+        "host_request_started_at_utc": _utc_iso(request_started_at),
+        "host_retrieved_at_utc": _utc_iso(retrieved_at),
         "command": command,
         "exit_code": result.returncode,
         "stdout_sha256": hashlib.sha256(result.stdout.encode()).hexdigest(),
@@ -787,6 +858,25 @@ def fetch_verified_beacon(
         "relay_equality_verified": True,
         "signature_hash_verified": True,
     }
+    return verifier_output, audit
+
+
+def fetch_verified_reference_beacon(
+    verifier_path: Path,
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    verifier_output, audit = _invoke_beacon_verifier(verifier_path, "latest")
+    return verify_latest_reference(verifier_output), audit
+
+
+def fetch_verified_beacon(
+    protocol: dict[str, Any],
+    verifier_path: Path,
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    expected_round = int(protocol["blind_contract"]["beacon"]["round"])
+    verifier_output, audit = _invoke_beacon_verifier(verifier_path, str(expected_round))
+    if verifier_output.get("mode") != "exact-round":
+        raise ValueError("beacon verifier did not use exact-round mode")
+    beacon = verify_beacon(protocol, verifier_output)
     return beacon, audit
 
 

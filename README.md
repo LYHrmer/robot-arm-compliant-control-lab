@@ -139,7 +139,7 @@ v0.5 的 first-reveal 流程需要 Node.js 18+ 来运行官方 drand 客户端�
 npm ci
 franka-safety-learning-lab prepare \
   --output results/franka_safety_preholdout \
-  --beacon-round <至少在训练结束十分钟后才发布的 Quicknet round> \
+  --beacon-round <至少领先当前 Quicknet 201 轮，且训练后仍满足该条件> \
   --jobs 5
 
 # 提交上述目录并创建 v0.5-preholdout tag；信标发布后才运行：
@@ -149,7 +149,8 @@ franka-safety-learning-lab evaluate \
 ```
 
 `evaluate` 会检查当前 `HEAD`、tag 中每个文件的字节和全部 hash；直接指向另一个 protocol
-或改过的 policy 会被拒绝。轮次计算、冻结顺序和重试规则写在
+或改过的 policy 会被拒绝。`prepare` 训练前后都用双 relay 验签轮次判断 10 分钟窗口，不依赖
+本机时钟。轮次计算、冻结顺序和重试规则写在
 [v0.5 protocol](docs/reproduction_plan_v0.5.md)。
 
 快速验证单个控制器：

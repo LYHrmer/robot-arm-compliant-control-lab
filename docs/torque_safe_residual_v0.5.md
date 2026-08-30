@@ -109,9 +109,11 @@ force/tangential gain scheduling。
 policy、CSV、PNG、协议和 checksum 随后作为 implementation commit 的单一子提交，tag 为
 `v0.5-preholdout`。
 
-协议预先指定一个尚未发布的 drand Quicknet round。轮次到达后，冻结的 Node.js helper 用
-官方 `drand-client` 对 BLS 签名验真，并要求 drand 与 Cloudflare 两个 relay 返回相同结果。
-beacon randomness 与 protocol hash 一起派生 48 个 scenario seed 和 48 个 noise seed。
+协议预先指定一个尚未发布的 drand Quicknet round。训练前后，冻结的 Node.js helper 都会
+并行读取两个官方 relay 的最新轮次，再按固定公钥逐个验签。两个 relay 最多允许相差一轮；
+最终目标至少领先较新轮次 201 轮，机器时钟快慢不会改变这项判断。目标轮次到达后，helper
+再从两个 relay 请求同一个 exact round。beacon randomness 与 protocol hash 一起派生 48 个
+scenario seed 和 48 个 noise seed。
 
 评测前会逐字节比较工作区文件和 tag 中的文件，并检查 tag 的父 commit。只复制一份新的
 `protocol.json`、删除四个 policy 或在 reveal 前改安全参数都会失败。48 个 case 一旦生成，
