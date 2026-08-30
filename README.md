@@ -2,129 +2,118 @@
 
 [![tests](https://github.com/LYHrmer/robot-arm-compliant-control-lab/actions/workflows/tests.yml/badge.svg)](https://github.com/LYHrmer/robot-arm-compliant-control-lab/actions/workflows/tests.yml)
 
-一个可复现的 MuJoCo 机械臂接触控制项目。当前 `v0.5` 使用 Franka Panda 7-DOF
-力矩模型，实现 6D 笛卡尔阻抗、导纳、力位混合、自适应增益调度和 torque-aware bounded
-Residual RL。仓库同时保留 C++17/Eigen 控制核心、Python/C++ 数值一致性测试，以及从
-公开验证集到五 seed / 48-case first reveal 的实验记录。
+Franka Panda 7-DOF 在 MuJoCo 中以 500 Hz 维持 12 N 法向接触力，同时沿墙面执行擦拭轨迹。
+这个仓库比较固定增益、自适应柔顺控制和 bounded Residual RL，并保留每次实验的门槛、失败
+case 与冻结产物。
+
+当前版本停在一个清楚的失败点：加入关节力矩投影后，actuator saturation 在本次 48-case
+评测中降为 0%，五个 Residual RL 策略却都没有通过预先声明的规则。主要问题是约 59.54 N
+的首次接触峰值。所有 checkpoint 仅供仿真研究，禁止直接用于真机。
 
 ![Franka hybrid force-position control](results/franka/hybrid_demo.gif)
 
-![Franka nominal benchmark](results/franka/nominal.png)
+## v0.5 首次揭盲结果
 
-![Franka randomized robustness gate](results/franka_stress/stress_summary.png)
+机器人使用相同的 48 个仿真参数场景和相同的逐 case 噪声 seed。预注册规则要求五个 residual
+策略分别达到 44/48，不能挑最好 seed 或改用平均通过率。
 
-![Fixed adaptive residual same-case comparison](results/franka_learning/comparison.png)
-
-![v0.5 torque-safe five-seed first reveal](results/franka_safety_blind/comparison.png)
-
-## 主要结果
-
-Franka 以 500 Hz 控制末端工具维持 12 N 法向接触力，同时沿墙面执行二维擦拭轨迹。
-
-| 控制器 | 场景 | 力 RMSE [N] | 切向 RMSE [mm] | 姿态 RMSE [deg] | 力矩饱和 |
-|---|---|---:|---:|---:|---:|
-| Impedance | nominal | 8.98 | 3.26 | 0.62 | 0% |
-| Admittance | nominal | 0.94 | 9.29 | 0.41 | 0% |
-| Hybrid | nominal | 0.95 | 9.55 | 0.40 | 0% |
-| Hybrid | noisy + 20 ms delay | 0.95 | 8.75 | 0.41 | 0% |
-
-阻抗控制不显式跟踪 12 N，所以接触峰值较低但力误差最大；导纳和力位混合控制的力跟踪
-更准确，但刚性墙场景的原始接触峰值更高。指标没有用滤波或稳态窗口掩盖冲击：
-`force_rmse_n` 来自接近结束后的低通反馈，`peak_force_n` 覆盖完整轨迹的 MuJoCo 原始
-接触力（包括首次接触）。
-
-完整结果见 [Franka metrics](results/franka/metrics.md)。
-
-### 随机失配与 Residual RL
-
-v0.3 首次运行前固定了门槛：24 个工况中至少 90% 同时满足力 RMSE <= 2 N、接触率
->= 95%、原始峰值力 <= 35 N、切向 RMSE <= 15 mm、力矩饱和 <= 1%。v0.4 沿用这套
-对策略训练未见的冻结工况；由于既往结果已经公开，它被准确标为 public holdout，而不是
-blind test。随机范围包含接触柔度/摩擦、墙面法向误差、传感器偏置与噪声、0–30 ms
-延迟和动力学 bias 误差。
-
-加入接触确认、低速 approach 和 150 ms 力控切换后，固定增益 hybrid 仍只通过
-**6/24（25.0%）**。v0.4 随后实现了自适应经典基线和 bounded Residual RL，并在同一
-24 cases、同一 simulation seeds 下比较：
-
-| 方法 | 通过数 | Force P95 [N] | Raw peak P95 [N] | Tangent P95 [mm] | Saturation worst |
-|---|---:|---:|---:|---:|---:|
-| Fixed hybrid | 6/24 | 2.32 | 57.79 | 21.98 | 12.53% |
-| Adaptive hybrid | 6/24 | 3.01 | 56.80 | 18.42 | 12.89% |
-| Bounded Residual RL | 7/24 | 2.30 | 57.04 | 14.80 | 15.91% |
-
-v0.4 residual 把切向 P95 降到 14.80 mm，但只增加一个通过 case，最差力矩饱和还升到
-15.91%。这个 checkpoint 没达到 22/24 门槛，禁止用于真机。完整估计器、增益调度、ARS
-更新和逐项失败记录见
-[Adaptive compliance and bounded Residual RL](docs/adaptive_residual_rl.md)。
-
-v0.5 先修正这个失败点：控制器拿到 `J`、bias/null-space torque 和 actuator limits 后，
-先投影完整名义 wrench，再用剩余力矩余量投影 residual；策略输入加入 `+x/-x/+y/-y/+z/-z`
-六个方向的可用余量。公开 seed-29 验证集上，safe adaptive 为 7/24，force P95
-3.12 N、raw peak P95 58.14 N、tangent P95 18.42 mm，最差饱和从 12.89% 降到 0%。
-Actuator clipping 已降到 0%，力和轨迹 gate 仍未通过。
-
-`v0.5-preholdout` 在 drand Quicknet round `31756275` 发布前冻结了五个策略。首次 48-case
-揭盲结果如下；每行使用同一组 scenario/noise seed：
-
-| 方法 | 通过数 | Force P95 [N] | Raw peak P95 [N] | Tangent P95 [mm] | Saturation worst |
+| 方法 | 通过数 | Force-tracking error P95 [N] | Raw peak P95 [N] | Tangent P95 [mm] | Saturation worst |
 |---|---:|---:|---:|---:|---:|
 | Fixed hybrid | 17/48 | 2.01 | 58.62 | 22.66 | 19.69% |
 | Adaptive hybrid | 23/48 | 2.21 | 58.99 | 18.89 | 20.71% |
-| Safe adaptive | 24/48 | 2.33 | 59.54 | 18.89 | 0.00% |
-| Torque residual run 00 | 22/48 | 2.00 | 59.54 | 16.04 | 0.00% |
-| Torque residual run 01 | 25/48 | 2.03 | 59.54 | 16.13 | 0.00% |
-| Torque residual run 02 | 26/48 | 2.10 | 59.54 | 15.98 | 0.00% |
-| Torque residual run 03 | 24/48 | 2.12 | 59.54 | 16.50 | 0.00% |
-| Torque residual run 04 | 25/48 | 1.98 | 59.54 | 16.43 | 0.00% |
+| Torque-safe adaptive | 24/48 | 2.33 | 59.54 | 18.89 | 0.00% |
+| Torque residual（5 runs） | 22–26/48 | 1.98–2.12 | 59.54 | 15.98–16.50 | 0.00% |
 
-预注册规则要求每个 residual 都达到 44/48，实际为 22–26/48，结论是 `FAIL`。力矩投影把
-saturation 清到 0%，Residual RL 也把切向 P95 降到 15.98–16.50 mm，但没有处理约 59.54 N
-的接触峰值。五个 residual 的平均通过数是 24.4，safe adaptive 是 24；此版本保留为研究
-checkpoint，不用于真机。原始 384 行结果见
-[comparison.csv](results/franka_safety_blind/comparison.csv)，冻结与揭盲细节见
-[v0.5 reproduction protocol](docs/reproduction_plan_v0.5.md)，projection 推导见
-[torque-safe residual notes](docs/torque_safe_residual_v0.5.md)。
+`Force-tracking error` 在进入稳定任务阶段后由滤波力反馈计算；`Raw peak` 取完整轨迹中的未滤波
+最大接触力，包含首次碰撞。因此表中的约 2 N 稳态误差和约 60 N 瞬时峰值并不矛盾。
 
-## 实现内容
+主结果是 `FAIL`。Residual policy 改善了切向跟踪，torque projection 也完成了限幅职责；
+接触冲击仍然超过 35 N gate。仓库保留这一结果，不部署策略，也不把训练回报当作安全证据。
 
-- 控制：Franka 7-DOF torque model、`6×7` Jacobian、bias compensation、阻尼 null space，
-  以及 impedance、admittance、hybrid force-position 和 adaptive gain scheduling。
-- 接触与安全：接触确认/释放、anti-windup、传感器低通与延迟、reference governor、完整
-  wrench 与 residual 的 joint-torque ray projection、10% torque reserve 和 fail-closed 回退。
-- 学习：50 Hz `3×20` 线性 `tanh` residual policy、500 Hz nominal loop、五 seed ARS、
-  独立 train/development/blind seed、动作幅值/速率/force guard/deadline 限制。
-- 验证：C++17/Eigen 固定尺寸核心、Python/C++ `1e-12` parity、逐 case CSV、物理 gate、
-  冻结 tag、SHA256 manifest 和双 relay drand BLS 验签。
+原始 384 行数据在 [comparison.csv](results/franka_safety_blind/comparison.csv)，生成摘要在
+[summary.md](results/franka_safety_blind/summary.md)。冻结、信标和结果哈希见
+[v0.5 protocol](docs/reproduction_plan_v0.5.md)。全部版本的假设与结论集中在
+[experiment record](docs/experiments/README.md)。
 
-控制公式和实现对应关系见 [Franka 7-DOF control notes](docs/franka_control.md)。
+![v0.5 post-reveal gate diagnosis](results/franka_safety_postreveal/failure_analysis.png)
 
-## 阅读顺序
+上图只使用揭盲后已经公开的数据。它解释失败来源，不构成一轮新的 blind evaluation；
+生成方法和逐项计数见 [post-reveal summary](results/franka_safety_postreveal/summary.md)。
 
-项目先用 2-DOF 解析模型解释运动学和接触控制，再进入 Franka 6D 解算、C++ 实现、实验
-拆分和 Residual RL。导航页在 [教程目录](docs/tutorial/README.md)：
+## 实现范围
 
-1. [2-DOF FK、IK、Jacobian 与奇异性](docs/tutorial/01_2dof_kinematics.md)
-2. [阻抗、导纳、力位混合与接触状态机](docs/tutorial/02_compliant_control.md)
-3. [Franka wrench-to-torque、阻尼伪逆与 null space 解算](docs/tutorial/03_franka_numerics.md)
-4. [指标、随机 holdout 与可信实验方法](docs/tutorial/04_experiments_and_validation.md)
-5. [Residual RL 动作、奖励、安全层与消融协议](docs/tutorial/05_residual_rl.md)
-6. [分级练习、故障定位和面试表达](docs/tutorial/06_exercises_and_interview.md)
+控制路径从 2-DOF 解析模型开始，随后进入 Franka 6D Cartesian wrench 控制：
 
-公式、源码入口和验证命令放在同一章；不要求先会 ROS 2 或真机开发。
+- impedance、admittance 和 hybrid force-position control；
+- bias/force-rate/contact-stiffness estimator 与 gain scheduling；
+- contact confirmation、force transition、anti-windup 和 reference governor；
+- nominal wrench 与 residual wrench 的两级 joint-torque projection；
+- 50 Hz、三轴有界 residual policy，外层仍由 500 Hz 经典控制器运行。
 
-## 快速开始
+实验路径使用独立 train/development 数据、五个训练 seed、冻结 tag、SHA256 manifest，以及
+未来 drand Quicknet round 生成首次揭盲场景。架构和数据流见
+[architecture](docs/architecture.md)。
+
+### Python / C++ 范围
+
+| 能力 | Python | C++17/Eigen | 公开实验 |
+|---|---:|---:|---:|
+| Impedance / admittance / fixed hybrid | 是 | 是，逐分量 parity | nominal、v0.3、v0.4、v0.5 |
+| Adaptive gain scheduling | 是 | 否 | v0.4、v0.5 |
+| Torque projection | 是 | 否 | v0.5 |
+| Bounded Residual RL | 是 | 否 | v0.4、v0.5 |
+| ROS 2 / Franka hardware adapter | 否 | 否 | 无 |
+
+C++ 核心的接口只包含固定尺寸状态、目标和 Cartesian wrench。完整的主张、测试和结果对应关系
+见 [verification matrix](docs/verification_matrix.md)。
+
+## 从哪里开始读
+
+| 目标 | 阅读入口 |
+|---|---|
+| 三分钟了解项目 | 本页结果、[架构图](docs/architecture.md)、[实验总账](docs/experiments/README.md) |
+| 系统学习柔顺控制 | [教程目录](docs/tutorial/README.md)，从 2-DOF 一直读到 Franka 与 Residual RL |
+| 检查算法和数值实现 | [Franka control notes](docs/franka_control.md)、[torque-safe residual notes](docs/torque_safe_residual_v0.5.md) |
+| 审核实验可信度 | [v0.5 protocol](docs/reproduction_plan_v0.5.md)、[manifest](results/franka_safety_blind/manifest.json) |
+| 准备面试 | [练习、故障定位和项目表达](docs/tutorial/06_exercises_and_interview.md) |
+
+完整导航和术语说明分别在 [docs/README.md](docs/README.md) 与
+[CONTEXT.md](CONTEXT.md)。
+
+## 快速运行
+
+需要 Python 3.10+。MuJoCo 仿真不要求 ROS 2 或 Franka hardware interface。
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -e ".[dev]"
 
-pytest
-franka-control-lab --output results/franka --gif
+franka-control-lab --output results/franka-quick --gif
 ```
 
-C++17/Eigen 控制核心：
+无显示器的 Linux 环境可指定 EGL：
+
+```bash
+MUJOCO_GL=egl franka-control-lab --output results/franka-quick --gif
+```
+
+2-DOF 教学基线：
+
+```bash
+compliant-control-lab --output results/planar-quick --gif
+```
+
+## 验证代码
+
+Python 测试和静态检查：
+
+```bash
+pytest
+ruff check src tests
+```
+
+C++17/Eigen 核心及 Python/C++ 数值一致性：
 
 ```bash
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
@@ -133,134 +122,70 @@ ctest --test-dir build --output-on-failure
 pytest tests/test_cpp_parity.py
 ```
 
-重新生成随机失配压力测试：
+离线审核仓库中已经发布的 v0.5 产物，不联网，也不重新运行仿真：
 
 ```bash
-franka-stress-lab --output results/franka_stress --cases 24 --seed 29
-```
-
-从零训练 residual policy，并对三种方法运行同一 24-case 比较：
-
-```bash
-franka-learning-lab --output results/franka_learning
-```
-
-只复评仓库中的冻结 checkpoint：
-
-```bash
-franka-learning-lab \
-  --policy results/franka_learning/policy.json \
-  --output results/franka_learning_eval
-```
-
-v0.5 的 first-reveal 流程需要 Node.js 18+ 来运行官方 drand 客户端：
-
-```bash
-npm ci
-franka-safety-learning-lab prepare \
-  --output results/franka_safety_preholdout \
-  --beacon-round <至少领先当前 Quicknet 201 轮，且训练后仍满足该条件> \
-  --jobs 5
-
-# 提交上述目录并创建 v0.5-preholdout tag；信标发布后才运行：
-franka-safety-learning-lab evaluate \
+franka-published-results-audit \
   --protocol results/franka_safety_preholdout/protocol.json \
-  --output results/franka_safety_blind
+  --result results/franka_safety_blind
 ```
 
-`evaluate` 会检查当前 `HEAD`、tag 中每个文件的字节和全部 hash；直接指向另一个 protocol
-或改过的 policy 会被拒绝。`prepare` 训练前后都用双 relay 验签轮次判断 10 分钟窗口，不依赖
-本机时钟。轮次计算、冻结顺序和重试规则写在
-[v0.5 protocol](docs/reproduction_plan_v0.5.md)。
+该命令先核对固定的 v0.5 manifest 与 `COMPLETE` 标记，再检查文件 hash、两路 beacon 归档、
+blind root 与 HMAC seed 推导、384 行 case-method 网格、policy 身份、gate 标签和 summary
+通过数。它不联网，也不重新执行 BLS 验签或仿真；BLS 校验记录已包含在固定 manifest 覆盖的
+`reveal.json` 中。`audit PASS` 表示发布归档未变且内部推导自洽；冻结的实验结论仍然是 `FAIL`。
 
-快速验证单个控制器：
-
-```bash
-franka-control-lab \
-  --controllers hybrid \
-  --duration 2.5 \
-  --output results/franka-quick
-```
-
-无显示器的 Linux 环境可显式指定 EGL：
-
-```bash
-MUJOCO_GL=egl franka-control-lab --output results/franka --gif
-```
-
-## 实验场景
-
-1. `nominal`：标称接触参数和低噪声力反馈。
-2. `stiff_wall`：更短的接触时间常数，用于测试碰撞峰值。
-3. `noisy_delay`：0.5 mm 位置噪声、0.6 N 力噪声和 20 ms 测量延迟。
-
-每组实验使用相同初始状态、参考轨迹和随机种子。机器人先接近墙面，然后在 y-z 平面执行
-圆形擦拭运动。完整命令一次运行 3 个控制器 × 3 个场景并生成 CSV、Markdown、PNG 和 GIF。
+完整训练、公开验证和新一轮 first-reveal 命令放在
+[实验复现文档](docs/reproduction_plan_v0.5.md)，避免把一次正式实验误当成快速示例运行。
 
 ## 项目结构
 
 ```text
 src/compliant_control_lab/
-├── assets/
-│   ├── franka_scene.xml
-│   ├── franka_emika_panda/   # 官方模型、许可证与 torque derivative
-│   └── planar_arm.xml
-├── franka_control.py         # 6D impedance/admittance/hybrid controllers
-├── franka_simulation.py      # 7-DOF dynamics, contact and metrics
-├── franka_experiments.py     # Franka benchmark CLI
-├── franka_plotting.py        # plots and MuJoCo renderer
-├── franka_stress.py          # randomized holdout and Residual RL gate
-├── franka_adaptive.py        # bias/stiffness estimation and gain scheduling
-├── franka_torque_safety.py   # wrench/residual to joint-torque projection
-├── residual_rl.py            # policy, observation and hard residual safety envelope
-├── franka_learning.py        # ARS training and same-case comparison
-├── franka_safety_learning.py # five-seed freeze and 48-case first reveal
-├── controllers.py            # 2-DOF pedagogical baseline
-└── simulation.py
+├── franka_control.py          # fixed 6D Cartesian controllers and state interface
+├── franka_adaptive.py         # estimators, gain scheduling and torque-safe adaptive nominal
+├── franka_torque_safety.py    # wrench-to-joint-torque projection
+├── residual_rl.py             # observation, policy and residual safety rules
+├── franka_learning.py         # ARS training and 24-case public validation
+├── franka_safety_learning.py  # five-seed freeze and 48-case first reveal
+├── franka_simulation.py       # MuJoCo adapter, contact task and metrics
+└── controllers.py             # 2-DOF teaching baseline
 cpp/
-├── include/                  # public C++17/Eigen interface
-├── src/                      # controller implementation
-├── tests/                    # native CTest suite
-└── tools/                    # deterministic Python parity probe
-tests/
-docs/
-results/
+├── include/                   # public fixed-size Eigen interface
+├── src/                       # fixed classical controllers
+└── tests/                     # native behavior tests and parity probe
+docs/                          # navigation, tutorials, method notes and experiment records
+results/                       # committed CSV, figures, policies and integrity manifests
+tests/                         # math, controller, simulation, safety and protocol tests
 ```
 
-## 2-DOF 教学基线
+## 当前限制
 
-原始 2-DOF 平面机械臂实验仍然保留，用于验证解析 FK、IK、Jacobian 以及控制器最小实现：
+- 仿真使用理想力矩接口，没有电流环、编码器量化和真实通信抖动。
+- 接触参数来自 MuJoCo，不是真机辨识结果。
+- 零空间投影采用阻尼运动学形式，尚未实现 dynamically consistent operational-space control。
+- C++ 只覆盖固定经典控制器；adaptive、torque projection 和 residual 仍是 Python 研究实现。
+- torque projection 没有提供 torque-rate、碰撞阈值或硬件安全认证。
+- 当前机器没有 Franka hardware/model interface，仓库不声称完成 ros2_control 真机插件。
+
+## 下一项实验
+
+v0.5 的 residual 在稳定接触 100 ms 后才启用，而 torque-safe adaptive 和五个 residual 的
+raw peak P95 完全相同。下一版先记录峰值时间、接触阶段、法向速度、nominal wrench 和
+torque headroom，再比较更低能量的 approach/reference governor。揭盲后的 48 cases 只用于
+诊断；新的最终结论需要另一个冻结协议和未来 beacon。
+
+当前 failure breakdown 可用下面的命令重新生成：
 
 ```bash
-compliant-control-lab --output results --gif
+franka-post-reveal-analysis
 ```
 
-对应推导见 [2-DOF control notes](docs/control_theory.md)。
-
-## 模型来源与许可证
+## 模型与许可证
 
 Franka 模型来自 Google DeepMind
 [MuJoCo Menagerie](https://github.com/google-deepmind/mujoco_menagerie/tree/main/franka_emika_panda)，
 固定到上游 commit `da76818e269b82289eba39808e2fb91d679d6994`。模型资源使用 Apache-2.0，
 许可证和修改说明保存在
-[`assets/franka_emika_panda`](src/compliant_control_lab/assets/franka_emika_panda/UPSTREAM.md)。
+[assets/franka_emika_panda](src/compliant_control_lab/assets/franka_emika_panda/UPSTREAM.md)。
 本项目其余代码使用 MIT License。
-
-## 已知局限
-
-- 使用理想力矩接口，没有模拟电流环、编码器量化和通信抖动。
-- 接触参数是 MuJoCo 参数，不是真机辨识结果。
-- 零空间投影是阻尼运动学投影，不是完整 operational-space inertia formulation。
-- C++ 核心已经独立可编译，但尚未接入 `franka_semantic_components`、真机 watchdog 和
-  碰撞安全状态机；当前机器没有安装 Franka hardware/model 接口，不能声称完成真机插件。
-- 线性 ARS 是可检查的安全基线，不代表 SAC/TD3 或非线性策略的上限。
-- torque projection 约束仿真中的关节力矩区间，但没有 torque-rate、碰撞阈值和硬件安全认证。
-- v0.4 checkpoint 会增加个别峰值力和力矩饱和；所有已训练 checkpoint 都禁止直接上真机。
-
-## 下一步
-
-- 根据 v0.5 五 seed first reveal 的逐 case 失败项决定是否继续 Residual RL。
-- 若继续，在相同 observation、action bounds 和 rollout 预算下比较线性 ARS、SAC 与 TD3。
-- 安装 Franka ROS2 model interface 后实现 ros2_control controller、watchdog 和配置 YAML。
-- 用 Pinocchio 交叉验证 Jacobian、重力补偿和 operational-space dynamics。
-- 软垫、刚性墙和曲面上的 Sim-to-Real 参数辨识。
