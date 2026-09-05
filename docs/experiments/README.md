@@ -8,6 +8,7 @@
 | v0.3 | 当时的首次运行；现在是公开验证集 | Fixed hybrid 通过 6/24 | 可以开展 bounded residual 实验；尚未证明 RL 更好 |
 | v0.4 | seed-29 公开验证集 | Fixed 6/24，adaptive 6/24，residual 7/24 | 保留自适应 nominal；不部署 checkpoint |
 | v0.5 | 48-case first reveal；揭盲后转为公开验证集 | 五个 residual 为 22–26/48，均未达到 44/48；torque-safe adaptive 与五个 residual 的 saturation 均为 0% | 不部署；分别检查早期入触和较晚擦拭峰值 |
+| v0.6 开发对照 | 同一批 48 个公开场景，四组共 192 次仿真 | 同分步时序下原始参考 23/48、解析速度 24/48、限速参考 23/48 | 限速参考保留为实验项；尚未完成低冲击控制 |
 
 ## 版本锚点与证据
 
@@ -47,3 +48,14 @@ sensitivity。Event replay 由
 [`contact_event_analysis.py`](../../src/compliant_control_lab/contact_event_analysis.py) 生成；
 [event summary](../../results/franka_safety_postreveal/contact_events/summary.md) 保存重放核对和
 峰值阶段。两类诊断都不改动冻结证据。
+
+## 接近参考开发对照
+
+四组实验先验证旧模式仍能复现 48 个场景的 7 项确定性指标，最大绝对误差为 0。随后固定
+分步采样时序，分别比较原始参考、解析速度与有状态限速参考；三组全轨迹 raw peak P95
+为 60.89、59.03、61.63 N。限速参考的通过数没有增加，继续保持可选实验实现。
+
+这次没有训练或评测新的 residual policy，也没有进行新一轮首次揭盲。
+实现说明见[接近参考与采样时序](../reference_governor_v0.6.md)；
+[CSV](../../results/franka_reference_ablation/comparison.csv) 与
+[manifest](../../results/franka_reference_ablation/manifest.json) 记录数值和实际运行版本。

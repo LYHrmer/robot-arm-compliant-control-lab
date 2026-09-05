@@ -28,6 +28,7 @@ franka-safety-learning-lab = "compliant_control_lab.franka_safety_learning:main"
 franka-post-reveal-analysis = "compliant_control_lab.post_reveal_analysis:main"
 franka-published-results-audit = "compliant_control_lab.published_results_audit:main"
 franka-contact-event-analysis = "compliant_control_lab.contact_event_analysis:main"
+franka-reference-ablation = "compliant_control_lab.reference_ablation:main"
 franka-smoke = "compliant_control_lab.smoke:main"
 
 [tool.setuptools]

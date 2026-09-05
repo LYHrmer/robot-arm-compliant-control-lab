@@ -6,6 +6,7 @@ from collections import deque
 from dataclasses import dataclass, field
 from pathlib import Path
 from time import perf_counter_ns
+from typing import Literal
 
 import mujoco
 import numpy as np
@@ -47,17 +48,35 @@ class FrankaSimulationConfig:
     target_force: float = 12.0
     force_filter_time_constant: float = 0.02
     seed: int = 11
+    control_timing: Literal["legacy", "split_step"] = "legacy"
+    approach_reference: Literal["legacy", "consistent"] = "legacy"
+
+    def __post_init__(self) -> None:
+        if self.control_timing not in {"legacy", "split_step"}:
+            raise ValueError("control_timing must be legacy or split_step")
+        if self.approach_reference not in {"legacy", "consistent"}:
+            raise ValueError("approach_reference must be legacy or consistent")
 
 
 @dataclass
 class FrankaTrialResult:
-    """One rollout logged before each call to ``mj_step``.
+    """One rollout with an explicit control/measurement timing convention.
 
-    MuJoCo's cached contact/site/Jacobian values retain the previous forward pass,
+    In legacy mode, cached contact/site/Jacobian values retain the previous forward pass,
     while joint velocity has already been integrated by the preceding step. A row
     is a control-cycle record, not a fully synchronized physical-state snapshot.
-    ``commanded_wrench`` is the new controller output, before it is applied by the
-    next step. Torque headroom is the smallest signed distance from its induced
+    Its kinematic timestamp dates pose/J only; twist mixes that J with newer qvel.
+
+    In split_step mode, position, joint state, Jacobian and velocity belong to
+    ``time[k]``. The new wrench is applied in mj_step2; its solved raw contact force
+    also belongs to time[k], although it is read after integration. It is cached
+    as a scalar for the NEXT control cycle, before mj_step1 rebuilds contacts.
+    ``normal_force`` is the causal filtered feedback before added scenario delay,
+    bias or noise; ``measured_normal_force`` is the actual controller input.
+    Force timestamps identify the latest raw input to the filter, not a claim
+    that the filtered signal has zero lag. Startup repeats the reset observation.
+
+    Torque headroom is the smallest signed distance from the induced
     joint torque to either actuator limit; negative values indicate an exceedance
     (the saturation flag separately uses a 1e-9 Nm numerical tolerance).
     """
@@ -80,6 +99,15 @@ class FrankaTrialResult:
     commanded_wrench: np.ndarray = field(default_factory=lambda: np.zeros((0, 6)))
     minimum_torque_headroom_nm: np.ndarray = field(default_factory=lambda: np.zeros(0))
     controller_snapshots: tuple[FrankaControllerTelemetrySnapshot, ...] = ()
+    control_timing: str = "legacy"
+    approach_reference: str = "legacy"
+    joint_velocity: np.ndarray = field(default_factory=lambda: np.zeros((0, 7)))
+    kinematic_sample_time: np.ndarray = field(default_factory=lambda: np.zeros(0))
+    raw_force_sample_time: np.ndarray = field(default_factory=lambda: np.zeros(0))
+    feedback_force_sample_time: np.ndarray = field(default_factory=lambda: np.zeros(0))
+    measured_kinematic_sample_time: np.ndarray = field(default_factory=lambda: np.zeros(0))
+    measured_force_sample_time: np.ndarray = field(default_factory=lambda: np.zeros(0))
+    measured_normal_force: np.ndarray = field(default_factory=lambda: np.zeros(0))
 
     def metrics(self, evaluation_start: float = 1.5) -> dict[str, float | str]:
         mask = self.time >= evaluation_start
@@ -136,6 +164,10 @@ def _target_at(
     contact_position[0] = CONTACT_CENTER_X + 0.010
     position = initial_position + approach * (contact_position - initial_position)
     velocity = np.zeros(3)
+    if config.approach_reference == "consistent" and 0.10 < time < 1.0:
+        phase = (time - 0.10) / 0.90
+        approach_rate = 6.0 * phase * (1.0 - phase) / 0.90
+        velocity = approach_rate * (contact_position - initial_position)
 
     if time > WIPING_START_TIME_S:
         phase = 2.0 * np.pi * 0.20 * (time - WIPING_START_TIME_S)
@@ -199,6 +231,9 @@ def run_franka_trial(
     config = config or FrankaSimulationConfig()
     model = mujoco.MjModel.from_xml_path(str(franka_model_path()))
     model.opt.timestep = config.timestep
+    split_step = config.control_timing == "split_step"
+    if split_step and model.opt.integrator == mujoco.mjtIntegrator.mjINT_RK4:
+        raise ValueError("split_step requires a single-step integrator, not RK4")
     wall_id = model.geom("contact_wall").id
     tool_id = model.geom("tool_tip").id
     site_id = model.site("ee_site").id
@@ -209,9 +244,7 @@ def run_franka_trial(
     wall_half_thickness = model.geom_size[wall_id, 0]
     model.geom_pos[wall_id, :2] = np.array([WALL_SURFACE_X, 0.0])
     model.geom_pos[wall_id, :2] += wall_half_thickness * wall_normal
-    model.geom_quat[wall_id] = np.array(
-        [np.cos(0.5 * wall_yaw), 0.0, 0.0, np.sin(0.5 * wall_yaw)]
-    )
+    model.geom_quat[wall_id] = np.array([np.cos(0.5 * wall_yaw), 0.0, 0.0, np.sin(0.5 * wall_yaw)])
 
     data = mujoco.MjData(model)
     mujoco.mj_resetDataKeyframe(model, data, model.key("home").id)
@@ -222,8 +255,8 @@ def run_franka_trial(
 
     step_count = round(config.duration / config.timestep)
     rng = np.random.default_rng(config.seed)
-    history: deque[tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, float]] = deque(
-        maxlen=scenario.delay_steps + 1
+    history: deque[tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, float, float, float]] = (
+        deque(maxlen=scenario.delay_steps + 1)
     )
 
     time_log = np.empty(step_count)
@@ -242,6 +275,13 @@ def run_franka_trial(
     commanded_wrench_log = np.empty((step_count, 6))
     minimum_torque_headroom_log = np.empty(step_count)
     controller_snapshots: list[FrankaControllerTelemetrySnapshot] = []
+    joint_velocity_log = np.empty((step_count, 7))
+    kinematic_time_log = np.empty(step_count)
+    raw_force_time_log = np.empty(step_count)
+    feedback_force_time_log = np.empty(step_count)
+    measured_kinematic_time_log = np.empty(step_count)
+    measured_force_time_log = np.empty(step_count)
+    measured_force_log = np.empty(step_count)
 
     initial_state = FrankaState(
         position=initial_position,
@@ -254,13 +294,27 @@ def run_franka_trial(
     actuator_limits = model.actuator_ctrlrange[:7].copy()
     filtered_force = 0.0
     filter_alpha = config.timestep / (config.force_filter_time_constant + config.timestep)
+    # Cache the solved scalar before mj_step1 can replace contact/constraint indices.
+    previous_solved_force = (
+        _normal_contact_force(model, data, tool_id, wall_id) if split_step else 0.0
+    )
 
     for step in range(step_count):
         time = step * config.timestep
+        previous_time = max(0, step - 1) * config.timestep
+        if split_step:
+            mujoco.mj_step1(model, data)
+            if abs(data.time - time) > 1e-9:
+                raise RuntimeError("MuJoCo reset or time drift invalidated split-step timestamps")
         position, rotation, linear_velocity, angular_velocity, jacobian = _site_state(
             model, data, site_id
         )
-        raw_force = _normal_contact_force(model, data, tool_id, wall_id)
+        raw_force = (
+            previous_solved_force
+            if split_step
+            else _normal_contact_force(model, data, tool_id, wall_id)
+        )
+        kinematic_time = time if split_step else previous_time
         filtered_force += filter_alpha * (raw_force - filtered_force)
         history.append(
             (
@@ -269,26 +323,29 @@ def run_franka_trial(
                 linear_velocity.copy(),
                 angular_velocity.copy(),
                 filtered_force,
+                kinematic_time,
+                previous_time,
             )
         )
-        measured_position, measured_rotation, measured_linear, measured_angular, measured_force = (
-            history[0]
-        )
-        measured_position = measured_position + rng.normal(
-            0.0, scenario.position_noise_std, size=3
-        )
+        (
+            measured_position,
+            measured_rotation,
+            measured_linear,
+            measured_angular,
+            measured_force,
+            measured_kinematic_time,
+            measured_force_time,
+        ) = history[0]
+        measured_position = measured_position + rng.normal(0.0, scenario.position_noise_std, size=3)
         measured_force = (
-            measured_force
-            + scenario.force_bias_n
-            + rng.normal(0.0, scenario.force_noise_std)
+            measured_force + scenario.force_bias_n + rng.normal(0.0, scenario.force_noise_std)
         )
         nullspace = damped_nullspace_projector(jacobian)
         posture_torque = 10.0 * (nominal_q - data.qpos[:7]) - 2.5 * data.qvel[:7]
         actuation = FrankaActuationContext(
             cartesian_jacobian=jacobian,
             joint_torque_offset=(
-                scenario.bias_compensation_scale * data.qfrc_bias[:7]
-                + nullspace @ posture_torque
+                scenario.bias_compensation_scale * data.qfrc_bias[:7] + nullspace @ posture_torque
             ),
             lower_torque_limit=actuator_limits[:, 0],
             upper_torque_limit=actuator_limits[:, 1],
@@ -319,14 +376,19 @@ def run_franka_trial(
 
         time_log[step] = time
         q_log[step] = data.qpos[:7]
+        joint_velocity_log[step] = data.qvel[:7]
         position_log[step] = position
         desired_position_log[step] = target.position
         force_log[step] = filtered_force
         raw_force_log[step] = raw_force
+        kinematic_time_log[step] = kinematic_time
+        raw_force_time_log[step] = time if split_step else previous_time
+        feedback_force_time_log[step] = previous_time
+        measured_kinematic_time_log[step] = measured_kinematic_time
+        measured_force_time_log[step] = measured_force_time
+        measured_force_log[step] = measured_force
         desired_force_log[step] = target.normal_force
-        orientation_error_log[step] = np.linalg.norm(
-            orientation_error(rotation, target.rotation)
-        )
+        orientation_error_log[step] = np.linalg.norm(orientation_error(rotation, target.rotation))
         torque_log[step] = torque
         saturated_log[step] = bool(np.any(np.abs(torque_unclipped - torque) > 1e-9))
         linear_velocity_log[step] = linear_velocity
@@ -340,7 +402,15 @@ def run_franka_trial(
                 )
             )
         )
-        mujoco.mj_step(model, data)
+        if split_step:
+            mujoco.mj_step2(model, data)
+            if abs(data.time - (time + config.timestep)) > 1e-9:
+                raise RuntimeError("MuJoCo reset or time drift invalidated split-step timestamps")
+            # Constraint force still describes x[k], u[k], not integrated x[k+1].
+            previous_solved_force = _normal_contact_force(model, data, tool_id, wall_id)
+            raw_force_log[step] = previous_solved_force
+        else:
+            mujoco.mj_step(model, data)
 
     return FrankaTrialResult(
         controller=controller.name,
@@ -361,4 +431,13 @@ def run_franka_trial(
         commanded_wrench=commanded_wrench_log,
         minimum_torque_headroom_nm=minimum_torque_headroom_log,
         controller_snapshots=tuple(controller_snapshots),
+        control_timing=config.control_timing,
+        approach_reference=config.approach_reference,
+        joint_velocity=joint_velocity_log,
+        kinematic_sample_time=kinematic_time_log,
+        raw_force_sample_time=raw_force_time_log,
+        feedback_force_sample_time=feedback_force_time_log,
+        measured_kinematic_sample_time=measured_kinematic_time_log,
+        measured_force_sample_time=measured_force_time_log,
+        measured_normal_force=measured_force_log,
     )
