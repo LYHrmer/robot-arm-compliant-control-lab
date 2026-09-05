@@ -20,6 +20,14 @@
 | Nominal 与 residual 分别按关节力矩余量投影；异常时 fail closed | [Python projection](../src/compliant_control_lab/franka_torque_safety.py)、[C++ projection](../cpp/src/torque_safety.cpp)、[adaptive nominal](../src/compliant_control_lab/franka_adaptive.py) | [Python safety tests](../tests/test_franka_torque_safety.py)、[C++ edge cases](../cpp/tests/test_torque_safety.cpp)、[160-case parity](../tests/test_cpp_parity.py) | [v0.5 Python rollout](../results/franka_safety_blind/comparison.csv)；C++ port 属于揭盲后工程验证 |
 | Policy 以 50 Hz 更新三维 residual；安全 wrapper 以 500 Hz 运行 | [`residual_rl.py`](../src/compliant_control_lab/residual_rl.py) | [residual tests](../tests/test_residual_rl.py) | [五个冻结 policy](../results/franka_safety_preholdout/)、[result](../results/franka_safety_blind/summary.md) |
 
+## 表面任务开发路径
+
+| 主张 | 实现 | 自动测试 | 实验产物 |
+|---|---|---|---|
+| 固定表面坐标中计算增益；同步旋转 Jacobian 后关节力矩不变 | [`surface_control.py`](../src/compliant_control_lab/surface_control.py) | [旋转协变与 identity 等价](../tests/test_surface_control.py) | [24-case 开发对照](../results/franka_surface_development/summary.md) |
+| 工具端六轴传感使用 sensordata，仅补偿名义重力；法向投影进入闭环 | [`surface_sensing.py`](../src/compliant_control_lab/surface_sensing.py) | [外力符号与惯性残留](../tests/test_surface_sensing.py)、[因果采样与真值隔离](../tests/test_surface_simulation.py) | [建模限定](surface_frame_and_sensing.md) |
+| 完整控制输入可重放 wrench 和未裁剪 joint torque，不积分新动力学 | [`surface_replay.py`](../src/compliant_control_lab/surface_replay.py) | [序列回放与格式拒绝](../tests/test_surface_replay.py)、[归档复核](../tests/test_surface_published_results.py) | [四份代表轨迹与 replay_checks](../results/franka_surface_development/manifest.json) |
+
 ## 实验完整性
 
 | 主张 | 实现 | 自动测试 | 冻结证据 |

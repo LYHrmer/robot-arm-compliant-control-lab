@@ -9,6 +9,7 @@
 | v0.4 | seed-29 公开验证集 | Fixed 6/24，adaptive 6/24，residual 7/24 | 保留自适应 nominal；不部署 checkpoint |
 | v0.5 | 48-case first reveal；揭盲后转为公开验证集 | 五个 residual 为 22–26/48，均未达到 44/48；torque-safe adaptive 与五个 residual 的 saturation 均为 0% | 不部署；分别检查早期入触和较晚擦拭峰值 |
 | v0.6 开发对照 | 同一批 48 个公开场景，四组共 192 次仿真 | 同分步时序下原始参考 23/48、解析速度 24/48、限速参考 23/48 | 限速参考保留为实验项；尚未完成低冲击控制 |
+| Surface development v1 | 新任务与六轴传感定义；24 个公开开发 case，四组共 96 次 | 准确法向的切向误差配对中位差 −0.657 mm，接触比例 −0.967 个百分点；四组接触比例中位数约 57% | 保留坐标修正与传感接口；先解决间歇接触，未加入 RL |
 
 ## 版本锚点与证据
 
@@ -59,3 +60,15 @@ sensitivity。Event replay 由
 实现说明见[接近参考与采样时序](../reference_governor_v0.6.md)；
 [CSV](../../results/franka_reference_ablation/comparison.csv) 与
 [manifest](../../results/franka_reference_ablation/manifest.json) 记录数值和实际运行版本。
+
+## 表面坐标与六轴测量
+
+本轮单独给出名义任务平面，控制器分别使用世界 x、准确法向及 ±5° 标定偏差。
+每个 case 的任务轨迹与随机数流相同。Force RMSE 使用未滤波接触力，切向误差使用真实
+墙面上的欧氏长度；这两项定义均不同于旧实验。较低的峰值不能直接算作对旧任务的改善。
+
+全体参数及四份预选 case 16 完整输入轨迹的重放结果见
+[manifest](../../results/franka_surface_development/manifest.json)，数值见
+[96-row CSV](../../results/franka_surface_development/comparison.csv) 和
+[摘要](../../results/franka_surface_development/summary.md)。这轮没有定义通过门槛，也没有新揭盲。
+六轴测量和质量误差的适用范围在[教程](../surface_frame_and_sensing.md)中说明。

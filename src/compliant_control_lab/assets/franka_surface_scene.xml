@@ -1,0 +1,9 @@
+<mujoco model="franka surface contact with tool-end wrench sensing">
+  <include file="franka_scene.xml"/>
+
+  <!-- Both sensors are at the tool TCP/COM, not at the robot wrist. -->
+  <sensor>
+    <force name="tool_force" site="ee_site"/>
+    <torque name="tool_torque" site="ee_site"/>
+  </sensor>
+</mujoco>

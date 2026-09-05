@@ -44,6 +44,7 @@ Residual RL，每章都给出公式、源码入口和练习。
 | v0.5 torque projection | [torque_safe_residual_v0.5.md](torque_safe_residual_v0.5.md) |
 | 接触峰值事件诊断 | [contact_event_diagnosis.md](contact_event_diagnosis.md) |
 | 接近轨迹、参考限速与因果采样 | [reference_governor_v0.6.md](reference_governor_v0.6.md) |
+| 表面坐标、工具端六维 F/T 与标定误差 | [surface_frame_and_sensing.md](surface_frame_and_sensing.md) |
 
 ## 复现实验
 
@@ -58,6 +59,7 @@ Residual RL，每章都给出公式、源码入口和练习。
 | v0.5 五 seed 冻结与 first reveal | [v0.5 协议](reproduction_plan_v0.5.md) | [`results/franka_safety_preholdout/`](../results/franka_safety_preholdout/)、[`results/franka_safety_blind/`](../results/franka_safety_blind/) |
 | v0.5 揭盲后 paired/event 诊断 | [实验总账](experiments/README.md#揭盲后诊断) | [`results/franka_safety_postreveal/`](../results/franka_safety_postreveal/) |
 | v0.6 开发：时序与接近参考四组对照 | [实现与复现命令](reference_governor_v0.6.md) | [`results/franka_reference_ablation/`](../results/franka_reference_ablation/) |
+| 新表面任务：24-case 法向标定开发对照 | [传感器、指标与复现命令](surface_frame_and_sensing.md) | [`results/franka_surface_development/`](../results/franka_surface_development/) |
 
 v0.5 的 round `31756275` 已经完成 first reveal。仓库中的 48 cases 随后转为 public
 validation set（公开验证集）。复核时读取现有 `protocol.json`、`reveal.json`、

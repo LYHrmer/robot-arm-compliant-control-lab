@@ -19,6 +19,13 @@ v0.6 的开发实验已加入分步采样和有状态接近参考。四组对照
 同分步时序下，原始参考、解析速度和限速参考分别通过 23、24、23/48；限速参考目前只作为
 实验选项，[192 次仿真结果](results/franka_reference_ablation/summary.md) 已保留。
 
+后续开发已加入[表面坐标控制与工具端六维 F/T](docs/surface_frame_and_sensing.md)。
+独立的 24-case 开发网格比较世界坐标控制与法向标定偏差；任务和指标定义有变化，
+结果不与旧 holdout 混算。代表轨迹保存完整控制输入，可逐步重放 wrench 和关节力矩。
+这轮 96 次仿真中，准确法向组的切向误差配对中位数降低 0.66 mm，但四组真实接触比例
+中位数都约 57%，持续接触问题尚未解决。[完整结果](results/franka_surface_development/summary.md)
+使用未滤波力指标，不能与旧版滤波力 RMSE 直接比较。
+
 ## v0.5 首次揭盲结果
 
 机器人使用相同的 48 个仿真参数场景和相同的逐 case 噪声 seed。预注册规则要求五个 residual
@@ -66,6 +73,7 @@ raw contact 的时间作图；颜色表示运动阶段，形状表示 controller
 | 500 Hz 接触状态机与经典柔顺控制 | [`franka_control.py`](src/compliant_control_lab/franka_control.py)、[`franka_control.cpp`](cpp/src/franka_control.cpp) | [controller tests](tests/test_franka_control.py)、[fixed-controller parity](tests/test_cpp_parity.py) |
 | 在线 bias/刚度估计与 gain scheduling | [`franka_adaptive.py`](src/compliant_control_lab/franka_adaptive.py) | [adaptive tests](tests/test_franka_adaptive.py)、[48-case event replay](results/franka_safety_postreveal/contact_events/summary.md) |
 | 有状态接近参考与因果力反馈 | [`franka_reference.py`](src/compliant_control_lab/franka_reference.py)、[split-step simulation](src/compliant_control_lab/franka_simulation.py) | [参考约束](tests/test_franka_reference.py)、[采样契约](tests/test_franka_timing.py)、[四组实验](docs/reference_governor_v0.6.md) |
+| 表面坐标、工具端 F/T 与完整输入回放 | [`surface_control.py`](src/compliant_control_lab/surface_control.py)、[`surface_sensing.py`](src/compliant_control_lab/surface_sensing.py)、[`surface_replay.py`](src/compliant_control_lab/surface_replay.py) | [坐标与传感器教程](docs/surface_frame_and_sensing.md)、[因果采样测试](tests/test_surface_simulation.py) |
 | 6D wrench 到 7 关节力矩包络投影 | [Python](src/compliant_control_lab/franka_torque_safety.py)、[C++17](cpp/src/torque_safety.cpp) | [native edge cases](cpp/tests/test_torque_safety.cpp)、[160-case randomized parity](tests/test_cpp_parity.py) |
 | 50 Hz bounded residual 与 500 Hz safety wrapper | [`residual_rl.py`](src/compliant_control_lab/residual_rl.py) | [residual tests](tests/test_residual_rl.py)、[paired effect](results/franka_safety_postreveal/summary.md) |
 | 五 seed 冻结、first reveal 与离线复核 | [`franka_safety_learning.py`](src/compliant_control_lab/franka_safety_learning.py)、[`published_results_audit.py`](src/compliant_control_lab/published_results_audit.py) | [protocol tests](tests/test_franka_safety_learning.py)、[tamper tests](tests/test_published_results_audit.py) |
