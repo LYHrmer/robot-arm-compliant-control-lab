@@ -3,14 +3,15 @@
 [![tests](https://github.com/LYHrmer/robot-arm-compliant-control-lab/actions/workflows/tests.yml/badge.svg)](https://github.com/LYHrmer/robot-arm-compliant-control-lab/actions/workflows/tests.yml)
 
 Franka Panda 7-DOF 在 MuJoCo 中以 500 Hz 维持 12 N 法向接触力，同时沿墙面执行擦拭轨迹。
-这个仓库比较固定增益、自适应柔顺控制和 bounded Residual RL，并保留每次实验的门槛、失败
-case 与冻结产物。
+仓库从固定增益基线开始，随后加入自适应柔顺控制。Bounded Residual RL 只修正经典控制器
+留下的误差。每次实验的预注册条件和完整产物都保留在仓库，失败 case 不删除。
 
-当前版本停在一个清楚的失败点：加入关节力矩投影后，actuator saturation 在本次 48-case
-评测中降为 0%，五个 Residual RL 策略却都没有通过预先声明的规则。主要问题是约 59.54 N
-的首次接触峰值。所有 checkpoint 仅供仿真研究，禁止直接用于真机。
+冻结的 v0.5 已完成 48-case first reveal。关节力矩投影把 torque-safe 方法的最差 actuator
+saturation 降到 0%，但五个 residual 只通过 22–26/48，未达到 44/48，结论为 `FAIL`。
+完整轨迹 raw peak P95 是 59.54 N；揭盲后的事件重放显示，超限峰值分布在入触初段和擦拭
+阶段，不能全部归因于首次接触。所有 checkpoint 仅供仿真研究，禁止直接用于真机。
 
-![Franka hybrid force-position control](results/franka/hybrid_demo.gif)
+仓库软件版本是 0.5.1；冻结实验的协议身份仍是 v0.5，已有结果没有重算或改名。
 
 ## v0.5 首次揭盲结果
 
@@ -25,10 +26,16 @@ case 与冻结产物。
 | Torque residual（5 runs） | 22–26/48 | 1.98–2.12 | 59.54 | 15.98–16.50 | 0.00% |
 
 `Force-tracking error` 在进入稳定任务阶段后由滤波力反馈计算；`Raw peak` 取完整轨迹中的未滤波
-最大接触力，包含首次碰撞。因此表中的约 2 N 稳态误差和约 60 N 瞬时峰值并不矛盾。
+最大接触力，包含首次碰撞。表中的约 2 N 稳态误差和约 60 N 瞬时峰值并不矛盾。
 
 主结果是 `FAIL`。Residual policy 改善了切向跟踪，torque projection 也完成了限幅职责；
-接触冲击仍然超过 35 N gate。仓库保留这一结果，不部署策略，也不把训练回报当作安全证据。
+完整轨迹的 raw-force peak 仍然超过 35 N gate。仓库保留这一结果，不部署策略，也不把训练
+回报当作安全证据。
+
+同 case 配对后，五个 residual 分别在 34–35/48 个场景中降低 tangent RMSE，中位降幅为
+1.47–2.09 mm；force RMSE 中位增加 0.05–0.11 N，raw peak 中位增加 0.36–0.59 N。
+即使在揭盲后省略 peak-force gate，五个策略也只有 40–41/48，仍低于 44/48。这些数字
+属于公开数据的描述性分析，不计作新的 blind evidence。
 
 原始 384 行数据在 [comparison.csv](results/franka_safety_blind/comparison.csv)，生成摘要在
 [summary.md](results/franka_safety_blind/summary.md)。冻结、信标和结果哈希见
@@ -39,6 +46,22 @@ case 与冻结产物。
 
 上图只使用揭盲后已经公开的数据。它解释失败来源，不构成一轮新的 blind evaluation；
 生成方法和逐项计数见 [post-reveal summary](results/franka_safety_postreveal/summary.md)。
+
+![Safe-adaptive contact peak timing](results/franka_safety_postreveal/contact_events/contact_peak_timing.png)
+
+第二张图重放 torque-safe adaptive 的 48 个公开 case。生成器先核对冻结指标，再按峰值距首次
+raw contact 的时间作图；颜色表示运动阶段，形状表示 controller contact phase。事件定义和
+两簇峰值的数值见 [contact-event diagnosis](docs/contact_event_diagnosis.md)。
+
+## 核心实现入口
+
+| 问题 | 代码 | 怎么检查 |
+|---|---|---|
+| 500 Hz 接触状态机与经典柔顺控制 | [`franka_control.py`](src/compliant_control_lab/franka_control.py)、[`franka_control.cpp`](cpp/src/franka_control.cpp) | [controller tests](tests/test_franka_control.py)、[fixed-controller parity](tests/test_cpp_parity.py) |
+| 在线 bias/刚度估计与 gain scheduling | [`franka_adaptive.py`](src/compliant_control_lab/franka_adaptive.py) | [adaptive tests](tests/test_franka_adaptive.py)、[48-case event replay](results/franka_safety_postreveal/contact_events/summary.md) |
+| 6D wrench 到 7 关节力矩包络投影 | [Python](src/compliant_control_lab/franka_torque_safety.py)、[C++17](cpp/src/torque_safety.cpp) | [native edge cases](cpp/tests/test_torque_safety.cpp)、[160-case randomized parity](tests/test_cpp_parity.py) |
+| 50 Hz bounded residual 与 500 Hz safety wrapper | [`residual_rl.py`](src/compliant_control_lab/residual_rl.py) | [residual tests](tests/test_residual_rl.py)、[paired effect](results/franka_safety_postreveal/summary.md) |
+| 五 seed 冻结、first reveal 与离线复核 | [`franka_safety_learning.py`](src/compliant_control_lab/franka_safety_learning.py)、[`published_results_audit.py`](src/compliant_control_lab/published_results_audit.py) | [protocol tests](tests/test_franka_safety_learning.py)、[tamper tests](tests/test_published_results_audit.py) |
 
 ## 实现范围
 
@@ -60,7 +83,7 @@ case 与冻结产物。
 |---|---:|---:|---:|
 | Impedance / admittance / fixed hybrid | 是 | 是，逐分量 parity | nominal、v0.3、v0.4、v0.5 |
 | Adaptive gain scheduling | 是 | 否 | v0.4、v0.5 |
-| Torque projection | 是 | 否 | v0.5 |
+| Torque projection / residual headroom | 是 | 是，160-case parity | v0.5 rollout 使用 Python；C++ port 为揭盲后工程验证 |
 | Bounded Residual RL | 是 | 否 | v0.4、v0.5 |
 | ROS 2 / Franka hardware adapter | 否 | 否 | 无 |
 
@@ -71,26 +94,50 @@ C++ 核心的接口只包含固定尺寸状态、目标和 Cartesian wrench。�
 
 | 目标 | 阅读入口 |
 |---|---|
-| 三分钟了解项目 | 本页结果、[架构图](docs/architecture.md)、[实验总账](docs/experiments/README.md) |
+| 五分钟核验项目 | [招聘方走查](docs/recruiter_walkthrough.md)、本页结果、[架构图](docs/architecture.md) |
 | 系统学习柔顺控制 | [教程目录](docs/tutorial/README.md)，从 2-DOF 一直读到 Franka 与 Residual RL |
 | 检查算法和数值实现 | [Franka control notes](docs/franka_control.md)、[torque-safe residual notes](docs/torque_safe_residual_v0.5.md) |
+| 学习接触峰值怎么定位 | [contact-event diagnosis](docs/contact_event_diagnosis.md)、[48-case CSV](results/franka_safety_postreveal/contact_events/safe_adaptive_contact_events.csv) |
 | 审核实验可信度 | [v0.5 protocol](docs/reproduction_plan_v0.5.md)、[manifest](results/franka_safety_blind/manifest.json) |
 | 准备面试 | [练习、故障定位和项目表达](docs/tutorial/06_exercises_and_interview.md) |
 
 完整导航和术语说明分别在 [docs/README.md](docs/README.md) 与
 [CONTEXT.md](CONTEXT.md)。
 
-## 快速运行
+## 安装后快速复核
 
 需要 Python 3.10+。MuJoCo 仿真不要求 ROS 2 或 Franka hardware interface。
 
 ```bash
+git clone https://github.com/LYHrmer/robot-arm-compliant-control-lab.git
+cd robot-arm-compliant-control-lab
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -e ".[dev]"
 
+franka-smoke
+```
+
+该命令先校验 384 行冻结归档，再运行 2 s torque-safe adaptive nominal 仿真。正常输出会同时保留
+实验失败和工程检查通过这两个状态：
+
+```text
+archive: PASS (384 rows, frozen_decision=FAIL)
+simulation: PASS (safe_adaptive_hybrid/nominal, steps=1000, ...)
+smoke: PASS
+```
+
+`smoke: PASS` 不会把冻结结论改成通过，也不等于重跑 48 cases。CI 使用同一个入口。
+
+## 标称演示
+
+```bash
 franka-control-lab --output results/franka-quick --gif
 ```
+
+![Franka hybrid force-position control](results/franka/hybrid_demo.gif)
+
+这个 GIF 只展示 fixed hybrid 的 nominal 动作；v0.5 residual 结果见前面的冻结表和诊断图。
 
 无显示器的 Linux 环境可指定 EGL：
 
@@ -120,6 +167,7 @@ cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build --parallel
 ctest --test-dir build --output-on-failure
 pytest tests/test_cpp_parity.py
+./build/compliant_control_torque_benchmark
 ```
 
 离线审核仓库中已经发布的 v0.5 产物，不联网，也不重新运行仿真：
@@ -149,10 +197,13 @@ src/compliant_control_lab/
 ├── franka_learning.py         # ARS training and 24-case public validation
 ├── franka_safety_learning.py  # five-seed freeze and 48-case first reveal
 ├── franka_simulation.py       # MuJoCo adapter, contact task and metrics
+├── contact_event_analysis.py  # verified event replay of public v0.5 cases
+├── post_reveal_analysis.py    # paired effects and gate sensitivity
+├── smoke.py                   # archive + short simulation check
 └── controllers.py             # 2-DOF teaching baseline
 cpp/
 ├── include/                   # public fixed-size Eigen interface
-├── src/                       # fixed classical controllers
+├── src/                       # fixed controllers and torque-envelope projection
 └── tests/                     # native behavior tests and parity probe
 docs/                          # navigation, tutorials, method notes and experiment records
 results/                       # committed CSV, figures, policies and integrity manifests
@@ -162,23 +213,29 @@ tests/                         # math, controller, simulation, safety and protoc
 ## 当前限制
 
 - 仿真使用理想力矩接口，没有电流环、编码器量化和真实通信抖动。
-- 接触参数来自 MuJoCo，不是真机辨识结果。
+- 接触参数直接取自 MuJoCo，未做真机辨识。
 - 零空间投影采用阻尼运动学形式，尚未实现 dynamically consistent operational-space control。
-- C++ 只覆盖固定经典控制器；adaptive、torque projection 和 residual 仍是 Python 研究实现。
+- C++ 覆盖固定经典控制器和 torque projection/headroom。Adaptive scheduling 与 reference
+  governor 仍在 Python；policy 和训练也未移植。
 - torque projection 没有提供 torque-rate、碰撞阈值或硬件安全认证。
 - 当前机器没有 Franka hardware/model interface，仓库不声称完成 ros2_control 真机插件。
 
 ## 下一项实验
 
-v0.5 的 residual 在稳定接触 100 ms 后才启用，而 torque-safe adaptive 和五个 residual 的
-raw peak P95 完全相同。下一版先记录峰值时间、接触阶段、法向速度、nominal wrench 和
-torque headroom，再比较更低能量的 approach/reference governor。揭盲后的 48 cases 只用于
-诊断；新的最终结论需要另一个冻结协议和未来 beacon。
+事件重放先逐 case 核对 7 个冻结指标，再读取峰值时刻的 controller 与 actuation telemetry。
+48/48 case 的最大指标误差为 0。18 个 peak-gate
+failure 中，7 个峰值位于首次 raw contact 后 0.432 s 内；另外 11 个在 1.222 s 以后达到
+峰值。独立的 motion-phase 统计为 pre-wiping 6 / wiping 12。
 
-当前 failure breakdown 可用下面的命令重新生成：
+下一轮会把问题拆开：入触 cohort 比较较低能量的 approach/reference governor，擦拭 cohort
+检查在接触运动中的法向速度和 wrench 调节。现有 48 cases 只用于生成假设；新的最终结论
+需要冻结 v0.6 协议并使用未来 beacon。
+
+现有 failure breakdown 与 event replay 可用下面的命令重新生成：
 
 ```bash
 franka-post-reveal-analysis
+franka-contact-event-analysis
 ```
 
 ## 模型与许可证

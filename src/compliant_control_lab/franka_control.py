@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Protocol
+from typing import Protocol, runtime_checkable
 
 import numpy as np
 
@@ -90,6 +90,42 @@ class FrankaController(Protocol):
     def reset(self, state: FrankaState) -> None: ...
 
     def compute(self, state: FrankaState, target: FrankaTarget, dt: float) -> np.ndarray: ...
+
+
+@dataclass(frozen=True)
+class FrankaControllerTelemetrySnapshot:
+    """Optional public controller state captured after one control update."""
+
+    contact_blend: float | None = None
+    governed_normal_lead_m: float | None = None
+    torque_projection_scale: float | None = None
+
+
+@runtime_checkable
+class FrankaControllerTelemetrySource(Protocol):
+    """Small read-only interface implemented by the torque-safe adaptive controller."""
+
+    @property
+    def contact_blend(self) -> float: ...
+
+    @property
+    def last_governed_normal_lead_m(self) -> float: ...
+
+    @property
+    def last_torque_projection_scale(self) -> float: ...
+
+
+def capture_franka_controller_telemetry(
+    controller: object,
+) -> FrankaControllerTelemetrySnapshot:
+    """Capture optional diagnostics without exposing controller implementation fields."""
+    if not isinstance(controller, FrankaControllerTelemetrySource):
+        return FrankaControllerTelemetrySnapshot()
+    return FrankaControllerTelemetrySnapshot(
+        contact_blend=float(controller.contact_blend),
+        governed_normal_lead_m=float(controller.last_governed_normal_lead_m),
+        torque_projection_scale=float(controller.last_torque_projection_scale),
+    )
 
 
 def _orientation_wrench(

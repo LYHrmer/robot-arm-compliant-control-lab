@@ -227,10 +227,11 @@ saturation rises from 12.89% to 15.91%. The resulting 7/24 pass count is below t
 This checkpoint remains a simulation ablation and is marked unsafe for hardware use.
 
 v0.5 added a pre-contact reference governor, torque-headroom observations and wrench-to-joint-torque
-projection. Its first reveal removed actuator saturation for the safe adaptive baseline and all five
+projection. Its first reveal removed actuator saturation for the torque-safe adaptive baseline and all five
 residual policies, but the policies passed only 22–26/48 cases against a 44/48 requirement. Raw
-impact P95 remained 59.54 N. The next experiment targets the nominal contact transient before testing
-a larger policy class. See [`reproduction_plan_v0.5.md`](reproduction_plan_v0.5.md).
+peak P95 remained 59.54 N. A post-reveal replay found both entry and later wiping peaks in the
+baseline. The next experiment needs separate checks for those phases. See the
+[event diagnosis](contact_event_diagnosis.md) and [frozen protocol](reproduction_plan_v0.5.md).
 
 ## 6. Reproduction commands
 

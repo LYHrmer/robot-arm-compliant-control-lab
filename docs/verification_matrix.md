@@ -16,7 +16,7 @@
 | 主张 | 实现 | 自动测试 | 实验产物 |
 |---|---|---|---|
 | 自适应基线由反馈估计 bias、force rate 与接触刚度，再调度增益 | [`FrankaAdaptiveHybridController`](../src/compliant_control_lab/franka_adaptive.py) | [adaptive tests](../tests/test_franka_adaptive.py) | [v0.4 CSV](../results/franka_learning/comparison.csv)、[summary](../results/franka_learning/summary.md) |
-| Nominal 与 residual 分别按关节力矩余量投影；异常时 fail closed | [torque projection](../src/compliant_control_lab/franka_torque_safety.py)、[adaptive nominal](../src/compliant_control_lab/franka_adaptive.py) | [torque-safety tests](../tests/test_franka_torque_safety.py) | [v0.5 CSV](../results/franka_safety_blind/comparison.csv) |
+| Nominal 与 residual 分别按关节力矩余量投影；异常时 fail closed | [Python projection](../src/compliant_control_lab/franka_torque_safety.py)、[C++ projection](../cpp/src/torque_safety.cpp)、[adaptive nominal](../src/compliant_control_lab/franka_adaptive.py) | [Python safety tests](../tests/test_franka_torque_safety.py)、[C++ edge cases](../cpp/tests/test_torque_safety.cpp)、[160-case parity](../tests/test_cpp_parity.py) | [v0.5 Python rollout](../results/franka_safety_blind/comparison.csv)；C++ port 属于揭盲后工程验证 |
 | Policy 以 50 Hz 更新三维 residual；安全 wrapper 以 500 Hz 运行 | [`residual_rl.py`](../src/compliant_control_lab/residual_rl.py) | [residual tests](../tests/test_residual_rl.py) | [五个冻结 policy](../results/franka_safety_preholdout/)、[result](../results/franka_safety_blind/summary.md) |
 
 ## 实验完整性
@@ -27,19 +27,21 @@
 | v0.5 绑定 commit、tag、policy hash 和未来 beacon | [`franka_safety_learning.py`](../src/compliant_control_lab/franka_safety_learning.py) | [protocol tests](../tests/test_franka_safety_learning.py)、[beacon verifier](../tools/verify_drand_beacon.mjs) | [protocol hash](../results/franka_safety_preholdout/protocol.sha256)、[manifest](../results/franka_safety_blind/manifest.json) |
 | 离线 audit 重算 blind root、seed、gate 与摘要，且不覆盖 first reveal | [`published_results_audit.py`](../src/compliant_control_lab/published_results_audit.py) | [audit tamper tests](../tests/test_published_results_audit.py) | [reveal](../results/franka_safety_blind/reveal.json)、[384-row CSV](../results/franka_safety_blind/comparison.csv) |
 | 预注册门槛为每个 residual 44/48；实际 22–26/48，结论为 `FAIL` | [gate](../src/compliant_control_lab/franka_stress.py)、[reporting](../src/compliant_control_lab/franka_safety_learning.py) | [gate tests](../tests/test_franka_stress.py) | [summary](../results/franka_safety_blind/summary.md)、[决策](residual_rl_decision.md) |
-| Post-reveal 图只解释已公开 case | [`post_reveal_analysis.py`](../src/compliant_control_lab/post_reveal_analysis.py) | [analysis tests](../tests/test_post_reveal_analysis.py) | [figure](../results/franka_safety_postreveal/failure_analysis.png)、[summary](../results/franka_safety_postreveal/summary.md) |
+| Residual paired effect 与 leave-one-gate-out 只解释已公开 case | [`post_reveal_analysis.py`](../src/compliant_control_lab/post_reveal_analysis.py) | [row-order、pair 完整性与固定数值](../tests/test_post_reveal_analysis.py) | [figure](../results/franka_safety_postreveal/failure_analysis.png)、[summary](../results/franka_safety_postreveal/summary.md) |
+| Event replay 先逐 case 对齐 7 个冻结指标，再提取峰值上下文 | [`contact_event_analysis.py`](../src/compliant_control_lab/contact_event_analysis.py)、[telemetry adapter](../src/compliant_control_lab/franka_simulation.py) | [event/phase/replay tests](../tests/test_contact_event_analysis.py)、[non-interference tests](../tests/test_franka_simulation.py) | [48-case event report](../results/franka_safety_postreveal/contact_events/summary.md)、[CSV](../results/franka_safety_postreveal/contact_events/safe_adaptive_contact_events.csv) |
+| 一条 smoke 命令同时检查冻结档案与主仿真路径 | [`smoke.py`](../src/compliant_control_lab/smoke.py) | [smoke semantics](../tests/test_smoke.py)、[CI](../.github/workflows/tests.yml) | 输出同时显示 archive PASS、frozen decision FAIL 与 simulation PASS |
 
 ## C++ parity 的范围
 
-C++17/Eigen parity 当前只覆盖以下三类固定经典控制器：
+C++17/Eigen parity 覆盖三类固定经典控制器：
 
 - `CartesianImpedanceController` ↔ `FrankaImpedanceController`
 - `CartesianAdmittanceController` ↔ `FrankaAdmittanceController`
 - `HybridForcePositionController` ↔ `FrankaHybridController`
 
-自适应增益调度、reference governor、torque projection、Residual RL、ARS 训练和 drand 揭盲
-流程仍是 Python 实现。`1e-12` parity 结论不能外推到这些模块，也不能当作 ROS 2 或 Franka
-真机插件已经完成的证据。
+三个 torque-safety API 另用 160 个固定随机 7-DOF case 对照 Python。自适应增益调度与
+reference governor 尚未移植。Policy 及其实验流水线仍是 Python 实现。Parity 结论不代表
+ROS 2 或 Franka 真机插件已经完成。
 
 ## 读表时的限制
 

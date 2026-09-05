@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(robot_arm_compliant_control_lab VERSION 0.3.0 LANGUAGES CXX)
+project(robot_arm_compliant_control_lab VERSION 0.5.1 LANGUAGES CXX)
 
 include(CTest)
 include(GNUInstallDirs)
@@ -10,6 +10,7 @@ find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 
 add_library(compliant_control_core
   cpp/src/franka_control.cpp
+  cpp/src/torque_safety.cpp
 )
 add_library(compliant_control_lab::core ALIAS compliant_control_core)
 set_target_properties(compliant_control_core PROPERTIES EXPORT_NAME core)
@@ -26,12 +27,23 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
   target_compile_options(compliant_control_core PRIVATE -Wall -Wextra -Wpedantic)
 endif()
 
+add_executable(compliant_control_torque_benchmark
+  cpp/tools/torque_safety_benchmark.cpp
+)
+target_link_libraries(compliant_control_torque_benchmark PRIVATE compliant_control_lab::core)
+
 if(BUILD_TESTING)
   add_executable(compliant_control_core_tests
     cpp/tests/test_franka_control.cpp
   )
   target_link_libraries(compliant_control_core_tests PRIVATE compliant_control_lab::core)
   add_test(NAME compliant_control_core_tests COMMAND compliant_control_core_tests)
+
+  add_executable(compliant_control_torque_safety_tests
+    cpp/tests/test_torque_safety.cpp
+  )
+  target_link_libraries(compliant_control_torque_safety_tests PRIVATE compliant_control_lab::core)
+  add_test(NAME compliant_control_torque_safety_tests COMMAND compliant_control_torque_safety_tests)
 
   add_executable(compliant_control_probe
     cpp/tools/controller_probe.cpp

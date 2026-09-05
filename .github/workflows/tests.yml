@@ -32,3 +32,5 @@ jobs:
           ctest --test-dir build --output-on-failure
       - run: pytest
       - run: ruff check src tests
+      - name: Run documented smoke path
+        run: franka-smoke

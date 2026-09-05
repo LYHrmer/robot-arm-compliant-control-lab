@@ -1,0 +1,3 @@
+cohort,n,actual_normal_velocity_median_m_s,actual_normal_velocity_minimum_m_s,actual_normal_velocity_maximum_m_s,target_normal_velocity_max_abs_m_s,commanded_normal_force_median_n,commanded_normal_force_minimum_n,commanded_normal_force_maximum_n,minimum_torque_headroom_minimum_nm,minimum_torque_headroom_median_nm,torque_projection_scale_minimum
+early (<= 0.5 s),7,0.13106413854036159,0.04506343397302461,0.19719827774961138,0.0,11.301676246174594,5.93238536211196,14.379938657173463,5.083815339034365,6.56758331137395,1.0
+late (>= 1.0 s),11,0.005336120479743113,0.0014731804474067828,0.008019784839302938,0.0,11.615386328177816,9.34811119329725,14.817858102294526,7.50736900443017,7.935059610827301,1.0

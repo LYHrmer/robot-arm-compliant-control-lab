@@ -30,6 +30,23 @@ adaptive。
 **有界残差策略（bounded residual policy）**：叠加在 nominal wrench 上的学习型三维平移力
 修正；动作仍受经典控制器的安全规则约束。避免称为 RL controller 或 end-to-end policy。
 
+## 接触事件
+
+**原始首次接触（first raw contact）**：未滤波法向接触力首次大于零的物理接触采样。避免称为
+controller confirmation。
+
+**控制器接触确认（controller confirmation）**：控制器的接触混合量首次开始上升。它是
+控制状态的边界，和原始接触分别记录。避免简称为 first contact。
+
+**接触相位（contact phase）**：按当前采样的原始接触与控制器混合状态划分的事件标签。
+它与机器人是否已经进入擦拭运动无关。避免称为 motion phase。
+
+**运动相位（motion phase）**：目标轨迹处于入触段或擦拭段的标签。它与同一时刻的接触
+相位并列存在。避免称为 contact phase。
+
+**峰值相对接触延迟（peak-after-contact delay）**：全轨迹 raw peak 与首次原始接触之间的
+时间差。避免称为 sensing delay 或 actuator delay。
+
 ## 实验证据
 
 **公开验证集（public validation set）**：结果已经被查看，可用于诊断和调参的数据集。它不能
@@ -60,3 +77,6 @@ adaptive。
 
 **执行器饱和率（actuator saturation）**：请求关节力矩超出 actuator limit 的控制周期比例。
 它不是 torque projection rate。
+
+**关节力矩余量（joint-torque headroom）**：未裁剪请求力矩到最近上下限的带符号距离；负值
+表示请求已经越界。避免称为 residual action bound。

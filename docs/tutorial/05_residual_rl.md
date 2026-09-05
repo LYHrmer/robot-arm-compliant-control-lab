@@ -111,9 +111,10 @@ v0.4 只有 45 个策略参数：`3×14` 权重加 3 个 bias。ARS 不需要神
 可复用同一组仿真噪声，checkpoint 也能直接检查。单次公开训练把 rollout cost 从 2.0221
 降到 1.6744，但一个 seed 不能回答稳定性问题。
 
-v0.5 冻结了五个 ARS seed 和新的 48-case blind set。五个策略全部未达到 44/48，主要
-失败项是 raw impact，而 residual 要等稳定接触 100 ms 才启用。此时直接换 SAC/TD3 会把
-名义入触瞬态和算法容量混在一起；先修 classical path，再比较非线性策略。
+v0.5 冻结了五个 ARS seed 和新的 48-case first-reveal set。五个策略全部未达到 44/48，
+raw peak 是最大的失败来源。揭盲后的基线重放同时找到了入触初段和擦拭阶段的峰值，
+见[事件诊断](../contact_event_diagnosis.md)。下一轮先分段检查 classical path，再比较
+非线性策略的收益；稳定接触 100 ms 后才启用 residual 的规则不足以解释全部峰值。
 
 ## 7. Domain randomization 和数据拆分
 

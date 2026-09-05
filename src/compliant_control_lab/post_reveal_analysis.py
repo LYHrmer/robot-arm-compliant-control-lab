@@ -4,7 +4,9 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
+import math
 import os
 from collections import Counter
 from dataclasses import dataclass
@@ -35,6 +37,13 @@ DISPLAY_NAMES = {
     "adaptive_hybrid": "adaptive hybrid",
     "safe_adaptive_hybrid": "torque-safe adaptive",
 }
+PAIRED_METRICS = ("force_rmse_n", "peak_force_n", "tangent_rmse_mm")
+PAIRED_METRIC_LABELS = {
+    "force_rmse_n": "force RMSE (N)",
+    "peak_force_n": "raw peak force (N)",
+    "tangent_rmse_mm": "tangent RMSE (mm)",
+}
+BOOTSTRAP_SAMPLES = 20_000
 
 
 @dataclass(frozen=True)
@@ -45,18 +54,168 @@ class MethodGateSummary:
     failure_counts: dict[str, int]
 
 
+@dataclass(frozen=True)
+class PairedEffect:
+    method: str
+    metric: str
+    pair_count: int
+    median_delta: float
+    ci_low: float
+    ci_high: float
+    win_count: int
+    tie_count: int
+    loss_count: int
+
+
+@dataclass(frozen=True)
+class LeaveOneGateOutSummary:
+    method: str
+    case_count: int
+    pass_count: int
+    pass_count_without: dict[str, int]
+
+
+def _read_rows(csv_path: Path, required: set[str]) -> list[dict[str, str]]:
+    with csv_path.open(newline="", encoding="utf-8") as handle:
+        reader = csv.DictReader(handle)
+        if not required.issubset(reader.fieldnames or ()):
+            raise ValueError(f"{csv_path} is missing {sorted(required)}")
+        rows = list(reader)
+    if not rows:
+        raise ValueError(f"{csv_path} is empty")
+    return rows
+
+
+def _method_sort_key(method: str) -> tuple[int, str]:
+    canonical = {
+        "fixed_hybrid": 0,
+        "adaptive_hybrid": 1,
+        "safe_adaptive_hybrid": 2,
+    }
+    if method in canonical:
+        return canonical[method], method
+    if method.startswith("torque_residual_run_"):
+        return 3, method
+    return 4, method
+
+
+def _index_rows(rows: list[dict[str, str]]) -> dict[str, dict[str, dict[str, str]]]:
+    by_method: dict[str, dict[str, dict[str, str]]] = {}
+    for row in rows:
+        method = row["method"]
+        case = row["case"]
+        method_rows = by_method.setdefault(method, {})
+        if case in method_rows:
+            raise ValueError(f"duplicate method/case pair: {method}/{case}")
+        method_rows[case] = row
+    return by_method
+
+
+def _finite_metric(row: dict[str, str], metric: str) -> float:
+    try:
+        value = float(row[metric])
+    except ValueError as error:
+        raise ValueError(
+            f"invalid {metric} for {row['method']}/{row['case']}: {row[metric]!r}"
+        ) from error
+    if not math.isfinite(value):
+        raise ValueError(f"non-finite {metric} for {row['method']}/{row['case']}")
+    return value
+
+
+def compute_paired_effects(csv_path: Path) -> tuple[PairedEffect, ...]:
+    """Compare every residual policy with the torque-safe adaptive baseline by case."""
+    required = {"method", "case", *PAIRED_METRICS}
+    rows = _read_rows(csv_path, required)
+    by_method = _index_rows(rows)
+
+    baseline = by_method.get("safe_adaptive_hybrid")
+    if baseline is None:
+        raise ValueError("safe_adaptive_hybrid baseline is missing")
+    residual_methods = sorted(
+        (method for method in by_method if method.startswith("torque_residual_run_")),
+        key=_method_sort_key,
+    )
+    if not residual_methods:
+        raise ValueError("no torque-residual policy rows found")
+
+    effects = []
+    ordered_cases = sorted(baseline)
+    for method in residual_methods:
+        method_rows = by_method[method]
+        if set(method_rows) != set(baseline):
+            missing = sorted(set(baseline) - set(method_rows))
+            extra = sorted(set(method_rows) - set(baseline))
+            raise ValueError(
+                f"{method} case set does not match baseline "
+                f"(missing={missing}, extra={extra})"
+            )
+        for metric in PAIRED_METRICS:
+            deltas = np.asarray(
+                [
+                    _finite_metric(method_rows[case], metric)
+                    - _finite_metric(baseline[case], metric)
+                    for case in ordered_cases
+                ],
+                dtype=float,
+            )
+            seed_material = f"v0.5/paired-bootstrap/{method}/{metric}".encode()
+            seed = int.from_bytes(hashlib.sha256(seed_material).digest()[:8], "big")
+            generator = np.random.default_rng(seed)
+            samples = generator.integers(
+                0,
+                len(deltas),
+                size=(BOOTSTRAP_SAMPLES, len(deltas)),
+            )
+            bootstrap_medians = np.median(deltas[samples], axis=1)
+            ci_low, ci_high = np.quantile(bootstrap_medians, [0.025, 0.975])
+            effects.append(
+                PairedEffect(
+                    method=method,
+                    metric=metric,
+                    pair_count=len(deltas),
+                    median_delta=float(np.median(deltas)),
+                    ci_low=float(ci_low),
+                    ci_high=float(ci_high),
+                    win_count=int(np.sum(deltas < 0.0)),
+                    tie_count=int(np.sum(deltas == 0.0)),
+                    loss_count=int(np.sum(deltas > 0.0)),
+                )
+            )
+    return tuple(effects)
+
+
+def summarize_leave_one_gate_out(csv_path: Path) -> tuple[LeaveOneGateOutSummary, ...]:
+    """Count post-hoc passes after omitting each gate in turn."""
+    required = {"method", "case", "gate_pass", "failed_checks"}
+    rows = _read_rows(csv_path, required)
+    by_method = _index_rows(rows)
+    methods = sorted(by_method, key=_method_sort_key)
+    summaries = []
+    for method in methods:
+        method_rows = list(by_method[method].values())
+        failed_sets = [set(filter(None, row["failed_checks"].split(";"))) for row in method_rows]
+        summaries.append(
+            LeaveOneGateOutSummary(
+                method=method,
+                case_count=len(method_rows),
+                pass_count=sum(row["gate_pass"] == "yes" for row in method_rows),
+                pass_count_without={
+                    gate: sum(not (failures - {gate}) for failures in failed_sets)
+                    for gate in FAILURE_ORDER
+                },
+            )
+        )
+    return tuple(summaries)
+
+
 def summarize_gate_results(csv_path: Path) -> tuple[MethodGateSummary, ...]:
     """Read per-case rows and count passes and failure flags for each method."""
-    with csv_path.open(newline="", encoding="utf-8") as handle:
-        rows = list(csv.DictReader(handle))
-    required = {"method", "gate_pass", "failed_checks"}
-    if not rows or not required.issubset(rows[0]):
-        raise ValueError(f"{csv_path} is empty or missing {sorted(required)}")
-
-    method_order = list(dict.fromkeys(row["method"] for row in rows))
+    rows = _read_rows(csv_path, {"method", "case", "gate_pass", "failed_checks"})
+    by_method = _index_rows(rows)
     summaries = []
-    for method in method_order:
-        method_rows = [row for row in rows if row["method"] == method]
+    for method in sorted(by_method, key=_method_sort_key):
+        method_rows = list(by_method[method].values())
         failure_counts: Counter[str] = Counter()
         for row in method_rows:
             failure_counts.update(failure for failure in row["failed_checks"].split(";") if failure)
@@ -82,6 +241,8 @@ def _display_name(method: str) -> str:
 
 def _write_summary(
     summaries: tuple[MethodGateSummary, ...],
+    effects: tuple[PairedEffect, ...],
+    gate_sensitivity: tuple[LeaveOneGateOutSummary, ...],
     required_passes: int,
     source_link: str,
     path: Path,
@@ -122,18 +283,92 @@ def _write_summary(
             f"Across {len(residual)} residual policies, peak force failed in "
             f"{min(peak_failures)}–{max(peak_failures)} cases and tangential tracking failed "
             f"in {min(tangent_failures)}–{max(tangent_failures)} cases. The combined "
-            f"saturation-failure count was {saturation_failures}. The next experiment "
-            "instruments nominal approach and contact transition before changing the policy "
-            "class."
+            f"saturation-failure count was {saturation_failures}. Peak timing and "
+            "controller-state telemetry are needed to distinguish entry and later "
+            "in-contact failures."
         )
     else:
         lines.append("This input contains no torque-residual policy rows.")
+
+    lines.extend(
+        [
+            "",
+            "## Paired residual effect",
+            "",
+            (
+                "Each difference is residual minus torque-safe adaptive on the same case; "
+                "negative values favor the residual policy. The interval is a deterministic "
+                f"{BOOTSTRAP_SAMPLES:,}-sample percentile bootstrap of the paired median. "
+                "Win/tie/loss uses the stored values without a tolerance."
+            ),
+            "These are post-reveal descriptive estimates, not confirmatory intervals.",
+            "",
+            "| Policy | Metric | Median difference | Bootstrap 95% CI | Win/tie/loss |",
+            "|---|---|---:|---:|---:|",
+        ]
+    )
+    for effect in effects:
+        lines.append(
+            f"| {_display_name(effect.method)} | {PAIRED_METRIC_LABELS[effect.metric]} | "
+            f"{effect.median_delta:.3f} | {effect.ci_low:.3f} to {effect.ci_high:.3f} | "
+            f"{effect.win_count}/{effect.tie_count}/{effect.loss_count} |"
+        )
+
+    lines.extend(
+        [
+            "",
+            "## Exploratory gate sensitivity (post-hoc)",
+            "",
+            (
+                "Each column recounts passes after omitting only the named gate and keeping "
+                "the other four. This was computed after reveal and does not alter the frozen "
+                "primary result."
+            ),
+            "",
+            "| Method | Original | No force RMSE | No contact ratio | No peak force | No tangent RMSE | No saturation |",
+            "|---|---:|---:|---:|---:|---:|---:|",
+        ]
+    )
+    for sensitivity in gate_sensitivity:
+        omitted = sensitivity.pass_count_without
+        lines.append(
+            f"| {_display_name(sensitivity.method)} | {sensitivity.pass_count} | "
+            f"{omitted['force_rmse']} | {omitted['contact_ratio']} | "
+            f"{omitted['peak_force']} | {omitted['tangent_rmse']} | "
+            f"{omitted['saturation']} |"
+        )
+    residual_sensitivity = [
+        summary
+        for summary in gate_sensitivity
+        if summary.method.startswith("torque_residual_run_")
+    ]
+    if residual_sensitivity:
+        without_peak = [
+            summary.pass_count_without["peak_force"] for summary in residual_sensitivity
+        ]
+        threshold_comparison = (
+            f"still below the frozen {required_passes}/{case_count} threshold"
+            if max(without_peak) < required_passes
+            else f"reaching the frozen {required_passes}/{case_count} threshold"
+        )
+        lines.extend(
+            [
+                "",
+                (
+                    "Removing only the peak-force gate raises the residual-policy counts to "
+                    f"{min(without_peak)}–{max(without_peak)}/{case_count}, "
+                    f"{threshold_comparison}. The raw-peak gate is the largest single source "
+                    "of gate failures; event timing is needed before assigning a physical cause."
+                ),
+            ]
+        )
     lines.extend(["", f"Source: [`{source_link}`]({source_link})."])
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def _plot(
     summaries: tuple[MethodGateSummary, ...],
+    gate_sensitivity: tuple[LeaveOneGateOutSummary, ...],
     required_passes: int,
     path: Path,
 ) -> None:
@@ -142,7 +377,12 @@ def _plot(
     y = np.arange(len(summaries))
     method_colors = ["#6c757d", "#277da1", "#577590"] + ["#e76f51"] * max(0, len(summaries) - 3)
 
-    fig, (pass_axis, failure_axis) = plt.subplots(1, 2, figsize=(14.0, 6.2))
+    fig, (pass_axis, failure_axis, sensitivity_axis) = plt.subplots(
+        1,
+        3,
+        figsize=(19.0, 6.2),
+        gridspec_kw={"width_ratios": (1.0, 1.15, 1.2)},
+    )
     pass_axis.barh(y, pass_counts, color=method_colors)
     case_count = summaries[0].case_count
     pass_axis.axvline(
@@ -156,7 +396,7 @@ def _plot(
     pass_axis.invert_yaxis()
     pass_axis.set_xlim(0, case_count)
     pass_axis.set_xlabel("passing cases")
-    pass_axis.set_title("Primary gate")
+    pass_axis.set_title("Frozen primary gate")
     pass_axis.grid(axis="x", alpha=0.25)
     pass_axis.legend(loc="lower right")
     for index, value in enumerate(pass_counts):
@@ -189,6 +429,42 @@ def _plot(
     failure_axis.grid(axis="x", alpha=0.25)
     failure_axis.legend(loc="lower right", fontsize=8)
 
+    sensitivity_by_method = {summary.method: summary for summary in gate_sensitivity}
+    sensitivity_values = np.asarray(
+        [
+            [sensitivity_by_method[summary.method].pass_count_without[gate] for gate in FAILURE_ORDER]
+            for summary in summaries
+        ],
+        dtype=float,
+    )
+    sensitivity_axis.imshow(
+        sensitivity_values,
+        aspect="auto",
+        cmap="Blues",
+        vmin=0,
+        vmax=case_count,
+    )
+    sensitivity_axis.set_xticks(
+        np.arange(len(FAILURE_ORDER)),
+        ("force\nRMSE", "contact\nratio", "peak\nforce", "tangent\nRMSE", "saturation"),
+        rotation=25,
+        ha="right",
+    )
+    sensitivity_axis.set_yticks(y, labels)
+    sensitivity_axis.set_title("Post-hoc: omit one gate")
+    sensitivity_axis.set_xlabel("passing cases; other four gates retained")
+    for row_index, row in enumerate(sensitivity_values):
+        for column_index, value in enumerate(row):
+            sensitivity_axis.text(
+                column_index,
+                row_index,
+                f"{int(value)}",
+                ha="center",
+                va="center",
+                color="white" if value > 0.55 * case_count else "black",
+                fontsize=8,
+            )
+
     fig.suptitle(f"Post-reveal diagnosis: {case_count} cases, now public validation")
     fig.tight_layout()
     fig.savefig(path, dpi=180, bbox_inches="tight")
@@ -207,14 +483,23 @@ def generate_post_reveal_analysis(
     if resolved_output == source_dir or source_dir in resolved_output.parents:
         raise ValueError("post-reveal output must stay outside the first-reveal directory")
     summaries = summarize_gate_results(csv_path)
+    effects = compute_paired_effects(csv_path)
+    gate_sensitivity = summarize_leave_one_gate_out(csv_path)
     case_count = summaries[0].case_count
     if not 0 < required_passes <= case_count:
         raise ValueError("required passes must be between one and the case count")
     output_dir.mkdir(parents=True, exist_ok=True)
     source_link = Path(os.path.relpath(csv_path.resolve(), resolved_output)).as_posix()
-    _write_summary(summaries, required_passes, source_link, output_dir / "summary.md")
+    _write_summary(
+        summaries,
+        effects,
+        gate_sensitivity,
+        required_passes,
+        source_link,
+        output_dir / "summary.md",
+    )
     plot_path = output_dir / "failure_analysis.png"
-    _plot(summaries, required_passes, plot_path)
+    _plot(summaries, gate_sensitivity, required_passes, plot_path)
     return plot_path
 
 

@@ -1,6 +1,7 @@
 # 从 2-DOF 到 Franka 7-DOF：柔顺接触控制学习路线
 
-这套教程不是把公式和代码并排放在一起就结束。每一章都回答四个问题：
+每章先给控制目标和连续公式，再落到离散实现。源码入口和验证方式放在同一章，方便边读边跑。
+读完一章，应该能回答下面的问题：
 
 1. 控制目标和物理量是什么；
 2. 连续公式如何离散并稳定地求解；
@@ -29,6 +30,7 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -e ".[dev]"
 
+franka-smoke
 pytest
 compliant-control-lab --output results --gif
 franka-control-lab --output results/franka --gif
@@ -80,7 +82,7 @@ Franka 7-DOF lab
 
 - 手推 2R 平面臂 FK、IK 和 Jacobian，并用有限差分验证 Jacobian；
 - 解释阻抗与导纳的因果方向，以及 hybrid 中法向/切向选择矩阵；
-- 解释为什么使用 `solve(A, B)` 或 Eigen `LDLT.solve()`，而不是显式计算矩阵逆；
+- 解释 `solve(A, B)` 或 Eigen `LDLT.solve()` 相对显式矩阵逆的数值优势；
 - 说明 `J^T w`、bias compensation 和 null-space posture torque 各自负责什么；
 - 区分 filtered-force tracking RMSE 与 full-trial raw peak force；
 - 给出 Residual RL 的 nominal controller、残差动作、安全限制和零残差回退；

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from collections import deque
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from time import perf_counter_ns
 
@@ -13,8 +13,10 @@ import numpy as np
 from compliant_control_lab.franka_control import (
     FrankaActuationContext,
     FrankaController,
+    FrankaControllerTelemetrySnapshot,
     FrankaState,
     FrankaTarget,
+    capture_franka_controller_telemetry,
     damped_nullspace_projector,
     orientation_error,
 )
@@ -22,6 +24,7 @@ from compliant_control_lab.franka_control import (
 WALL_SURFACE_X = 0.400
 TOOL_RADIUS = 0.025
 CONTACT_CENTER_X = WALL_SURFACE_X - TOOL_RADIUS
+WIPING_START_TIME_S = 1.20
 
 
 @dataclass(frozen=True)
@@ -48,6 +51,17 @@ class FrankaSimulationConfig:
 
 @dataclass
 class FrankaTrialResult:
+    """One rollout logged before each call to ``mj_step``.
+
+    MuJoCo's cached contact/site/Jacobian values retain the previous forward pass,
+    while joint velocity has already been integrated by the preceding step. A row
+    is a control-cycle record, not a fully synchronized physical-state snapshot.
+    ``commanded_wrench`` is the new controller output, before it is applied by the
+    next step. Torque headroom is the smallest signed distance from its induced
+    joint torque to either actuator limit; negative values indicate an exceedance
+    (the saturation flag separately uses a 1e-9 Nm numerical tolerance).
+    """
+
     controller: str
     scenario: str
     time: np.ndarray
@@ -61,6 +75,11 @@ class FrankaTrialResult:
     torque: np.ndarray
     controller_time_us: np.ndarray
     saturated: np.ndarray
+    linear_velocity: np.ndarray = field(default_factory=lambda: np.zeros((0, 3)))
+    target_linear_velocity: np.ndarray = field(default_factory=lambda: np.zeros((0, 3)))
+    commanded_wrench: np.ndarray = field(default_factory=lambda: np.zeros((0, 6)))
+    minimum_torque_headroom_nm: np.ndarray = field(default_factory=lambda: np.zeros(0))
+    controller_snapshots: tuple[FrankaControllerTelemetrySnapshot, ...] = ()
 
     def metrics(self, evaluation_start: float = 1.5) -> dict[str, float | str]:
         mask = self.time >= evaluation_start
@@ -118,8 +137,8 @@ def _target_at(
     position = initial_position + approach * (contact_position - initial_position)
     velocity = np.zeros(3)
 
-    if time > 1.20:
-        phase = 2.0 * np.pi * 0.20 * (time - 1.20)
+    if time > WIPING_START_TIME_S:
+        phase = 2.0 * np.pi * 0.20 * (time - WIPING_START_TIME_S)
         position[1] = initial_position[1] + 0.055 * np.sin(phase)
         position[2] = initial_position[2] - 0.040 + 0.040 * np.cos(phase)
         velocity[1] = 0.055 * 2.0 * np.pi * 0.20 * np.cos(phase)
@@ -218,6 +237,11 @@ def run_franka_trial(
     torque_log = np.empty((step_count, 7))
     controller_time_log = np.empty(step_count)
     saturated_log = np.empty(step_count, dtype=bool)
+    linear_velocity_log = np.empty((step_count, 3))
+    target_linear_velocity_log = np.empty((step_count, 3))
+    commanded_wrench_log = np.empty((step_count, 6))
+    minimum_torque_headroom_log = np.empty(step_count)
+    controller_snapshots: list[FrankaControllerTelemetrySnapshot] = []
 
     initial_state = FrankaState(
         position=initial_position,
@@ -282,6 +306,7 @@ def run_franka_trial(
         start_ns = perf_counter_ns()
         wrench = controller.compute(state, target, config.timestep)
         controller_time_log[step] = (perf_counter_ns() - start_ns) / 1_000.0
+        controller_snapshots.append(capture_franka_controller_telemetry(controller))
 
         torque_unclipped = actuation.joint_torque(wrench)
         torque = np.clip(
@@ -304,6 +329,17 @@ def run_franka_trial(
         )
         torque_log[step] = torque
         saturated_log[step] = bool(np.any(np.abs(torque_unclipped - torque) > 1e-9))
+        linear_velocity_log[step] = linear_velocity
+        target_linear_velocity_log[step] = target.linear_velocity
+        commanded_wrench_log[step] = wrench
+        minimum_torque_headroom_log[step] = float(
+            np.min(
+                np.minimum(
+                    torque_unclipped - actuator_limits[:, 0],
+                    actuator_limits[:, 1] - torque_unclipped,
+                )
+            )
+        )
         mujoco.mj_step(model, data)
 
     return FrankaTrialResult(
@@ -320,4 +356,9 @@ def run_franka_trial(
         torque=torque_log,
         controller_time_us=controller_time_log,
         saturated=saturated_log,
+        linear_velocity=linear_velocity_log,
+        target_linear_velocity=target_linear_velocity_log,
+        commanded_wrench=commanded_wrench_log,
+        minimum_torque_headroom_nm=minimum_torque_headroom_log,
+        controller_snapshots=tuple(controller_snapshots),
     )

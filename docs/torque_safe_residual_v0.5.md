@@ -59,8 +59,10 @@ $(l_{s,i}-\tau_{0,i})/d_i$。取全部有限上界与 1 的最小值，再用
 名义关节力矩若已经在安全区间外，residual 不能反向“修好”它。该周期 residual 直接清零，
 状态记为 `nominal_outside`。缺少 context、NaN/Inf 或投影后仍越界也按同样原则处理。
 
-实现位于
-[`franka_torque_safety.py`](../src/compliant_control_lab/franka_torque_safety.py)。
+冻结 v0.5 rollout 使用
+[`franka_torque_safety.py`](../src/compliant_control_lab/franka_torque_safety.py)。揭盲后增加的
+[C++17 port](../cpp/src/torque_safety.cpp) 采用相同状态和 fail-closed 语义，并用 160 个固定
+随机 7-DOF case 对照 Python。
 
 ## 为什么投影两次
 
@@ -69,7 +71,7 @@ null-space posture torque 保持不变，只缩放 task wrench。第二层以已
 为基点，投影策略给出的三维 residual force。最终仍由仿真适配器用同一份 context 计算
 `J.T @ wrench + offset`。
 
-这不是二次 clipping。两层都保留 wrench 的方向；第二层只能使用第一层留下的余量。公开
+两层都做 ray projection，未采用逐分量 clipping。第二层只能使用第一层留下的余量。公开
 seed-29 验证中，safe adaptive 的最差 saturation 从 12.89% 降到 0%，但 force 和 tangent
 gate 仍有大量失败，所以这一改动只说明 actuator clipping 已被消除。
 
@@ -135,14 +137,23 @@ residual 分别通过 22、25、26、24、25/48，平均 24.4。规则要求每�
   通过数上不去的主要原因。
 
 residual 要等稳定接触 100 ms 才启用，而 safe adaptive 和五个 residual 的 peak P95 完全
-相同。两条证据都指向接近速度、reference governor 或接触切换阶段；这是根据结果做的诊断，
-还需要记录 peak 时间点才能定因。当前不急着把 ARS 换成 SAC/TD3。先修名义层的入触瞬态，
-再用新的未来 round 做第二次盲测，信息量更大。
+相同。揭盲后的同 case 配对给出了更窄的结论：五个 residual 分别在 34–35/48 个 case
+降低切向 RMSE，中位降幅 1.47–2.09 mm；force RMSE 与 raw peak 的中位数反而略有增加。
+
+48-case torque-safe adaptive event replay 又逐项对齐了 7 个冻结指标，最大绝对误差为 0。18 个
+peak-gate failure 中，7 个峰值出现在首次 raw contact 后 0.432 s 内；另有 11 个在 1.222 s
+以后，12 个处于擦拭阶段。下一轮应分别测试入触能量限制和接触运动中的法向调节。把 ARS
+换成 SAC/TD3 不能直接回答这两个问题。
+
+事件定义、峰值处速度与 torque headroom 见
+[contact-event diagnosis](contact_event_diagnosis.md)。
 
 ## 建议从哪些测试读起
 
 - `tests/test_franka_torque_safety.py`：手算 projection、reserve、NaN/Inf、双层投影和真实
   MuJoCo 零饱和 rollout。
+- `cpp/tests/test_torque_safety.cpp` 与 `tests/test_cpp_parity.py`：C++ 边界行为和 160-case
+  Python/C++ 对照。
 - `tests/test_residual_rl.py`：20 维 schema、50/500 Hz 更新、context 丢失与零 residual。
 - `tests/test_franka_safety_learning.py`：五 seed 合同、tag 字节绑定、伪 beacon 和双 relay
   不一致的拒绝路径。
