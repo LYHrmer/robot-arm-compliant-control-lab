@@ -130,8 +130,11 @@ class SurfaceSimulationConfig:
     force_filter_time_constant: float = 0.02
     evaluation_start: float = 1.5
     seed: int = 11
+    contact_model: str = "legacy"
 
     def __post_init__(self) -> None:
+        if self.contact_model not in {"legacy", "smooth"}:
+            raise ValueError("contact_model must be legacy or smooth")
         for name in ("duration", "timestep", "target_force"):
             _finite_positive(name, getattr(self, name))
         for name in ("force_filter_time_constant", "evaluation_start"):
@@ -246,6 +249,11 @@ def run_surface_trial(
     model.geom_quat[wall_id] = [np.cos(yaw / 2), 0, 0, np.sin(yaw / 2)]
     model.geom_solref[wall_id, 0] = scenario.wall_time_constant
     model.geom_friction[wall_id, 0] = scenario.wall_sliding_friction
+    if config.contact_model == "smooth":
+        # Equal-priority geoms mix solimp. Start BOTH at zero impedance so the
+        # sliding contact activates smoothly; keep width, friction and solref.
+        # This changes contact compliance, not the controller or real hardware.
+        model.geom_solimp[[tool_id, wall_id], 0] = 0.0
     body_id = model.body("contact_tool").id
     model.body_inertia[body_id] *= scenario.tool_mass_kg / model.body_mass[body_id]
     model.body_mass[body_id] = scenario.tool_mass_kg
@@ -368,6 +376,17 @@ def run_surface_trial(
         row["raw_wrench_world"] = previous_wrench.copy()
         # Ideal contact sum is evaluator-only, never supplied to controller/sensor.
         row["true_normal_force"] = _normal_contact_force(model, data, tool_id, wall_id)
+        row["true_contact_gap_m"] = float(
+            wall_normal @ (np.array([0.400, 0.0, 0.0]) - position) - 0.025
+        )
+        tangent_load_world = np.zeros(3)
+        contact_wrench = np.zeros(6)
+        for contact_index in range(data.ncon):
+            contact = data.contact[contact_index]
+            if {contact.geom1, contact.geom2} == {tool_id, wall_id}:
+                mujoco.mj_contactForce(model, data, contact_index, contact_wrench)
+                tangent_load_world += contact.frame.reshape(3, 3)[1:].T @ contact_wrench[1:3]
+        row["true_tangent_force_n"] = float(np.linalg.norm(tangent_load_world))
         rows.append(row)
     trace = {name: np.asarray([row[name] for row in rows]) for name in rows[0]}
     if not all(np.all(np.isfinite(value)) for value in trace.values()):
@@ -376,6 +395,7 @@ def run_surface_trial(
         schema_version=np.array(1),
         dt=np.array(config.timestep),
         controller_kind=np.array(controller_kind),
+        contact_model=np.array(config.contact_model),
         controller_frame_rotation=controller_frame.rotation.copy(),
         force_filter_alpha=np.array(alpha),
     )

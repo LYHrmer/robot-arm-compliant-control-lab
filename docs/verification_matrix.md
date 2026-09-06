@@ -30,6 +30,14 @@
 
 ## 实验完整性
 
+表面任务的[接触模型修复](wiping_contact_diagnosis.md)由
+[`surface_simulation.py`](../src/compliant_control_lab/surface_simulation.py) 显式选择；
+[稳定性与真实几何回归](../tests/test_surface_contact_stability.py)检查接触、摩擦及默认旧路径，
+[步长测试](../tests/test_contact_step_refinement.py)检查固定 500 Hz 的采样契约。
+[192 行配对报告](../results/franka_surface_contact_fix/summary.md)由
+[归档测试](../tests/test_surface_contact_published_results.py)核对。这些证据只适用于仿真模型，
+不证明材料辨识或控制算法优越性。
+
 | 主张 | 实现 | 自动测试 | 冻结证据 |
 |---|---|---|---|
 | Train、development 与 first reveal 分离；同一 case 的方法共用 seed | [training](../src/compliant_control_lab/franka_learning.py)、[first reveal](../src/compliant_control_lab/franka_safety_learning.py) | [learning tests](../tests/test_franka_learning.py)、[protocol tests](../tests/test_franka_safety_learning.py) | [protocol](../results/franka_safety_preholdout/protocol.json)、[reveal](../results/franka_safety_blind/reveal.json)、[CSV](../results/franka_safety_blind/comparison.csv) |

@@ -45,6 +45,7 @@ Residual RL，每章都给出公式、源码入口和练习。
 | 接触峰值事件诊断 | [contact_event_diagnosis.md](contact_event_diagnosis.md) |
 | 接近轨迹、参考限速与因果采样 | [reference_governor_v0.6.md](reference_governor_v0.6.md) |
 | 表面坐标、工具端六维 F/T 与标定误差 | [surface_frame_and_sensing.md](surface_frame_and_sensing.md) |
+| 擦拭微分离、接触柔度与步长检查 | [wiping_contact_diagnosis.md](wiping_contact_diagnosis.md) |
 
 ## 复现实验
 
@@ -60,6 +61,7 @@ Residual RL，每章都给出公式、源码入口和练习。
 | v0.5 揭盲后 paired/event 诊断 | [实验总账](experiments/README.md#揭盲后诊断) | [`results/franka_safety_postreveal/`](../results/franka_safety_postreveal/) |
 | v0.6 开发：时序与接近参考四组对照 | [实现与复现命令](reference_governor_v0.6.md) | [`results/franka_reference_ablation/`](../results/franka_reference_ablation/) |
 | 新表面任务：24-case 法向标定开发对照 | [传感器、指标与复现命令](surface_frame_and_sensing.md) | [`results/franka_surface_development/`](../results/franka_surface_development/) |
+| 表面任务接触模型修复：24 × 4 × 2 配对 | [单因素排查与模型代价](wiping_contact_diagnosis.md) | [`results/franka_surface_contact_fix/`](../results/franka_surface_contact_fix/)、[诊断统计](../results/franka_surface_contact_diagnostics/) |
 
 v0.5 的 round `31756275` 已经完成 first reveal。仓库中的 48 cases 随后转为 public
 validation set（公开验证集）。复核时读取现有 `protocol.json`、`reveal.json`、

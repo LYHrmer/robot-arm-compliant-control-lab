@@ -1,0 +1,908 @@
+{
+  "control_period_s": 0.002,
+  "engine_versions": {
+    "mujoco": "3.12.0",
+    "numpy": "2.2.6",
+    "python": "3.10.12"
+  },
+  "identity": "wiping-contact-one-factor-diagnosis-v1",
+  "rows": [
+    {
+      "config": {
+        "contact_model": "legacy",
+        "duration": 3.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "geometry_separation_pct": 38.800000000000004,
+      "maximum_gap_um": 40.13226824180899,
+      "median_loaded_friction_ratio": 0.45,
+      "median_penetration_um": 3.9830203650628726,
+      "metrics": {
+        "contact_ratio_pct": 61.199999999999996,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.5740000000000001,
+        "force_rmse_n": 10.044109683219235,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 10.479393192605773,
+        "orientation_rmse_deg": 0.35213470188966434,
+        "peak_force_n": 26.55782149220571,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 11.803419072887529
+      },
+      "overrides": {
+        "both_geom_initial_impedance": null,
+        "both_geom_sliding_friction": null,
+        "force_ki": null,
+        "force_kp": null,
+        "hold_after_s": null,
+        "impratio": null,
+        "normal_damping": null
+      },
+      "probe": "baseline",
+      "scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0,
+        "name": "noiseless_wiping_probe",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0,
+        "tool_mass_kg": 0.1,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": 0.0
+      },
+      "task": {
+        "nominal_plane_x_m": 0.4,
+        "yaw_deg": 0.0
+      }
+    },
+    {
+      "config": {
+        "contact_model": "legacy",
+        "duration": 3.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "geometry_separation_pct": 0.0,
+      "maximum_gap_um": -66.553134800508,
+      "median_loaded_friction_ratio": 0.007005584191816107,
+      "median_penetration_um": 66.88460976159854,
+      "metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.5740000000000001,
+        "force_rmse_n": 0.13905893356196916,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.0027177925781517102,
+        "orientation_rmse_deg": 0.010748242660662176,
+        "peak_force_n": 13.446875518485356,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.2109719896565394
+      },
+      "overrides": {
+        "both_geom_initial_impedance": null,
+        "both_geom_sliding_friction": null,
+        "force_ki": null,
+        "force_kp": null,
+        "hold_after_s": 1.2,
+        "impratio": null,
+        "normal_damping": null
+      },
+      "probe": "hold_position",
+      "scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0,
+        "name": "noiseless_wiping_probe",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0,
+        "tool_mass_kg": 0.1,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": 0.0
+      },
+      "task": {
+        "nominal_plane_x_m": 0.4,
+        "yaw_deg": 0.0
+      }
+    },
+    {
+      "config": {
+        "contact_model": "legacy",
+        "duration": 3.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "geometry_separation_pct": 38.4,
+      "maximum_gap_um": 42.00139778750417,
+      "median_loaded_friction_ratio": 0.45,
+      "median_penetration_um": 4.57278242008835,
+      "metrics": {
+        "contact_ratio_pct": 61.6,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.5740000000000001,
+        "force_rmse_n": 9.988762908173886,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 10.41825268294908,
+        "orientation_rmse_deg": 0.3521399416094038,
+        "peak_force_n": 25.558120266591438,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 11.813455362742292
+      },
+      "overrides": {
+        "both_geom_initial_impedance": null,
+        "both_geom_sliding_friction": null,
+        "force_ki": null,
+        "force_kp": 0,
+        "hold_after_s": null,
+        "impratio": null,
+        "normal_damping": null
+      },
+      "probe": "zero_p",
+      "scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0,
+        "name": "noiseless_wiping_probe",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0,
+        "tool_mass_kg": 0.1,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": 0.0
+      },
+      "task": {
+        "nominal_plane_x_m": 0.4,
+        "yaw_deg": 0.0
+      }
+    },
+    {
+      "config": {
+        "contact_model": "legacy",
+        "duration": 3.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "geometry_separation_pct": 38.93333333333333,
+      "maximum_gap_um": 40.36429648226342,
+      "median_loaded_friction_ratio": 0.45,
+      "median_penetration_um": 5.462765722920315,
+      "metrics": {
+        "contact_ratio_pct": 61.06666666666667,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.5740000000000001,
+        "force_rmse_n": 10.018122254256978,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 10.444827022475735,
+        "orientation_rmse_deg": 0.3535497902678691,
+        "peak_force_n": 26.067826460476127,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 11.713005235281328
+      },
+      "overrides": {
+        "both_geom_initial_impedance": null,
+        "both_geom_sliding_friction": null,
+        "force_ki": 0,
+        "force_kp": null,
+        "hold_after_s": null,
+        "impratio": null,
+        "normal_damping": null
+      },
+      "probe": "zero_i",
+      "scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0,
+        "name": "noiseless_wiping_probe",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0,
+        "tool_mass_kg": 0.1,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": 0.0
+      },
+      "task": {
+        "nominal_plane_x_m": 0.4,
+        "yaw_deg": 0.0
+      }
+    },
+    {
+      "config": {
+        "contact_model": "legacy",
+        "duration": 3.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "geometry_separation_pct": 38.4,
+      "maximum_gap_um": 34.93713509746671,
+      "median_loaded_friction_ratio": 0.45,
+      "median_penetration_um": 6.068794314369185,
+      "metrics": {
+        "contact_ratio_pct": 61.6,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.5740000000000001,
+        "force_rmse_n": 9.946335417065876,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 10.372143359702596,
+        "orientation_rmse_deg": 0.3522396415049622,
+        "peak_force_n": 25.35151276378847,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 11.804123518511572
+      },
+      "overrides": {
+        "both_geom_initial_impedance": null,
+        "both_geom_sliding_friction": null,
+        "force_ki": null,
+        "force_kp": null,
+        "hold_after_s": null,
+        "impratio": null,
+        "normal_damping": 60
+      },
+      "probe": "normal_damping_60",
+      "scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0,
+        "name": "noiseless_wiping_probe",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0,
+        "tool_mass_kg": 0.1,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": 0.0
+      },
+      "task": {
+        "nominal_plane_x_m": 0.4,
+        "yaw_deg": 0.0
+      }
+    },
+    {
+      "config": {
+        "contact_model": "legacy",
+        "duration": 3.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0,
+        "seed": 11,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "geometry_separation_pct": 37.2,
+      "maximum_gap_um": 45.721481074699476,
+      "median_loaded_friction_ratio": 0.45,
+      "median_penetration_um": 7.4583841543976455,
+      "metrics": {
+        "contact_ratio_pct": 62.8,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.5740000000000001,
+        "force_rmse_n": 9.870277433645377,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 12.878941414283263,
+        "orientation_rmse_deg": 0.35871265676649494,
+        "peak_force_n": 29.212464583415354,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 11.59963289101577
+      },
+      "overrides": {
+        "both_geom_initial_impedance": null,
+        "both_geom_sliding_friction": null,
+        "force_ki": null,
+        "force_kp": null,
+        "hold_after_s": null,
+        "impratio": null,
+        "normal_damping": null
+      },
+      "probe": "no_filter",
+      "scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0,
+        "name": "noiseless_wiping_probe",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0,
+        "tool_mass_kg": 0.1,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": 0.0
+      },
+      "task": {
+        "nominal_plane_x_m": 0.4,
+        "yaw_deg": 0.0
+      }
+    },
+    {
+      "config": {
+        "contact_model": "legacy",
+        "duration": 3.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.005,
+        "seed": 11,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "geometry_separation_pct": 38.93333333333333,
+      "maximum_gap_um": 38.722352176577544,
+      "median_loaded_friction_ratio": 0.45,
+      "median_penetration_um": 4.953141296094865,
+      "metrics": {
+        "contact_ratio_pct": 61.06666666666667,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.5740000000000001,
+        "force_rmse_n": 10.126502894867182,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 11.360797394109499,
+        "orientation_rmse_deg": 0.35247066049821846,
+        "peak_force_n": 27.066739992927765,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 11.784194335377132
+      },
+      "overrides": {
+        "both_geom_initial_impedance": null,
+        "both_geom_sliding_friction": null,
+        "force_ki": null,
+        "force_kp": null,
+        "hold_after_s": null,
+        "impratio": null,
+        "normal_damping": null
+      },
+      "probe": "filter_5ms",
+      "scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0,
+        "name": "noiseless_wiping_probe",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0,
+        "tool_mass_kg": 0.1,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": 0.0
+      },
+      "task": {
+        "nominal_plane_x_m": 0.4,
+        "yaw_deg": 0.0
+      }
+    },
+    {
+      "config": {
+        "contact_model": "legacy",
+        "duration": 3.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "geometry_separation_pct": 0.0,
+      "maximum_gap_um": -63.6429086810289,
+      "median_loaded_friction_ratio": 1e-05,
+      "median_penetration_um": 65.6474248441688,
+      "metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.5740000000000001,
+        "force_rmse_n": 0.17720006774847907,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.005910165252773404,
+        "orientation_rmse_deg": 0.6489328339659499,
+        "peak_force_n": 12.4331213869394,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 1.9619393264617533
+      },
+      "overrides": {
+        "both_geom_initial_impedance": null,
+        "both_geom_sliding_friction": 0,
+        "force_ki": null,
+        "force_kp": null,
+        "hold_after_s": null,
+        "impratio": null,
+        "normal_damping": null
+      },
+      "probe": "friction_zero",
+      "scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0,
+        "name": "noiseless_wiping_probe",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0,
+        "tool_mass_kg": 0.1,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": 0.0
+      },
+      "task": {
+        "nominal_plane_x_m": 0.4,
+        "yaw_deg": 0.0
+      }
+    },
+    {
+      "config": {
+        "contact_model": "legacy",
+        "duration": 3.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "geometry_separation_pct": 10.4,
+      "maximum_gap_um": 7.415032266776256,
+      "median_loaded_friction_ratio": 0.1,
+      "median_penetration_um": 14.358123066500472,
+      "metrics": {
+        "contact_ratio_pct": 89.60000000000001,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.5740000000000001,
+        "force_rmse_n": 4.210795323323087,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 4.388191690016717,
+        "orientation_rmse_deg": 0.5714133559436592,
+        "peak_force_n": 15.311183153139845,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 4.292631604293104
+      },
+      "overrides": {
+        "both_geom_initial_impedance": null,
+        "both_geom_sliding_friction": 0.1,
+        "force_ki": null,
+        "force_kp": null,
+        "hold_after_s": null,
+        "impratio": null,
+        "normal_damping": null
+      },
+      "probe": "friction_01",
+      "scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0,
+        "name": "noiseless_wiping_probe",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0,
+        "tool_mass_kg": 0.1,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": 0.0
+      },
+      "task": {
+        "nominal_plane_x_m": 0.4,
+        "yaw_deg": 0.0
+      }
+    },
+    {
+      "config": {
+        "contact_model": "legacy",
+        "duration": 3.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "geometry_separation_pct": 0.5333333333333333,
+      "maximum_gap_um": 3.524324145097457,
+      "median_loaded_friction_ratio": 0.45,
+      "median_penetration_um": 263.6443438021954,
+      "metrics": {
+        "contact_ratio_pct": 99.46666666666667,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.5740000000000001,
+        "force_rmse_n": 0.9472467507281086,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.9536485964301255,
+        "orientation_rmse_deg": 0.3532031555687804,
+        "peak_force_n": 13.769666083676215,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 11.673147816192584
+      },
+      "overrides": {
+        "both_geom_initial_impedance": 0.5,
+        "both_geom_sliding_friction": null,
+        "force_ki": null,
+        "force_kp": null,
+        "hold_after_s": null,
+        "impratio": null,
+        "normal_damping": null
+      },
+      "probe": "impedance_half",
+      "scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0,
+        "name": "noiseless_wiping_probe",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0,
+        "tool_mass_kg": 0.1,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": 0.0
+      },
+      "task": {
+        "nominal_plane_x_m": 0.4,
+        "yaw_deg": 0.0
+      }
+    },
+    {
+      "config": {
+        "contact_model": "legacy",
+        "duration": 3.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "geometry_separation_pct": 39.46666666666667,
+      "maximum_gap_um": 34.39971826049021,
+      "median_loaded_friction_ratio": 0.45,
+      "median_penetration_um": 4.46166450191604,
+      "metrics": {
+        "contact_ratio_pct": 60.53333333333333,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.5740000000000001,
+        "force_rmse_n": 10.201367185855897,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 10.644001548616313,
+        "orientation_rmse_deg": 0.3529541856646952,
+        "peak_force_n": 27.667324083611273,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 11.813920944814745
+      },
+      "overrides": {
+        "both_geom_initial_impedance": null,
+        "both_geom_sliding_friction": null,
+        "force_ki": null,
+        "force_kp": null,
+        "hold_after_s": null,
+        "impratio": 10,
+        "normal_damping": null
+      },
+      "probe": "impratio_10",
+      "scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0,
+        "name": "noiseless_wiping_probe",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0,
+        "tool_mass_kg": 0.1,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": 0.0
+      },
+      "task": {
+        "nominal_plane_x_m": 0.4,
+        "yaw_deg": 0.0
+      }
+    },
+    {
+      "config": {
+        "contact_model": "smooth",
+        "duration": 3.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "geometry_separation_pct": 0.0,
+      "maximum_gap_um": -695.7574695409044,
+      "median_loaded_friction_ratio": 0.45,
+      "median_penetration_um": 739.7488165386615,
+      "metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.5740000000000001,
+        "force_rmse_n": 0.224295174736721,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.016420381341841078,
+        "orientation_rmse_deg": 0.3537203591948416,
+        "peak_force_n": 12.553188447510507,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 11.651333023785067
+      },
+      "overrides": {
+        "both_geom_initial_impedance": null,
+        "both_geom_sliding_friction": null,
+        "force_ki": null,
+        "force_kp": null,
+        "hold_after_s": null,
+        "impratio": null,
+        "normal_damping": null
+      },
+      "probe": "smooth",
+      "scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0,
+        "name": "noiseless_wiping_probe",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0,
+        "tool_mass_kg": 0.1,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": 0.0
+      },
+      "task": {
+        "nominal_plane_x_m": 0.4,
+        "yaw_deg": 0.0
+      }
+    }
+  ],
+  "scope": "Public diagnostic data, not holdout evaluation or controller tuning.",
+  "script_sha256": "e03a8eed947ddc5dc1df6a1e9f2b761423a38d53587b77f23299b8466c823276",
+  "source_and_assets_sha256": {
+    "__init__.py": "ea3952b679dfacc78ddd79d60f76f2f2e2cc4019aff05b9a0b90a55d79425c8a",
+    "assets/franka_emika_panda/CHANGELOG.md": "164a6ec704aa1714b1311f8b1538e20b4223b6ef08b7d3cb03edc26192892f67",
+    "assets/franka_emika_panda/LICENSE": "a6cba85bc92e0cff7a450b1d873c0eaa2e9fc96bf472df0247a26bec77bf3ff9",
+    "assets/franka_emika_panda/README.md": "e12684556d0154bdf2a9e77e7009ed680cd06ca89904f9e6303050f9fe59300c",
+    "assets/franka_emika_panda/UPSTREAM.md": "42960942ebe33fb3bf627367c3d2274a981d0a7a53ea202fb444809435ba0add",
+    "assets/franka_emika_panda/assets/finger_0.obj": "215098c0fcdf7192f6c503a37cf49e3efecf8a9e1320f02b17c5584d89cc5b2c",
+    "assets/franka_emika_panda/assets/finger_1.obj": "cf239e9aca26bba09dbbf1c544c47d87cfc9a2f0637c8bb786af750b6d4eca44",
+    "assets/franka_emika_panda/assets/hand.stl": "94493e94f30fe940f2c8ca2f155c3bbe67bbff406d3edf5e261670d2f0f6e2ed",
+    "assets/franka_emika_panda/assets/hand_0.obj": "b94aab901086f85df04c019b30f43bf9aa23a7ad0443ec80a8c14662a41cabd2",
+    "assets/franka_emika_panda/assets/hand_1.obj": "cd76f7494bb314406a1819c46eb826ee254894f87235714f604a470653d9badb",
+    "assets/franka_emika_panda/assets/hand_2.obj": "e0f44a71712afa5b98eb20355eff17763d3e2e19f459b2bef19abed3727e64b3",
+    "assets/franka_emika_panda/assets/hand_3.obj": "a431a06d99e88a1b322b3122a01424ee7704daeaad0bc343b90b9604f014ad0c",
+    "assets/franka_emika_panda/assets/hand_4.obj": "21f96ef6a8de082e41b1ea9834f1043de359e5d60305541bcb63539581f53bff",
+    "assets/franka_emika_panda/assets/link0.stl": "dfc6d94330de8ddb005b311bfdba9f3b8e1aa7c256b71592ee7ff32cb9a9a5aa",
+    "assets/franka_emika_panda/assets/link0_0.obj": "6b9f41a4c203540daaeb7a33cc3d0d6c6a32dc8bba187074eeaf97b3e36b3f9c",
+    "assets/franka_emika_panda/assets/link0_1.obj": "57673d2ee2a9db2e10c8986ae57c56a7c39c012b60fd26d7d8549553b664a5ed",
+    "assets/franka_emika_panda/assets/link0_10.obj": "c9198b9d8534d628d097b0f2b239bb30343353182df098ce0d9db6bc13326848",
+    "assets/franka_emika_panda/assets/link0_11.obj": "f0adec78d6677b7799d25121981270e8bfe119b5c18d08a91ee37a54ad75f65c",
+    "assets/franka_emika_panda/assets/link0_2.obj": "1ca435a2a87a9608a146a47955724d43dd7ce10fc3dd3018800aa98f8ba86e05",
+    "assets/franka_emika_panda/assets/link0_3.obj": "3e9c6334d2b3b47944af3458ee5f20519abc20fe7ee23063bb53405ccab28046",
+    "assets/franka_emika_panda/assets/link0_4.obj": "215d25789704936120f119c0bc1cc7f68516dd3f8f1df61457b71acac3873f26",
+    "assets/franka_emika_panda/assets/link0_5.obj": "9361b104e93743045107aa5b15fb1a0835ba9c1f355aae71f56403cf6a9c33f6",
+    "assets/franka_emika_panda/assets/link0_7.obj": "2dc0b8ebbbc80e4c065d71e195adbc384f673438641fac82b07b801b4d2837cb",
+    "assets/franka_emika_panda/assets/link0_8.obj": "3b8c436999db5586b8eb47bed2b0aa7de6993868b2681b4c04246eeac42fdb7a",
+    "assets/franka_emika_panda/assets/link0_9.obj": "45178f97d2b5da6bce11f610212c4ef7d08c73db33a4fc38e1b7f66b93d023f5",
+    "assets/franka_emika_panda/assets/link1.obj": "51091e776b16babdbe2f3849b5c041f921d1f11dd94ac19a0f1c81abf496fbae",
+    "assets/franka_emika_panda/assets/link1.stl": "e41a39a94108fcf56aacff603fc91ec80541f4c1af17b51a0de5617f5566e6d2",
+    "assets/franka_emika_panda/assets/link2.obj": "5c9f8e715de52c3eb71b475de35993b3b96081e02abea9f28c414768877fc59b",
+    "assets/franka_emika_panda/assets/link2.stl": "370f7605a0fae3529db169ded50f52f171024aa792d4d773bc84197301f6a039",
+    "assets/franka_emika_panda/assets/link3.stl": "0a8d638b9349c6c0eefc4e888636ac4838c4b27170f18a51699321118af709c1",
+    "assets/franka_emika_panda/assets/link3_0.obj": "ce2da87f51708e11b189249d41401065dabe89a06e251185a06cef4d5ff27178",
+    "assets/franka_emika_panda/assets/link3_1.obj": "2880b7753a7173f38fa87ee21da4dfc7fa7be46fbe07bac5aef9e128513cb118",
+    "assets/franka_emika_panda/assets/link3_2.obj": "670cff81ae84693769ca4ae658c154cf909d81167e7c8d22b70ea977f2504efa",
+    "assets/franka_emika_panda/assets/link3_3.obj": "30ede0c812efd0e0b767d134a4eae0b84e0fa407bb6325a5a555e0569b3a3ffd",
+    "assets/franka_emika_panda/assets/link4.stl": "0180ebb5772ec9840cb049750cffb29a9ddc90311752a16ea34757782ef9e48d",
+    "assets/franka_emika_panda/assets/link4_0.obj": "443bf6d178177cf347951ecf107ccd10ca444e605e375b67304579e5f948806f",
+    "assets/franka_emika_panda/assets/link4_1.obj": "ca935ec7cc8b3f0e86aa079c76b0b3bf593b1e9830bab0fa7131ac51577c74f0",
+    "assets/franka_emika_panda/assets/link4_2.obj": "c89caf26d379c35bb9e191ee2d91d09ab29ecc792b48d8bc10b39e5b38222175",
+    "assets/franka_emika_panda/assets/link4_3.obj": "1495d17f45bdb230cf58b0beef9da4e8c9cfe76a3d2d38da89017efe5e093136",
+    "assets/franka_emika_panda/assets/link5_0.obj": "a3238b8f2af0f2eb66d9fe63dc5d41ac52d5d38507241b5ed10e3cb019ab3e71",
+    "assets/franka_emika_panda/assets/link5_1.obj": "9d994bbf83ec241e301b5197a6846da13f2a4a0582edb2c0f76962c5549649d6",
+    "assets/franka_emika_panda/assets/link5_2.obj": "83b4ffe9f772cd7fe182e98640650eebc899aaf01842656574b0416c90dd40a4",
+    "assets/franka_emika_panda/assets/link5_collision_0.obj": "3e5aa75fb13f193555c3dfb999df91d81df25006a5c3af5338297d78137c129b",
+    "assets/franka_emika_panda/assets/link5_collision_1.obj": "87cd8f621071df010f774cbde789282b8463840dfe704f8bdfa2e29be0142e15",
+    "assets/franka_emika_panda/assets/link5_collision_2.obj": "823ab6c8f7b1d79e0844fa071d82a03499ff68e34fddb1ba3451032c22736040",
+    "assets/franka_emika_panda/assets/link6.stl": "20b768e99a0e0440b5754dcca108016434e57937cc356acd9c352ccd3cb27f77",
+    "assets/franka_emika_panda/assets/link6_0.obj": "0504c70ebf1b284ee8faae7dcb896b8830bc672a6552015dd5dbd121fa031fb9",
+    "assets/franka_emika_panda/assets/link6_1.obj": "45f7ca77695198b6d86ec2417ad4e42e6275044f0f96266699ee8e1057757ac1",
+    "assets/franka_emika_panda/assets/link6_10.obj": "365f26c21d10332cab8d8704645cb46930c30b3085956f2d097498c793f24db4",
+    "assets/franka_emika_panda/assets/link6_11.obj": "8ae61e08b3ad064f25bbf03b22e59cc15d65883b5a7ce92711aff29df2493901",
+    "assets/franka_emika_panda/assets/link6_12.obj": "f28d1bfd62b0244ffd19fb35fe9edefdf583d3c9167db944e87185d919e1d021",
+    "assets/franka_emika_panda/assets/link6_13.obj": "0a55fa92dccb261d07200e6565fca4c850fd17f0c1ecf38821c0b97d51796c7d",
+    "assets/franka_emika_panda/assets/link6_14.obj": "750ae3ee4781e62e3a045c662195247b03f6642b05aa93104f08258e5f6eba26",
+    "assets/franka_emika_panda/assets/link6_15.obj": "5999c1c2497a004a7c4bbe034cdf13744f839d85ae7a11b1bc386c48a3e642e6",
+    "assets/franka_emika_panda/assets/link6_16.obj": "551d7a8b37c53e7a152d008b4e36992e5b5abe74a4be18b57ee6319c27def09f",
+    "assets/franka_emika_panda/assets/link6_2.obj": "e54eee4d8232947ee8af65afd5a067e09dac2da6e7e585cb1dccb65496457da0",
+    "assets/franka_emika_panda/assets/link6_3.obj": "d4f6a25ef32fa1fa4734146981994ee760232cb077c80fea6487d78a077c7f27",
+    "assets/franka_emika_panda/assets/link6_4.obj": "be353480fe71d46f7a96f0a3cbb7e112caaf8d88368826f321a36a253c8749b2",
+    "assets/franka_emika_panda/assets/link6_5.obj": "7c87664623c3e1a6cb330db273227a69626dc5e53b4caff1d4ee7911eb3340c6",
+    "assets/franka_emika_panda/assets/link6_6.obj": "8fbc031e0d07b795ebf99115c75223141caaba317cab569159f3d477a7821681",
+    "assets/franka_emika_panda/assets/link6_7.obj": "7dc5ebb799fe281aab27d6e84e7a4efa0a8e42da2369ec83de3ea3f206f62d73",
+    "assets/franka_emika_panda/assets/link6_8.obj": "e3f77381817a341030f9dcc4c4aa7c559f80411b453fd87eb0fefecca82151bf",
+    "assets/franka_emika_panda/assets/link6_9.obj": "25a56ea9b02a03b6cb5a81f31c54f54d0185e1a0b3937c37e4289d896e50215a",
+    "assets/franka_emika_panda/assets/link7.stl": "92ac6afcf7574c034d3170d8a68e95ac9048ab9d0dd5bbd8311b86e551b9ab1c",
+    "assets/franka_emika_panda/assets/link7_0.obj": "04586b0bde011715cfc22072ac72fe0717eb4d4817bcf665987ce6cd88eb2b93",
+    "assets/franka_emika_panda/assets/link7_1.obj": "c3f72289f394c9d6749a4a327fb11f05b203c37c95032c92f28019b40ebe7e00",
+    "assets/franka_emika_panda/assets/link7_2.obj": "d2faecedb304d0989040d082410378dc949dbbda23bd18c05134f08aae984db5",
+    "assets/franka_emika_panda/assets/link7_3.obj": "b62d87c4d4bdb7b281ed341d347c39dad0e50bf36aed8ac11d050073701d5f70",
+    "assets/franka_emika_panda/assets/link7_4.obj": "cb78ccb61fd4ad6c7bff4c4d2e6cb41e1964a5a3e1a28e67c0c6202371cfc018",
+    "assets/franka_emika_panda/assets/link7_5.obj": "099071d3090b51471ba52f4f90814fd3089f4975d196e4d488117073d0bfe491",
+    "assets/franka_emika_panda/assets/link7_6.obj": "99469e2d95ab74ce0292f2f16954c87a8a7dc16652e62e970fe37c94330a81bb",
+    "assets/franka_emika_panda/assets/link7_7.obj": "426c3db8a19373f3dc73d4bec672e948121b2914c10e2e7b9c7ea80643a19e54",
+    "assets/franka_emika_panda/hand.xml": "d2a6539d0fd7c55c75c14f11c78f04505ee33f31d93e6112e3ad7120e5ee786a",
+    "assets/franka_emika_panda/mjx_hand.xml": "cf1d16467d4bd5c69f77cdcc5af2e7e1ad957416661f20d3c4029b73622b4068",
+    "assets/franka_emika_panda/mjx_panda.xml": "8c0f15b755f686a09f04a2cae4afa3b8444d61d3318ea36cee87cc8bb98f9098",
+    "assets/franka_emika_panda/mjx_panda_nohand.xml": "92a6ff0be23a90f3a5888e57067f0ecad1b2bda95c58aa30c4284750da97d075",
+    "assets/franka_emika_panda/mjx_scene.xml": "7877363e91409da51973cc042209b34257354c17c8e7b4eccde8353e88398af7",
+    "assets/franka_emika_panda/mjx_single_cube.xml": "333997ddcb065ff94871247fb2b96e1847119549bfba7a6db645fdb6cdc5199b",
+    "assets/franka_emika_panda/panda.png": "d6ad5fcfc60237f0f006cf22d6e0b70febb559f609d915cd4316e9f1ad383c2d",
+    "assets/franka_emika_panda/panda.xml": "96ad67da03710f17f798c9478fd9e9efdf24a3bf8359f05e456dd9fb158ea273",
+    "assets/franka_emika_panda/panda_nohand.xml": "e7090a5e2384b18a223ef532d98bf914f7f9a6b74dc8bc9f74c8291201074071",
+    "assets/franka_emika_panda/panda_torque.xml": "f9bbb4a22c6f90b5f1c0fcf710616036f649e46886cb08fdfe696b30b92d2271",
+    "assets/franka_emika_panda/scene.xml": "4b08c2e5108f0ed67fa689e096e58850210130c3e6ef889b1e22822d369fd8c3",
+    "assets/franka_scene.xml": "742e121b5817a578e320c4c34fe8862f94fb75ac78dec091c2eeae5b10a86f49",
+    "assets/franka_surface_scene.xml": "7e398c8d763c10f5af0e3124f02678aff1d4ebfe4c269b343cd52dc80a80e1ea",
+    "assets/planar_arm.xml": "cbd2a5b33a1bae6d79992da24a0bad1e2fbb0915c4b3f014178382849aa3e20e",
+    "contact_event_analysis.py": "a5d771e15117046fcffb1d2583ce793e68dfac93cce1dd945ca62ca5602ccde3",
+    "controllers.py": "5d64fe44b4cce33dc14f08fd97c4e082652ee31fcb57a4e5b899dfe6e107b95e",
+    "experiments.py": "ff5ea1304f6890a8a5a319c56bc6931ca174af1f85351e9846db803ffd484020",
+    "franka_adaptive.py": "9d8d57a369af2660273ce76f8a904c0d8fb552d9430d37968cde5c49abcec607",
+    "franka_control.py": "4b8568d98f92f81ac2adbc1c92fd30d0e587e5a8a0790cd0518b83b8703c4186",
+    "franka_experiments.py": "77d5f7d24b108a084c6ede93616bca68c890698c21f2f6afa9e606abcdaad6e4",
+    "franka_learning.py": "1dcd78138f056c075045eb7a648dc6be611e8f01f41ff7ec7d86c8768758fbd9",
+    "franka_plotting.py": "af25b67939a9c24ebb2805f4acb6679718dc05de70523cd6db80829c199ae717",
+    "franka_reference.py": "f6516c1398f7a9c4f697f4320b1d6e24d3155eb8ee61f4314b6ed68b05dcffa8",
+    "franka_safety_learning.py": "9982ae66c5bac0f0354c2a018edbe3a5d3de781ce64bec84e69ca8dad55a8649",
+    "franka_simulation.py": "df5c6ddb3ecd5e7d67edb694f7274cc434fff48521852965276043d7479d6818",
+    "franka_stress.py": "e7ecb02886687f21663c3fa007079cecd7b4bccc35f653319ad83e635e8ed911",
+    "franka_torque_safety.py": "66906939003ef030e6414639c513162f75f97f2b4df6a7ceb2c6f04dc44ca9f2",
+    "kinematics.py": "3e9cfd6cc2a13ac7cba0e7f223a1e1fa0ea70c5ff8be279ec40de75f65926a73",
+    "plotting.py": "0e1c05bca91ab393d7884c80137241b495b10d1ea87244541cc8792738ada258",
+    "post_reveal_analysis.py": "775c3bda7c4da73a4576569332ccc438da6ef43a6eb8ede0e2bdcf8db62d07da",
+    "published_results_audit.py": "d02531aa2a2c265dbfad8d38107296fe1a8bea5233757fcc0fb59fb0daaa0ec7",
+    "reference_ablation.py": "9f8428affc7e96e3b600a518883871d13fd2476242fb9b11c82d9506a8b2a07d",
+    "residual_rl.py": "bc166fa07acb4dd46f9691a76a7921e24fedbf6fb6e97b6f047507b660b8c848",
+    "simulation.py": "36dfdae8aabe00db0c32b5c19f85a25c95136f057491ca6c35651bc8a8b580e1",
+    "smoke.py": "70c6e252114694859b922b87324858672971699f1f3b7d5f3bb59463400496ea",
+    "surface_contact_validation.py": "c9d1b6d0da5cf0a5a76fa055569bdf7f30697bd9c827c6ebbd0eca3d6204eb66",
+    "surface_control.py": "69ce3560cec16f087cba6538a4a5e4a0823955e7481ebdd46093b594bc99cb2c",
+    "surface_experiment.py": "657499af7a682396c570040ed932f748d0fc2ff93305f7489a3c1d740200abd5",
+    "surface_replay.py": "a1c46ca07ea43f25ca0e4255e951ab7a981e9ba85e23c02ef2e9be37c844fb29",
+    "surface_sensing.py": "6584764290a603db2837e84b0ef5a4bb9651fab6ff8dcfd77aa56288e6ee2e2b",
+    "surface_simulation.py": "0df7e374cdf2beca9ec1e33599d6c115652bc19c87cf67449103c775861c8c20"
+  }
+}

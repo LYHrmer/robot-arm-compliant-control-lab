@@ -10,6 +10,7 @@
 | v0.5 | 48-case first reveal；揭盲后转为公开验证集 | 五个 residual 为 22–26/48，均未达到 44/48；torque-safe adaptive 与五个 residual 的 saturation 均为 0% | 不部署；分别检查早期入触和较晚擦拭峰值 |
 | v0.6 开发对照 | 同一批 48 个公开场景，四组共 192 次仿真 | 同分步时序下原始参考 23/48、解析速度 24/48、限速参考 23/48 | 限速参考保留为实验项；尚未完成低冲击控制 |
 | Surface development v1 | 新任务与六轴传感定义；24 个公开开发 case，四组共 96 次 | 准确法向的切向误差配对中位差 −0.657 mm，接触比例 −0.967 个百分点；四组接触比例中位数约 57% | 保留坐标修正与传感接口；先解决间歇接触，未加入 RL |
+| Surface contact-model repair v1 | 同一 24 × 4 开发网格，旧/平滑模型共 192 次 | 新模型 96 组全部接触率 100%、饱和率 0%；准确法向 raw RMSE 中位数 0.181 N | 保留显式模型选项；软接触压入增加，不声称控制算法或真机改进 |
 
 ## 版本锚点与证据
 
@@ -72,3 +73,9 @@ sensitivity。Event replay 由
 [96-row CSV](../../results/franka_surface_development/comparison.csv) 和
 [摘要](../../results/franka_surface_development/summary.md)。这轮没有定义通过门槛，也没有新揭盲。
 六轴测量和质量误差的适用范围在[教程](../surface_frame_and_sensing.md)中说明。
+
+后续接触模型修复先逐项复现旧 96 行指标，最大绝对差为 0，再运行同参数的平滑模型。
+所有配对配置、原归档引用与新轨迹哈希见
+[contact-repair manifest](../../results/franka_surface_contact_fix/manifest.json)。
+[诊断记录](../wiping_contact_diagnosis.md)保留无效探针、固定控制周期的物理子步对照和压入量
+代价。这轮仍是公开开发实验，没有新训练或新 holdout。

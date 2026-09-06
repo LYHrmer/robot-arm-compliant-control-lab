@@ -23,8 +23,14 @@ v0.6 的开发实验已加入分步采样和有状态接近参考。四组对照
 独立的 24-case 开发网格比较世界坐标控制与法向标定偏差；任务和指标定义有变化，
 结果不与旧 holdout 混算。代表轨迹保存完整控制输入，可逐步重放 wrench 和关节力矩。
 这轮 96 次仿真中，准确法向组的切向误差配对中位数降低 0.66 mm，但四组真实接触比例
-中位数都约 57%，持续接触问题尚未解决。[完整结果](results/franka_surface_development/summary.md)
+中位数都约 57%，当时尚未解决持续接触。[完整结果](results/franka_surface_development/summary.md)
 使用未滤波力指标，不能与旧版滤波力 RMSE 直接比较。
+
+随后针对擦拭微分离增加了显式平滑接触模型。保持控制器和摩擦不变的
+[192 次配对仿真](results/franka_surface_contact_fix/summary.md)中，新模型 96 组均保持 100%
+接触、0% 力矩饱和；准确法向组 raw-force RMSE 中位数为 0.181 N。代价是更大的软接触
+压入量，代表 case 约 0.67 mm，切向误差仍约 11.8 mm。这属于接触模型修正，不是控制器或
+真机性能提升；默认旧模型和所有旧归档保留。[排查过程与复现](docs/wiping_contact_diagnosis.md)
 
 ## v0.5 首次揭盲结果
 
