@@ -4,6 +4,7 @@ import csv
 import hashlib
 import json
 import re
+from dataclasses import replace
 from pathlib import Path
 
 import numpy as np
@@ -11,7 +12,10 @@ import pytest
 
 from compliant_control_lab.surface_contact_validation import AUXILIARY_METRICS, PROFILES
 from compliant_control_lab.surface_experiment import ARMS, METRICS
-from compliant_control_lab.surface_replay import replay_surface_trace
+from compliant_control_lab.surface_replay import (
+    REPLAY_ABSOLUTE_TOLERANCE,
+    replay_surface_trace,
+)
 from compliant_control_lab.surface_simulation import (
     SurfaceScenario,
     SurfaceSimulationConfig,
@@ -43,6 +47,13 @@ def sha256(path):
 def csv_rows(path):
     with path.open(newline="", encoding="utf-8") as handle:
         return list(csv.DictReader(handle))
+
+
+def assert_cross_platform_replay(replay):
+    """Apply only the replay contract's existing tolerance to recomputed diagnostics."""
+    assert replay.matches
+    assert replay.max_wrench_error <= REPLAY_ABSOLUTE_TOLERANCE
+    assert replay.max_torque_error <= REPLAY_ABSOLUTE_TOLERANCE
 
 
 @pytest.fixture(scope="module")
@@ -167,11 +178,13 @@ def test_baseline_identity_unchanged_rows_and_contact_model_only_pairs(manifest,
 @pytest.mark.parametrize("arm", ARMS)
 def test_representative_replay_metrics_and_actual_contact_loads(manifest, rows, arm):
     replay = replay_surface_trace(REPORT / f"representative_case_16_smooth_{arm}.npz")
-    assert replay.matches and replay.sample_count == 2250
+    assert_cross_platform_replay(replay)
+    assert replay.sample_count == 2250
     recorded = manifest["replay_checks"][arm]
-    assert recorded["matches"] and recorded["sample_count"] == replay.sample_count
-    assert replay.max_wrench_error == recorded["max_wrench_error"] == 0
-    assert replay.max_torque_error == recorded["max_torque_error"] == 0
+    assert recorded["max_wrench_error"] == recorded["max_torque_error"] == 0
+    for key, value in recorded.items():
+        if key not in {"max_wrench_error", "max_torque_error"}:
+            assert getattr(replay, key) == value
     result = representative(manifest, "smooth", arm)
     trace = result.trace
     assert str(trace["contact_model"]) == "smooth"
@@ -196,6 +209,16 @@ def test_representative_replay_metrics_and_actual_contact_loads(manifest, rows, 
     np.testing.assert_array_equal(
         trace["feedback_raw_wrench_world"][1:], trace["raw_wrench_world"][:-1]
     )
+
+
+def test_cross_platform_replay_tolerance_rejects_material_regression():
+    replay = replay_surface_trace(REPORT / "representative_case_16_smooth_surface_exact.npz")
+    assert_cross_platform_replay(replay)
+    within = np.nextafter(REPLAY_ABSOLUTE_TOLERANCE, 0.0)
+    assert_cross_platform_replay(replace(replay, max_wrench_error=within, matches=True))
+    excessive = np.nextafter(REPLAY_ABSOLUTE_TOLERANCE, np.inf)
+    with pytest.raises(AssertionError):
+        assert_cross_platform_replay(replace(replay, max_wrench_error=excessive, matches=True))
 
 
 def test_paired_differences_repair_checks_and_summary_reconstructed(manifest, rows):

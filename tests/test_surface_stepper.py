@@ -10,6 +10,7 @@ import pytest
 
 from compliant_control_lab import surface_simulation as sim
 from compliant_control_lab.surface_control import SurfaceAdaptiveController, SurfaceFrame
+from compliant_control_lab.surface_replay import REPLAY_ABSOLUTE_TOLERANCE
 
 ROOT = Path(__file__).parents[1]
 
@@ -21,6 +22,36 @@ def assert_same(left, right):
             assert_same(left[name], right[name])
     else:
         np.testing.assert_array_equal(left, right)
+
+
+def assert_archived_field(actual, expected, field):
+    """Across hosts, allow roundoff only; same-process parity above stays exact."""
+    assert actual.shape == expected.shape, field
+    assert actual.dtype == expected.dtype, field
+    if actual.dtype.kind == "f" and field not in {"time", "dt"}:
+        assert np.all(np.isfinite(actual)) and np.all(np.isfinite(expected)), field
+        np.testing.assert_allclose(
+            actual, expected, rtol=0, atol=REPLAY_ABSOLUTE_TOLERANCE, err_msg=field
+        )
+    else:
+        np.testing.assert_array_equal(actual, expected, err_msg=field)
+
+
+def test_archive_comparison_accepts_roundoff_but_not_regressions():
+    tolerance = REPLAY_ABSOLUTE_TOLERANCE
+    assert_archived_field(np.array([np.nextafter(1.0, 2.0)]), np.array([1.0]), "q")
+    assert_archived_field(np.array([np.nextafter(tolerance, 0)]), np.zeros(1), "q")
+    for actual, expected, field in (
+        (np.array([np.nextafter(tolerance, np.inf)]), np.zeros(1), "q"),
+        (np.array([np.nan]), np.array([np.nan]), "q"),
+        (np.array([np.inf]), np.array([np.inf]), "q"),
+        (np.array([np.nextafter(1.0, 2.0)]), np.array([1.0]), "time"),
+        (np.array([True]), np.array([False]), "contact_confirmed"),
+        (np.ones((1, 1)), np.ones(1), "q"),
+        (np.ones(1, dtype=np.float32), np.ones(1), "q"),
+    ):
+        with pytest.raises(AssertionError):
+            assert_archived_field(actual, expected, field)
 
 
 def short_simulator(**kwargs):
@@ -46,7 +77,7 @@ def execute(simulator, controller):
 
 
 @pytest.mark.parametrize("method", ["baseline", "integral", "friction"])
-def test_full_smooth_case16_exactly_matches_independent_published_trace(method):
+def test_full_smooth_case16_numerically_matches_independent_published_trace(method):
     directory = ROOT / "results/franka_tangential_development"
     manifest = json.loads((directory / "manifest.json").read_text())
     entry = next(
@@ -74,10 +105,10 @@ def test_full_smooth_case16_exactly_matches_independent_published_trace(method):
     with np.load(directory / name, allow_pickle=False) as archive:
         assert result.trace.keys() == set(archive.files)
         for field in archive.files:
-            np.testing.assert_array_equal(result.trace[field], archive[field], err_msg=field)
+            assert_archived_field(result.trace[field], archive[field], field)
 
 
-def test_full_legacy_case16_preserves_original_exact_frame_trace_fields():
+def test_full_legacy_case16_preserves_original_frame_trace_fields():
     manifest = json.loads((ROOT / "results/franka_surface_contact_fix/manifest.json").read_text())
     reference = manifest["legacy_trace_references"]["surface_exact"]
     path = ROOT / reference["path"]
@@ -93,7 +124,7 @@ def test_full_legacy_case16_preserves_original_exact_frame_trace_fields():
     with np.load(path, allow_pickle=False) as archive:
         assert set(archive.files) <= result.trace.keys()
         for field in archive.files:
-            np.testing.assert_array_equal(result.trace[field], archive[field], err_msg=field)
+            assert_archived_field(result.trace[field], archive[field], field)
 
 
 def test_repeated_sample_does_not_repeat_engine_refresh_filter_or_noise(monkeypatch):

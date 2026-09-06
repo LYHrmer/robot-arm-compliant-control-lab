@@ -4,7 +4,6 @@ import csv
 import hashlib
 import json
 import re
-from dataclasses import asdict
 from itertools import product
 from pathlib import Path
 
@@ -12,7 +11,10 @@ import numpy as np
 import pytest
 
 from compliant_control_lab.surface_experiment import CONTACT_METRICS, METRICS
-from compliant_control_lab.surface_replay import replay_surface_trace
+from compliant_control_lab.surface_replay import (
+    REPLAY_ABSOLUTE_TOLERANCE,
+    replay_surface_trace,
+)
 from compliant_control_lab.surface_simulation import (
     SurfaceScenario,
     SurfaceSimulationConfig,
@@ -52,6 +54,13 @@ def sha256(path):
 def csv_rows(path):
     with path.open(newline="", encoding="utf-8") as handle:
         return list(csv.DictReader(handle))
+
+
+def assert_cross_platform_replay(replay):
+    """Apply only the replay contract's existing tolerance to recomputed diagnostics."""
+    assert replay.matches
+    assert replay.max_wrench_error <= REPLAY_ABSOLUTE_TOLERANCE
+    assert replay.max_torque_error <= REPLAY_ABSOLUTE_TOLERANCE
 
 
 def typed_rows(path):
@@ -235,9 +244,13 @@ def test_retained_trace_metrics_geometry_compensation_and_replay(
 ):
     path = REPORT / filename
     replay = replay_surface_trace(path)
-    assert asdict(replay) == manifest["replay_checks"][filename]
-    assert replay.matches and replay.sample_count == samples
-    assert replay.max_wrench_error == replay.max_torque_error == 0
+    assert_cross_platform_replay(replay)
+    recorded = manifest["replay_checks"][filename]
+    assert recorded["max_wrench_error"] == recorded["max_torque_error"] == 0
+    for key, value in recorded.items():
+        if key not in {"max_wrench_error", "max_torque_error"}:
+            assert getattr(replay, key) == value
+    assert replay.sample_count == samples
     case = next(
         c
         for c in manifest["case_configurations"]
