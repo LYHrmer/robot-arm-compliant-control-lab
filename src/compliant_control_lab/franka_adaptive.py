@@ -12,6 +12,7 @@ from compliant_control_lab.franka_control import (
     FrankaTarget,
 )
 from compliant_control_lab.franka_torque_safety import project_wrench_to_torque_limits
+from compliant_control_lab.tangential_compensation import TangentialCompensation
 
 
 @dataclass
@@ -220,6 +221,7 @@ class FrankaSafeAdaptiveController:
     impact_force_rate: float = 120.0
     torque_reserve_fraction: float = 0.10
     name: str = "safe_adaptive_hybrid"
+    tangential: TangentialCompensation | None = None
 
     _last_governed_normal_lead: float = field(default=0.0, init=False, repr=False)
     _last_torque_projection_scale: float = field(default=1.0, init=False, repr=False)
@@ -274,6 +276,8 @@ class FrankaSafeAdaptiveController:
 
     def reset(self, state: FrankaState) -> None:
         self.base.reset(state)
+        if self.tangential is not None:
+            self.tangential.reset()
         self._last_governed_normal_lead = 0.0
         self._last_torque_projection_scale = 1.0
         self._torque_projection_count = 0
@@ -313,6 +317,15 @@ class FrankaSafeAdaptiveController:
     def compute(self, state: FrankaState, target: FrankaTarget, dt: float) -> np.ndarray:
         governed_target = self._govern_target(state, target)
         nominal_wrench = self.base.compute(state, governed_target, dt)
+        if self.tangential is not None:
+            nominal_wrench[:3] += self.tangential.force(
+                state,
+                governed_target,
+                self.base.base.normal,
+                self.corrected_force_n,
+                self.contact_blend,
+                self.base.base.in_contact,
+            )
         if state.actuation is None:
             self._last_torque_projection_scale = 1.0
             return nominal_wrench
@@ -323,6 +336,14 @@ class FrankaSafeAdaptiveController:
             additive_wrench=nominal_wrench,
             reserve_fraction=self.torque_reserve_fraction,
         )
+        if self.tangential is not None:
+            self.tangential.advance(
+                state,
+                governed_target,
+                self.base.base.normal,
+                dt,
+                allow_integration=projection.status == "unchanged",
+            )
         self._last_torque_projection_scale = projection.scale
         self._torque_projection_samples += 1
         self._torque_projection_scale_sum += projection.scale

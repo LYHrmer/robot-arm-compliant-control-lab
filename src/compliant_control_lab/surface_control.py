@@ -11,6 +11,7 @@ from compliant_control_lab.franka_adaptive import (
     FrankaSafeAdaptiveController,
 )
 from compliant_control_lab.franka_control import FrankaHybridController, FrankaState, FrankaTarget
+from compliant_control_lab.tangential_compensation import TangentialCompensation
 
 
 def _vector(values: np.ndarray, size: int) -> np.ndarray:
@@ -111,16 +112,30 @@ class SurfaceAdaptiveController:
         self,
         frame: SurfaceFrame,
         base: FrankaSafeAdaptiveController | None = None,
+        *,
+        tangential_mode: str | None = None,
     ) -> None:
         self._frame = frame
+        if base is not None and tangential_mode is not None:
+            raise ValueError("configure compensation on the supplied base, not both interfaces")
         if base is None:
             nominal = FrankaHybridController(
                 normal=np.array([1.0, 0.0, 0.0]), force_transition_time=0.50
             )
             adaptive = FrankaAdaptiveHybridController(base=nominal)
-            base = FrankaSafeAdaptiveController(base=adaptive)
+            compensation = (
+                TangentialCompensation(tangential_mode) if tangential_mode is not None else None
+            )
+            base = FrankaSafeAdaptiveController(base=adaptive, tangential=compensation)
         self._base = base
+        if tangential_mode is not None:
+            self.name = f"surface_{tangential_mode}_hybrid"
         self._initialized = False
+
+    @property
+    def requested_tangential_force_world(self) -> np.ndarray:
+        force = self._base.tangential.last_force if self._base.tangential else np.zeros(3)
+        return self._frame.vector_to_world(force)
 
     @property
     def frame(self) -> SurfaceFrame:

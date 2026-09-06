@@ -11,6 +11,7 @@
 | v0.6 开发对照 | 同一批 48 个公开场景，四组共 192 次仿真 | 同分步时序下原始参考 23/48、解析速度 24/48、限速参考 23/48 | 限速参考保留为实验项；尚未完成低冲击控制 |
 | Surface development v1 | 新任务与六轴传感定义；24 个公开开发 case，四组共 96 次 | 准确法向的切向误差配对中位差 −0.657 mm，接触比例 −0.967 个百分点；四组接触比例中位数约 57% | 保留坐标修正与传感接口；先解决间歇接触，未加入 RL |
 | Surface contact-model repair v1 | 同一 24 × 4 开发网格，旧/平滑模型共 192 次 | 新模型 96 组全部接触率 100%、饱和率 0%；准确法向 raw RMSE 中位数 0.181 N | 保留显式模型选项；软接触压入增加，不声称控制算法或真机改进 |
+| Tangential compensation v1 | 固定平滑模型，24 × 3 主网格；12 s × 3 摩擦 × 3 方法另存 9 行 | 切向 RMSE 中位数：基线 11.800、积分 8.093、前馈 1.885 mm；81 次接触率均 100%、饱和率均 0% | 前馈达到主网格减半目标，积分未达到；保留摩擦失配和姿态代价，不加 RL |
 
 ## 版本锚点与证据
 
@@ -79,3 +80,18 @@ sensitivity。Event replay 由
 [contact-repair manifest](../../results/franka_surface_contact_fix/manifest.json)。
 [诊断记录](../wiping_contact_diagnosis.md)保留无效探针、固定控制周期的物理子步对照和压入量
 代价。这轮仍是公开开发实验，没有新训练或新 holdout。
+
+## 固定模型后的切向补偿
+
+先用无噪声 3 s 单因素实验区分摩擦负载与动态滞后，保留零摩擦、双刚度和半速探针。
+两个补偿器参数在主网格运行前固定，均在原 nominal wrench 投影之前相加，不改变接触模型。
+旧准确法向基线 24 行既有指标完全复现，最大绝对差为 0。
+
+前馈名义摩擦始终为 0.45；独立的 12 s 诊断同时改变工具和墙面的实际摩擦输入。
+实际 0.25/0.45/0.65 时，前馈切向 RMSE 为 3.875/1.705/6.484 mm；没有把这九行混入
+主网格，也没有重新冻结 holdout。积分未达到主网格误差减半目标，结果仍完整保存。
+
+证据：[算法与学习页](../tangential_tracking.md)、[主 CSV](../../results/franka_tangential_development/comparison.csv)、
+[独立长时 CSV](../../results/franka_tangential_development/long_comparison.csv)、
+[实际参数与来源哈希](../../results/franka_tangential_development/manifest.json)、
+[七次诊断统计](../../results/franka_tangential_diagnostics/diagnosis.json)。

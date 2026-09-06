@@ -74,9 +74,10 @@ def _validate_trace(arrays: dict[str, np.ndarray]) -> int:
     if (
         kind.shape != ()
         or kind.dtype.kind != "U"
-        or kind.item() not in {"surface_adaptive", "world_safe_adaptive"}
+        or kind.item()
+        not in {"surface_adaptive", "world_safe_adaptive", "surface_integral", "surface_friction"}
     ):
-        raise ValueError("controller_kind must identify surface_adaptive or world_safe_adaptive")
+        raise ValueError("controller_kind must identify a supported surface or world controller")
     frame = SurfaceFrame(arrays["controller_frame_rotation"])
     if kind.item() == "world_safe_adaptive" and not np.allclose(
         frame.rotation, np.eye(3), rtol=0, atol=REPLAY_ABSOLUTE_TOLERANCE
@@ -175,11 +176,14 @@ def replay_surface_trace(
     supplied = controller is not None
     kind = str(arrays["controller_kind"].item())
     if controller is None:
-        controller = (
-            SurfaceAdaptiveController(SurfaceFrame(arrays["controller_frame_rotation"]))
-            if kind == "surface_adaptive"
-            else FrankaSafeAdaptiveController()
-        )
+        if kind == "world_safe_adaptive":
+            controller = FrankaSafeAdaptiveController()
+        else:
+            mode = kind.removeprefix("surface_") if kind != "surface_adaptive" else None
+            controller = SurfaceAdaptiveController(
+                SurfaceFrame(arrays["controller_frame_rotation"]),
+                tangential_mode=mode,
+            )
     controller.reset(_state(arrays, 0))
     max_wrench_error = max_torque_error = 0.0
     for index in range(count):

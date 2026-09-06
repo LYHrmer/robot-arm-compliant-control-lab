@@ -46,6 +46,7 @@ Residual RL，每章都给出公式、源码入口和练习。
 | 接近轨迹、参考限速与因果采样 | [reference_governor_v0.6.md](reference_governor_v0.6.md) |
 | 表面坐标、工具端六维 F/T 与标定误差 | [surface_frame_and_sensing.md](surface_frame_and_sensing.md) |
 | 擦拭微分离、接触柔度与步长检查 | [wiping_contact_diagnosis.md](wiping_contact_diagnosis.md) |
+| 接触稳定后的切向误差、积分与摩擦前馈 | [tangential_tracking.md](tangential_tracking.md) |
 
 ## 复现实验
 
@@ -62,6 +63,7 @@ Residual RL，每章都给出公式、源码入口和练习。
 | v0.6 开发：时序与接近参考四组对照 | [实现与复现命令](reference_governor_v0.6.md) | [`results/franka_reference_ablation/`](../results/franka_reference_ablation/) |
 | 新表面任务：24-case 法向标定开发对照 | [传感器、指标与复现命令](surface_frame_and_sensing.md) | [`results/franka_surface_development/`](../results/franka_surface_development/) |
 | 表面任务接触模型修复：24 × 4 × 2 配对 | [单因素排查与模型代价](wiping_contact_diagnosis.md) | [`results/franka_surface_contact_fix/`](../results/franka_surface_contact_fix/)、[诊断统计](../results/franka_surface_contact_diagnostics/) |
+| 固定平滑模型的切向补偿：24 × 3，加独立长时 9 次 | [公式、时序和失配边界](tangential_tracking.md) | [81 次实验](../results/franka_tangential_development/)、[单因素与静态保持](../results/franka_tangential_diagnostics/diagnosis.json) |
 
 v0.5 的 round `31756275` 已经完成 first reveal。仓库中的 48 cases 随后转为 public
 validation set（公开验证集）。复核时读取现有 `protocol.json`、`reveal.json`、

@@ -86,6 +86,7 @@ class SurfaceScenario:
     wall_yaw_deg: float = 0.0
     wall_time_constant: float = 0.012
     wall_sliding_friction: float = 0.45
+    tool_sliding_friction: float = 0.45
     tool_mass_kg: float = 0.10
     nominal_tool_mass_kg: float = 0.10
     position_noise_std_m: float = 0.0002
@@ -102,6 +103,7 @@ class SurfaceScenario:
             _finite_positive(name, getattr(self, name))
         for name in (
             "wall_sliding_friction",
+            "tool_sliding_friction",
             "nominal_tool_mass_kg",
             "position_noise_std_m",
             "force_noise_std_n",
@@ -226,6 +228,10 @@ def run_surface_trial(
     )
     if controller_kind == "surface_adaptive":
         controller = SurfaceAdaptiveController(controller_frame)
+    elif controller_kind in {"surface_integral", "surface_friction"}:
+        controller = SurfaceAdaptiveController(
+            controller_frame, tangential_mode=controller_kind.removeprefix("surface_")
+        )
     elif controller_kind == "world_safe_adaptive":
         if not np.array_equal(controller_frame.rotation, np.eye(3)):
             raise ValueError("world_safe_adaptive requires the identity frame")
@@ -249,6 +255,7 @@ def run_surface_trial(
     model.geom_quat[wall_id] = [np.cos(yaw / 2), 0, 0, np.sin(yaw / 2)]
     model.geom_solref[wall_id, 0] = scenario.wall_time_constant
     model.geom_friction[wall_id, 0] = scenario.wall_sliding_friction
+    model.geom_friction[tool_id, 0] = scenario.tool_sliding_friction
     if config.contact_model == "smooth":
         # Equal-priority geoms mix solimp. Start BOTH at zero impedance so the
         # sliding contact activates smoothly; keep width, friction and solref.
@@ -366,6 +373,9 @@ def run_surface_trial(
             "contact_blend": telemetry.contact_blend,
             "governed_normal_lead_m": telemetry.governed_normal_lead_m,
             "torque_projection_scale": telemetry.torque_projection_scale,
+            "requested_tangential_force_world": (
+                getattr(controller, "requested_tangential_force_world", np.zeros(3))
+            ),
         }
         data.ctrl[:7], data.ctrl[7] = applied_torque, 0.0
         mujoco.mj_step2(model, data)

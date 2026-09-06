@@ -32,6 +32,16 @@ v0.6 的开发实验已加入分步采样和有状态接近参考。四组对照
 压入量，代表 case 约 0.67 mm，切向误差仍约 11.8 mm。这属于接触模型修正，不是控制器或
 真机性能提升；默认旧模型和所有旧归档保留。[排查过程与复现](docs/wiping_contact_diagnosis.md)
 
+在固定平滑模型上，新增的有界摩擦前馈将同一 24-case 切向 RMSE 中位数从 **11.800 mm
+降至 1.885 mm**；独立切向积分为 8.093 mm，未达到减半目标。三组均保持 100% 接触、
+0% 饱和。另做 12 s 摩擦失配诊断：实际系数 0.65 时前馈误差升至 6.484 mm，仍依赖名义
+摩擦先验，不能泛化成未知接触下的鲁棒性证明。[算法推导与排错教程](docs/tangential_tracking.md)
+解释了传感器输入、积分 anti-windup 和全 wrench 投影；[81 次仿真](results/franka_tangential_development/summary.md)
+将主网格与长时诊断分开保存。这轮没有训练 RL。
+
+[12 秒擦拭视频](results/franka_tangential_demo/demo.mp4)同步显示七轴日志轨迹、原始法向力和
+切向误差；它是仿真日志可视化，不是重新积分动力学或真机演示。
+
 ## v0.5 首次揭盲结果
 
 机器人使用相同的 48 个仿真参数场景和相同的逐 case 噪声 seed。预注册规则要求五个 residual
@@ -80,6 +90,7 @@ raw contact 的时间作图；颜色表示运动阶段，形状表示 controller
 | 在线 bias/刚度估计与 gain scheduling | [`franka_adaptive.py`](src/compliant_control_lab/franka_adaptive.py) | [adaptive tests](tests/test_franka_adaptive.py)、[48-case event replay](results/franka_safety_postreveal/contact_events/summary.md) |
 | 有状态接近参考与因果力反馈 | [`franka_reference.py`](src/compliant_control_lab/franka_reference.py)、[split-step simulation](src/compliant_control_lab/franka_simulation.py) | [参考约束](tests/test_franka_reference.py)、[采样契约](tests/test_franka_timing.py)、[四组实验](docs/reference_governor_v0.6.md) |
 | 表面坐标、工具端 F/T 与完整输入回放 | [`surface_control.py`](src/compliant_control_lab/surface_control.py)、[`surface_sensing.py`](src/compliant_control_lab/surface_sensing.py)、[`surface_replay.py`](src/compliant_control_lab/surface_replay.py) | [坐标与传感器教程](docs/surface_frame_and_sensing.md)、[因果采样测试](tests/test_surface_simulation.py) |
+| 切向负载偏差、有界积分与平滑摩擦前馈 | [`tangential_compensation.py`](src/compliant_control_lab/tangential_compensation.py) | [公式与诊断](docs/tangential_tracking.md)、[安全时序](tests/test_tangential_safety.py)、[配对实验](results/franka_tangential_development/summary.md) |
 | 6D wrench 到 7 关节力矩包络投影 | [Python](src/compliant_control_lab/franka_torque_safety.py)、[C++17](cpp/src/torque_safety.cpp) | [native edge cases](cpp/tests/test_torque_safety.cpp)、[160-case randomized parity](tests/test_cpp_parity.py) |
 | 50 Hz bounded residual 与 500 Hz safety wrapper | [`residual_rl.py`](src/compliant_control_lab/residual_rl.py) | [residual tests](tests/test_residual_rl.py)、[paired effect](results/franka_safety_postreveal/summary.md) |
 | 五 seed 冻结、first reveal 与离线复核 | [`franka_safety_learning.py`](src/compliant_control_lab/franka_safety_learning.py)、[`published_results_audit.py`](src/compliant_control_lab/published_results_audit.py) | [protocol tests](tests/test_franka_safety_learning.py)、[tamper tests](tests/test_published_results_audit.py) |

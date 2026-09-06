@@ -27,6 +27,7 @@
 | 固定表面坐标中计算增益；同步旋转 Jacobian 后关节力矩不变 | [`surface_control.py`](../src/compliant_control_lab/surface_control.py) | [旋转协变与 identity 等价](../tests/test_surface_control.py) | [24-case 开发对照](../results/franka_surface_development/summary.md) |
 | 工具端六轴传感使用 sensordata，仅补偿名义重力；法向投影进入闭环 | [`surface_sensing.py`](../src/compliant_control_lab/surface_sensing.py) | [外力符号与惯性残留](../tests/test_surface_sensing.py)、[因果采样与真值隔离](../tests/test_surface_simulation.py) | [建模限定](surface_frame_and_sensing.md) |
 | 完整控制输入可重放 wrench 和未裁剪 joint torque，不积分新动力学 | [`surface_replay.py`](../src/compliant_control_lab/surface_replay.py) | [序列回放与格式拒绝](../tests/test_surface_replay.py)、[归档复核](../tests/test_surface_published_results.py) | [四份代表轨迹与 replay_checks](../results/franka_surface_development/manifest.json) |
+| 切向积分/前馈使用测量状态，在同次 nominal 投影之前相加；条件积分有界且丢失接触清零 | [`tangential_compensation.py`](../src/compliant_control_lab/tangential_compensation.py)、[`franka_adaptive.py`](../src/compliant_control_lab/franka_adaptive.py) | [范数与换向](../tests/test_tangential_feedforward.py)、[积分时序与冻结](../tests/test_tangential_safety.py)、[真值隔离与回放](../tests/test_tangential_replay.py) | [固定模型 72 行主对照与独立 9 行失配](../results/franka_tangential_development/summary.md)；不证明任意摩擦鲁棒性 |
 
 ## 实验完整性
 
@@ -37,6 +38,11 @@
 [192 行配对报告](../results/franka_surface_contact_fix/summary.md)由
 [归档测试](../tests/test_surface_contact_published_results.py)核对。这些证据只适用于仿真模型，
 不证明材料辨识或控制算法优越性。
+
+后续[切向补偿实验](tangential_tracking.md)固定上述平滑模型，先逐项复现准确法向的旧 24 行，
+再比较两种经典补偿。[实验契约测试](../tests/test_tangential_experiment.py)检查行数、配对、
+目录与来源保护，[归档测试](../tests/test_tangential_published_results.py)重算哈希、代表轨迹指标
+和失败判定。前馈达到本轮切向减半目标，积分未达到；两者的 force/姿态代价均保留。
 
 | 主张 | 实现 | 自动测试 | 冻结证据 |
 |---|---|---|---|
