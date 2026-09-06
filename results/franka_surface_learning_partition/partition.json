@@ -1,0 +1,147 @@
+{
+  "candidates": [
+    {
+      "anchor_splits": {
+        "preparation_000": "development_test",
+        "preparation_001": "development_test",
+        "preparation_002": "train"
+      },
+      "condition_met": false,
+      "seed": 20260906
+    },
+    {
+      "anchor_splits": {
+        "preparation_000": "validation",
+        "preparation_001": "train",
+        "preparation_002": "train"
+      },
+      "condition_met": false,
+      "seed": 20260907
+    },
+    {
+      "anchor_splits": {
+        "preparation_000": "train",
+        "preparation_001": "development_test",
+        "preparation_002": "validation"
+      },
+      "condition_met": true,
+      "seed": 20260908
+    }
+  ],
+  "derived_audits": {
+    "benchmark": {
+      "matches": true,
+      "physics_steps": 432000,
+      "run_count": 72
+    },
+    "dataset": {
+      "corpus_scope": "full",
+      "episodes": 24,
+      "failed_episodes": 0,
+      "groups": 12,
+      "new_holdout": false,
+      "physics_steps": 144000,
+      "planned_episodes": 24,
+      "split_episode_counts": {
+        "development_test": 4,
+        "train": 16,
+        "validation": 4
+      },
+      "transitions": 14400,
+      "valid": true
+    },
+    "stress": {
+      "matches": true,
+      "physics_steps": 72000,
+      "run_count": 12
+    }
+  },
+  "group_roles": {
+    "02d1135b618f4bb3d559c8fd49d64ce93c43986b9e6d59576110bfabc47f2de3": {
+      "role": "joint_configuration",
+      "split": "development_test"
+    },
+    "2bc8e9ed3f6cc48467d75ad882c720ca1537de885e778c2501ab0227267a5679": {
+      "role": "joint_configuration",
+      "split": "train"
+    },
+    "3af3caae32e997092b8bbcb4590b3c030f813d9414d20593d3a15e4b1c0cf488": {
+      "role": "joint_configuration",
+      "split": "train"
+    },
+    "6d8c4b9fdc779198d04f6d4292585f35bec087939b9edaae51aa0bead7218bb9": {
+      "role": "joint_configuration",
+      "split": "train"
+    },
+    "76b1a9cdc26befb201d8995fa84ed0878e8eeef436f67587d023c9e35564bfff": {
+      "role": "nominal_anchor",
+      "split": "development_test"
+    },
+    "78aeb0f4c4f201ab45dfab2f961fa047d356b7d0c2ba94e8c37a076206d59381": {
+      "role": "joint_configuration",
+      "split": "train"
+    },
+    "7de4a580a6c8ff1c7f8c59061686922a216fdde972b1a2d29c6c5658355a75fc": {
+      "role": "nominal_anchor",
+      "split": "validation"
+    },
+    "8a93eb6e8492e8e95cc35d19e9b8f11ee84b3abaf062b765bd2b9358198a09b7": {
+      "role": "joint_configuration",
+      "split": "train"
+    },
+    "c4ccad8d74f5bf63a45b3eca8a861b7c4e60cca35d37f4c03c74d9a38c114bd2": {
+      "role": "nominal_anchor",
+      "split": "train"
+    },
+    "d7dd1af9307ebd87f97f8e12bf7c4105c0a7bf167a41092ef2db58c7e7e133c2": {
+      "role": "joint_configuration",
+      "split": "train"
+    },
+    "e7e85c528523f783b124ec401e1fcbe0650e96483b5157dc2eda12ce83c2a4df": {
+      "role": "joint_configuration",
+      "split": "train"
+    },
+    "f867c0c8c648e69fef3c38ba45159a37264884db9cb86980f30dc525f65d5fd5": {
+      "role": "joint_configuration",
+      "split": "validation"
+    }
+  },
+  "identity": "no new rollout; public post-benchmark, pre-learning partition",
+  "input_audits": {
+    "benchmark": {
+      "matches": true,
+      "physics_steps": 432000,
+      "run_count": 72
+    },
+    "dataset": {
+      "corpus_scope": "full",
+      "episodes": 24,
+      "failed_episodes": 0,
+      "groups": 12,
+      "new_holdout": false,
+      "physics_steps": 144000,
+      "planned_episodes": 24,
+      "split_episode_counts": {
+        "development_test": 4,
+        "train": 16,
+        "validation": 4
+      },
+      "transitions": 14400,
+      "valid": true
+    },
+    "stress": {
+      "matches": true,
+      "physics_steps": 72000,
+      "run_count": 12
+    }
+  },
+  "new_holdout": false,
+  "parent_manifest_sha256": {
+    "benchmark": "dff0eb2adfa5e8ca02a7109a376233ef2f5b417f99a0a96862bb854876ba165f",
+    "dataset": "f38426a73d8864b987adcdd42ea0176f724db91dd30cafe810d08a4d16873e3e",
+    "stress": "59a5e837b9b02878e810cae1393a252b657c4c5bb6055aa237fd7d69be77ad87"
+  },
+  "selected_seed": 20260908,
+  "selection_uses_performance": false,
+  "start_seed": 20260906
+}

@@ -31,6 +31,17 @@
 
 ## 实验完整性
 
+新表面任务的[学习前准备](surface_learning.md)与旧 v0.5 学习实验使用不同接口和数据身份：
+
+| 检查范围 | 实现 | 可执行证据 |
+|---|---|---|
+| 批量与交互仿真使用同一循环；代表完整轨迹零残差一致 | [`surface_simulation.py`](../src/compliant_control_lab/surface_simulation.py)、[`surface_env.py`](../src/compliant_control_lab/surface_env.py) | [旧归档逐字段回归](../tests/test_surface_stepper.py)、[Gym/重置/零残差](../tests/test_surface_env.py) |
+| 最后积分状态的速度/穿透不能被正常 truncation 隐藏 | [`SurfaceSimulator.evaluator_kinematics`](../src/compliant_control_lab/surface_simulation.py) | [端点故障注入](../tests/test_surface_endpoint.py)；不是自然触发概率或连续时间安全证明 |
+| 同频教师标签、失败保留、按组切分、bootstrap/折扣时钟 | [`surface_dataset.py`](../src/compliant_control_lab/surface_dataset.py)、[`surface_splits.py`](../src/compliant_control_lab/surface_splits.py)、[`surface_transitions.py`](../src/compliant_control_lab/surface_transitions.py) | [重封哈希后的语义篡改](../tests/test_surface_dataset.py)、[分组测试](../tests/test_surface_splits.py)、[数组加载与 mask](../tests/test_surface_transitions.py) |
+| 保存动作可重新积分，而不仅是重算标签或哈希 | [`surface_dataset_replay.py`](../src/compliant_control_lab/surface_dataset_replay.py) | [独立 fresh-env 重放](../tests/test_surface_dataset_replay.py) |
+| 候选策略绑定新 schema/名义控制器/分组；冻结值由外部固定 | [`surface_policy_artifact.py`](../src/compliant_control_lab/surface_policy_artifact.py) | [旧策略拒绝、回调异常与重封篡改](../tests/test_surface_policy_artifact.py) |
+| 有限 JSON MLP 可导出；冻结权重、runner 与运行版本后再进入评价 | [`surface_mlp_actor.py`](../tools/surface_mlp_actor.py)、[`evaluate_surface_candidate.py`](../tools/evaluate_surface_candidate.py) | [数值推理与格式拒绝](../tests/test_surface_mlp_actor.py)、[冻结选择范围与独立物理门](../tests/test_surface_candidate_evaluation.py) |
+
 表面任务的[接触模型修复](wiping_contact_diagnosis.md)由
 [`surface_simulation.py`](../src/compliant_control_lab/surface_simulation.py) 显式选择；
 [稳定性与真实几何回归](../tests/test_surface_contact_stability.py)检查接触、摩擦及默认旧路径，

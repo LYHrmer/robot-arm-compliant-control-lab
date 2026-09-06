@@ -1,0 +1,3816 @@
+{
+  "action_names": [
+    "normal",
+    "tangent1",
+    "tangent2"
+  ],
+  "action_stage": "normalized_local_residual",
+  "action_units": "normalized",
+  "cases": [
+    {
+      "case_id": "g000_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9659258262890683,
+          0.25881904510252074,
+          0.0
+        ],
+        [
+          -0.25881904510252074,
+          0.9659258262890683,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "c4ccad8d74f5bf63a45b3eca8a861b7c4e60cca35d37f4c03c74d9a38c114bd2",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0.15,
+        "name": "preparation_000",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0002,
+        "tool_mass_kg": 0.1,
+        "tool_sliding_friction": 0.45,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": -15.0
+      },
+      "split": "train",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.2,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 0.0,
+        "tangent_amplitude_m": 0.055,
+        "vertical_amplitude_m": 0.04,
+        "yaw_deg": -15.0
+      }
+    },
+    {
+      "case_id": "g000_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9659258262890683,
+          0.25881904510252074,
+          0.0
+        ],
+        [
+          -0.25881904510252074,
+          0.9659258262890683,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "c4ccad8d74f5bf63a45b3eca8a861b7c4e60cca35d37f4c03c74d9a38c114bd2",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0.15,
+        "name": "preparation_000",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0002,
+        "tool_mass_kg": 0.1,
+        "tool_sliding_friction": 0.45,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": -15.0
+      },
+      "split": "train",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.2,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 0.0,
+        "tangent_amplitude_m": 0.055,
+        "vertical_amplitude_m": 0.04,
+        "yaw_deg": -15.0
+      }
+    },
+    {
+      "case_id": "g001_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "group_id": "76b1a9cdc26befb201d8995fa84ed0878e8eeef436f67587d023c9e35564bfff",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0.15,
+        "name": "preparation_001",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0002,
+        "tool_mass_kg": 0.1,
+        "tool_sliding_friction": 0.45,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": 0.0
+      },
+      "split": "development_test",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.2,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 0.0,
+        "tangent_amplitude_m": 0.055,
+        "vertical_amplitude_m": 0.04,
+        "yaw_deg": 0.0
+      }
+    },
+    {
+      "case_id": "g001_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "group_id": "76b1a9cdc26befb201d8995fa84ed0878e8eeef436f67587d023c9e35564bfff",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0.15,
+        "name": "preparation_001",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0002,
+        "tool_mass_kg": 0.1,
+        "tool_sliding_friction": 0.45,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": 0.0
+      },
+      "split": "development_test",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.2,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 0.0,
+        "tangent_amplitude_m": 0.055,
+        "vertical_amplitude_m": 0.04,
+        "yaw_deg": 0.0
+      }
+    },
+    {
+      "case_id": "g002_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9659258262890683,
+          -0.25881904510252074,
+          0.0
+        ],
+        [
+          0.25881904510252074,
+          0.9659258262890683,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "group_id": "7de4a580a6c8ff1c7f8c59061686922a216fdde972b1a2d29c6c5658355a75fc",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0.15,
+        "name": "preparation_002",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0002,
+        "tool_mass_kg": 0.1,
+        "tool_sliding_friction": 0.45,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": 15.0
+      },
+      "split": "validation",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.2,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 0.0,
+        "tangent_amplitude_m": 0.055,
+        "vertical_amplitude_m": 0.04,
+        "yaw_deg": 15.0
+      }
+    },
+    {
+      "case_id": "g002_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9659258262890683,
+          -0.25881904510252074,
+          0.0
+        ],
+        [
+          0.25881904510252074,
+          0.9659258262890683,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "group_id": "7de4a580a6c8ff1c7f8c59061686922a216fdde972b1a2d29c6c5658355a75fc",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0.15,
+        "name": "preparation_002",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0002,
+        "tool_mass_kg": 0.1,
+        "tool_sliding_friction": 0.45,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": 15.0
+      },
+      "split": "validation",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.2,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 0.0,
+        "tangent_amplitude_m": 0.055,
+        "vertical_amplitude_m": 0.04,
+        "yaw_deg": 15.0
+      }
+    },
+    {
+      "case_id": "g003_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 13.374474247256181,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9997256003010401,
+          0.0234248607834745,
+          0.0
+        ],
+        [
+          -0.0234248607834745,
+          0.9997256003010401,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "2bc8e9ed3f6cc48467d75ad882c720ca1537de885e778c2501ab0227267a5679",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 0.9834295595238157,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.1695738581362003,
+          -0.2867989624010878,
+          0.25809642436661195
+        ],
+        "force_noise_std_n": 0.1749716778290761,
+        "name": "preparation_003",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.00034354025703593695,
+        "tool_mass_kg": 0.10431399162545195,
+        "tool_sliding_friction": 0.46814634107119396,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.46814634107119396,
+        "wall_time_constant": 0.006730428155143842,
+        "wall_yaw_deg": -5.18662012966408
+      },
+      "split": "train",
+      "task": {
+        "direction": -1,
+        "frequency_hz": 0.16997849511296048,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 2.1520115683888155,
+        "tangent_amplitude_m": 0.056569662532711826,
+        "vertical_amplitude_m": 0.037649417111510014,
+        "yaw_deg": -5.18662012966408
+      }
+    },
+    {
+      "case_id": "g003_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 13.374474247256181,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9997256003010401,
+          0.0234248607834745,
+          0.0
+        ],
+        [
+          -0.0234248607834745,
+          0.9997256003010401,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "2bc8e9ed3f6cc48467d75ad882c720ca1537de885e778c2501ab0227267a5679",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 0.9834295595238157,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.1695738581362003,
+          -0.2867989624010878,
+          0.25809642436661195
+        ],
+        "force_noise_std_n": 0.1749716778290761,
+        "name": "preparation_003",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.00034354025703593695,
+        "tool_mass_kg": 0.10431399162545195,
+        "tool_sliding_friction": 0.46814634107119396,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.46814634107119396,
+        "wall_time_constant": 0.006730428155143842,
+        "wall_yaw_deg": -5.18662012966408
+      },
+      "split": "train",
+      "task": {
+        "direction": -1,
+        "frequency_hz": 0.16997849511296048,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 2.1520115683888155,
+        "tangent_amplitude_m": 0.056569662532711826,
+        "vertical_amplitude_m": 0.037649417111510014,
+        "yaw_deg": -5.18662012966408
+      }
+    },
+    {
+      "case_id": "g004_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 10.514967923347504,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9893468212511598,
+          0.14557770186476268,
+          0.0
+        ],
+        [
+          -0.14557770186476268,
+          0.9893468212511598,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "78aeb0f4c4f201ab45dfab2f961fa047d356b7d0c2ba94e8c37a076206d59381",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 0.9621168342455056,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.1178536357577894,
+          -0.10616752431378851,
+          0.07639844780124128
+        ],
+        "force_noise_std_n": 0.21989282450330733,
+        "name": "preparation_004",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0004999431587325098,
+        "tool_mass_kg": 0.129354758344775,
+        "tool_sliding_friction": 0.5254600995314549,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.5254600995314549,
+        "wall_time_constant": 0.011011106824447415,
+        "wall_yaw_deg": -4.3225581669923425
+      },
+      "split": "train",
+      "task": {
+        "direction": -1,
+        "frequency_hz": 0.15867053617901622,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 5.702671881521383,
+        "tangent_amplitude_m": 0.05031274631985218,
+        "vertical_amplitude_m": 0.0398378975611908,
+        "yaw_deg": -4.3225581669923425
+      }
+    },
+    {
+      "case_id": "g004_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 10.514967923347504,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9893468212511598,
+          0.14557770186476268,
+          0.0
+        ],
+        [
+          -0.14557770186476268,
+          0.9893468212511598,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "78aeb0f4c4f201ab45dfab2f961fa047d356b7d0c2ba94e8c37a076206d59381",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 0.9621168342455056,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.1178536357577894,
+          -0.10616752431378851,
+          0.07639844780124128
+        ],
+        "force_noise_std_n": 0.21989282450330733,
+        "name": "preparation_004",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0004999431587325098,
+        "tool_mass_kg": 0.129354758344775,
+        "tool_sliding_friction": 0.5254600995314549,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.5254600995314549,
+        "wall_time_constant": 0.011011106824447415,
+        "wall_yaw_deg": -4.3225581669923425
+      },
+      "split": "train",
+      "task": {
+        "direction": -1,
+        "frequency_hz": 0.15867053617901622,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 5.702671881521383,
+        "tangent_amplitude_m": 0.05031274631985218,
+        "vertical_amplitude_m": 0.0398378975611908,
+        "yaw_deg": -4.3225581669923425
+      }
+    },
+    {
+      "case_id": "g005_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 12.636881524891674,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9998651027654251,
+          -0.016424867484582505,
+          0.0
+        ],
+        [
+          0.016424867484582505,
+          0.9998651027654251,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0000000000000002
+        ]
+      ],
+      "group_id": "02d1135b618f4bb3d559c8fd49d64ce93c43986b9e6d59576110bfabc47f2de3",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 0.9972262206770302,
+        "delay_steps": 3,
+        "force_bias_sensor_n": [
+          -0.08647490567986454,
+          0.31319371654544714,
+          -0.36281386610832667
+        ],
+        "force_noise_std_n": 0.11331838487622092,
+        "name": "preparation_005",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.00027154453598569753,
+        "tool_mass_kg": 0.11972517654166485,
+        "tool_sliding_friction": 0.5133303977591781,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.5133303977591781,
+        "wall_time_constant": 0.006534427480187282,
+        "wall_yaw_deg": 3.2149954686098
+      },
+      "split": "development_test",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.20647472664080396,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 4.671457175033326,
+        "tangent_amplitude_m": 0.04558289499680336,
+        "vertical_amplitude_m": 0.04435887364327973,
+        "yaw_deg": 3.2149954686098
+      }
+    },
+    {
+      "case_id": "g005_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 12.636881524891674,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9998651027654251,
+          -0.016424867484582505,
+          0.0
+        ],
+        [
+          0.016424867484582505,
+          0.9998651027654251,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0000000000000002
+        ]
+      ],
+      "group_id": "02d1135b618f4bb3d559c8fd49d64ce93c43986b9e6d59576110bfabc47f2de3",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 0.9972262206770302,
+        "delay_steps": 3,
+        "force_bias_sensor_n": [
+          -0.08647490567986454,
+          0.31319371654544714,
+          -0.36281386610832667
+        ],
+        "force_noise_std_n": 0.11331838487622092,
+        "name": "preparation_005",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.00027154453598569753,
+        "tool_mass_kg": 0.11972517654166485,
+        "tool_sliding_friction": 0.5133303977591781,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.5133303977591781,
+        "wall_time_constant": 0.006534427480187282,
+        "wall_yaw_deg": 3.2149954686098
+      },
+      "split": "development_test",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.20647472664080396,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 4.671457175033326,
+        "tangent_amplitude_m": 0.04558289499680336,
+        "vertical_amplitude_m": 0.04435887364327973,
+        "yaw_deg": 3.2149954686098
+      }
+    },
+    {
+      "case_id": "g006_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 10.792959479654229,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9649518215879473,
+          -0.2624270984751812,
+          0.0
+        ],
+        [
+          0.2624270984751812,
+          0.9649518215879473,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0000000000000002
+        ]
+      ],
+      "group_id": "d7dd1af9307ebd87f97f8e12bf7c4105c0a7bf167a41092ef2db58c7e7e133c2",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 1.0193190741835965,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2923577006697651,
+          -0.05259234730586859,
+          0.2531584804631489
+        ],
+        "force_noise_std_n": 0.11677868862921094,
+        "name": "preparation_006",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0004130531376124821,
+        "tool_mass_kg": 0.10822689276858583,
+        "tool_sliding_friction": 0.6156472242724733,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.6156472242724733,
+        "wall_time_constant": 0.0054352313610654904,
+        "wall_yaw_deg": 11.29514497758774
+      },
+      "split": "train",
+      "task": {
+        "direction": -1,
+        "frequency_hz": 0.2293882756344336,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 3.739127776013458,
+        "tangent_amplitude_m": 0.04349420057357818,
+        "vertical_amplitude_m": 0.03374245065830648,
+        "yaw_deg": 11.29514497758774
+      }
+    },
+    {
+      "case_id": "g006_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 10.792959479654229,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9649518215879473,
+          -0.2624270984751812,
+          0.0
+        ],
+        [
+          0.2624270984751812,
+          0.9649518215879473,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0000000000000002
+        ]
+      ],
+      "group_id": "d7dd1af9307ebd87f97f8e12bf7c4105c0a7bf167a41092ef2db58c7e7e133c2",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 1.0193190741835965,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2923577006697651,
+          -0.05259234730586859,
+          0.2531584804631489
+        ],
+        "force_noise_std_n": 0.11677868862921094,
+        "name": "preparation_006",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0004130531376124821,
+        "tool_mass_kg": 0.10822689276858583,
+        "tool_sliding_friction": 0.6156472242724733,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.6156472242724733,
+        "wall_time_constant": 0.0054352313610654904,
+        "wall_yaw_deg": 11.29514497758774
+      },
+      "split": "train",
+      "task": {
+        "direction": -1,
+        "frequency_hz": 0.2293882756344336,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 3.739127776013458,
+        "tangent_amplitude_m": 0.04349420057357818,
+        "vertical_amplitude_m": 0.03374245065830648,
+        "yaw_deg": 11.29514497758774
+      }
+    },
+    {
+      "case_id": "g007_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 14.294771291017808,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9933927363619459,
+          -0.11476441671234801,
+          0.0
+        ],
+        [
+          0.11476441671234801,
+          0.9933927363619459,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "group_id": "f867c0c8c648e69fef3c38ba45159a37264884db9cb86980f30dc525f65d5fd5",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 1.0304521490512677,
+        "delay_steps": 2,
+        "force_bias_sensor_n": [
+          0.07516846842614006,
+          0.25411864992877353,
+          0.11827950093348027
+        ],
+        "force_noise_std_n": 0.15472227448453818,
+        "name": "preparation_007",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.00032023374139809494,
+        "tool_mass_kg": 0.12001540091777507,
+        "tool_sliding_friction": 0.6033252469640649,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.6033252469640649,
+        "wall_time_constant": 0.008357722303622032,
+        "wall_yaw_deg": 6.849103482665328
+      },
+      "split": "validation",
+      "task": {
+        "direction": -1,
+        "frequency_hz": 0.18221993030472838,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 5.568392262938695,
+        "tangent_amplitude_m": 0.06114263634529844,
+        "vertical_amplitude_m": 0.03114630630967422,
+        "yaw_deg": 6.849103482665328
+      }
+    },
+    {
+      "case_id": "g007_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 14.294771291017808,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9933927363619459,
+          -0.11476441671234801,
+          0.0
+        ],
+        [
+          0.11476441671234801,
+          0.9933927363619459,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "group_id": "f867c0c8c648e69fef3c38ba45159a37264884db9cb86980f30dc525f65d5fd5",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 1.0304521490512677,
+        "delay_steps": 2,
+        "force_bias_sensor_n": [
+          0.07516846842614006,
+          0.25411864992877353,
+          0.11827950093348027
+        ],
+        "force_noise_std_n": 0.15472227448453818,
+        "name": "preparation_007",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.00032023374139809494,
+        "tool_mass_kg": 0.12001540091777507,
+        "tool_sliding_friction": 0.6033252469640649,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.6033252469640649,
+        "wall_time_constant": 0.008357722303622032,
+        "wall_yaw_deg": 6.849103482665328
+      },
+      "split": "validation",
+      "task": {
+        "direction": -1,
+        "frequency_hz": 0.18221993030472838,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 5.568392262938695,
+        "tangent_amplitude_m": 0.06114263634529844,
+        "vertical_amplitude_m": 0.03114630630967422,
+        "yaw_deg": 6.849103482665328
+      }
+    },
+    {
+      "case_id": "g008_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 8.234363796630474,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9700641306204176,
+          -0.24284888816639325,
+          0.0
+        ],
+        [
+          0.24284888816639325,
+          0.9700641306204176,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "group_id": "6d8c4b9fdc779198d04f6d4292585f35bec087939b9edaae51aa0bead7218bb9",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 0.9602713111227346,
+        "delay_steps": 2,
+        "force_bias_sensor_n": [
+          0.2662945061269385,
+          -0.3462216766538664,
+          -0.34195517693971
+        ],
+        "force_noise_std_n": 0.19257362125669128,
+        "name": "preparation_008",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0002499129492919603,
+        "tool_mass_kg": 0.11195398633249383,
+        "tool_sliding_friction": 0.37108835386298933,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.37108835386298933,
+        "wall_time_constant": 0.007612425204658782,
+        "wall_yaw_deg": 12.339658663619971
+      },
+      "split": "train",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.22046893524917144,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 0.6730148394337498,
+        "tangent_amplitude_m": 0.04006330429920229,
+        "vertical_amplitude_m": 0.04135387698125583,
+        "yaw_deg": 12.339658663619971
+      }
+    },
+    {
+      "case_id": "g008_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 8.234363796630474,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9700641306204176,
+          -0.24284888816639325,
+          0.0
+        ],
+        [
+          0.24284888816639325,
+          0.9700641306204176,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "group_id": "6d8c4b9fdc779198d04f6d4292585f35bec087939b9edaae51aa0bead7218bb9",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 0.9602713111227346,
+        "delay_steps": 2,
+        "force_bias_sensor_n": [
+          0.2662945061269385,
+          -0.3462216766538664,
+          -0.34195517693971
+        ],
+        "force_noise_std_n": 0.19257362125669128,
+        "name": "preparation_008",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0002499129492919603,
+        "tool_mass_kg": 0.11195398633249383,
+        "tool_sliding_friction": 0.37108835386298933,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.37108835386298933,
+        "wall_time_constant": 0.007612425204658782,
+        "wall_yaw_deg": 12.339658663619971
+      },
+      "split": "train",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.22046893524917144,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 0.6730148394337498,
+        "tangent_amplitude_m": 0.04006330429920229,
+        "vertical_amplitude_m": 0.04135387698125583,
+        "yaw_deg": 12.339658663619971
+      }
+    },
+    {
+      "case_id": "g009_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 15.710602499038712,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9687317446471707,
+          0.248110473202662,
+          0.0
+        ],
+        [
+          -0.248110473202662,
+          0.9687317446471707,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "8a93eb6e8492e8e95cc35d19e9b8f11ee84b3abaf062b765bd2b9358198a09b7",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 1.0126101880853107,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          -0.008517215224522978,
+          -0.30436522549840234,
+          0.09521874417777249
+        ],
+        "force_noise_std_n": 0.13414730217384957,
+        "name": "preparation_009",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0004588389521656723,
+        "tool_mass_kg": 0.10259178479291689,
+        "tool_sliding_friction": 0.3989671028767117,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.3989671028767117,
+        "wall_time_constant": 0.011886851976159603,
+        "wall_yaw_deg": -10.82363814841609
+      },
+      "split": "train",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.12693999371548184,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 3.2061802158377914,
+        "tangent_amplitude_m": 0.052717227640788386,
+        "vertical_amplitude_m": 0.03305490428095286,
+        "yaw_deg": -10.82363814841609
+      }
+    },
+    {
+      "case_id": "g009_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 15.710602499038712,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9687317446471707,
+          0.248110473202662,
+          0.0
+        ],
+        [
+          -0.248110473202662,
+          0.9687317446471707,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "8a93eb6e8492e8e95cc35d19e9b8f11ee84b3abaf062b765bd2b9358198a09b7",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 1.0126101880853107,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          -0.008517215224522978,
+          -0.30436522549840234,
+          0.09521874417777249
+        ],
+        "force_noise_std_n": 0.13414730217384957,
+        "name": "preparation_009",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0004588389521656723,
+        "tool_mass_kg": 0.10259178479291689,
+        "tool_sliding_friction": 0.3989671028767117,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.3989671028767117,
+        "wall_time_constant": 0.011886851976159603,
+        "wall_yaw_deg": -10.82363814841609
+      },
+      "split": "train",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.12693999371548184,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 3.2061802158377914,
+        "tangent_amplitude_m": 0.052717227640788386,
+        "vertical_amplitude_m": 0.03305490428095286,
+        "yaw_deg": -10.82363814841609
+      }
+    },
+    {
+      "case_id": "g010_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 11.744255247460599,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9743683662328629,
+          0.22495841145576562,
+          0.0
+        ],
+        [
+          -0.22495841145576562,
+          0.9743683662328629,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "e7e85c528523f783b124ec401e1fcbe0650e96483b5157dc2eda12ce83c2a4df",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 1.0479867879634472,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2559599653794824,
+          -0.1184943582970881,
+          0.1137047788416905
+        ],
+        "force_noise_std_n": 0.24842177267461152,
+        "name": "preparation_010",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.00021399351356606242,
+        "tool_mass_kg": 0.11385952639154474,
+        "tool_sliding_friction": 0.31918862417493166,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.31918862417493166,
+        "wall_time_constant": 0.010015225550379005,
+        "wall_yaw_deg": -14.078590933930105
+      },
+      "split": "train",
+      "task": {
+        "direction": -1,
+        "frequency_hz": 0.14805304029830063,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 1.0200620287316613,
+        "tangent_amplitude_m": 0.05767822215054007,
+        "vertical_amplitude_m": 0.042058570005678524,
+        "yaw_deg": -14.078590933930105
+      }
+    },
+    {
+      "case_id": "g010_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 11.744255247460599,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9743683662328629,
+          0.22495841145576562,
+          0.0
+        ],
+        [
+          -0.22495841145576562,
+          0.9743683662328629,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "e7e85c528523f783b124ec401e1fcbe0650e96483b5157dc2eda12ce83c2a4df",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 1.0479867879634472,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2559599653794824,
+          -0.1184943582970881,
+          0.1137047788416905
+        ],
+        "force_noise_std_n": 0.24842177267461152,
+        "name": "preparation_010",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.00021399351356606242,
+        "tool_mass_kg": 0.11385952639154474,
+        "tool_sliding_friction": 0.31918862417493166,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.31918862417493166,
+        "wall_time_constant": 0.010015225550379005,
+        "wall_yaw_deg": -14.078590933930105
+      },
+      "split": "train",
+      "task": {
+        "direction": -1,
+        "frequency_hz": 0.14805304029830063,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 1.0200620287316613,
+        "tangent_amplitude_m": 0.05767822215054007,
+        "vertical_amplitude_m": 0.042058570005678524,
+        "yaw_deg": -14.078590933930105
+      }
+    },
+    {
+      "case_id": "g011_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 9.411280456376277,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9997396172692449,
+          0.02281880063333113,
+          0.0
+        ],
+        [
+          -0.02281880063333113,
+          0.9997396172692449,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "3af3caae32e997092b8bbcb4590b3c030f813d9414d20593d3a15e4b1c0cf488",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 0.9829527833394772,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.23211452560618162,
+          -0.12799275336168803,
+          -0.07060629927608791
+        ],
+        "force_noise_std_n": 0.20261687851490356,
+        "name": "preparation_011",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0003674977435973798,
+        "tool_mass_kg": 0.12651217788740876,
+        "tool_sliding_friction": 0.25019342041813164,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.25019342041813164,
+        "wall_time_constant": 0.009006588842358786,
+        "wall_yaw_deg": -0.4889248881824635
+      },
+      "split": "train",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.24351178517206784,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 1.700998670330913,
+        "tangent_amplitude_m": 0.0641325300513091,
+        "vertical_amplitude_m": 0.03544363020304142,
+        "yaw_deg": -0.4889248881824635
+      }
+    },
+    {
+      "case_id": "g011_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 9.411280456376277,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9997396172692449,
+          0.02281880063333113,
+          0.0
+        ],
+        [
+          -0.02281880063333113,
+          0.9997396172692449,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "3af3caae32e997092b8bbcb4590b3c030f813d9414d20593d3a15e4b1c0cf488",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 0.9829527833394772,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.23211452560618162,
+          -0.12799275336168803,
+          -0.07060629927608791
+        ],
+        "force_noise_std_n": 0.20261687851490356,
+        "name": "preparation_011",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0003674977435973798,
+        "tool_mass_kg": 0.12651217788740876,
+        "tool_sliding_friction": 0.25019342041813164,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.25019342041813164,
+        "wall_time_constant": 0.009006588842358786,
+        "wall_yaw_deg": -0.4889248881824635
+      },
+      "split": "train",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.24351178517206784,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 1.700998670330913,
+        "tangent_amplitude_m": 0.0641325300513091,
+        "vertical_amplitude_m": 0.03544363020304142,
+        "yaw_deg": -0.4889248881824635
+      }
+    }
+  ],
+  "corpus_scope": "full",
+  "episodes": [
+    {
+      "actual_config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 287335974,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "actual_scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0.15,
+        "name": "preparation_000",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0002,
+        "tool_mass_kg": 0.1,
+        "tool_sliding_friction": 0.45,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": -15.0
+      },
+      "actual_task": {
+        "direction": 1,
+        "frequency_hz": 0.2,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 0.0,
+        "tangent_amplitude_m": 0.055,
+        "vertical_amplitude_m": 0.04,
+        "yaw_deg": -15.0
+      },
+      "case_id": "g000_seed11",
+      "env_seed": 11,
+      "exception_detail": null,
+      "file": "episode_00000.npz",
+      "gates": {
+        "environment_termination_free": true,
+        "evaluation_observed": true
+      },
+      "group_id": "c4ccad8d74f5bf63a45b3eca8a861b7c4e60cca35d37f4c03c74d9a38c114bd2",
+      "metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.544,
+        "force_rmse_n": 0.16065819608867096,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.19553636875527006,
+        "orientation_rmse_deg": 0.5148834555286114,
+        "peak_force_n": 12.620551352829679,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 2.0051710813574304
+      },
+      "nonfinite_trace_fields": [],
+      "physics_count": 6000,
+      "return": 11.681825768993317,
+      "sha256": "2a77b23cd5ab499f6a9dc771132521aa41df429d13103ebcfc445dc5a8888505",
+      "simulation_seed": 287335974,
+      "split": "train",
+      "terminated": false,
+      "termination_reasons": [],
+      "transition_count": 600,
+      "truncated": true
+    },
+    {
+      "actual_config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 2007055255,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "actual_scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0.15,
+        "name": "preparation_000",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0002,
+        "tool_mass_kg": 0.1,
+        "tool_sliding_friction": 0.45,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": -15.0
+      },
+      "actual_task": {
+        "direction": 1,
+        "frequency_hz": 0.2,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 0.0,
+        "tangent_amplitude_m": 0.055,
+        "vertical_amplitude_m": 0.04,
+        "yaw_deg": -15.0
+      },
+      "case_id": "g000_seed29",
+      "env_seed": 29,
+      "exception_detail": null,
+      "file": "episode_00001.npz",
+      "gates": {
+        "environment_termination_free": true,
+        "evaluation_observed": true
+      },
+      "group_id": "c4ccad8d74f5bf63a45b3eca8a861b7c4e60cca35d37f4c03c74d9a38c114bd2",
+      "metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.544,
+        "force_rmse_n": 0.1591996370922437,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.19980263385345629,
+        "orientation_rmse_deg": 0.5148734070426096,
+        "peak_force_n": 12.648971772477514,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 2.0085671530637343
+      },
+      "nonfinite_trace_fields": [],
+      "physics_count": 6000,
+      "return": 11.681865829797005,
+      "sha256": "2ace6a8faa68f4362c85fbae7fb75074544711fa920ffcf78b44802eb8021d5a",
+      "simulation_seed": 2007055255,
+      "split": "train",
+      "terminated": false,
+      "termination_reasons": [],
+      "transition_count": 600,
+      "truncated": true
+    },
+    {
+      "actual_config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 287335974,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "actual_scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0.15,
+        "name": "preparation_001",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0002,
+        "tool_mass_kg": 0.1,
+        "tool_sliding_friction": 0.45,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": 0.0
+      },
+      "actual_task": {
+        "direction": 1,
+        "frequency_hz": 0.2,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 0.0,
+        "tangent_amplitude_m": 0.055,
+        "vertical_amplitude_m": 0.04,
+        "yaw_deg": 0.0
+      },
+      "case_id": "g001_seed11",
+      "env_seed": 11,
+      "exception_detail": null,
+      "file": "episode_00002.npz",
+      "gates": {
+        "environment_termination_free": true,
+        "evaluation_observed": true
+      },
+      "group_id": "76b1a9cdc26befb201d8995fa84ed0878e8eeef436f67587d023c9e35564bfff",
+      "metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.5740000000000001,
+        "force_rmse_n": 0.10384842121232203,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.20214576537570458,
+        "orientation_rmse_deg": 0.4057186376985896,
+        "peak_force_n": 12.627871577794696,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 1.9571235436291408
+      },
+      "nonfinite_trace_fields": [],
+      "physics_count": 6000,
+      "return": 11.681788217441001,
+      "sha256": "a55429f1f24a05329c9cf6c3ec6f2c4d69f89398e71e0bbf64f2793ea1f69fd2",
+      "simulation_seed": 287335974,
+      "split": "development_test",
+      "terminated": false,
+      "termination_reasons": [],
+      "transition_count": 600,
+      "truncated": true
+    },
+    {
+      "actual_config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 2007055255,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "actual_scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0.15,
+        "name": "preparation_001",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0002,
+        "tool_mass_kg": 0.1,
+        "tool_sliding_friction": 0.45,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": 0.0
+      },
+      "actual_task": {
+        "direction": 1,
+        "frequency_hz": 0.2,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 0.0,
+        "tangent_amplitude_m": 0.055,
+        "vertical_amplitude_m": 0.04,
+        "yaw_deg": 0.0
+      },
+      "case_id": "g001_seed29",
+      "env_seed": 29,
+      "exception_detail": null,
+      "file": "episode_00003.npz",
+      "gates": {
+        "environment_termination_free": true,
+        "evaluation_observed": true
+      },
+      "group_id": "76b1a9cdc26befb201d8995fa84ed0878e8eeef436f67587d023c9e35564bfff",
+      "metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.5740000000000001,
+        "force_rmse_n": 0.10571330565526431,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.20719493415658433,
+        "orientation_rmse_deg": 0.4055979175394815,
+        "peak_force_n": 12.628594523364416,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 1.963381350739178
+      },
+      "nonfinite_trace_fields": [],
+      "physics_count": 6000,
+      "return": 11.681749812334054,
+      "sha256": "90c7ddb70178796a193d091b9703fdda80dfb0bde673fee540c5a16495bd1b30",
+      "simulation_seed": 2007055255,
+      "split": "development_test",
+      "terminated": false,
+      "termination_reasons": [],
+      "transition_count": 600,
+      "truncated": true
+    },
+    {
+      "actual_config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 287335974,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "actual_scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0.15,
+        "name": "preparation_002",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0002,
+        "tool_mass_kg": 0.1,
+        "tool_sliding_friction": 0.45,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": 15.0
+      },
+      "actual_task": {
+        "direction": 1,
+        "frequency_hz": 0.2,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 0.0,
+        "tangent_amplitude_m": 0.055,
+        "vertical_amplitude_m": 0.04,
+        "yaw_deg": 15.0
+      },
+      "case_id": "g002_seed11",
+      "env_seed": 11,
+      "exception_detail": null,
+      "file": "episode_00004.npz",
+      "gates": {
+        "environment_termination_free": true,
+        "evaluation_observed": true
+      },
+      "group_id": "7de4a580a6c8ff1c7f8c59061686922a216fdde972b1a2d29c6c5658355a75fc",
+      "metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.544,
+        "force_rmse_n": 0.10708114539637473,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.1957193070224561,
+        "orientation_rmse_deg": 0.3623062939025208,
+        "peak_force_n": 12.626860057021227,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 2.047910720636311
+      },
+      "nonfinite_trace_fields": [],
+      "physics_count": 6000,
+      "return": 11.681637978242541,
+      "sha256": "59117728bd61bea19ba82e364e19dc9befe0bc3f3664568656c413d152c886f6",
+      "simulation_seed": 287335974,
+      "split": "validation",
+      "terminated": false,
+      "termination_reasons": [],
+      "transition_count": 600,
+      "truncated": true
+    },
+    {
+      "actual_config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 2007055255,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "actual_scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0.15,
+        "name": "preparation_002",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0002,
+        "tool_mass_kg": 0.1,
+        "tool_sliding_friction": 0.45,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": 15.0
+      },
+      "actual_task": {
+        "direction": 1,
+        "frequency_hz": 0.2,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 0.0,
+        "tangent_amplitude_m": 0.055,
+        "vertical_amplitude_m": 0.04,
+        "yaw_deg": 15.0
+      },
+      "case_id": "g002_seed29",
+      "env_seed": 29,
+      "exception_detail": null,
+      "file": "episode_00005.npz",
+      "gates": {
+        "environment_termination_free": true,
+        "evaluation_observed": true
+      },
+      "group_id": "7de4a580a6c8ff1c7f8c59061686922a216fdde972b1a2d29c6c5658355a75fc",
+      "metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.544,
+        "force_rmse_n": 0.1122433787281049,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.20114435405459097,
+        "orientation_rmse_deg": 0.36210113404073874,
+        "peak_force_n": 12.661131002331203,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 2.0562577060384384
+      },
+      "nonfinite_trace_fields": [],
+      "physics_count": 6000,
+      "return": 11.6815372530155,
+      "sha256": "af583542cb78e838e03d7480f64cf6b2dfdd0ed519c5b8a69c5bce7a03e5aa6b",
+      "simulation_seed": 2007055255,
+      "split": "validation",
+      "terminated": false,
+      "termination_reasons": [],
+      "transition_count": 600,
+      "truncated": true
+    },
+    {
+      "actual_config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 287335974,
+        "target_force": 13.374474247256181,
+        "timestep": 0.002
+      },
+      "actual_scenario": {
+        "bias_compensation_scale": 0.9834295595238157,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.1695738581362003,
+          -0.2867989624010878,
+          0.25809642436661195
+        ],
+        "force_noise_std_n": 0.1749716778290761,
+        "name": "preparation_003",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.00034354025703593695,
+        "tool_mass_kg": 0.10431399162545195,
+        "tool_sliding_friction": 0.46814634107119396,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.46814634107119396,
+        "wall_time_constant": 0.006730428155143842,
+        "wall_yaw_deg": -5.18662012966408
+      },
+      "actual_task": {
+        "direction": -1,
+        "frequency_hz": 0.16997849511296048,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 2.1520115683888155,
+        "tangent_amplitude_m": 0.056569662532711826,
+        "vertical_amplitude_m": 0.037649417111510014,
+        "yaw_deg": -5.18662012966408
+      },
+      "case_id": "g003_seed11",
+      "env_seed": 11,
+      "exception_detail": null,
+      "file": "episode_00006.npz",
+      "gates": {
+        "environment_termination_free": true,
+        "evaluation_observed": true
+      },
+      "group_id": "2bc8e9ed3f6cc48467d75ad882c720ca1537de885e778c2501ab0227267a5679",
+      "metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.592,
+        "force_rmse_n": 0.4070058786792705,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.3317509678113734,
+        "orientation_rmse_deg": 0.778569776468702,
+        "peak_force_n": 14.203740833523426,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 3.495789016341846
+      },
+      "nonfinite_trace_fields": [],
+      "physics_count": 6000,
+      "return": 11.560002356994648,
+      "sha256": "91ca07b3b19a4940c5213d69d0e0440bf080b6494108ca68ad423cd2c7f22a87",
+      "simulation_seed": 287335974,
+      "split": "train",
+      "terminated": false,
+      "termination_reasons": [],
+      "transition_count": 600,
+      "truncated": true
+    },
+    {
+      "actual_config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 2007055255,
+        "target_force": 13.374474247256181,
+        "timestep": 0.002
+      },
+      "actual_scenario": {
+        "bias_compensation_scale": 0.9834295595238157,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.1695738581362003,
+          -0.2867989624010878,
+          0.25809642436661195
+        ],
+        "force_noise_std_n": 0.1749716778290761,
+        "name": "preparation_003",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.00034354025703593695,
+        "tool_mass_kg": 0.10431399162545195,
+        "tool_sliding_friction": 0.46814634107119396,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.46814634107119396,
+        "wall_time_constant": 0.006730428155143842,
+        "wall_yaw_deg": -5.18662012966408
+      },
+      "actual_task": {
+        "direction": -1,
+        "frequency_hz": 0.16997849511296048,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 2.1520115683888155,
+        "tangent_amplitude_m": 0.056569662532711826,
+        "vertical_amplitude_m": 0.037649417111510014,
+        "yaw_deg": -5.18662012966408
+      },
+      "case_id": "g003_seed29",
+      "env_seed": 29,
+      "exception_detail": null,
+      "file": "episode_00007.npz",
+      "gates": {
+        "environment_termination_free": true,
+        "evaluation_observed": true
+      },
+      "group_id": "2bc8e9ed3f6cc48467d75ad882c720ca1537de885e778c2501ab0227267a5679",
+      "metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.592,
+        "force_rmse_n": 0.4151166072968724,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.33828265581311595,
+        "orientation_rmse_deg": 0.7785672101620362,
+        "peak_force_n": 14.195916094863003,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 3.5014880323478805
+      },
+      "nonfinite_trace_fields": [],
+      "physics_count": 6000,
+      "return": 11.559607940406625,
+      "sha256": "cca57f870975a6d61b9b1dab5de7b69cac658138a214a017a8c08bbf3222192a",
+      "simulation_seed": 2007055255,
+      "split": "train",
+      "terminated": false,
+      "termination_reasons": [],
+      "transition_count": 600,
+      "truncated": true
+    },
+    {
+      "actual_config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 287335974,
+        "target_force": 10.514967923347504,
+        "timestep": 0.002
+      },
+      "actual_scenario": {
+        "bias_compensation_scale": 0.9621168342455056,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.1178536357577894,
+          -0.10616752431378851,
+          0.07639844780124128
+        ],
+        "force_noise_std_n": 0.21989282450330733,
+        "name": "preparation_004",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0004999431587325098,
+        "tool_mass_kg": 0.129354758344775,
+        "tool_sliding_friction": 0.5254600995314549,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.5254600995314549,
+        "wall_time_constant": 0.011011106824447415,
+        "wall_yaw_deg": -4.3225581669923425
+      },
+      "actual_task": {
+        "direction": -1,
+        "frequency_hz": 0.15867053617901622,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 5.702671881521383,
+        "tangent_amplitude_m": 0.05031274631985218,
+        "vertical_amplitude_m": 0.0398378975611908,
+        "yaw_deg": -4.3225581669923425
+      },
+      "case_id": "g004_seed11",
+      "env_seed": 11,
+      "exception_detail": null,
+      "file": "episode_00008.npz",
+      "gates": {
+        "environment_termination_free": true,
+        "evaluation_observed": true
+      },
+      "group_id": "78aeb0f4c4f201ab45dfab2f961fa047d356b7d0c2ba94e8c37a076206d59381",
+      "metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.626,
+        "force_rmse_n": 0.26432707473094513,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.29213514100020377,
+        "orientation_rmse_deg": 1.4571290420612713,
+        "peak_force_n": 11.20352983719967,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 5.266462350063498
+      },
+      "nonfinite_trace_fields": [],
+      "physics_count": 6000,
+      "return": 11.59261004417774,
+      "sha256": "fb25eec27d5ca97ba41d282b98d98a67fb6e89e96ac85991d50976642d23d0a3",
+      "simulation_seed": 287335974,
+      "split": "train",
+      "terminated": false,
+      "termination_reasons": [],
+      "transition_count": 600,
+      "truncated": true
+    },
+    {
+      "actual_config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 2007055255,
+        "target_force": 10.514967923347504,
+        "timestep": 0.002
+      },
+      "actual_scenario": {
+        "bias_compensation_scale": 0.9621168342455056,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.1178536357577894,
+          -0.10616752431378851,
+          0.07639844780124128
+        ],
+        "force_noise_std_n": 0.21989282450330733,
+        "name": "preparation_004",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0004999431587325098,
+        "tool_mass_kg": 0.129354758344775,
+        "tool_sliding_friction": 0.5254600995314549,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.5254600995314549,
+        "wall_time_constant": 0.011011106824447415,
+        "wall_yaw_deg": -4.3225581669923425
+      },
+      "actual_task": {
+        "direction": -1,
+        "frequency_hz": 0.15867053617901622,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 5.702671881521383,
+        "tangent_amplitude_m": 0.05031274631985218,
+        "vertical_amplitude_m": 0.0398378975611908,
+        "yaw_deg": -4.3225581669923425
+      },
+      "case_id": "g004_seed29",
+      "env_seed": 29,
+      "exception_detail": null,
+      "file": "episode_00009.npz",
+      "gates": {
+        "environment_termination_free": true,
+        "evaluation_observed": true
+      },
+      "group_id": "78aeb0f4c4f201ab45dfab2f961fa047d356b7d0c2ba94e8c37a076206d59381",
+      "metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.624,
+        "force_rmse_n": 0.2769060638384697,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.30124503225268445,
+        "orientation_rmse_deg": 1.45725118397795,
+        "peak_force_n": 11.229187286239487,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 5.270165132624833
+      },
+      "nonfinite_trace_fields": [],
+      "physics_count": 6000,
+      "return": 11.592159965869723,
+      "sha256": "34b3354e051e30ba6d3889afd562e5a7947248eb01e7fb2459c14cad0114e4d0",
+      "simulation_seed": 2007055255,
+      "split": "train",
+      "terminated": false,
+      "termination_reasons": [],
+      "transition_count": 600,
+      "truncated": true
+    },
+    {
+      "actual_config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 287335974,
+        "target_force": 12.636881524891674,
+        "timestep": 0.002
+      },
+      "actual_scenario": {
+        "bias_compensation_scale": 0.9972262206770302,
+        "delay_steps": 3,
+        "force_bias_sensor_n": [
+          -0.08647490567986454,
+          0.31319371654544714,
+          -0.36281386610832667
+        ],
+        "force_noise_std_n": 0.11331838487622092,
+        "name": "preparation_005",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.00027154453598569753,
+        "tool_mass_kg": 0.11972517654166485,
+        "tool_sliding_friction": 0.5133303977591781,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.5133303977591781,
+        "wall_time_constant": 0.006534427480187282,
+        "wall_yaw_deg": 3.2149954686098
+      },
+      "actual_task": {
+        "direction": 1,
+        "frequency_hz": 0.20647472664080396,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 4.671457175033326,
+        "tangent_amplitude_m": 0.04558289499680336,
+        "vertical_amplitude_m": 0.04435887364327973,
+        "yaw_deg": 3.2149954686098
+      },
+      "case_id": "g005_seed11",
+      "env_seed": 11,
+      "exception_detail": null,
+      "file": "episode_00010.npz",
+      "gates": {
+        "environment_termination_free": true,
+        "evaluation_observed": true
+      },
+      "group_id": "02d1135b618f4bb3d559c8fd49d64ce93c43986b9e6d59576110bfabc47f2de3",
+      "metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.5700000000000001,
+        "force_rmse_n": 0.30047511636654245,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.22917687842329296,
+        "orientation_rmse_deg": 0.4683895893347525,
+        "peak_force_n": 13.429178624202498,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 3.289372660100671
+      },
+      "nonfinite_trace_fields": [],
+      "physics_count": 6000,
+      "return": 11.611225590404123,
+      "sha256": "ae45e15ad20d09ee97e0439ffad99d378773171b83df6bf656bdda47a5187af6",
+      "simulation_seed": 287335974,
+      "split": "development_test",
+      "terminated": false,
+      "termination_reasons": [],
+      "transition_count": 600,
+      "truncated": true
+    },
+    {
+      "actual_config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 2007055255,
+        "target_force": 12.636881524891674,
+        "timestep": 0.002
+      },
+      "actual_scenario": {
+        "bias_compensation_scale": 0.9972262206770302,
+        "delay_steps": 3,
+        "force_bias_sensor_n": [
+          -0.08647490567986454,
+          0.31319371654544714,
+          -0.36281386610832667
+        ],
+        "force_noise_std_n": 0.11331838487622092,
+        "name": "preparation_005",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.00027154453598569753,
+        "tool_mass_kg": 0.11972517654166485,
+        "tool_sliding_friction": 0.5133303977591781,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.5133303977591781,
+        "wall_time_constant": 0.006534427480187282,
+        "wall_yaw_deg": 3.2149954686098
+      },
+      "actual_task": {
+        "direction": 1,
+        "frequency_hz": 0.20647472664080396,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 4.671457175033326,
+        "tangent_amplitude_m": 0.04558289499680336,
+        "vertical_amplitude_m": 0.04435887364327973,
+        "yaw_deg": 3.2149954686098
+      },
+      "case_id": "g005_seed29",
+      "env_seed": 29,
+      "exception_detail": null,
+      "file": "episode_00011.npz",
+      "gates": {
+        "environment_termination_free": true,
+        "evaluation_observed": true
+      },
+      "group_id": "02d1135b618f4bb3d559c8fd49d64ce93c43986b9e6d59576110bfabc47f2de3",
+      "metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.5700000000000001,
+        "force_rmse_n": 0.3014015982099626,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.22602281777344818,
+        "orientation_rmse_deg": 0.46818670037529314,
+        "peak_force_n": 13.43553491215553,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 3.287963676064845
+      },
+      "nonfinite_trace_fields": [],
+      "physics_count": 6000,
+      "return": 11.61120863701565,
+      "sha256": "07e7dee1dfa118817ced141657d376fb7eba5edf9c4c7927a028443512ab5ee9",
+      "simulation_seed": 2007055255,
+      "split": "development_test",
+      "terminated": false,
+      "termination_reasons": [],
+      "transition_count": 600,
+      "truncated": true
+    },
+    {
+      "actual_config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 287335974,
+        "target_force": 10.792959479654229,
+        "timestep": 0.002
+      },
+      "actual_scenario": {
+        "bias_compensation_scale": 1.0193190741835965,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2923577006697651,
+          -0.05259234730586859,
+          0.2531584804631489
+        ],
+        "force_noise_std_n": 0.11677868862921094,
+        "name": "preparation_006",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0004130531376124821,
+        "tool_mass_kg": 0.10822689276858583,
+        "tool_sliding_friction": 0.6156472242724733,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.6156472242724733,
+        "wall_time_constant": 0.0054352313610654904,
+        "wall_yaw_deg": 11.29514497758774
+      },
+      "actual_task": {
+        "direction": -1,
+        "frequency_hz": 0.2293882756344336,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 3.739127776013458,
+        "tangent_amplitude_m": 0.04349420057357818,
+        "vertical_amplitude_m": 0.03374245065830648,
+        "yaw_deg": 11.29514497758774
+      },
+      "case_id": "g006_seed11",
+      "env_seed": 11,
+      "exception_detail": null,
+      "file": "episode_00012.npz",
+      "gates": {
+        "environment_termination_free": true,
+        "evaluation_observed": true
+      },
+      "group_id": "d7dd1af9307ebd87f97f8e12bf7c4105c0a7bf167a41092ef2db58c7e7e133c2",
+      "metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.534,
+        "force_rmse_n": 0.43394974662319896,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.46272220834650785,
+        "orientation_rmse_deg": 0.716291235567198,
+        "peak_force_n": 11.666193495652262,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 5.404435367214352
+      },
+      "nonfinite_trace_fields": [],
+      "physics_count": 6000,
+      "return": 11.598823056475645,
+      "sha256": "252578c73b66a46a8e801aa184d68002cf789a8278787c59e70eb71733ce04f0",
+      "simulation_seed": 287335974,
+      "split": "train",
+      "terminated": false,
+      "termination_reasons": [],
+      "transition_count": 600,
+      "truncated": true
+    },
+    {
+      "actual_config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 2007055255,
+        "target_force": 10.792959479654229,
+        "timestep": 0.002
+      },
+      "actual_scenario": {
+        "bias_compensation_scale": 1.0193190741835965,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2923577006697651,
+          -0.05259234730586859,
+          0.2531584804631489
+        ],
+        "force_noise_std_n": 0.11677868862921094,
+        "name": "preparation_006",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0004130531376124821,
+        "tool_mass_kg": 0.10822689276858583,
+        "tool_sliding_friction": 0.6156472242724733,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.6156472242724733,
+        "wall_time_constant": 0.0054352313610654904,
+        "wall_yaw_deg": 11.29514497758774
+      },
+      "actual_task": {
+        "direction": -1,
+        "frequency_hz": 0.2293882756344336,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 3.739127776013458,
+        "tangent_amplitude_m": 0.04349420057357818,
+        "vertical_amplitude_m": 0.03374245065830648,
+        "yaw_deg": 11.29514497758774
+      },
+      "case_id": "g006_seed29",
+      "env_seed": 29,
+      "exception_detail": null,
+      "file": "episode_00013.npz",
+      "gates": {
+        "environment_termination_free": true,
+        "evaluation_observed": true
+      },
+      "group_id": "d7dd1af9307ebd87f97f8e12bf7c4105c0a7bf167a41092ef2db58c7e7e133c2",
+      "metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.532,
+        "force_rmse_n": 0.4332967509796975,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.4652565364284059,
+        "orientation_rmse_deg": 0.7160683052861067,
+        "peak_force_n": 11.630834510009269,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 5.40503853645478
+      },
+      "nonfinite_trace_fields": [],
+      "physics_count": 6000,
+      "return": 11.59914593608314,
+      "sha256": "3e7a9f987f99d0faaf0214d5729be8bf228036f3cbf241da0bc7a7eb2bd95c89",
+      "simulation_seed": 2007055255,
+      "split": "train",
+      "terminated": false,
+      "termination_reasons": [],
+      "transition_count": 600,
+      "truncated": true
+    },
+    {
+      "actual_config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 287335974,
+        "target_force": 14.294771291017808,
+        "timestep": 0.002
+      },
+      "actual_scenario": {
+        "bias_compensation_scale": 1.0304521490512677,
+        "delay_steps": 2,
+        "force_bias_sensor_n": [
+          0.07516846842614006,
+          0.25411864992877353,
+          0.11827950093348027
+        ],
+        "force_noise_std_n": 0.15472227448453818,
+        "name": "preparation_007",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.00032023374139809494,
+        "tool_mass_kg": 0.12001540091777507,
+        "tool_sliding_friction": 0.6033252469640649,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.6033252469640649,
+        "wall_time_constant": 0.008357722303622032,
+        "wall_yaw_deg": 6.849103482665328
+      },
+      "actual_task": {
+        "direction": -1,
+        "frequency_hz": 0.18221993030472838,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 5.568392262938695,
+        "tangent_amplitude_m": 0.06114263634529844,
+        "vertical_amplitude_m": 0.03114630630967422,
+        "yaw_deg": 6.849103482665328
+      },
+      "case_id": "g007_seed11",
+      "env_seed": 11,
+      "exception_detail": null,
+      "file": "episode_00014.npz",
+      "gates": {
+        "environment_termination_free": true,
+        "evaluation_observed": true
+      },
+      "group_id": "f867c0c8c648e69fef3c38ba45159a37264884db9cb86980f30dc525f65d5fd5",
+      "metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.526,
+        "force_rmse_n": 0.1775344590143407,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.093452588575352,
+        "orientation_rmse_deg": 1.1806735318532955,
+        "peak_force_n": 15.609528269780164,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 7.317578621031514
+      },
+      "nonfinite_trace_fields": [],
+      "physics_count": 6000,
+      "return": 11.33664146038195,
+      "sha256": "3a01a1e8cf0ecbfeb47eadb912df8c7e721bd7af4b62aaed6ea7e9b55fc55c67",
+      "simulation_seed": 287335974,
+      "split": "validation",
+      "terminated": false,
+      "termination_reasons": [],
+      "transition_count": 600,
+      "truncated": true
+    },
+    {
+      "actual_config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 2007055255,
+        "target_force": 14.294771291017808,
+        "timestep": 0.002
+      },
+      "actual_scenario": {
+        "bias_compensation_scale": 1.0304521490512677,
+        "delay_steps": 2,
+        "force_bias_sensor_n": [
+          0.07516846842614006,
+          0.25411864992877353,
+          0.11827950093348027
+        ],
+        "force_noise_std_n": 0.15472227448453818,
+        "name": "preparation_007",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.00032023374139809494,
+        "tool_mass_kg": 0.12001540091777507,
+        "tool_sliding_friction": 0.6033252469640649,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.6033252469640649,
+        "wall_time_constant": 0.008357722303622032,
+        "wall_yaw_deg": 6.849103482665328
+      },
+      "actual_task": {
+        "direction": -1,
+        "frequency_hz": 0.18221993030472838,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 5.568392262938695,
+        "tangent_amplitude_m": 0.06114263634529844,
+        "vertical_amplitude_m": 0.03114630630967422,
+        "yaw_deg": 6.849103482665328
+      },
+      "case_id": "g007_seed29",
+      "env_seed": 29,
+      "exception_detail": null,
+      "file": "episode_00015.npz",
+      "gates": {
+        "environment_termination_free": true,
+        "evaluation_observed": true
+      },
+      "group_id": "f867c0c8c648e69fef3c38ba45159a37264884db9cb86980f30dc525f65d5fd5",
+      "metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.524,
+        "force_rmse_n": 0.18264126549636503,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.09725699967967308,
+        "orientation_rmse_deg": 1.180689984706136,
+        "peak_force_n": 15.643024016860823,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 7.337413165600644
+      },
+      "nonfinite_trace_fields": [],
+      "physics_count": 6000,
+      "return": 11.335381130725736,
+      "sha256": "521ae545fd41edcd4121e3e108cdf829d09354b1479bd266a7176555919141e8",
+      "simulation_seed": 2007055255,
+      "split": "validation",
+      "terminated": false,
+      "termination_reasons": [],
+      "transition_count": 600,
+      "truncated": true
+    },
+    {
+      "actual_config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 287335974,
+        "target_force": 8.234363796630474,
+        "timestep": 0.002
+      },
+      "actual_scenario": {
+        "bias_compensation_scale": 0.9602713111227346,
+        "delay_steps": 2,
+        "force_bias_sensor_n": [
+          0.2662945061269385,
+          -0.3462216766538664,
+          -0.34195517693971
+        ],
+        "force_noise_std_n": 0.19257362125669128,
+        "name": "preparation_008",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0002499129492919603,
+        "tool_mass_kg": 0.11195398633249383,
+        "tool_sliding_friction": 0.37108835386298933,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.37108835386298933,
+        "wall_time_constant": 0.007612425204658782,
+        "wall_yaw_deg": 12.339658663619971
+      },
+      "actual_task": {
+        "direction": 1,
+        "frequency_hz": 0.22046893524917144,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 0.6730148394337498,
+        "tangent_amplitude_m": 0.04006330429920229,
+        "vertical_amplitude_m": 0.04135387698125583,
+        "yaw_deg": 12.339658663619971
+      },
+      "case_id": "g008_seed11",
+      "env_seed": 11,
+      "exception_detail": null,
+      "file": "episode_00016.npz",
+      "gates": {
+        "environment_termination_free": true,
+        "evaluation_observed": true
+      },
+      "group_id": "6d8c4b9fdc779198d04f6d4292585f35bec087939b9edaae51aa0bead7218bb9",
+      "metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.606,
+        "force_rmse_n": 0.10091734021069501,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.3352279038309873,
+        "orientation_rmse_deg": 1.5445351327425667,
+        "peak_force_n": 8.409295264432897,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 4.756847767347616
+      },
+      "nonfinite_trace_fields": [],
+      "physics_count": 6000,
+      "return": 11.70627665283905,
+      "sha256": "5f18b9ccb4e5c84d53bd23817d7504e35356245e585454444844f0a9dbdbe959",
+      "simulation_seed": 287335974,
+      "split": "train",
+      "terminated": false,
+      "termination_reasons": [],
+      "transition_count": 600,
+      "truncated": true
+    },
+    {
+      "actual_config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 2007055255,
+        "target_force": 8.234363796630474,
+        "timestep": 0.002
+      },
+      "actual_scenario": {
+        "bias_compensation_scale": 0.9602713111227346,
+        "delay_steps": 2,
+        "force_bias_sensor_n": [
+          0.2662945061269385,
+          -0.3462216766538664,
+          -0.34195517693971
+        ],
+        "force_noise_std_n": 0.19257362125669128,
+        "name": "preparation_008",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0002499129492919603,
+        "tool_mass_kg": 0.11195398633249383,
+        "tool_sliding_friction": 0.37108835386298933,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.37108835386298933,
+        "wall_time_constant": 0.007612425204658782,
+        "wall_yaw_deg": 12.339658663619971
+      },
+      "actual_task": {
+        "direction": 1,
+        "frequency_hz": 0.22046893524917144,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 0.6730148394337498,
+        "tangent_amplitude_m": 0.04006330429920229,
+        "vertical_amplitude_m": 0.04135387698125583,
+        "yaw_deg": 12.339658663619971
+      },
+      "case_id": "g008_seed29",
+      "env_seed": 29,
+      "exception_detail": null,
+      "file": "episode_00017.npz",
+      "gates": {
+        "environment_termination_free": true,
+        "evaluation_observed": true
+      },
+      "group_id": "6d8c4b9fdc779198d04f6d4292585f35bec087939b9edaae51aa0bead7218bb9",
+      "metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.606,
+        "force_rmse_n": 0.09118806000393119,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.3413731100082352,
+        "orientation_rmse_deg": 1.5443965155347221,
+        "peak_force_n": 8.456603912258503,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 4.757472896932447
+      },
+      "nonfinite_trace_fields": [],
+      "physics_count": 6000,
+      "return": 11.706072102234392,
+      "sha256": "f34a86ad7093b698bad39b0c7b34753b2ace87cbbfc4a55e44eae28e5fd5ff58",
+      "simulation_seed": 2007055255,
+      "split": "train",
+      "terminated": false,
+      "termination_reasons": [],
+      "transition_count": 600,
+      "truncated": true
+    },
+    {
+      "actual_config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 287335974,
+        "target_force": 15.710602499038712,
+        "timestep": 0.002
+      },
+      "actual_scenario": {
+        "bias_compensation_scale": 1.0126101880853107,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          -0.008517215224522978,
+          -0.30436522549840234,
+          0.09521874417777249
+        ],
+        "force_noise_std_n": 0.13414730217384957,
+        "name": "preparation_009",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0004588389521656723,
+        "tool_mass_kg": 0.10259178479291689,
+        "tool_sliding_friction": 0.3989671028767117,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.3989671028767117,
+        "wall_time_constant": 0.011886851976159603,
+        "wall_yaw_deg": -10.82363814841609
+      },
+      "actual_task": {
+        "direction": 1,
+        "frequency_hz": 0.12693999371548184,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 3.2061802158377914,
+        "tangent_amplitude_m": 0.052717227640788386,
+        "vertical_amplitude_m": 0.03305490428095286,
+        "yaw_deg": -10.82363814841609
+      },
+      "case_id": "g009_seed11",
+      "env_seed": 11,
+      "exception_detail": null,
+      "file": "episode_00018.npz",
+      "gates": {
+        "environment_termination_free": true,
+        "evaluation_observed": true
+      },
+      "group_id": "8a93eb6e8492e8e95cc35d19e9b8f11ee84b3abaf062b765bd2b9358198a09b7",
+      "metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.544,
+        "force_rmse_n": 0.31540180761967057,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.3235056088141701,
+        "orientation_rmse_deg": 0.39110965993846275,
+        "peak_force_n": 17.169964114137834,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 2.436027386293172
+      },
+      "nonfinite_trace_fields": [],
+      "physics_count": 6000,
+      "return": 11.603650572114818,
+      "sha256": "af55abb24b6c501e3f807fb028796fe39ad978334b17259c6138c6b25efb613c",
+      "simulation_seed": 287335974,
+      "split": "train",
+      "terminated": false,
+      "termination_reasons": [],
+      "transition_count": 600,
+      "truncated": true
+    },
+    {
+      "actual_config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 2007055255,
+        "target_force": 15.710602499038712,
+        "timestep": 0.002
+      },
+      "actual_scenario": {
+        "bias_compensation_scale": 1.0126101880853107,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          -0.008517215224522978,
+          -0.30436522549840234,
+          0.09521874417777249
+        ],
+        "force_noise_std_n": 0.13414730217384957,
+        "name": "preparation_009",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0004588389521656723,
+        "tool_mass_kg": 0.10259178479291689,
+        "tool_sliding_friction": 0.3989671028767117,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.3989671028767117,
+        "wall_time_constant": 0.011886851976159603,
+        "wall_yaw_deg": -10.82363814841609
+      },
+      "actual_task": {
+        "direction": 1,
+        "frequency_hz": 0.12693999371548184,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 3.2061802158377914,
+        "tangent_amplitude_m": 0.052717227640788386,
+        "vertical_amplitude_m": 0.03305490428095286,
+        "yaw_deg": -10.82363814841609
+      },
+      "case_id": "g009_seed29",
+      "env_seed": 29,
+      "exception_detail": null,
+      "file": "episode_00019.npz",
+      "gates": {
+        "environment_termination_free": true,
+        "evaluation_observed": true
+      },
+      "group_id": "8a93eb6e8492e8e95cc35d19e9b8f11ee84b3abaf062b765bd2b9358198a09b7",
+      "metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.542,
+        "force_rmse_n": 0.31884896066039925,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.32128931246895776,
+        "orientation_rmse_deg": 0.391503759891004,
+        "peak_force_n": 17.20672314925413,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 2.4247656693200406
+      },
+      "nonfinite_trace_fields": [],
+      "physics_count": 6000,
+      "return": 11.604145485507024,
+      "sha256": "8f9f4bc546bcb15e8af2a87dba130a187f714f311ff06d884c1928da7298a97c",
+      "simulation_seed": 2007055255,
+      "split": "train",
+      "terminated": false,
+      "termination_reasons": [],
+      "transition_count": 600,
+      "truncated": true
+    },
+    {
+      "actual_config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 287335974,
+        "target_force": 11.744255247460599,
+        "timestep": 0.002
+      },
+      "actual_scenario": {
+        "bias_compensation_scale": 1.0479867879634472,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2559599653794824,
+          -0.1184943582970881,
+          0.1137047788416905
+        ],
+        "force_noise_std_n": 0.24842177267461152,
+        "name": "preparation_010",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.00021399351356606242,
+        "tool_mass_kg": 0.11385952639154474,
+        "tool_sliding_friction": 0.31918862417493166,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.31918862417493166,
+        "wall_time_constant": 0.010015225550379005,
+        "wall_yaw_deg": -14.078590933930105
+      },
+      "actual_task": {
+        "direction": -1,
+        "frequency_hz": 0.14805304029830063,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 1.0200620287316613,
+        "tangent_amplitude_m": 0.05767822215054007,
+        "vertical_amplitude_m": 0.042058570005678524,
+        "yaw_deg": -14.078590933930105
+      },
+      "case_id": "g010_seed11",
+      "env_seed": 11,
+      "exception_detail": null,
+      "file": "episode_00020.npz",
+      "gates": {
+        "environment_termination_free": true,
+        "evaluation_observed": true
+      },
+      "group_id": "e7e85c528523f783b124ec401e1fcbe0650e96483b5157dc2eda12ce83c2a4df",
+      "metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.48,
+        "force_rmse_n": 0.13495231864141827,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.21872968138052856,
+        "orientation_rmse_deg": 1.8526799315095543,
+        "peak_force_n": 12.59128033647995,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 6.068130961172247
+      },
+      "nonfinite_trace_fields": [],
+      "physics_count": 6000,
+      "return": 11.476611737299613,
+      "sha256": "dc4b2b61382227eb1b79beb69e3c87c008ec537e0e31dd133affebf5bac5801a",
+      "simulation_seed": 287335974,
+      "split": "train",
+      "terminated": false,
+      "termination_reasons": [],
+      "transition_count": 600,
+      "truncated": true
+    },
+    {
+      "actual_config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 2007055255,
+        "target_force": 11.744255247460599,
+        "timestep": 0.002
+      },
+      "actual_scenario": {
+        "bias_compensation_scale": 1.0479867879634472,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2559599653794824,
+          -0.1184943582970881,
+          0.1137047788416905
+        ],
+        "force_noise_std_n": 0.24842177267461152,
+        "name": "preparation_010",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.00021399351356606242,
+        "tool_mass_kg": 0.11385952639154474,
+        "tool_sliding_friction": 0.31918862417493166,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.31918862417493166,
+        "wall_time_constant": 0.010015225550379005,
+        "wall_yaw_deg": -14.078590933930105
+      },
+      "actual_task": {
+        "direction": -1,
+        "frequency_hz": 0.14805304029830063,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 1.0200620287316613,
+        "tangent_amplitude_m": 0.05767822215054007,
+        "vertical_amplitude_m": 0.042058570005678524,
+        "yaw_deg": -14.078590933930105
+      },
+      "case_id": "g010_seed29",
+      "env_seed": 29,
+      "exception_detail": null,
+      "file": "episode_00021.npz",
+      "gates": {
+        "environment_termination_free": true,
+        "evaluation_observed": true
+      },
+      "group_id": "e7e85c528523f783b124ec401e1fcbe0650e96483b5157dc2eda12ce83c2a4df",
+      "metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.47800000000000004,
+        "force_rmse_n": 0.14700885779896136,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.22661964638509594,
+        "orientation_rmse_deg": 1.8524546002416198,
+        "peak_force_n": 12.607053817637695,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 6.073965646325924
+      },
+      "nonfinite_trace_fields": [],
+      "physics_count": 6000,
+      "return": 11.476614254278717,
+      "sha256": "28c14aa34baa69b05350d416b889dabba790e03d2ec72c0500382f6034173877",
+      "simulation_seed": 2007055255,
+      "split": "train",
+      "terminated": false,
+      "termination_reasons": [],
+      "transition_count": 600,
+      "truncated": true
+    },
+    {
+      "actual_config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 287335974,
+        "target_force": 9.411280456376277,
+        "timestep": 0.002
+      },
+      "actual_scenario": {
+        "bias_compensation_scale": 0.9829527833394772,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.23211452560618162,
+          -0.12799275336168803,
+          -0.07060629927608791
+        ],
+        "force_noise_std_n": 0.20261687851490356,
+        "name": "preparation_011",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0003674977435973798,
+        "tool_mass_kg": 0.12651217788740876,
+        "tool_sliding_friction": 0.25019342041813164,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.25019342041813164,
+        "wall_time_constant": 0.009006588842358786,
+        "wall_yaw_deg": -0.4889248881824635
+      },
+      "actual_task": {
+        "direction": 1,
+        "frequency_hz": 0.24351178517206784,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 1.700998670330913,
+        "tangent_amplitude_m": 0.0641325300513091,
+        "vertical_amplitude_m": 0.03544363020304142,
+        "yaw_deg": -0.4889248881824635
+      },
+      "case_id": "g011_seed11",
+      "env_seed": 11,
+      "exception_detail": null,
+      "file": "episode_00022.npz",
+      "gates": {
+        "environment_termination_free": true,
+        "evaluation_observed": true
+      },
+      "group_id": "3af3caae32e997092b8bbcb4590b3c030f813d9414d20593d3a15e4b1c0cf488",
+      "metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.596,
+        "force_rmse_n": 0.20056274249271874,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.2380123975896987,
+        "orientation_rmse_deg": 1.0717586217643493,
+        "peak_force_n": 9.776456624512903,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 3.7255127604502825
+      },
+      "nonfinite_trace_fields": [],
+      "physics_count": 6000,
+      "return": 11.732091981747304,
+      "sha256": "3cb268b10da4fb3ab00f5751181c2d876e73a9275a0d959f1ad2a792954291dd",
+      "simulation_seed": 287335974,
+      "split": "train",
+      "terminated": false,
+      "termination_reasons": [],
+      "transition_count": 600,
+      "truncated": true
+    },
+    {
+      "actual_config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 2007055255,
+        "target_force": 9.411280456376277,
+        "timestep": 0.002
+      },
+      "actual_scenario": {
+        "bias_compensation_scale": 0.9829527833394772,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.23211452560618162,
+          -0.12799275336168803,
+          -0.07060629927608791
+        ],
+        "force_noise_std_n": 0.20261687851490356,
+        "name": "preparation_011",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0003674977435973798,
+        "tool_mass_kg": 0.12651217788740876,
+        "tool_sliding_friction": 0.25019342041813164,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.25019342041813164,
+        "wall_time_constant": 0.009006588842358786,
+        "wall_yaw_deg": -0.4889248881824635
+      },
+      "actual_task": {
+        "direction": 1,
+        "frequency_hz": 0.24351178517206784,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 1.700998670330913,
+        "tangent_amplitude_m": 0.0641325300513091,
+        "vertical_amplitude_m": 0.03544363020304142,
+        "yaw_deg": -0.4889248881824635
+      },
+      "case_id": "g011_seed29",
+      "env_seed": 29,
+      "exception_detail": null,
+      "file": "episode_00023.npz",
+      "gates": {
+        "environment_termination_free": true,
+        "evaluation_observed": true
+      },
+      "group_id": "3af3caae32e997092b8bbcb4590b3c030f813d9414d20593d3a15e4b1c0cf488",
+      "metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.596,
+        "force_rmse_n": 0.1952486315838135,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.24440596624999136,
+        "orientation_rmse_deg": 1.0715676673158276,
+        "peak_force_n": 9.791259923643082,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 3.710527364429652
+      },
+      "nonfinite_trace_fields": [],
+      "physics_count": 6000,
+      "return": 11.732745358450217,
+      "sha256": "6be4dbb9528ffb09e8175b03f9c24710ad8206429c99597973cedaedb48aa8d6",
+      "simulation_seed": 2007055255,
+      "split": "train",
+      "terminated": false,
+      "termination_reasons": [],
+      "transition_count": 600,
+      "truncated": true
+    }
+  ],
+  "group_split": {
+    "seed": 20260908,
+    "train_fraction": 0.7,
+    "validation_fraction": 0.2
+  },
+  "invalid_next_observation": "NaN placeholder; terminal_observation_valid=False; do not bootstrap",
+  "new_holdout": false,
+  "nominal_kind": "adaptive",
+  "observation_names": [
+    "corrected_normal_force",
+    "normal_force_error",
+    "normal_force_rate",
+    "normal_position_error",
+    "tangent1_position_error",
+    "tangent2_position_error",
+    "normal_velocity_error",
+    "tangent1_velocity_error",
+    "tangent2_velocity_error",
+    "target_normal_velocity",
+    "target_tangent1_velocity",
+    "target_tangent2_velocity",
+    "target_normal_force",
+    "contact_blend",
+    "previous_normal_residual",
+    "previous_tangent1_residual",
+    "previous_tangent2_residual",
+    "normal_positive_headroom",
+    "normal_negative_headroom",
+    "tangent1_positive_headroom",
+    "tangent1_negative_headroom",
+    "tangent2_positive_headroom",
+    "tangent2_negative_headroom",
+    "normal_orientation_error",
+    "tangent1_orientation_error",
+    "tangent2_orientation_error",
+    "normal_angular_velocity_error",
+    "tangent1_angular_velocity_error",
+    "tangent2_angular_velocity_error",
+    "contact_ready_elapsed",
+    "nominal_normal_force",
+    "nominal_tangent1_force",
+    "nominal_tangent2_force",
+    "joint_position_0",
+    "joint_position_1",
+    "joint_position_2",
+    "joint_position_3",
+    "joint_position_4",
+    "joint_position_5",
+    "joint_position_6",
+    "joint_velocity_0",
+    "joint_velocity_1",
+    "joint_velocity_2",
+    "joint_velocity_3",
+    "joint_velocity_4",
+    "joint_velocity_5",
+    "joint_velocity_6",
+    "kinematic_age",
+    "force_age"
+  ],
+  "observation_scales": [
+    20.0,
+    12.0,
+    250.0,
+    0.02,
+    0.05,
+    0.05,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    12.0,
+    1.0,
+    4.0,
+    6.0,
+    6.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.2,
+    0.2,
+    0.2,
+    1.0,
+    1.0,
+    1.0,
+    0.1,
+    25.0,
+    25.0,
+    25.0,
+    3.141592653589793,
+    3.141592653589793,
+    3.141592653589793,
+    3.141592653589793,
+    3.141592653589793,
+    3.141592653589793,
+    3.141592653589793,
+    2.0,
+    2.0,
+    2.0,
+    2.0,
+    2.0,
+    2.0,
+    2.0,
+    0.1,
+    0.1
+  ],
+  "observation_schema": "surface_env_v1",
+  "observation_units": [
+    "N",
+    "N",
+    "N/s",
+    "m",
+    "m",
+    "m",
+    "m/s",
+    "m/s",
+    "m/s",
+    "m/s",
+    "m/s",
+    "m/s",
+    "N",
+    "1",
+    "N",
+    "N",
+    "N",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "rad",
+    "rad",
+    "rad",
+    "rad/s",
+    "rad/s",
+    "rad/s",
+    "s",
+    "N",
+    "N",
+    "N",
+    "rad",
+    "rad",
+    "rad",
+    "rad",
+    "rad",
+    "rad",
+    "rad",
+    "rad/s",
+    "rad/s",
+    "rad/s",
+    "rad/s",
+    "rad/s",
+    "rad/s",
+    "rad/s",
+    "s",
+    "s"
+  ],
+  "partition_provenance": {
+    "identity": "no new rollout; public post-benchmark, pre-learning partition",
+    "metadata_only": true,
+    "parent_manifest_sha256": {
+      "benchmark": "dff0eb2adfa5e8ca02a7109a376233ef2f5b417f99a0a96862bb854876ba165f",
+      "dataset": "f38426a73d8864b987adcdd42ea0176f724db91dd30cafe810d08a4d16873e3e",
+      "stress": "59a5e837b9b02878e810cae1393a252b657c4c5bb6055aa237fd7d69be77ad87"
+    },
+    "performance_metrics_used": false,
+    "publisher_script_sha256": "65fa63835bc3bf6b636e8015f18bdb28bb4566e85b2be4bb79c874fad4be9891",
+    "selected_seed": 20260908,
+    "selection_rule": "first seed >= 20260906 placing one named nominal anchor in each split"
+  },
+  "physics_period_s": 0.002,
+  "policy_substeps": 10,
+  "quality_scope": "Environment termination gates, not teacher tracking acceptance or a new holdout.",
+  "residual_config": {
+    "action_bounds_n": [
+      4.0,
+      6.0,
+      6.0
+    ],
+    "action_rate_limits_n_s": [
+      40.0,
+      60.0,
+      60.0
+    ],
+    "filter_time_constant": 0.04,
+    "force_guard_margin": 3.0,
+    "force_guard_rate": 150.0,
+    "max_total_normal_wrench": 25.0,
+    "min_total_normal_wrench": -4.0,
+    "residual_enable_delay": 0.1,
+    "teacher_max_force_n": 6.0,
+    "teacher_nominal_mu": 0.45,
+    "teacher_velocity_scale": 0.005,
+    "torque_reserve_fraction": 0.1
+  },
+  "reward_weights": {
+    "action": 0.1,
+    "contact": 0.2,
+    "force": 0.2,
+    "intervention": 0.2,
+    "orientation": 0.1,
+    "tangent": 0.2
+  },
+  "schema": "surface_teacher_dataset_v1",
+  "source_and_assets_sha256": {
+    "__init__.py": "ea3952b679dfacc78ddd79d60f76f2f2e2cc4019aff05b9a0b90a55d79425c8a",
+    "assets/franka_emika_panda/CHANGELOG.md": "164a6ec704aa1714b1311f8b1538e20b4223b6ef08b7d3cb03edc26192892f67",
+    "assets/franka_emika_panda/LICENSE": "a6cba85bc92e0cff7a450b1d873c0eaa2e9fc96bf472df0247a26bec77bf3ff9",
+    "assets/franka_emika_panda/README.md": "e12684556d0154bdf2a9e77e7009ed680cd06ca89904f9e6303050f9fe59300c",
+    "assets/franka_emika_panda/UPSTREAM.md": "42960942ebe33fb3bf627367c3d2274a981d0a7a53ea202fb444809435ba0add",
+    "assets/franka_emika_panda/assets/finger_0.obj": "215098c0fcdf7192f6c503a37cf49e3efecf8a9e1320f02b17c5584d89cc5b2c",
+    "assets/franka_emika_panda/assets/finger_1.obj": "cf239e9aca26bba09dbbf1c544c47d87cfc9a2f0637c8bb786af750b6d4eca44",
+    "assets/franka_emika_panda/assets/hand.stl": "94493e94f30fe940f2c8ca2f155c3bbe67bbff406d3edf5e261670d2f0f6e2ed",
+    "assets/franka_emika_panda/assets/hand_0.obj": "b94aab901086f85df04c019b30f43bf9aa23a7ad0443ec80a8c14662a41cabd2",
+    "assets/franka_emika_panda/assets/hand_1.obj": "cd76f7494bb314406a1819c46eb826ee254894f87235714f604a470653d9badb",
+    "assets/franka_emika_panda/assets/hand_2.obj": "e0f44a71712afa5b98eb20355eff17763d3e2e19f459b2bef19abed3727e64b3",
+    "assets/franka_emika_panda/assets/hand_3.obj": "a431a06d99e88a1b322b3122a01424ee7704daeaad0bc343b90b9604f014ad0c",
+    "assets/franka_emika_panda/assets/hand_4.obj": "21f96ef6a8de082e41b1ea9834f1043de359e5d60305541bcb63539581f53bff",
+    "assets/franka_emika_panda/assets/link0.stl": "dfc6d94330de8ddb005b311bfdba9f3b8e1aa7c256b71592ee7ff32cb9a9a5aa",
+    "assets/franka_emika_panda/assets/link0_0.obj": "6b9f41a4c203540daaeb7a33cc3d0d6c6a32dc8bba187074eeaf97b3e36b3f9c",
+    "assets/franka_emika_panda/assets/link0_1.obj": "57673d2ee2a9db2e10c8986ae57c56a7c39c012b60fd26d7d8549553b664a5ed",
+    "assets/franka_emika_panda/assets/link0_10.obj": "c9198b9d8534d628d097b0f2b239bb30343353182df098ce0d9db6bc13326848",
+    "assets/franka_emika_panda/assets/link0_11.obj": "f0adec78d6677b7799d25121981270e8bfe119b5c18d08a91ee37a54ad75f65c",
+    "assets/franka_emika_panda/assets/link0_2.obj": "1ca435a2a87a9608a146a47955724d43dd7ce10fc3dd3018800aa98f8ba86e05",
+    "assets/franka_emika_panda/assets/link0_3.obj": "3e9c6334d2b3b47944af3458ee5f20519abc20fe7ee23063bb53405ccab28046",
+    "assets/franka_emika_panda/assets/link0_4.obj": "215d25789704936120f119c0bc1cc7f68516dd3f8f1df61457b71acac3873f26",
+    "assets/franka_emika_panda/assets/link0_5.obj": "9361b104e93743045107aa5b15fb1a0835ba9c1f355aae71f56403cf6a9c33f6",
+    "assets/franka_emika_panda/assets/link0_7.obj": "2dc0b8ebbbc80e4c065d71e195adbc384f673438641fac82b07b801b4d2837cb",
+    "assets/franka_emika_panda/assets/link0_8.obj": "3b8c436999db5586b8eb47bed2b0aa7de6993868b2681b4c04246eeac42fdb7a",
+    "assets/franka_emika_panda/assets/link0_9.obj": "45178f97d2b5da6bce11f610212c4ef7d08c73db33a4fc38e1b7f66b93d023f5",
+    "assets/franka_emika_panda/assets/link1.obj": "51091e776b16babdbe2f3849b5c041f921d1f11dd94ac19a0f1c81abf496fbae",
+    "assets/franka_emika_panda/assets/link1.stl": "e41a39a94108fcf56aacff603fc91ec80541f4c1af17b51a0de5617f5566e6d2",
+    "assets/franka_emika_panda/assets/link2.obj": "5c9f8e715de52c3eb71b475de35993b3b96081e02abea9f28c414768877fc59b",
+    "assets/franka_emika_panda/assets/link2.stl": "370f7605a0fae3529db169ded50f52f171024aa792d4d773bc84197301f6a039",
+    "assets/franka_emika_panda/assets/link3.stl": "0a8d638b9349c6c0eefc4e888636ac4838c4b27170f18a51699321118af709c1",
+    "assets/franka_emika_panda/assets/link3_0.obj": "ce2da87f51708e11b189249d41401065dabe89a06e251185a06cef4d5ff27178",
+    "assets/franka_emika_panda/assets/link3_1.obj": "2880b7753a7173f38fa87ee21da4dfc7fa7be46fbe07bac5aef9e128513cb118",
+    "assets/franka_emika_panda/assets/link3_2.obj": "670cff81ae84693769ca4ae658c154cf909d81167e7c8d22b70ea977f2504efa",
+    "assets/franka_emika_panda/assets/link3_3.obj": "30ede0c812efd0e0b767d134a4eae0b84e0fa407bb6325a5a555e0569b3a3ffd",
+    "assets/franka_emika_panda/assets/link4.stl": "0180ebb5772ec9840cb049750cffb29a9ddc90311752a16ea34757782ef9e48d",
+    "assets/franka_emika_panda/assets/link4_0.obj": "443bf6d178177cf347951ecf107ccd10ca444e605e375b67304579e5f948806f",
+    "assets/franka_emika_panda/assets/link4_1.obj": "ca935ec7cc8b3f0e86aa079c76b0b3bf593b1e9830bab0fa7131ac51577c74f0",
+    "assets/franka_emika_panda/assets/link4_2.obj": "c89caf26d379c35bb9e191ee2d91d09ab29ecc792b48d8bc10b39e5b38222175",
+    "assets/franka_emika_panda/assets/link4_3.obj": "1495d17f45bdb230cf58b0beef9da4e8c9cfe76a3d2d38da89017efe5e093136",
+    "assets/franka_emika_panda/assets/link5_0.obj": "a3238b8f2af0f2eb66d9fe63dc5d41ac52d5d38507241b5ed10e3cb019ab3e71",
+    "assets/franka_emika_panda/assets/link5_1.obj": "9d994bbf83ec241e301b5197a6846da13f2a4a0582edb2c0f76962c5549649d6",
+    "assets/franka_emika_panda/assets/link5_2.obj": "83b4ffe9f772cd7fe182e98640650eebc899aaf01842656574b0416c90dd40a4",
+    "assets/franka_emika_panda/assets/link5_collision_0.obj": "3e5aa75fb13f193555c3dfb999df91d81df25006a5c3af5338297d78137c129b",
+    "assets/franka_emika_panda/assets/link5_collision_1.obj": "87cd8f621071df010f774cbde789282b8463840dfe704f8bdfa2e29be0142e15",
+    "assets/franka_emika_panda/assets/link5_collision_2.obj": "823ab6c8f7b1d79e0844fa071d82a03499ff68e34fddb1ba3451032c22736040",
+    "assets/franka_emika_panda/assets/link6.stl": "20b768e99a0e0440b5754dcca108016434e57937cc356acd9c352ccd3cb27f77",
+    "assets/franka_emika_panda/assets/link6_0.obj": "0504c70ebf1b284ee8faae7dcb896b8830bc672a6552015dd5dbd121fa031fb9",
+    "assets/franka_emika_panda/assets/link6_1.obj": "45f7ca77695198b6d86ec2417ad4e42e6275044f0f96266699ee8e1057757ac1",
+    "assets/franka_emika_panda/assets/link6_10.obj": "365f26c21d10332cab8d8704645cb46930c30b3085956f2d097498c793f24db4",
+    "assets/franka_emika_panda/assets/link6_11.obj": "8ae61e08b3ad064f25bbf03b22e59cc15d65883b5a7ce92711aff29df2493901",
+    "assets/franka_emika_panda/assets/link6_12.obj": "f28d1bfd62b0244ffd19fb35fe9edefdf583d3c9167db944e87185d919e1d021",
+    "assets/franka_emika_panda/assets/link6_13.obj": "0a55fa92dccb261d07200e6565fca4c850fd17f0c1ecf38821c0b97d51796c7d",
+    "assets/franka_emika_panda/assets/link6_14.obj": "750ae3ee4781e62e3a045c662195247b03f6642b05aa93104f08258e5f6eba26",
+    "assets/franka_emika_panda/assets/link6_15.obj": "5999c1c2497a004a7c4bbe034cdf13744f839d85ae7a11b1bc386c48a3e642e6",
+    "assets/franka_emika_panda/assets/link6_16.obj": "551d7a8b37c53e7a152d008b4e36992e5b5abe74a4be18b57ee6319c27def09f",
+    "assets/franka_emika_panda/assets/link6_2.obj": "e54eee4d8232947ee8af65afd5a067e09dac2da6e7e585cb1dccb65496457da0",
+    "assets/franka_emika_panda/assets/link6_3.obj": "d4f6a25ef32fa1fa4734146981994ee760232cb077c80fea6487d78a077c7f27",
+    "assets/franka_emika_panda/assets/link6_4.obj": "be353480fe71d46f7a96f0a3cbb7e112caaf8d88368826f321a36a253c8749b2",
+    "assets/franka_emika_panda/assets/link6_5.obj": "7c87664623c3e1a6cb330db273227a69626dc5e53b4caff1d4ee7911eb3340c6",
+    "assets/franka_emika_panda/assets/link6_6.obj": "8fbc031e0d07b795ebf99115c75223141caaba317cab569159f3d477a7821681",
+    "assets/franka_emika_panda/assets/link6_7.obj": "7dc5ebb799fe281aab27d6e84e7a4efa0a8e42da2369ec83de3ea3f206f62d73",
+    "assets/franka_emika_panda/assets/link6_8.obj": "e3f77381817a341030f9dcc4c4aa7c559f80411b453fd87eb0fefecca82151bf",
+    "assets/franka_emika_panda/assets/link6_9.obj": "25a56ea9b02a03b6cb5a81f31c54f54d0185e1a0b3937c37e4289d896e50215a",
+    "assets/franka_emika_panda/assets/link7.stl": "92ac6afcf7574c034d3170d8a68e95ac9048ab9d0dd5bbd8311b86e551b9ab1c",
+    "assets/franka_emika_panda/assets/link7_0.obj": "04586b0bde011715cfc22072ac72fe0717eb4d4817bcf665987ce6cd88eb2b93",
+    "assets/franka_emika_panda/assets/link7_1.obj": "c3f72289f394c9d6749a4a327fb11f05b203c37c95032c92f28019b40ebe7e00",
+    "assets/franka_emika_panda/assets/link7_2.obj": "d2faecedb304d0989040d082410378dc949dbbda23bd18c05134f08aae984db5",
+    "assets/franka_emika_panda/assets/link7_3.obj": "b62d87c4d4bdb7b281ed341d347c39dad0e50bf36aed8ac11d050073701d5f70",
+    "assets/franka_emika_panda/assets/link7_4.obj": "cb78ccb61fd4ad6c7bff4c4d2e6cb41e1964a5a3e1a28e67c0c6202371cfc018",
+    "assets/franka_emika_panda/assets/link7_5.obj": "099071d3090b51471ba52f4f90814fd3089f4975d196e4d488117073d0bfe491",
+    "assets/franka_emika_panda/assets/link7_6.obj": "99469e2d95ab74ce0292f2f16954c87a8a7dc16652e62e970fe37c94330a81bb",
+    "assets/franka_emika_panda/assets/link7_7.obj": "426c3db8a19373f3dc73d4bec672e948121b2914c10e2e7b9c7ea80643a19e54",
+    "assets/franka_emika_panda/hand.xml": "d2a6539d0fd7c55c75c14f11c78f04505ee33f31d93e6112e3ad7120e5ee786a",
+    "assets/franka_emika_panda/mjx_hand.xml": "cf1d16467d4bd5c69f77cdcc5af2e7e1ad957416661f20d3c4029b73622b4068",
+    "assets/franka_emika_panda/mjx_panda.xml": "8c0f15b755f686a09f04a2cae4afa3b8444d61d3318ea36cee87cc8bb98f9098",
+    "assets/franka_emika_panda/mjx_panda_nohand.xml": "92a6ff0be23a90f3a5888e57067f0ecad1b2bda95c58aa30c4284750da97d075",
+    "assets/franka_emika_panda/mjx_scene.xml": "7877363e91409da51973cc042209b34257354c17c8e7b4eccde8353e88398af7",
+    "assets/franka_emika_panda/mjx_single_cube.xml": "333997ddcb065ff94871247fb2b96e1847119549bfba7a6db645fdb6cdc5199b",
+    "assets/franka_emika_panda/panda.png": "d6ad5fcfc60237f0f006cf22d6e0b70febb559f609d915cd4316e9f1ad383c2d",
+    "assets/franka_emika_panda/panda.xml": "96ad67da03710f17f798c9478fd9e9efdf24a3bf8359f05e456dd9fb158ea273",
+    "assets/franka_emika_panda/panda_nohand.xml": "e7090a5e2384b18a223ef532d98bf914f7f9a6b74dc8bc9f74c8291201074071",
+    "assets/franka_emika_panda/panda_torque.xml": "f9bbb4a22c6f90b5f1c0fcf710616036f649e46886cb08fdfe696b30b92d2271",
+    "assets/franka_emika_panda/scene.xml": "4b08c2e5108f0ed67fa689e096e58850210130c3e6ef889b1e22822d369fd8c3",
+    "assets/franka_scene.xml": "742e121b5817a578e320c4c34fe8862f94fb75ac78dec091c2eeae5b10a86f49",
+    "assets/franka_surface_scene.xml": "7e398c8d763c10f5af0e3124f02678aff1d4ebfe4c269b343cd52dc80a80e1ea",
+    "assets/planar_arm.xml": "cbd2a5b33a1bae6d79992da24a0bad1e2fbb0915c4b3f014178382849aa3e20e",
+    "contact_event_analysis.py": "a5d771e15117046fcffb1d2583ce793e68dfac93cce1dd945ca62ca5602ccde3",
+    "controllers.py": "5d64fe44b4cce33dc14f08fd97c4e082652ee31fcb57a4e5b899dfe6e107b95e",
+    "experiments.py": "ff5ea1304f6890a8a5a319c56bc6931ca174af1f85351e9846db803ffd484020",
+    "franka_adaptive.py": "638f9ff1923802fce259fa26d6395f39699ced32a7c2e23e8ec10f8fa1fba953",
+    "franka_control.py": "4b8568d98f92f81ac2adbc1c92fd30d0e587e5a8a0790cd0518b83b8703c4186",
+    "franka_experiments.py": "77d5f7d24b108a084c6ede93616bca68c890698c21f2f6afa9e606abcdaad6e4",
+    "franka_learning.py": "1dcd78138f056c075045eb7a648dc6be611e8f01f41ff7ec7d86c8768758fbd9",
+    "franka_plotting.py": "af25b67939a9c24ebb2805f4acb6679718dc05de70523cd6db80829c199ae717",
+    "franka_reference.py": "f6516c1398f7a9c4f697f4320b1d6e24d3155eb8ee61f4314b6ed68b05dcffa8",
+    "franka_safety_learning.py": "9982ae66c5bac0f0354c2a018edbe3a5d3de781ce64bec84e69ca8dad55a8649",
+    "franka_simulation.py": "df5c6ddb3ecd5e7d67edb694f7274cc434fff48521852965276043d7479d6818",
+    "franka_stress.py": "e7ecb02886687f21663c3fa007079cecd7b4bccc35f653319ad83e635e8ed911",
+    "franka_torque_safety.py": "66906939003ef030e6414639c513162f75f97f2b4df6a7ceb2c6f04dc44ca9f2",
+    "kinematics.py": "3e9cfd6cc2a13ac7cba0e7f223a1e1fa0ea70c5ff8be279ec40de75f65926a73",
+    "learning_surface_task.py": "fde25d8252d67992c2d7d52fda8a573b416b74ff2be8b70b344373657e18f9be",
+    "plotting.py": "0e1c05bca91ab393d7884c80137241b495b10d1ea87244541cc8792738ada258",
+    "post_reveal_analysis.py": "775c3bda7c4da73a4576569332ccc438da6ef43a6eb8ede0e2bdcf8db62d07da",
+    "published_results_audit.py": "d02531aa2a2c265dbfad8d38107296fe1a8bea5233757fcc0fb59fb0daaa0ec7",
+    "reference_ablation.py": "9f8428affc7e96e3b600a518883871d13fd2476242fb9b11c82d9506a8b2a07d",
+    "residual_rl.py": "bc166fa07acb4dd46f9691a76a7921e24fedbf6fb6e97b6f047507b660b8c848",
+    "simulation.py": "36dfdae8aabe00db0c32b5c19f85a25c95136f057491ca6c35651bc8a8b580e1",
+    "smoke.py": "70c6e252114694859b922b87324858672971699f1f3b7d5f3bb59463400496ea",
+    "surface_contact_validation.py": "c9d1b6d0da5cf0a5a76fa055569bdf7f30697bd9c827c6ebbd0eca3d6204eb66",
+    "surface_control.py": "445e06af46568f2ffc510ae43715b0aeb60928088133f435a51d968577121425",
+    "surface_dataset.py": "be9c942e60f7e12a70ba1e8729b281b74c7e082114fa777b56c88501bdd2e23c",
+    "surface_dataset_replay.py": "d287e26b87e04fb8d1e87f379f9688d53cd819799b8b576eefa965f996235c04",
+    "surface_env.py": "ae50987eb3a7ae996edd3997ca1c3cba8cad28a0d88a13330c3dbb7aef0a8b80",
+    "surface_experiment.py": "657499af7a682396c570040ed932f748d0fc2ff93305f7489a3c1d740200abd5",
+    "surface_policy.py": "cd3fa300b67ac5b6702b2f885d289c7a0b2610a9e68c139e8898d3771ef94738",
+    "surface_policy_artifact.py": "83ceae33d762d4888c994e262f30b5c3189f3ea961462db72d5e8dd257bcec56",
+    "surface_readiness_benchmark.py": "db9e1fc4906bf1b2ec153e97b367406cbec188059c5647e0e38da2bb1a53045d",
+    "surface_readiness_cases.py": "e670fb63821dc2251063ade8f9b7bf4e3b2571ddef8cc96c1a76156c1df6e930",
+    "surface_replay.py": "caca2ba45191e7ce9c1359a3e47d2164d4e750fa1607e947e16acab71b19ff16",
+    "surface_sensing.py": "6584764290a603db2837e84b0ef5a4bb9651fab6ff8dcfd77aa56288e6ee2e2b",
+    "surface_simulation.py": "6ff501d58a88093fb969028f2860b1b47d8e94e5cf904725a8a558bb83c1f26d",
+    "surface_splits.py": "59bfe004ed64a9cdfd52f04881259951d773c21f9b9164f8bea2b37412ffbcfc",
+    "surface_transitions.py": "9521e08593bb2c6ea640fae76da7e660fad1a2dcb13e808e004a36ca873e6bb5",
+    "tangential_compensation.py": "acd65fb1bd331281b5da0c7da182ab9d8e3cc117f99a75b190eabe54884f38af",
+    "tangential_experiment.py": "b19f299cee3f9f9a4a16a3ef120a73e00f341a7df009bffea09f143ae37aaf0c"
+  },
+  "transition_contract": {
+    "bootstrap_mask_definition": "not terminated and terminal_observation_valid",
+    "discount_semantics": "gamma_per_policy_step ** (physics_substeps / policy_substeps)",
+    "policy_period_s": 0.02,
+    "reward_semantics": "sum_over_executed_physics_substeps_with_terminal_penalty",
+    "teacher_input_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32
+    ],
+    "teacher_input_names": [
+      "corrected_normal_force",
+      "normal_force_error",
+      "normal_force_rate",
+      "normal_position_error",
+      "tangent1_position_error",
+      "tangent2_position_error",
+      "normal_velocity_error",
+      "tangent1_velocity_error",
+      "tangent2_velocity_error",
+      "target_normal_velocity",
+      "target_tangent1_velocity",
+      "target_tangent2_velocity",
+      "target_normal_force",
+      "contact_blend",
+      "previous_normal_residual",
+      "previous_tangent1_residual",
+      "previous_tangent2_residual",
+      "normal_positive_headroom",
+      "normal_negative_headroom",
+      "tangent1_positive_headroom",
+      "tangent1_negative_headroom",
+      "tangent2_positive_headroom",
+      "tangent2_negative_headroom",
+      "normal_orientation_error",
+      "tangent1_orientation_error",
+      "tangent2_orientation_error",
+      "normal_angular_velocity_error",
+      "tangent1_angular_velocity_error",
+      "tangent2_angular_velocity_error",
+      "contact_ready_elapsed",
+      "nominal_normal_force",
+      "nominal_tangent1_force",
+      "nominal_tangent2_force"
+    ]
+  },
+  "versions": {
+    "gymnasium": "1.3.0",
+    "mujoco": "3.12.0",
+    "numpy": "2.2.6",
+    "python": "3.10.12"
+  }
+}

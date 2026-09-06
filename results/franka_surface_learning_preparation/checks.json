@@ -1,0 +1,1261 @@
+{
+  "benchmark_audit": {
+    "matches": true,
+    "physics_steps": 432000,
+    "run_count": 72
+  },
+  "compact_archive_contains_raw_npz_or_events": false,
+  "dataset_audit": {
+    "corpus_scope": "full",
+    "episodes": 24,
+    "failed_episodes": 0,
+    "groups": 12,
+    "new_holdout": false,
+    "physics_steps": 144000,
+    "planned_episodes": 24,
+    "split_episode_counts": {
+      "development_test": 4,
+      "train": 16,
+      "validation": 4
+    },
+    "transitions": 14400,
+    "valid": true
+  },
+  "examples_audit": {
+    "corpus_scope": "example_subset",
+    "episodes": 3,
+    "failed_episodes": 0,
+    "groups": 3,
+    "new_holdout": false,
+    "physics_steps": 18000,
+    "planned_episodes": 24,
+    "split_episode_counts": {
+      "development_test": 1,
+      "train": 1,
+      "validation": 1
+    },
+    "transitions": 1800,
+    "valid": true
+  },
+  "full_archive_required": true,
+  "full_case_count": 24,
+  "grouped_tracking": {
+    "per_group": [
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": true,
+        "case_ids": [
+          "g005_seed11",
+          "g005_seed29"
+        ],
+        "group_id": "02d1135b618f4bb3d559c8fd49d64ce93c43986b9e6d59576110bfabc47f2de3",
+        "method": "friction_teacher_50hz",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.3009383572882525,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 3.288668168082758,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "development_test"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": true,
+        "case_ids": [
+          "g003_seed11",
+          "g003_seed29"
+        ],
+        "group_id": "2bc8e9ed3f6cc48467d75ad882c720ca1537de885e778c2501ab0227267a5679",
+        "method": "friction_teacher_50hz",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.41106124298807145,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 3.498638524344863,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "train"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": true,
+        "case_ids": [
+          "g011_seed11",
+          "g011_seed29"
+        ],
+        "group_id": "3af3caae32e997092b8bbcb4590b3c030f813d9414d20593d3a15e4b1c0cf488",
+        "method": "friction_teacher_50hz",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.1979056870382661,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 3.718020062439967,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "train"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": true,
+        "case_ids": [
+          "g008_seed11",
+          "g008_seed29"
+        ],
+        "group_id": "6d8c4b9fdc779198d04f6d4292585f35bec087939b9edaae51aa0bead7218bb9",
+        "method": "friction_teacher_50hz",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.0960527001073131,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 4.757160332140032,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "train"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": true,
+        "case_ids": [
+          "g001_seed11",
+          "g001_seed29"
+        ],
+        "group_id": "76b1a9cdc26befb201d8995fa84ed0878e8eeef436f67587d023c9e35564bfff",
+        "method": "friction_teacher_50hz",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.10478086343379317,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 1.9602524471841594,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "development_test"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": true,
+        "case_ids": [
+          "g004_seed11",
+          "g004_seed29"
+        ],
+        "group_id": "78aeb0f4c4f201ab45dfab2f961fa047d356b7d0c2ba94e8c37a076206d59381",
+        "method": "friction_teacher_50hz",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.27061656928470745,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 5.268313741344166,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "train"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": true,
+        "case_ids": [
+          "g002_seed11",
+          "g002_seed29"
+        ],
+        "group_id": "7de4a580a6c8ff1c7f8c59061686922a216fdde972b1a2d29c6c5658355a75fc",
+        "method": "friction_teacher_50hz",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.10966226206223981,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 2.0520842133373747,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "validation"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": true,
+        "case_ids": [
+          "g009_seed11",
+          "g009_seed29"
+        ],
+        "group_id": "8a93eb6e8492e8e95cc35d19e9b8f11ee84b3abaf062b765bd2b9358198a09b7",
+        "method": "friction_teacher_50hz",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.3171253841400349,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 2.4303965278066064,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "train"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": true,
+        "case_ids": [
+          "g000_seed11",
+          "g000_seed29"
+        ],
+        "group_id": "c4ccad8d74f5bf63a45b3eca8a861b7c4e60cca35d37f4c03c74d9a38c114bd2",
+        "method": "friction_teacher_50hz",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.15992891659045733,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 2.0068691172105826,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "train"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": true,
+        "case_ids": [
+          "g006_seed11",
+          "g006_seed29"
+        ],
+        "group_id": "d7dd1af9307ebd87f97f8e12bf7c4105c0a7bf167a41092ef2db58c7e7e133c2",
+        "method": "friction_teacher_50hz",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.4336232488014482,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 5.4047369518345665,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "train"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": true,
+        "case_ids": [
+          "g010_seed11",
+          "g010_seed29"
+        ],
+        "group_id": "e7e85c528523f783b124ec401e1fcbe0650e96483b5157dc2eda12ce83c2a4df",
+        "method": "friction_teacher_50hz",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.14098058822018983,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 6.071048303749086,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "train"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": true,
+        "case_ids": [
+          "g007_seed11",
+          "g007_seed29"
+        ],
+        "group_id": "f867c0c8c648e69fef3c38ba45159a37264884db9cb86980f30dc525f65d5fd5",
+        "method": "friction_teacher_50hz",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.18008786225535287,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 7.32749589331608,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "validation"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": false,
+        "case_ids": [
+          "g005_seed11",
+          "g005_seed29"
+        ],
+        "group_id": "02d1135b618f4bb3d559c8fd49d64ce93c43986b9e6d59576110bfabc47f2de3",
+        "method": "zero_adaptive",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.29675059011241656,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 13.24136823570732,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "development_test"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": false,
+        "case_ids": [
+          "g003_seed11",
+          "g003_seed29"
+        ],
+        "group_id": "2bc8e9ed3f6cc48467d75ad882c720ca1537de885e778c2501ab0227267a5679",
+        "method": "zero_adaptive",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.39299793412055195,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 13.277018974720004,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "train"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": true,
+        "case_ids": [
+          "g011_seed11",
+          "g011_seed29"
+        ],
+        "group_id": "3af3caae32e997092b8bbcb4590b3c030f813d9414d20593d3a15e4b1c0cf488",
+        "method": "zero_adaptive",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.18898047045486704,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 6.936315043317213,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "train"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": true,
+        "case_ids": [
+          "g008_seed11",
+          "g008_seed29"
+        ],
+        "group_id": "6d8c4b9fdc779198d04f6d4292585f35bec087939b9edaae51aa0bead7218bb9",
+        "method": "zero_adaptive",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.10098209371825101,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 7.944960129324842,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "train"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": false,
+        "case_ids": [
+          "g001_seed11",
+          "g001_seed29"
+        ],
+        "group_id": "76b1a9cdc26befb201d8995fa84ed0878e8eeef436f67587d023c9e35564bfff",
+        "method": "zero_adaptive",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.10529721733440298,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 11.648862049509669,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "development_test"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": false,
+        "case_ids": [
+          "g004_seed11",
+          "g004_seed29"
+        ],
+        "group_id": "78aeb0f4c4f201ab45dfab2f961fa047d356b7d0c2ba94e8c37a076206d59381",
+        "method": "zero_adaptive",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.27586452701932906,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 11.966326571214797,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "train"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": false,
+        "case_ids": [
+          "g002_seed11",
+          "g002_seed29"
+        ],
+        "group_id": "7de4a580a6c8ff1c7f8c59061686922a216fdde972b1a2d29c6c5658355a75fc",
+        "method": "zero_adaptive",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.11422240187722635,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 11.71222184714604,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "validation"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": false,
+        "case_ids": [
+          "g009_seed11",
+          "g009_seed29"
+        ],
+        "group_id": "8a93eb6e8492e8e95cc35d19e9b8f11ee84b3abaf062b765bd2b9358198a09b7",
+        "method": "zero_adaptive",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.31525108255163603,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 12.38694978828849,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "train"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": false,
+        "case_ids": [
+          "g000_seed11",
+          "g000_seed29"
+        ],
+        "group_id": "c4ccad8d74f5bf63a45b3eca8a861b7c4e60cca35d37f4c03c74d9a38c114bd2",
+        "method": "zero_adaptive",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.15409246005066018,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 11.679617003062848,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "train"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": false,
+        "case_ids": [
+          "g006_seed11",
+          "g006_seed29"
+        ],
+        "group_id": "d7dd1af9307ebd87f97f8e12bf7c4105c0a7bf167a41092ef2db58c7e7e133c2",
+        "method": "zero_adaptive",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.4256217972558751,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 13.597935863008061,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "train"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": false,
+        "case_ids": [
+          "g010_seed11",
+          "g010_seed29"
+        ],
+        "group_id": "e7e85c528523f783b124ec401e1fcbe0650e96483b5157dc2eda12ce83c2a4df",
+        "method": "zero_adaptive",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.14800058788172332,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 10.487338907889836,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "train"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": false,
+        "case_ids": [
+          "g007_seed11",
+          "g007_seed29"
+        ],
+        "group_id": "f867c0c8c648e69fef3c38ba45159a37264884db9cb86980f30dc525f65d5fd5",
+        "method": "zero_adaptive",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.18417795510067342,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 16.68567908500181,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "validation"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": true,
+        "case_ids": [
+          "g005_seed11",
+          "g005_seed29"
+        ],
+        "group_id": "02d1135b618f4bb3d559c8fd49d64ce93c43986b9e6d59576110bfabc47f2de3",
+        "method": "zero_friction",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.29935197609143327,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 3.1876896159936514,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "development_test"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": true,
+        "case_ids": [
+          "g003_seed11",
+          "g003_seed29"
+        ],
+        "group_id": "2bc8e9ed3f6cc48467d75ad882c720ca1537de885e778c2501ab0227267a5679",
+        "method": "zero_friction",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.40923428145155843,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 3.4995016418584863,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "train"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": true,
+        "case_ids": [
+          "g011_seed11",
+          "g011_seed29"
+        ],
+        "group_id": "3af3caae32e997092b8bbcb4590b3c030f813d9414d20593d3a15e4b1c0cf488",
+        "method": "zero_friction",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.19506567005907682,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 3.428540292521749,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "train"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": true,
+        "case_ids": [
+          "g008_seed11",
+          "g008_seed29"
+        ],
+        "group_id": "6d8c4b9fdc779198d04f6d4292585f35bec087939b9edaae51aa0bead7218bb9",
+        "method": "zero_friction",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.09686969853622715,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 4.664059008071916,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "train"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": true,
+        "case_ids": [
+          "g001_seed11",
+          "g001_seed29"
+        ],
+        "group_id": "76b1a9cdc26befb201d8995fa84ed0878e8eeef436f67587d023c9e35564bfff",
+        "method": "zero_friction",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.10465527070716288,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 1.6176772906678016,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "development_test"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": true,
+        "case_ids": [
+          "g004_seed11",
+          "g004_seed29"
+        ],
+        "group_id": "78aeb0f4c4f201ab45dfab2f961fa047d356b7d0c2ba94e8c37a076206d59381",
+        "method": "zero_friction",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.2711350252218817,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 5.20766137397535,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "train"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": true,
+        "case_ids": [
+          "g002_seed11",
+          "g002_seed29"
+        ],
+        "group_id": "7de4a580a6c8ff1c7f8c59061686922a216fdde972b1a2d29c6c5658355a75fc",
+        "method": "zero_friction",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.10924462935472501,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 1.7056675400416381,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "validation"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": true,
+        "case_ids": [
+          "g009_seed11",
+          "g009_seed29"
+        ],
+        "group_id": "8a93eb6e8492e8e95cc35d19e9b8f11ee84b3abaf062b765bd2b9358198a09b7",
+        "method": "zero_friction",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.3162208740760989,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 2.3815353390364637,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "train"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": true,
+        "case_ids": [
+          "g000_seed11",
+          "g000_seed29"
+        ],
+        "group_id": "c4ccad8d74f5bf63a45b3eca8a861b7c4e60cca35d37f4c03c74d9a38c114bd2",
+        "method": "zero_friction",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.15817553729664818,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 1.6731892727596211,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "train"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": true,
+        "case_ids": [
+          "g006_seed11",
+          "g006_seed29"
+        ],
+        "group_id": "d7dd1af9307ebd87f97f8e12bf7c4105c0a7bf167a41092ef2db58c7e7e133c2",
+        "method": "zero_friction",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.43131416124923355,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 5.436829898024552,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "train"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": true,
+        "case_ids": [
+          "g010_seed11",
+          "g010_seed29"
+        ],
+        "group_id": "e7e85c528523f783b124ec401e1fcbe0650e96483b5157dc2eda12ce83c2a4df",
+        "method": "zero_friction",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.14136260870752,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 5.955271025934907,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "train"
+      },
+      {
+        "all_replicas_complete": true,
+        "all_replicas_meet_tracking_targets": true,
+        "case_ids": [
+          "g007_seed11",
+          "g007_seed29"
+        ],
+        "group_id": "f867c0c8c648e69fef3c38ba45159a37264884db9cb86980f30dc525f65d5fd5",
+        "method": "zero_friction",
+        "replica_means": {
+          "contact_ratio_pct": {
+            "mean": 100.0,
+            "valid_replicas": 2
+          },
+          "force_rmse_n": {
+            "mean": 0.1806767473327387,
+            "valid_replicas": 2
+          },
+          "intervention_pct": {
+            "mean": 0.0,
+            "valid_replicas": 2
+          },
+          "tangent_rmse_mm": {
+            "mean": 7.452296027747128,
+            "valid_replicas": 2
+          }
+        },
+        "replicas": 2,
+        "split": "validation"
+      }
+    ],
+    "scope": "Descriptive group summaries, not confidence intervals or independent-transition statistics.",
+    "split_coverage": {
+      "development_test": {
+        "parameter_ranges": {
+          "frequency_hz": [
+            0.2,
+            0.20647472664080396
+          ],
+          "friction": [
+            0.45,
+            0.5133303977591781
+          ],
+          "target_force_n": [
+            12.0,
+            12.636881524891674
+          ],
+          "wall_yaw_deg": [
+            0.0,
+            3.2149954686098
+          ]
+        },
+        "physical_task_groups": 2
+      },
+      "train": {
+        "parameter_ranges": {
+          "frequency_hz": [
+            0.12693999371548184,
+            0.24351178517206784
+          ],
+          "friction": [
+            0.25019342041813164,
+            0.6156472242724733
+          ],
+          "target_force_n": [
+            8.234363796630474,
+            15.710602499038712
+          ],
+          "wall_yaw_deg": [
+            -15.0,
+            12.339658663619971
+          ]
+        },
+        "physical_task_groups": 8
+      },
+      "validation": {
+        "parameter_ranges": {
+          "frequency_hz": [
+            0.18221993030472838,
+            0.2
+          ],
+          "friction": [
+            0.45,
+            0.6033252469640649
+          ],
+          "target_force_n": [
+            12.0,
+            14.294771291017808
+          ],
+          "wall_yaw_deg": [
+            6.849103482665328,
+            15.0
+          ]
+        },
+        "physical_task_groups": 2
+      }
+    }
+  },
+  "stress_audit": {
+    "matches": true,
+    "physics_steps": 72000,
+    "run_count": 12
+  },
+  "stress_case_count": 3,
+  "teacher_collection_equivalence": {
+    "cases": 24,
+    "shared_trace_fields": [
+      "applied_residual_force_local",
+      "applied_torque",
+      "cartesian_jacobian",
+      "commanded_torque",
+      "commanded_wrench",
+      "contact_blend",
+      "contact_model",
+      "controller_frame_rotation",
+      "controller_kind",
+      "dt",
+      "endpoint_contact_gap_m",
+      "endpoint_linear_velocity",
+      "endpoint_position",
+      "endpoint_time",
+      "endpoint_valid",
+      "feedback_raw_wrench_world",
+      "feedback_wrench_sample_time",
+      "filtered_residual_force_local",
+      "filtered_wrench_world",
+      "force_filter_alpha",
+      "governed_normal_lead_m",
+      "joint_torque_offset",
+      "joint_velocity",
+      "kinematic_sample_time",
+      "linear_velocity",
+      "lower_torque_limit",
+      "measured_angular_velocity",
+      "measured_kinematic_sample_time",
+      "measured_linear_velocity",
+      "measured_normal_force",
+      "measured_position",
+      "measured_rotation",
+      "measured_wrench_sample_time",
+      "measured_wrench_world",
+      "orientation_error_rad",
+      "policy_action",
+      "policy_action_valid",
+      "policy_step_index",
+      "position",
+      "q",
+      "raw_wrench_sample_time",
+      "raw_wrench_world",
+      "requested_residual_force_local",
+      "requested_tangential_force_world",
+      "residual_projection_scale",
+      "schema_version",
+      "target_angular_velocity",
+      "target_linear_velocity",
+      "target_normal_force",
+      "target_position",
+      "target_rotation",
+      "time",
+      "torque_projection_scale",
+      "true_contact_gap_m",
+      "true_normal_force",
+      "true_tangent_force_n",
+      "upper_torque_limit"
+    ]
+  },
+  "valid": true
+}

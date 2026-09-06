@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from collections import deque
+from copy import deepcopy
 from dataclasses import dataclass
 
 import mujoco
@@ -207,101 +208,114 @@ class SurfaceTrialResult:
         return output
 
 
-def run_surface_trial(
-    controller_frame: SurfaceFrame,
-    scenario: SurfaceScenario | None = None,
-    config: SurfaceSimulationConfig | None = None,
-    task: SurfaceTask | None = None,
-    controller_kind: str = "surface_adaptive",
-) -> SurfaceTrialResult:
-    """Run split-step control and record every controller input, including torque context.
+@dataclass(frozen=True)
+class SurfaceSample:
+    """Action-before-solve input snapshot, never a post-action force measurement."""
 
-    F/T at x[k], u[k] is rotated into world immediately after step2 and cached for
-    cycle k+1. Position/twist can have additional scenario delay; torque context is
-    current encoder/model data. The filter timestamp dates its latest raw input.
-    The controller resets to exactly the first logged measurement, permitting replay.
+    state: FrankaState
+    target: FrankaTarget
+    time: float
+    measured_kinematic_sample_time: float
+    measured_wrench_sample_time: float
+    q: np.ndarray
+    joint_velocity: np.ndarray
+
+
+class SurfaceSimulator:
+    """One causal 500 Hz simulation path for both batch trials and interactive callers.
+
+    sample() prepares the next control input at most once and returns an owned copy.
+    step() applies one world wrench and consumes that input. It does not run a controller.
+    Construct a new instance to reset model, sensor, RNG, filter and delay state together.
+    A final sample at the horizon is available for next-observation semantics, not another action.
     """
-    scenario, config, task = (
-        scenario or SurfaceScenario(),
-        config or SurfaceSimulationConfig(),
-        task or SurfaceTask(),
-    )
-    if controller_kind == "surface_adaptive":
-        controller = SurfaceAdaptiveController(controller_frame)
-    elif controller_kind in {"surface_integral", "surface_friction"}:
-        controller = SurfaceAdaptiveController(
-            controller_frame, tangential_mode=controller_kind.removeprefix("surface_")
+
+    def __init__(
+        self,
+        controller_frame: SurfaceFrame,
+        scenario: SurfaceScenario | None = None,
+        config: SurfaceSimulationConfig | None = None,
+        task: SurfaceTask | None = None,
+        controller_kind: str = "surface_adaptive",
+    ) -> None:
+        self.frame = controller_frame
+        self.scenario = scenario = scenario or SurfaceScenario()
+        self.config = config = config or SurfaceSimulationConfig()
+        self.task = task or SurfaceTask()
+        self.controller_kind = controller_kind
+        self._model = model = mujoco.MjModel.from_xml_path(str(franka_surface_model_path()))
+        model.opt.timestep = config.timestep
+        if model.opt.integrator == mujoco.mjtIntegrator.mjINT_RK4:
+            raise ValueError("surface trials require a single-step integrator")
+        self._wall_id, self._tool_id, self._site_id = (
+            model.geom("contact_wall").id,
+            model.geom("tool_tip").id,
+            model.site("ee_site").id,
         )
-    elif controller_kind == "world_safe_adaptive":
-        if not np.array_equal(controller_frame.rotation, np.eye(3)):
-            raise ValueError("world_safe_adaptive requires the identity frame")
-        controller = FrankaSafeAdaptiveController()
-    else:
-        raise ValueError("unknown controller_kind")
-    model = mujoco.MjModel.from_xml_path(str(franka_surface_model_path()))
-    model.opt.timestep = config.timestep
-    if model.opt.integrator == mujoco.mjtIntegrator.mjINT_RK4:
-        raise ValueError("surface trials require a single-step integrator")
-    wall_id, tool_id, site_id = (
-        model.geom("contact_wall").id,
-        model.geom("tool_tip").id,
-        model.site("ee_site").id,
-    )
-    wall_normal = yaw_frame(scenario.wall_yaw_deg).rotation[:, 0]
-    yaw = np.deg2rad(scenario.wall_yaw_deg)
-    model.geom_pos[wall_id, :2] = (
-        np.array([0.400, 0.0]) + model.geom_size[wall_id, 0] * wall_normal[:2]
-    )
-    model.geom_quat[wall_id] = [np.cos(yaw / 2), 0, 0, np.sin(yaw / 2)]
-    model.geom_solref[wall_id, 0] = scenario.wall_time_constant
-    model.geom_friction[wall_id, 0] = scenario.wall_sliding_friction
-    model.geom_friction[tool_id, 0] = scenario.tool_sliding_friction
-    if config.contact_model == "smooth":
-        # Equal-priority geoms mix solimp. Start BOTH at zero impedance so the
-        # sliding contact activates smoothly; keep width, friction and solref.
-        # This changes contact compliance, not the controller or real hardware.
-        model.geom_solimp[[tool_id, wall_id], 0] = 0.0
-    body_id = model.body("contact_tool").id
-    model.body_inertia[body_id] *= scenario.tool_mass_kg / model.body_mass[body_id]
-    model.body_mass[body_id] = scenario.tool_mass_kg
-    data = mujoco.MjData(model)
-    mujoco.mj_setConst(model, data)
-    mujoco.mj_resetDataKeyframe(model, data, model.key("home").id)
-    data.ctrl[:] = 0.0
-    mujoco.mj_forward(model, data)
-    initial_position, initial_rotation, _, _, _ = _site_state(model, data, site_id)
-    nominal_q, limits = data.qpos[:7].copy(), model.actuator_ctrlrange[:7].copy()
-    sensor_seed, position_seed = np.random.SeedSequence(config.seed).spawn(2)
-    position_rng = np.random.default_rng(position_seed)
-    sensor = ToolWrenchSensor(
-        model,
-        nominal_mass_kg=scenario.nominal_tool_mass_kg,
-        force_bias_sensor_n=scenario.force_bias_sensor_n,
-        torque_bias_sensor_nm=scenario.torque_bias_sensor_nm,
-        force_noise_std_n=scenario.force_noise_std_n,
-        torque_noise_std_nm=scenario.torque_noise_std_nm,
-        rng=np.random.default_rng(sensor_seed),
-    )
-    previous_wrench = sensor.read_world(data)
-    filtered_wrench = np.zeros(6)
-    alpha = config.timestep / (config.force_filter_time_constant + config.timestep)
-    history: deque = deque(maxlen=scenario.delay_steps + 1)
-    rows: list[dict] = []
-    for step in range(round(config.duration / config.timestep)):
-        time = step * config.timestep
+        wall_id, tool_id = self._wall_id, self._tool_id
+        self._wall_normal = wall_normal = yaw_frame(scenario.wall_yaw_deg).rotation[:, 0]
+        yaw = np.deg2rad(scenario.wall_yaw_deg)
+        model.geom_pos[wall_id, :2] = (
+            np.array([0.400, 0.0]) + model.geom_size[wall_id, 0] * wall_normal[:2]
+        )
+        model.geom_quat[wall_id] = [np.cos(yaw / 2), 0, 0, np.sin(yaw / 2)]
+        model.geom_solref[wall_id, 0] = scenario.wall_time_constant
+        model.geom_friction[wall_id, 0] = scenario.wall_sliding_friction
+        model.geom_friction[tool_id, 0] = scenario.tool_sliding_friction
+        if config.contact_model == "smooth":
+            # Both equal-priority geoms retain the existing explicit compliance choice.
+            model.geom_solimp[[tool_id, wall_id], 0] = 0.0
+        body_id = model.body("contact_tool").id
+        model.body_inertia[body_id] *= scenario.tool_mass_kg / model.body_mass[body_id]
+        model.body_mass[body_id] = scenario.tool_mass_kg
+        self._data = data = mujoco.MjData(model)
+        mujoco.mj_setConst(model, data)
+        mujoco.mj_resetDataKeyframe(model, data, model.key("home").id)
+        data.ctrl[:] = 0.0
+        mujoco.mj_forward(model, data)
+        self._initial_position, self._initial_rotation, _, _, _ = _site_state(
+            model, data, self._site_id
+        )
+        self._nominal_q = data.qpos[:7].copy()
+        self._limits = model.actuator_ctrlrange[:7].copy()
+        sensor_seed, position_seed = np.random.SeedSequence(config.seed).spawn(2)
+        self._position_rng = np.random.default_rng(position_seed)
+        self._sensor = ToolWrenchSensor(
+            model,
+            nominal_mass_kg=scenario.nominal_tool_mass_kg,
+            force_bias_sensor_n=scenario.force_bias_sensor_n,
+            torque_bias_sensor_nm=scenario.torque_bias_sensor_nm,
+            force_noise_std_n=scenario.force_noise_std_n,
+            torque_noise_std_nm=scenario.torque_noise_std_nm,
+            rng=np.random.default_rng(sensor_seed),
+        )
+        self._previous_wrench = self._sensor.read_world(data)
+        self._filtered_wrench = np.zeros(6)
+        self._alpha = config.timestep / (config.force_filter_time_constant + config.timestep)
+        self._history: deque = deque(maxlen=scenario.delay_steps + 1)
+        self._rows: list[dict] = []
+        self._step = 0
+        self._pending: SurfaceSample | None = None
+        self._input_row: dict | None = None
+
+    def _prepare(self) -> None:
+        if self._pending is not None:
+            return
+        model, data, config = self._model, self._data, self.config
+        time = self._step * config.timestep
         mujoco.mj_step1(model, data)
         if abs(data.time - time) > 1e-9:
             raise RuntimeError("MuJoCo reset or time drift invalidated surface timestamps")
-        position, rotation, linear, angular, jacobian = _site_state(model, data, site_id)
-        filtered_wrench += alpha * (previous_wrench - filtered_wrench)
-        feedback_time = max(0, step - 1) * config.timestep
-        history.append(
+        position, rotation, linear, angular, jacobian = _site_state(model, data, self._site_id)
+        self._filtered_wrench += self._alpha * (self._previous_wrench - self._filtered_wrench)
+        feedback_time = max(0, self._step - 1) * config.timestep
+        self._history.append(
             (
-                position + position_rng.normal(0, scenario.position_noise_std_m, 3),
+                position + self._position_rng.normal(0, self.scenario.position_noise_std_m, 3),
                 rotation,
                 linear,
                 angular,
-                filtered_wrench.copy(),
+                self._filtered_wrench.copy(),
                 time,
                 feedback_time,
             )
@@ -314,31 +328,36 @@ def run_surface_trial(
             measured_wrench,
             measured_time,
             measured_wrench_time,
-        ) = history[0]
-        posture = 10.0 * (nominal_q - data.qpos[:7]) - 2.5 * data.qvel[:7]
+        ) = self._history[0]
+        posture = 10.0 * (self._nominal_q - data.qpos[:7]) - 2.5 * data.qvel[:7]
         actuation = FrankaActuationContext(
             jacobian,
-            scenario.bias_compensation_scale * data.qfrc_bias[:7]
+            self.scenario.bias_compensation_scale * data.qfrc_bias[:7]
             + damped_nullspace_projector(jacobian) @ posture,
-            limits[:, 0],
-            limits[:, 1],
+            self._limits[:, 0],
+            self._limits[:, 1],
         )
         state = FrankaState(
             measured_position,
             measured_rotation,
             measured_linear,
             measured_angular,
-            float(controller_frame.rotation[:, 0] @ measured_wrench[:3]),
+            float(self.frame.rotation[:, 0] @ measured_wrench[:3]),
             actuation,
         )
-        target = task.target_at(time, initial_position, initial_rotation, config.target_force)
-        if step == 0:
-            controller.reset(state)
-        wrench = controller.compute(state, target, config.timestep)
-        commanded_torque = actuation.joint_torque(wrench)
-        applied_torque = np.clip(commanded_torque, limits[:, 0], limits[:, 1])
-        telemetry = capture_franka_controller_telemetry(controller)
-        row = {
+        target = self.task.target_at(
+            time, self._initial_position, self._initial_rotation, config.target_force
+        )
+        self._pending = SurfaceSample(
+            state,
+            target,
+            time,
+            measured_time,
+            measured_wrench_time,
+            data.qpos[:7].copy(),
+            data.qvel[:7].copy(),
+        )
+        self._input_row = {
             "time": time,
             "kinematic_sample_time": time,
             "raw_wrench_sample_time": time,
@@ -355,8 +374,8 @@ def run_surface_trial(
             "measured_angular_velocity": state.angular_velocity,
             "measured_normal_force": state.normal_force,
             "measured_wrench_world": measured_wrench,
-            "filtered_wrench_world": filtered_wrench.copy(),
-            "feedback_raw_wrench_world": previous_wrench.copy(),
+            "filtered_wrench_world": self._filtered_wrench.copy(),
+            "feedback_raw_wrench_world": self._previous_wrench.copy(),
             "cartesian_jacobian": actuation.cartesian_jacobian,
             "joint_torque_offset": actuation.joint_torque_offset,
             "lower_torque_limit": actuation.lower_torque_limit,
@@ -366,47 +385,136 @@ def run_surface_trial(
             "target_linear_velocity": target.linear_velocity,
             "target_angular_velocity": target.angular_velocity,
             "target_normal_force": target.normal_force,
-            "commanded_wrench": wrench,
-            "commanded_torque": commanded_torque,
-            "applied_torque": applied_torque,
             "orientation_error_rad": np.linalg.norm(orientation_error(rotation, target.rotation)),
-            "contact_blend": telemetry.contact_blend,
-            "governed_normal_lead_m": telemetry.governed_normal_lead_m,
-            "torque_projection_scale": telemetry.torque_projection_scale,
-            "requested_tangential_force_world": (
-                getattr(controller, "requested_tangential_force_world", np.zeros(3))
-            ),
         }
+
+    def sample(self) -> SurfaceSample:
+        self._prepare()
+        return deepcopy(self._pending)
+
+    def evaluator_kinematics(self) -> dict:
+        """Fresh x[k] geometry/twist, including x[N]; never an actor observation.
+
+        Uses the same cached step1 refresh as sample(). It does not integrate or
+        solve a new contact force. Existing trace rows keep their original x[k]
+        convention; interactive callers can separately record x[k+1].
+        """
+        self._prepare()
+        row = self._input_row
+        return {
+            "endpoint_time": float(row["time"]),
+            "endpoint_position": row["position"].copy(),
+            "endpoint_linear_velocity": row["linear_velocity"].copy(),
+            "endpoint_contact_gap_m": float(
+                self._wall_normal @ (np.array([0.400, 0.0, 0.0]) - row["position"]) - 0.025
+            ),
+            "endpoint_valid": True,
+        }
+
+    def step(self, wrench: np.ndarray, controller: object | None = None) -> dict:
+        if self._step >= round(self.config.duration / self.config.timestep):
+            raise RuntimeError("surface horizon reached; create a new simulator to reset")
+        wrench = np.asarray(wrench, dtype=float)
+        if wrench.shape != (6,) or not np.all(np.isfinite(wrench)):
+            raise ValueError("wrench must be a finite 6-vector")
+        self._prepare()
+        model, data, config = self._model, self._data, self.config
+        time = self._pending.time
+        row = self._input_row.copy()
+        actuation = self._pending.state.actuation
+        commanded_torque = actuation.joint_torque(wrench)
+        applied_torque = np.clip(commanded_torque, self._limits[:, 0], self._limits[:, 1])
+        telemetry = capture_franka_controller_telemetry(controller)
+        row.update(
+            {
+                "commanded_wrench": wrench.copy(),
+                "commanded_torque": commanded_torque,
+                "applied_torque": applied_torque,
+                "contact_blend": telemetry.contact_blend
+                if telemetry.contact_blend is not None
+                else 0.0,
+                "governed_normal_lead_m": (
+                    telemetry.governed_normal_lead_m
+                    if telemetry.governed_normal_lead_m is not None
+                    else 0.0
+                ),
+                "torque_projection_scale": (
+                    telemetry.torque_projection_scale
+                    if telemetry.torque_projection_scale is not None
+                    else 1.0
+                ),
+                "requested_tangential_force_world": (
+                    getattr(controller, "requested_tangential_force_world", np.zeros(3))
+                ),
+            }
+        )
         data.ctrl[:7], data.ctrl[7] = applied_torque, 0.0
         mujoco.mj_step2(model, data)
         if abs(data.time - (time + config.timestep)) > 1e-9:
             raise RuntimeError("MuJoCo reset or time drift invalidated surface timestamps")
         # site_xmat and sensordata still describe x[k], not the integrated x[k+1].
-        previous_wrench = sensor.read_world(data)
-        row["raw_wrench_world"] = previous_wrench.copy()
+        self._previous_wrench = self._sensor.read_world(data)
+        row["raw_wrench_world"] = self._previous_wrench.copy()
         # Ideal contact sum is evaluator-only, never supplied to controller/sensor.
-        row["true_normal_force"] = _normal_contact_force(model, data, tool_id, wall_id)
+        row["true_normal_force"] = _normal_contact_force(model, data, self._tool_id, self._wall_id)
         row["true_contact_gap_m"] = float(
-            wall_normal @ (np.array([0.400, 0.0, 0.0]) - position) - 0.025
+            self._wall_normal @ (np.array([0.400, 0.0, 0.0]) - row["position"]) - 0.025
         )
         tangent_load_world = np.zeros(3)
         contact_wrench = np.zeros(6)
         for contact_index in range(data.ncon):
             contact = data.contact[contact_index]
-            if {contact.geom1, contact.geom2} == {tool_id, wall_id}:
+            if {contact.geom1, contact.geom2} == {self._tool_id, self._wall_id}:
                 mujoco.mj_contactForce(model, data, contact_index, contact_wrench)
                 tangent_load_world += contact.frame.reshape(3, 3)[1:].T @ contact_wrench[1:3]
         row["true_tangent_force_n"] = float(np.linalg.norm(tangent_load_world))
-        rows.append(row)
-    trace = {name: np.asarray([row[name] for row in rows]) for name in rows[0]}
-    if not all(np.all(np.isfinite(value)) for value in trace.values()):
-        raise RuntimeError("nonfinite surface trace")
-    trace.update(
-        schema_version=np.array(1),
-        dt=np.array(config.timestep),
-        controller_kind=np.array(controller_kind),
-        contact_model=np.array(config.contact_model),
-        controller_frame_rotation=controller_frame.rotation.copy(),
-        force_filter_alpha=np.array(alpha),
-    )
-    return SurfaceTrialResult(trace, scenario, config, task)
+        self._rows.append(row)
+        self._step += 1
+        self._pending = self._input_row = None
+        if not all(np.all(np.isfinite(value)) for value in row.values()):
+            raise RuntimeError("nonfinite surface trace")
+        return deepcopy(row)
+
+    def result(self) -> SurfaceTrialResult:
+        if not self._rows:
+            raise RuntimeError("no executed surface samples")
+        trace = {name: np.asarray([row[name] for row in self._rows]) for name in self._rows[0]}
+        trace.update(
+            schema_version=np.array(1),
+            dt=np.array(self.config.timestep),
+            controller_kind=np.array(self.controller_kind),
+            contact_model=np.array(self.config.contact_model),
+            controller_frame_rotation=self.frame.rotation.copy(),
+            force_filter_alpha=np.array(self._alpha),
+        )
+        return SurfaceTrialResult(trace, self.scenario, self.config, self.task)
+
+
+def run_surface_trial(
+    controller_frame: SurfaceFrame,
+    scenario: SurfaceScenario | None = None,
+    config: SurfaceSimulationConfig | None = None,
+    task: SurfaceTask | None = None,
+    controller_kind: str = "surface_adaptive",
+) -> SurfaceTrialResult:
+    """Batch adapter over the same causal surface simulator used by interactive callers."""
+    if controller_kind == "surface_adaptive":
+        controller = SurfaceAdaptiveController(controller_frame)
+    elif controller_kind in {"surface_integral", "surface_friction"}:
+        controller = SurfaceAdaptiveController(
+            controller_frame, tangential_mode=controller_kind.removeprefix("surface_")
+        )
+    elif controller_kind == "world_safe_adaptive":
+        if not np.array_equal(controller_frame.rotation, np.eye(3)):
+            raise ValueError("world_safe_adaptive requires the identity frame")
+        controller = FrankaSafeAdaptiveController()
+    else:
+        raise ValueError("unknown controller_kind")
+    simulator = SurfaceSimulator(controller_frame, scenario, config, task, controller_kind)
+    for step in range(round(simulator.config.duration / simulator.config.timestep)):
+        sample = simulator.sample()
+        if step == 0:
+            controller.reset(sample.state)
+        wrench = controller.compute(sample.state, sample.target, simulator.config.timestep)
+        simulator.step(wrench, controller)
+    return simulator.result()

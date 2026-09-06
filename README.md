@@ -42,6 +42,16 @@ v0.6 的开发实验已加入分步采样和有状态接近参考。四组对照
 [12 秒擦拭视频](results/franka_tangential_demo/demo.mp4)同步显示七轴日志轨迹、原始法向力和
 切向误差；它是仿真日志可视化，不是重新积分动力学或真机演示。
 
+新的学习入口见[从稳定擦拭到学习控制](docs/surface_learning.md)：表面坐标的 49 维测量观测、
+50 Hz 决策/500 Hz 控制环境、真实同频教师数据和按物理任务分组的切分。
+RL 在摩擦前馈强基线上学习残差；IL 在不含摩擦前馈的名义控制器上模仿教师，避免重复补偿。
+这轮准备没有训练新策略，旧 world-axis checkpoint 也不能直接加载到新接口。
+在[72 次公开准备实验](results/franka_surface_learning_preparation/benchmark_summary.md)中，
+强基线和同频教师均通过 24/24 的安全与跟踪目标，切向 RMSE 中位数分别为 3.466、3.606 mm。
+教师数据包含 14,400 个学习步；GitHub 附带三回合示例，全集有可复现采集命令。
+划分中的标称场景聚集问题在训练前按配置分层修正，[原始清单](results/franka_surface_learning_partition/)
+保留，未改物理数据或性能数字，也不把公开开发集称为新的盲测。
+
 ## v0.5 首次揭盲结果
 
 机器人使用相同的 48 个仿真参数场景和相同的逐 case 噪声 seed。预注册规则要求五个 residual
@@ -91,6 +101,7 @@ raw contact 的时间作图；颜色表示运动阶段，形状表示 controller
 | 有状态接近参考与因果力反馈 | [`franka_reference.py`](src/compliant_control_lab/franka_reference.py)、[split-step simulation](src/compliant_control_lab/franka_simulation.py) | [参考约束](tests/test_franka_reference.py)、[采样契约](tests/test_franka_timing.py)、[四组实验](docs/reference_governor_v0.6.md) |
 | 表面坐标、工具端 F/T 与完整输入回放 | [`surface_control.py`](src/compliant_control_lab/surface_control.py)、[`surface_sensing.py`](src/compliant_control_lab/surface_sensing.py)、[`surface_replay.py`](src/compliant_control_lab/surface_replay.py) | [坐标与传感器教程](docs/surface_frame_and_sensing.md)、[因果采样测试](tests/test_surface_simulation.py) |
 | 切向负载偏差、有界积分与平滑摩擦前馈 | [`tangential_compensation.py`](src/compliant_control_lab/tangential_compensation.py) | [公式与诊断](docs/tangential_tracking.md)、[安全时序](tests/test_tangential_safety.py)、[配对实验](results/franka_tangential_development/summary.md) |
+| 新表面任务的交互环境、端点安全与学习数据 | [`surface_env.py`](src/compliant_control_lab/surface_env.py)、[`surface_dataset.py`](src/compliant_control_lab/surface_dataset.py)、[`surface_transitions.py`](src/compliant_control_lab/surface_transitions.py) | [学习前准备](docs/surface_learning.md)、[末步回归](tests/test_surface_endpoint.py)、[数据因果重放](tests/test_surface_dataset_replay.py) |
 | 6D wrench 到 7 关节力矩包络投影 | [Python](src/compliant_control_lab/franka_torque_safety.py)、[C++17](cpp/src/torque_safety.cpp) | [native edge cases](cpp/tests/test_torque_safety.cpp)、[160-case randomized parity](tests/test_cpp_parity.py) |
 | 50 Hz bounded residual 与 500 Hz safety wrapper | [`residual_rl.py`](src/compliant_control_lab/residual_rl.py) | [residual tests](tests/test_residual_rl.py)、[paired effect](results/franka_safety_postreveal/summary.md) |
 | 五 seed 冻结、first reveal 与离线复核 | [`franka_safety_learning.py`](src/compliant_control_lab/franka_safety_learning.py)、[`published_results_audit.py`](src/compliant_control_lab/published_results_audit.py) | [protocol tests](tests/test_franka_safety_learning.py)、[tamper tests](tests/test_published_results_audit.py) |
@@ -128,6 +139,7 @@ C++ 核心的接口只包含固定尺寸状态、目标和 Cartesian wrench。�
 |---|---|
 | 五分钟核验项目 | [招聘方走查](docs/recruiter_walkthrough.md)、本页结果、[架构图](docs/architecture.md) |
 | 系统学习柔顺控制 | [教程目录](docs/tutorial/README.md)，从 2-DOF 一直读到 Franka 与 Residual RL |
+| 在新表面任务上准备 RL / IL | [环境、教师标签、训练数组与候选冻结](docs/surface_learning.md) |
 | 检查算法和数值实现 | [Franka control notes](docs/franka_control.md)、[torque-safe residual notes](docs/torque_safe_residual_v0.5.md) |
 | 学习接触峰值怎么定位 | [contact-event diagnosis](docs/contact_event_diagnosis.md)、[48-case CSV](results/franka_safety_postreveal/contact_events/safe_adaptive_contact_events.csv) |
 | 审核实验可信度 | [v0.5 protocol](docs/reproduction_plan_v0.5.md)、[manifest](results/franka_safety_blind/manifest.json) |
