@@ -1,0 +1,1502 @@
+[
+  {
+    "epoch": 1,
+    "train_action_mse": 0.14629951159244703,
+    "train_action_mse_by_axis": {
+      "normal": 0.00017849490558068286,
+      "tangent1": 0.23539399910623132,
+      "tangent2": 0.20332604076552896
+    },
+    "validation_action_mse": 0.18666738876489158,
+    "validation_action_mse_by_axis": {
+      "normal": 0.000179765123516634,
+      "tangent1": 0.3337030824700588,
+      "tangent2": 0.22611931870109936
+    }
+  },
+  {
+    "epoch": 2,
+    "train_action_mse": 0.054404113469100054,
+    "train_action_mse_by_axis": {
+      "normal": 8.025269244281086e-05,
+      "tangent1": 0.07208349971527789,
+      "tangent2": 0.09104858799957948
+    },
+    "validation_action_mse": 0.06585908275906206,
+    "validation_action_mse_by_axis": {
+      "normal": 7.228763648244408e-05,
+      "tangent1": 0.09190490025309961,
+      "tangent2": 0.10560006038760417
+    }
+  },
+  {
+    "epoch": 3,
+    "train_action_mse": 0.01799783767562757,
+    "train_action_mse_by_axis": {
+      "normal": 2.7613862527674302e-05,
+      "tangent1": 0.025915982168110085,
+      "tangent2": 0.028049916996244945
+    },
+    "validation_action_mse": 0.014946967849697977,
+    "validation_action_mse_by_axis": {
+      "normal": 1.7639257448126184e-05,
+      "tangent1": 0.02009184884749838,
+      "tangent2": 0.024731415444147423
+    }
+  },
+  {
+    "epoch": 4,
+    "train_action_mse": 0.015756237431337358,
+    "train_action_mse_by_axis": {
+      "normal": 2.7688717127215615e-05,
+      "tangent1": 0.02268173863924807,
+      "tangent2": 0.024559284937636795
+    },
+    "validation_action_mse": 0.00938953282048382,
+    "validation_action_mse_by_axis": {
+      "normal": 1.752416249250417e-05,
+      "tangent1": 0.011635682835830687,
+      "tangent2": 0.016515391463128266
+    }
+  },
+  {
+    "epoch": 5,
+    "train_action_mse": 0.015689553458512008,
+    "train_action_mse_by_axis": {
+      "normal": 2.417530491068374e-05,
+      "tangent1": 0.02258815335459353,
+      "tangent2": 0.024456331716031808
+    },
+    "validation_action_mse": 0.008961891824789438,
+    "validation_action_mse_by_axis": {
+      "normal": 1.4361795832490267e-05,
+      "tangent1": 0.010578332162818338,
+      "tangent2": 0.016292981515717488
+    }
+  },
+  {
+    "epoch": 6,
+    "train_action_mse": 0.015683250594793623,
+    "train_action_mse_by_axis": {
+      "normal": 2.131081038399078e-05,
+      "tangent1": 0.02263230988029114,
+      "tangent2": 0.024396131093705743
+    },
+    "validation_action_mse": 0.00892178375257553,
+    "validation_action_mse_by_axis": {
+      "normal": 1.3716046035318583e-05,
+      "tangent1": 0.010566096814459284,
+      "tangent2": 0.016185538397231993
+    }
+  },
+  {
+    "epoch": 7,
+    "train_action_mse": 0.01566073953176921,
+    "train_action_mse_by_axis": {
+      "normal": 1.9775643841258756e-05,
+      "tangent1": 0.022575822328709996,
+      "tangent2": 0.02438662062275637
+    },
+    "validation_action_mse": 0.008842296625403308,
+    "validation_action_mse_by_axis": {
+      "normal": 1.3136210726527866e-05,
+      "tangent1": 0.010639718265698345,
+      "tangent2": 0.015874035399785057
+    }
+  },
+  {
+    "epoch": 8,
+    "train_action_mse": 0.015632944908731114,
+    "train_action_mse_by_axis": {
+      "normal": 1.8636536887799923e-05,
+      "tangent1": 0.022545925222551475,
+      "tangent2": 0.024334272966754073
+    },
+    "validation_action_mse": 0.008764489507287082,
+    "validation_action_mse_by_axis": {
+      "normal": 1.3671913471426017e-05,
+      "tangent1": 0.010419186776140524,
+      "tangent2": 0.0158606098322493
+    }
+  },
+  {
+    "epoch": 9,
+    "train_action_mse": 0.01568781607062429,
+    "train_action_mse_by_axis": {
+      "normal": 1.7887559782043205e-05,
+      "tangent1": 0.022595278535223196,
+      "tangent2": 0.024450282116867648
+    },
+    "validation_action_mse": 0.009021582983974997,
+    "validation_action_mse_by_axis": {
+      "normal": 1.3520876951307569e-05,
+      "tangent1": 0.01046760072554897,
+      "tangent2": 0.016583627349424715
+    }
+  },
+  {
+    "epoch": 10,
+    "train_action_mse": 0.015599883587536887,
+    "train_action_mse_by_axis": {
+      "normal": 1.7982185847050827e-05,
+      "tangent1": 0.02253416633343863,
+      "tangent2": 0.02424750224332498
+    },
+    "validation_action_mse": 0.008874514299991606,
+    "validation_action_mse_by_axis": {
+      "normal": 1.4493066565762618e-05,
+      "tangent1": 0.010535097968002947,
+      "tangent2": 0.016073951865406114
+    }
+  },
+  {
+    "epoch": 11,
+    "train_action_mse": 0.015698559262410445,
+    "train_action_mse_by_axis": {
+      "normal": 1.890676046764289e-05,
+      "tangent1": 0.022740110413861883,
+      "tangent2": 0.02433666061290181
+    },
+    "validation_action_mse": 0.008880409578779325,
+    "validation_action_mse_by_axis": {
+      "normal": 1.7012568619179044e-05,
+      "tangent1": 0.010936110880768077,
+      "tangent2": 0.01568810528695072
+    }
+  },
+  {
+    "epoch": 12,
+    "train_action_mse": 0.015544208558316867,
+    "train_action_mse_by_axis": {
+      "normal": 1.857716170168643e-05,
+      "tangent1": 0.02248196359734137,
+      "tangent2": 0.024132084915907553
+    },
+    "validation_action_mse": 0.008771220896665084,
+    "validation_action_mse_by_axis": {
+      "normal": 1.6181635619884244e-05,
+      "tangent1": 0.01056627271304198,
+      "tangent2": 0.01573120834133339
+    }
+  },
+  {
+    "epoch": 13,
+    "train_action_mse": 0.015539921376415522,
+    "train_action_mse_by_axis": {
+      "normal": 1.8924927433505624e-05,
+      "tangent1": 0.022534909159711757,
+      "tangent2": 0.0240659300421013
+    },
+    "validation_action_mse": 0.008745600507693003,
+    "validation_action_mse_by_axis": {
+      "normal": 1.7021111378783016e-05,
+      "tangent1": 0.010634062009087673,
+      "tangent2": 0.015585718402612555
+    }
+  },
+  {
+    "epoch": 14,
+    "train_action_mse": 0.015500374064248782,
+    "train_action_mse_by_axis": {
+      "normal": 1.9364297597251464e-05,
+      "tangent1": 0.022493078748715506,
+      "tangent2": 0.023988679146433586
+    },
+    "validation_action_mse": 0.008778740166645652,
+    "validation_action_mse_by_axis": {
+      "normal": 1.6703088826363073e-05,
+      "tangent1": 0.010536166761471875,
+      "tangent2": 0.015783350649638712
+    }
+  },
+  {
+    "epoch": 15,
+    "train_action_mse": 0.01545774099145063,
+    "train_action_mse_by_axis": {
+      "normal": 1.9646834534511003e-05,
+      "tangent1": 0.022384300468362636,
+      "tangent2": 0.023969275671454737
+    },
+    "validation_action_mse": 0.008744660410394758,
+    "validation_action_mse_by_axis": {
+      "normal": 1.7851512641623706e-05,
+      "tangent1": 0.010478127781863224,
+      "tangent2": 0.015738001936679423
+    }
+  },
+  {
+    "epoch": 16,
+    "train_action_mse": 0.01542795226118815,
+    "train_action_mse_by_axis": {
+      "normal": 2.068016591015145e-05,
+      "tangent1": 0.02236749007515881,
+      "tangent2": 0.023895686542495482
+    },
+    "validation_action_mse": 0.008583291949163652,
+    "validation_action_mse_by_axis": {
+      "normal": 1.7482982290467787e-05,
+      "tangent1": 0.010313365898284986,
+      "tangent2": 0.015419026966915505
+    }
+  },
+  {
+    "epoch": 17,
+    "train_action_mse": 0.015446312758438382,
+    "train_action_mse_by_axis": {
+      "normal": 2.0420627147231703e-05,
+      "tangent1": 0.022547450495468656,
+      "tangent2": 0.023771067152699256
+    },
+    "validation_action_mse": 0.008862580017538145,
+    "validation_action_mse_by_axis": {
+      "normal": 2.0571788603699496e-05,
+      "tangent1": 0.010782519446444483,
+      "tangent2": 0.01578464881756625
+    }
+  },
+  {
+    "epoch": 18,
+    "train_action_mse": 0.01533376543428175,
+    "train_action_mse_by_axis": {
+      "normal": 2.046923186441378e-05,
+      "tangent1": 0.022310869086310848,
+      "tangent2": 0.02366995798466999
+    },
+    "validation_action_mse": 0.008626183480762575,
+    "validation_action_mse_by_axis": {
+      "normal": 1.898255628369224e-05,
+      "tangent1": 0.01039757071139973,
+      "tangent2": 0.0154619971746043
+    }
+  },
+  {
+    "epoch": 19,
+    "train_action_mse": 0.015366757681265083,
+    "train_action_mse_by_axis": {
+      "normal": 2.0976552122435133e-05,
+      "tangent1": 0.022382072823448326,
+      "tangent2": 0.023697223668224483
+    },
+    "validation_action_mse": 0.008790874307561102,
+    "validation_action_mse_by_axis": {
+      "normal": 1.934859849820732e-05,
+      "tangent1": 0.01048859875432825,
+      "tangent2": 0.01586467556985685
+    }
+  },
+  {
+    "epoch": 20,
+    "train_action_mse": 0.015255428480742933,
+    "train_action_mse_by_axis": {
+      "normal": 2.174671888951759e-05,
+      "tangent1": 0.022238211195592744,
+      "tangent2": 0.023506327527746538
+    },
+    "validation_action_mse": 0.008397420166442942,
+    "validation_action_mse_by_axis": {
+      "normal": 1.8862934965666564e-05,
+      "tangent1": 0.010297551095544694,
+      "tangent2": 0.014875846468818465
+    }
+  },
+  {
+    "epoch": 21,
+    "train_action_mse": 0.01515092411106062,
+    "train_action_mse_by_axis": {
+      "normal": 2.156204983364677e-05,
+      "tangent1": 0.02215607579500289,
+      "tangent2": 0.023275134488345322
+    },
+    "validation_action_mse": 0.00840445666197092,
+    "validation_action_mse_by_axis": {
+      "normal": 1.9230145744254993e-05,
+      "tangent1": 0.01033382522221137,
+      "tangent2": 0.014860314617957136
+    }
+  },
+  {
+    "epoch": 22,
+    "train_action_mse": 0.015088481951381915,
+    "train_action_mse_by_axis": {
+      "normal": 2.2690343306915774e-05,
+      "tangent1": 0.02211194217520959,
+      "tangent2": 0.023130813335629236
+    },
+    "validation_action_mse": 0.008426654743430396,
+    "validation_action_mse_by_axis": {
+      "normal": 1.8274981502128136e-05,
+      "tangent1": 0.010368378825606397,
+      "tangent2": 0.014893310423182664
+    }
+  },
+  {
+    "epoch": 23,
+    "train_action_mse": 0.01504679114136886,
+    "train_action_mse_by_axis": {
+      "normal": 2.3164996380176744e-05,
+      "tangent1": 0.022106261398776555,
+      "tangent2": 0.023010947028949846
+    },
+    "validation_action_mse": 0.008496259495487159,
+    "validation_action_mse_by_axis": {
+      "normal": 2.0459515634962952e-05,
+      "tangent1": 0.010148084752919609,
+      "tangent2": 0.015320234217906903
+    }
+  },
+  {
+    "epoch": 24,
+    "train_action_mse": 0.014958205883746857,
+    "train_action_mse_by_axis": {
+      "normal": 2.2774411832322133e-05,
+      "tangent1": 0.022016157164785884,
+      "tangent2": 0.02283568607462237
+    },
+    "validation_action_mse": 0.008427037010243938,
+    "validation_action_mse_by_axis": {
+      "normal": 2.153175557538744e-05,
+      "tangent1": 0.010520554102793104,
+      "tangent2": 0.014739025172363324
+    }
+  },
+  {
+    "epoch": 25,
+    "train_action_mse": 0.0148276367821519,
+    "train_action_mse_by_axis": {
+      "normal": 2.3383699998751522e-05,
+      "tangent1": 0.021910907623514154,
+      "tangent2": 0.02254861902294279
+    },
+    "validation_action_mse": 0.008213891289252585,
+    "validation_action_mse_by_axis": {
+      "normal": 2.029014959382429e-05,
+      "tangent1": 0.010331560455147461,
+      "tangent2": 0.014289823263016466
+    }
+  },
+  {
+    "epoch": 26,
+    "train_action_mse": 0.014738349100620355,
+    "train_action_mse_by_axis": {
+      "normal": 2.4128464585528885e-05,
+      "tangent1": 0.021909696946634406,
+      "tangent2": 0.022281221890641127
+    },
+    "validation_action_mse": 0.008134992176767856,
+    "validation_action_mse_by_axis": {
+      "normal": 2.2680447415573743e-05,
+      "tangent1": 0.01030009810419311,
+      "tangent2": 0.014082197978694892
+    }
+  },
+  {
+    "epoch": 27,
+    "train_action_mse": 0.014655587995578135,
+    "train_action_mse_by_axis": {
+      "normal": 2.490470556388164e-05,
+      "tangent1": 0.02181375167590687,
+      "tangent2": 0.022128107605263646
+    },
+    "validation_action_mse": 0.008247490675911677,
+    "validation_action_mse_by_axis": {
+      "normal": 2.2986525857718423e-05,
+      "tangent1": 0.010562996645633104,
+      "tangent2": 0.01415648885624421
+    }
+  },
+  {
+    "epoch": 28,
+    "train_action_mse": 0.01443861399700353,
+    "train_action_mse_by_axis": {
+      "normal": 2.4011259706720855e-05,
+      "tangent1": 0.02163144202668278,
+      "tangent2": 0.02166038870462108
+    },
+    "validation_action_mse": 0.007995555356604971,
+    "validation_action_mse_by_axis": {
+      "normal": 2.1488183481565866e-05,
+      "tangent1": 0.010208340377771815,
+      "tangent2": 0.01375683750856153
+    }
+  },
+  {
+    "epoch": 29,
+    "train_action_mse": 0.014251314360103804,
+    "train_action_mse_by_axis": {
+      "normal": 2.4098528750327036e-05,
+      "tangent1": 0.021496850266553097,
+      "tangent2": 0.02123299428500798
+    },
+    "validation_action_mse": 0.007812709413464446,
+    "validation_action_mse_by_axis": {
+      "normal": 2.1712218263589665e-05,
+      "tangent1": 0.010205799670131221,
+      "tangent2": 0.013210616351998527
+    }
+  },
+  {
+    "epoch": 30,
+    "train_action_mse": 0.014121971895669347,
+    "train_action_mse_by_axis": {
+      "normal": 2.3690912189206418e-05,
+      "tangent1": 0.02136126214619899,
+      "tangent2": 0.020980962628619843
+    },
+    "validation_action_mse": 0.007970247497147444,
+    "validation_action_mse_by_axis": {
+      "normal": 2.1701677420494233e-05,
+      "tangent1": 0.01033641558689641,
+      "tangent2": 0.01355262522712543
+    }
+  },
+  {
+    "epoch": 31,
+    "train_action_mse": 0.013804472915146289,
+    "train_action_mse_by_axis": {
+      "normal": 2.318479795718568e-05,
+      "tangent1": 0.021155010986561293,
+      "tangent2": 0.02023522296092039
+    },
+    "validation_action_mse": 0.007550382953923916,
+    "validation_action_mse_by_axis": {
+      "normal": 2.0861538742456326e-05,
+      "tangent1": 0.01028982156848733,
+      "tangent2": 0.012340465754541962
+    }
+  },
+  {
+    "epoch": 32,
+    "train_action_mse": 0.013523848536357871,
+    "train_action_mse_by_axis": {
+      "normal": 2.199090465618793e-05,
+      "tangent1": 0.02102621520364054,
+      "tangent2": 0.01952333950077689
+    },
+    "validation_action_mse": 0.007211526268085411,
+    "validation_action_mse_by_axis": {
+      "normal": 1.8664322424074045e-05,
+      "tangent1": 0.009902533084547116,
+      "tangent2": 0.011713381397285045
+    }
+  },
+  {
+    "epoch": 33,
+    "train_action_mse": 0.013167400225147107,
+    "train_action_mse_by_axis": {
+      "normal": 1.9833365498619263e-05,
+      "tangent1": 0.020683083511517927,
+      "tangent2": 0.01879928379842477
+    },
+    "validation_action_mse": 0.006774784089948521,
+    "validation_action_mse_by_axis": {
+      "normal": 1.684394770160712e-05,
+      "tangent1": 0.00973589868328886,
+      "tangent2": 0.0105716096388551
+    }
+  },
+  {
+    "epoch": 34,
+    "train_action_mse": 0.012768945766265133,
+    "train_action_mse_by_axis": {
+      "normal": 1.8285866121947483e-05,
+      "tangent1": 0.02032899874704064,
+      "tangent2": 0.017959552685632818
+    },
+    "validation_action_mse": 0.006813617086441004,
+    "validation_action_mse_by_axis": {
+      "normal": 1.591911809783457e-05,
+      "tangent1": 0.010215868018677667,
+      "tangent2": 0.01020906412254751
+    }
+  },
+  {
+    "epoch": 35,
+    "train_action_mse": 0.0123328826093039,
+    "train_action_mse_by_axis": {
+      "normal": 1.5637232522703026e-05,
+      "tangent1": 0.019909014933246993,
+      "tangent2": 0.017073995662142013
+    },
+    "validation_action_mse": 0.006631494785304766,
+    "validation_action_mse_by_axis": {
+      "normal": 1.381671036888298e-05,
+      "tangent1": 0.010278400536238139,
+      "tangent2": 0.009602267109307274
+    }
+  },
+  {
+    "epoch": 36,
+    "train_action_mse": 0.011831003296990081,
+    "train_action_mse_by_axis": {
+      "normal": 1.5332494737436014e-05,
+      "tangent1": 0.019390071358318595,
+      "tangent2": 0.01608760603791421
+    },
+    "validation_action_mse": 0.006388150722439343,
+    "validation_action_mse_by_axis": {
+      "normal": 1.4515234424585952e-05,
+      "tangent1": 0.010509276341346841,
+      "tangent2": 0.008640660591546606
+    }
+  },
+  {
+    "epoch": 37,
+    "train_action_mse": 0.011298046854013713,
+    "train_action_mse_by_axis": {
+      "normal": 1.5452128297976793e-05,
+      "tangent1": 0.01872781624753863,
+      "tangent2": 0.015150872186204534
+    },
+    "validation_action_mse": 0.006196167977704954,
+    "validation_action_mse_by_axis": {
+      "normal": 1.3919348182231651e-05,
+      "tangent1": 0.010912186326173324,
+      "tangent2": 0.007662398258759306
+    }
+  },
+  {
+    "epoch": 38,
+    "train_action_mse": 0.010786188014381713,
+    "train_action_mse_by_axis": {
+      "normal": 1.580755382138625e-05,
+      "tangent1": 0.017898909724432515,
+      "tangent2": 0.014443846764891237
+    },
+    "validation_action_mse": 0.005898356233567948,
+    "validation_action_mse_by_axis": {
+      "normal": 1.401111384515458e-05,
+      "tangent1": 0.010910221868575458,
+      "tangent2": 0.00677083571828323
+    }
+  },
+  {
+    "epoch": 39,
+    "train_action_mse": 0.01023846716133173,
+    "train_action_mse_by_axis": {
+      "normal": 1.6518530689355877e-05,
+      "tangent1": 0.01698307842785987,
+      "tangent2": 0.013715804525445966
+    },
+    "validation_action_mse": 0.005607930460897179,
+    "validation_action_mse_by_axis": {
+      "normal": 1.4191704853859548e-05,
+      "tangent1": 0.010434869554728818,
+      "tangent2": 0.00637473012310886
+    }
+  },
+  {
+    "epoch": 40,
+    "train_action_mse": 0.009799061544060232,
+    "train_action_mse_by_axis": {
+      "normal": 1.567315341823823e-05,
+      "tangent1": 0.016066975338184318,
+      "tangent2": 0.013314536140578138
+    },
+    "validation_action_mse": 0.006144970292705878,
+    "validation_action_mse_by_axis": {
+      "normal": 1.542253712844437e-05,
+      "tangent1": 0.011577301726186156,
+      "tangent2": 0.00684218661480303
+    }
+  },
+  {
+    "epoch": 41,
+    "train_action_mse": 0.00932711524112895,
+    "train_action_mse_by_axis": {
+      "normal": 1.0955926213280235e-05,
+      "tangent1": 0.014942920948319833,
+      "tangent2": 0.013027468848853745
+    },
+    "validation_action_mse": 0.005310830371679953,
+    "validation_action_mse_by_axis": {
+      "normal": 9.873542341563491e-06,
+      "tangent1": 0.010095099503427022,
+      "tangent2": 0.005827518069271275
+    }
+  },
+  {
+    "epoch": 42,
+    "train_action_mse": 0.008946064628271317,
+    "train_action_mse_by_axis": {
+      "normal": 9.135788749676204e-06,
+      "tangent1": 0.013946330957980434,
+      "tangent2": 0.012882727138083843
+    },
+    "validation_action_mse": 0.005895716477033762,
+    "validation_action_mse_by_axis": {
+      "normal": 8.71833575689082e-06,
+      "tangent1": 0.0109183382450718,
+      "tangent2": 0.0067600928502725924
+    }
+  },
+  {
+    "epoch": 43,
+    "train_action_mse": 0.008597342158247381,
+    "train_action_mse_by_axis": {
+      "normal": 5.8229083394494844e-06,
+      "tangent1": 0.012996964209934573,
+      "tangent2": 0.012789239356468123
+    },
+    "validation_action_mse": 0.005628884251900943,
+    "validation_action_mse_by_axis": {
+      "normal": 4.90829666684516e-06,
+      "tangent1": 0.010475817710812345,
+      "tangent2": 0.006405926748223639
+    }
+  },
+  {
+    "epoch": 44,
+    "train_action_mse": 0.008342556029594711,
+    "train_action_mse_by_axis": {
+      "normal": 4.735300520611439e-06,
+      "tangent1": 0.012191600130205519,
+      "tangent2": 0.012831332658058001
+    },
+    "validation_action_mse": 0.005425394173523593,
+    "validation_action_mse_by_axis": {
+      "normal": 3.669203210674362e-06,
+      "tangent1": 0.009678113047049651,
+      "tangent2": 0.006594400270310453
+    }
+  },
+  {
+    "epoch": 45,
+    "train_action_mse": 0.00806632987549117,
+    "train_action_mse_by_axis": {
+      "normal": 6.3335186033149e-06,
+      "tangent1": 0.011483856453014665,
+      "tangent2": 0.01270879965485553
+    },
+    "validation_action_mse": 0.005991485008706244,
+    "validation_action_mse_by_axis": {
+      "normal": 6.396893186126962e-06,
+      "tangent1": 0.011196950937650666,
+      "tangent2": 0.006771107195281938
+    }
+  },
+  {
+    "epoch": 46,
+    "train_action_mse": 0.007847934369549097,
+    "train_action_mse_by_axis": {
+      "normal": 5.631630038146542e-06,
+      "tangent1": 0.01084093246515955,
+      "tangent2": 0.012697239013449593
+    },
+    "validation_action_mse": 0.005690982552436485,
+    "validation_action_mse_by_axis": {
+      "normal": 3.476483184506858e-06,
+      "tangent1": 0.010683026757458596,
+      "tangent2": 0.006386444416666355
+    }
+  },
+  {
+    "epoch": 47,
+    "train_action_mse": 0.0075997833814135645,
+    "train_action_mse_by_axis": {
+      "normal": 6.902112243673123e-06,
+      "tangent1": 0.010230406294812141,
+      "tangent2": 0.01256204173718488
+    },
+    "validation_action_mse": 0.005983220066139189,
+    "validation_action_mse_by_axis": {
+      "normal": 6.387813675192168e-06,
+      "tangent1": 0.011320065392142373,
+      "tangent2": 0.0066232069926
+    }
+  },
+  {
+    "epoch": 48,
+    "train_action_mse": 0.007366382198233763,
+    "train_action_mse_by_axis": {
+      "normal": 9.462648478477254e-06,
+      "tangent1": 0.009702020708563382,
+      "tangent2": 0.01238766323765943
+    },
+    "validation_action_mse": 0.0056678624193630235,
+    "validation_action_mse_by_axis": {
+      "normal": 8.85754987206988e-06,
+      "tangent1": 0.010444806557529572,
+      "tangent2": 0.006549923150687429
+    }
+  },
+  {
+    "epoch": 49,
+    "train_action_mse": 0.007123617389321577,
+    "train_action_mse_by_axis": {
+      "normal": 1.3752402916853342e-05,
+      "tangent1": 0.009178957796175308,
+      "tangent2": 0.012178141968872569
+    },
+    "validation_action_mse": 0.005622343056105703,
+    "validation_action_mse_by_axis": {
+      "normal": 1.2144924290562413e-05,
+      "tangent1": 0.010556078653588173,
+      "tangent2": 0.0062988055904383685
+    }
+  },
+  {
+    "epoch": 50,
+    "train_action_mse": 0.006910166300795019,
+    "train_action_mse_by_axis": {
+      "normal": 1.98712779073323e-05,
+      "tangent1": 0.008843654989826512,
+      "tangent2": 0.011866972634651213
+    },
+    "validation_action_mse": 0.00569664750795436,
+    "validation_action_mse_by_axis": {
+      "normal": 1.672185373650139e-05,
+      "tangent1": 0.01100269876194793,
+      "tangent2": 0.006070521908178648
+    }
+  },
+  {
+    "epoch": 51,
+    "train_action_mse": 0.00666893872958072,
+    "train_action_mse_by_axis": {
+      "normal": 3.0197291700564042e-05,
+      "tangent1": 0.0084529190016743,
+      "tangent2": 0.011523699895367294
+    },
+    "validation_action_mse": 0.006048416916745904,
+    "validation_action_mse_by_axis": {
+      "normal": 3.38261167324104e-05,
+      "tangent1": 0.012015840099879946,
+      "tangent2": 0.006095584533625356
+    }
+  },
+  {
+    "epoch": 52,
+    "train_action_mse": 0.006445598848507016,
+    "train_action_mse_by_axis": {
+      "normal": 3.478224927864612e-05,
+      "tangent1": 0.00815739933352783,
+      "tangent2": 0.01114461496271457
+    },
+    "validation_action_mse": 0.006074567152339605,
+    "validation_action_mse_by_axis": {
+      "normal": 3.4548708491247504e-05,
+      "tangent1": 0.012201001400252213,
+      "tangent2": 0.0059881513482753545
+    }
+  },
+  {
+    "epoch": 53,
+    "train_action_mse": 0.006190923577549982,
+    "train_action_mse_by_axis": {
+      "normal": 4.099054270082492e-05,
+      "tangent1": 0.007792050145593648,
+      "tangent2": 0.010739730044355474
+    },
+    "validation_action_mse": 0.005877745556961719,
+    "validation_action_mse_by_axis": {
+      "normal": 3.836888444521699e-05,
+      "tangent1": 0.011469921903474657,
+      "tangent2": 0.006124945882965281
+    }
+  },
+  {
+    "epoch": 54,
+    "train_action_mse": 0.005935982277755435,
+    "train_action_mse_by_axis": {
+      "normal": 4.985315621181769e-05,
+      "tangent1": 0.007509836250576621,
+      "tangent2": 0.010248257426477865
+    },
+    "validation_action_mse": 0.005363965220007487,
+    "validation_action_mse_by_axis": {
+      "normal": 5.1233186278622914e-05,
+      "tangent1": 0.010244575225421446,
+      "tangent2": 0.0057960872483223905
+    }
+  },
+  {
+    "epoch": 55,
+    "train_action_mse": 0.005708527706412719,
+    "train_action_mse_by_axis": {
+      "normal": 4.962169553201868e-05,
+      "tangent1": 0.0073177504871012435,
+      "tangent2": 0.009758210936604892
+    },
+    "validation_action_mse": 0.005405678301548255,
+    "validation_action_mse_by_axis": {
+      "normal": 4.677687473258975e-05,
+      "tangent1": 0.01086686772596657,
+      "tangent2": 0.005303390303945607
+    }
+  },
+  {
+    "epoch": 56,
+    "train_action_mse": 0.00542703162518763,
+    "train_action_mse_by_axis": {
+      "normal": 5.4017523725956986e-05,
+      "tangent1": 0.007023452316008331,
+      "tangent2": 0.009203625035828597
+    },
+    "validation_action_mse": 0.005332049374596419,
+    "validation_action_mse_by_axis": {
+      "normal": 5.475675840368478e-05,
+      "tangent1": 0.010179714141362728,
+      "tangent2": 0.005761677224022843
+    }
+  },
+  {
+    "epoch": 57,
+    "train_action_mse": 0.005186289750037286,
+    "train_action_mse_by_axis": {
+      "normal": 5.2398091407005976e-05,
+      "tangent1": 0.006846044916189925,
+      "tangent2": 0.008660426242514925
+    },
+    "validation_action_mse": 0.0053325307226091065,
+    "validation_action_mse_by_axis": {
+      "normal": 4.0898440486488614e-05,
+      "tangent1": 0.010311927477200082,
+      "tangent2": 0.00564476625014075
+    }
+  },
+  {
+    "epoch": 58,
+    "train_action_mse": 0.004951659009942907,
+    "train_action_mse_by_axis": {
+      "normal": 3.789905008108114e-05,
+      "tangent1": 0.0066865600902376665,
+      "tangent2": 0.00813051788950997
+    },
+    "validation_action_mse": 0.004931153818541457,
+    "validation_action_mse_by_axis": {
+      "normal": 3.3214121722669214e-05,
+      "tangent1": 0.009386686384709053,
+      "tangent2": 0.005373560949192649
+    }
+  },
+  {
+    "epoch": 59,
+    "train_action_mse": 0.004732279509471489,
+    "train_action_mse_by_axis": {
+      "normal": 2.81160368313712e-05,
+      "tangent1": 0.006539792736706937,
+      "tangent2": 0.007628929754876159
+    },
+    "validation_action_mse": 0.005049007931201169,
+    "validation_action_mse_by_axis": {
+      "normal": 2.6257763954563028e-05,
+      "tangent1": 0.009371426776298679,
+      "tangent2": 0.0057493392533502635
+    }
+  },
+  {
+    "epoch": 60,
+    "train_action_mse": 0.004538757169186891,
+    "train_action_mse_by_axis": {
+      "normal": 2.0330239812461156e-05,
+      "tangent1": 0.0064347350437372565,
+      "tangent2": 0.007161206224010956
+    },
+    "validation_action_mse": 0.0052487192590485576,
+    "validation_action_mse_by_axis": {
+      "normal": 2.1345403107658503e-05,
+      "tangent1": 0.009773283935669931,
+      "tangent2": 0.00595152843836808
+    }
+  },
+  {
+    "epoch": 61,
+    "train_action_mse": 0.0043411434582733225,
+    "train_action_mse_by_axis": {
+      "normal": 1.9243969470544647e-05,
+      "tangent1": 0.006371071125688543,
+      "tangent2": 0.006633115279660878
+    },
+    "validation_action_mse": 0.005182521949981233,
+    "validation_action_mse_by_axis": {
+      "normal": 2.523073166007921e-05,
+      "tangent1": 0.009800867687514096,
+      "tangent2": 0.005721467430769523
+    }
+  },
+  {
+    "epoch": 62,
+    "train_action_mse": 0.004214345371791988,
+    "train_action_mse_by_axis": {
+      "normal": 1.2238321931048534e-05,
+      "tangent1": 0.0063206162021885864,
+      "tangent2": 0.0063101815912563275
+    },
+    "validation_action_mse": 0.004783868810489434,
+    "validation_action_mse_by_axis": {
+      "normal": 1.2063442047374143e-05,
+      "tangent1": 0.00870100116126996,
+      "tangent2": 0.0056385418281509675
+    }
+  },
+  {
+    "epoch": 63,
+    "train_action_mse": 0.004051555198337611,
+    "train_action_mse_by_axis": {
+      "normal": 1.1354772874406172e-05,
+      "tangent1": 0.006255842812996666,
+      "tangent2": 0.005887468009141763
+    },
+    "validation_action_mse": 0.004910879216482663,
+    "validation_action_mse_by_axis": {
+      "normal": 1.1204684632187368e-05,
+      "tangent1": 0.008919737617249214,
+      "tangent2": 0.00580169534756659
+    }
+  },
+  {
+    "epoch": 64,
+    "train_action_mse": 0.003966104368367623,
+    "train_action_mse_by_axis": {
+      "normal": 9.882339082815247e-06,
+      "tangent1": 0.006255056600980984,
+      "tangent2": 0.005633374165039068
+    },
+    "validation_action_mse": 0.0043824303839763885,
+    "validation_action_mse_by_axis": {
+      "normal": 1.0726025222005838e-05,
+      "tangent1": 0.008314904749195001,
+      "tangent2": 0.004821660377512161
+    }
+  },
+  {
+    "epoch": 65,
+    "train_action_mse": 0.0038478822006467323,
+    "train_action_mse_by_axis": {
+      "normal": 1.1001379190575363e-05,
+      "tangent1": 0.006173976429891442,
+      "tangent2": 0.005358668792858181
+    },
+    "validation_action_mse": 0.005142520639392423,
+    "validation_action_mse_by_axis": {
+      "normal": 1.5055656352957091e-05,
+      "tangent1": 0.009609874419496333,
+      "tangent2": 0.005802631842327977
+    }
+  },
+  {
+    "epoch": 66,
+    "train_action_mse": 0.003772927379447504,
+    "train_action_mse_by_axis": {
+      "normal": 1.1049012160646813e-05,
+      "tangent1": 0.006149927471456138,
+      "tangent2": 0.005157805654725726
+    },
+    "validation_action_mse": 0.0050764497937795,
+    "validation_action_mse_by_axis": {
+      "normal": 1.5180280265088634e-05,
+      "tangent1": 0.009567460604167218,
+      "tangent2": 0.005646708496906193
+    }
+  },
+  {
+    "epoch": 67,
+    "train_action_mse": 0.0037169115669703503,
+    "train_action_mse_by_axis": {
+      "normal": 8.527415967187132e-06,
+      "tangent1": 0.006092787848368571,
+      "tangent2": 0.005049419436575293
+    },
+    "validation_action_mse": 0.004563859887872515,
+    "validation_action_mse_by_axis": {
+      "normal": 7.371651810932505e-06,
+      "tangent1": 0.008594874878284862,
+      "tangent2": 0.005089333133521751
+    }
+  },
+  {
+    "epoch": 68,
+    "train_action_mse": 0.003628941269755243,
+    "train_action_mse_by_axis": {
+      "normal": 8.515957411372898e-06,
+      "tangent1": 0.00604088867417421,
+      "tangent2": 0.0048374191776801466
+    },
+    "validation_action_mse": 0.004887056553338342,
+    "validation_action_mse_by_axis": {
+      "normal": 1.0826215212462944e-05,
+      "tangent1": 0.009004625394537903,
+      "tangent2": 0.005645718050264657
+    }
+  },
+  {
+    "epoch": 69,
+    "train_action_mse": 0.003585191444721633,
+    "train_action_mse_by_axis": {
+      "normal": 8.546101170091514e-06,
+      "tangent1": 0.006022741860079043,
+      "tangent2": 0.004724286372915763
+    },
+    "validation_action_mse": 0.0047950764611314495,
+    "validation_action_mse_by_axis": {
+      "normal": 1.160203566161556e-05,
+      "tangent1": 0.008986400900212407,
+      "tangent2": 0.005387226447520326
+    }
+  },
+  {
+    "epoch": 70,
+    "train_action_mse": 0.0035464232616305904,
+    "train_action_mse_by_axis": {
+      "normal": 7.309452398378678e-06,
+      "tangent1": 0.0060247563873864814,
+      "tangent2": 0.004607203945106911
+    },
+    "validation_action_mse": 0.005200350269949466,
+    "validation_action_mse_by_axis": {
+      "normal": 8.902840376143368e-06,
+      "tangent1": 0.010036121722553653,
+      "tangent2": 0.005556026246918598
+    }
+  },
+  {
+    "epoch": 71,
+    "train_action_mse": 0.00349088426695441,
+    "train_action_mse_by_axis": {
+      "normal": 7.95275187787882e-06,
+      "tangent1": 0.005953923030934703,
+      "tangent2": 0.0045107770180506475
+    },
+    "validation_action_mse": 0.0049685942045224795,
+    "validation_action_mse_by_axis": {
+      "normal": 6.452254541748426e-06,
+      "tangent1": 0.00955266173599694,
+      "tangent2": 0.005346668623028751
+    }
+  },
+  {
+    "epoch": 72,
+    "train_action_mse": 0.0034647302246589213,
+    "train_action_mse_by_axis": {
+      "normal": 8.528371475283518e-06,
+      "tangent1": 0.005949114951302212,
+      "tangent2": 0.004436547351199269
+    },
+    "validation_action_mse": 0.0051621709842209155,
+    "validation_action_mse_by_axis": {
+      "normal": 1.3686436083438207e-05,
+      "tangent1": 0.009811716404524818,
+      "tangent2": 0.0056611101120544885
+    }
+  },
+  {
+    "epoch": 73,
+    "train_action_mse": 0.0034093480249007403,
+    "train_action_mse_by_axis": {
+      "normal": 9.91956239719204e-06,
+      "tangent1": 0.0058682922013151,
+      "tangent2": 0.004349832310989929
+    },
+    "validation_action_mse": 0.005019572538824633,
+    "validation_action_mse_by_axis": {
+      "normal": 1.5860634004856736e-05,
+      "tangent1": 0.009234625722437207,
+      "tangent2": 0.005808231260031836
+    }
+  },
+  {
+    "epoch": 74,
+    "train_action_mse": 0.0033785228775092538,
+    "train_action_mse_by_axis": {
+      "normal": 6.317126714707394e-06,
+      "tangent1": 0.005834119378563923,
+      "tangent2": 0.0042951321272491315
+    },
+    "validation_action_mse": 0.004392220803299949,
+    "validation_action_mse_by_axis": {
+      "normal": 8.213621146079796e-06,
+      "tangent1": 0.008196914360565117,
+      "tangent2": 0.004971534428188647
+    }
+  },
+  {
+    "epoch": 75,
+    "train_action_mse": 0.0033385024816295523,
+    "train_action_mse_by_axis": {
+      "normal": 7.633285604960502e-06,
+      "tangent1": 0.0058109716363916744,
+      "tangent2": 0.004196902522892023
+    },
+    "validation_action_mse": 0.004601127080841006,
+    "validation_action_mse_by_axis": {
+      "normal": 6.970234831033849e-06,
+      "tangent1": 0.008615560878617852,
+      "tangent2": 0.005180850129074132
+    }
+  },
+  {
+    "epoch": 76,
+    "train_action_mse": 0.003306009604391668,
+    "train_action_mse_by_axis": {
+      "normal": 6.333215139612413e-06,
+      "tangent1": 0.005771508474750718,
+      "tangent2": 0.0041401871232846724
+    },
+    "validation_action_mse": 0.004475886333140079,
+    "validation_action_mse_by_axis": {
+      "normal": 7.437039348895478e-06,
+      "tangent1": 0.008262436737265661,
+      "tangent2": 0.005157785222805679
+    }
+  },
+  {
+    "epoch": 77,
+    "train_action_mse": 0.0032762150640596,
+    "train_action_mse_by_axis": {
+      "normal": 7.650203476693227e-06,
+      "tangent1": 0.0057205605050016615,
+      "tangent2": 0.004100434483700446
+    },
+    "validation_action_mse": 0.004350435821121156,
+    "validation_action_mse_by_axis": {
+      "normal": 5.400197132698294e-06,
+      "tangent1": 0.008387676949228682,
+      "tangent2": 0.004658230317002089
+    }
+  },
+  {
+    "epoch": 78,
+    "train_action_mse": 0.0032282369385874575,
+    "train_action_mse_by_axis": {
+      "normal": 6.138198257860654e-06,
+      "tangent1": 0.005679725182539691,
+      "tangent2": 0.00399884743496482
+    },
+    "validation_action_mse": 0.004483708196792249,
+    "validation_action_mse_by_axis": {
+      "normal": 5.382455084415054e-06,
+      "tangent1": 0.008422166152883648,
+      "tangent2": 0.005023575982408678
+    }
+  },
+  {
+    "epoch": 79,
+    "train_action_mse": 0.003200297299248293,
+    "train_action_mse_by_axis": {
+      "normal": 6.007529526905961e-06,
+      "tangent1": 0.005641458123379493,
+      "tangent2": 0.00395342624483848
+    },
+    "validation_action_mse": 0.004713798022415481,
+    "validation_action_mse_by_axis": {
+      "normal": 7.78294780873271e-06,
+      "tangent1": 0.008876679474567821,
+      "tangent2": 0.005256931644869891
+    }
+  },
+  {
+    "epoch": 80,
+    "train_action_mse": 0.0031479846862750285,
+    "train_action_mse_by_axis": {
+      "normal": 6.2792837178312335e-06,
+      "tangent1": 0.0055775256226713,
+      "tangent2": 0.0038601491524359543
+    },
+    "validation_action_mse": 0.004403548400636996,
+    "validation_action_mse_by_axis": {
+      "normal": 5.511371616899676e-06,
+      "tangent1": 0.008040305543322109,
+      "tangent2": 0.005164828286971979
+    }
+  },
+  {
+    "epoch": 81,
+    "train_action_mse": 0.00310532602157782,
+    "train_action_mse_by_axis": {
+      "normal": 7.0082465796588525e-06,
+      "tangent1": 0.005529791517092987,
+      "tangent2": 0.003779178301060816
+    },
+    "validation_action_mse": 0.004803882721016295,
+    "validation_action_mse_by_axis": {
+      "normal": 1.0376727991330804e-05,
+      "tangent1": 0.009209030439502797,
+      "tangent2": 0.005192240995554758
+    }
+  },
+  {
+    "epoch": 82,
+    "train_action_mse": 0.0030697008585789253,
+    "train_action_mse_by_axis": {
+      "normal": 6.392929286461155e-06,
+      "tangent1": 0.00544607901622539,
+      "tangent2": 0.0037566306302249234
+    },
+    "validation_action_mse": 0.004578062051024076,
+    "validation_action_mse_by_axis": {
+      "normal": 6.0125836258960194e-06,
+      "tangent1": 0.008203148852026863,
+      "tangent2": 0.005525024717419472
+    }
+  },
+  {
+    "epoch": 83,
+    "train_action_mse": 0.0030245217316263455,
+    "train_action_mse_by_axis": {
+      "normal": 6.908353328154853e-06,
+      "tangent1": 0.005401905788421167,
+      "tangent2": 0.003664751053129714
+    },
+    "validation_action_mse": 0.004357162338328653,
+    "validation_action_mse_by_axis": {
+      "normal": 6.260376194288594e-06,
+      "tangent1": 0.007711337404797663,
+      "tangent2": 0.005353889233994005
+    }
+  },
+  {
+    "epoch": 84,
+    "train_action_mse": 0.002965905351759715,
+    "train_action_mse_by_axis": {
+      "normal": 6.663624222948168e-06,
+      "tangent1": 0.005333213404521492,
+      "tangent2": 0.003557839026534705
+    },
+    "validation_action_mse": 0.0043210187363001895,
+    "validation_action_mse_by_axis": {
+      "normal": 6.815454461718409e-06,
+      "tangent1": 0.00783396136928912,
+      "tangent2": 0.005122279385149733
+    }
+  },
+  {
+    "epoch": 85,
+    "train_action_mse": 0.002929324911178075,
+    "train_action_mse_by_axis": {
+      "normal": 7.190681342206152e-06,
+      "tangent1": 0.0052177810046835525,
+      "tangent2": 0.0035630030475084654
+    },
+    "validation_action_mse": 0.004480882653882376,
+    "validation_action_mse_by_axis": {
+      "normal": 5.450289141268678e-06,
+      "tangent1": 0.008156068907768196,
+      "tangent2": 0.005281128764737662
+    }
+  },
+  {
+    "epoch": 86,
+    "train_action_mse": 0.002880103386294305,
+    "train_action_mse_by_axis": {
+      "normal": 7.980842006780668e-06,
+      "tangent1": 0.005160723541855962,
+      "tangent2": 0.003471605775020172
+    },
+    "validation_action_mse": 0.00479688768888364,
+    "validation_action_mse_by_axis": {
+      "normal": 4.868755372689496e-06,
+      "tangent1": 0.008860529495412278,
+      "tangent2": 0.005525264815865952
+    }
+  },
+  {
+    "epoch": 87,
+    "train_action_mse": 0.002776502711922987,
+    "train_action_mse_by_axis": {
+      "normal": 8.540305979090502e-06,
+      "tangent1": 0.005012059909270611,
+      "tangent2": 0.0033089079205192596
+    },
+    "validation_action_mse": 0.004326594298652952,
+    "validation_action_mse_by_axis": {
+      "normal": 5.083240083554899e-06,
+      "tangent1": 0.008028831472550567,
+      "tangent2": 0.004945868183324735
+    }
+  },
+  {
+    "epoch": 88,
+    "train_action_mse": 0.0027424019215143945,
+    "train_action_mse_by_axis": {
+      "normal": 8.57144698255583e-06,
+      "tangent1": 0.004958080060572314,
+      "tangent2": 0.003260554256988315
+    },
+    "validation_action_mse": 0.0035136349549162475,
+    "validation_action_mse_by_axis": {
+      "normal": 6.362879676412151e-06,
+      "tangent1": 0.006616118600891604,
+      "tangent2": 0.003918423384180727
+    }
+  },
+  {
+    "epoch": 89,
+    "train_action_mse": 0.0026939798877266825,
+    "train_action_mse_by_axis": {
+      "normal": 1.0483675739785152e-05,
+      "tangent1": 0.004881727995380658,
+      "tangent2": 0.0031897279920596036
+    },
+    "validation_action_mse": 0.0032437142021426732,
+    "validation_action_mse_by_axis": {
+      "normal": 8.956134011742243e-06,
+      "tangent1": 0.005962012364726763,
+      "tangent2": 0.0037601741076895142
+    }
+  },
+  {
+    "epoch": 90,
+    "train_action_mse": 0.002588503426642346,
+    "train_action_mse_by_axis": {
+      "normal": 1.1246071321018246e-05,
+      "tangent1": 0.004684452001716266,
+      "tangent2": 0.003069812206889753
+    },
+    "validation_action_mse": 0.003497565786676421,
+    "validation_action_mse_by_axis": {
+      "normal": 1.0539699155339165e-05,
+      "tangent1": 0.006686247112530104,
+      "tangent2": 0.0037959105483438196
+    }
+  },
+  {
+    "epoch": 91,
+    "train_action_mse": 0.0025435071463586647,
+    "train_action_mse_by_axis": {
+      "normal": 1.1583167109841589e-05,
+      "tangent1": 0.004665277440398769,
+      "tangent2": 0.0029536608315673812
+    },
+    "validation_action_mse": 0.003621452357976059,
+    "validation_action_mse_by_axis": {
+      "normal": 9.339994053042464e-06,
+      "tangent1": 0.006595390967615747,
+      "tangent2": 0.004259626112259387
+    }
+  },
+  {
+    "epoch": 92,
+    "train_action_mse": 0.002434890166023414,
+    "train_action_mse_by_axis": {
+      "normal": 1.3545058889175803e-05,
+      "tangent1": 0.0044185935041206,
+      "tangent2": 0.0028725319350604663
+    },
+    "validation_action_mse": 0.0035932917401351352,
+    "validation_action_mse_by_axis": {
+      "normal": 9.709455051855988e-06,
+      "tangent1": 0.0069277950041342655,
+      "tangent2": 0.003842370761219285
+    }
+  },
+  {
+    "epoch": 93,
+    "train_action_mse": 0.002370397701659645,
+    "train_action_mse_by_axis": {
+      "normal": 1.6271243499279632e-05,
+      "tangent1": 0.004333853534884676,
+      "tangent2": 0.00276106832659498
+    },
+    "validation_action_mse": 0.0036366349017383864,
+    "validation_action_mse_by_axis": {
+      "normal": 1.5241375272656498e-05,
+      "tangent1": 0.006909344136384051,
+      "tangent2": 0.0039853191935584524
+    }
+  },
+  {
+    "epoch": 94,
+    "train_action_mse": 0.002303469525269106,
+    "train_action_mse_by_axis": {
+      "normal": 1.5353898557887212e-05,
+      "tangent1": 0.004223925558206333,
+      "tangent2": 0.002671129119043096
+    },
+    "validation_action_mse": 0.0031556041921924705,
+    "validation_action_mse_by_axis": {
+      "normal": 1.1668957233361902e-05,
+      "tangent1": 0.005954719663614572,
+      "tangent2": 0.0035004239557294777
+    }
+  },
+  {
+    "epoch": 95,
+    "train_action_mse": 0.002224319516354089,
+    "train_action_mse_by_axis": {
+      "normal": 1.6167944457561505e-05,
+      "tangent1": 0.004062083096955741,
+      "tangent2": 0.002594707507648966
+    },
+    "validation_action_mse": 0.003156576756147312,
+    "validation_action_mse_by_axis": {
+      "normal": 1.4635122394228319e-05,
+      "tangent1": 0.005699710327170323,
+      "tangent2": 0.003755384818877386
+    }
+  },
+  {
+    "epoch": 96,
+    "train_action_mse": 0.002146094938095243,
+    "train_action_mse_by_axis": {
+      "normal": 1.761123634024549e-05,
+      "tangent1": 0.003935386672257237,
+      "tangent2": 0.0024852869056882472
+    },
+    "validation_action_mse": 0.0031356045046986728,
+    "validation_action_mse_by_axis": {
+      "normal": 1.436882549981965e-05,
+      "tangent1": 0.005810289843956159,
+      "tangent2": 0.003582154844640038
+    }
+  },
+  {
+    "epoch": 97,
+    "train_action_mse": 0.00207845478488849,
+    "train_action_mse_by_axis": {
+      "normal": 2.179698931861997e-05,
+      "tangent1": 0.003783873865199341,
+      "tangent2": 0.0024296935001475103
+    },
+    "validation_action_mse": 0.002855804539916588,
+    "validation_action_mse_by_axis": {
+      "normal": 2.0387738629279925e-05,
+      "tangent1": 0.005315375851184626,
+      "tangent2": 0.003231650029935857
+    }
+  },
+  {
+    "epoch": 98,
+    "train_action_mse": 0.001993470835275963,
+    "train_action_mse_by_axis": {
+      "normal": 1.8502713989506553e-05,
+      "tangent1": 0.0036695724745798683,
+      "tangent2": 0.002292337317258514
+    },
+    "validation_action_mse": 0.0029674886615581888,
+    "validation_action_mse_by_axis": {
+      "normal": 1.8467367209409454e-05,
+      "tangent1": 0.005619002107351654,
+      "tangent2": 0.003264996510113504
+    }
+  },
+  {
+    "epoch": 99,
+    "train_action_mse": 0.0019225126954415146,
+    "train_action_mse_by_axis": {
+      "normal": 1.8881233204207916e-05,
+      "tangent1": 0.003535425229447755,
+      "tangent2": 0.00221323162367258
+    },
+    "validation_action_mse": 0.002551038075161451,
+    "validation_action_mse_by_axis": {
+      "normal": 1.981067128032732e-05,
+      "tangent1": 0.0047567673111318706,
+      "tangent2": 0.0028765362430721534
+    }
+  },
+  {
+    "epoch": 100,
+    "train_action_mse": 0.0018554961315483155,
+    "train_action_mse_by_axis": {
+      "normal": 2.024860833832107e-05,
+      "tangent1": 0.00341454121130024,
+      "tangent2": 0.002131698575006386
+    },
+    "validation_action_mse": 0.002696429958602666,
+    "validation_action_mse_by_axis": {
+      "normal": 2.487207730187927e-05,
+      "tangent1": 0.005024180244545215,
+      "tangent2": 0.003040237553960903
+    }
+  }
+]

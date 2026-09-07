@@ -49,6 +49,7 @@ Residual RL，每章都给出公式、源码入口和练习。
 | 接触稳定后的切向误差、积分与摩擦前馈 | [tangential_tracking.md](tangential_tracking.md) |
 | 新表面任务的 RL / IL 环境、数据与评价准备 | [surface_learning.md](surface_learning.md) |
 | 小规模行为克隆、残差 PPO 与闭环选型 | [surface_learning_pilot.md](surface_learning_pilot.md) |
+| BC 离线拟合良好，闭环为什么偏：历史输入消融 | [bc_closed_loop_transfer.md](bc_closed_loop_transfer.md) |
 
 ## 复现实验
 
@@ -68,6 +69,7 @@ Residual RL，每章都给出公式、源码入口和练习。
 | 固定平滑模型的切向补偿：24 × 3，加独立长时 9 次 | [公式、时序和失配边界](tangential_tracking.md) | [81 次实验](../results/franka_tangential_development/)、[单因素与静态保持](../results/franka_tangential_diagnostics/diagnosis.json) |
 | 表面任务学习前准备：24 × 3、12 次压力测试与同频教师数据 | [训练接口、标签与复现](surface_learning.md) | [数值索引](../results/franka_surface_learning_preparation/)、[三回合示例](../results/franka_surface_learning_examples/)、[分层修正记录](../results/franka_surface_learning_partition/) |
 | 小规模 BC 与 bounded Residual PPO：各三个训练种子 | [损失、更新与选择规则](surface_learning_pilot.md) | [完整种子对照](../results/franka_surface_learning_pilot/) |
+| BC 输入消融：同网络、预算和三个种子 | [输入先验与导出掩码](bc_closed_loop_transfer.md) | [完整对照与代表轨迹](../results/franka_surface_bc_transfer/) |
 
 v0.5 的 round `31756275` 已经完成 first reveal。仓库中的 48 cases 随后转为 public
 validation set（公开验证集）。复核时读取现有 `protocol.json`、`reveal.json`、

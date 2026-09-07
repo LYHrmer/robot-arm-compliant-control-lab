@@ -1,0 +1,16 @@
+[
+  {
+    "arm": "drop_previous_residual",
+    "case_id": "g001_seed11",
+    "maximum_absolute_metric_difference": 0.0,
+    "physics_steps": 6000,
+    "seed": 11
+  },
+  {
+    "arm": "teacher_inputs",
+    "case_id": "g001_seed11",
+    "maximum_absolute_metric_difference": 0.0,
+    "physics_steps": 6000,
+    "seed": 11
+  }
+]

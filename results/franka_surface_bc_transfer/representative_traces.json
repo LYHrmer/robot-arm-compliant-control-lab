@@ -1,0 +1,17 @@
+{
+  "records": [
+    {
+      "arm": "drop_previous_residual",
+      "case_id": "g001_seed11",
+      "file": "evaluations/drop_previous_residual_seed11_development_test/case_000.npz",
+      "seed": 11
+    },
+    {
+      "arm": "teacher_inputs",
+      "case_id": "g001_seed11",
+      "file": "evaluations/teacher_inputs_seed11_development_test/case_000.npz",
+      "seed": 11
+    }
+  ],
+  "selection": "each arm; first seed; lexicographically first development case"
+}

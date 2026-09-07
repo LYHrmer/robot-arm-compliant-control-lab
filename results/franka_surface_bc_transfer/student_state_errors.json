@@ -1,0 +1,173 @@
+{
+  "runs": [
+    {
+      "action_mse": 0.001553536282755979,
+      "arm": "drop_previous_residual",
+      "case_id": "g002_seed11",
+      "seed": 11,
+      "split": "validation"
+    },
+    {
+      "action_mse": 0.0015534154702527565,
+      "arm": "drop_previous_residual",
+      "case_id": "g002_seed29",
+      "seed": 11,
+      "split": "validation"
+    },
+    {
+      "action_mse": 0.005585008225296486,
+      "arm": "drop_previous_residual",
+      "case_id": "g007_seed11",
+      "seed": 11,
+      "split": "validation"
+    },
+    {
+      "action_mse": 0.005509959615936195,
+      "arm": "drop_previous_residual",
+      "case_id": "g007_seed29",
+      "seed": 11,
+      "split": "validation"
+    },
+    {
+      "action_mse": 0.0014654499275452788,
+      "arm": "drop_previous_residual",
+      "case_id": "g002_seed11",
+      "seed": 29,
+      "split": "validation"
+    },
+    {
+      "action_mse": 0.0014644690694624613,
+      "arm": "drop_previous_residual",
+      "case_id": "g002_seed29",
+      "seed": 29,
+      "split": "validation"
+    },
+    {
+      "action_mse": 0.004029037708366198,
+      "arm": "drop_previous_residual",
+      "case_id": "g007_seed11",
+      "seed": 29,
+      "split": "validation"
+    },
+    {
+      "action_mse": 0.00397620710864983,
+      "arm": "drop_previous_residual",
+      "case_id": "g007_seed29",
+      "seed": 29,
+      "split": "validation"
+    },
+    {
+      "action_mse": 0.0011207434669632827,
+      "arm": "drop_previous_residual",
+      "case_id": "g002_seed11",
+      "seed": 47,
+      "split": "validation"
+    },
+    {
+      "action_mse": 0.0011159790021584323,
+      "arm": "drop_previous_residual",
+      "case_id": "g002_seed29",
+      "seed": 47,
+      "split": "validation"
+    },
+    {
+      "action_mse": 0.004855912515816803,
+      "arm": "drop_previous_residual",
+      "case_id": "g007_seed11",
+      "seed": 47,
+      "split": "validation"
+    },
+    {
+      "action_mse": 0.004788230954869658,
+      "arm": "drop_previous_residual",
+      "case_id": "g007_seed29",
+      "seed": 47,
+      "split": "validation"
+    },
+    {
+      "action_mse": 0.00205476313044974,
+      "arm": "teacher_inputs",
+      "case_id": "g002_seed11",
+      "seed": 11,
+      "split": "validation"
+    },
+    {
+      "action_mse": 0.0020523095577063247,
+      "arm": "teacher_inputs",
+      "case_id": "g002_seed29",
+      "seed": 11,
+      "split": "validation"
+    },
+    {
+      "action_mse": 0.003050290173682544,
+      "arm": "teacher_inputs",
+      "case_id": "g007_seed11",
+      "seed": 11,
+      "split": "validation"
+    },
+    {
+      "action_mse": 0.003048439472692749,
+      "arm": "teacher_inputs",
+      "case_id": "g007_seed29",
+      "seed": 11,
+      "split": "validation"
+    },
+    {
+      "action_mse": 0.0030496563932876073,
+      "arm": "teacher_inputs",
+      "case_id": "g002_seed11",
+      "seed": 29,
+      "split": "validation"
+    },
+    {
+      "action_mse": 0.003047120585726949,
+      "arm": "teacher_inputs",
+      "case_id": "g002_seed29",
+      "seed": 29,
+      "split": "validation"
+    },
+    {
+      "action_mse": 0.005731343793857112,
+      "arm": "teacher_inputs",
+      "case_id": "g007_seed11",
+      "seed": 29,
+      "split": "validation"
+    },
+    {
+      "action_mse": 0.005730533270242224,
+      "arm": "teacher_inputs",
+      "case_id": "g007_seed29",
+      "seed": 29,
+      "split": "validation"
+    },
+    {
+      "action_mse": 0.002262583439831889,
+      "arm": "teacher_inputs",
+      "case_id": "g002_seed11",
+      "seed": 47,
+      "split": "validation"
+    },
+    {
+      "action_mse": 0.0022606133133216814,
+      "arm": "teacher_inputs",
+      "case_id": "g002_seed29",
+      "seed": 47,
+      "split": "validation"
+    },
+    {
+      "action_mse": 0.006794386467557623,
+      "arm": "teacher_inputs",
+      "case_id": "g007_seed11",
+      "seed": 47,
+      "split": "validation"
+    },
+    {
+      "action_mse": 0.006794086898698412,
+      "arm": "teacher_inputs",
+      "case_id": "g007_seed29",
+      "seed": 47,
+      "split": "validation"
+    }
+  ],
+  "use": "post-fit diagnostic; not training or checkpoint/arm selection"
+}
