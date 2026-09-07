@@ -1,0 +1,4117 @@
+{
+  "action_distribution": "fixed-std pre-tanh Gaussian with exact stored-latent Jacobian",
+  "actual_physics_steps": 192000,
+  "architecture": "49-32-tanh-32-tanh-3-tanh; separate same-width value MLP",
+  "artifact_sha256": {
+    "checkpoint_ep000.json": "81003e5886efb6402af3ff295380bc0060ab518395c50825abb0a22c078dc4f3",
+    "checkpoint_ep016.json": "ee0798ba7e575c4ff9fac474c2b21aff57efe011e03bd779ae87ff9f9df2f98b",
+    "checkpoint_ep032.json": "2c155b1ae470beec32c1fba9f18431a472a8ca656718e8a18cb5f0db675f7009",
+    "episode_001.json": "2a64a881ec3ffb54ad23de1e0e7376f5f3cc756704c0185b5c239d77ad9ffe1a",
+    "episode_001.npz": "3d1d7e4bb0ced2c2f9fab935d540b09b229bcbb6ce57a2d34895450306517c6e",
+    "episode_002.json": "b39eb5d3471b42b8352ca6d393166ba8f0047eb582cce5ea4bdf82e43a014876",
+    "episode_002.npz": "bd6b2dd2933e3050e0bdac5fbdc42c74f00646492506c8d427bfcfc5379ccd81",
+    "episode_003.json": "00ba229472b7f818a8bf76835e8544af9a781d7a8f5880031825dd410c8f11bf",
+    "episode_003.npz": "38cd089f9737f6668986489524affc6d101aff823dbeaeafcbfff957c86027c0",
+    "episode_004.json": "4c44e192cae79aa83be6df078fd5f470a98fd589522bd7fa33c481d77c2235d1",
+    "episode_004.npz": "521f18b02ab7ebb1d1895c660a65bb0690e9f252530d74467b2d910c87fc8410",
+    "episode_005.json": "cf53c0ff3e7a8040c7017dec9b6900abe4f2cfca63d22221114bd3f27312843f",
+    "episode_005.npz": "c477a0738e2bf460c054eaaa905c75e59d4486cbbc1487bdce791a43169ed7b4",
+    "episode_006.json": "1aea88c1772a0152ff298559aad470d7b8eecefe82c08911e80651fcbb480fb1",
+    "episode_006.npz": "5acc9145d1cec4d7eaf31aa966ddff76a13bc98129474029a6183e8a8ba27192",
+    "episode_007.json": "bdfbfc67bb97cae69be82d3740c1dbd1b543d4640fb4a5b2f4b06f2d58b41953",
+    "episode_007.npz": "c417e10229f0a4fa049da5de070deecd67f52a01c7064e4e04fd2cecf0da0a37",
+    "episode_008.json": "6a672b769ce8160e228f6777bea6031cf9a2fd53d2e25e303ab6dc2891fdf995",
+    "episode_008.npz": "9540e338aaf3f8c046c5f936cc1d3b19c8b84e3479e0e88e7d3cd4ece626aecb",
+    "episode_009.json": "99e9a936bd7013e4e7f50e430c730801db3203310e9096b38df5646477cba70f",
+    "episode_009.npz": "607aaa5570a0b8fcbfa4b5abeb71f6470470528d8ecf9304c42296e186be679c",
+    "episode_010.json": "0172a348cd40c056b650bf0bb0924407256aa1c2ff48f4d80aab37897d450f46",
+    "episode_010.npz": "d00239a8baca83466d107ed56d06cdd661ada43333c1a687e46efec10bbbc6d5",
+    "episode_011.json": "509c0288ae48ec47ef3812fdaa4a5ac3aadf18db743576d006f484f1d970e478",
+    "episode_011.npz": "43fb8500512f77d63915987d17570b66a0919b8139f6ae04eea9b6a25ace57a6",
+    "episode_012.json": "ab0139ece3125a2099fbd1cfa27bfa3ac9b549c83645d71ebe82b441f87a2e43",
+    "episode_012.npz": "9df09fd0cf1f97d03fe444fca631c0d12bb0cfff819081bbbb31de50b687a41e",
+    "episode_013.json": "babb2690dc0ac1f0d36abd7f317f29fa9bc88aa46f57406b403e261e7c465a25",
+    "episode_013.npz": "7cdccf80a78eaf64047ac603df921e4c3f39dd004a717150422a271861f471af",
+    "episode_014.json": "e25e18597a6ab7fd7a078134638de19e2f3515d8295844b210b9e4f52db36e6f",
+    "episode_014.npz": "d3e634bedd5daa4b6d10ca623bd662023b633b7b99e0dce3958acf2db56f3b0a",
+    "episode_015.json": "a8ce2053b08b78e12bcdbaf15f775e22e8c2765443555d9d633ade1a5faf95fd",
+    "episode_015.npz": "a0c630e2cc13d43c3e916fbf9f0d431d8a46d2ab5e36ea8e9d4209d4322a898b",
+    "episode_016.json": "ded8762eb74ea1497cf00157fe83859335a8a062eb1563e6e5e3a116a9cb12bd",
+    "episode_016.npz": "f1489e3fcea2a6540838b999b0a5858a4e8e826621d0297f8cfa1c8ac86eb0c5",
+    "episode_017.json": "0e87083018c96439722edefac4655122e17c6a356960e80c568da2ac944c0de4",
+    "episode_017.npz": "da2da22028e2a13d2f4515eb45e8b095fb3e1d3d75ce1545152b480562fac205",
+    "episode_018.json": "cb92ec37c1c7331d443aed256cd17f6a7f4037c70585f64760444076ee79b490",
+    "episode_018.npz": "c5310874f046d072600c39759c0fdf38e15fddf2795f238c47384d841758c28b",
+    "episode_019.json": "9187223d5b31e6a36ef5486384bd1a182341d6a5ef3a0e2d42425aa6bf8d39c2",
+    "episode_019.npz": "2387c4f95e86d19c52c07b20a3403d380144c664ac107e750861ce8c44880b27",
+    "episode_020.json": "40a68060b80d01f8dcaa46287f5b5e599430a90f62301363e773a7f088e1c437",
+    "episode_020.npz": "5cb82cae04d7e72e87996a6e0a61638ffbefb3d036ad6731e4fd2863ddf0cf5c",
+    "episode_021.json": "9baa212a778f49551f789769d21ab04ad9c2b8b18647e89f860b70e552b7d9bf",
+    "episode_021.npz": "632a6a3122dd9ccaa17abb58a15ee018cc88dcba374b08a9ba3ff259f4aea517",
+    "episode_022.json": "560fa159165d81b59d17a40b0a001beac47ea2bc7e60ca73e678e7d659ba3130",
+    "episode_022.npz": "ca483221573295f1cc23e97765702a9c2b54ef2b219b05c054d00f77c84ea1c9",
+    "episode_023.json": "db168d116417fe5251619e475dabe33b6cfa8314c60093184736f43eead853a4",
+    "episode_023.npz": "1e673f7f9a480bc1a86141d8fe8c128ba723a19b0c4d782a74bfb12e7f6925f3",
+    "episode_024.json": "5cee7d2bb39aa0a306b0523c014043e56d1ca49bee6827e1c8e96a703f8b3891",
+    "episode_024.npz": "781bc261401ee15df1fe42f20ae3bd00f23006cb7454fd4a4b0141106df62bab",
+    "episode_025.json": "481b6626250e799eacf24395e9bccfd3d9cd38e7744b2dfe7d8253e8cb494724",
+    "episode_025.npz": "42c9d15419b8907948f0fbac799b6a6f36c8b4fa8a3ff00e912ba8e2d7c65f17",
+    "episode_026.json": "11a93a7d771d984d8d6d1e7ecb399b520f4e59bda7d68e6dd4f18bae6f7fea44",
+    "episode_026.npz": "d1829f5c14de963fa809fd8edbe34447b4a2f9fe8e6ed965baf8face912fb813",
+    "episode_027.json": "7a9dd79b77ce7cf73e57404ac0789d864a31160adb9dc95af1bd3ac03bf6d733",
+    "episode_027.npz": "b432dd8cee7ad4a773418d661c89201716fbc5d277be2b928f839fbd0fec709d",
+    "episode_028.json": "b3a730be8f78afb12f8e2527330b5f440e199872eba81a4e299fe2c928fc6b5c",
+    "episode_028.npz": "8ece0da3b417a85e389b7ed392dce956c6bff96c7886f76e3d7cf183d1756a49",
+    "episode_029.json": "537581cd2753dc6f05b8742c7c728980ee9dd220c54e45cae80ed1e712d190ea",
+    "episode_029.npz": "093a901376eb7bcdb971446a7efbe61cbbe868b1baf84300fb00cad896b7d8d3",
+    "episode_030.json": "85f872cecb1759c19f8e0d0ee2ee50a5d03835eced9fe6f1e517a727a239425f",
+    "episode_030.npz": "23ee2aeef57ba89be0f1833746935e96c398b556df2647fdfd47dd4c25ab16de",
+    "episode_031.json": "494ec44a4ef83cfa761c0035cce24f19e061330c2d8f09160e0cde9658b72287",
+    "episode_031.npz": "6cc12ab3ebc5d7c93653bea4b986b34d43d8d0c37ccc9a0a39b39a490f5e86cd",
+    "episode_032.json": "8959d556568d5242afc90ec97573ae647482af6c6b833e3e100cc5c40e3537ff",
+    "episode_032.npz": "0927d64978d3b41a2829f8512ee8ee7397ec1c9cb7b884297db46dfc36a1ea76"
+  },
+  "case_plan": [
+    {
+      "case_id": "g000_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9659258262890683,
+          0.25881904510252074,
+          0.0
+        ],
+        [
+          -0.25881904510252074,
+          0.9659258262890683,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "c4ccad8d74f5bf63a45b3eca8a861b7c4e60cca35d37f4c03c74d9a38c114bd2",
+      "nominal_kind": "friction",
+      "scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0.15,
+        "name": "preparation_000",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0002,
+        "tool_mass_kg": 0.1,
+        "tool_sliding_friction": 0.45,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": -15.0
+      },
+      "split": "train",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.2,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 0.0,
+        "tangent_amplitude_m": 0.055,
+        "vertical_amplitude_m": 0.04,
+        "yaw_deg": -15.0
+      }
+    },
+    {
+      "case_id": "g000_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9659258262890683,
+          0.25881904510252074,
+          0.0
+        ],
+        [
+          -0.25881904510252074,
+          0.9659258262890683,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "c4ccad8d74f5bf63a45b3eca8a861b7c4e60cca35d37f4c03c74d9a38c114bd2",
+      "nominal_kind": "friction",
+      "scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0.15,
+        "name": "preparation_000",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0002,
+        "tool_mass_kg": 0.1,
+        "tool_sliding_friction": 0.45,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": -15.0
+      },
+      "split": "train",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.2,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 0.0,
+        "tangent_amplitude_m": 0.055,
+        "vertical_amplitude_m": 0.04,
+        "yaw_deg": -15.0
+      }
+    },
+    {
+      "case_id": "g001_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "group_id": "76b1a9cdc26befb201d8995fa84ed0878e8eeef436f67587d023c9e35564bfff",
+      "nominal_kind": "friction",
+      "scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0.15,
+        "name": "preparation_001",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0002,
+        "tool_mass_kg": 0.1,
+        "tool_sliding_friction": 0.45,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": 0.0
+      },
+      "split": "development_test",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.2,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 0.0,
+        "tangent_amplitude_m": 0.055,
+        "vertical_amplitude_m": 0.04,
+        "yaw_deg": 0.0
+      }
+    },
+    {
+      "case_id": "g001_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "group_id": "76b1a9cdc26befb201d8995fa84ed0878e8eeef436f67587d023c9e35564bfff",
+      "nominal_kind": "friction",
+      "scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0.15,
+        "name": "preparation_001",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0002,
+        "tool_mass_kg": 0.1,
+        "tool_sliding_friction": 0.45,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": 0.0
+      },
+      "split": "development_test",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.2,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 0.0,
+        "tangent_amplitude_m": 0.055,
+        "vertical_amplitude_m": 0.04,
+        "yaw_deg": 0.0
+      }
+    },
+    {
+      "case_id": "g002_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9659258262890683,
+          -0.25881904510252074,
+          0.0
+        ],
+        [
+          0.25881904510252074,
+          0.9659258262890683,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "group_id": "7de4a580a6c8ff1c7f8c59061686922a216fdde972b1a2d29c6c5658355a75fc",
+      "nominal_kind": "friction",
+      "scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0.15,
+        "name": "preparation_002",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0002,
+        "tool_mass_kg": 0.1,
+        "tool_sliding_friction": 0.45,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": 15.0
+      },
+      "split": "validation",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.2,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 0.0,
+        "tangent_amplitude_m": 0.055,
+        "vertical_amplitude_m": 0.04,
+        "yaw_deg": 15.0
+      }
+    },
+    {
+      "case_id": "g002_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9659258262890683,
+          -0.25881904510252074,
+          0.0
+        ],
+        [
+          0.25881904510252074,
+          0.9659258262890683,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "group_id": "7de4a580a6c8ff1c7f8c59061686922a216fdde972b1a2d29c6c5658355a75fc",
+      "nominal_kind": "friction",
+      "scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0.15,
+        "name": "preparation_002",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0002,
+        "tool_mass_kg": 0.1,
+        "tool_sliding_friction": 0.45,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": 15.0
+      },
+      "split": "validation",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.2,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 0.0,
+        "tangent_amplitude_m": 0.055,
+        "vertical_amplitude_m": 0.04,
+        "yaw_deg": 15.0
+      }
+    },
+    {
+      "case_id": "g003_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 13.374474247256181,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9997256003010401,
+          0.0234248607834745,
+          0.0
+        ],
+        [
+          -0.0234248607834745,
+          0.9997256003010401,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "2bc8e9ed3f6cc48467d75ad882c720ca1537de885e778c2501ab0227267a5679",
+      "nominal_kind": "friction",
+      "scenario": {
+        "bias_compensation_scale": 0.9834295595238157,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.1695738581362003,
+          -0.2867989624010878,
+          0.25809642436661195
+        ],
+        "force_noise_std_n": 0.1749716778290761,
+        "name": "preparation_003",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.00034354025703593695,
+        "tool_mass_kg": 0.10431399162545195,
+        "tool_sliding_friction": 0.46814634107119396,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.46814634107119396,
+        "wall_time_constant": 0.006730428155143842,
+        "wall_yaw_deg": -5.18662012966408
+      },
+      "split": "train",
+      "task": {
+        "direction": -1,
+        "frequency_hz": 0.16997849511296048,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 2.1520115683888155,
+        "tangent_amplitude_m": 0.056569662532711826,
+        "vertical_amplitude_m": 0.037649417111510014,
+        "yaw_deg": -5.18662012966408
+      }
+    },
+    {
+      "case_id": "g003_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 13.374474247256181,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9997256003010401,
+          0.0234248607834745,
+          0.0
+        ],
+        [
+          -0.0234248607834745,
+          0.9997256003010401,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "2bc8e9ed3f6cc48467d75ad882c720ca1537de885e778c2501ab0227267a5679",
+      "nominal_kind": "friction",
+      "scenario": {
+        "bias_compensation_scale": 0.9834295595238157,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.1695738581362003,
+          -0.2867989624010878,
+          0.25809642436661195
+        ],
+        "force_noise_std_n": 0.1749716778290761,
+        "name": "preparation_003",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.00034354025703593695,
+        "tool_mass_kg": 0.10431399162545195,
+        "tool_sliding_friction": 0.46814634107119396,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.46814634107119396,
+        "wall_time_constant": 0.006730428155143842,
+        "wall_yaw_deg": -5.18662012966408
+      },
+      "split": "train",
+      "task": {
+        "direction": -1,
+        "frequency_hz": 0.16997849511296048,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 2.1520115683888155,
+        "tangent_amplitude_m": 0.056569662532711826,
+        "vertical_amplitude_m": 0.037649417111510014,
+        "yaw_deg": -5.18662012966408
+      }
+    },
+    {
+      "case_id": "g004_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 10.514967923347504,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9893468212511598,
+          0.14557770186476268,
+          0.0
+        ],
+        [
+          -0.14557770186476268,
+          0.9893468212511598,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "78aeb0f4c4f201ab45dfab2f961fa047d356b7d0c2ba94e8c37a076206d59381",
+      "nominal_kind": "friction",
+      "scenario": {
+        "bias_compensation_scale": 0.9621168342455056,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.1178536357577894,
+          -0.10616752431378851,
+          0.07639844780124128
+        ],
+        "force_noise_std_n": 0.21989282450330733,
+        "name": "preparation_004",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0004999431587325098,
+        "tool_mass_kg": 0.129354758344775,
+        "tool_sliding_friction": 0.5254600995314549,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.5254600995314549,
+        "wall_time_constant": 0.011011106824447415,
+        "wall_yaw_deg": -4.3225581669923425
+      },
+      "split": "train",
+      "task": {
+        "direction": -1,
+        "frequency_hz": 0.15867053617901622,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 5.702671881521383,
+        "tangent_amplitude_m": 0.05031274631985218,
+        "vertical_amplitude_m": 0.0398378975611908,
+        "yaw_deg": -4.3225581669923425
+      }
+    },
+    {
+      "case_id": "g004_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 10.514967923347504,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9893468212511598,
+          0.14557770186476268,
+          0.0
+        ],
+        [
+          -0.14557770186476268,
+          0.9893468212511598,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "78aeb0f4c4f201ab45dfab2f961fa047d356b7d0c2ba94e8c37a076206d59381",
+      "nominal_kind": "friction",
+      "scenario": {
+        "bias_compensation_scale": 0.9621168342455056,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.1178536357577894,
+          -0.10616752431378851,
+          0.07639844780124128
+        ],
+        "force_noise_std_n": 0.21989282450330733,
+        "name": "preparation_004",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0004999431587325098,
+        "tool_mass_kg": 0.129354758344775,
+        "tool_sliding_friction": 0.5254600995314549,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.5254600995314549,
+        "wall_time_constant": 0.011011106824447415,
+        "wall_yaw_deg": -4.3225581669923425
+      },
+      "split": "train",
+      "task": {
+        "direction": -1,
+        "frequency_hz": 0.15867053617901622,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 5.702671881521383,
+        "tangent_amplitude_m": 0.05031274631985218,
+        "vertical_amplitude_m": 0.0398378975611908,
+        "yaw_deg": -4.3225581669923425
+      }
+    },
+    {
+      "case_id": "g005_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 12.636881524891674,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9998651027654251,
+          -0.016424867484582505,
+          0.0
+        ],
+        [
+          0.016424867484582505,
+          0.9998651027654251,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0000000000000002
+        ]
+      ],
+      "group_id": "02d1135b618f4bb3d559c8fd49d64ce93c43986b9e6d59576110bfabc47f2de3",
+      "nominal_kind": "friction",
+      "scenario": {
+        "bias_compensation_scale": 0.9972262206770302,
+        "delay_steps": 3,
+        "force_bias_sensor_n": [
+          -0.08647490567986454,
+          0.31319371654544714,
+          -0.36281386610832667
+        ],
+        "force_noise_std_n": 0.11331838487622092,
+        "name": "preparation_005",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.00027154453598569753,
+        "tool_mass_kg": 0.11972517654166485,
+        "tool_sliding_friction": 0.5133303977591781,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.5133303977591781,
+        "wall_time_constant": 0.006534427480187282,
+        "wall_yaw_deg": 3.2149954686098
+      },
+      "split": "development_test",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.20647472664080396,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 4.671457175033326,
+        "tangent_amplitude_m": 0.04558289499680336,
+        "vertical_amplitude_m": 0.04435887364327973,
+        "yaw_deg": 3.2149954686098
+      }
+    },
+    {
+      "case_id": "g005_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 12.636881524891674,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9998651027654251,
+          -0.016424867484582505,
+          0.0
+        ],
+        [
+          0.016424867484582505,
+          0.9998651027654251,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0000000000000002
+        ]
+      ],
+      "group_id": "02d1135b618f4bb3d559c8fd49d64ce93c43986b9e6d59576110bfabc47f2de3",
+      "nominal_kind": "friction",
+      "scenario": {
+        "bias_compensation_scale": 0.9972262206770302,
+        "delay_steps": 3,
+        "force_bias_sensor_n": [
+          -0.08647490567986454,
+          0.31319371654544714,
+          -0.36281386610832667
+        ],
+        "force_noise_std_n": 0.11331838487622092,
+        "name": "preparation_005",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.00027154453598569753,
+        "tool_mass_kg": 0.11972517654166485,
+        "tool_sliding_friction": 0.5133303977591781,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.5133303977591781,
+        "wall_time_constant": 0.006534427480187282,
+        "wall_yaw_deg": 3.2149954686098
+      },
+      "split": "development_test",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.20647472664080396,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 4.671457175033326,
+        "tangent_amplitude_m": 0.04558289499680336,
+        "vertical_amplitude_m": 0.04435887364327973,
+        "yaw_deg": 3.2149954686098
+      }
+    },
+    {
+      "case_id": "g006_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 10.792959479654229,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9649518215879473,
+          -0.2624270984751812,
+          0.0
+        ],
+        [
+          0.2624270984751812,
+          0.9649518215879473,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0000000000000002
+        ]
+      ],
+      "group_id": "d7dd1af9307ebd87f97f8e12bf7c4105c0a7bf167a41092ef2db58c7e7e133c2",
+      "nominal_kind": "friction",
+      "scenario": {
+        "bias_compensation_scale": 1.0193190741835965,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2923577006697651,
+          -0.05259234730586859,
+          0.2531584804631489
+        ],
+        "force_noise_std_n": 0.11677868862921094,
+        "name": "preparation_006",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0004130531376124821,
+        "tool_mass_kg": 0.10822689276858583,
+        "tool_sliding_friction": 0.6156472242724733,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.6156472242724733,
+        "wall_time_constant": 0.0054352313610654904,
+        "wall_yaw_deg": 11.29514497758774
+      },
+      "split": "train",
+      "task": {
+        "direction": -1,
+        "frequency_hz": 0.2293882756344336,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 3.739127776013458,
+        "tangent_amplitude_m": 0.04349420057357818,
+        "vertical_amplitude_m": 0.03374245065830648,
+        "yaw_deg": 11.29514497758774
+      }
+    },
+    {
+      "case_id": "g006_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 10.792959479654229,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9649518215879473,
+          -0.2624270984751812,
+          0.0
+        ],
+        [
+          0.2624270984751812,
+          0.9649518215879473,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0000000000000002
+        ]
+      ],
+      "group_id": "d7dd1af9307ebd87f97f8e12bf7c4105c0a7bf167a41092ef2db58c7e7e133c2",
+      "nominal_kind": "friction",
+      "scenario": {
+        "bias_compensation_scale": 1.0193190741835965,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2923577006697651,
+          -0.05259234730586859,
+          0.2531584804631489
+        ],
+        "force_noise_std_n": 0.11677868862921094,
+        "name": "preparation_006",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0004130531376124821,
+        "tool_mass_kg": 0.10822689276858583,
+        "tool_sliding_friction": 0.6156472242724733,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.6156472242724733,
+        "wall_time_constant": 0.0054352313610654904,
+        "wall_yaw_deg": 11.29514497758774
+      },
+      "split": "train",
+      "task": {
+        "direction": -1,
+        "frequency_hz": 0.2293882756344336,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 3.739127776013458,
+        "tangent_amplitude_m": 0.04349420057357818,
+        "vertical_amplitude_m": 0.03374245065830648,
+        "yaw_deg": 11.29514497758774
+      }
+    },
+    {
+      "case_id": "g007_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 14.294771291017808,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9933927363619459,
+          -0.11476441671234801,
+          0.0
+        ],
+        [
+          0.11476441671234801,
+          0.9933927363619459,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "group_id": "f867c0c8c648e69fef3c38ba45159a37264884db9cb86980f30dc525f65d5fd5",
+      "nominal_kind": "friction",
+      "scenario": {
+        "bias_compensation_scale": 1.0304521490512677,
+        "delay_steps": 2,
+        "force_bias_sensor_n": [
+          0.07516846842614006,
+          0.25411864992877353,
+          0.11827950093348027
+        ],
+        "force_noise_std_n": 0.15472227448453818,
+        "name": "preparation_007",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.00032023374139809494,
+        "tool_mass_kg": 0.12001540091777507,
+        "tool_sliding_friction": 0.6033252469640649,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.6033252469640649,
+        "wall_time_constant": 0.008357722303622032,
+        "wall_yaw_deg": 6.849103482665328
+      },
+      "split": "validation",
+      "task": {
+        "direction": -1,
+        "frequency_hz": 0.18221993030472838,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 5.568392262938695,
+        "tangent_amplitude_m": 0.06114263634529844,
+        "vertical_amplitude_m": 0.03114630630967422,
+        "yaw_deg": 6.849103482665328
+      }
+    },
+    {
+      "case_id": "g007_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 14.294771291017808,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9933927363619459,
+          -0.11476441671234801,
+          0.0
+        ],
+        [
+          0.11476441671234801,
+          0.9933927363619459,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "group_id": "f867c0c8c648e69fef3c38ba45159a37264884db9cb86980f30dc525f65d5fd5",
+      "nominal_kind": "friction",
+      "scenario": {
+        "bias_compensation_scale": 1.0304521490512677,
+        "delay_steps": 2,
+        "force_bias_sensor_n": [
+          0.07516846842614006,
+          0.25411864992877353,
+          0.11827950093348027
+        ],
+        "force_noise_std_n": 0.15472227448453818,
+        "name": "preparation_007",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.00032023374139809494,
+        "tool_mass_kg": 0.12001540091777507,
+        "tool_sliding_friction": 0.6033252469640649,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.6033252469640649,
+        "wall_time_constant": 0.008357722303622032,
+        "wall_yaw_deg": 6.849103482665328
+      },
+      "split": "validation",
+      "task": {
+        "direction": -1,
+        "frequency_hz": 0.18221993030472838,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 5.568392262938695,
+        "tangent_amplitude_m": 0.06114263634529844,
+        "vertical_amplitude_m": 0.03114630630967422,
+        "yaw_deg": 6.849103482665328
+      }
+    },
+    {
+      "case_id": "g008_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 8.234363796630474,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9700641306204176,
+          -0.24284888816639325,
+          0.0
+        ],
+        [
+          0.24284888816639325,
+          0.9700641306204176,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "group_id": "6d8c4b9fdc779198d04f6d4292585f35bec087939b9edaae51aa0bead7218bb9",
+      "nominal_kind": "friction",
+      "scenario": {
+        "bias_compensation_scale": 0.9602713111227346,
+        "delay_steps": 2,
+        "force_bias_sensor_n": [
+          0.2662945061269385,
+          -0.3462216766538664,
+          -0.34195517693971
+        ],
+        "force_noise_std_n": 0.19257362125669128,
+        "name": "preparation_008",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0002499129492919603,
+        "tool_mass_kg": 0.11195398633249383,
+        "tool_sliding_friction": 0.37108835386298933,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.37108835386298933,
+        "wall_time_constant": 0.007612425204658782,
+        "wall_yaw_deg": 12.339658663619971
+      },
+      "split": "train",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.22046893524917144,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 0.6730148394337498,
+        "tangent_amplitude_m": 0.04006330429920229,
+        "vertical_amplitude_m": 0.04135387698125583,
+        "yaw_deg": 12.339658663619971
+      }
+    },
+    {
+      "case_id": "g008_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 8.234363796630474,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9700641306204176,
+          -0.24284888816639325,
+          0.0
+        ],
+        [
+          0.24284888816639325,
+          0.9700641306204176,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "group_id": "6d8c4b9fdc779198d04f6d4292585f35bec087939b9edaae51aa0bead7218bb9",
+      "nominal_kind": "friction",
+      "scenario": {
+        "bias_compensation_scale": 0.9602713111227346,
+        "delay_steps": 2,
+        "force_bias_sensor_n": [
+          0.2662945061269385,
+          -0.3462216766538664,
+          -0.34195517693971
+        ],
+        "force_noise_std_n": 0.19257362125669128,
+        "name": "preparation_008",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0002499129492919603,
+        "tool_mass_kg": 0.11195398633249383,
+        "tool_sliding_friction": 0.37108835386298933,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.37108835386298933,
+        "wall_time_constant": 0.007612425204658782,
+        "wall_yaw_deg": 12.339658663619971
+      },
+      "split": "train",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.22046893524917144,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 0.6730148394337498,
+        "tangent_amplitude_m": 0.04006330429920229,
+        "vertical_amplitude_m": 0.04135387698125583,
+        "yaw_deg": 12.339658663619971
+      }
+    },
+    {
+      "case_id": "g009_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 15.710602499038712,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9687317446471707,
+          0.248110473202662,
+          0.0
+        ],
+        [
+          -0.248110473202662,
+          0.9687317446471707,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "8a93eb6e8492e8e95cc35d19e9b8f11ee84b3abaf062b765bd2b9358198a09b7",
+      "nominal_kind": "friction",
+      "scenario": {
+        "bias_compensation_scale": 1.0126101880853107,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          -0.008517215224522978,
+          -0.30436522549840234,
+          0.09521874417777249
+        ],
+        "force_noise_std_n": 0.13414730217384957,
+        "name": "preparation_009",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0004588389521656723,
+        "tool_mass_kg": 0.10259178479291689,
+        "tool_sliding_friction": 0.3989671028767117,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.3989671028767117,
+        "wall_time_constant": 0.011886851976159603,
+        "wall_yaw_deg": -10.82363814841609
+      },
+      "split": "train",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.12693999371548184,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 3.2061802158377914,
+        "tangent_amplitude_m": 0.052717227640788386,
+        "vertical_amplitude_m": 0.03305490428095286,
+        "yaw_deg": -10.82363814841609
+      }
+    },
+    {
+      "case_id": "g009_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 15.710602499038712,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9687317446471707,
+          0.248110473202662,
+          0.0
+        ],
+        [
+          -0.248110473202662,
+          0.9687317446471707,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "8a93eb6e8492e8e95cc35d19e9b8f11ee84b3abaf062b765bd2b9358198a09b7",
+      "nominal_kind": "friction",
+      "scenario": {
+        "bias_compensation_scale": 1.0126101880853107,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          -0.008517215224522978,
+          -0.30436522549840234,
+          0.09521874417777249
+        ],
+        "force_noise_std_n": 0.13414730217384957,
+        "name": "preparation_009",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0004588389521656723,
+        "tool_mass_kg": 0.10259178479291689,
+        "tool_sliding_friction": 0.3989671028767117,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.3989671028767117,
+        "wall_time_constant": 0.011886851976159603,
+        "wall_yaw_deg": -10.82363814841609
+      },
+      "split": "train",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.12693999371548184,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 3.2061802158377914,
+        "tangent_amplitude_m": 0.052717227640788386,
+        "vertical_amplitude_m": 0.03305490428095286,
+        "yaw_deg": -10.82363814841609
+      }
+    },
+    {
+      "case_id": "g010_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 11.744255247460599,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9743683662328629,
+          0.22495841145576562,
+          0.0
+        ],
+        [
+          -0.22495841145576562,
+          0.9743683662328629,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "e7e85c528523f783b124ec401e1fcbe0650e96483b5157dc2eda12ce83c2a4df",
+      "nominal_kind": "friction",
+      "scenario": {
+        "bias_compensation_scale": 1.0479867879634472,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2559599653794824,
+          -0.1184943582970881,
+          0.1137047788416905
+        ],
+        "force_noise_std_n": 0.24842177267461152,
+        "name": "preparation_010",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.00021399351356606242,
+        "tool_mass_kg": 0.11385952639154474,
+        "tool_sliding_friction": 0.31918862417493166,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.31918862417493166,
+        "wall_time_constant": 0.010015225550379005,
+        "wall_yaw_deg": -14.078590933930105
+      },
+      "split": "train",
+      "task": {
+        "direction": -1,
+        "frequency_hz": 0.14805304029830063,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 1.0200620287316613,
+        "tangent_amplitude_m": 0.05767822215054007,
+        "vertical_amplitude_m": 0.042058570005678524,
+        "yaw_deg": -14.078590933930105
+      }
+    },
+    {
+      "case_id": "g010_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 11.744255247460599,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9743683662328629,
+          0.22495841145576562,
+          0.0
+        ],
+        [
+          -0.22495841145576562,
+          0.9743683662328629,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "e7e85c528523f783b124ec401e1fcbe0650e96483b5157dc2eda12ce83c2a4df",
+      "nominal_kind": "friction",
+      "scenario": {
+        "bias_compensation_scale": 1.0479867879634472,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2559599653794824,
+          -0.1184943582970881,
+          0.1137047788416905
+        ],
+        "force_noise_std_n": 0.24842177267461152,
+        "name": "preparation_010",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.00021399351356606242,
+        "tool_mass_kg": 0.11385952639154474,
+        "tool_sliding_friction": 0.31918862417493166,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.31918862417493166,
+        "wall_time_constant": 0.010015225550379005,
+        "wall_yaw_deg": -14.078590933930105
+      },
+      "split": "train",
+      "task": {
+        "direction": -1,
+        "frequency_hz": 0.14805304029830063,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 1.0200620287316613,
+        "tangent_amplitude_m": 0.05767822215054007,
+        "vertical_amplitude_m": 0.042058570005678524,
+        "yaw_deg": -14.078590933930105
+      }
+    },
+    {
+      "case_id": "g011_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 9.411280456376277,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9997396172692449,
+          0.02281880063333113,
+          0.0
+        ],
+        [
+          -0.02281880063333113,
+          0.9997396172692449,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "3af3caae32e997092b8bbcb4590b3c030f813d9414d20593d3a15e4b1c0cf488",
+      "nominal_kind": "friction",
+      "scenario": {
+        "bias_compensation_scale": 0.9829527833394772,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.23211452560618162,
+          -0.12799275336168803,
+          -0.07060629927608791
+        ],
+        "force_noise_std_n": 0.20261687851490356,
+        "name": "preparation_011",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0003674977435973798,
+        "tool_mass_kg": 0.12651217788740876,
+        "tool_sliding_friction": 0.25019342041813164,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.25019342041813164,
+        "wall_time_constant": 0.009006588842358786,
+        "wall_yaw_deg": -0.4889248881824635
+      },
+      "split": "train",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.24351178517206784,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 1.700998670330913,
+        "tangent_amplitude_m": 0.0641325300513091,
+        "vertical_amplitude_m": 0.03544363020304142,
+        "yaw_deg": -0.4889248881824635
+      }
+    },
+    {
+      "case_id": "g011_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 9.411280456376277,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9997396172692449,
+          0.02281880063333113,
+          0.0
+        ],
+        [
+          -0.02281880063333113,
+          0.9997396172692449,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "3af3caae32e997092b8bbcb4590b3c030f813d9414d20593d3a15e4b1c0cf488",
+      "nominal_kind": "friction",
+      "scenario": {
+        "bias_compensation_scale": 0.9829527833394772,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.23211452560618162,
+          -0.12799275336168803,
+          -0.07060629927608791
+        ],
+        "force_noise_std_n": 0.20261687851490356,
+        "name": "preparation_011",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0003674977435973798,
+        "tool_mass_kg": 0.12651217788740876,
+        "tool_sliding_friction": 0.25019342041813164,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.25019342041813164,
+        "wall_time_constant": 0.009006588842358786,
+        "wall_yaw_deg": -0.4889248881824635
+      },
+      "split": "train",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.24351178517206784,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 1.700998670330913,
+        "tangent_amplitude_m": 0.0641325300513091,
+        "vertical_amplitude_m": 0.03544363020304142,
+        "yaw_deg": -0.4889248881824635
+      }
+    }
+  ],
+  "checkpoints": {
+    "0": "checkpoint_ep000.json",
+    "16": "checkpoint_ep016.json",
+    "32": "checkpoint_ep032.json"
+  },
+  "failed_episodes": 0,
+  "hyperparameters": {
+    "batch_size": 128,
+    "checkpoint_episodes": [
+      0,
+      16,
+      32
+    ],
+    "clip_epsilon": 0.2,
+    "episodes": 32,
+    "episodes_per_update": 4,
+    "extra_failure_penalty": null,
+    "fixed_std": 0.05,
+    "gae_lambda": 0.95,
+    "gae_trace": "lambda**(physics_substeps/10)",
+    "gamma": 0.99,
+    "learning_rate": 0.0003,
+    "max_grad_norm": 0.5,
+    "physics_discount": "gamma**(physics_substeps/10)",
+    "reward_normalization": null,
+    "target_kl": 0.02,
+    "update_epochs": 4
+  },
+  "nominal_kind": "friction",
+  "policy_contract": {
+    "action": {
+      "bounds": [
+        -1,
+        1
+      ],
+      "dtype": "float64",
+      "frame": "controller_surface_normal_tangent1_tangent2",
+      "shape": [
+        3
+      ],
+      "stage": "before_contact_gating_filter_slew_normal_limit_and_residual_torque_projection",
+      "units": "normalized"
+    },
+    "nominal_kind": "friction",
+    "observation": {
+      "clip": [
+        -3,
+        3
+      ],
+      "dtype": "float64",
+      "names": [
+        "corrected_normal_force",
+        "normal_force_error",
+        "normal_force_rate",
+        "normal_position_error",
+        "tangent1_position_error",
+        "tangent2_position_error",
+        "normal_velocity_error",
+        "tangent1_velocity_error",
+        "tangent2_velocity_error",
+        "target_normal_velocity",
+        "target_tangent1_velocity",
+        "target_tangent2_velocity",
+        "target_normal_force",
+        "contact_blend",
+        "previous_normal_residual",
+        "previous_tangent1_residual",
+        "previous_tangent2_residual",
+        "normal_positive_headroom",
+        "normal_negative_headroom",
+        "tangent1_positive_headroom",
+        "tangent1_negative_headroom",
+        "tangent2_positive_headroom",
+        "tangent2_negative_headroom",
+        "normal_orientation_error",
+        "tangent1_orientation_error",
+        "tangent2_orientation_error",
+        "normal_angular_velocity_error",
+        "tangent1_angular_velocity_error",
+        "tangent2_angular_velocity_error",
+        "contact_ready_elapsed",
+        "nominal_normal_force",
+        "nominal_tangent1_force",
+        "nominal_tangent2_force",
+        "joint_position_0",
+        "joint_position_1",
+        "joint_position_2",
+        "joint_position_3",
+        "joint_position_4",
+        "joint_position_5",
+        "joint_position_6",
+        "joint_velocity_0",
+        "joint_velocity_1",
+        "joint_velocity_2",
+        "joint_velocity_3",
+        "joint_velocity_4",
+        "joint_velocity_5",
+        "joint_velocity_6",
+        "kinematic_age",
+        "force_age"
+      ],
+      "normalization": "physical_divided_by_fixed_scales_then_clipped_no_running_statistics",
+      "scales": [
+        20,
+        12,
+        250,
+        0.02,
+        0.05,
+        0.05,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        12,
+        1,
+        4,
+        6,
+        6,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0.2,
+        0.2,
+        0.2,
+        1,
+        1,
+        1,
+        0.1,
+        25,
+        25,
+        25,
+        3.141592653589793,
+        3.141592653589793,
+        3.141592653589793,
+        3.141592653589793,
+        3.141592653589793,
+        3.141592653589793,
+        3.141592653589793,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        0.1,
+        0.1
+      ],
+      "schema": "surface_env_v1",
+      "shape": [
+        49
+      ],
+      "units": [
+        "N",
+        "N",
+        "N/s",
+        "m",
+        "m",
+        "m",
+        "m/s",
+        "m/s",
+        "m/s",
+        "m/s",
+        "m/s",
+        "m/s",
+        "N",
+        "1",
+        "N",
+        "N",
+        "N",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "rad",
+        "rad",
+        "rad",
+        "rad/s",
+        "rad/s",
+        "rad/s",
+        "s",
+        "N",
+        "N",
+        "N",
+        "rad",
+        "rad",
+        "rad",
+        "rad",
+        "rad",
+        "rad",
+        "rad",
+        "rad/s",
+        "rad/s",
+        "rad/s",
+        "rad/s",
+        "rad/s",
+        "rad/s",
+        "rad/s",
+        "s",
+        "s"
+      ]
+    },
+    "physics_period_s": 0.002,
+    "policy_period_s": 0.02,
+    "purpose": "rl_residual",
+    "residual_config": {
+      "action_bounds_n": [
+        4,
+        6,
+        6
+      ],
+      "action_rate_limits_n_s": [
+        40,
+        60,
+        60
+      ],
+      "filter_time_constant": 0.04,
+      "force_guard_margin": 3,
+      "force_guard_rate": 150,
+      "max_total_normal_wrench": 25,
+      "min_total_normal_wrench": -4,
+      "residual_enable_delay": 0.1,
+      "teacher_max_force_n": 6,
+      "teacher_nominal_mu": 0.45,
+      "teacher_velocity_scale": 0.005,
+      "torque_reserve_fraction": 0.1
+    },
+    "schema": "surface_policy_contract_v1",
+    "split_binding": {
+      "case_count": 24,
+      "cases_sha256": "708e82b84e3230fa777b15b31e68254814568984249cd814e109a8d87d5e6194",
+      "group_assignments_sha256": "e008a1bd4aa7e82332f5b4c44bebc9de981c66eae26f966a62e632637840319c",
+      "group_count": 12,
+      "group_schema": "surface_physical_task_group",
+      "group_schema_version": 1,
+      "split_manifest_sha256": "0f754daf8c8a546a8a4b8e1737ed8561925e8358b23a7f6a5cb52d3137098739",
+      "test_identity": "public_development_test_not_blind_holdout"
+    },
+    "task_domain": {
+      "assumptions": [
+        "fixed_smooth_contact_model",
+        "known_task_plane",
+        "yaw_calibration_error",
+        "Coulomb_friction",
+        "simulation_only"
+      ],
+      "bounds": {
+        "bias_compensation_scale": [
+          0.95,
+          1.05
+        ],
+        "delay_steps": [
+          0,
+          3
+        ],
+        "force_bias_component_n": [
+          -0.4,
+          0.4
+        ],
+        "force_noise_std_n": [
+          0.1,
+          0.25
+        ],
+        "frequency_hz": [
+          0.12,
+          0.25
+        ],
+        "normal_calibration_error_deg": [
+          -5,
+          5
+        ],
+        "phase_rad": [
+          0,
+          6.283185307179586
+        ],
+        "position_noise_std_m": [
+          0.0002,
+          0.0005
+        ],
+        "sliding_friction": [
+          0.25,
+          0.65
+        ],
+        "tangent_amplitude_m": [
+          0.04,
+          0.065
+        ],
+        "target_force_n": [
+          8,
+          16
+        ],
+        "tool_mass_kg": [
+          0.1,
+          0.13
+        ],
+        "vertical_amplitude_m": [
+          0.03,
+          0.045
+        ],
+        "wall_time_constant_s": [
+          0.005,
+          0.012
+        ],
+        "wall_yaw_deg": [
+          -15,
+          15
+        ]
+      },
+      "schema": "surface_learning_preparation_v1"
+    },
+    "teacher_labels": null
+  },
+  "purpose": "rl_residual",
+  "reset_seeds": [
+    1388763433,
+    1732914161,
+    1296400081,
+    928403482,
+    1843907433,
+    1144393680,
+    1453467313,
+    1475140015,
+    4867617,
+    550718876,
+    513201882,
+    773868757,
+    2042056413,
+    2054262653,
+    862361151,
+    1991622389,
+    490977141,
+    1349392303,
+    947761465,
+    614958438,
+    2131133082,
+    241210648,
+    1369876150,
+    386891144,
+    948204487,
+    472273991,
+    918678846,
+    1193714447,
+    1929297428,
+    884038843,
+    2072649104,
+    2050074153
+  ],
+  "runs": [
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.18684018790467266,
+        "action_mean": [
+          -0.004321802887800265,
+          0.004084663827497149,
+          0.0007704546799220249
+        ],
+        "action_std": [
+          0.04970706938056378,
+          0.05091517713024797,
+          0.04783632997261619
+        ],
+        "latent_abs_max": 0.18906104458856568,
+        "latent_mean": [
+          -0.004325751091254056,
+          0.004096923143658174,
+          0.0007729649687790948
+        ],
+        "latent_std": [
+          0.04984437146115317,
+          0.05105556522270355,
+          0.04793958463847562
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.17222222222222222,
+        "sampled_policy_entropy_nats": -4.7527110580375425,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1711258283,
+      "case_id": "g008_seed11",
+      "episode": 1,
+      "episode_return": 11.841543750672372,
+      "events_file": "episode_001.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "6d8c4b9fdc779198d04f6d4292585f35bec087939b9edaae51aa0bead7218bb9",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.606,
+        "force_rmse_n": 0.14315874094853764,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.35240694659636956,
+        "orientation_rmse_deg": 1.5427664215548431,
+        "peak_force_n": 8.704814134920086,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 4.655060675293716
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 1388763433,
+      "terminated": false,
+      "trace_file": "episode_001.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.18173130274703844,
+        "action_mean": [
+          -0.0023424636519505204,
+          -0.0021323324793872914,
+          -0.00031416731185899866
+        ],
+        "action_std": [
+          0.048986739980538097,
+          0.050501867098480535,
+          0.048769892683566476
+        ],
+        "latent_abs_max": 0.18377254223439435,
+        "latent_mean": [
+          -0.0023518727743838085,
+          -0.0021430552431904236,
+          -0.00031688242296090306
+        ],
+        "latent_std": [
+          0.049110446924553706,
+          0.050628351013692084,
+          0.048878453263905275
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.15611111111111112,
+        "sampled_policy_entropy_nats": -4.762867972928944,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1107945246,
+      "case_id": "g004_seed29",
+      "episode": 2,
+      "episode_return": 11.80785248283982,
+      "events_file": "episode_002.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "78aeb0f4c4f201ab45dfab2f961fa047d356b7d0c2ba94e8c37a076206d59381",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.626,
+        "force_rmse_n": 0.30551030880480673,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.3080285106800723,
+        "orientation_rmse_deg": 1.4576643933438893,
+        "peak_force_n": 11.385642536982186,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 5.262332719231262
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 1732914161,
+      "terminated": false,
+      "trace_file": "episode_002.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.19009023729146726,
+        "action_mean": [
+          -0.005432766121237491,
+          -0.004898151970860036,
+          0.004103315274532698
+        ],
+        "action_std": [
+          0.05108687491090501,
+          0.04878796509769841,
+          0.05340522713705716
+        ],
+        "latent_abs_max": 0.19243078774514807,
+        "latent_mean": [
+          -0.00544859229762604,
+          -0.004908664778762848,
+          0.004111395063444685
+        ],
+        "latent_std": [
+          0.051234949608448134,
+          0.04890536874181672,
+          0.05356587146867137
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.16166666666666665,
+        "sampled_policy_entropy_nats": -4.646978188607033,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 461162894,
+      "case_id": "g011_seed29",
+      "episode": 3,
+      "episode_return": 11.915856781974764,
+      "events_file": "episode_003.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "3af3caae32e997092b8bbcb4590b3c030f813d9414d20593d3a15e4b1c0cf488",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.596,
+        "force_rmse_n": 0.2184767796393093,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.24518775847756236,
+        "orientation_rmse_deg": 1.064471553357148,
+        "peak_force_n": 9.877994691669503,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 3.4238663327385357
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 1296400081,
+      "terminated": false,
+      "trace_file": "episode_003.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.17416046814052372,
+        "action_mean": [
+          5.910837252854863e-05,
+          0.0027878908658662592,
+          0.0011002141201932095
+        ],
+        "action_std": [
+          0.05081789321686199,
+          0.05041203139885063,
+          0.048075849221324816
+        ],
+        "latent_abs_max": 0.17595409635703663,
+        "latent_mean": [
+          5.969610672754416e-05,
+          0.002794086232393849,
+          0.0011067980876616592
+        ],
+        "latent_std": [
+          0.050952025977137425,
+          0.05054664471523407,
+          0.04818422574072793
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.15944444444444444,
+        "sampled_policy_entropy_nats": -4.741488114955863,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 2121896212,
+      "case_id": "g006_seed11",
+      "episode": 4,
+      "episode_return": 11.82610867224822,
+      "events_file": "episode_004.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "d7dd1af9307ebd87f97f8e12bf7c4105c0a7bf167a41092ef2db58c7e7e133c2",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.534,
+        "force_rmse_n": 0.4401420634903999,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.4679481185111791,
+        "orientation_rmse_deg": 0.7104721184190548,
+        "peak_force_n": 11.870725686302197,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 5.445737753850823
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 928403482,
+      "terminated": false,
+      "trace_file": "episode_004.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.1775936796461355,
+        "action_mean": [
+          0.0019538323394724176,
+          -0.0006011238425981047,
+          -0.0053718495526239
+        ],
+        "action_std": [
+          0.05155216783417772,
+          0.050433883579642805,
+          0.0502066932443086
+        ],
+        "latent_abs_max": 0.17949690044266575,
+        "latent_mean": [
+          0.001959609708717987,
+          -0.0006050104568013792,
+          -0.005382224855202075
+        ],
+        "latent_std": [
+          0.051684722226694214,
+          0.05057188425324039,
+          0.05032372004334806
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.15777777777777777,
+        "sampled_policy_entropy_nats": -4.678844794242605,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1874952414,
+      "case_id": "g000_seed29",
+      "episode": 5,
+      "episode_return": 11.972366864369079,
+      "events_file": "episode_005.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "c4ccad8d74f5bf63a45b3eca8a861b7c4e60cca35d37f4c03c74d9a38c114bd2",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.544,
+        "force_rmse_n": 0.1875607804943906,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.21240248950607796,
+        "orientation_rmse_deg": 0.5043948960570525,
+        "peak_force_n": 12.643000224904364,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 1.7150637343243083
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 1843907433,
+      "terminated": false,
+      "trace_file": "episode_005.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.17693423684316636,
+        "action_mean": [
+          -0.00032069503161220804,
+          -0.00040939525225452907,
+          -0.0021408985938079486
+        ],
+        "action_std": [
+          0.05148099404335617,
+          0.04816450681505828,
+          0.05034090101209324
+        ],
+        "latent_abs_max": 0.1788160640219771,
+        "latent_mean": [
+          -0.00032917693418322853,
+          -0.00040936277425895814,
+          -0.0021523602942657032
+        ],
+        "latent_std": [
+          0.05161431664994607,
+          0.04826884417953379,
+          0.05047313990170168
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.14888888888888888,
+        "sampled_policy_entropy_nats": -4.725208481515559,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1937111312,
+      "case_id": "g000_seed11",
+      "episode": 6,
+      "episode_return": 11.971852498213412,
+      "events_file": "episode_006.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "c4ccad8d74f5bf63a45b3eca8a861b7c4e60cca35d37f4c03c74d9a38c114bd2",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.544,
+        "force_rmse_n": 0.18825990411725307,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.20789121517001236,
+        "orientation_rmse_deg": 0.5042478746673985,
+        "peak_force_n": 12.625613896342626,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 1.7503654162290203
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 1144393680,
+      "terminated": false,
+      "trace_file": "episode_006.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.18151774499335072,
+        "action_mean": [
+          -0.0025029548632263523,
+          -0.0004714148445132463,
+          -0.003945349159572506
+        ],
+        "action_std": [
+          0.050515476334808455,
+          0.04840278277648449,
+          0.049993749773001986
+        ],
+        "latent_abs_max": 0.18355169943504895,
+        "latent_mean": [
+          -0.0025119945420352912,
+          -0.0004735865516611007,
+          -0.003955080325367591
+        ],
+        "latent_std": [
+          0.05065424206363035,
+          0.048521960570476586,
+          0.050112155826915604
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.16777777777777778,
+        "sampled_policy_entropy_nats": -4.75025685936759,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1715848705,
+      "case_id": "g004_seed11",
+      "episode": 7,
+      "episode_return": 11.808549854272849,
+      "events_file": "episode_007.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "78aeb0f4c4f201ab45dfab2f961fa047d356b7d0c2ba94e8c37a076206d59381",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.624,
+        "force_rmse_n": 0.30177031397266985,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.3071795728864398,
+        "orientation_rmse_deg": 1.4580088740736363,
+        "peak_force_n": 11.282747673400797,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 5.255395974621421
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 1453467313,
+      "terminated": false,
+      "trace_file": "episode_007.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.1991333735964807,
+        "action_mean": [
+          -0.003059904719990181,
+          -0.002254437457617192,
+          -0.003909264894830279
+        ],
+        "action_std": [
+          0.05297352904435724,
+          0.04964165291829143,
+          0.05111393602756337
+        ],
+        "latent_abs_max": 0.20182998092896967,
+        "latent_mean": [
+          -0.0030793249817347296,
+          -0.0022544967428786526,
+          -0.003921132609283201
+        ],
+        "latent_std": [
+          0.05313248320928925,
+          0.04976514353299488,
+          0.05124795645021611
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.15944444444444444,
+        "sampled_policy_entropy_nats": -4.65325765088129,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1915773419,
+      "case_id": "g003_seed11",
+      "episode": 8,
+      "episode_return": 11.907163697870622,
+      "events_file": "episode_008.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "2bc8e9ed3f6cc48467d75ad882c720ca1537de885e778c2501ab0227267a5679",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.594,
+        "force_rmse_n": 0.4214216365067856,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.341992614301805,
+        "orientation_rmse_deg": 0.7736503389703843,
+        "peak_force_n": 14.350927551434872,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 3.5288442512108285
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 1475140015,
+      "terminated": false,
+      "trace_file": "episode_008.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.18001885531818074,
+        "action_mean": [
+          -0.002189504178064817,
+          -0.008122585985465818,
+          -0.009019746704553935
+        ],
+        "action_std": [
+          0.049736446221645296,
+          0.04912247936348801,
+          0.04898992205875803
+        ],
+        "latent_abs_max": 0.18200217535589427,
+        "latent_mean": [
+          -0.0021916196623823696,
+          -0.008147840998111323,
+          -0.009048317206683568
+        ],
+        "latent_std": [
+          0.049857000677341896,
+          0.04925123688400907,
+          0.049116688577689964
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.15833333333333333,
+        "sampled_policy_entropy_nats": -4.770311635562519,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1362984459,
+      "case_id": "g010_seed29",
+      "episode": 9,
+      "episode_return": 11.760901043053536,
+      "events_file": "episode_009.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "e7e85c528523f783b124ec401e1fcbe0650e96483b5157dc2eda12ce83c2a4df",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.47800000000000004,
+        "force_rmse_n": 0.18346132982191346,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.22824713105610972,
+        "orientation_rmse_deg": 1.852533058786726,
+        "peak_force_n": 12.645604067274322,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 5.87441027353063
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 4867617,
+      "terminated": false,
+      "trace_file": "episode_009.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.18136543961007576,
+        "action_mean": [
+          -0.006542411253819536,
+          -0.007430426886398247,
+          -0.009415252890604726
+        ],
+        "action_std": [
+          0.05162261117607089,
+          0.05289723437348443,
+          0.04832430939471501
+        ],
+        "latent_abs_max": 0.18339420931095515,
+        "latent_mean": [
+          -0.006557942862540863,
+          -0.007453517666973511,
+          -0.009437567710770398
+        ],
+        "latent_std": [
+          0.05176226345538847,
+          0.05305914214264445,
+          0.048437916520678595
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.15722222222222224,
+        "sampled_policy_entropy_nats": -4.668813610082616,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1029836659,
+      "case_id": "g009_seed29",
+      "episode": 10,
+      "episode_return": 11.949610636598372,
+      "events_file": "episode_010.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "8a93eb6e8492e8e95cc35d19e9b8f11ee84b3abaf062b765bd2b9358198a09b7",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.544,
+        "force_rmse_n": 0.3280088262998672,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.32651172339402984,
+        "orientation_rmse_deg": 0.3920253877072997,
+        "peak_force_n": 17.171776946796626,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 2.390736257505108
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 550718876,
+      "terminated": false,
+      "trace_file": "episode_010.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.17896992318244567,
+        "action_mean": [
+          -0.005664655840958831,
+          -0.0016942560455488114,
+          -0.008218481813907488
+        ],
+        "action_std": [
+          0.053248127673383626,
+          0.04958719507435021,
+          0.04984206764802107
+        ],
+        "latent_abs_max": 0.1809183233066857,
+        "latent_mean": [
+          -0.0056859036494232955,
+          -0.0017026896102597636,
+          -0.008238322677475889
+        ],
+        "latent_std": [
+          0.053394230451640774,
+          0.049723300444091886,
+          0.049974488960650265
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.16444444444444445,
+        "sampled_policy_entropy_nats": -4.670177562042859,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 879916392,
+      "case_id": "g006_seed29",
+      "episode": 11,
+      "episode_return": 11.82499812858415,
+      "events_file": "episode_011.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "d7dd1af9307ebd87f97f8e12bf7c4105c0a7bf167a41092ef2db58c7e7e133c2",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.534,
+        "force_rmse_n": 0.4414023051750417,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.4657342646420286,
+        "orientation_rmse_deg": 0.710559023767701,
+        "peak_force_n": 11.870899971562103,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 5.4615388957907225
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 513201882,
+      "terminated": false,
+      "trace_file": "episode_011.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.17450301286671308,
+        "action_mean": [
+          -0.0024053407343941516,
+          -0.0052343774697795635,
+          -0.010133399287646479
+        ],
+        "action_std": [
+          0.0516582564046647,
+          0.051959863628106485,
+          0.050124790699592865
+        ],
+        "latent_abs_max": 0.1763073778616555,
+        "latent_mean": [
+          -0.002407381595440841,
+          -0.005252547605744633,
+          -0.010162254312407255
+        ],
+        "latent_std": [
+          0.05180101910588261,
+          0.05208216044921554,
+          0.05025804015436102
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.13722222222222222,
+        "sampled_policy_entropy_nats": -4.652512289425144,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1967698796,
+      "case_id": "g010_seed11",
+      "episode": 12,
+      "episode_return": 11.76355165644426,
+      "events_file": "episode_012.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "e7e85c528523f783b124ec401e1fcbe0650e96483b5157dc2eda12ce83c2a4df",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.47800000000000004,
+        "force_rmse_n": 0.1744289174414106,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.22941537734221887,
+        "orientation_rmse_deg": 1.8526863560384945,
+        "peak_force_n": 12.604379138664063,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 5.829010153415146
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 773868757,
+      "terminated": false,
+      "trace_file": "episode_012.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.17762586504507996,
+        "action_mean": [
+          -0.0061900274093284495,
+          -0.006297310360668766,
+          -0.015168582423204817
+        ],
+        "action_std": [
+          0.05132071631725274,
+          0.05013036627795285,
+          0.04773509450727588
+        ],
+        "latent_abs_max": 0.17953013420843952,
+        "latent_mean": [
+          -0.006212129576420652,
+          -0.006314243501012898,
+          -0.015200097908921593
+        ],
+        "latent_std": [
+          0.0514527870313261,
+          0.05025556000370213,
+          0.04784030168225795
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.15666666666666668,
+        "sampled_policy_entropy_nats": -4.744220941461376,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 916026174,
+      "case_id": "g011_seed11",
+      "episode": 13,
+      "episode_return": 11.910943345569695,
+      "events_file": "episode_013.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "3af3caae32e997092b8bbcb4590b3c030f813d9414d20593d3a15e4b1c0cf488",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.596,
+        "force_rmse_n": 0.2162802220588168,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.25692969527623727,
+        "orientation_rmse_deg": 1.0622413544017226,
+        "peak_force_n": 9.925137476699648,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 3.5621172436376853
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 2042056413,
+      "terminated": false,
+      "trace_file": "episode_013.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.19568523847035488,
+        "action_mean": [
+          -0.008996228252025739,
+          -0.008273781731464622,
+          -0.016067668492941934
+        ],
+        "action_std": [
+          0.05011090445499176,
+          0.050425532773868166,
+          0.050224574968699975
+        ],
+        "latent_abs_max": 0.19824201716583273,
+        "latent_mean": [
+          -0.009021392441966316,
+          -0.008294928118807937,
+          -0.016113233964261037
+        ],
+        "latent_std": [
+          0.05024972367314893,
+          0.05055881185555273,
+          0.05037227569177728
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.15444444444444444,
+        "sampled_policy_entropy_nats": -4.713426403877677,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1858508674,
+      "case_id": "g008_seed29",
+      "episode": 14,
+      "episode_return": 11.832893709815842,
+      "events_file": "episode_014.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "6d8c4b9fdc779198d04f6d4292585f35bec087939b9edaae51aa0bead7218bb9",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.606,
+        "force_rmse_n": 0.13794593567604982,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.344686724811718,
+        "orientation_rmse_deg": 1.541939292502047,
+        "peak_force_n": 8.634917203297318,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 4.826950312060671
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 2054262653,
+      "terminated": false,
+      "trace_file": "episode_014.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.20002030800689524,
+        "action_mean": [
+          -0.0044576665091807955,
+          -0.006295742048055634,
+          -0.014986314825743757
+        ],
+        "action_std": [
+          0.050388932859231565,
+          0.0521950074124806,
+          0.05049265255153814
+        ],
+        "latent_abs_max": 0.20275370831743475,
+        "latent_mean": [
+          -0.004471048500706874,
+          -0.006313349268694851,
+          -0.015033599483541812
+        ],
+        "latent_std": [
+          0.05053020353530386,
+          0.05235322749831848,
+          0.05063702853802442
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.16055555555555556,
+        "sampled_policy_entropy_nats": -4.665067502160937,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1336226864,
+      "case_id": "g009_seed11",
+      "episode": 15,
+      "episode_return": 11.950947835512466,
+      "events_file": "episode_015.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "8a93eb6e8492e8e95cc35d19e9b8f11ee84b3abaf062b765bd2b9358198a09b7",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.544,
+        "force_rmse_n": 0.327319479275639,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.3259091715917914,
+        "orientation_rmse_deg": 0.3922058318113095,
+        "peak_force_n": 17.146476572048932,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 2.3340123429439235
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 862361151,
+      "terminated": false,
+      "trace_file": "episode_015.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.20004646690715308,
+        "action_mean": [
+          -0.006227427475922312,
+          -0.008696542925418828,
+          -0.01167504708939294
+        ],
+        "action_std": [
+          0.04802568741876806,
+          0.04995781021144701,
+          0.051033005909907475
+        ],
+        "latent_abs_max": 0.2027809575509796,
+        "latent_mean": [
+          -0.006245721098920155,
+          -0.008716680266103014,
+          -0.011710053917569725
+        ],
+        "latent_std": [
+          0.0481455642335501,
+          0.05008465696504518,
+          0.051174358718523244
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.16111111111111112,
+        "sampled_policy_entropy_nats": -4.746245928270222,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 680561729,
+      "case_id": "g003_seed29",
+      "episode": 16,
+      "episode_return": 11.904960568559552,
+      "events_file": "episode_016.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "2bc8e9ed3f6cc48467d75ad882c720ca1537de885e778c2501ab0227267a5679",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.594,
+        "force_rmse_n": 0.4217807773523961,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.337771497525707,
+        "orientation_rmse_deg": 0.7734380929861615,
+        "peak_force_n": 14.271054283277298,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 3.5934644958850885
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 1991622389,
+      "terminated": false,
+      "trace_file": "episode_016.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.1742566538471395,
+        "action_mean": [
+          -0.0006032865256175708,
+          -0.011775469445293327,
+          -0.016618528523737824
+        ],
+        "action_std": [
+          0.05217235805469827,
+          0.049626736014591395,
+          0.048222990423803506
+        ],
+        "latent_abs_max": 0.17605329253099763,
+        "latent_mean": [
+          -0.0006114546187173931,
+          -0.011799482634102618,
+          -0.016658706201922002
+        ],
+        "latent_std": [
+          0.052296155609548235,
+          0.049760549780765925,
+          0.04834928840597662
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.155,
+        "sampled_policy_entropy_nats": -4.729219514037583,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1860083151,
+      "case_id": "g000_seed11",
+      "episode": 17,
+      "episode_return": 11.972267576790895,
+      "events_file": "episode_017.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "c4ccad8d74f5bf63a45b3eca8a861b7c4e60cca35d37f4c03c74d9a38c114bd2",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.544,
+        "force_rmse_n": 0.19289986650828694,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.20675633713505778,
+        "orientation_rmse_deg": 0.504082745809642,
+        "peak_force_n": 12.63909421464736,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 1.7133028506441224
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 490977141,
+      "terminated": false,
+      "trace_file": "episode_017.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.1800372078048606,
+        "action_mean": [
+          0.0006896865846782537,
+          -0.0098956110137901,
+          -0.017162816582647393
+        ],
+        "action_std": [
+          0.05043488129705661,
+          0.05048875668293745,
+          0.04898531609297236
+        ],
+        "latent_abs_max": 0.1820211425717897,
+        "latent_mean": [
+          0.0006917204935613827,
+          -0.00992309581798445,
+          -0.017208020169357543
+        ],
+        "latent_std": [
+          0.050561040011137856,
+          0.05063838452494767,
+          0.04912577187175984
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.15444444444444444,
+        "sampled_policy_entropy_nats": -4.730328723619567,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 2105795625,
+      "case_id": "g010_seed29",
+      "episode": 18,
+      "episode_return": 11.76790448357367,
+      "events_file": "episode_018.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "e7e85c528523f783b124ec401e1fcbe0650e96483b5157dc2eda12ce83c2a4df",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.47800000000000004,
+        "force_rmse_n": 0.16345353029711734,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.22956097511572465,
+        "orientation_rmse_deg": 1.853639380320521,
+        "peak_force_n": 12.60128889974304,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 5.75828663949243
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 1349392303,
+      "terminated": false,
+      "trace_file": "episode_018.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.21898271085206075,
+        "action_mean": [
+          0.00043669876062521376,
+          -0.011659832519434062,
+          -0.02063362597153247
+        ],
+        "action_std": [
+          0.046566678248566085,
+          0.049022336245576614,
+          0.05180948477547549
+        ],
+        "latent_abs_max": 0.22258732976728518,
+        "latent_mean": [
+          0.00043942666970968715,
+          -0.011696046918166884,
+          -0.02069236134478575
+        ],
+        "latent_std": [
+          0.04667170715611003,
+          0.04917383109407663,
+          0.05198081846082294
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.17444444444444446,
+        "sampled_policy_entropy_nats": -4.776849080274992,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 181351170,
+      "case_id": "g003_seed11",
+      "episode": 19,
+      "episode_return": 11.903602247027058,
+      "events_file": "episode_019.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "2bc8e9ed3f6cc48467d75ad882c720ca1537de885e778c2501ab0227267a5679",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.592,
+        "force_rmse_n": 0.43154626185593686,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.336352350065669,
+        "orientation_rmse_deg": 0.7734032840582067,
+        "peak_force_n": 14.261095968144298,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 3.625245320088127
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 947761465,
+      "terminated": false,
+      "trace_file": "episode_019.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.17937706389109512,
+        "action_mean": [
+          0.0009651119315604568,
+          -0.011202090998507013,
+          -0.0189369374572102
+        ],
+        "action_std": [
+          0.05016191881615512,
+          0.04868919788030202,
+          0.049298558977293606
+        ],
+        "latent_abs_max": 0.18133896803897842,
+        "latent_mean": [
+          0.0009705511725366985,
+          -0.01123245175429191,
+          -0.018984401882998003
+        ],
+        "latent_std": [
+          0.0502795440098377,
+          0.04882828987111507,
+          0.04942843862954645
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.1688888888888889,
+        "sampled_policy_entropy_nats": -4.766655589239126,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1664371487,
+      "case_id": "g010_seed11",
+      "episode": 20,
+      "episode_return": 11.767782548109373,
+      "events_file": "episode_020.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "e7e85c528523f783b124ec401e1fcbe0650e96483b5157dc2eda12ce83c2a4df",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.47800000000000004,
+        "force_rmse_n": 0.1785243630938246,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.23715405410832238,
+        "orientation_rmse_deg": 1.8532749147344878,
+        "peak_force_n": 12.609261105518403,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 5.758193533404414
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 614958438,
+      "terminated": false,
+      "trace_file": "episode_020.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.2153412820795221,
+        "action_mean": [
+          0.003454712260084752,
+          -0.01178418563711901,
+          -0.02348180409696811
+        ],
+        "action_std": [
+          0.046635351576328206,
+          0.0514568789837183,
+          0.04954549985341336
+        ],
+        "latent_abs_max": 0.21876566896237298,
+        "latent_mean": [
+          0.0034570380769048882,
+          -0.011812183842362526,
+          -0.02354949097880014
+        ],
+        "latent_std": [
+          0.04674039843484096,
+          0.051608978527815715,
+          0.04972121936641796
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.15444444444444444,
+        "sampled_policy_entropy_nats": -4.772426164889383,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 100169680,
+      "case_id": "g009_seed29",
+      "episode": 21,
+      "episode_return": 11.949338421882445,
+      "events_file": "episode_021.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "8a93eb6e8492e8e95cc35d19e9b8f11ee84b3abaf062b765bd2b9358198a09b7",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.542,
+        "force_rmse_n": 0.3330477911323675,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.32329648279882384,
+        "orientation_rmse_deg": 0.393065713763514,
+        "peak_force_n": 17.180453443324176,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 2.4039060090251803
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 2131133082,
+      "terminated": false,
+      "trace_file": "episode_021.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.16833642252813275,
+        "action_mean": [
+          0.005723489810781847,
+          -0.01197972480360528,
+          -0.021393476617745957
+        ],
+        "action_std": [
+          0.05185811041096899,
+          0.04931406222682438,
+          0.04738876369111759
+        ],
+        "latent_abs_max": 0.16995407492656217,
+        "latent_mean": [
+          0.005740287089108115,
+          -0.012012596182819989,
+          -0.02144624988988495
+        ],
+        "latent_std": [
+          0.051987473368066535,
+          0.049433989548508556,
+          0.047523748922766826
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.14888888888888888,
+        "sampled_policy_entropy_nats": -4.7546499441636945,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1303197399,
+      "case_id": "g011_seed29",
+      "episode": 22,
+      "episode_return": 11.908061463498049,
+      "events_file": "episode_022.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "3af3caae32e997092b8bbcb4590b3c030f813d9414d20593d3a15e4b1c0cf488",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.596,
+        "force_rmse_n": 0.21915311115294975,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.24903740433188595,
+        "orientation_rmse_deg": 1.0627809814493503,
+        "peak_force_n": 9.983845242703907,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 3.638462542915058
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 241210648,
+      "terminated": false,
+      "trace_file": "episode_022.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.21654893673053813,
+        "action_mean": [
+          0.0017934978526755018,
+          -0.015137836988884044,
+          -0.019004961603327288
+        ],
+        "action_std": [
+          0.04941609517602613,
+          0.05321631542007725,
+          0.04948983069089135
+        ],
+        "latent_abs_max": 0.22003239409137837,
+        "latent_mean": [
+          0.0017988759700163237,
+          -0.015182136079776498,
+          -0.019058397196417925
+        ],
+        "latent_std": [
+          0.04953200296135861,
+          0.053382687276396855,
+          0.04963701922806462
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.14833333333333334,
+        "sampled_policy_entropy_nats": -4.684371761132007,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1302701143,
+      "case_id": "g003_seed29",
+      "episode": 23,
+      "episode_return": 11.905206404372688,
+      "events_file": "episode_023.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "2bc8e9ed3f6cc48467d75ad882c720ca1537de885e778c2501ab0227267a5679",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.592,
+        "force_rmse_n": 0.42406315808382505,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.3383070471297434,
+        "orientation_rmse_deg": 0.7729505756484684,
+        "peak_force_n": 14.294280924619226,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 3.576508879096777
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 1369876150,
+      "terminated": false,
+      "trace_file": "episode_023.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.19161853144910732,
+        "action_mean": [
+          0.005140974711555723,
+          -0.014725937525197297,
+          -0.020712770451826238
+        ],
+        "action_std": [
+          0.05342998920254382,
+          0.04843892965054768,
+          0.04905450785183758
+        ],
+        "latent_abs_max": 0.19401685540066915,
+        "latent_mean": [
+          0.005154977662089258,
+          -0.014757533390007191,
+          -0.020764526709368375
+        ],
+        "latent_std": [
+          0.05357849305223601,
+          0.04856987120502496,
+          0.04918952454611936
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.14833333333333334,
+        "sampled_policy_entropy_nats": -4.707216899082986,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 2116985914,
+      "case_id": "g011_seed11",
+      "episode": 24,
+      "episode_return": 11.90885390184334,
+      "events_file": "episode_024.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "3af3caae32e997092b8bbcb4590b3c030f813d9414d20593d3a15e4b1c0cf488",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.596,
+        "force_rmse_n": 0.21050341804434897,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.2502520448685502,
+        "orientation_rmse_deg": 1.0617859953610629,
+        "peak_force_n": 9.941630418723925,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 3.61102383698363
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 386891144,
+      "terminated": false,
+      "trace_file": "episode_024.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.19640434433322204,
+        "action_mean": [
+          0.007327898103981435,
+          -0.014079857129448013,
+          -0.026514217625756658
+        ],
+        "action_std": [
+          0.050671704274906165,
+          0.047183948643521746,
+          0.04987611491311085
+        ],
+        "latent_abs_max": 0.1989898655416795,
+        "latent_mean": [
+          0.007350614950380482,
+          -0.014116536922551616,
+          -0.026584670489256394
+        ],
+        "latent_std": [
+          0.05080944387927972,
+          0.047287472879259766,
+          0.050035420822679894
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.15666666666666668,
+        "sampled_policy_entropy_nats": -4.769520097228075,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1113793735,
+      "case_id": "g008_seed29",
+      "episode": 25,
+      "episode_return": 11.827527838871237,
+      "events_file": "episode_025.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "6d8c4b9fdc779198d04f6d4292585f35bec087939b9edaae51aa0bead7218bb9",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.606,
+        "force_rmse_n": 0.12912784152168594,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.34831092539871217,
+        "orientation_rmse_deg": 1.5418878726521694,
+        "peak_force_n": 8.660214410359625,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 4.926607914774374
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 948204487,
+      "terminated": false,
+      "trace_file": "episode_025.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.1661869610275044,
+        "action_mean": [
+          0.006025626868884269,
+          -0.00948525238587347,
+          -0.026317781584658303
+        ],
+        "action_std": [
+          0.05071236613105577,
+          0.04994565133238055,
+          0.0479325647800797
+        ],
+        "latent_abs_max": 0.16774274732849226,
+        "latent_mean": [
+          0.006042938611182719,
+          -0.009507557053354104,
+          -0.026378956981845697
+        ],
+        "latent_std": [
+          0.05082861452824748,
+          0.05007436112209042,
+          0.048056876554271356
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.14055555555555554,
+        "sampled_policy_entropy_nats": -4.756919980034649,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 785814060,
+      "case_id": "g000_seed29",
+      "episode": 26,
+      "episode_return": 11.971944904609234,
+      "events_file": "episode_026.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "c4ccad8d74f5bf63a45b3eca8a861b7c4e60cca35d37f4c03c74d9a38c114bd2",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.546,
+        "force_rmse_n": 0.1835503964390866,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.20586360428942946,
+        "orientation_rmse_deg": 0.5036467836700842,
+        "peak_force_n": 12.66898016657376,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 1.7275789856530652
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 472273991,
+      "terminated": false,
+      "trace_file": "episode_026.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.17104894053444708,
+        "action_mean": [
+          0.007147874528583033,
+          -0.009798911029434238,
+          -0.0227201312914463
+        ],
+        "action_std": [
+          0.05104788957331101,
+          0.047102182023291944,
+          0.04709610174040125
+        ],
+        "latent_abs_max": 0.17274701937689038,
+        "latent_mean": [
+          0.007168120208499775,
+          -0.00981895627195021,
+          -0.022779250715515485
+        ],
+        "latent_std": [
+          0.051172466241685144,
+          0.047200357781942454,
+          0.047239793852558436
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.15055555555555555,
+        "sampled_policy_entropy_nats": -4.820347746140092,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 409094448,
+      "case_id": "g004_seed29",
+      "episode": 27,
+      "episode_return": 11.796276775683634,
+      "events_file": "episode_027.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "78aeb0f4c4f201ab45dfab2f961fa047d356b7d0c2ba94e8c37a076206d59381",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.626,
+        "force_rmse_n": 0.2921371561719003,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.3060777527278423,
+        "orientation_rmse_deg": 1.4570501083520926,
+        "peak_force_n": 11.39332947684502,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 5.463300200880685
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 918678846,
+      "terminated": false,
+      "trace_file": "episode_027.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.18089260820389316,
+        "action_mean": [
+          0.005766635334629842,
+          -0.010409593875849023,
+          -0.02556883799928188
+        ],
+        "action_std": [
+          0.050619119539825994,
+          0.048911848591339485,
+          0.049628236704634406
+        ],
+        "latent_abs_max": 0.18290533917838914,
+        "latent_mean": [
+          0.005788352674963387,
+          -0.010433072134156748,
+          -0.025632813552315007
+        ],
+        "latent_std": [
+          0.05075301186827452,
+          0.04904519945862053,
+          0.04979349374649503
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.16111111111111112,
+        "sampled_policy_entropy_nats": -4.745854481917191,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1101310761,
+      "case_id": "g009_seed11",
+      "episode": 28,
+      "episode_return": 11.950445711862098,
+      "events_file": "episode_028.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "8a93eb6e8492e8e95cc35d19e9b8f11ee84b3abaf062b765bd2b9358198a09b7",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.544,
+        "force_rmse_n": 0.32401240568902573,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.3240309004511701,
+        "orientation_rmse_deg": 0.39273759352823767,
+        "peak_force_n": 17.169205310916,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 2.355713139396862
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 1193714447,
+      "terminated": false,
+      "trace_file": "episode_028.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.1693638005205504,
+        "action_mean": [
+          0.00859402023779117,
+          -0.008110392079748839,
+          -0.020320896138396993
+        ],
+        "action_std": [
+          0.05021681418560699,
+          0.04880728964944155,
+          0.04999229422492045
+        ],
+        "latent_abs_max": 0.17101160354470268,
+        "latent_mean": [
+          0.00861528631193304,
+          -0.00813240697731544,
+          -0.020372353645892894
+        ],
+        "latent_std": [
+          0.0503529802489337,
+          0.04892954726711659,
+          0.050135853123151816
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.16555555555555557,
+        "sampled_policy_entropy_nats": -4.750424520933681,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 880214364,
+      "case_id": "g008_seed11",
+      "episode": 29,
+      "episode_return": 11.830355841806035,
+      "events_file": "episode_029.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "6d8c4b9fdc779198d04f6d4292585f35bec087939b9edaae51aa0bead7218bb9",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.606,
+        "force_rmse_n": 0.14680375304391408,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.3491623217490154,
+        "orientation_rmse_deg": 1.5420597917855687,
+        "peak_force_n": 8.579250699343445,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 4.87150865771981
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 1929297428,
+      "terminated": false,
+      "trace_file": "episode_029.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.20664898956607808,
+        "action_mean": [
+          0.008274690755961265,
+          -0.013362216105117126,
+          -0.02337992131194893
+        ],
+        "action_std": [
+          0.053114834766457134,
+          0.05079354812262701,
+          0.05138281335645739
+        ],
+        "latent_abs_max": 0.2096683033523962,
+        "latent_mean": [
+          0.008290164062789863,
+          -0.013403926893227914,
+          -0.023445309212019493
+        ],
+        "latent_std": [
+          0.053260120721133786,
+          0.05094530377296641,
+          0.051533522544406955
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.14,
+        "sampled_policy_entropy_nats": -4.617991919458387,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1564825176,
+      "case_id": "g004_seed11",
+      "episode": 30,
+      "episode_return": 11.794736715097656,
+      "events_file": "episode_030.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "78aeb0f4c4f201ab45dfab2f961fa047d356b7d0c2ba94e8c37a076206d59381",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.624,
+        "force_rmse_n": 0.2921109149412518,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.30740313802456476,
+        "orientation_rmse_deg": 1.4568175320363916,
+        "peak_force_n": 11.448680044086988,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 5.485303837981483
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 884038843,
+      "terminated": false,
+      "trace_file": "episode_030.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.16394292116264128,
+        "action_mean": [
+          0.011281307637010532,
+          -0.012982946287327823,
+          -0.019350797212422995
+        ],
+        "action_std": [
+          0.048723440357758024,
+          0.05045905278314838,
+          0.04836661445511345
+        ],
+        "latent_abs_max": 0.16543585170597472,
+        "latent_mean": [
+          0.01130892305527108,
+          -0.013017263741966049,
+          -0.019397627774418003
+        ],
+        "latent_std": [
+          0.0488510158750575,
+          0.05059696996972986,
+          0.04850687263936255
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.16666666666666666,
+        "sampled_policy_entropy_nats": -4.7750295118343224,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1918299089,
+      "case_id": "g006_seed11",
+      "episode": 31,
+      "episode_return": 11.83150290949299,
+      "events_file": "episode_031.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "d7dd1af9307ebd87f97f8e12bf7c4105c0a7bf167a41092ef2db58c7e7e133c2",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.532,
+        "force_rmse_n": 0.44111106425892443,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.4681746513081948,
+        "orientation_rmse_deg": 0.7117283964023967,
+        "peak_force_n": 11.726061998082992,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 5.347384196824377
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 2072649104,
+      "terminated": false,
+      "trace_file": "episode_031.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.19988336209705407,
+        "action_mean": [
+          0.007982369262697308,
+          -0.010277071318455334,
+          -0.02424400937055135
+        ],
+        "action_std": [
+          0.049734904072020636,
+          0.04902056910125225,
+          0.04859669353450965
+        ],
+        "latent_abs_max": 0.20261105919018782,
+        "latent_mean": [
+          0.008002020747179064,
+          -0.010306834016755216,
+          -0.024308390507523096
+        ],
+        "latent_std": [
+          0.049848802257497965,
+          0.049153666223174824,
+          0.04874254558471929
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.135,
+        "sampled_policy_entropy_nats": -4.781661318907604,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1069298726,
+      "case_id": "g006_seed29",
+      "episode": 32,
+      "episode_return": 11.828818035241476,
+      "events_file": "episode_032.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "d7dd1af9307ebd87f97f8e12bf7c4105c0a7bf167a41092ef2db58c7e7e133c2",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.532,
+        "force_rmse_n": 0.43861374211189696,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.4659950318876788,
+        "orientation_rmse_deg": 0.7109084149852737,
+        "peak_force_n": 11.779810181380817,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 5.394006410433007
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 2050074153,
+      "terminated": false,
+      "trace_file": "episode_032.npz",
+      "truncated": true
+    }
+  ],
+  "runtime": {
+    "deterministic_algorithms": true,
+    "device": "cpu",
+    "dtype": "float64",
+    "torch_num_threads": 1
+  },
+  "schedule_case_ids": [
+    "g008_seed11",
+    "g004_seed29",
+    "g011_seed29",
+    "g006_seed11",
+    "g000_seed29",
+    "g000_seed11",
+    "g004_seed11",
+    "g003_seed11",
+    "g010_seed29",
+    "g009_seed29",
+    "g006_seed29",
+    "g010_seed11",
+    "g011_seed11",
+    "g008_seed29",
+    "g009_seed11",
+    "g003_seed29",
+    "g000_seed11",
+    "g010_seed29",
+    "g003_seed11",
+    "g010_seed11",
+    "g009_seed29",
+    "g011_seed29",
+    "g003_seed29",
+    "g011_seed11",
+    "g008_seed29",
+    "g000_seed29",
+    "g004_seed29",
+    "g009_seed11",
+    "g008_seed11",
+    "g004_seed11",
+    "g006_seed11",
+    "g006_seed29"
+  ],
+  "schema": "surface_ppo_training_v1",
+  "scope": "bounded_public-training pilot; not convergence or validation evidence",
+  "script_sha256": {
+    "surface_mlp_actor.py": "a4e7e84d92066170bab09a1c25eea4a9cd1e658bb55ca2f8747c59116bba45a1",
+    "train_surface_ppo.py": "208b61ff71b5b72e31bde86fd27ecf2cdc25c2059bd3de8822502041ec84dbf8"
+  },
+  "seed": 11,
+  "source_and_assets_sha256": {
+    "__init__.py": "ea3952b679dfacc78ddd79d60f76f2f2e2cc4019aff05b9a0b90a55d79425c8a",
+    "assets/franka_emika_panda/CHANGELOG.md": "164a6ec704aa1714b1311f8b1538e20b4223b6ef08b7d3cb03edc26192892f67",
+    "assets/franka_emika_panda/LICENSE": "a6cba85bc92e0cff7a450b1d873c0eaa2e9fc96bf472df0247a26bec77bf3ff9",
+    "assets/franka_emika_panda/README.md": "e12684556d0154bdf2a9e77e7009ed680cd06ca89904f9e6303050f9fe59300c",
+    "assets/franka_emika_panda/UPSTREAM.md": "42960942ebe33fb3bf627367c3d2274a981d0a7a53ea202fb444809435ba0add",
+    "assets/franka_emika_panda/assets/finger_0.obj": "215098c0fcdf7192f6c503a37cf49e3efecf8a9e1320f02b17c5584d89cc5b2c",
+    "assets/franka_emika_panda/assets/finger_1.obj": "cf239e9aca26bba09dbbf1c544c47d87cfc9a2f0637c8bb786af750b6d4eca44",
+    "assets/franka_emika_panda/assets/hand.stl": "94493e94f30fe940f2c8ca2f155c3bbe67bbff406d3edf5e261670d2f0f6e2ed",
+    "assets/franka_emika_panda/assets/hand_0.obj": "b94aab901086f85df04c019b30f43bf9aa23a7ad0443ec80a8c14662a41cabd2",
+    "assets/franka_emika_panda/assets/hand_1.obj": "cd76f7494bb314406a1819c46eb826ee254894f87235714f604a470653d9badb",
+    "assets/franka_emika_panda/assets/hand_2.obj": "e0f44a71712afa5b98eb20355eff17763d3e2e19f459b2bef19abed3727e64b3",
+    "assets/franka_emika_panda/assets/hand_3.obj": "a431a06d99e88a1b322b3122a01424ee7704daeaad0bc343b90b9604f014ad0c",
+    "assets/franka_emika_panda/assets/hand_4.obj": "21f96ef6a8de082e41b1ea9834f1043de359e5d60305541bcb63539581f53bff",
+    "assets/franka_emika_panda/assets/link0.stl": "dfc6d94330de8ddb005b311bfdba9f3b8e1aa7c256b71592ee7ff32cb9a9a5aa",
+    "assets/franka_emika_panda/assets/link0_0.obj": "6b9f41a4c203540daaeb7a33cc3d0d6c6a32dc8bba187074eeaf97b3e36b3f9c",
+    "assets/franka_emika_panda/assets/link0_1.obj": "57673d2ee2a9db2e10c8986ae57c56a7c39c012b60fd26d7d8549553b664a5ed",
+    "assets/franka_emika_panda/assets/link0_10.obj": "c9198b9d8534d628d097b0f2b239bb30343353182df098ce0d9db6bc13326848",
+    "assets/franka_emika_panda/assets/link0_11.obj": "f0adec78d6677b7799d25121981270e8bfe119b5c18d08a91ee37a54ad75f65c",
+    "assets/franka_emika_panda/assets/link0_2.obj": "1ca435a2a87a9608a146a47955724d43dd7ce10fc3dd3018800aa98f8ba86e05",
+    "assets/franka_emika_panda/assets/link0_3.obj": "3e9c6334d2b3b47944af3458ee5f20519abc20fe7ee23063bb53405ccab28046",
+    "assets/franka_emika_panda/assets/link0_4.obj": "215d25789704936120f119c0bc1cc7f68516dd3f8f1df61457b71acac3873f26",
+    "assets/franka_emika_panda/assets/link0_5.obj": "9361b104e93743045107aa5b15fb1a0835ba9c1f355aae71f56403cf6a9c33f6",
+    "assets/franka_emika_panda/assets/link0_7.obj": "2dc0b8ebbbc80e4c065d71e195adbc384f673438641fac82b07b801b4d2837cb",
+    "assets/franka_emika_panda/assets/link0_8.obj": "3b8c436999db5586b8eb47bed2b0aa7de6993868b2681b4c04246eeac42fdb7a",
+    "assets/franka_emika_panda/assets/link0_9.obj": "45178f97d2b5da6bce11f610212c4ef7d08c73db33a4fc38e1b7f66b93d023f5",
+    "assets/franka_emika_panda/assets/link1.obj": "51091e776b16babdbe2f3849b5c041f921d1f11dd94ac19a0f1c81abf496fbae",
+    "assets/franka_emika_panda/assets/link1.stl": "e41a39a94108fcf56aacff603fc91ec80541f4c1af17b51a0de5617f5566e6d2",
+    "assets/franka_emika_panda/assets/link2.obj": "5c9f8e715de52c3eb71b475de35993b3b96081e02abea9f28c414768877fc59b",
+    "assets/franka_emika_panda/assets/link2.stl": "370f7605a0fae3529db169ded50f52f171024aa792d4d773bc84197301f6a039",
+    "assets/franka_emika_panda/assets/link3.stl": "0a8d638b9349c6c0eefc4e888636ac4838c4b27170f18a51699321118af709c1",
+    "assets/franka_emika_panda/assets/link3_0.obj": "ce2da87f51708e11b189249d41401065dabe89a06e251185a06cef4d5ff27178",
+    "assets/franka_emika_panda/assets/link3_1.obj": "2880b7753a7173f38fa87ee21da4dfc7fa7be46fbe07bac5aef9e128513cb118",
+    "assets/franka_emika_panda/assets/link3_2.obj": "670cff81ae84693769ca4ae658c154cf909d81167e7c8d22b70ea977f2504efa",
+    "assets/franka_emika_panda/assets/link3_3.obj": "30ede0c812efd0e0b767d134a4eae0b84e0fa407bb6325a5a555e0569b3a3ffd",
+    "assets/franka_emika_panda/assets/link4.stl": "0180ebb5772ec9840cb049750cffb29a9ddc90311752a16ea34757782ef9e48d",
+    "assets/franka_emika_panda/assets/link4_0.obj": "443bf6d178177cf347951ecf107ccd10ca444e605e375b67304579e5f948806f",
+    "assets/franka_emika_panda/assets/link4_1.obj": "ca935ec7cc8b3f0e86aa079c76b0b3bf593b1e9830bab0fa7131ac51577c74f0",
+    "assets/franka_emika_panda/assets/link4_2.obj": "c89caf26d379c35bb9e191ee2d91d09ab29ecc792b48d8bc10b39e5b38222175",
+    "assets/franka_emika_panda/assets/link4_3.obj": "1495d17f45bdb230cf58b0beef9da4e8c9cfe76a3d2d38da89017efe5e093136",
+    "assets/franka_emika_panda/assets/link5_0.obj": "a3238b8f2af0f2eb66d9fe63dc5d41ac52d5d38507241b5ed10e3cb019ab3e71",
+    "assets/franka_emika_panda/assets/link5_1.obj": "9d994bbf83ec241e301b5197a6846da13f2a4a0582edb2c0f76962c5549649d6",
+    "assets/franka_emika_panda/assets/link5_2.obj": "83b4ffe9f772cd7fe182e98640650eebc899aaf01842656574b0416c90dd40a4",
+    "assets/franka_emika_panda/assets/link5_collision_0.obj": "3e5aa75fb13f193555c3dfb999df91d81df25006a5c3af5338297d78137c129b",
+    "assets/franka_emika_panda/assets/link5_collision_1.obj": "87cd8f621071df010f774cbde789282b8463840dfe704f8bdfa2e29be0142e15",
+    "assets/franka_emika_panda/assets/link5_collision_2.obj": "823ab6c8f7b1d79e0844fa071d82a03499ff68e34fddb1ba3451032c22736040",
+    "assets/franka_emika_panda/assets/link6.stl": "20b768e99a0e0440b5754dcca108016434e57937cc356acd9c352ccd3cb27f77",
+    "assets/franka_emika_panda/assets/link6_0.obj": "0504c70ebf1b284ee8faae7dcb896b8830bc672a6552015dd5dbd121fa031fb9",
+    "assets/franka_emika_panda/assets/link6_1.obj": "45f7ca77695198b6d86ec2417ad4e42e6275044f0f96266699ee8e1057757ac1",
+    "assets/franka_emika_panda/assets/link6_10.obj": "365f26c21d10332cab8d8704645cb46930c30b3085956f2d097498c793f24db4",
+    "assets/franka_emika_panda/assets/link6_11.obj": "8ae61e08b3ad064f25bbf03b22e59cc15d65883b5a7ce92711aff29df2493901",
+    "assets/franka_emika_panda/assets/link6_12.obj": "f28d1bfd62b0244ffd19fb35fe9edefdf583d3c9167db944e87185d919e1d021",
+    "assets/franka_emika_panda/assets/link6_13.obj": "0a55fa92dccb261d07200e6565fca4c850fd17f0c1ecf38821c0b97d51796c7d",
+    "assets/franka_emika_panda/assets/link6_14.obj": "750ae3ee4781e62e3a045c662195247b03f6642b05aa93104f08258e5f6eba26",
+    "assets/franka_emika_panda/assets/link6_15.obj": "5999c1c2497a004a7c4bbe034cdf13744f839d85ae7a11b1bc386c48a3e642e6",
+    "assets/franka_emika_panda/assets/link6_16.obj": "551d7a8b37c53e7a152d008b4e36992e5b5abe74a4be18b57ee6319c27def09f",
+    "assets/franka_emika_panda/assets/link6_2.obj": "e54eee4d8232947ee8af65afd5a067e09dac2da6e7e585cb1dccb65496457da0",
+    "assets/franka_emika_panda/assets/link6_3.obj": "d4f6a25ef32fa1fa4734146981994ee760232cb077c80fea6487d78a077c7f27",
+    "assets/franka_emika_panda/assets/link6_4.obj": "be353480fe71d46f7a96f0a3cbb7e112caaf8d88368826f321a36a253c8749b2",
+    "assets/franka_emika_panda/assets/link6_5.obj": "7c87664623c3e1a6cb330db273227a69626dc5e53b4caff1d4ee7911eb3340c6",
+    "assets/franka_emika_panda/assets/link6_6.obj": "8fbc031e0d07b795ebf99115c75223141caaba317cab569159f3d477a7821681",
+    "assets/franka_emika_panda/assets/link6_7.obj": "7dc5ebb799fe281aab27d6e84e7a4efa0a8e42da2369ec83de3ea3f206f62d73",
+    "assets/franka_emika_panda/assets/link6_8.obj": "e3f77381817a341030f9dcc4c4aa7c559f80411b453fd87eb0fefecca82151bf",
+    "assets/franka_emika_panda/assets/link6_9.obj": "25a56ea9b02a03b6cb5a81f31c54f54d0185e1a0b3937c37e4289d896e50215a",
+    "assets/franka_emika_panda/assets/link7.stl": "92ac6afcf7574c034d3170d8a68e95ac9048ab9d0dd5bbd8311b86e551b9ab1c",
+    "assets/franka_emika_panda/assets/link7_0.obj": "04586b0bde011715cfc22072ac72fe0717eb4d4817bcf665987ce6cd88eb2b93",
+    "assets/franka_emika_panda/assets/link7_1.obj": "c3f72289f394c9d6749a4a327fb11f05b203c37c95032c92f28019b40ebe7e00",
+    "assets/franka_emika_panda/assets/link7_2.obj": "d2faecedb304d0989040d082410378dc949dbbda23bd18c05134f08aae984db5",
+    "assets/franka_emika_panda/assets/link7_3.obj": "b62d87c4d4bdb7b281ed341d347c39dad0e50bf36aed8ac11d050073701d5f70",
+    "assets/franka_emika_panda/assets/link7_4.obj": "cb78ccb61fd4ad6c7bff4c4d2e6cb41e1964a5a3e1a28e67c0c6202371cfc018",
+    "assets/franka_emika_panda/assets/link7_5.obj": "099071d3090b51471ba52f4f90814fd3089f4975d196e4d488117073d0bfe491",
+    "assets/franka_emika_panda/assets/link7_6.obj": "99469e2d95ab74ce0292f2f16954c87a8a7dc16652e62e970fe37c94330a81bb",
+    "assets/franka_emika_panda/assets/link7_7.obj": "426c3db8a19373f3dc73d4bec672e948121b2914c10e2e7b9c7ea80643a19e54",
+    "assets/franka_emika_panda/hand.xml": "d2a6539d0fd7c55c75c14f11c78f04505ee33f31d93e6112e3ad7120e5ee786a",
+    "assets/franka_emika_panda/mjx_hand.xml": "cf1d16467d4bd5c69f77cdcc5af2e7e1ad957416661f20d3c4029b73622b4068",
+    "assets/franka_emika_panda/mjx_panda.xml": "8c0f15b755f686a09f04a2cae4afa3b8444d61d3318ea36cee87cc8bb98f9098",
+    "assets/franka_emika_panda/mjx_panda_nohand.xml": "92a6ff0be23a90f3a5888e57067f0ecad1b2bda95c58aa30c4284750da97d075",
+    "assets/franka_emika_panda/mjx_scene.xml": "7877363e91409da51973cc042209b34257354c17c8e7b4eccde8353e88398af7",
+    "assets/franka_emika_panda/mjx_single_cube.xml": "333997ddcb065ff94871247fb2b96e1847119549bfba7a6db645fdb6cdc5199b",
+    "assets/franka_emika_panda/panda.png": "d6ad5fcfc60237f0f006cf22d6e0b70febb559f609d915cd4316e9f1ad383c2d",
+    "assets/franka_emika_panda/panda.xml": "96ad67da03710f17f798c9478fd9e9efdf24a3bf8359f05e456dd9fb158ea273",
+    "assets/franka_emika_panda/panda_nohand.xml": "e7090a5e2384b18a223ef532d98bf914f7f9a6b74dc8bc9f74c8291201074071",
+    "assets/franka_emika_panda/panda_torque.xml": "f9bbb4a22c6f90b5f1c0fcf710616036f649e46886cb08fdfe696b30b92d2271",
+    "assets/franka_emika_panda/scene.xml": "4b08c2e5108f0ed67fa689e096e58850210130c3e6ef889b1e22822d369fd8c3",
+    "assets/franka_scene.xml": "742e121b5817a578e320c4c34fe8862f94fb75ac78dec091c2eeae5b10a86f49",
+    "assets/franka_surface_scene.xml": "7e398c8d763c10f5af0e3124f02678aff1d4ebfe4c269b343cd52dc80a80e1ea",
+    "assets/planar_arm.xml": "cbd2a5b33a1bae6d79992da24a0bad1e2fbb0915c4b3f014178382849aa3e20e",
+    "contact_event_analysis.py": "a5d771e15117046fcffb1d2583ce793e68dfac93cce1dd945ca62ca5602ccde3",
+    "controllers.py": "5d64fe44b4cce33dc14f08fd97c4e082652ee31fcb57a4e5b899dfe6e107b95e",
+    "experiments.py": "ff5ea1304f6890a8a5a319c56bc6931ca174af1f85351e9846db803ffd484020",
+    "franka_adaptive.py": "638f9ff1923802fce259fa26d6395f39699ced32a7c2e23e8ec10f8fa1fba953",
+    "franka_control.py": "4b8568d98f92f81ac2adbc1c92fd30d0e587e5a8a0790cd0518b83b8703c4186",
+    "franka_experiments.py": "77d5f7d24b108a084c6ede93616bca68c890698c21f2f6afa9e606abcdaad6e4",
+    "franka_learning.py": "1dcd78138f056c075045eb7a648dc6be611e8f01f41ff7ec7d86c8768758fbd9",
+    "franka_plotting.py": "af25b67939a9c24ebb2805f4acb6679718dc05de70523cd6db80829c199ae717",
+    "franka_reference.py": "f6516c1398f7a9c4f697f4320b1d6e24d3155eb8ee61f4314b6ed68b05dcffa8",
+    "franka_safety_learning.py": "9982ae66c5bac0f0354c2a018edbe3a5d3de781ce64bec84e69ca8dad55a8649",
+    "franka_simulation.py": "df5c6ddb3ecd5e7d67edb694f7274cc434fff48521852965276043d7479d6818",
+    "franka_stress.py": "e7ecb02886687f21663c3fa007079cecd7b4bccc35f653319ad83e635e8ed911",
+    "franka_torque_safety.py": "66906939003ef030e6414639c513162f75f97f2b4df6a7ceb2c6f04dc44ca9f2",
+    "kinematics.py": "3e9cfd6cc2a13ac7cba0e7f223a1e1fa0ea70c5ff8be279ec40de75f65926a73",
+    "learning_surface_task.py": "fde25d8252d67992c2d7d52fda8a573b416b74ff2be8b70b344373657e18f9be",
+    "plotting.py": "0e1c05bca91ab393d7884c80137241b495b10d1ea87244541cc8792738ada258",
+    "post_reveal_analysis.py": "775c3bda7c4da73a4576569332ccc438da6ef43a6eb8ede0e2bdcf8db62d07da",
+    "published_results_audit.py": "d02531aa2a2c265dbfad8d38107296fe1a8bea5233757fcc0fb59fb0daaa0ec7",
+    "reference_ablation.py": "9f8428affc7e96e3b600a518883871d13fd2476242fb9b11c82d9506a8b2a07d",
+    "residual_rl.py": "bc166fa07acb4dd46f9691a76a7921e24fedbf6fb6e97b6f047507b660b8c848",
+    "simulation.py": "36dfdae8aabe00db0c32b5c19f85a25c95136f057491ca6c35651bc8a8b580e1",
+    "smoke.py": "70c6e252114694859b922b87324858672971699f1f3b7d5f3bb59463400496ea",
+    "surface_contact_validation.py": "c9d1b6d0da5cf0a5a76fa055569bdf7f30697bd9c827c6ebbd0eca3d6204eb66",
+    "surface_control.py": "445e06af46568f2ffc510ae43715b0aeb60928088133f435a51d968577121425",
+    "surface_dataset.py": "be9c942e60f7e12a70ba1e8729b281b74c7e082114fa777b56c88501bdd2e23c",
+    "surface_dataset_replay.py": "d287e26b87e04fb8d1e87f379f9688d53cd819799b8b576eefa965f996235c04",
+    "surface_env.py": "ae50987eb3a7ae996edd3997ca1c3cba8cad28a0d88a13330c3dbb7aef0a8b80",
+    "surface_experiment.py": "657499af7a682396c570040ed932f748d0fc2ff93305f7489a3c1d740200abd5",
+    "surface_policy.py": "cd3fa300b67ac5b6702b2f885d289c7a0b2610a9e68c139e8898d3771ef94738",
+    "surface_policy_artifact.py": "83ceae33d762d4888c994e262f30b5c3189f3ea961462db72d5e8dd257bcec56",
+    "surface_readiness_benchmark.py": "db9e1fc4906bf1b2ec153e97b367406cbec188059c5647e0e38da2bb1a53045d",
+    "surface_readiness_cases.py": "e670fb63821dc2251063ade8f9b7bf4e3b2571ddef8cc96c1a76156c1df6e930",
+    "surface_replay.py": "caca2ba45191e7ce9c1359a3e47d2164d4e750fa1607e947e16acab71b19ff16",
+    "surface_sensing.py": "6584764290a603db2837e84b0ef5a4bb9651fab6ff8dcfd77aa56288e6ee2e2b",
+    "surface_simulation.py": "6ff501d58a88093fb969028f2860b1b47d8e94e5cf904725a8a558bb83c1f26d",
+    "surface_splits.py": "59bfe004ed64a9cdfd52f04881259951d773c21f9b9164f8bea2b37412ffbcfc",
+    "surface_transitions.py": "9521e08593bb2c6ea640fae76da7e660fad1a2dcb13e808e004a36ca873e6bb5",
+    "tangential_compensation.py": "acd65fb1bd331281b5da0c7da182ab9d8e3cc117f99a75b190eabe54884f38af",
+    "tangential_experiment.py": "b19f299cee3f9f9a4a16a3ef120a73e00f341a7df009bffea09f143ae37aaf0c"
+  },
+  "torch_seed": 6443901324895677344,
+  "training_case_count": 16,
+  "training_case_ids": [
+    "g000_seed11",
+    "g000_seed29",
+    "g003_seed11",
+    "g003_seed29",
+    "g004_seed11",
+    "g004_seed29",
+    "g006_seed11",
+    "g006_seed29",
+    "g008_seed11",
+    "g008_seed29",
+    "g009_seed11",
+    "g009_seed29",
+    "g010_seed11",
+    "g010_seed29",
+    "g011_seed11",
+    "g011_seed29"
+  ],
+  "training_group_ids": [
+    "2bc8e9ed3f6cc48467d75ad882c720ca1537de885e778c2501ab0227267a5679",
+    "3af3caae32e997092b8bbcb4590b3c030f813d9414d20593d3a15e4b1c0cf488",
+    "6d8c4b9fdc779198d04f6d4292585f35bec087939b9edaae51aa0bead7218bb9",
+    "78aeb0f4c4f201ab45dfab2f961fa047d356b7d0c2ba94e8c37a076206d59381",
+    "8a93eb6e8492e8e95cc35d19e9b8f11ee84b3abaf062b765bd2b9358198a09b7",
+    "c4ccad8d74f5bf63a45b3eca8a861b7c4e60cca35d37f4c03c74d9a38c114bd2",
+    "d7dd1af9307ebd87f97f8e12bf7c4105c0a7bf167a41092ef2db58c7e7e133c2",
+    "e7e85c528523f783b124ec401e1fcbe0650e96483b5157dc2eda12ce83c2a4df"
+  ],
+  "updates": [
+    {
+      "after_episode": 4,
+      "approx_kl": 0.0204010400666657,
+      "early_stop": true,
+      "gradient_norm_max": 7.485548916644814,
+      "gradient_norm_mean": 4.394014981490782,
+      "minibatches": 9,
+      "policy_loss_mean": 0.03559415560523395,
+      "transitions": 2400,
+      "value_loss_mean": 0.04654370385927484
+    },
+    {
+      "after_episode": 8,
+      "approx_kl": 0.0348793005035932,
+      "early_stop": true,
+      "gradient_norm_max": 4.56890524883137,
+      "gradient_norm_mean": 2.88791052608981,
+      "minibatches": 5,
+      "policy_loss_mean": -0.011387283502047114,
+      "transitions": 2400,
+      "value_loss_mean": 0.04961458027102299
+    },
+    {
+      "after_episode": 12,
+      "approx_kl": 0.02086886501875648,
+      "early_stop": true,
+      "gradient_norm_max": 6.761707837787023,
+      "gradient_norm_mean": 3.3755991481606333,
+      "minibatches": 11,
+      "policy_loss_mean": -0.021548537242173822,
+      "transitions": 2400,
+      "value_loss_mean": 0.03514872768251109
+    },
+    {
+      "after_episode": 16,
+      "approx_kl": 0.030458848534360403,
+      "early_stop": true,
+      "gradient_norm_max": 6.270032955796514,
+      "gradient_norm_mean": 3.183531572027285,
+      "minibatches": 8,
+      "policy_loss_mean": -0.002041218281494457,
+      "transitions": 2400,
+      "value_loss_mean": 0.035252430721900145
+    },
+    {
+      "after_episode": 20,
+      "approx_kl": 0.022173045864596657,
+      "early_stop": true,
+      "gradient_norm_max": 5.907036418671223,
+      "gradient_norm_mean": 3.5542937895255355,
+      "minibatches": 7,
+      "policy_loss_mean": -0.008071356848911604,
+      "transitions": 2400,
+      "value_loss_mean": 0.03156401897046851
+    },
+    {
+      "after_episode": 24,
+      "approx_kl": 0.020050356370178574,
+      "early_stop": true,
+      "gradient_norm_max": 8.108939158512513,
+      "gradient_norm_mean": 3.9638583451379703,
+      "minibatches": 17,
+      "policy_loss_mean": 0.0015275076048598662,
+      "transitions": 2400,
+      "value_loss_mean": 0.018258851023680533
+    },
+    {
+      "after_episode": 28,
+      "approx_kl": 0.021330070868441967,
+      "early_stop": true,
+      "gradient_norm_max": 9.680733234486748,
+      "gradient_norm_mean": 3.663223988073947,
+      "minibatches": 53,
+      "policy_loss_mean": -0.0005424026527571722,
+      "transitions": 2400,
+      "value_loss_mean": 0.005167824722550919
+    },
+    {
+      "after_episode": 32,
+      "approx_kl": 0.020383731502536303,
+      "early_stop": true,
+      "gradient_norm_max": 6.567765936830165,
+      "gradient_norm_mean": 3.5703234194254394,
+      "minibatches": 46,
+      "policy_loss_mean": 0.002975942619264913,
+      "transitions": 2400,
+      "value_loss_mean": 0.004774583017273268
+    }
+  ],
+  "versions": {
+    "gymnasium": "1.3.0",
+    "mujoco": "3.12.0",
+    "numpy": "2.2.6",
+    "python": "3.10.12",
+    "torch": "2.12.1+cu130"
+  }
+}

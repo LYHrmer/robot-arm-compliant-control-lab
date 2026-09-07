@@ -41,6 +41,8 @@
 | 保存动作可重新积分，而不仅是重算标签或哈希 | [`surface_dataset_replay.py`](../src/compliant_control_lab/surface_dataset_replay.py) | [独立 fresh-env 重放](../tests/test_surface_dataset_replay.py) |
 | 候选策略绑定新 schema/名义控制器/分组；冻结值由外部固定 | [`surface_policy_artifact.py`](../src/compliant_control_lab/surface_policy_artifact.py) | [旧策略拒绝、回调异常与重封篡改](../tests/test_surface_policy_artifact.py) |
 | 有限 JSON MLP 可导出；冻结权重、runner 与运行版本后再进入评价 | [`surface_mlp_actor.py`](../tools/surface_mlp_actor.py)、[`evaluate_surface_candidate.py`](../tools/evaluate_surface_candidate.py) | [数值推理与格式拒绝](../tests/test_surface_mlp_actor.py)、[冻结选择范围与独立物理门](../tests/test_surface_candidate_evaluation.py) |
+| BC 按完整验证动作 MSE 选 epoch；PPO 正确处理 GAE 边界，并保留零残差检查点 | [`train_surface_bc.py`](../tools/train_surface_bc.py)、[`train_surface_ppo.py`](../tools/train_surface_ppo.py) | [BC 拟合与非零导出](../tests/test_surface_bc.py)、[GAE、KL 与失败记录](../tests/test_surface_ppo.py)；训练测试需要可选 PyTorch |
+| 模型选择不使用开发测试成绩，公开副本保留全部种子与失败成绩 | [`surface_learning_pilot.py`](../tools/surface_learning_pilot.py)、[`publish_surface_learning_pilot.py`](../tools/publish_surface_learning_pilot.py) | [完整验证集与配对拒绝](../tests/test_surface_learning_pilot.py)、[公开副本审计](../tests/test_surface_pilot_publication.py)、[首轮训练结果](../results/franka_surface_learning_pilot/) |
 
 表面任务的[接触模型修复](wiping_contact_diagnosis.md)由
 [`surface_simulation.py`](../src/compliant_control_lab/surface_simulation.py) 显式选择；

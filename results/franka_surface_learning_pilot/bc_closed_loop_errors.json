@@ -1,0 +1,162 @@
+{
+  "interpretation": "action discrepancy on student states; not a causal proof of its source",
+  "runs": [
+    {
+      "actor_failure_count": 0,
+      "case_id": "g002_seed11",
+      "on_policy_teacher_action_mse": 0.5233286143396855,
+      "on_policy_teacher_action_mse_by_axis": [
+        2.466174483238288e-05,
+        0.7095082466604367,
+        0.8604529346137872
+      ],
+      "policy_steps": 600,
+      "seed": 11,
+      "split": "validation"
+    },
+    {
+      "actor_failure_count": 0,
+      "case_id": "g002_seed29",
+      "on_policy_teacher_action_mse": 0.5228626515993732,
+      "on_policy_teacher_action_mse_by_axis": [
+        2.4623168257251117e-05,
+        0.7092726042935465,
+        0.8592907273363151
+      ],
+      "policy_steps": 600,
+      "seed": 11,
+      "split": "validation"
+    },
+    {
+      "actor_failure_count": 0,
+      "case_id": "g007_seed11",
+      "on_policy_teacher_action_mse": 0.1998926919453231,
+      "on_policy_teacher_action_mse_by_axis": [
+        7.357164015637939e-06,
+        0.2016176845514608,
+        0.3980530341204927
+      ],
+      "policy_steps": 600,
+      "seed": 11,
+      "split": "validation"
+    },
+    {
+      "actor_failure_count": 0,
+      "case_id": "g007_seed29",
+      "on_policy_teacher_action_mse": 0.1998157804628477,
+      "on_policy_teacher_action_mse_by_axis": [
+        7.394704546053661e-06,
+        0.20289001095594358,
+        0.39654993572805336
+      ],
+      "policy_steps": 600,
+      "seed": 11,
+      "split": "validation"
+    },
+    {
+      "actor_failure_count": 0,
+      "case_id": "g002_seed11",
+      "on_policy_teacher_action_mse": 0.01716061934112189,
+      "on_policy_teacher_action_mse_by_axis": [
+        8.73053786876658e-06,
+        0.010710098910439673,
+        0.0407630285750572
+      ],
+      "policy_steps": 600,
+      "seed": 29,
+      "split": "validation"
+    },
+    {
+      "actor_failure_count": 0,
+      "case_id": "g002_seed29",
+      "on_policy_teacher_action_mse": 0.016887716197301058,
+      "on_policy_teacher_action_mse_by_axis": [
+        8.668984892459982e-06,
+        0.010358117314559415,
+        0.04029636229245124
+      ],
+      "policy_steps": 600,
+      "seed": 29,
+      "split": "validation"
+    },
+    {
+      "actor_failure_count": 0,
+      "case_id": "g007_seed11",
+      "on_policy_teacher_action_mse": 0.1649307786454207,
+      "on_policy_teacher_action_mse_by_axis": [
+        4.1776939126898976e-05,
+        0.18772256428584233,
+        0.3070279947112926
+      ],
+      "policy_steps": 600,
+      "seed": 29,
+      "split": "validation"
+    },
+    {
+      "actor_failure_count": 0,
+      "case_id": "g007_seed29",
+      "on_policy_teacher_action_mse": 0.16398672016301008,
+      "on_policy_teacher_action_mse_by_axis": [
+        4.162125639427299e-05,
+        0.18546193614539516,
+        0.30645660308724126
+      ],
+      "policy_steps": 600,
+      "seed": 29,
+      "split": "validation"
+    },
+    {
+      "actor_failure_count": 0,
+      "case_id": "g002_seed11",
+      "on_policy_teacher_action_mse": 0.4113952910393564,
+      "on_policy_teacher_action_mse_by_axis": [
+        0.0001387800085604027,
+        0.40340133303588116,
+        0.8306457600736272
+      ],
+      "policy_steps": 600,
+      "seed": 47,
+      "split": "validation"
+    },
+    {
+      "actor_failure_count": 0,
+      "case_id": "g002_seed29",
+      "on_policy_teacher_action_mse": 0.4110881063112937,
+      "on_policy_teacher_action_mse_by_axis": [
+        0.00013869983540134868,
+        0.4031656695912097,
+        0.8299599495072701
+      ],
+      "policy_steps": 600,
+      "seed": 47,
+      "split": "validation"
+    },
+    {
+      "actor_failure_count": 0,
+      "case_id": "g007_seed11",
+      "on_policy_teacher_action_mse": 0.27758116688754714,
+      "on_policy_teacher_action_mse_by_axis": [
+        4.975685109499684e-05,
+        0.17392837957020274,
+        0.6587653642413436
+      ],
+      "policy_steps": 600,
+      "seed": 47,
+      "split": "validation"
+    },
+    {
+      "actor_failure_count": 0,
+      "case_id": "g007_seed29",
+      "on_policy_teacher_action_mse": 0.2778635035026487,
+      "on_policy_teacher_action_mse_by_axis": [
+        4.9784204108410745e-05,
+        0.17466862989629411,
+        0.6588720964075427
+      ],
+      "policy_steps": 600,
+      "seed": 47,
+      "split": "validation"
+    }
+  ],
+  "scope": "post-fit diagnostic on existing BC validation rollouts; no reselection"
+}

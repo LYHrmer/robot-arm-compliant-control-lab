@@ -12,6 +12,7 @@
 | Surface development v1 | 新任务与六轴传感定义；24 个公开开发 case，四组共 96 次 | 准确法向的切向误差配对中位差 −0.657 mm，接触比例 −0.967 个百分点；四组接触比例中位数约 57% | 保留坐标修正与传感接口；先解决间歇接触，未加入 RL |
 | Surface contact-model repair v1 | 同一 24 × 4 开发网格，旧/平滑模型共 192 次 | 新模型 96 组全部接触率 100%、饱和率 0%；准确法向 raw RMSE 中位数 0.181 N | 保留显式模型选项；软接触压入增加，不声称控制算法或真机改进 |
 | Tangential compensation v1 | 固定平滑模型，24 × 3 主网格；12 s × 3 摩擦 × 3 方法另存 9 行 | 切向 RMSE 中位数：基线 11.800、积分 8.093、前馈 1.885 mm；81 次接触率均 100%、饱和率均 0% | 前馈达到主网格减半目标，积分未达到；保留摩擦失配和姿态代价，不加 RL |
+| Surface learning pilot v1 | 24 个公开 case 按组分为 16/4/4；BC 与 PPO 各三个训练种子 | BC 开发跟踪 0/4、4/4、2/4；PPO 均 4/4，但相对强基线切向均值差为 +0.064、+0.068、−0.022 mm | BC 尚未可靠迁移到闭环；PPO 没有一致收益，保留解析前馈 |
 
 ## 版本锚点与证据
 
@@ -95,3 +96,18 @@ sensitivity。Event replay 由
 [独立长时 CSV](../../results/franka_tangential_development/long_comparison.csv)、
 [实际参数与来源哈希](../../results/franka_tangential_development/manifest.json)、
 [七次诊断统计](../../results/franka_tangential_diagnostics/diagnosis.json)。
+
+## 小规模学习试验
+
+先完成 BC 的三个种子，再在带摩擦前馈的名义控制器上训练独立 PPO。后者没有使用 BC
+权重。训练前固定数据和所有预算；BC 以验证动作 MSE 选 epoch，PPO 仅用验证任务比较
+第 0、16、32 回合检查点，全部种子选定后再执行该路线的开发测试。
+
+PPO 共执行 96 个训练回合、576,000 个物理步，没有安全终止；这只包含每种子 8 次
+采样更新，不能当作收敛结果。完整验证/开发评价另执行 72 回合。
+BC 的 NumPy 导出重新计算离线 MSE，与训练记录差异小于 `1e-18`，但学生实际访问状态
+上的教师动作误差明显增大。这个诊断不改变已选权重，也不构成分布偏移原因的消融证明。
+
+[全部种子结果](../../results/franka_surface_learning_pilot/README.md)保存数值、检查点选择与
+两份可重算物理指标的代表轨迹。[学习指南](../surface_learning_pilot.md)给出 BC/PPO 公式和复现命令。
+公开的四个开发测试 case 只有两个物理任务组；不能把重复训练种子计为新的独立场景。

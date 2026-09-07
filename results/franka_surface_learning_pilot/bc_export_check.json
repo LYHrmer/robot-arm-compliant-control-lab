@@ -1,0 +1,25 @@
+{
+  "absolute_tolerance": 1e-12,
+  "passed": true,
+  "runs": [
+    {
+      "absolute_difference": 8.673617379884035e-19,
+      "numpy_validation_mse": 0.0015637902887979274,
+      "seed": 11,
+      "training_report_validation_mse": 0.0015637902887979266
+    },
+    {
+      "absolute_difference": 2.168404344971009e-19,
+      "numpy_validation_mse": 0.001179955458224292,
+      "seed": 29,
+      "training_report_validation_mse": 0.0011799554582242917
+    },
+    {
+      "absolute_difference": 4.336808689942018e-19,
+      "numpy_validation_mse": 0.0015701238152403569,
+      "seed": 47,
+      "training_report_validation_mse": 0.0015701238152403564
+    }
+  ],
+  "scope": "saved NumPy candidates on unchanged offline validation arrays"
+}

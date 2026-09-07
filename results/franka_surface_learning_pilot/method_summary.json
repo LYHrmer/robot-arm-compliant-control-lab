@@ -1,0 +1,74 @@
+{
+  "bc_seed11": {
+    "case_count": 4,
+    "mean_force_rmse_n": 0.20411292646886076,
+    "mean_tangent_rmse_mm": 14.786864809205053,
+    "minimum_contact_ratio_pct": 100.0,
+    "safe_completions": 4,
+    "tracking_passes": 0
+  },
+  "bc_seed29": {
+    "case_count": 4,
+    "mean_force_rmse_n": 0.21153987373750396,
+    "mean_tangent_rmse_mm": 3.8010744918639654,
+    "minimum_contact_ratio_pct": 100.0,
+    "safe_completions": 4,
+    "tracking_passes": 4
+  },
+  "bc_seed47": {
+    "case_count": 4,
+    "mean_force_rmse_n": 0.1981957927061383,
+    "mean_tangent_rmse_mm": 8.72141649180721,
+    "minimum_contact_ratio_pct": 100.0,
+    "safe_completions": 4,
+    "tracking_passes": 2
+  },
+  "friction_teacher_50hz": {
+    "case_count": 4,
+    "mean_force_rmse_n": 0.20285961036102285,
+    "mean_tangent_rmse_mm": 2.6244603076334587,
+    "minimum_contact_ratio_pct": 100.0,
+    "safe_completions": 4,
+    "tracking_passes": 4
+  },
+  "ppo_seed11": {
+    "case_count": 4,
+    "mean_force_rmse_n": 0.20423557002656834,
+    "mean_tangent_rmse_mm": 2.4669406407257837,
+    "minimum_contact_ratio_pct": 100.0,
+    "safe_completions": 4,
+    "tracking_passes": 4
+  },
+  "ppo_seed29": {
+    "case_count": 4,
+    "mean_force_rmse_n": 0.2015664316705529,
+    "mean_tangent_rmse_mm": 2.4704787236290375,
+    "minimum_contact_ratio_pct": 100.0,
+    "safe_completions": 4,
+    "tracking_passes": 4
+  },
+  "ppo_seed47": {
+    "case_count": 4,
+    "mean_force_rmse_n": 0.20370454866516424,
+    "mean_tangent_rmse_mm": 2.380997275858155,
+    "minimum_contact_ratio_pct": 100.0,
+    "safe_completions": 4,
+    "tracking_passes": 4
+  },
+  "zero_adaptive": {
+    "case_count": 4,
+    "mean_force_rmse_n": 0.20102390372340972,
+    "mean_tangent_rmse_mm": 12.445115142608493,
+    "minimum_contact_ratio_pct": 100.0,
+    "safe_completions": 4,
+    "tracking_passes": 0
+  },
+  "zero_friction": {
+    "case_count": 4,
+    "mean_force_rmse_n": 0.20200362339929806,
+    "mean_tangent_rmse_mm": 2.4026834533307264,
+    "minimum_contact_ratio_pct": 100.0,
+    "safe_completions": 4,
+    "tracking_passes": 4
+  }
+}
