@@ -225,6 +225,18 @@ def test_training_audit_enforces_budget_pairing_runtime_and_curve(tmp_path, alte
 
 
 def test_zero_audit_requires_exact_bc_hidden_layers(monkeypatch, tmp_path):
+    plan = _plan()
+    runner = publication.surface_mlp_actor.current_runner_identity()
+    plan["source_sha256"]["tools/surface_mlp_actor.py"] = runner["runner_sha256"]
+    for control in plan["fresh_controls"]:
+        control["source_and_assets_sha256"] = runner["package_source_and_assets_sha256"]
+    recorded_runner = {
+        **runner,
+        "python_version": plan["runtime"]["python_version"],
+        "numpy_version": plan["runtime"]["numpy_version"],
+        "mujoco_version": plan["runtime"]["mujoco_version"],
+        "gymnasium_version": plan["runtime"]["gymnasium_version"],
+    }
     rng = np.random.default_rng(4)
     bc_layers = [
         (rng.normal(size=(32, 49)), rng.normal(size=32)),
@@ -234,8 +246,24 @@ def test_zero_audit_requires_exact_bc_hidden_layers(monkeypatch, tmp_path):
     episode_layers = [(w.copy(), b.copy()) for w, b in bc_layers]
     episode_layers[-1] = (np.zeros((3, 32)), np.zeros(3))
     artifacts = {
-        "checkpoint": SimpleNamespace(payload={"layers": episode_layers}),
-        "bc": SimpleNamespace(payload={"layers": bc_layers}),
+        "checkpoint": SimpleNamespace(
+            payload={
+                "kind": publication.surface_mlp_actor.FORMAT,
+                "activation": "tanh",
+                "output_activation": "tanh",
+                "layers": episode_layers,
+                "runner_identity": recorded_runner,
+            }
+        ),
+        "bc": SimpleNamespace(
+            payload={
+                "kind": publication.surface_mlp_actor.FORMAT,
+                "activation": "tanh",
+                "output_activation": "tanh",
+                "layers": bc_layers,
+                "runner_identity": recorded_runner,
+            }
+        ),
     }
     monkeypatch.setattr(publication, "policy_contract", lambda *args, **kwargs: {})
     monkeypatch.setattr(
@@ -248,24 +276,16 @@ def test_zero_audit_requires_exact_bc_hidden_layers(monkeypatch, tmp_path):
         "_dense_layers",
         lambda layers: layers,
     )
-    monkeypatch.setattr(
-        publication.surface_mlp_actor,
-        "actor_from_artifact",
-        lambda artifact: (
-            (lambda observation: np.zeros(3)),
-            {},
-        ),
-    )
     (tmp_path / "checkpoint").write_text("rl", encoding="utf-8")
     (tmp_path / "bc").write_text("bc", encoding="utf-8")
     result = publication._zero_and_trunk_audit(
-        tmp_path / "checkpoint", tmp_path / "bc", _plan(), 11
+        tmp_path / "checkpoint", tmp_path / "bc", plan, 11
     )
     assert result["exact_zero"] and result["hidden_layer_exact_equal_to_pinned_bc"] == [True, True]
     episode_layers[0][0][0, 0] += 1
     with pytest.raises(ValueError, match="pinned BC trunk"):
         publication._zero_and_trunk_audit(
-            tmp_path / "checkpoint", tmp_path / "bc", _plan(), 11
+            tmp_path / "checkpoint", tmp_path / "bc", plan, 11
         )
 
 

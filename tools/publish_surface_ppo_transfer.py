@@ -187,10 +187,53 @@ def _zero_and_trunk_audit(checkpoint, bc_candidate, plan, seed):
     )
     artifact = load_policy_artifact(checkpoint, expected_contract=rl_contract)
     bc_artifact = load_policy_artifact(bc_candidate, expected_contract=bc_contract)
-    actor, _ = surface_mlp_actor.actor_from_artifact(artifact)
-    surface_mlp_actor.actor_from_artifact(bc_artifact)
-    layers = surface_mlp_actor._dense_layers(artifact.payload["layers"])
-    bc_layers = surface_mlp_actor._dense_layers(bc_artifact.payload["layers"])
+    expected_runner = {
+        "schema": surface_mlp_actor.RUNNER_SCHEMA,
+        "runner_sha256": plan["source_sha256"]["tools/surface_mlp_actor.py"],
+        "evaluator_sha256": _sha256(Path(surface_mlp_actor.__file__).with_name(
+            "evaluate_surface_candidate.py"
+        )),
+        "package_source_and_assets_sha256": next(
+            row["source_and_assets_sha256"]
+            for row in plan["fresh_controls"]
+            if row["seed"] == seed
+        ),
+        "python_version": plan["runtime"]["python_version"],
+        "numpy_version": plan["runtime"]["numpy_version"],
+        "mujoco_version": plan["runtime"]["mujoco_version"],
+        "gymnasium_version": plan["runtime"]["gymnasium_version"],
+    }
+
+    def checked_layers(candidate):
+        payload = candidate.payload
+        if (
+            not isinstance(payload, dict)
+            or set(payload)
+            != {"kind", "activation", "output_activation", "layers", "runner_identity"}
+            or payload.get("kind") != surface_mlp_actor.FORMAT
+            or payload.get("activation") != "tanh"
+            or payload.get("output_activation") != "tanh"
+            or payload.get("runner_identity") != expected_runner
+        ):
+            raise ValueError("candidate MLP or recorded runner identity differs from frozen plan")
+        dense = surface_mlp_actor._dense_layers(payload["layers"])
+        expected_shapes = (((32, 49), (32,)), ((32, 32), (32,)), ((3, 32), (3,)))
+        if [
+            (weights.shape, bias.shape) for weights, bias in dense
+        ] != list(expected_shapes):
+            raise ValueError("candidate is not a finite 49-32-32-3 MLP")
+        return dense
+
+    current_runner = surface_mlp_actor.current_runner_identity()
+    stable_identity = (
+        "schema",
+        "runner_sha256",
+        "evaluator_sha256",
+        "package_source_and_assets_sha256",
+    )
+    if any(expected_runner[key] != current_runner[key] for key in stable_identity):
+        raise ValueError("frozen runner/source identity differs from the audit code")
+    layers, bc_layers = checked_layers(artifact), checked_layers(bc_artifact)
     equal = [
         bool(np.array_equal(left[0], right[0]) and np.array_equal(left[1], right[1]))
         for left, right in zip(layers[:2], bc_layers[:2])
@@ -202,8 +245,20 @@ def _zero_and_trunk_audit(checkpoint, bc_candidate, plan, seed):
             np.random.default_rng(seed + 3200).uniform(-3, 3, (16, 49)),
         )
     )
-    outputs = np.asarray([actor(row) for row in probes])
-    if equal != [True, True] or not np.array_equal(outputs, np.zeros_like(outputs)):
+    values = probes
+    with np.errstate(over="raise", invalid="raise"):
+        for weights, bias in layers[:-1]:
+            values = np.tanh(values @ weights.T + bias)
+        outputs = np.tanh(values @ layers[-1][0].T + layers[-1][1])
+    zero_head = bool(
+        np.array_equal(layers[-1][0], np.zeros_like(layers[-1][0]))
+        and np.array_equal(layers[-1][1], np.zeros_like(layers[-1][1]))
+    )
+    if (
+        equal != [True, True]
+        or not zero_head
+        or not np.array_equal(outputs, np.zeros_like(outputs))
+    ):
         raise ValueError("episode-0 checkpoint is not the pinned BC trunk with a zero head")
     return {
         "candidate_sha256": _sha256(checkpoint),
