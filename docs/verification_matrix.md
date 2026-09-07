@@ -44,6 +44,7 @@
 | BC 按完整验证动作 MSE 选 epoch；PPO 正确处理 GAE 边界，并保留零残差检查点 | [`train_surface_bc.py`](../tools/train_surface_bc.py)、[`train_surface_ppo.py`](../tools/train_surface_ppo.py) | [BC 拟合与非零导出](../tests/test_surface_bc.py)、[GAE、KL 与失败记录](../tests/test_surface_ppo.py)；训练测试需要可选 PyTorch |
 | 模型选择不使用开发测试成绩，公开副本保留全部种子与失败成绩 | [`surface_learning_pilot.py`](../tools/surface_learning_pilot.py)、[`publish_surface_learning_pilot.py`](../tools/publish_surface_learning_pilot.py) | [完整验证集与配对拒绝](../tests/test_surface_learning_pilot.py)、[公开副本审计](../tests/test_surface_pilot_publication.py)、[首轮训练结果](../results/franka_surface_learning_pilot/) |
 | BC 输入掩码同时作用于拟合与导出，配置选择覆盖全部种子 | [`train_surface_bc_transfer.py`](../tools/train_surface_bc_transfer.py)、[`surface_bc_transfer.py`](../tools/surface_bc_transfer.py) | [非零导出与输入不变性](../tests/test_surface_bc_transfer.py)、[缺失种子与来源检查](../tests/test_surface_bc_transfer_protocol.py)、[公开归档复核](../tests/test_surface_bc_transfer_publication.py) |
+| PPO 只继承 BC 隐藏层，统一比较最终检查点，失败指标不剔除 | [`train_surface_ppo_transfer.py`](../tools/train_surface_ppo_transfer.py)、[`surface_ppo_transfer.py`](../tools/surface_ppo_transfer.py) | [复制层与零输出检查](../tests/test_surface_ppo_transfer.py)、[预算及开发集门控](../tests/test_surface_ppo_transfer_protocol.py)、[缺失指标否决](../tests/test_surface_ppo_transfer_failed_metrics.py)、[公开对照重算](../tests/test_surface_ppo_transfer_publication.py) |
 
 表面任务的[接触模型修复](wiping_contact_diagnosis.md)由
 [`surface_simulation.py`](../src/compliant_control_lab/surface_simulation.py) 显式选择；

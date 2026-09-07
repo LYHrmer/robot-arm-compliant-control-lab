@@ -1,0 +1,1919 @@
+{
+  "runs": [
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.17177649074369167,
+        "action_mean": [
+          -0.0019263626740446264,
+          0.0009469964892657852,
+          -0.001214691547782551
+        ],
+        "action_std": [
+          0.04840493680857145,
+          0.04897283214950447,
+          0.0490343657262178
+        ],
+        "latent_abs_max": 0.17349659385983718,
+        "latent_mean": [
+          -0.0019297123719109466,
+          0.0009477606240805703,
+          -0.0012206997352567622
+        ],
+        "latent_std": [
+          0.048514784321517346,
+          0.04909007540333055,
+          0.04914865445761595
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.14666666666666667,
+        "sampled_policy_entropy_nats": -4.800513628758265,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1782657250,
+      "case_id": "g009_seed11",
+      "episode": 1,
+      "episode_return": 11.951061206269387,
+      "events_file": "episode_001.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "8a93eb6e8492e8e95cc35d19e9b8f11ee84b3abaf062b765bd2b9358198a09b7",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.544,
+        "force_rmse_n": 0.32454803941966676,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.32476644239334856,
+        "orientation_rmse_deg": 0.3916757183178423,
+        "peak_force_n": 17.148306236637524,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 2.3472626995759156
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 486069870,
+      "terminated": false,
+      "trace_file": "episode_001.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.1822698961649959,
+        "action_mean": [
+          0.0005337606086332985,
+          0.001976772403930008,
+          3.152806367270924e-05
+        ],
+        "action_std": [
+          0.05025330349513976,
+          0.04796251891687723,
+          0.05076703200768443
+        ],
+        "latent_abs_max": 0.18432958735167626,
+        "latent_mean": [
+          0.0005293815425957507,
+          0.0019843723856484835,
+          3.217544453323519e-05
+        ],
+        "latent_std": [
+          0.05039167814119578,
+          0.04807792284863139,
+          0.05089582957730667
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.16,
+        "sampled_policy_entropy_nats": -4.7487345894111455,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 864209181,
+      "case_id": "g000_seed11",
+      "episode": 2,
+      "episode_return": 11.972430319838002,
+      "events_file": "episode_002.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "c4ccad8d74f5bf63a45b3eca8a861b7c4e60cca35d37f4c03c74d9a38c114bd2",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.546,
+        "force_rmse_n": 0.18776424987182377,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.20792851192336836,
+        "orientation_rmse_deg": 0.504560976859027,
+        "peak_force_n": 12.612601315686582,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 1.7173395158522524
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 1119949127,
+      "terminated": false,
+      "trace_file": "episode_002.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.21018321543433302,
+        "action_mean": [
+          0.0002651283834150806,
+          -0.0012133725464829371,
+          -0.002612205446139767
+        ],
+        "action_std": [
+          0.05537343141828785,
+          0.04994086339054253,
+          0.049405312693797235
+        ],
+        "latent_abs_max": 0.213363022275024,
+        "latent_mean": [
+          0.0002514242646258908,
+          -0.0012126520625434266,
+          -0.0026236335930361863
+        ],
+        "latent_std": [
+          0.05555881710725684,
+          0.05008473375045997,
+          0.04952306893534501
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.14666666666666667,
+        "sampled_policy_entropy_nats": -4.627182862634941,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 2087367434,
+      "case_id": "g004_seed11",
+      "episode": 3,
+      "episode_return": 11.808910933716795,
+      "events_file": "episode_003.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "78aeb0f4c4f201ab45dfab2f961fa047d356b7d0c2ba94e8c37a076206d59381",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.624,
+        "force_rmse_n": 0.2952742809426729,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.3097739747096262,
+        "orientation_rmse_deg": 1.4577942579540075,
+        "peak_force_n": 11.349715784611274,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 5.232534337280631
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 1424448401,
+      "terminated": false,
+      "trace_file": "episode_003.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.15508635284108283,
+        "action_mean": [
+          -0.00013514392465618612,
+          0.004476121620005088,
+          -0.0009825810908784486
+        ],
+        "action_std": [
+          0.05051148559248177,
+          0.04981971293880154,
+          0.049800533391006076
+        ],
+        "latent_abs_max": 0.15634797755097482,
+        "latent_mean": [
+          -0.000133766878087738,
+          0.0044825036685424684,
+          -0.0009880387746379342
+        ],
+        "latent_std": [
+          0.05063029523385539,
+          0.04994181745664013,
+          0.04992547051322767
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.14333333333333334,
+        "sampled_policy_entropy_nats": -4.7236929627700945,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1620170202,
+      "case_id": "g010_seed11",
+      "episode": 4,
+      "episode_return": 11.75700062855158,
+      "events_file": "episode_004.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "e7e85c528523f783b124ec401e1fcbe0650e96483b5157dc2eda12ce83c2a4df",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.47800000000000004,
+        "force_rmse_n": 0.18202858589416612,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.2297479923056999,
+        "orientation_rmse_deg": 1.8519992513211774,
+        "peak_force_n": 12.638510785143074,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 5.93283786745807
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 199742889,
+      "terminated": false,
+      "trace_file": "episode_004.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.17951854352272745,
+        "action_mean": [
+          0.006016111368277602,
+          0.0009060754579332318,
+          0.004880583210629867
+        ],
+        "action_std": [
+          0.048506034125395406,
+          0.0507087265888522,
+          0.051107811278199335
+        ],
+        "latent_abs_max": 0.18148515511613608,
+        "latent_mean": [
+          0.0060368267331732,
+          0.000908183921285269,
+          0.0048970541734355945
+        ],
+        "latent_std": [
+          0.04863145035416523,
+          0.05084376856240585,
+          0.05123619994443447
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.14833333333333334,
+        "sampled_policy_entropy_nats": -4.722997912695004,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1275846249,
+      "case_id": "g003_seed11",
+      "episode": 5,
+      "episode_return": 11.90948221702377,
+      "events_file": "episode_005.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "2bc8e9ed3f6cc48467d75ad882c720ca1537de885e778c2501ab0227267a5679",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.592,
+        "force_rmse_n": 0.4237799467767261,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.3372854253111309,
+        "orientation_rmse_deg": 0.7743501689605117,
+        "peak_force_n": 14.328154024860162,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 3.4731989067351083
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 2130505218,
+      "terminated": false,
+      "trace_file": "episode_005.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.17510623788922178,
+        "action_mean": [
+          0.012517233194217088,
+          0.008798293513485472,
+          0.010083699084187853
+        ],
+        "action_std": [
+          0.05091154954366765,
+          0.04896676151928246,
+          0.05014361014966068
+        ],
+        "latent_abs_max": 0.17692961643613742,
+        "latent_mean": [
+          0.01255110410666596,
+          0.008814827584551202,
+          0.010112809808758278
+        ],
+        "latent_std": [
+          0.05104499579985599,
+          0.04908249077778951,
+          0.0502788143762921
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.16722222222222222,
+        "sampled_policy_entropy_nats": -4.724024511581854,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1980878324,
+      "case_id": "g008_seed29",
+      "episode": 6,
+      "episode_return": 11.845807706337254,
+      "events_file": "episode_006.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "6d8c4b9fdc779198d04f6d4292585f35bec087939b9edaae51aa0bead7218bb9",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.606,
+        "force_rmse_n": 0.1421024098561342,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.3455667284620644,
+        "orientation_rmse_deg": 1.5429217150259964,
+        "peak_force_n": 8.666597533060749,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 4.5632565243683
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 1839545325,
+      "terminated": false,
+      "trace_file": "episode_006.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.19235155375494375,
+        "action_mean": [
+          0.008920467766502384,
+          0.0034753533062211496,
+          0.009635282008041462
+        ],
+        "action_std": [
+          0.05155752155435048,
+          0.05070749437290113,
+          0.049203545075475794
+        ],
+        "latent_abs_max": 0.1947779296144508,
+        "latent_mean": [
+          0.008948218471220121,
+          0.0034837660931787825,
+          0.009656293900354797
+        ],
+        "latent_std": [
+          0.05171641348390059,
+          0.05084171539832622,
+          0.04931671779436074
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.15444444444444444,
+        "sampled_policy_entropy_nats": -4.701491892067295,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1762463472,
+      "case_id": "g011_seed29",
+      "episode": 7,
+      "episode_return": 11.916674649786593,
+      "events_file": "episode_007.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "3af3caae32e997092b8bbcb4590b3c030f813d9414d20593d3a15e4b1c0cf488",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.598,
+        "force_rmse_n": 0.2119339128737281,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.2523345583377764,
+        "orientation_rmse_deg": 1.0643633598853182,
+        "peak_force_n": 9.902015942404482,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 3.404734679976158
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 1581546421,
+      "terminated": false,
+      "trace_file": "episode_007.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.1706839540740292,
+        "action_mean": [
+          0.005281285501228363,
+          0.0027537261953149237,
+          0.0046241063792789505
+        ],
+        "action_std": [
+          0.050338812604136626,
+          0.051054525068208796,
+          0.04981841410401146
+        ],
+        "latent_abs_max": 0.17237105654812554,
+        "latent_mean": [
+          0.005292698763686234,
+          0.0027630710302021023,
+          0.0046369675979399064
+        ],
+        "latent_std": [
+          0.050468422428797954,
+          0.05118048394873932,
+          0.049944667312788155
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.14777777777777779,
+        "sampled_policy_entropy_nats": -4.703135066278798,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1851176008,
+      "case_id": "g000_seed29",
+      "episode": 8,
+      "episode_return": 11.97325411795956,
+      "events_file": "episode_008.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "c4ccad8d74f5bf63a45b3eca8a861b7c4e60cca35d37f4c03c74d9a38c114bd2",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.546,
+        "force_rmse_n": 0.18241661972419893,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.20977240717151258,
+        "orientation_rmse_deg": 0.5040772813029726,
+        "peak_force_n": 12.60187331761101,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 1.6677097749934233
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 1962198394,
+      "terminated": false,
+      "trace_file": "episode_008.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.17691707745306656,
+        "action_mean": [
+          0.00887554358006297,
+          0.00015862303073414547,
+          -0.0002990237671210777
+        ],
+        "action_std": [
+          0.049766204214070124,
+          0.04988051903083539,
+          0.05021826431081813
+        ],
+        "latent_abs_max": 0.17879835013974527,
+        "latent_mean": [
+          0.008892709320222144,
+          0.00015972874426668348,
+          -0.00029482677799264344
+        ],
+        "latent_std": [
+          0.04989769606772834,
+          0.0500035063328189,
+          0.05035137203020065
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.1527777777777778,
+        "sampled_policy_entropy_nats": -4.73582803511182,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1807718216,
+      "case_id": "g004_seed29",
+      "episode": 9,
+      "episode_return": 11.807829685674056,
+      "events_file": "episode_009.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "78aeb0f4c4f201ab45dfab2f961fa047d356b7d0c2ba94e8c37a076206d59381",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.626,
+        "force_rmse_n": 0.2860951857704309,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.3037417540375829,
+        "orientation_rmse_deg": 1.457419224401344,
+        "peak_force_n": 11.269697860809265,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 5.263567683518021
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 1596295490,
+      "terminated": false,
+      "trace_file": "episode_009.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.15803927103506063,
+        "action_mean": [
+          0.006397181191534445,
+          0.002727950906023154,
+          0.0010052375798728723
+        ],
+        "action_std": [
+          0.050968059185127125,
+          0.04877982553281585,
+          0.047654202563759615
+        ],
+        "latent_abs_max": 0.15937509869918268,
+        "latent_mean": [
+          0.006416063036875317,
+          0.002732855621482009,
+          0.0010096601133509579
+        ],
+        "latent_std": [
+          0.05111628255471604,
+          0.04888818160871661,
+          0.04775731671504244
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.15611111111111112,
+        "sampled_policy_entropy_nats": -4.781994427577033,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 675853793,
+      "case_id": "g006_seed11",
+      "episode": 10,
+      "episode_return": 11.821292303874795,
+      "events_file": "episode_010.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "d7dd1af9307ebd87f97f8e12bf7c4105c0a7bf167a41092ef2db58c7e7e133c2",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.534,
+        "force_rmse_n": 0.44563863365584105,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.4678037688759198,
+        "orientation_rmse_deg": 0.7097644861378957,
+        "peak_force_n": 11.79376235803566,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 5.531056181331193
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 1065861319,
+      "terminated": false,
+      "trace_file": "episode_010.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.18397663421647692,
+        "action_mean": [
+          0.009018358246243759,
+          0.003106872591548902,
+          -0.00299716615861196
+        ],
+        "action_std": [
+          0.050276574903296053,
+          0.048346914625259266,
+          0.05108520991632212
+        ],
+        "latent_abs_max": 0.1860955457709906,
+        "latent_mean": [
+          0.009037032718871777,
+          0.003116754012989393,
+          -0.0029974791812917108
+        ],
+        "latent_std": [
+          0.05041409148166814,
+          0.048462071362737114,
+          0.05120607686458685
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.1638888888888889,
+        "sampled_policy_entropy_nats": -4.7374212772957245,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 419943936,
+      "case_id": "g008_seed11",
+      "episode": 11,
+      "episode_return": 11.839732897591215,
+      "events_file": "episode_011.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "6d8c4b9fdc779198d04f6d4292585f35bec087939b9edaae51aa0bead7218bb9",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.606,
+        "force_rmse_n": 0.13718637136454562,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.3514366956724889,
+        "orientation_rmse_deg": 1.5429047367634288,
+        "peak_force_n": 8.605275813546509,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 4.696261675323528
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 695241337,
+      "terminated": false,
+      "trace_file": "episode_011.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.16366700680499158,
+        "action_mean": [
+          0.0009147787172910523,
+          0.0008342061806022555,
+          -0.0019367345046664604
+        ],
+        "action_std": [
+          0.05029165852099111,
+          0.04864542801323146,
+          0.050750688902919186
+        ],
+        "latent_abs_max": 0.16515232986963896,
+        "latent_mean": [
+          0.0009157153445879348,
+          0.0008369335635624301,
+          -0.001950377336659786
+        ],
+        "latent_std": [
+          0.050405896228008916,
+          0.04875633014731445,
+          0.050873766482098
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.16444444444444445,
+        "sampled_policy_entropy_nats": -4.746384689197408,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 112655857,
+      "case_id": "g009_seed29",
+      "episode": 12,
+      "episode_return": 11.949600602241798,
+      "events_file": "episode_012.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "8a93eb6e8492e8e95cc35d19e9b8f11ee84b3abaf062b765bd2b9358198a09b7",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.54,
+        "force_rmse_n": 0.32930699565253346,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.32415787306516725,
+        "orientation_rmse_deg": 0.3921418693894766,
+        "peak_force_n": 17.144274589704867,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 2.412189238197046
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 457987638,
+      "terminated": false,
+      "trace_file": "episode_012.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.17580528915210808,
+        "action_mean": [
+          0.006547052937682623,
+          0.00012957194465769932,
+          0.0013217499880969826
+        ],
+        "action_std": [
+          0.04712198766965465,
+          0.052026361107029406,
+          0.04922765421117363
+        ],
+        "latent_abs_max": 0.17765087136678762,
+        "latent_mean": [
+          0.006570916611406231,
+          0.00012874851117249263,
+          0.0013228068959133948
+        ],
+        "latent_std": [
+          0.04725532170796215,
+          0.052156548222203385,
+          0.0493369843417531
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.16,
+        "sampled_policy_entropy_nats": -4.7616847921637415,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1954685298,
+      "case_id": "g010_seed29",
+      "episode": 13,
+      "episode_return": 11.755411471063729,
+      "events_file": "episode_013.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "e7e85c528523f783b124ec401e1fcbe0650e96483b5157dc2eda12ce83c2a4df",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.47800000000000004,
+        "force_rmse_n": 0.17823328241234462,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.23085475630718882,
+        "orientation_rmse_deg": 1.8524652697231498,
+        "peak_force_n": 12.640269335983179,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 5.960384455762899
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 105913953,
+      "terminated": false,
+      "trace_file": "episode_013.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.15366583285284727,
+        "action_mean": [
+          0.011284312224621416,
+          0.002592678712104373,
+          -0.002413398389682781
+        ],
+        "action_std": [
+          0.04927159648496506,
+          0.05006965053328325,
+          0.048839312151911535
+        ],
+        "latent_abs_max": 0.15489277698623494,
+        "latent_mean": [
+          0.011311991616915922,
+          0.0026002834482165395,
+          -0.0024192059261039706
+        ],
+        "latent_std": [
+          0.04938636851645105,
+          0.050192350733537644,
+          0.04895235772594276
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.14666666666666667,
+        "sampled_policy_entropy_nats": -4.7734202406533495,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 2036622031,
+      "case_id": "g011_seed11",
+      "episode": 14,
+      "episode_return": 11.913398861250744,
+      "events_file": "episode_014.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "3af3caae32e997092b8bbcb4590b3c030f813d9414d20593d3a15e4b1c0cf488",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.596,
+        "force_rmse_n": 0.19682100987826337,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.24794727818266707,
+        "orientation_rmse_deg": 1.0637691829255198,
+        "peak_force_n": 9.967711129753036,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 3.5065086737204956
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 16082409,
+      "terminated": false,
+      "trace_file": "episode_014.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.18209413099011648,
+        "action_mean": [
+          0.008064102338787219,
+          -0.002428404190989907,
+          -0.0032867706430286013
+        ],
+        "action_std": [
+          0.049248400710203664,
+          0.047739769238666345,
+          0.05105974264875853
+        ],
+        "latent_abs_max": 0.18414778821077038,
+        "latent_mean": [
+          0.008085853996881972,
+          -0.002438041721050631,
+          -0.003297777687240192
+        ],
+        "latent_std": [
+          0.04938144990514881,
+          0.04785342935123228,
+          0.05117999372909194
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.16055555555555556,
+        "sampled_policy_entropy_nats": -4.772419710626679,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1465194207,
+      "case_id": "g003_seed29",
+      "episode": 15,
+      "episode_return": 11.90743008022945,
+      "events_file": "episode_015.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "2bc8e9ed3f6cc48467d75ad882c720ca1537de885e778c2501ab0227267a5679",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.592,
+        "force_rmse_n": 0.4388737783912613,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.3365105497452505,
+        "orientation_rmse_deg": 0.7735426440564629,
+        "peak_force_n": 14.32992540046066,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 3.524519081542758
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 951596470,
+      "terminated": false,
+      "trace_file": "episode_015.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.1707256644927543,
+        "action_mean": [
+          0.012442330338126976,
+          -0.0024642956886868433,
+          -0.002632701347893197
+        ],
+        "action_std": [
+          0.049674166577610826,
+          0.04970514267314382,
+          0.04732170570844257
+        ],
+        "latent_abs_max": 0.1724140188953222,
+        "latent_mean": [
+          0.012475285054536284,
+          -0.002474460012291972,
+          -0.002633698726245579
+        ],
+        "latent_std": [
+          0.04979928623735501,
+          0.049817726325931844,
+          0.04742589594137043
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.1527777777777778,
+        "sampled_policy_entropy_nats": -4.804461554249212,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1056904784,
+      "case_id": "g006_seed29",
+      "episode": 16,
+      "episode_return": 11.825384015319953,
+      "events_file": "episode_016.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "d7dd1af9307ebd87f97f8e12bf7c4105c0a7bf167a41092ef2db58c7e7e133c2",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.534,
+        "force_rmse_n": 0.4438883531258467,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.4670038565068014,
+        "orientation_rmse_deg": 0.710862177803747,
+        "peak_force_n": 11.87535583521091,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 5.457681564948579
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 338460332,
+      "terminated": false,
+      "trace_file": "episode_016.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.1817588388141618,
+        "action_mean": [
+          0.011728225441703872,
+          -0.004239506461113007,
+          -0.0005833936838335385
+        ],
+        "action_std": [
+          0.05280216313460245,
+          0.05214824895491471,
+          0.05002418415949447
+        ],
+        "latent_abs_max": 0.18380101892272205,
+        "latent_mean": [
+          0.011763411091117835,
+          -0.004256927898726209,
+          -0.0005879422092210187
+        ],
+        "latent_std": [
+          0.05296003613054223,
+          0.05228678621720491,
+          0.05015728764714933
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.1688888888888889,
+        "sampled_policy_entropy_nats": -4.628080214697312,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 580373595,
+      "case_id": "g004_seed11",
+      "episode": 17,
+      "episode_return": 11.8103684492378,
+      "events_file": "episode_017.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "78aeb0f4c4f201ab45dfab2f961fa047d356b7d0c2ba94e8c37a076206d59381",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.624,
+        "force_rmse_n": 0.2835870569739528,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.3078145045294903,
+        "orientation_rmse_deg": 1.4575840596246492,
+        "peak_force_n": 11.352038736983916,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 5.210083112122837
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 723970050,
+      "terminated": false,
+      "trace_file": "episode_017.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.1808230644492871,
+        "action_mean": [
+          0.017684948922437195,
+          -0.006912087202299009,
+          0.002302464194880835
+        ],
+        "action_std": [
+          0.04913957387999662,
+          0.0495556542763798,
+          0.05305261024173352
+        ],
+        "latent_abs_max": 0.1828334437563477,
+        "latent_mean": [
+          0.017727206173885884,
+          -0.006928219554813867,
+          0.0023030895634176445
+        ],
+        "latent_std": [
+          0.049266470564766615,
+          0.049679813191057305,
+          0.05318047133185132
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.15055555555555555,
+        "sampled_policy_entropy_nats": -4.695501685105116,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 225734654,
+      "case_id": "g008_seed29",
+      "episode": 18,
+      "episode_return": 11.843280437927259,
+      "events_file": "episode_018.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "6d8c4b9fdc779198d04f6d4292585f35bec087939b9edaae51aa0bead7218bb9",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.608,
+        "force_rmse_n": 0.13068821836935254,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.35408383921643627,
+        "orientation_rmse_deg": 1.5427610898082744,
+        "peak_force_n": 8.647256719291034,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 4.616433789529678
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 976111775,
+      "terminated": false,
+      "trace_file": "episode_018.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.18218440611475506,
+        "action_mean": [
+          0.016751666197184784,
+          -0.0018876789907810727,
+          -0.00030657398612967453
+        ],
+        "action_std": [
+          0.04977597380233289,
+          0.050741330888135164,
+          0.04971283843869439
+        ],
+        "latent_abs_max": 0.18424116094929766,
+        "latent_mean": [
+          0.016789750380369384,
+          -0.001896949977589149,
+          -0.00031000016813800867
+        ],
+        "latent_std": [
+          0.0499126436365891,
+          0.05087435245373539,
+          0.049844177119103966
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.14666666666666667,
+        "sampled_policy_entropy_nats": -4.731308689033774,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 818454754,
+      "case_id": "g000_seed11",
+      "episode": 19,
+      "episode_return": 11.97275249409375,
+      "events_file": "episode_019.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "c4ccad8d74f5bf63a45b3eca8a861b7c4e60cca35d37f4c03c74d9a38c114bd2",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.544,
+        "force_rmse_n": 0.19315277379347198,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.21101241544739804,
+        "orientation_rmse_deg": 0.5051132850495768,
+        "peak_force_n": 12.619471623772593,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 1.6906194789016251
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 937298323,
+      "terminated": false,
+      "trace_file": "episode_019.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.1758699376691883,
+        "action_mean": [
+          0.015383939964989914,
+          0.0004706618775682142,
+          -0.0025820824353905846
+        ],
+        "action_std": [
+          0.04839137260284159,
+          0.05271460446793632,
+          0.049399321897218317
+        ],
+        "latent_abs_max": 0.17771758251702838,
+        "latent_mean": [
+          0.015424890522677993,
+          0.00047218766654737415,
+          -0.002585758233512722
+        ],
+        "latent_std": [
+          0.04851936054447394,
+          0.052876774240375804,
+          0.049528928301388025
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.16555555555555557,
+        "sampled_policy_entropy_nats": -4.718691638445091,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 654114622,
+      "case_id": "g010_seed29",
+      "episode": 20,
+      "episode_return": 11.757093853355261,
+      "events_file": "episode_020.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "e7e85c528523f783b124ec401e1fcbe0650e96483b5157dc2eda12ce83c2a4df",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.47800000000000004,
+        "force_rmse_n": 0.18855856920452002,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.23196724793862522,
+        "orientation_rmse_deg": 1.852632028605184,
+        "peak_force_n": 12.711139359515176,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 5.934567130572908
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 807984482,
+      "terminated": false,
+      "trace_file": "episode_020.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.17011686990311647,
+        "action_mean": [
+          0.012585077904960723,
+          0.0007007271384874061,
+          -0.0022556006682902907
+        ],
+        "action_std": [
+          0.05150439922785238,
+          0.0501609635294774,
+          0.05065906621809662
+        ],
+        "latent_abs_max": 0.17178701392256335,
+        "latent_mean": [
+          0.012620204550195014,
+          0.0007039273685523624,
+          -0.0022546358843484712
+        ],
+        "latent_std": [
+          0.051649268930525793,
+          0.05028932605343751,
+          0.05078480582621119
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.16444444444444445,
+        "sampled_policy_entropy_nats": -4.692825606095461,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1215552437,
+      "case_id": "g009_seed29",
+      "episode": 21,
+      "episode_return": 11.949895481952181,
+      "events_file": "episode_021.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "8a93eb6e8492e8e95cc35d19e9b8f11ee84b3abaf062b765bd2b9358198a09b7",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.542,
+        "force_rmse_n": 0.3269311519171026,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.32591377075801975,
+        "orientation_rmse_deg": 0.3913612896797972,
+        "peak_force_n": 17.187323643976764,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 2.3832426492062257
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 1934872655,
+      "terminated": false,
+      "trace_file": "episode_021.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.15781812001361065,
+        "action_mean": [
+          0.019446445587412337,
+          -0.0020414554803202607,
+          -0.0007801236835246648
+        ],
+        "action_std": [
+          0.0484149942195641,
+          0.05005247658082104,
+          0.05039192318535967
+        ],
+        "latent_abs_max": 0.15914829075246395,
+        "latent_mean": [
+          0.019494295075125744,
+          -0.0020426891879459295,
+          -0.0007808219201199757
+        ],
+        "latent_std": [
+          0.04853543147231029,
+          0.05018579111494018,
+          0.05052319518300089
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.155,
+        "sampled_policy_entropy_nats": -4.753927280327005,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 19392635,
+      "case_id": "g003_seed29",
+      "episode": 22,
+      "episode_return": 11.907430456557877,
+      "events_file": "episode_022.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "2bc8e9ed3f6cc48467d75ad882c720ca1537de885e778c2501ab0227267a5679",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.592,
+        "force_rmse_n": 0.42874586242862145,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.3398339653328467,
+        "orientation_rmse_deg": 0.7736069485854502,
+        "peak_force_n": 14.315759078802682,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 3.526346167879191
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 1970109017,
+      "terminated": false,
+      "trace_file": "episode_022.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.2071428512091512,
+        "action_mean": [
+          0.030710745959188632,
+          -0.0017239014166818174,
+          -0.0018008960431067796
+        ],
+        "action_std": [
+          0.049290698568346066,
+          0.04800573458028408,
+          0.04931768238618009
+        ],
+        "latent_abs_max": 0.21018425060564494,
+        "latent_mean": [
+          0.03079857712219729,
+          -0.0017285438147579824,
+          -0.0018076255848370666
+        ],
+        "latent_std": [
+          0.04946640209471737,
+          0.04810998581101785,
+          0.04943002350719338
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.1411111111111111,
+        "sampled_policy_entropy_nats": -4.7966095558979,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1724769964,
+      "case_id": "g011_seed11",
+      "episode": 23,
+      "episode_return": 11.912972451535639,
+      "events_file": "episode_023.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "3af3caae32e997092b8bbcb4590b3c030f813d9414d20593d3a15e4b1c0cf488",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.598,
+        "force_rmse_n": 0.2079433153073324,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.2489546847685566,
+        "orientation_rmse_deg": 1.0640139169829408,
+        "peak_force_n": 9.925655248032589,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 3.504759508787807
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 329187478,
+      "terminated": false,
+      "trace_file": "episode_023.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.18654187269096728,
+        "action_mean": [
+          0.01651518139503831,
+          -0.0023444590825332724,
+          -0.0005890374829955952
+        ],
+        "action_std": [
+          0.05135384729067628,
+          0.048696570960910124,
+          0.05100993449834569
+        ],
+        "latent_abs_max": 0.18875195656002544,
+        "latent_mean": [
+          0.016556891480162098,
+          -0.002347074249938622,
+          -0.0005952306134351157
+        ],
+        "latent_std": [
+          0.05149048065650043,
+          0.048816075476021396,
+          0.05114647570222423
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.16833333333333333,
+        "sampled_policy_entropy_nats": -4.719627853836609,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 686227979,
+      "case_id": "g003_seed11",
+      "episode": 24,
+      "episode_return": 11.908215356816253,
+      "events_file": "episode_024.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "2bc8e9ed3f6cc48467d75ad882c720ca1537de885e778c2501ab0227267a5679",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.592,
+        "force_rmse_n": 0.42122604260811164,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.3387807343883445,
+        "orientation_rmse_deg": 0.7739898543726226,
+        "peak_force_n": 14.254245024317896,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 3.5035889992170524
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 419106500,
+      "terminated": false,
+      "trace_file": "episode_024.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.17445858015830684,
+        "action_mean": [
+          0.02010572335794506,
+          -0.0016265430687927168,
+          -0.0029908592060958676
+        ],
+        "action_std": [
+          0.047060107987737555,
+          0.048741463580856764,
+          0.04904074759696276
+        ],
+        "latent_abs_max": 0.17626154999022092,
+        "latent_mean": [
+          0.02015225608713019,
+          -0.0016363141316885308,
+          -0.002999218109935825
+        ],
+        "latent_std": [
+          0.04718428440463043,
+          0.048851587754239555,
+          0.049161321409640565
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.16555555555555557,
+        "sampled_policy_entropy_nats": -4.833511553273162,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 380062137,
+      "case_id": "g006_seed29",
+      "episode": 25,
+      "episode_return": 11.823823315628655,
+      "events_file": "episode_025.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "d7dd1af9307ebd87f97f8e12bf7c4105c0a7bf167a41092ef2db58c7e7e133c2",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.532,
+        "force_rmse_n": 0.4492481180828734,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.4667994455104276,
+        "orientation_rmse_deg": 0.7098969817251363,
+        "peak_force_n": 11.859352587825411,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 5.48193208263739
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 1429637039,
+      "terminated": false,
+      "trace_file": "episode_025.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.21094191210284655,
+        "action_mean": [
+          0.017258387886376608,
+          0.00083089908335895,
+          -0.004177968116949304
+        ],
+        "action_std": [
+          0.054176851154508925,
+          0.04901664624326451,
+          0.050166793517403024
+        ],
+        "latent_abs_max": 0.21415691760293148,
+        "latent_mean": [
+          0.017312653533055236,
+          0.0008343855136116711,
+          -0.004187127071404934
+        ],
+        "latent_std": [
+          0.05435749497244637,
+          0.049125007993132415,
+          0.05030841861172706
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.14055555555555554,
+        "sampled_policy_entropy_nats": -4.667976676460133,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1690564388,
+      "case_id": "g010_seed11",
+      "episode": 26,
+      "episode_return": 11.757944196450746,
+      "events_file": "episode_026.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "e7e85c528523f783b124ec401e1fcbe0650e96483b5157dc2eda12ce83c2a4df",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.47800000000000004,
+        "force_rmse_n": 0.1801433161491006,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.23209955687497,
+        "orientation_rmse_deg": 1.8525977291242168,
+        "peak_force_n": 12.631360661957327,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 5.917814662900687
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 1615247819,
+      "terminated": false,
+      "trace_file": "episode_026.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.1787077742651074,
+        "action_mean": [
+          0.0205106125150967,
+          -0.0019483675075040044,
+          -0.007361615215943873
+        ],
+        "action_std": [
+          0.051252543722742634,
+          0.05257535370280997,
+          0.04682591007589531
+        ],
+        "latent_abs_max": 0.18064751297019976,
+        "latent_mean": [
+          0.020569637063972204,
+          -0.0019511059778325273,
+          -0.007376471645279585
+        ],
+        "latent_std": [
+          0.051408904897164785,
+          0.052710086402847904,
+          0.046928148333715836
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.14555555555555555,
+        "sampled_policy_entropy_nats": -4.716999729226845,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1610145274,
+      "case_id": "g006_seed11",
+      "episode": 27,
+      "episode_return": 11.825463176231588,
+      "events_file": "episode_027.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "d7dd1af9307ebd87f97f8e12bf7c4105c0a7bf167a41092ef2db58c7e7e133c2",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.534,
+        "force_rmse_n": 0.4429459973117324,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.46630763730093044,
+        "orientation_rmse_deg": 0.7105577640292138,
+        "peak_force_n": 11.832300984588858,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 5.449848861424192
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 1727902039,
+      "terminated": false,
+      "trace_file": "episode_027.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.15631138541407363,
+        "action_mean": [
+          0.0221138063662461,
+          -0.002366693525706077,
+          -0.004854198834137115
+        ],
+        "action_std": [
+          0.05028972639150394,
+          0.0503222828494083,
+          0.05074647681400536
+        ],
+        "latent_abs_max": 0.15760344552424724,
+        "latent_mean": [
+          0.02216928044674526,
+          -0.0023742249543449103,
+          -0.004868506728249505
+        ],
+        "latent_std": [
+          0.050436890107780206,
+          0.05044218878163023,
+          0.05087340726758572
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.16,
+        "sampled_policy_entropy_nats": -4.717603475253732,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 1101775178,
+      "case_id": "g011_seed29",
+      "episode": 28,
+      "episode_return": 11.916003826242175,
+      "events_file": "episode_028.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "3af3caae32e997092b8bbcb4590b3c030f813d9414d20593d3a15e4b1c0cf488",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.596,
+        "force_rmse_n": 0.20896541088102738,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.24675810475886054,
+        "orientation_rmse_deg": 1.063641632158654,
+        "peak_force_n": 9.861126420945315,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 3.4210346631937405
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 1368750778,
+      "terminated": false,
+      "trace_file": "episode_028.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.174664580188734,
+        "action_mean": [
+          0.015006773029241378,
+          0.007316785936806289,
+          -0.012767616751235122
+        ],
+        "action_std": [
+          0.051693601815418676,
+          0.04978826273044508,
+          0.04995643382242879
+        ],
+        "latent_abs_max": 0.17647402449033842,
+        "latent_mean": [
+          0.015044212448548826,
+          0.007342201800721782,
+          -0.012801263136483677
+        ],
+        "latent_std": [
+          0.051835410137904075,
+          0.04990852403387004,
+          0.05008823097013047
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.15944444444444444,
+        "sampled_policy_entropy_nats": -4.714288345402629,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 480189231,
+      "case_id": "g000_seed29",
+      "episode": 29,
+      "episode_return": 11.97040460234366,
+      "events_file": "episode_029.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "c4ccad8d74f5bf63a45b3eca8a861b7c4e60cca35d37f4c03c74d9a38c114bd2",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.544,
+        "force_rmse_n": 0.20015387412990102,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.21015510096787401,
+        "orientation_rmse_deg": 0.503588673280618,
+        "peak_force_n": 12.660423354088701,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 1.8100212367370851
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 1283258034,
+      "terminated": false,
+      "trace_file": "episode_029.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.17430172856930445,
+        "action_mean": [
+          0.007398060153680149,
+          0.0018884710806438972,
+          -0.0043206138561607136
+        ],
+        "action_std": [
+          0.04822862078479861,
+          0.04967493412331844,
+          0.05162233624474691
+        ],
+        "latent_abs_max": 0.17609977920388045,
+        "latent_mean": [
+          0.007413532860975441,
+          0.0018875537603882094,
+          -0.00432291982734237
+        ],
+        "latent_std": [
+          0.04833836012601762,
+          0.04979335636422178,
+          0.05175821977637785
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.155,
+        "sampled_policy_entropy_nats": -4.751183209173473,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 378185887,
+      "case_id": "g009_seed11",
+      "episode": 30,
+      "episode_return": 11.95079635431332,
+      "events_file": "episode_030.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "8a93eb6e8492e8e95cc35d19e9b8f11ee84b3abaf062b765bd2b9358198a09b7",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.542,
+        "force_rmse_n": 0.32620952536818343,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.32608792310158546,
+        "orientation_rmse_deg": 0.3919159811952098,
+        "peak_force_n": 17.181789241922473,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 2.3644645914350053
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 830733699,
+      "terminated": false,
+      "trace_file": "episode_030.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.22418770376283106,
+        "action_mean": [
+          0.01542036713355953,
+          0.0078908615969407,
+          -0.01349552949777181
+        ],
+        "action_std": [
+          0.051707788541250986,
+          0.048746941612625876,
+          0.05054988231521572
+        ],
+        "latent_abs_max": 0.22806109971532434,
+        "latent_mean": [
+          0.015455532200446485,
+          0.007915453464072545,
+          -0.013533640047944193
+        ],
+        "latent_std": [
+          0.05184451457716388,
+          0.04887135496122395,
+          0.050705617110094886
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.145,
+        "sampled_policy_entropy_nats": -4.719918527570013,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 309434346,
+      "case_id": "g004_seed29",
+      "episode": 31,
+      "episode_return": 11.802325829103353,
+      "events_file": "episode_031.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "78aeb0f4c4f201ab45dfab2f961fa047d356b7d0c2ba94e8c37a076206d59381",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.624,
+        "force_rmse_n": 0.28719201300972735,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.3040409952180641,
+        "orientation_rmse_deg": 1.457239943246575,
+        "peak_force_n": 11.291680793953557,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 5.3601521808131105
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 1945254242,
+      "terminated": false,
+      "trace_file": "episode_031.npz",
+      "truncated": true
+    },
+    {
+      "action_diagnostics": {
+        "action_abs_max": 0.16881861061094053,
+        "action_mean": [
+          0.024718352593185087,
+          0.008719128966024826,
+          -0.015128755892355381
+        ],
+        "action_std": [
+          0.052714387614148886,
+          0.05038618385416341,
+          0.050830578218479514
+        ],
+        "latent_abs_max": 0.17045036683160916,
+        "latent_mean": [
+          0.024786473355913077,
+          0.008743053151696783,
+          -0.015166181127302393
+        ],
+        "latent_std": [
+          0.052896143093296155,
+          0.05051873303329699,
+          0.050974341947866444
+        ],
+        "near_zero_fraction_abs_lt_0_01": 0.15166666666666667,
+        "sampled_policy_entropy_nats": -4.655794763741911,
+        "saturation_fraction_abs_gt_0_95": 0.0
+      },
+      "actual_simulation_seed": 922839267,
+      "case_id": "g008_seed11",
+      "episode": 32,
+      "episode_return": 11.830100462063367,
+      "events_file": "episode_032.json",
+      "exception_detail": null,
+      "failed": false,
+      "failure_reasons": [],
+      "group_id": "6d8c4b9fdc779198d04f6d4292585f35bec087939b9edaae51aa0bead7218bb9",
+      "physical_metrics": {
+        "contact_ratio_pct": 100.0,
+        "evaluation_observed": true,
+        "first_raw_contact_time_s": 0.604,
+        "force_rmse_n": 0.13251997151493267,
+        "has_raw_contact": true,
+        "measurement_rmse_n": 0.34807952370061074,
+        "orientation_rmse_deg": 1.5419824659377848,
+        "peak_force_n": 8.575663050801621,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 4.876025365232176
+      },
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "requested_reset_seed": 434939210,
+      "terminated": false,
+      "trace_file": "episode_032.npz",
+      "truncated": true
+    }
+  ],
+  "seed": 29,
+  "updates": [
+    {
+      "after_episode": 4,
+      "approx_kl": 0.024985197319797897,
+      "early_stop": true,
+      "gradient_norm_max": 13.485904279327663,
+      "gradient_norm_mean": 8.58777786386863,
+      "minibatches": 3,
+      "policy_loss_mean": -0.03845782278680381,
+      "transitions": 2400,
+      "value_loss_mean": 0.047269999010500274
+    },
+    {
+      "after_episode": 8,
+      "approx_kl": 0.020493749393561835,
+      "early_stop": true,
+      "gradient_norm_max": 23.00851673781892,
+      "gradient_norm_mean": 13.083721180881444,
+      "minibatches": 17,
+      "policy_loss_mean": 0.007830383055881504,
+      "transitions": 2400,
+      "value_loss_mean": 0.03123314611444704
+    },
+    {
+      "after_episode": 12,
+      "approx_kl": 0.024014909237338077,
+      "early_stop": true,
+      "gradient_norm_max": 18.813211191066586,
+      "gradient_norm_mean": 10.915035752787466,
+      "minibatches": 10,
+      "policy_loss_mean": -0.03662969848410254,
+      "transitions": 2400,
+      "value_loss_mean": 0.03169514331544312
+    },
+    {
+      "after_episode": 16,
+      "approx_kl": 0.022206868036797063,
+      "early_stop": true,
+      "gradient_norm_max": 23.190180211688528,
+      "gradient_norm_mean": 9.455520736539295,
+      "minibatches": 14,
+      "policy_loss_mean": -0.02202669803552523,
+      "transitions": 2400,
+      "value_loss_mean": 0.023243645178272127
+    },
+    {
+      "after_episode": 20,
+      "approx_kl": 0.033590767822460336,
+      "early_stop": true,
+      "gradient_norm_max": 20.529059247779657,
+      "gradient_norm_mean": 12.600682829933326,
+      "minibatches": 5,
+      "policy_loss_mean": 0.0021567101513908214,
+      "transitions": 2400,
+      "value_loss_mean": 0.026129737488380878
+    },
+    {
+      "after_episode": 24,
+      "approx_kl": 0.025655891475109157,
+      "early_stop": true,
+      "gradient_norm_max": 17.14465726827063,
+      "gradient_norm_mean": 9.915980555542083,
+      "minibatches": 13,
+      "policy_loss_mean": 0.010820094418418311,
+      "transitions": 2400,
+      "value_loss_mean": 0.015660733838522914
+    },
+    {
+      "after_episode": 28,
+      "approx_kl": 0.04901362248643752,
+      "early_stop": true,
+      "gradient_norm_max": 16.978754406195037,
+      "gradient_norm_mean": 11.696482269841349,
+      "minibatches": 6,
+      "policy_loss_mean": 0.036763179419894966,
+      "transitions": 2400,
+      "value_loss_mean": 0.01796447503086761
+    },
+    {
+      "after_episode": 32,
+      "approx_kl": 0.021380253388340195,
+      "early_stop": true,
+      "gradient_norm_max": 15.60197404578908,
+      "gradient_norm_mean": 8.89747965768745,
+      "minibatches": 10,
+      "policy_loss_mean": 0.02278134301379321,
+      "transitions": 2400,
+      "value_loss_mean": 0.011712963750839704
+    }
+  ]
+}

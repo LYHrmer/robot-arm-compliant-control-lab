@@ -1,0 +1,17 @@
+{
+  "records": [
+    {
+      "arm": "fresh",
+      "case_id": "g001_seed11",
+      "file": "evaluations/fresh_seed11_ep32_development_test/case_000.npz",
+      "seed": 11
+    },
+    {
+      "arm": "transfer",
+      "case_id": "g001_seed11",
+      "file": "evaluations/transfer_seed11_ep32_development_test/case_000.npz",
+      "seed": 11
+    }
+  ],
+  "selection": "each arm; first seed; first development case"
+}

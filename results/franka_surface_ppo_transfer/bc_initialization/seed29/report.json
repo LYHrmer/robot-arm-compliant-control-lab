@@ -1,0 +1,708 @@
+{
+  "active_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48
+  ],
+  "active_names": [
+    "corrected_normal_force",
+    "normal_force_error",
+    "normal_force_rate",
+    "normal_position_error",
+    "tangent1_position_error",
+    "tangent2_position_error",
+    "normal_velocity_error",
+    "tangent1_velocity_error",
+    "tangent2_velocity_error",
+    "target_normal_velocity",
+    "target_tangent1_velocity",
+    "target_tangent2_velocity",
+    "target_normal_force",
+    "contact_blend",
+    "normal_positive_headroom",
+    "normal_negative_headroom",
+    "tangent1_positive_headroom",
+    "tangent1_negative_headroom",
+    "tangent2_positive_headroom",
+    "tangent2_negative_headroom",
+    "normal_orientation_error",
+    "tangent1_orientation_error",
+    "tangent2_orientation_error",
+    "normal_angular_velocity_error",
+    "tangent1_angular_velocity_error",
+    "tangent2_angular_velocity_error",
+    "contact_ready_elapsed",
+    "nominal_normal_force",
+    "nominal_tangent1_force",
+    "nominal_tangent2_force",
+    "joint_position_0",
+    "joint_position_1",
+    "joint_position_2",
+    "joint_position_3",
+    "joint_position_4",
+    "joint_position_5",
+    "joint_position_6",
+    "joint_velocity_0",
+    "joint_velocity_1",
+    "joint_velocity_2",
+    "joint_velocity_3",
+    "joint_velocity_4",
+    "joint_velocity_5",
+    "joint_velocity_6",
+    "kinematic_age",
+    "force_age"
+  ],
+  "architecture": [
+    49,
+    32,
+    32,
+    3
+  ],
+  "arm": "drop_previous_residual",
+  "candidate_file": "selected_model.json",
+  "constant_train_label_mean": [
+    0.0,
+    -0.020687265543004686,
+    -0.004271986525037735
+  ],
+  "data_use": {
+    "development_test_loaded_for_training_or_selection": false,
+    "groups_disjoint": true,
+    "input_array_sha256": {
+      "train_actions": "838d8b585622b8c5819bcc5e2945a4e3cad5fe7d4cb0e0b45293134a4d41d825",
+      "train_masked_observations": "052db6bf16c68a6dbd27b6e6038f7fba7009cce90bf87d094149c1b8e29da160",
+      "train_raw_observations": "1e1d7fbe2dad83f54b4e58daf08758b14a977a1bc3566dc0f3ca755e65465a8e",
+      "validation_actions": "bca5443b9f9fb179b7f728e6fc1c321ff2c00039f9294da260c9e2efaea84b47",
+      "validation_masked_observations": "5f67c2b327265719686490f390d4f7e1cfe4a2c550348777af105e50183dea97",
+      "validation_raw_observations": "d1e7ea5ad135f21661c1da2cf6f420511714085e2e11c646c231c90d78647d84"
+    },
+    "optimization_split": "train",
+    "selection_split": "validation",
+    "teacher_labels_altered": false,
+    "train_group_count": 8,
+    "train_sample_count": 9600,
+    "validation_group_count": 2,
+    "validation_sample_count": 2400
+  },
+  "diagnostics": {
+    "folded_export": {
+      "absolute_tolerance": 2e-14,
+      "inactive_extremes_vs_raw_numpy_max_abs": 0.0,
+      "passed": true,
+      "sample_count": 12000,
+      "torch_masked_vs_numpy_raw_max_abs": 7.494005416219807e-16
+    },
+    "train": {
+      "constant_train_label_mean_mse": 0.21062615572535628,
+      "constant_train_label_mean_mse_by_axis": {
+        "normal": 0.0,
+        "tangent1": 0.36144145996277127,
+        "tangent2": 0.2704370072132974
+      },
+      "model_mse": 0.001816394663305757,
+      "model_mse_by_axis": {
+        "normal": 5.9468837173582965e-06,
+        "tangent1": 0.0026658663708884565,
+        "tangent2": 0.0027773707353114657
+      },
+      "per_episode": [
+        {
+          "constant_train_label_mean_mse": 0.2407778526703202,
+          "constant_train_label_mean_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.43575705416434224,
+            "tangent2": 0.28657650384661826
+          },
+          "episode_id": "g000_seed11",
+          "model_mse": 0.0011211146196187887,
+          "model_mse_by_axis": {
+            "normal": 6.79257011081844e-06,
+            "tangent1": 0.0027992205481237667,
+            "tangent2": 0.0005573307406217843
+          },
+          "sample_count": 600,
+          "zero_action_mse": 0.23993090930633124,
+          "zero_action_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.43309304134247373,
+            "tangent2": 0.2866996865765204
+          }
+        },
+        {
+          "constant_train_label_mean_mse": 0.2407120743383528,
+          "constant_train_label_mean_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.43558345238855756,
+            "tangent2": 0.28655277062650036
+          },
+          "episode_id": "g000_seed29",
+          "model_mse": 0.001133504393738219,
+          "model_mse_by_axis": {
+            "normal": 6.836755111463085e-06,
+            "tangent1": 0.00285294896443075,
+            "tangent2": 0.0005407274616724432
+          },
+          "sample_count": 600,
+          "zero_action_mse": 0.2398639007721304,
+          "zero_action_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.432915679910438,
+            "tangent2": 0.2866760224059528
+          }
+        },
+        {
+          "constant_train_label_mean_mse": 0.2918985806537156,
+          "constant_train_label_mean_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.4952299122267535,
+            "tangent2": 0.3804658297343931
+          },
+          "episode_id": "g003_seed11",
+          "model_mse": 0.0028893264157036015,
+          "model_mse_by_axis": {
+            "normal": 6.100230825632546e-06,
+            "tangent1": 0.004517049096306625,
+            "tangent2": 0.004144829919978538
+          },
+          "sample_count": 600,
+          "zero_action_mse": 0.29304568359209304,
+          "zero_action_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.4985707146297418,
+            "tangent2": 0.3805663361465378
+          }
+        },
+        {
+          "constant_train_label_mean_mse": 0.29191479308770973,
+          "constant_train_label_mean_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.49524570537661283,
+            "tangent2": 0.3804986738865165
+          },
+          "episode_id": "g003_seed29",
+          "model_mse": 0.002918391301665694,
+          "model_mse_by_axis": {
+            "normal": 6.0240645516442815e-06,
+            "tangent1": 0.004549038213257744,
+            "tangent2": 0.0042001116271876944
+          },
+          "sample_count": 600,
+          "zero_action_mse": 0.2930615687896681,
+          "zero_action_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.498585662080796,
+            "tangent2": 0.38059904428820845
+          }
+        },
+        {
+          "constant_train_label_mean_mse": 0.1833899719873032,
+          "constant_train_label_mean_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.296465516527563,
+            "tangent2": 0.2537043994343465
+          },
+          "episode_id": "g004_seed11",
+          "model_mse": 0.0011803857736361223,
+          "model_mse_by_axis": {
+            "normal": 3.4404647158667217e-06,
+            "tangent1": 0.0018886462951351985,
+            "tangent2": 0.0016490705610572973
+          },
+          "sample_count": 600,
+          "zero_action_mse": 0.18201715053124443,
+          "zero_action_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.29193228449146585,
+            "tangent2": 0.2541191671022672
+          }
+        },
+        {
+          "constant_train_label_mean_mse": 0.18329288680819028,
+          "constant_train_label_mean_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.2963464104668724,
+            "tangent2": 0.25353224995769885
+          },
+          "episode_id": "g004_seed29",
+          "model_mse": 0.0011601265617846575,
+          "model_mse_by_axis": {
+            "normal": 3.4191835832171365e-06,
+            "tangent1": 0.0018501348202448545,
+            "tangent2": 0.0016268256815259003
+          },
+          "sample_count": 600,
+          "zero_action_mse": 0.18192142368927824,
+          "zero_action_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.2918185736369463,
+            "tangent2": 0.25394569743088863
+          }
+        },
+        {
+          "constant_train_label_mean_mse": 0.19500646104323519,
+          "constant_train_label_mean_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.3339007568964956,
+            "tangent2": 0.2511186262332106
+          },
+          "episode_id": "g006_seed11",
+          "model_mse": 0.0018688035072506818,
+          "model_mse_by_axis": {
+            "normal": 3.606213548641645e-06,
+            "tangent1": 0.002957330271740577,
+            "tangent2": 0.002645474036462826
+          },
+          "sample_count": 600,
+          "zero_action_mse": 0.19370248021739403,
+          "zero_action_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.3304042569019009,
+            "tangent2": 0.25070318375028144
+          }
+        },
+        {
+          "constant_train_label_mean_mse": 0.1949533535966175,
+          "constant_train_label_mean_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.3337327472710313,
+            "tangent2": 0.2511273135188214
+          },
+          "episode_id": "g006_seed29",
+          "model_mse": 0.0018484586991306185,
+          "model_mse_by_axis": {
+            "normal": 3.6540750478568535e-06,
+            "tangent1": 0.00296103517802896,
+            "tangent2": 0.002580686844315037
+          },
+          "sample_count": 600,
+          "zero_action_mse": 0.1936492658844715,
+          "zero_action_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.33023616948847595,
+            "tangent2": 0.2507116281649384
+          }
+        },
+        {
+          "constant_train_label_mean_mse": 0.11131105630972284,
+          "constant_train_label_mean_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.15529974441694974,
+            "tangent2": 0.17863342451221892
+          },
+          "episode_id": "g008_seed11",
+          "model_mse": 0.001582583352039459,
+          "model_mse_by_axis": {
+            "normal": 3.780945493097395e-06,
+            "tangent1": 0.0009987722569083455,
+            "tangent2": 0.0037451968537169323
+          },
+          "sample_count": 600,
+          "zero_action_mse": 0.11134101051835223,
+          "zero_action_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.15484848419847946,
+            "tangent2": 0.17917454735657723
+          }
+        },
+        {
+          "constant_train_label_mean_mse": 0.11136823182974782,
+          "constant_train_label_mean_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.15545032468685027,
+            "tangent2": 0.17865437080239308
+          },
+          "episode_id": "g008_seed29",
+          "model_mse": 0.0016011589236116577,
+          "model_mse_by_axis": {
+            "normal": 3.7969317076635855e-06,
+            "tangent1": 0.0010375725251165302,
+            "tangent2": 0.0037621073140107755
+          },
+          "sample_count": 600,
+          "zero_action_mse": 0.11140033650827363,
+          "zero_action_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.15500445952959918,
+            "tangent2": 0.179196549995222
+          }
+        },
+        {
+          "constant_train_label_mean_mse": 0.2892946962757804,
+          "constant_train_label_mean_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.5108088532042948,
+            "tangent2": 0.35707523562304583
+          },
+          "episode_id": "g009_seed11",
+          "model_mse": 0.0030137238637993895,
+          "model_mse_by_axis": {
+            "normal": 5.528365441613523e-06,
+            "tangent1": 0.00454905349016694,
+            "tangent2": 0.004486589735789619
+          },
+          "sample_count": 600,
+          "zero_action_mse": 0.2900154328899279,
+          "zero_action_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.5142077846923403,
+            "tangent2": 0.3558385139774437
+          }
+        },
+        {
+          "constant_train_label_mean_mse": 0.28929586746127106,
+          "constant_train_label_mean_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.5108123667607667,
+            "tangent2": 0.35707523562304583
+          },
+          "episode_id": "g009_seed29",
+          "model_mse": 0.003039507610612937,
+          "model_mse_by_axis": {
+            "normal": 5.5756881189051014e-06,
+            "tangent1": 0.004573968505626403,
+            "tangent2": 0.004538978638093509
+          },
+          "sample_count": 600,
+          "zero_action_mse": 0.29001641045597143,
+          "zero_action_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.5142107173904708,
+            "tangent2": 0.3558385139774437
+          }
+        },
+        {
+          "constant_train_label_mean_mse": 0.227678034756717,
+          "constant_train_label_mean_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.39336714116239124,
+            "tangent2": 0.2896669631077594
+          },
+          "episode_id": "g010_seed11",
+          "model_mse": 0.0015744398614710765,
+          "model_mse_by_axis": {
+            "normal": 2.2607276055694034e-06,
+            "tangent1": 0.0011734174505340694,
+            "tangent2": 0.003547641406273591
+          },
+          "sample_count": 600,
+          "zero_action_mse": 0.22962621223573304,
+          "zero_action_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.3984545300030028,
+            "tangent2": 0.2904241067041959
+          }
+        },
+        {
+          "constant_train_label_mean_mse": 0.22757048676611683,
+          "constant_train_label_mean_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.393192280108536,
+            "tangent2": 0.28951918018981504
+          },
+          "episode_id": "g010_seed29",
+          "model_mse": 0.001587086332573663,
+          "model_mse_by_axis": {
+            "normal": 2.2300443877448774e-06,
+            "tangent1": 0.0011545919453494308,
+            "tangent2": 0.003604437007983811
+          },
+          "sample_count": 600,
+          "zero_action_mse": 0.2295148073379425,
+          "zero_action_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.3982694187417813,
+            "tangent2": 0.29027500327204603
+          }
+        },
+        {
+          "constant_train_label_mean_mse": 0.14581972299301393,
+          "constant_train_label_mean_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.27108603548890015,
+            "tangent2": 0.16637313349014163
+          },
+          "episode_id": "g011_seed11",
+          "model_mse": 0.001284090350293434,
+          "model_mse_by_axis": {
+            "normal": 1.6179267977504623e-05,
+            "tangent1": 0.002385898173518088,
+            "tangent2": 0.0014501936093847098
+          },
+          "sample_count": 600,
+          "zero_action_mse": 0.14668830361546958,
+          "zero_action_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.2738291617994721,
+            "tangent2": 0.16623574904693642
+          }
+        },
+        {
+          "constant_train_label_mean_mse": 0.14573442102788597,
+          "constant_train_label_mean_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.2707850582574244,
+            "tangent2": 0.1664182048262333
+          },
+          "episode_id": "g011_seed29",
+          "model_mse": 0.0012596130459621123,
+          "model_mse_by_axis": {
+            "normal": 1.592461125049344e-05,
+            "tangent1": 0.0024051841997270486,
+            "tangent2": 0.0013577303269087966
+          },
+          "sample_count": 600,
+          "zero_action_mse": 0.14660339699217598,
+          "zero_action_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.27352982785730623,
+            "tangent2": 0.16628036311922145
+          }
+        }
+      ],
+      "zero_action_mse": 0.21077489333352856,
+      "zero_action_mse_by_axis": {
+        "normal": 0.0,
+        "tangent1": 0.3618694229184185,
+        "tangent2": 0.27045525708216717
+      }
+    },
+    "train_only_64_sample_overfit": {
+      "final_action_mse": 0.011225448319303229,
+      "final_action_mse_by_axis": {
+        "normal": 1.0829641081511215e-05,
+        "tangent1": 0.01730304499535927,
+        "tangent2": 0.0163624703214689
+      },
+      "final_to_initial_loss_ratio": 0.0517243044011302,
+      "fresh_model": true,
+      "initial_action_mse": 0.21702463569636612,
+      "loss_decreased": true,
+      "sample_count": 64,
+      "sample_indices_sha256": "7cbb18ed91a5c78f4e9b09a6ec7f7fd14ac099eb4262dae71271bd76ff92836a",
+      "source_split": "train",
+      "steps": 300
+    },
+    "validation": {
+      "constant_train_label_mean_mse": 0.2678373752289556,
+      "constant_train_label_mean_mse_by_axis": {
+        "normal": 0.0,
+        "tangent1": 0.5081844384748023,
+        "tangent2": 0.29532768721206426
+      },
+      "model_mse": 0.003230916587530156,
+      "model_mse_by_axis": {
+        "normal": 1.6526480427123262e-05,
+        "tangent1": 0.004839955201633048,
+        "tangent2": 0.004836268080530289
+      },
+      "per_episode": [
+        {
+          "constant_train_label_mean_mse": 0.2413146772451896,
+          "constant_train_label_mean_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.43731676195932845,
+            "tangent2": 0.2866272697762404
+          },
+          "episode_id": "g002_seed11",
+          "model_mse": 0.0016887948800368565,
+          "model_mse_by_axis": {
+            "normal": 1.4807688117848278e-05,
+            "tangent1": 0.003646174136138217,
+            "tangent2": 0.0014054028158545044
+          },
+          "sample_count": 600,
+          "zero_action_mse": 0.2404166542610703,
+          "zero_action_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.43455583507941004,
+            "tangent2": 0.28669412770380104
+          }
+        },
+        {
+          "constant_train_label_mean_mse": 0.24125953747401635,
+          "constant_train_label_mean_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.4371651969727622,
+            "tangent2": 0.2866134154492869
+          },
+          "episode_id": "g002_seed29",
+          "model_mse": 0.0016887555035729484,
+          "model_mse_by_axis": {
+            "normal": 1.4860246421160602e-05,
+            "tangent1": 0.003660331605649657,
+            "tangent2": 0.0013910746586480287
+          },
+          "sample_count": 600,
+          "zero_action_mse": 0.24036117056781445,
+          "zero_action_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.43440296369857045,
+            "tangent2": 0.286680548004873
+          }
+        },
+        {
+          "constant_train_label_mean_mse": 0.29438764201381823,
+          "constant_train_label_mean_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.579127894230087,
+            "tangent2": 0.304035031811368
+          },
+          "episode_id": "g007_seed11",
+          "model_mse": 0.004797760052865276,
+          "model_mse_by_axis": {
+            "normal": 1.8288445992740774e-05,
+            "tangent1": 0.006012252255554641,
+            "tangent2": 0.008362739457048456
+          },
+          "sample_count": 600,
+          "zero_action_mse": 0.2939218676680074,
+          "zero_action_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.5777733386646311,
+            "tangent2": 0.3039922643393919
+          }
+        },
+        {
+          "constant_train_label_mean_mse": 0.29438764418279845,
+          "constant_train_label_mean_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.5791279007370277,
+            "tangent2": 0.304035031811368
+          },
+          "episode_id": "g007_seed29",
+          "model_mse": 0.004748355913645541,
+          "model_mse_by_axis": {
+            "normal": 1.8149541176743567e-05,
+            "tangent1": 0.006041062809189667,
+            "tangent2": 0.008185855390570216
+          },
+          "sample_count": 600,
+          "zero_action_mse": 0.29392186521459,
+          "zero_action_mse_by_axis": {
+            "normal": 0.0,
+            "tangent1": 0.5777733313043791,
+            "tangent2": 0.3039922643393919
+          }
+        }
+      ],
+      "zero_action_mse": 0.26715538942787054,
+      "zero_action_mse_by_axis": {
+        "normal": 0.0,
+        "tangent1": 0.506126367186747,
+        "tangent2": 0.2953398010968639
+      }
+    }
+  },
+  "inactive_indices": [
+    14,
+    15,
+    16
+  ],
+  "inactive_names": [
+    "previous_normal_residual",
+    "previous_tangent1_residual",
+    "previous_tangent2_residual"
+  ],
+  "input_mask": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "schema": "surface_behavior_clone_transfer_report_v1",
+  "selection": {
+    "metric": "action_mse",
+    "rule": "minimum finite value; exact ties keep earlier epoch",
+    "selected_epoch": 86,
+    "selected_validation_action_mse": 0.0032309165875301555,
+    "split": "validation"
+  }
+}

@@ -1,0 +1,3951 @@
+{
+  "bc_records": {
+    "candidate_records": {
+      "drop_previous_residual_seed11": {
+        "candidate": "drop_previous_residual_seed11/selected_model.json",
+        "candidate_sha256": "a9b8f3bc4d5c1c2b408b187e0ece9a03b3f7fdc6b267c2c680075297ada30dd3",
+        "complete_file": "COMPLETE",
+        "complete_sha256": "20fb97e28ad073488603b8af20fb6d8155aa42c5ca665d5125801c3c049bed26",
+        "manifest_file": "manifest.json",
+        "manifest_sha256": "8620967fb01ff1a7fb7df12fc67fb42becd68e8ce6e7a7927ee992064aabec4e",
+        "report_sha256": "379c313086bd8f7cd9ae923b14f1a3a78a6cb307ce8241bb7f02bcc73eae7f34",
+        "trainer_source_sha256": {
+          "numpy_mlp_exporter": "a4e7e84d92066170bab09a1c25eea4a9cd1e658bb55ca2f8747c59116bba45a1",
+          "policy_artifact": "83ceae33d762d4888c994e262f30b5c3189f3ea961462db72d5e8dd257bcec56",
+          "trainer": "d949354293c0214561b9d0580daabe588a80d79c186aab814ee7b8ba095ee389",
+          "transfer_trainer": "9b5731929dcaef6713551ba514d3c57ccedd3eb2ce33300f0d29274d9770b450",
+          "transition_loader": "9521e08593bb2c6ea640fae76da7e660fad1a2dcb13e808e004a36ca873e6bb5"
+        }
+      },
+      "drop_previous_residual_seed29": {
+        "candidate": "drop_previous_residual_seed29/selected_model.json",
+        "candidate_sha256": "fca9f1f750271b9b08b8140180cb01a525d5fb3bfa874b30d615455dea9588ac",
+        "complete_file": "COMPLETE",
+        "complete_sha256": "6a859ac940aa012fe36b352bf7e1cd2565c74f0da648bbacb14e6e9fbe91b8e3",
+        "manifest_file": "manifest.json",
+        "manifest_sha256": "b62a2e5808547faa13f8357c4aa09aa2f3cdbbe81fa0c451acb05794902a8258",
+        "report_sha256": "8f46b361f2d29e0a24c06acdb8a147d1aa2b501140040c366361f4ee9be3269a",
+        "trainer_source_sha256": {
+          "numpy_mlp_exporter": "a4e7e84d92066170bab09a1c25eea4a9cd1e658bb55ca2f8747c59116bba45a1",
+          "policy_artifact": "83ceae33d762d4888c994e262f30b5c3189f3ea961462db72d5e8dd257bcec56",
+          "trainer": "d949354293c0214561b9d0580daabe588a80d79c186aab814ee7b8ba095ee389",
+          "transfer_trainer": "9b5731929dcaef6713551ba514d3c57ccedd3eb2ce33300f0d29274d9770b450",
+          "transition_loader": "9521e08593bb2c6ea640fae76da7e660fad1a2dcb13e808e004a36ca873e6bb5"
+        }
+      },
+      "drop_previous_residual_seed47": {
+        "candidate": "drop_previous_residual_seed47/selected_model.json",
+        "candidate_sha256": "895062db2bc22a5a92d11a895484dbae4d50cd62d4d3ebf868e5c75964e764a8",
+        "complete_file": "COMPLETE",
+        "complete_sha256": "69bfab59798e7b3988969656b973d47ce96ca8821b8561541e7b5a7b503d60fb",
+        "manifest_file": "manifest.json",
+        "manifest_sha256": "06fc8dc3615e50d0538154257b505caf59b2c16713cfd246cc4db5ea0ab297ec",
+        "report_sha256": "8a728e118a33bc37f2f135c5f2dea4282f34f68640f973c82921619a9e993183",
+        "trainer_source_sha256": {
+          "numpy_mlp_exporter": "a4e7e84d92066170bab09a1c25eea4a9cd1e658bb55ca2f8747c59116bba45a1",
+          "policy_artifact": "83ceae33d762d4888c994e262f30b5c3189f3ea961462db72d5e8dd257bcec56",
+          "trainer": "d949354293c0214561b9d0580daabe588a80d79c186aab814ee7b8ba095ee389",
+          "transfer_trainer": "9b5731929dcaef6713551ba514d3c57ccedd3eb2ce33300f0d29274d9770b450",
+          "transition_loader": "9521e08593bb2c6ea640fae76da7e660fad1a2dcb13e808e004a36ca873e6bb5"
+        }
+      },
+      "teacher_inputs_seed11": {
+        "candidate": "teacher_inputs_seed11/selected_model.json",
+        "candidate_sha256": "41c5121b8b6b332b30ab81b002f617f9179ca5cafaf8c8d93f50a16ed3026259",
+        "complete_file": "COMPLETE",
+        "complete_sha256": "35d847507fb302f7edccefe1c21344af7b22fbf3466533c1533d5c2a1270b5ba",
+        "manifest_file": "manifest.json",
+        "manifest_sha256": "11e8383abe043062539be83399bc9430b730ba84e12ab54d42dee480f03ae573",
+        "report_sha256": "6e3c5373c9aa9f157ca112db963ae00aa18cb8df61a0b560bb6bcf924d31cabe",
+        "trainer_source_sha256": {
+          "numpy_mlp_exporter": "a4e7e84d92066170bab09a1c25eea4a9cd1e658bb55ca2f8747c59116bba45a1",
+          "policy_artifact": "83ceae33d762d4888c994e262f30b5c3189f3ea961462db72d5e8dd257bcec56",
+          "trainer": "d949354293c0214561b9d0580daabe588a80d79c186aab814ee7b8ba095ee389",
+          "transfer_trainer": "9b5731929dcaef6713551ba514d3c57ccedd3eb2ce33300f0d29274d9770b450",
+          "transition_loader": "9521e08593bb2c6ea640fae76da7e660fad1a2dcb13e808e004a36ca873e6bb5"
+        }
+      },
+      "teacher_inputs_seed29": {
+        "candidate": "teacher_inputs_seed29/selected_model.json",
+        "candidate_sha256": "4f408d2bef2cb848d44b6ec8a375e12d8ec3e339a87a1dd0e897d4f6aa29f74d",
+        "complete_file": "COMPLETE",
+        "complete_sha256": "b59d237ea4c2c5c865350e8436656d410cd35e0cf81e5acc1c0f0df314ece94e",
+        "manifest_file": "manifest.json",
+        "manifest_sha256": "a63548d4924ecea7191cd84f82a034a638f99b9436f9817933c7bd18bdf16c9f",
+        "report_sha256": "93ce2471b68feb2e83e48a9d012cc8a2b6db92a818691341f901bb2eac2ec1d9",
+        "trainer_source_sha256": {
+          "numpy_mlp_exporter": "a4e7e84d92066170bab09a1c25eea4a9cd1e658bb55ca2f8747c59116bba45a1",
+          "policy_artifact": "83ceae33d762d4888c994e262f30b5c3189f3ea961462db72d5e8dd257bcec56",
+          "trainer": "d949354293c0214561b9d0580daabe588a80d79c186aab814ee7b8ba095ee389",
+          "transfer_trainer": "9b5731929dcaef6713551ba514d3c57ccedd3eb2ce33300f0d29274d9770b450",
+          "transition_loader": "9521e08593bb2c6ea640fae76da7e660fad1a2dcb13e808e004a36ca873e6bb5"
+        }
+      },
+      "teacher_inputs_seed47": {
+        "candidate": "teacher_inputs_seed47/selected_model.json",
+        "candidate_sha256": "b037db9d147d6f3ee06a0308f95ab712b5bce5c4003d0ea3c8b2652de670a846",
+        "complete_file": "COMPLETE",
+        "complete_sha256": "5b0df8e30e02b9e75b37a760cf616e758498824df079bac235204b64506528a3",
+        "manifest_file": "manifest.json",
+        "manifest_sha256": "df9623e9824a7f1ad66b0b8611fc304a594b18e3fd7bcc0221eb10d6a99e0d02",
+        "report_sha256": "a12d359f41afcac1aaff046fe2a346dc9272074e215e6ab3bbc7ced154d81a46",
+        "trainer_source_sha256": {
+          "numpy_mlp_exporter": "a4e7e84d92066170bab09a1c25eea4a9cd1e658bb55ca2f8747c59116bba45a1",
+          "policy_artifact": "83ceae33d762d4888c994e262f30b5c3189f3ea961462db72d5e8dd257bcec56",
+          "trainer": "d949354293c0214561b9d0580daabe588a80d79c186aab814ee7b8ba095ee389",
+          "transfer_trainer": "9b5731929dcaef6713551ba514d3c57ccedd3eb2ce33300f0d29274d9770b450",
+          "transition_loader": "9521e08593bb2c6ea640fae76da7e660fad1a2dcb13e808e004a36ca873e6bb5"
+        }
+      }
+    },
+    "evaluation_records": {
+      "drop_previous_residual_seed11_development_test": {
+        "COMPLETE": "a8d81ab4d671f9228cdfd7ae213cae47f0d718bbd387afd94a8e9f1ce1007afc",
+        "manifest.json": "00fed422a710bbdda6f58790d75dcbbdfb18057b76e64d1de69a8744cadbacd9",
+        "protocol_json": "2eca41c4414b18a299ff70e23ee854f8a9fca5d4ad4a84f1c9c32c34780e02a1",
+        "protocol_marker": "f3b43b59ab92a530029fc4804c6b2f2226fda0adb562b00a5d3241983945f0d0",
+        "published_layout": false,
+        "report.json": "21c65e25619d9e52d5b265dc502e6709a76e196c95b2b89a8de4e8198344143f"
+      },
+      "drop_previous_residual_seed11_validation": {
+        "COMPLETE": "bf9e746870bee59f7bee33d767e2f91625b3439f13a7502c870e9d0ff679bcec",
+        "manifest.json": "a0615198151c6e33a95bfbfe9e54eb9ffc1f1a23a5fe71cac1b3c17588606121",
+        "protocol_json": "f63a76643e3cb57a192968155531d870d684807978f029cd710fa6e0d5528f06",
+        "protocol_marker": "52f9d7e01a85ac5b49786a4ee7d219f50e54b431ba48a201f70f2369ad2e57d0",
+        "published_layout": false,
+        "report.json": "d98e911f89f2ea1d0beb8b555900e4771401db9b4d7e75d2ba18d8cfa2ce86d6"
+      },
+      "drop_previous_residual_seed29_development_test": {
+        "COMPLETE": "7e7b0cba908cf78f63e7bb68e672bccb2e423550fc91371e182b60e18785efd5",
+        "manifest.json": "c20d94d0074c73bbf2594b1d578e3532ab7b5fa434628c65dc6b9ef667682b08",
+        "protocol_json": "ee18fcb38de5b95d65f8a22ecb701f2e7abacf00a87e3be9dd357c334af4ae08",
+        "protocol_marker": "17fdff15c89a56d0ad63508a27a26441cb5b48761e9de4e650837c64f291f190",
+        "published_layout": false,
+        "report.json": "c1365e1aeec6dbb3731ad6ca367f9aba60948d8029f4a42b1d85a7180de3021a"
+      },
+      "drop_previous_residual_seed29_validation": {
+        "COMPLETE": "daa449c7717a7a2b5e2a3cc54d3bbabe5a86e906f5fbdb686f7aae96bad47a06",
+        "manifest.json": "89b60551c0eb75a1c7bac6ce40f157ea71fa162abb6c51072abe7e82518e2234",
+        "protocol_json": "4d42a94e48a78955674aae2f4ec055d52c2ad9c19bd4edf05b4bec0be97885a1",
+        "protocol_marker": "a69cdb95450be1ac1cccd62214419dc6b74e5765d71b66850d5f040a818982b7",
+        "published_layout": false,
+        "report.json": "6f8e39d6016bd9f159aa61c9b9b25c59af43d1cd05f053629db1c4c38a98b63e"
+      },
+      "drop_previous_residual_seed47_development_test": {
+        "COMPLETE": "4fde38d16e8a53cead8e6fbc95d53d9f67405f75214674b23faa19162bc52d80",
+        "manifest.json": "a8287c1bfa2eb0c8114473331a59bad769b461ee86bb1d6bfd2379f373dd271f",
+        "protocol_json": "391e05a285b1c98741cb0f123015a3f4166a7429b2105fb9e99f17bd7e979c5b",
+        "protocol_marker": "4ae7da5b76c24ec8a72aeb441101f21ce6f12c07b47d0e9945f039ea87cd36b1",
+        "published_layout": false,
+        "report.json": "1182a870c396286ef3f1286de0d8c03cac6f39b78c83ebc5891e18b2bb6061fe"
+      },
+      "drop_previous_residual_seed47_validation": {
+        "COMPLETE": "c86140f77562c56ffe16012461884c0bfe0257266bd78c0c753d9f37707537e8",
+        "manifest.json": "c54c1185db164fea8a2df746a586d5c8897f1235cea34722d72e5d99303e6025",
+        "protocol_json": "7e8f90c7c69eb1c63c1e75bbf935e0c156976165cf96b8daefc071adef014230",
+        "protocol_marker": "2d27671910518f86ba46ba4810ea5e04cecb4d161adee72fca6ca45906886503",
+        "published_layout": false,
+        "report.json": "5ca5d62afbe0e11efe3b1e1c2c4bdc3b381757cad8f849a3180b3240b040cff7"
+      },
+      "teacher_inputs_seed11_development_test": {
+        "COMPLETE": "9340e9af0c120f3f69ce83b8500a5712b2b6818e980cf6efa79ab2e46115cf37",
+        "manifest.json": "f48e0dc3dd9c2db2e8b60e02bd03cb14d2be83e73f7ea6ab1dceddfbae365e53",
+        "protocol_json": "3c7f6e4f892f0772c6c83270f05b8039616a1d496f0145a12347bceeead8f9ab",
+        "protocol_marker": "e5c5e601b32a93e32b13567feeec6696bb73df1c0b3425aaee2b505cbf781835",
+        "published_layout": false,
+        "report.json": "e720b4d66342d0e26ed52425164a9ba47f998cab4f22bc2ebb6e4fd339c895ce"
+      },
+      "teacher_inputs_seed11_validation": {
+        "COMPLETE": "32c71e5a564a71903de40fda0cf1528f1e5f3e0532d486f8624efd0d6683223a",
+        "manifest.json": "3accc810d735bc1bb0c8b49f827989b1bbf70b04b2852641abe6ff9e463e8c03",
+        "protocol_json": "632af8ea9c598a041be9d8b397c43ca9e907eccd4ef8da619ad7175e6b7acff1",
+        "protocol_marker": "e32cc10360cd484a2108062cfc7cf7da5e2c2422eec977da9f9acf456cfecc47",
+        "published_layout": false,
+        "report.json": "0f9278ad3dd86d8483cf84b3285aaca155c3d219bc4a2f8ebff3c2e3ed4f751f"
+      },
+      "teacher_inputs_seed29_development_test": {
+        "COMPLETE": "bcfd16269c31445788845adc8c2e5dfd92b810480aa49f4c740666f472889fcc",
+        "manifest.json": "fad914e4735fbd13169558cb1cb9ca945087be72df8421b4fcd96afcf485beca",
+        "protocol_json": "1db71d7f0458efab137bab63d52aa20e79d8c7340236500f5d873d20f0da5ecf",
+        "protocol_marker": "ccf37263444b6168f871859f37f2ae7842b0bbe10b091b4cc367cf6862698556",
+        "published_layout": false,
+        "report.json": "984de8fb87d45d9ce84e4e7ded896a64f49fde041c3deaf1deaa066e4582c0b2"
+      },
+      "teacher_inputs_seed29_validation": {
+        "COMPLETE": "5c1ff5fa498b57f7a49d07738466b398d3b0aa478cdfab46c6ec2fe05ffea98b",
+        "manifest.json": "0163a70db5a5e66ea745a8776ad8665b504b704a44c2a2e02c53fe124d6e8214",
+        "protocol_json": "c563fa38b93f8defd1dd79de9d30aa0fe85b143bd3516544f4e3052a72ab97f0",
+        "protocol_marker": "861dd262716806a6882359e79a0136d3a4522e923a98f1856eb978b35d06acac",
+        "published_layout": false,
+        "report.json": "6fe063f69e43babd63a801602e4a3674d45a2eeda057a91bb25067367555e6f6"
+      },
+      "teacher_inputs_seed47_development_test": {
+        "COMPLETE": "129371332abf072f45308db6f9f69d1eeb4176453be0f6cd0327279ecb2e16c0",
+        "manifest.json": "41b5708e8da2cc5e9eeb381a5775992a176a5897ca03902a63b1019d9fc56838",
+        "protocol_json": "86db8c475c5e0678f5943f969e1d14d43e125f759636ffac95c75314474a9775",
+        "protocol_marker": "ec5faf1fd99becd2f1a470ce332061fab405bc9ba364bfac1a7cdaeffd311933",
+        "published_layout": false,
+        "report.json": "f529bee57d3f8639b8fed6861a892d2f8f467bf3527330077c22db089de96534"
+      },
+      "teacher_inputs_seed47_validation": {
+        "COMPLETE": "6dcbfa1b82408fb1a4a0f23df5fca5aec098043244c40b625956745695168fa8",
+        "manifest.json": "0ba404d61dd4e758251f790e2cf19bf019348b5e67d7badaa6ce52c8287aaa54",
+        "protocol_json": "4d22dbfdb7e7d22d1354b16d804f54468b51b4b968a3b1bc285d675dcf0aa158",
+        "protocol_marker": "463ad52fb6913770ca807690b8d106e63fb94c6f84c8c4c0bd4c9fa914695766",
+        "published_layout": false,
+        "report.json": "25df77b7e87d4ad734b4af85c2eec4942719e33d474034a65e7c28711192eea0"
+      }
+    },
+    "published_package_verified": false,
+    "top_level_sha256": {
+      "COMPLETE": "d266bf2ee197677762f8a6f3cf40c7a2786e93ebff446f59005b0968072e081e",
+      "PLAN_SHA256": "644d38dd639bcef75763eafee53da2da7f21ef593b7ed13c8cef38cb7b5471ed",
+      "plan.json": "9015e314dae07f9f3d92e462997ab62b5b80d6f818e74e6e321cef1bc1462f16",
+      "selection.json": "4325be8003aeef4f7cdb751fdffa49c1a3847fa9fb3d9fc6967682e39b7ebbd7",
+      "summary.json": "9319c34988cf6b8c6cebcded86e512f4d2b597bab4b774d3049f9a8a953f9ede"
+    }
+  },
+  "bc_transfer_plan_sha256": "9015e314dae07f9f3d92e462997ab62b5b80d6f818e74e6e321cef1bc1462f16",
+  "benchmark_sha256": {
+    "COMPLETE": "d5854171eee498ed454966e05c3f423aed0acb5dab3edeb0ad0bf52f5e58eca5",
+    "manifest.json": "c98732a928d1539a5e307a9314810e5dbc0576c4de158679c720da996a08b26c",
+    "report.json": "21cca26f0878378897a15bca01b275cb41c6d3ee4685f49fa4649cf22c271c68"
+  },
+  "cases": [
+    {
+      "case_id": "g000_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9659258262890683,
+          0.25881904510252074,
+          0.0
+        ],
+        [
+          -0.25881904510252074,
+          0.9659258262890683,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "c4ccad8d74f5bf63a45b3eca8a861b7c4e60cca35d37f4c03c74d9a38c114bd2",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0.15,
+        "name": "preparation_000",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0002,
+        "tool_mass_kg": 0.1,
+        "tool_sliding_friction": 0.45,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": -15.0
+      },
+      "split": "train",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.2,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 0.0,
+        "tangent_amplitude_m": 0.055,
+        "vertical_amplitude_m": 0.04,
+        "yaw_deg": -15.0
+      }
+    },
+    {
+      "case_id": "g000_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9659258262890683,
+          0.25881904510252074,
+          0.0
+        ],
+        [
+          -0.25881904510252074,
+          0.9659258262890683,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "c4ccad8d74f5bf63a45b3eca8a861b7c4e60cca35d37f4c03c74d9a38c114bd2",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0.15,
+        "name": "preparation_000",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0002,
+        "tool_mass_kg": 0.1,
+        "tool_sliding_friction": 0.45,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": -15.0
+      },
+      "split": "train",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.2,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 0.0,
+        "tangent_amplitude_m": 0.055,
+        "vertical_amplitude_m": 0.04,
+        "yaw_deg": -15.0
+      }
+    },
+    {
+      "case_id": "g001_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "group_id": "76b1a9cdc26befb201d8995fa84ed0878e8eeef436f67587d023c9e35564bfff",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0.15,
+        "name": "preparation_001",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0002,
+        "tool_mass_kg": 0.1,
+        "tool_sliding_friction": 0.45,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": 0.0
+      },
+      "split": "development_test",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.2,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 0.0,
+        "tangent_amplitude_m": 0.055,
+        "vertical_amplitude_m": 0.04,
+        "yaw_deg": 0.0
+      }
+    },
+    {
+      "case_id": "g001_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "group_id": "76b1a9cdc26befb201d8995fa84ed0878e8eeef436f67587d023c9e35564bfff",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0.15,
+        "name": "preparation_001",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0002,
+        "tool_mass_kg": 0.1,
+        "tool_sliding_friction": 0.45,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": 0.0
+      },
+      "split": "development_test",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.2,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 0.0,
+        "tangent_amplitude_m": 0.055,
+        "vertical_amplitude_m": 0.04,
+        "yaw_deg": 0.0
+      }
+    },
+    {
+      "case_id": "g002_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9659258262890683,
+          -0.25881904510252074,
+          0.0
+        ],
+        [
+          0.25881904510252074,
+          0.9659258262890683,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "group_id": "7de4a580a6c8ff1c7f8c59061686922a216fdde972b1a2d29c6c5658355a75fc",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0.15,
+        "name": "preparation_002",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0002,
+        "tool_mass_kg": 0.1,
+        "tool_sliding_friction": 0.45,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": 15.0
+      },
+      "split": "validation",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.2,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 0.0,
+        "tangent_amplitude_m": 0.055,
+        "vertical_amplitude_m": 0.04,
+        "yaw_deg": 15.0
+      }
+    },
+    {
+      "case_id": "g002_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 12.0,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9659258262890683,
+          -0.25881904510252074,
+          0.0
+        ],
+        [
+          0.25881904510252074,
+          0.9659258262890683,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "group_id": "7de4a580a6c8ff1c7f8c59061686922a216fdde972b1a2d29c6c5658355a75fc",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 1.0,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2,
+          0.0,
+          0.0
+        ],
+        "force_noise_std_n": 0.15,
+        "name": "preparation_002",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0002,
+        "tool_mass_kg": 0.1,
+        "tool_sliding_friction": 0.45,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.45,
+        "wall_time_constant": 0.012,
+        "wall_yaw_deg": 15.0
+      },
+      "split": "validation",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.2,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 0.0,
+        "tangent_amplitude_m": 0.055,
+        "vertical_amplitude_m": 0.04,
+        "yaw_deg": 15.0
+      }
+    },
+    {
+      "case_id": "g003_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 13.374474247256181,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9997256003010401,
+          0.0234248607834745,
+          0.0
+        ],
+        [
+          -0.0234248607834745,
+          0.9997256003010401,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "2bc8e9ed3f6cc48467d75ad882c720ca1537de885e778c2501ab0227267a5679",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 0.9834295595238157,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.1695738581362003,
+          -0.2867989624010878,
+          0.25809642436661195
+        ],
+        "force_noise_std_n": 0.1749716778290761,
+        "name": "preparation_003",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.00034354025703593695,
+        "tool_mass_kg": 0.10431399162545195,
+        "tool_sliding_friction": 0.46814634107119396,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.46814634107119396,
+        "wall_time_constant": 0.006730428155143842,
+        "wall_yaw_deg": -5.18662012966408
+      },
+      "split": "train",
+      "task": {
+        "direction": -1,
+        "frequency_hz": 0.16997849511296048,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 2.1520115683888155,
+        "tangent_amplitude_m": 0.056569662532711826,
+        "vertical_amplitude_m": 0.037649417111510014,
+        "yaw_deg": -5.18662012966408
+      }
+    },
+    {
+      "case_id": "g003_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 13.374474247256181,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9997256003010401,
+          0.0234248607834745,
+          0.0
+        ],
+        [
+          -0.0234248607834745,
+          0.9997256003010401,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "2bc8e9ed3f6cc48467d75ad882c720ca1537de885e778c2501ab0227267a5679",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 0.9834295595238157,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.1695738581362003,
+          -0.2867989624010878,
+          0.25809642436661195
+        ],
+        "force_noise_std_n": 0.1749716778290761,
+        "name": "preparation_003",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.00034354025703593695,
+        "tool_mass_kg": 0.10431399162545195,
+        "tool_sliding_friction": 0.46814634107119396,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.46814634107119396,
+        "wall_time_constant": 0.006730428155143842,
+        "wall_yaw_deg": -5.18662012966408
+      },
+      "split": "train",
+      "task": {
+        "direction": -1,
+        "frequency_hz": 0.16997849511296048,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 2.1520115683888155,
+        "tangent_amplitude_m": 0.056569662532711826,
+        "vertical_amplitude_m": 0.037649417111510014,
+        "yaw_deg": -5.18662012966408
+      }
+    },
+    {
+      "case_id": "g004_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 10.514967923347504,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9893468212511598,
+          0.14557770186476268,
+          0.0
+        ],
+        [
+          -0.14557770186476268,
+          0.9893468212511598,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "78aeb0f4c4f201ab45dfab2f961fa047d356b7d0c2ba94e8c37a076206d59381",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 0.9621168342455056,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.1178536357577894,
+          -0.10616752431378851,
+          0.07639844780124128
+        ],
+        "force_noise_std_n": 0.21989282450330733,
+        "name": "preparation_004",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0004999431587325098,
+        "tool_mass_kg": 0.129354758344775,
+        "tool_sliding_friction": 0.5254600995314549,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.5254600995314549,
+        "wall_time_constant": 0.011011106824447415,
+        "wall_yaw_deg": -4.3225581669923425
+      },
+      "split": "train",
+      "task": {
+        "direction": -1,
+        "frequency_hz": 0.15867053617901622,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 5.702671881521383,
+        "tangent_amplitude_m": 0.05031274631985218,
+        "vertical_amplitude_m": 0.0398378975611908,
+        "yaw_deg": -4.3225581669923425
+      }
+    },
+    {
+      "case_id": "g004_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 10.514967923347504,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9893468212511598,
+          0.14557770186476268,
+          0.0
+        ],
+        [
+          -0.14557770186476268,
+          0.9893468212511598,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "78aeb0f4c4f201ab45dfab2f961fa047d356b7d0c2ba94e8c37a076206d59381",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 0.9621168342455056,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.1178536357577894,
+          -0.10616752431378851,
+          0.07639844780124128
+        ],
+        "force_noise_std_n": 0.21989282450330733,
+        "name": "preparation_004",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0004999431587325098,
+        "tool_mass_kg": 0.129354758344775,
+        "tool_sliding_friction": 0.5254600995314549,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.5254600995314549,
+        "wall_time_constant": 0.011011106824447415,
+        "wall_yaw_deg": -4.3225581669923425
+      },
+      "split": "train",
+      "task": {
+        "direction": -1,
+        "frequency_hz": 0.15867053617901622,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 5.702671881521383,
+        "tangent_amplitude_m": 0.05031274631985218,
+        "vertical_amplitude_m": 0.0398378975611908,
+        "yaw_deg": -4.3225581669923425
+      }
+    },
+    {
+      "case_id": "g005_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 12.636881524891674,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9998651027654251,
+          -0.016424867484582505,
+          0.0
+        ],
+        [
+          0.016424867484582505,
+          0.9998651027654251,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0000000000000002
+        ]
+      ],
+      "group_id": "02d1135b618f4bb3d559c8fd49d64ce93c43986b9e6d59576110bfabc47f2de3",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 0.9972262206770302,
+        "delay_steps": 3,
+        "force_bias_sensor_n": [
+          -0.08647490567986454,
+          0.31319371654544714,
+          -0.36281386610832667
+        ],
+        "force_noise_std_n": 0.11331838487622092,
+        "name": "preparation_005",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.00027154453598569753,
+        "tool_mass_kg": 0.11972517654166485,
+        "tool_sliding_friction": 0.5133303977591781,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.5133303977591781,
+        "wall_time_constant": 0.006534427480187282,
+        "wall_yaw_deg": 3.2149954686098
+      },
+      "split": "development_test",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.20647472664080396,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 4.671457175033326,
+        "tangent_amplitude_m": 0.04558289499680336,
+        "vertical_amplitude_m": 0.04435887364327973,
+        "yaw_deg": 3.2149954686098
+      }
+    },
+    {
+      "case_id": "g005_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 12.636881524891674,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9998651027654251,
+          -0.016424867484582505,
+          0.0
+        ],
+        [
+          0.016424867484582505,
+          0.9998651027654251,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0000000000000002
+        ]
+      ],
+      "group_id": "02d1135b618f4bb3d559c8fd49d64ce93c43986b9e6d59576110bfabc47f2de3",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 0.9972262206770302,
+        "delay_steps": 3,
+        "force_bias_sensor_n": [
+          -0.08647490567986454,
+          0.31319371654544714,
+          -0.36281386610832667
+        ],
+        "force_noise_std_n": 0.11331838487622092,
+        "name": "preparation_005",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.00027154453598569753,
+        "tool_mass_kg": 0.11972517654166485,
+        "tool_sliding_friction": 0.5133303977591781,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.5133303977591781,
+        "wall_time_constant": 0.006534427480187282,
+        "wall_yaw_deg": 3.2149954686098
+      },
+      "split": "development_test",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.20647472664080396,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 4.671457175033326,
+        "tangent_amplitude_m": 0.04558289499680336,
+        "vertical_amplitude_m": 0.04435887364327973,
+        "yaw_deg": 3.2149954686098
+      }
+    },
+    {
+      "case_id": "g006_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 10.792959479654229,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9649518215879473,
+          -0.2624270984751812,
+          0.0
+        ],
+        [
+          0.2624270984751812,
+          0.9649518215879473,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0000000000000002
+        ]
+      ],
+      "group_id": "d7dd1af9307ebd87f97f8e12bf7c4105c0a7bf167a41092ef2db58c7e7e133c2",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 1.0193190741835965,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2923577006697651,
+          -0.05259234730586859,
+          0.2531584804631489
+        ],
+        "force_noise_std_n": 0.11677868862921094,
+        "name": "preparation_006",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0004130531376124821,
+        "tool_mass_kg": 0.10822689276858583,
+        "tool_sliding_friction": 0.6156472242724733,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.6156472242724733,
+        "wall_time_constant": 0.0054352313610654904,
+        "wall_yaw_deg": 11.29514497758774
+      },
+      "split": "train",
+      "task": {
+        "direction": -1,
+        "frequency_hz": 0.2293882756344336,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 3.739127776013458,
+        "tangent_amplitude_m": 0.04349420057357818,
+        "vertical_amplitude_m": 0.03374245065830648,
+        "yaw_deg": 11.29514497758774
+      }
+    },
+    {
+      "case_id": "g006_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 10.792959479654229,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9649518215879473,
+          -0.2624270984751812,
+          0.0
+        ],
+        [
+          0.2624270984751812,
+          0.9649518215879473,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0000000000000002
+        ]
+      ],
+      "group_id": "d7dd1af9307ebd87f97f8e12bf7c4105c0a7bf167a41092ef2db58c7e7e133c2",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 1.0193190741835965,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2923577006697651,
+          -0.05259234730586859,
+          0.2531584804631489
+        ],
+        "force_noise_std_n": 0.11677868862921094,
+        "name": "preparation_006",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0004130531376124821,
+        "tool_mass_kg": 0.10822689276858583,
+        "tool_sliding_friction": 0.6156472242724733,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.6156472242724733,
+        "wall_time_constant": 0.0054352313610654904,
+        "wall_yaw_deg": 11.29514497758774
+      },
+      "split": "train",
+      "task": {
+        "direction": -1,
+        "frequency_hz": 0.2293882756344336,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 3.739127776013458,
+        "tangent_amplitude_m": 0.04349420057357818,
+        "vertical_amplitude_m": 0.03374245065830648,
+        "yaw_deg": 11.29514497758774
+      }
+    },
+    {
+      "case_id": "g007_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 14.294771291017808,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9933927363619459,
+          -0.11476441671234801,
+          0.0
+        ],
+        [
+          0.11476441671234801,
+          0.9933927363619459,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "group_id": "f867c0c8c648e69fef3c38ba45159a37264884db9cb86980f30dc525f65d5fd5",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 1.0304521490512677,
+        "delay_steps": 2,
+        "force_bias_sensor_n": [
+          0.07516846842614006,
+          0.25411864992877353,
+          0.11827950093348027
+        ],
+        "force_noise_std_n": 0.15472227448453818,
+        "name": "preparation_007",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.00032023374139809494,
+        "tool_mass_kg": 0.12001540091777507,
+        "tool_sliding_friction": 0.6033252469640649,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.6033252469640649,
+        "wall_time_constant": 0.008357722303622032,
+        "wall_yaw_deg": 6.849103482665328
+      },
+      "split": "validation",
+      "task": {
+        "direction": -1,
+        "frequency_hz": 0.18221993030472838,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 5.568392262938695,
+        "tangent_amplitude_m": 0.06114263634529844,
+        "vertical_amplitude_m": 0.03114630630967422,
+        "yaw_deg": 6.849103482665328
+      }
+    },
+    {
+      "case_id": "g007_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 14.294771291017808,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9933927363619459,
+          -0.11476441671234801,
+          0.0
+        ],
+        [
+          0.11476441671234801,
+          0.9933927363619459,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "group_id": "f867c0c8c648e69fef3c38ba45159a37264884db9cb86980f30dc525f65d5fd5",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 1.0304521490512677,
+        "delay_steps": 2,
+        "force_bias_sensor_n": [
+          0.07516846842614006,
+          0.25411864992877353,
+          0.11827950093348027
+        ],
+        "force_noise_std_n": 0.15472227448453818,
+        "name": "preparation_007",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.00032023374139809494,
+        "tool_mass_kg": 0.12001540091777507,
+        "tool_sliding_friction": 0.6033252469640649,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.6033252469640649,
+        "wall_time_constant": 0.008357722303622032,
+        "wall_yaw_deg": 6.849103482665328
+      },
+      "split": "validation",
+      "task": {
+        "direction": -1,
+        "frequency_hz": 0.18221993030472838,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 5.568392262938695,
+        "tangent_amplitude_m": 0.06114263634529844,
+        "vertical_amplitude_m": 0.03114630630967422,
+        "yaw_deg": 6.849103482665328
+      }
+    },
+    {
+      "case_id": "g008_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 8.234363796630474,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9700641306204176,
+          -0.24284888816639325,
+          0.0
+        ],
+        [
+          0.24284888816639325,
+          0.9700641306204176,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "group_id": "6d8c4b9fdc779198d04f6d4292585f35bec087939b9edaae51aa0bead7218bb9",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 0.9602713111227346,
+        "delay_steps": 2,
+        "force_bias_sensor_n": [
+          0.2662945061269385,
+          -0.3462216766538664,
+          -0.34195517693971
+        ],
+        "force_noise_std_n": 0.19257362125669128,
+        "name": "preparation_008",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0002499129492919603,
+        "tool_mass_kg": 0.11195398633249383,
+        "tool_sliding_friction": 0.37108835386298933,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.37108835386298933,
+        "wall_time_constant": 0.007612425204658782,
+        "wall_yaw_deg": 12.339658663619971
+      },
+      "split": "train",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.22046893524917144,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 0.6730148394337498,
+        "tangent_amplitude_m": 0.04006330429920229,
+        "vertical_amplitude_m": 0.04135387698125583,
+        "yaw_deg": 12.339658663619971
+      }
+    },
+    {
+      "case_id": "g008_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 8.234363796630474,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9700641306204176,
+          -0.24284888816639325,
+          0.0
+        ],
+        [
+          0.24284888816639325,
+          0.9700641306204176,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "group_id": "6d8c4b9fdc779198d04f6d4292585f35bec087939b9edaae51aa0bead7218bb9",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 0.9602713111227346,
+        "delay_steps": 2,
+        "force_bias_sensor_n": [
+          0.2662945061269385,
+          -0.3462216766538664,
+          -0.34195517693971
+        ],
+        "force_noise_std_n": 0.19257362125669128,
+        "name": "preparation_008",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0002499129492919603,
+        "tool_mass_kg": 0.11195398633249383,
+        "tool_sliding_friction": 0.37108835386298933,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.37108835386298933,
+        "wall_time_constant": 0.007612425204658782,
+        "wall_yaw_deg": 12.339658663619971
+      },
+      "split": "train",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.22046893524917144,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 0.6730148394337498,
+        "tangent_amplitude_m": 0.04006330429920229,
+        "vertical_amplitude_m": 0.04135387698125583,
+        "yaw_deg": 12.339658663619971
+      }
+    },
+    {
+      "case_id": "g009_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 15.710602499038712,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9687317446471707,
+          0.248110473202662,
+          0.0
+        ],
+        [
+          -0.248110473202662,
+          0.9687317446471707,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "8a93eb6e8492e8e95cc35d19e9b8f11ee84b3abaf062b765bd2b9358198a09b7",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 1.0126101880853107,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          -0.008517215224522978,
+          -0.30436522549840234,
+          0.09521874417777249
+        ],
+        "force_noise_std_n": 0.13414730217384957,
+        "name": "preparation_009",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0004588389521656723,
+        "tool_mass_kg": 0.10259178479291689,
+        "tool_sliding_friction": 0.3989671028767117,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.3989671028767117,
+        "wall_time_constant": 0.011886851976159603,
+        "wall_yaw_deg": -10.82363814841609
+      },
+      "split": "train",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.12693999371548184,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 3.2061802158377914,
+        "tangent_amplitude_m": 0.052717227640788386,
+        "vertical_amplitude_m": 0.03305490428095286,
+        "yaw_deg": -10.82363814841609
+      }
+    },
+    {
+      "case_id": "g009_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 15.710602499038712,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9687317446471707,
+          0.248110473202662,
+          0.0
+        ],
+        [
+          -0.248110473202662,
+          0.9687317446471707,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "8a93eb6e8492e8e95cc35d19e9b8f11ee84b3abaf062b765bd2b9358198a09b7",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 1.0126101880853107,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          -0.008517215224522978,
+          -0.30436522549840234,
+          0.09521874417777249
+        ],
+        "force_noise_std_n": 0.13414730217384957,
+        "name": "preparation_009",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0004588389521656723,
+        "tool_mass_kg": 0.10259178479291689,
+        "tool_sliding_friction": 0.3989671028767117,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.3989671028767117,
+        "wall_time_constant": 0.011886851976159603,
+        "wall_yaw_deg": -10.82363814841609
+      },
+      "split": "train",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.12693999371548184,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 3.2061802158377914,
+        "tangent_amplitude_m": 0.052717227640788386,
+        "vertical_amplitude_m": 0.03305490428095286,
+        "yaw_deg": -10.82363814841609
+      }
+    },
+    {
+      "case_id": "g010_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 11.744255247460599,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9743683662328629,
+          0.22495841145576562,
+          0.0
+        ],
+        [
+          -0.22495841145576562,
+          0.9743683662328629,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "e7e85c528523f783b124ec401e1fcbe0650e96483b5157dc2eda12ce83c2a4df",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 1.0479867879634472,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2559599653794824,
+          -0.1184943582970881,
+          0.1137047788416905
+        ],
+        "force_noise_std_n": 0.24842177267461152,
+        "name": "preparation_010",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.00021399351356606242,
+        "tool_mass_kg": 0.11385952639154474,
+        "tool_sliding_friction": 0.31918862417493166,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.31918862417493166,
+        "wall_time_constant": 0.010015225550379005,
+        "wall_yaw_deg": -14.078590933930105
+      },
+      "split": "train",
+      "task": {
+        "direction": -1,
+        "frequency_hz": 0.14805304029830063,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 1.0200620287316613,
+        "tangent_amplitude_m": 0.05767822215054007,
+        "vertical_amplitude_m": 0.042058570005678524,
+        "yaw_deg": -14.078590933930105
+      }
+    },
+    {
+      "case_id": "g010_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 11.744255247460599,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9743683662328629,
+          0.22495841145576562,
+          0.0
+        ],
+        [
+          -0.22495841145576562,
+          0.9743683662328629,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "e7e85c528523f783b124ec401e1fcbe0650e96483b5157dc2eda12ce83c2a4df",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 1.0479867879634472,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.2559599653794824,
+          -0.1184943582970881,
+          0.1137047788416905
+        ],
+        "force_noise_std_n": 0.24842177267461152,
+        "name": "preparation_010",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.00021399351356606242,
+        "tool_mass_kg": 0.11385952639154474,
+        "tool_sliding_friction": 0.31918862417493166,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.31918862417493166,
+        "wall_time_constant": 0.010015225550379005,
+        "wall_yaw_deg": -14.078590933930105
+      },
+      "split": "train",
+      "task": {
+        "direction": -1,
+        "frequency_hz": 0.14805304029830063,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 1.0200620287316613,
+        "tangent_amplitude_m": 0.05767822215054007,
+        "vertical_amplitude_m": 0.042058570005678524,
+        "yaw_deg": -14.078590933930105
+      }
+    },
+    {
+      "case_id": "g011_seed11",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 11,
+        "target_force": 9.411280456376277,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9997396172692449,
+          0.02281880063333113,
+          0.0
+        ],
+        [
+          -0.02281880063333113,
+          0.9997396172692449,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "3af3caae32e997092b8bbcb4590b3c030f813d9414d20593d3a15e4b1c0cf488",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 0.9829527833394772,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.23211452560618162,
+          -0.12799275336168803,
+          -0.07060629927608791
+        ],
+        "force_noise_std_n": 0.20261687851490356,
+        "name": "preparation_011",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0003674977435973798,
+        "tool_mass_kg": 0.12651217788740876,
+        "tool_sliding_friction": 0.25019342041813164,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.25019342041813164,
+        "wall_time_constant": 0.009006588842358786,
+        "wall_yaw_deg": -0.4889248881824635
+      },
+      "split": "train",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.24351178517206784,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 1.700998670330913,
+        "tangent_amplitude_m": 0.0641325300513091,
+        "vertical_amplitude_m": 0.03544363020304142,
+        "yaw_deg": -0.4889248881824635
+      }
+    },
+    {
+      "case_id": "g011_seed29",
+      "config": {
+        "contact_model": "smooth",
+        "duration": 12.0,
+        "evaluation_start": 1.5,
+        "force_filter_time_constant": 0.02,
+        "seed": 29,
+        "target_force": 9.411280456376277,
+        "timestep": 0.002
+      },
+      "controller_frame_rotation": [
+        [
+          0.9997396172692449,
+          0.02281880063333113,
+          0.0
+        ],
+        [
+          -0.02281880063333113,
+          0.9997396172692449,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          1.0
+        ]
+      ],
+      "group_id": "3af3caae32e997092b8bbcb4590b3c030f813d9414d20593d3a15e4b1c0cf488",
+      "nominal_kind": "adaptive",
+      "scenario": {
+        "bias_compensation_scale": 0.9829527833394772,
+        "delay_steps": 0,
+        "force_bias_sensor_n": [
+          0.23211452560618162,
+          -0.12799275336168803,
+          -0.07060629927608791
+        ],
+        "force_noise_std_n": 0.20261687851490356,
+        "name": "preparation_011",
+        "nominal_tool_mass_kg": 0.1,
+        "position_noise_std_m": 0.0003674977435973798,
+        "tool_mass_kg": 0.12651217788740876,
+        "tool_sliding_friction": 0.25019342041813164,
+        "torque_bias_sensor_nm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "torque_noise_std_nm": 0.002,
+        "wall_sliding_friction": 0.25019342041813164,
+        "wall_time_constant": 0.009006588842358786,
+        "wall_yaw_deg": -0.4889248881824635
+      },
+      "split": "train",
+      "task": {
+        "direction": 1,
+        "frequency_hz": 0.24351178517206784,
+        "nominal_plane_x_m": 0.4,
+        "phase_rad": 1.700998670330913,
+        "tangent_amplitude_m": 0.0641325300513091,
+        "vertical_amplitude_m": 0.03544363020304142,
+        "yaw_deg": -0.4889248881824635
+      }
+    }
+  ],
+  "comparison": {
+    "acceptance": "all transfer seeds pass unchanged validation gates, no failed training episodes, and paired mean tangent_rmse_mm transfer-minus-fresh is negative for every seed",
+    "checkpoint_episode": 32,
+    "checkpoint_selection": false,
+    "development": "freeze all candidate/comparison hashes first, then report both fixed episode-32 arms; fresh is a repeated public comparison, not an independent case",
+    "if_not_consistent": "retain fresh control; do not claim RL is invalid",
+    "minimum_improvement": null,
+    "validation_control": "immutable original-pilot fresh PPO episode 32"
+  },
+  "dataset_manifest_sha256": "2288ddd40cd5713c0f1c5607ca97e094d128cb8e30f65092942fa997ea17f87b",
+  "fresh_controls": [
+    {
+      "actual_simulation_seeds": [
+        1711258283,
+        1107945246,
+        461162894,
+        2121896212,
+        1874952414,
+        1937111312,
+        1715848705,
+        1915773419,
+        1362984459,
+        1029836659,
+        879916392,
+        1967698796,
+        916026174,
+        1858508674,
+        1336226864,
+        680561729,
+        1860083151,
+        2105795625,
+        181351170,
+        1664371487,
+        100169680,
+        1303197399,
+        1302701143,
+        2116985914,
+        1113793735,
+        785814060,
+        409094448,
+        1101310761,
+        880214364,
+        1564825176,
+        1918299089,
+        1069298726
+      ],
+      "candidate": "ppo_seed11/checkpoint_ep032.json",
+      "candidate_sha256": "2c155b1ae470beec32c1fba9f18431a472a8ca656718e8a18cb5f0db675f7009",
+      "reset_seeds": [
+        1388763433,
+        1732914161,
+        1296400081,
+        928403482,
+        1843907433,
+        1144393680,
+        1453467313,
+        1475140015,
+        4867617,
+        550718876,
+        513201882,
+        773868757,
+        2042056413,
+        2054262653,
+        862361151,
+        1991622389,
+        490977141,
+        1349392303,
+        947761465,
+        614958438,
+        2131133082,
+        241210648,
+        1369876150,
+        386891144,
+        948204487,
+        472273991,
+        918678846,
+        1193714447,
+        1929297428,
+        884038843,
+        2072649104,
+        2050074153
+      ],
+      "runtime": {
+        "deterministic_algorithms": true,
+        "device": "cpu",
+        "dtype": "float64",
+        "torch_num_threads": 1
+      },
+      "schedule_case_ids": [
+        "g008_seed11",
+        "g004_seed29",
+        "g011_seed29",
+        "g006_seed11",
+        "g000_seed29",
+        "g000_seed11",
+        "g004_seed11",
+        "g003_seed11",
+        "g010_seed29",
+        "g009_seed29",
+        "g006_seed29",
+        "g010_seed11",
+        "g011_seed11",
+        "g008_seed29",
+        "g009_seed11",
+        "g003_seed29",
+        "g000_seed11",
+        "g010_seed29",
+        "g003_seed11",
+        "g010_seed11",
+        "g009_seed29",
+        "g011_seed29",
+        "g003_seed29",
+        "g011_seed11",
+        "g008_seed29",
+        "g000_seed29",
+        "g004_seed29",
+        "g009_seed11",
+        "g008_seed11",
+        "g004_seed11",
+        "g006_seed11",
+        "g006_seed29"
+      ],
+      "seed": 11,
+      "source_and_assets_sha256": {
+        "__init__.py": "ea3952b679dfacc78ddd79d60f76f2f2e2cc4019aff05b9a0b90a55d79425c8a",
+        "assets/franka_emika_panda/CHANGELOG.md": "164a6ec704aa1714b1311f8b1538e20b4223b6ef08b7d3cb03edc26192892f67",
+        "assets/franka_emika_panda/LICENSE": "a6cba85bc92e0cff7a450b1d873c0eaa2e9fc96bf472df0247a26bec77bf3ff9",
+        "assets/franka_emika_panda/README.md": "e12684556d0154bdf2a9e77e7009ed680cd06ca89904f9e6303050f9fe59300c",
+        "assets/franka_emika_panda/UPSTREAM.md": "42960942ebe33fb3bf627367c3d2274a981d0a7a53ea202fb444809435ba0add",
+        "assets/franka_emika_panda/assets/finger_0.obj": "215098c0fcdf7192f6c503a37cf49e3efecf8a9e1320f02b17c5584d89cc5b2c",
+        "assets/franka_emika_panda/assets/finger_1.obj": "cf239e9aca26bba09dbbf1c544c47d87cfc9a2f0637c8bb786af750b6d4eca44",
+        "assets/franka_emika_panda/assets/hand.stl": "94493e94f30fe940f2c8ca2f155c3bbe67bbff406d3edf5e261670d2f0f6e2ed",
+        "assets/franka_emika_panda/assets/hand_0.obj": "b94aab901086f85df04c019b30f43bf9aa23a7ad0443ec80a8c14662a41cabd2",
+        "assets/franka_emika_panda/assets/hand_1.obj": "cd76f7494bb314406a1819c46eb826ee254894f87235714f604a470653d9badb",
+        "assets/franka_emika_panda/assets/hand_2.obj": "e0f44a71712afa5b98eb20355eff17763d3e2e19f459b2bef19abed3727e64b3",
+        "assets/franka_emika_panda/assets/hand_3.obj": "a431a06d99e88a1b322b3122a01424ee7704daeaad0bc343b90b9604f014ad0c",
+        "assets/franka_emika_panda/assets/hand_4.obj": "21f96ef6a8de082e41b1ea9834f1043de359e5d60305541bcb63539581f53bff",
+        "assets/franka_emika_panda/assets/link0.stl": "dfc6d94330de8ddb005b311bfdba9f3b8e1aa7c256b71592ee7ff32cb9a9a5aa",
+        "assets/franka_emika_panda/assets/link0_0.obj": "6b9f41a4c203540daaeb7a33cc3d0d6c6a32dc8bba187074eeaf97b3e36b3f9c",
+        "assets/franka_emika_panda/assets/link0_1.obj": "57673d2ee2a9db2e10c8986ae57c56a7c39c012b60fd26d7d8549553b664a5ed",
+        "assets/franka_emika_panda/assets/link0_10.obj": "c9198b9d8534d628d097b0f2b239bb30343353182df098ce0d9db6bc13326848",
+        "assets/franka_emika_panda/assets/link0_11.obj": "f0adec78d6677b7799d25121981270e8bfe119b5c18d08a91ee37a54ad75f65c",
+        "assets/franka_emika_panda/assets/link0_2.obj": "1ca435a2a87a9608a146a47955724d43dd7ce10fc3dd3018800aa98f8ba86e05",
+        "assets/franka_emika_panda/assets/link0_3.obj": "3e9c6334d2b3b47944af3458ee5f20519abc20fe7ee23063bb53405ccab28046",
+        "assets/franka_emika_panda/assets/link0_4.obj": "215d25789704936120f119c0bc1cc7f68516dd3f8f1df61457b71acac3873f26",
+        "assets/franka_emika_panda/assets/link0_5.obj": "9361b104e93743045107aa5b15fb1a0835ba9c1f355aae71f56403cf6a9c33f6",
+        "assets/franka_emika_panda/assets/link0_7.obj": "2dc0b8ebbbc80e4c065d71e195adbc384f673438641fac82b07b801b4d2837cb",
+        "assets/franka_emika_panda/assets/link0_8.obj": "3b8c436999db5586b8eb47bed2b0aa7de6993868b2681b4c04246eeac42fdb7a",
+        "assets/franka_emika_panda/assets/link0_9.obj": "45178f97d2b5da6bce11f610212c4ef7d08c73db33a4fc38e1b7f66b93d023f5",
+        "assets/franka_emika_panda/assets/link1.obj": "51091e776b16babdbe2f3849b5c041f921d1f11dd94ac19a0f1c81abf496fbae",
+        "assets/franka_emika_panda/assets/link1.stl": "e41a39a94108fcf56aacff603fc91ec80541f4c1af17b51a0de5617f5566e6d2",
+        "assets/franka_emika_panda/assets/link2.obj": "5c9f8e715de52c3eb71b475de35993b3b96081e02abea9f28c414768877fc59b",
+        "assets/franka_emika_panda/assets/link2.stl": "370f7605a0fae3529db169ded50f52f171024aa792d4d773bc84197301f6a039",
+        "assets/franka_emika_panda/assets/link3.stl": "0a8d638b9349c6c0eefc4e888636ac4838c4b27170f18a51699321118af709c1",
+        "assets/franka_emika_panda/assets/link3_0.obj": "ce2da87f51708e11b189249d41401065dabe89a06e251185a06cef4d5ff27178",
+        "assets/franka_emika_panda/assets/link3_1.obj": "2880b7753a7173f38fa87ee21da4dfc7fa7be46fbe07bac5aef9e128513cb118",
+        "assets/franka_emika_panda/assets/link3_2.obj": "670cff81ae84693769ca4ae658c154cf909d81167e7c8d22b70ea977f2504efa",
+        "assets/franka_emika_panda/assets/link3_3.obj": "30ede0c812efd0e0b767d134a4eae0b84e0fa407bb6325a5a555e0569b3a3ffd",
+        "assets/franka_emika_panda/assets/link4.stl": "0180ebb5772ec9840cb049750cffb29a9ddc90311752a16ea34757782ef9e48d",
+        "assets/franka_emika_panda/assets/link4_0.obj": "443bf6d178177cf347951ecf107ccd10ca444e605e375b67304579e5f948806f",
+        "assets/franka_emika_panda/assets/link4_1.obj": "ca935ec7cc8b3f0e86aa079c76b0b3bf593b1e9830bab0fa7131ac51577c74f0",
+        "assets/franka_emika_panda/assets/link4_2.obj": "c89caf26d379c35bb9e191ee2d91d09ab29ecc792b48d8bc10b39e5b38222175",
+        "assets/franka_emika_panda/assets/link4_3.obj": "1495d17f45bdb230cf58b0beef9da4e8c9cfe76a3d2d38da89017efe5e093136",
+        "assets/franka_emika_panda/assets/link5_0.obj": "a3238b8f2af0f2eb66d9fe63dc5d41ac52d5d38507241b5ed10e3cb019ab3e71",
+        "assets/franka_emika_panda/assets/link5_1.obj": "9d994bbf83ec241e301b5197a6846da13f2a4a0582edb2c0f76962c5549649d6",
+        "assets/franka_emika_panda/assets/link5_2.obj": "83b4ffe9f772cd7fe182e98640650eebc899aaf01842656574b0416c90dd40a4",
+        "assets/franka_emika_panda/assets/link5_collision_0.obj": "3e5aa75fb13f193555c3dfb999df91d81df25006a5c3af5338297d78137c129b",
+        "assets/franka_emika_panda/assets/link5_collision_1.obj": "87cd8f621071df010f774cbde789282b8463840dfe704f8bdfa2e29be0142e15",
+        "assets/franka_emika_panda/assets/link5_collision_2.obj": "823ab6c8f7b1d79e0844fa071d82a03499ff68e34fddb1ba3451032c22736040",
+        "assets/franka_emika_panda/assets/link6.stl": "20b768e99a0e0440b5754dcca108016434e57937cc356acd9c352ccd3cb27f77",
+        "assets/franka_emika_panda/assets/link6_0.obj": "0504c70ebf1b284ee8faae7dcb896b8830bc672a6552015dd5dbd121fa031fb9",
+        "assets/franka_emika_panda/assets/link6_1.obj": "45f7ca77695198b6d86ec2417ad4e42e6275044f0f96266699ee8e1057757ac1",
+        "assets/franka_emika_panda/assets/link6_10.obj": "365f26c21d10332cab8d8704645cb46930c30b3085956f2d097498c793f24db4",
+        "assets/franka_emika_panda/assets/link6_11.obj": "8ae61e08b3ad064f25bbf03b22e59cc15d65883b5a7ce92711aff29df2493901",
+        "assets/franka_emika_panda/assets/link6_12.obj": "f28d1bfd62b0244ffd19fb35fe9edefdf583d3c9167db944e87185d919e1d021",
+        "assets/franka_emika_panda/assets/link6_13.obj": "0a55fa92dccb261d07200e6565fca4c850fd17f0c1ecf38821c0b97d51796c7d",
+        "assets/franka_emika_panda/assets/link6_14.obj": "750ae3ee4781e62e3a045c662195247b03f6642b05aa93104f08258e5f6eba26",
+        "assets/franka_emika_panda/assets/link6_15.obj": "5999c1c2497a004a7c4bbe034cdf13744f839d85ae7a11b1bc386c48a3e642e6",
+        "assets/franka_emika_panda/assets/link6_16.obj": "551d7a8b37c53e7a152d008b4e36992e5b5abe74a4be18b57ee6319c27def09f",
+        "assets/franka_emika_panda/assets/link6_2.obj": "e54eee4d8232947ee8af65afd5a067e09dac2da6e7e585cb1dccb65496457da0",
+        "assets/franka_emika_panda/assets/link6_3.obj": "d4f6a25ef32fa1fa4734146981994ee760232cb077c80fea6487d78a077c7f27",
+        "assets/franka_emika_panda/assets/link6_4.obj": "be353480fe71d46f7a96f0a3cbb7e112caaf8d88368826f321a36a253c8749b2",
+        "assets/franka_emika_panda/assets/link6_5.obj": "7c87664623c3e1a6cb330db273227a69626dc5e53b4caff1d4ee7911eb3340c6",
+        "assets/franka_emika_panda/assets/link6_6.obj": "8fbc031e0d07b795ebf99115c75223141caaba317cab569159f3d477a7821681",
+        "assets/franka_emika_panda/assets/link6_7.obj": "7dc5ebb799fe281aab27d6e84e7a4efa0a8e42da2369ec83de3ea3f206f62d73",
+        "assets/franka_emika_panda/assets/link6_8.obj": "e3f77381817a341030f9dcc4c4aa7c559f80411b453fd87eb0fefecca82151bf",
+        "assets/franka_emika_panda/assets/link6_9.obj": "25a56ea9b02a03b6cb5a81f31c54f54d0185e1a0b3937c37e4289d896e50215a",
+        "assets/franka_emika_panda/assets/link7.stl": "92ac6afcf7574c034d3170d8a68e95ac9048ab9d0dd5bbd8311b86e551b9ab1c",
+        "assets/franka_emika_panda/assets/link7_0.obj": "04586b0bde011715cfc22072ac72fe0717eb4d4817bcf665987ce6cd88eb2b93",
+        "assets/franka_emika_panda/assets/link7_1.obj": "c3f72289f394c9d6749a4a327fb11f05b203c37c95032c92f28019b40ebe7e00",
+        "assets/franka_emika_panda/assets/link7_2.obj": "d2faecedb304d0989040d082410378dc949dbbda23bd18c05134f08aae984db5",
+        "assets/franka_emika_panda/assets/link7_3.obj": "b62d87c4d4bdb7b281ed341d347c39dad0e50bf36aed8ac11d050073701d5f70",
+        "assets/franka_emika_panda/assets/link7_4.obj": "cb78ccb61fd4ad6c7bff4c4d2e6cb41e1964a5a3e1a28e67c0c6202371cfc018",
+        "assets/franka_emika_panda/assets/link7_5.obj": "099071d3090b51471ba52f4f90814fd3089f4975d196e4d488117073d0bfe491",
+        "assets/franka_emika_panda/assets/link7_6.obj": "99469e2d95ab74ce0292f2f16954c87a8a7dc16652e62e970fe37c94330a81bb",
+        "assets/franka_emika_panda/assets/link7_7.obj": "426c3db8a19373f3dc73d4bec672e948121b2914c10e2e7b9c7ea80643a19e54",
+        "assets/franka_emika_panda/hand.xml": "d2a6539d0fd7c55c75c14f11c78f04505ee33f31d93e6112e3ad7120e5ee786a",
+        "assets/franka_emika_panda/mjx_hand.xml": "cf1d16467d4bd5c69f77cdcc5af2e7e1ad957416661f20d3c4029b73622b4068",
+        "assets/franka_emika_panda/mjx_panda.xml": "8c0f15b755f686a09f04a2cae4afa3b8444d61d3318ea36cee87cc8bb98f9098",
+        "assets/franka_emika_panda/mjx_panda_nohand.xml": "92a6ff0be23a90f3a5888e57067f0ecad1b2bda95c58aa30c4284750da97d075",
+        "assets/franka_emika_panda/mjx_scene.xml": "7877363e91409da51973cc042209b34257354c17c8e7b4eccde8353e88398af7",
+        "assets/franka_emika_panda/mjx_single_cube.xml": "333997ddcb065ff94871247fb2b96e1847119549bfba7a6db645fdb6cdc5199b",
+        "assets/franka_emika_panda/panda.png": "d6ad5fcfc60237f0f006cf22d6e0b70febb559f609d915cd4316e9f1ad383c2d",
+        "assets/franka_emika_panda/panda.xml": "96ad67da03710f17f798c9478fd9e9efdf24a3bf8359f05e456dd9fb158ea273",
+        "assets/franka_emika_panda/panda_nohand.xml": "e7090a5e2384b18a223ef532d98bf914f7f9a6b74dc8bc9f74c8291201074071",
+        "assets/franka_emika_panda/panda_torque.xml": "f9bbb4a22c6f90b5f1c0fcf710616036f649e46886cb08fdfe696b30b92d2271",
+        "assets/franka_emika_panda/scene.xml": "4b08c2e5108f0ed67fa689e096e58850210130c3e6ef889b1e22822d369fd8c3",
+        "assets/franka_scene.xml": "742e121b5817a578e320c4c34fe8862f94fb75ac78dec091c2eeae5b10a86f49",
+        "assets/franka_surface_scene.xml": "7e398c8d763c10f5af0e3124f02678aff1d4ebfe4c269b343cd52dc80a80e1ea",
+        "assets/planar_arm.xml": "cbd2a5b33a1bae6d79992da24a0bad1e2fbb0915c4b3f014178382849aa3e20e",
+        "contact_event_analysis.py": "a5d771e15117046fcffb1d2583ce793e68dfac93cce1dd945ca62ca5602ccde3",
+        "controllers.py": "5d64fe44b4cce33dc14f08fd97c4e082652ee31fcb57a4e5b899dfe6e107b95e",
+        "experiments.py": "ff5ea1304f6890a8a5a319c56bc6931ca174af1f85351e9846db803ffd484020",
+        "franka_adaptive.py": "638f9ff1923802fce259fa26d6395f39699ced32a7c2e23e8ec10f8fa1fba953",
+        "franka_control.py": "4b8568d98f92f81ac2adbc1c92fd30d0e587e5a8a0790cd0518b83b8703c4186",
+        "franka_experiments.py": "77d5f7d24b108a084c6ede93616bca68c890698c21f2f6afa9e606abcdaad6e4",
+        "franka_learning.py": "1dcd78138f056c075045eb7a648dc6be611e8f01f41ff7ec7d86c8768758fbd9",
+        "franka_plotting.py": "af25b67939a9c24ebb2805f4acb6679718dc05de70523cd6db80829c199ae717",
+        "franka_reference.py": "f6516c1398f7a9c4f697f4320b1d6e24d3155eb8ee61f4314b6ed68b05dcffa8",
+        "franka_safety_learning.py": "9982ae66c5bac0f0354c2a018edbe3a5d3de781ce64bec84e69ca8dad55a8649",
+        "franka_simulation.py": "df5c6ddb3ecd5e7d67edb694f7274cc434fff48521852965276043d7479d6818",
+        "franka_stress.py": "e7ecb02886687f21663c3fa007079cecd7b4bccc35f653319ad83e635e8ed911",
+        "franka_torque_safety.py": "66906939003ef030e6414639c513162f75f97f2b4df6a7ceb2c6f04dc44ca9f2",
+        "kinematics.py": "3e9cfd6cc2a13ac7cba0e7f223a1e1fa0ea70c5ff8be279ec40de75f65926a73",
+        "learning_surface_task.py": "fde25d8252d67992c2d7d52fda8a573b416b74ff2be8b70b344373657e18f9be",
+        "plotting.py": "0e1c05bca91ab393d7884c80137241b495b10d1ea87244541cc8792738ada258",
+        "post_reveal_analysis.py": "775c3bda7c4da73a4576569332ccc438da6ef43a6eb8ede0e2bdcf8db62d07da",
+        "published_results_audit.py": "d02531aa2a2c265dbfad8d38107296fe1a8bea5233757fcc0fb59fb0daaa0ec7",
+        "reference_ablation.py": "9f8428affc7e96e3b600a518883871d13fd2476242fb9b11c82d9506a8b2a07d",
+        "residual_rl.py": "bc166fa07acb4dd46f9691a76a7921e24fedbf6fb6e97b6f047507b660b8c848",
+        "simulation.py": "36dfdae8aabe00db0c32b5c19f85a25c95136f057491ca6c35651bc8a8b580e1",
+        "smoke.py": "70c6e252114694859b922b87324858672971699f1f3b7d5f3bb59463400496ea",
+        "surface_contact_validation.py": "c9d1b6d0da5cf0a5a76fa055569bdf7f30697bd9c827c6ebbd0eca3d6204eb66",
+        "surface_control.py": "445e06af46568f2ffc510ae43715b0aeb60928088133f435a51d968577121425",
+        "surface_dataset.py": "be9c942e60f7e12a70ba1e8729b281b74c7e082114fa777b56c88501bdd2e23c",
+        "surface_dataset_replay.py": "d287e26b87e04fb8d1e87f379f9688d53cd819799b8b576eefa965f996235c04",
+        "surface_env.py": "ae50987eb3a7ae996edd3997ca1c3cba8cad28a0d88a13330c3dbb7aef0a8b80",
+        "surface_experiment.py": "657499af7a682396c570040ed932f748d0fc2ff93305f7489a3c1d740200abd5",
+        "surface_policy.py": "cd3fa300b67ac5b6702b2f885d289c7a0b2610a9e68c139e8898d3771ef94738",
+        "surface_policy_artifact.py": "83ceae33d762d4888c994e262f30b5c3189f3ea961462db72d5e8dd257bcec56",
+        "surface_readiness_benchmark.py": "db9e1fc4906bf1b2ec153e97b367406cbec188059c5647e0e38da2bb1a53045d",
+        "surface_readiness_cases.py": "e670fb63821dc2251063ade8f9b7bf4e3b2571ddef8cc96c1a76156c1df6e930",
+        "surface_replay.py": "caca2ba45191e7ce9c1359a3e47d2164d4e750fa1607e947e16acab71b19ff16",
+        "surface_sensing.py": "6584764290a603db2837e84b0ef5a4bb9651fab6ff8dcfd77aa56288e6ee2e2b",
+        "surface_simulation.py": "6ff501d58a88093fb969028f2860b1b47d8e94e5cf904725a8a558bb83c1f26d",
+        "surface_splits.py": "59bfe004ed64a9cdfd52f04881259951d773c21f9b9164f8bea2b37412ffbcfc",
+        "surface_transitions.py": "9521e08593bb2c6ea640fae76da7e660fad1a2dcb13e808e004a36ca873e6bb5",
+        "tangential_compensation.py": "acd65fb1bd331281b5da0c7da182ab9d8e3cc117f99a75b190eabe54884f38af",
+        "tangential_experiment.py": "b19f299cee3f9f9a4a16a3ef120a73e00f341a7df009bffea09f143ae37aaf0c"
+      },
+      "torch_seed": 6443901324895677344,
+      "training_complete_sha256": "e9a2811fa950a90644bf0be035ff73dc4d9f8d1d12e91e930a2147c516c678a8",
+      "training_manifest_sha256": "c43816c4ff0c634d85dfb99bd62cebfcdf68b17f9e97cb4771b6af93295932de",
+      "training_source_sha256": {
+        "surface_mlp_actor.py": "a4e7e84d92066170bab09a1c25eea4a9cd1e658bb55ca2f8747c59116bba45a1",
+        "train_surface_ppo.py": "208b61ff71b5b72e31bde86fd27ecf2cdc25c2059bd3de8822502041ec84dbf8"
+      },
+      "validation_evidence_sha256": {
+        "COMPLETE": "6ec45abe8a972eb794dddea7ee1e6115a50d9a4d967f7c94ed83a0df87f0b50f",
+        "manifest.json": "9b31cf4e1c6c303c8b48c70c4b18daeb9af163edde38873f50939445ab97aa37",
+        "protocol_json": "c1e74bc85719c1dedb1f7a127b1e0b76de1b9882f4866f2ac3c3bcb2a2cf0d0e",
+        "protocol_marker": "839c52ae8ad22b80898341965416a5ef2eb85bb49142a69eaa534fdd99d5edef",
+        "published_layout": false,
+        "report.json": "e6ee79905e827f019727a0e246959910a2b480da8cb23a2367e41ed9d6783b96"
+      },
+      "validation_report": {
+        "acceptance_met": true,
+        "all_episodes_succeeded": true,
+        "all_metrics_available": true,
+        "evaluation_case_ids": [
+          "g002_seed11",
+          "g002_seed29",
+          "g007_seed11",
+          "g007_seed29"
+        ],
+        "evaluation_split": "validation",
+        "expected_case_count": 4,
+        "gates": {
+          "contact_ratio_pct": {
+            "actual": 100.0,
+            "passed": true,
+            "rule": {
+              "aggregation": "min",
+              "operator": ">=",
+              "value": 99
+            }
+          },
+          "force_rmse_n": {
+            "actual": 0.1866526913366678,
+            "passed": true,
+            "rule": {
+              "aggregation": "max",
+              "operator": "<=",
+              "value": 2
+            }
+          },
+          "max_penetration_mm": {
+            "actual": 0.8510813313464434,
+            "passed": true,
+            "rule": {
+              "aggregation": "max",
+              "operator": "<=",
+              "value": 2
+            }
+          },
+          "max_speed_m_s": {
+            "actual": 0.0737414446433141,
+            "passed": true,
+            "rule": {
+              "aggregation": "max",
+              "operator": "<=",
+              "value": 0.3
+            }
+          },
+          "peak_force_n": {
+            "actual": 15.642918442018077,
+            "passed": true,
+            "rule": {
+              "aggregation": "max",
+              "operator": "<=",
+              "value": 35
+            }
+          },
+          "saturation_pct": {
+            "actual": 0.0,
+            "passed": true,
+            "rule": {
+              "aggregation": "max",
+              "operator": "<=",
+              "value": 0
+            }
+          },
+          "tangent_rmse_mm": {
+            "actual": 7.353064223460825,
+            "passed": true,
+            "rule": {
+              "aggregation": "max",
+              "operator": "<=",
+              "value": 10
+            }
+          }
+        },
+        "metrics": {
+          "contact_ratio_pct": {
+            "aggregation": "min",
+            "available": true,
+            "value": 100.0,
+            "values": [
+              100.0,
+              100.0,
+              100.0,
+              100.0
+            ]
+          },
+          "episode_return": {
+            "available": true,
+            "values": [
+              11.976518849429802,
+              11.976379578715104,
+              11.687875548048781,
+              11.686619334968622
+            ]
+          },
+          "force_rmse_n": {
+            "aggregation": "max",
+            "available": true,
+            "value": 0.1866526913366678,
+            "values": [
+              0.10928877547098512,
+              0.11477692059226939,
+              0.18148276419453976,
+              0.1866526913366678
+            ]
+          },
+          "intervention_pct": {
+            "available": true,
+            "values": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "max_contact_loss_s": {
+            "available": true,
+            "values": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "max_force_age_s": {
+            "available": true,
+            "values": [
+              0.002000000000000668,
+              0.002000000000000668,
+              0.006000000000000227,
+              0.006000000000000227
+            ]
+          },
+          "max_kinematic_age_s": {
+            "available": true,
+            "values": [
+              0.0,
+              0.0,
+              0.004000000000001336,
+              0.004000000000001336
+            ]
+          },
+          "max_penetration_mm": {
+            "aggregation": "max",
+            "available": true,
+            "value": 0.8510813313464434,
+            "values": [
+              0.8506257065828762,
+              0.8510813313464434,
+              0.8457651029941914,
+              0.8460373804521741
+            ]
+          },
+          "max_speed_m_s": {
+            "aggregation": "max",
+            "available": true,
+            "value": 0.0737414446433141,
+            "values": [
+              0.07313275445388574,
+              0.0737414446433141,
+              0.07151260245651303,
+              0.07139803012734897
+            ]
+          },
+          "nominal_projection_pct": {
+            "available": true,
+            "values": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "orientation_rmse_deg": {
+            "available": true,
+            "values": [
+              0.3547116277435263,
+              0.35451659416690495,
+              1.1819786840392632,
+              1.1819997890025036
+            ]
+          },
+          "peak_force_n": {
+            "aggregation": "max",
+            "available": true,
+            "value": 15.642918442018077,
+            "values": [
+              12.613018642147306,
+              12.661131002331203,
+              15.609420287173387,
+              15.642918442018077
+            ]
+          },
+          "residual_projection_pct": {
+            "available": true,
+            "values": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "saturation_pct": {
+            "aggregation": "max",
+            "available": true,
+            "value": 0.0,
+            "values": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "seconds_over_35_n": {
+            "available": true,
+            "values": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "tangent_rmse_mm": {
+            "aggregation": "max",
+            "available": true,
+            "value": 7.353064223460825,
+            "values": [
+              1.7125710782347883,
+              1.720841053545782,
+              7.333350703394709,
+              7.353064223460825
+            ]
+          },
+          "torque_mapping_max_error_nm": {
+            "available": true,
+            "values": [
+              3.552713678800501e-15,
+              3.552713678800501e-15,
+              3.552713678800501e-15,
+              3.552713678800501e-15
+            ]
+          }
+        },
+        "new_holdout": false,
+        "runs": [
+          {
+            "actor_failure_count": 0,
+            "case_id": "g002_seed11",
+            "complete_execution_log": true,
+            "contact_ratio_pct": 100.0,
+            "endpoint_valid": true,
+            "episode_return": 11.976518849429802,
+            "episode_success": true,
+            "evaluation_observed": true,
+            "events_file": "case_000_events.json",
+            "exception_detail": null,
+            "force_rmse_n": 0.10928877547098512,
+            "group_id": "7de4a580a6c8ff1c7f8c59061686922a216fdde972b1a2d29c6c5658355a75fc",
+            "independent_physical_gates_met": true,
+            "intervention_pct": 0.0,
+            "max_actor_latency_s": 0.00010503199973754818,
+            "max_contact_loss_s": 0.0,
+            "max_force_age_s": 0.002000000000000668,
+            "max_kinematic_age_s": 0.0,
+            "max_penetration_mm": 0.8506257065828762,
+            "max_speed_m_s": 0.07313275445388574,
+            "nominal_projection_pct": 0.0,
+            "orientation_rmse_deg": 0.3547116277435263,
+            "peak_force_n": 12.613018642147306,
+            "physics_steps": 6000,
+            "policy_steps": 600,
+            "residual_projection_pct": 0.0,
+            "saturation_pct": 0.0,
+            "seconds_over_35_n": 0.0,
+            "simulation_seed": 287335974,
+            "split": "validation",
+            "tangent_rmse_mm": 1.7125710782347883,
+            "terminated": false,
+            "termination_reasons": [],
+            "torque_mapping_max_error_nm": 3.552713678800501e-15,
+            "trace_file": "case_000.npz",
+            "trace_finite": true,
+            "truncated": true
+          },
+          {
+            "actor_failure_count": 0,
+            "case_id": "g002_seed29",
+            "complete_execution_log": true,
+            "contact_ratio_pct": 100.0,
+            "endpoint_valid": true,
+            "episode_return": 11.976379578715104,
+            "episode_success": true,
+            "evaluation_observed": true,
+            "events_file": "case_001_events.json",
+            "exception_detail": null,
+            "force_rmse_n": 0.11477692059226939,
+            "group_id": "7de4a580a6c8ff1c7f8c59061686922a216fdde972b1a2d29c6c5658355a75fc",
+            "independent_physical_gates_met": true,
+            "intervention_pct": 0.0,
+            "max_actor_latency_s": 5.4338000154530164e-05,
+            "max_contact_loss_s": 0.0,
+            "max_force_age_s": 0.002000000000000668,
+            "max_kinematic_age_s": 0.0,
+            "max_penetration_mm": 0.8510813313464434,
+            "max_speed_m_s": 0.0737414446433141,
+            "nominal_projection_pct": 0.0,
+            "orientation_rmse_deg": 0.35451659416690495,
+            "peak_force_n": 12.661131002331203,
+            "physics_steps": 6000,
+            "policy_steps": 600,
+            "residual_projection_pct": 0.0,
+            "saturation_pct": 0.0,
+            "seconds_over_35_n": 0.0,
+            "simulation_seed": 2007055255,
+            "split": "validation",
+            "tangent_rmse_mm": 1.720841053545782,
+            "terminated": false,
+            "termination_reasons": [],
+            "torque_mapping_max_error_nm": 3.552713678800501e-15,
+            "trace_file": "case_001.npz",
+            "trace_finite": true,
+            "truncated": true
+          },
+          {
+            "actor_failure_count": 0,
+            "case_id": "g007_seed11",
+            "complete_execution_log": true,
+            "contact_ratio_pct": 100.0,
+            "endpoint_valid": true,
+            "episode_return": 11.687875548048781,
+            "episode_success": true,
+            "evaluation_observed": true,
+            "events_file": "case_002_events.json",
+            "exception_detail": null,
+            "force_rmse_n": 0.18148276419453976,
+            "group_id": "f867c0c8c648e69fef3c38ba45159a37264884db9cb86980f30dc525f65d5fd5",
+            "independent_physical_gates_met": true,
+            "intervention_pct": 0.0,
+            "max_actor_latency_s": 5.238499988990952e-05,
+            "max_contact_loss_s": 0.0,
+            "max_force_age_s": 0.006000000000000227,
+            "max_kinematic_age_s": 0.004000000000001336,
+            "max_penetration_mm": 0.8457651029941914,
+            "max_speed_m_s": 0.07151260245651303,
+            "nominal_projection_pct": 0.0,
+            "orientation_rmse_deg": 1.1819786840392632,
+            "peak_force_n": 15.609420287173387,
+            "physics_steps": 6000,
+            "policy_steps": 600,
+            "residual_projection_pct": 0.0,
+            "saturation_pct": 0.0,
+            "seconds_over_35_n": 0.0,
+            "simulation_seed": 287335974,
+            "split": "validation",
+            "tangent_rmse_mm": 7.333350703394709,
+            "terminated": false,
+            "termination_reasons": [],
+            "torque_mapping_max_error_nm": 3.552713678800501e-15,
+            "trace_file": "case_002.npz",
+            "trace_finite": true,
+            "truncated": true
+          },
+          {
+            "actor_failure_count": 0,
+            "case_id": "g007_seed29",
+            "complete_execution_log": true,
+            "contact_ratio_pct": 100.0,
+            "endpoint_valid": true,
+            "episode_return": 11.686619334968622,
+            "episode_success": true,
+            "evaluation_observed": true,
+            "events_file": "case_003_events.json",
+            "exception_detail": null,
+            "force_rmse_n": 0.1866526913366678,
+            "group_id": "f867c0c8c648e69fef3c38ba45159a37264884db9cb86980f30dc525f65d5fd5",
+            "independent_physical_gates_met": true,
+            "intervention_pct": 0.0,
+            "max_actor_latency_s": 5.30370002707059e-05,
+            "max_contact_loss_s": 0.0,
+            "max_force_age_s": 0.006000000000000227,
+            "max_kinematic_age_s": 0.004000000000001336,
+            "max_penetration_mm": 0.8460373804521741,
+            "max_speed_m_s": 0.07139803012734897,
+            "nominal_projection_pct": 0.0,
+            "orientation_rmse_deg": 1.1819997890025036,
+            "peak_force_n": 15.642918442018077,
+            "physics_steps": 6000,
+            "policy_steps": 600,
+            "residual_projection_pct": 0.0,
+            "saturation_pct": 0.0,
+            "seconds_over_35_n": 0.0,
+            "simulation_seed": 2007055255,
+            "split": "validation",
+            "tangent_rmse_mm": 7.353064223460825,
+            "terminated": false,
+            "termination_reasons": [],
+            "torque_mapping_max_error_nm": 3.552713678800501e-15,
+            "trace_file": "case_003.npz",
+            "trace_finite": true,
+            "truncated": true
+          }
+        ],
+        "schema": "surface_candidate_evaluation_v1"
+      },
+      "versions": {
+        "gymnasium": "1.3.0",
+        "mujoco": "3.12.0",
+        "numpy": "2.2.6",
+        "python": "3.10.12",
+        "torch": "2.12.1+cu130"
+      }
+    },
+    {
+      "actual_simulation_seeds": [
+        1782657250,
+        864209181,
+        2087367434,
+        1620170202,
+        1275846249,
+        1980878324,
+        1762463472,
+        1851176008,
+        1807718216,
+        675853793,
+        419943936,
+        112655857,
+        1954685298,
+        2036622031,
+        1465194207,
+        1056904784,
+        580373595,
+        225734654,
+        818454754,
+        654114622,
+        1215552437,
+        19392635,
+        1724769964,
+        686227979,
+        380062137,
+        1690564388,
+        1610145274,
+        1101775178,
+        480189231,
+        378185887,
+        309434346,
+        922839267
+      ],
+      "candidate": "ppo_seed29/checkpoint_ep032.json",
+      "candidate_sha256": "482d514e8b4fedd09a539e3a63fce92857ffd659b0adf3bdbb23bcfa41a25c1d",
+      "reset_seeds": [
+        486069870,
+        1119949127,
+        1424448401,
+        199742889,
+        2130505218,
+        1839545325,
+        1581546421,
+        1962198394,
+        1596295490,
+        1065861319,
+        695241337,
+        457987638,
+        105913953,
+        16082409,
+        951596470,
+        338460332,
+        723970050,
+        976111775,
+        937298323,
+        807984482,
+        1934872655,
+        1970109017,
+        329187478,
+        419106500,
+        1429637039,
+        1615247819,
+        1727902039,
+        1368750778,
+        1283258034,
+        830733699,
+        1945254242,
+        434939210
+      ],
+      "runtime": {
+        "deterministic_algorithms": true,
+        "device": "cpu",
+        "dtype": "float64",
+        "torch_num_threads": 1
+      },
+      "schedule_case_ids": [
+        "g009_seed11",
+        "g000_seed11",
+        "g004_seed11",
+        "g010_seed11",
+        "g003_seed11",
+        "g008_seed29",
+        "g011_seed29",
+        "g000_seed29",
+        "g004_seed29",
+        "g006_seed11",
+        "g008_seed11",
+        "g009_seed29",
+        "g010_seed29",
+        "g011_seed11",
+        "g003_seed29",
+        "g006_seed29",
+        "g004_seed11",
+        "g008_seed29",
+        "g000_seed11",
+        "g010_seed29",
+        "g009_seed29",
+        "g003_seed29",
+        "g011_seed11",
+        "g003_seed11",
+        "g006_seed29",
+        "g010_seed11",
+        "g006_seed11",
+        "g011_seed29",
+        "g000_seed29",
+        "g009_seed11",
+        "g004_seed29",
+        "g008_seed11"
+      ],
+      "seed": 29,
+      "source_and_assets_sha256": {
+        "__init__.py": "ea3952b679dfacc78ddd79d60f76f2f2e2cc4019aff05b9a0b90a55d79425c8a",
+        "assets/franka_emika_panda/CHANGELOG.md": "164a6ec704aa1714b1311f8b1538e20b4223b6ef08b7d3cb03edc26192892f67",
+        "assets/franka_emika_panda/LICENSE": "a6cba85bc92e0cff7a450b1d873c0eaa2e9fc96bf472df0247a26bec77bf3ff9",
+        "assets/franka_emika_panda/README.md": "e12684556d0154bdf2a9e77e7009ed680cd06ca89904f9e6303050f9fe59300c",
+        "assets/franka_emika_panda/UPSTREAM.md": "42960942ebe33fb3bf627367c3d2274a981d0a7a53ea202fb444809435ba0add",
+        "assets/franka_emika_panda/assets/finger_0.obj": "215098c0fcdf7192f6c503a37cf49e3efecf8a9e1320f02b17c5584d89cc5b2c",
+        "assets/franka_emika_panda/assets/finger_1.obj": "cf239e9aca26bba09dbbf1c544c47d87cfc9a2f0637c8bb786af750b6d4eca44",
+        "assets/franka_emika_panda/assets/hand.stl": "94493e94f30fe940f2c8ca2f155c3bbe67bbff406d3edf5e261670d2f0f6e2ed",
+        "assets/franka_emika_panda/assets/hand_0.obj": "b94aab901086f85df04c019b30f43bf9aa23a7ad0443ec80a8c14662a41cabd2",
+        "assets/franka_emika_panda/assets/hand_1.obj": "cd76f7494bb314406a1819c46eb826ee254894f87235714f604a470653d9badb",
+        "assets/franka_emika_panda/assets/hand_2.obj": "e0f44a71712afa5b98eb20355eff17763d3e2e19f459b2bef19abed3727e64b3",
+        "assets/franka_emika_panda/assets/hand_3.obj": "a431a06d99e88a1b322b3122a01424ee7704daeaad0bc343b90b9604f014ad0c",
+        "assets/franka_emika_panda/assets/hand_4.obj": "21f96ef6a8de082e41b1ea9834f1043de359e5d60305541bcb63539581f53bff",
+        "assets/franka_emika_panda/assets/link0.stl": "dfc6d94330de8ddb005b311bfdba9f3b8e1aa7c256b71592ee7ff32cb9a9a5aa",
+        "assets/franka_emika_panda/assets/link0_0.obj": "6b9f41a4c203540daaeb7a33cc3d0d6c6a32dc8bba187074eeaf97b3e36b3f9c",
+        "assets/franka_emika_panda/assets/link0_1.obj": "57673d2ee2a9db2e10c8986ae57c56a7c39c012b60fd26d7d8549553b664a5ed",
+        "assets/franka_emika_panda/assets/link0_10.obj": "c9198b9d8534d628d097b0f2b239bb30343353182df098ce0d9db6bc13326848",
+        "assets/franka_emika_panda/assets/link0_11.obj": "f0adec78d6677b7799d25121981270e8bfe119b5c18d08a91ee37a54ad75f65c",
+        "assets/franka_emika_panda/assets/link0_2.obj": "1ca435a2a87a9608a146a47955724d43dd7ce10fc3dd3018800aa98f8ba86e05",
+        "assets/franka_emika_panda/assets/link0_3.obj": "3e9c6334d2b3b47944af3458ee5f20519abc20fe7ee23063bb53405ccab28046",
+        "assets/franka_emika_panda/assets/link0_4.obj": "215d25789704936120f119c0bc1cc7f68516dd3f8f1df61457b71acac3873f26",
+        "assets/franka_emika_panda/assets/link0_5.obj": "9361b104e93743045107aa5b15fb1a0835ba9c1f355aae71f56403cf6a9c33f6",
+        "assets/franka_emika_panda/assets/link0_7.obj": "2dc0b8ebbbc80e4c065d71e195adbc384f673438641fac82b07b801b4d2837cb",
+        "assets/franka_emika_panda/assets/link0_8.obj": "3b8c436999db5586b8eb47bed2b0aa7de6993868b2681b4c04246eeac42fdb7a",
+        "assets/franka_emika_panda/assets/link0_9.obj": "45178f97d2b5da6bce11f610212c4ef7d08c73db33a4fc38e1b7f66b93d023f5",
+        "assets/franka_emika_panda/assets/link1.obj": "51091e776b16babdbe2f3849b5c041f921d1f11dd94ac19a0f1c81abf496fbae",
+        "assets/franka_emika_panda/assets/link1.stl": "e41a39a94108fcf56aacff603fc91ec80541f4c1af17b51a0de5617f5566e6d2",
+        "assets/franka_emika_panda/assets/link2.obj": "5c9f8e715de52c3eb71b475de35993b3b96081e02abea9f28c414768877fc59b",
+        "assets/franka_emika_panda/assets/link2.stl": "370f7605a0fae3529db169ded50f52f171024aa792d4d773bc84197301f6a039",
+        "assets/franka_emika_panda/assets/link3.stl": "0a8d638b9349c6c0eefc4e888636ac4838c4b27170f18a51699321118af709c1",
+        "assets/franka_emika_panda/assets/link3_0.obj": "ce2da87f51708e11b189249d41401065dabe89a06e251185a06cef4d5ff27178",
+        "assets/franka_emika_panda/assets/link3_1.obj": "2880b7753a7173f38fa87ee21da4dfc7fa7be46fbe07bac5aef9e128513cb118",
+        "assets/franka_emika_panda/assets/link3_2.obj": "670cff81ae84693769ca4ae658c154cf909d81167e7c8d22b70ea977f2504efa",
+        "assets/franka_emika_panda/assets/link3_3.obj": "30ede0c812efd0e0b767d134a4eae0b84e0fa407bb6325a5a555e0569b3a3ffd",
+        "assets/franka_emika_panda/assets/link4.stl": "0180ebb5772ec9840cb049750cffb29a9ddc90311752a16ea34757782ef9e48d",
+        "assets/franka_emika_panda/assets/link4_0.obj": "443bf6d178177cf347951ecf107ccd10ca444e605e375b67304579e5f948806f",
+        "assets/franka_emika_panda/assets/link4_1.obj": "ca935ec7cc8b3f0e86aa079c76b0b3bf593b1e9830bab0fa7131ac51577c74f0",
+        "assets/franka_emika_panda/assets/link4_2.obj": "c89caf26d379c35bb9e191ee2d91d09ab29ecc792b48d8bc10b39e5b38222175",
+        "assets/franka_emika_panda/assets/link4_3.obj": "1495d17f45bdb230cf58b0beef9da4e8c9cfe76a3d2d38da89017efe5e093136",
+        "assets/franka_emika_panda/assets/link5_0.obj": "a3238b8f2af0f2eb66d9fe63dc5d41ac52d5d38507241b5ed10e3cb019ab3e71",
+        "assets/franka_emika_panda/assets/link5_1.obj": "9d994bbf83ec241e301b5197a6846da13f2a4a0582edb2c0f76962c5549649d6",
+        "assets/franka_emika_panda/assets/link5_2.obj": "83b4ffe9f772cd7fe182e98640650eebc899aaf01842656574b0416c90dd40a4",
+        "assets/franka_emika_panda/assets/link5_collision_0.obj": "3e5aa75fb13f193555c3dfb999df91d81df25006a5c3af5338297d78137c129b",
+        "assets/franka_emika_panda/assets/link5_collision_1.obj": "87cd8f621071df010f774cbde789282b8463840dfe704f8bdfa2e29be0142e15",
+        "assets/franka_emika_panda/assets/link5_collision_2.obj": "823ab6c8f7b1d79e0844fa071d82a03499ff68e34fddb1ba3451032c22736040",
+        "assets/franka_emika_panda/assets/link6.stl": "20b768e99a0e0440b5754dcca108016434e57937cc356acd9c352ccd3cb27f77",
+        "assets/franka_emika_panda/assets/link6_0.obj": "0504c70ebf1b284ee8faae7dcb896b8830bc672a6552015dd5dbd121fa031fb9",
+        "assets/franka_emika_panda/assets/link6_1.obj": "45f7ca77695198b6d86ec2417ad4e42e6275044f0f96266699ee8e1057757ac1",
+        "assets/franka_emika_panda/assets/link6_10.obj": "365f26c21d10332cab8d8704645cb46930c30b3085956f2d097498c793f24db4",
+        "assets/franka_emika_panda/assets/link6_11.obj": "8ae61e08b3ad064f25bbf03b22e59cc15d65883b5a7ce92711aff29df2493901",
+        "assets/franka_emika_panda/assets/link6_12.obj": "f28d1bfd62b0244ffd19fb35fe9edefdf583d3c9167db944e87185d919e1d021",
+        "assets/franka_emika_panda/assets/link6_13.obj": "0a55fa92dccb261d07200e6565fca4c850fd17f0c1ecf38821c0b97d51796c7d",
+        "assets/franka_emika_panda/assets/link6_14.obj": "750ae3ee4781e62e3a045c662195247b03f6642b05aa93104f08258e5f6eba26",
+        "assets/franka_emika_panda/assets/link6_15.obj": "5999c1c2497a004a7c4bbe034cdf13744f839d85ae7a11b1bc386c48a3e642e6",
+        "assets/franka_emika_panda/assets/link6_16.obj": "551d7a8b37c53e7a152d008b4e36992e5b5abe74a4be18b57ee6319c27def09f",
+        "assets/franka_emika_panda/assets/link6_2.obj": "e54eee4d8232947ee8af65afd5a067e09dac2da6e7e585cb1dccb65496457da0",
+        "assets/franka_emika_panda/assets/link6_3.obj": "d4f6a25ef32fa1fa4734146981994ee760232cb077c80fea6487d78a077c7f27",
+        "assets/franka_emika_panda/assets/link6_4.obj": "be353480fe71d46f7a96f0a3cbb7e112caaf8d88368826f321a36a253c8749b2",
+        "assets/franka_emika_panda/assets/link6_5.obj": "7c87664623c3e1a6cb330db273227a69626dc5e53b4caff1d4ee7911eb3340c6",
+        "assets/franka_emika_panda/assets/link6_6.obj": "8fbc031e0d07b795ebf99115c75223141caaba317cab569159f3d477a7821681",
+        "assets/franka_emika_panda/assets/link6_7.obj": "7dc5ebb799fe281aab27d6e84e7a4efa0a8e42da2369ec83de3ea3f206f62d73",
+        "assets/franka_emika_panda/assets/link6_8.obj": "e3f77381817a341030f9dcc4c4aa7c559f80411b453fd87eb0fefecca82151bf",
+        "assets/franka_emika_panda/assets/link6_9.obj": "25a56ea9b02a03b6cb5a81f31c54f54d0185e1a0b3937c37e4289d896e50215a",
+        "assets/franka_emika_panda/assets/link7.stl": "92ac6afcf7574c034d3170d8a68e95ac9048ab9d0dd5bbd8311b86e551b9ab1c",
+        "assets/franka_emika_panda/assets/link7_0.obj": "04586b0bde011715cfc22072ac72fe0717eb4d4817bcf665987ce6cd88eb2b93",
+        "assets/franka_emika_panda/assets/link7_1.obj": "c3f72289f394c9d6749a4a327fb11f05b203c37c95032c92f28019b40ebe7e00",
+        "assets/franka_emika_panda/assets/link7_2.obj": "d2faecedb304d0989040d082410378dc949dbbda23bd18c05134f08aae984db5",
+        "assets/franka_emika_panda/assets/link7_3.obj": "b62d87c4d4bdb7b281ed341d347c39dad0e50bf36aed8ac11d050073701d5f70",
+        "assets/franka_emika_panda/assets/link7_4.obj": "cb78ccb61fd4ad6c7bff4c4d2e6cb41e1964a5a3e1a28e67c0c6202371cfc018",
+        "assets/franka_emika_panda/assets/link7_5.obj": "099071d3090b51471ba52f4f90814fd3089f4975d196e4d488117073d0bfe491",
+        "assets/franka_emika_panda/assets/link7_6.obj": "99469e2d95ab74ce0292f2f16954c87a8a7dc16652e62e970fe37c94330a81bb",
+        "assets/franka_emika_panda/assets/link7_7.obj": "426c3db8a19373f3dc73d4bec672e948121b2914c10e2e7b9c7ea80643a19e54",
+        "assets/franka_emika_panda/hand.xml": "d2a6539d0fd7c55c75c14f11c78f04505ee33f31d93e6112e3ad7120e5ee786a",
+        "assets/franka_emika_panda/mjx_hand.xml": "cf1d16467d4bd5c69f77cdcc5af2e7e1ad957416661f20d3c4029b73622b4068",
+        "assets/franka_emika_panda/mjx_panda.xml": "8c0f15b755f686a09f04a2cae4afa3b8444d61d3318ea36cee87cc8bb98f9098",
+        "assets/franka_emika_panda/mjx_panda_nohand.xml": "92a6ff0be23a90f3a5888e57067f0ecad1b2bda95c58aa30c4284750da97d075",
+        "assets/franka_emika_panda/mjx_scene.xml": "7877363e91409da51973cc042209b34257354c17c8e7b4eccde8353e88398af7",
+        "assets/franka_emika_panda/mjx_single_cube.xml": "333997ddcb065ff94871247fb2b96e1847119549bfba7a6db645fdb6cdc5199b",
+        "assets/franka_emika_panda/panda.png": "d6ad5fcfc60237f0f006cf22d6e0b70febb559f609d915cd4316e9f1ad383c2d",
+        "assets/franka_emika_panda/panda.xml": "96ad67da03710f17f798c9478fd9e9efdf24a3bf8359f05e456dd9fb158ea273",
+        "assets/franka_emika_panda/panda_nohand.xml": "e7090a5e2384b18a223ef532d98bf914f7f9a6b74dc8bc9f74c8291201074071",
+        "assets/franka_emika_panda/panda_torque.xml": "f9bbb4a22c6f90b5f1c0fcf710616036f649e46886cb08fdfe696b30b92d2271",
+        "assets/franka_emika_panda/scene.xml": "4b08c2e5108f0ed67fa689e096e58850210130c3e6ef889b1e22822d369fd8c3",
+        "assets/franka_scene.xml": "742e121b5817a578e320c4c34fe8862f94fb75ac78dec091c2eeae5b10a86f49",
+        "assets/franka_surface_scene.xml": "7e398c8d763c10f5af0e3124f02678aff1d4ebfe4c269b343cd52dc80a80e1ea",
+        "assets/planar_arm.xml": "cbd2a5b33a1bae6d79992da24a0bad1e2fbb0915c4b3f014178382849aa3e20e",
+        "contact_event_analysis.py": "a5d771e15117046fcffb1d2583ce793e68dfac93cce1dd945ca62ca5602ccde3",
+        "controllers.py": "5d64fe44b4cce33dc14f08fd97c4e082652ee31fcb57a4e5b899dfe6e107b95e",
+        "experiments.py": "ff5ea1304f6890a8a5a319c56bc6931ca174af1f85351e9846db803ffd484020",
+        "franka_adaptive.py": "638f9ff1923802fce259fa26d6395f39699ced32a7c2e23e8ec10f8fa1fba953",
+        "franka_control.py": "4b8568d98f92f81ac2adbc1c92fd30d0e587e5a8a0790cd0518b83b8703c4186",
+        "franka_experiments.py": "77d5f7d24b108a084c6ede93616bca68c890698c21f2f6afa9e606abcdaad6e4",
+        "franka_learning.py": "1dcd78138f056c075045eb7a648dc6be611e8f01f41ff7ec7d86c8768758fbd9",
+        "franka_plotting.py": "af25b67939a9c24ebb2805f4acb6679718dc05de70523cd6db80829c199ae717",
+        "franka_reference.py": "f6516c1398f7a9c4f697f4320b1d6e24d3155eb8ee61f4314b6ed68b05dcffa8",
+        "franka_safety_learning.py": "9982ae66c5bac0f0354c2a018edbe3a5d3de781ce64bec84e69ca8dad55a8649",
+        "franka_simulation.py": "df5c6ddb3ecd5e7d67edb694f7274cc434fff48521852965276043d7479d6818",
+        "franka_stress.py": "e7ecb02886687f21663c3fa007079cecd7b4bccc35f653319ad83e635e8ed911",
+        "franka_torque_safety.py": "66906939003ef030e6414639c513162f75f97f2b4df6a7ceb2c6f04dc44ca9f2",
+        "kinematics.py": "3e9cfd6cc2a13ac7cba0e7f223a1e1fa0ea70c5ff8be279ec40de75f65926a73",
+        "learning_surface_task.py": "fde25d8252d67992c2d7d52fda8a573b416b74ff2be8b70b344373657e18f9be",
+        "plotting.py": "0e1c05bca91ab393d7884c80137241b495b10d1ea87244541cc8792738ada258",
+        "post_reveal_analysis.py": "775c3bda7c4da73a4576569332ccc438da6ef43a6eb8ede0e2bdcf8db62d07da",
+        "published_results_audit.py": "d02531aa2a2c265dbfad8d38107296fe1a8bea5233757fcc0fb59fb0daaa0ec7",
+        "reference_ablation.py": "9f8428affc7e96e3b600a518883871d13fd2476242fb9b11c82d9506a8b2a07d",
+        "residual_rl.py": "bc166fa07acb4dd46f9691a76a7921e24fedbf6fb6e97b6f047507b660b8c848",
+        "simulation.py": "36dfdae8aabe00db0c32b5c19f85a25c95136f057491ca6c35651bc8a8b580e1",
+        "smoke.py": "70c6e252114694859b922b87324858672971699f1f3b7d5f3bb59463400496ea",
+        "surface_contact_validation.py": "c9d1b6d0da5cf0a5a76fa055569bdf7f30697bd9c827c6ebbd0eca3d6204eb66",
+        "surface_control.py": "445e06af46568f2ffc510ae43715b0aeb60928088133f435a51d968577121425",
+        "surface_dataset.py": "be9c942e60f7e12a70ba1e8729b281b74c7e082114fa777b56c88501bdd2e23c",
+        "surface_dataset_replay.py": "d287e26b87e04fb8d1e87f379f9688d53cd819799b8b576eefa965f996235c04",
+        "surface_env.py": "ae50987eb3a7ae996edd3997ca1c3cba8cad28a0d88a13330c3dbb7aef0a8b80",
+        "surface_experiment.py": "657499af7a682396c570040ed932f748d0fc2ff93305f7489a3c1d740200abd5",
+        "surface_policy.py": "cd3fa300b67ac5b6702b2f885d289c7a0b2610a9e68c139e8898d3771ef94738",
+        "surface_policy_artifact.py": "83ceae33d762d4888c994e262f30b5c3189f3ea961462db72d5e8dd257bcec56",
+        "surface_readiness_benchmark.py": "db9e1fc4906bf1b2ec153e97b367406cbec188059c5647e0e38da2bb1a53045d",
+        "surface_readiness_cases.py": "e670fb63821dc2251063ade8f9b7bf4e3b2571ddef8cc96c1a76156c1df6e930",
+        "surface_replay.py": "caca2ba45191e7ce9c1359a3e47d2164d4e750fa1607e947e16acab71b19ff16",
+        "surface_sensing.py": "6584764290a603db2837e84b0ef5a4bb9651fab6ff8dcfd77aa56288e6ee2e2b",
+        "surface_simulation.py": "6ff501d58a88093fb969028f2860b1b47d8e94e5cf904725a8a558bb83c1f26d",
+        "surface_splits.py": "59bfe004ed64a9cdfd52f04881259951d773c21f9b9164f8bea2b37412ffbcfc",
+        "surface_transitions.py": "9521e08593bb2c6ea640fae76da7e660fad1a2dcb13e808e004a36ca873e6bb5",
+        "tangential_compensation.py": "acd65fb1bd331281b5da0c7da182ab9d8e3cc117f99a75b190eabe54884f38af",
+        "tangential_experiment.py": "b19f299cee3f9f9a4a16a3ef120a73e00f341a7df009bffea09f143ae37aaf0c"
+      },
+      "torch_seed": 5377162067743094977,
+      "training_complete_sha256": "788137d3698faa956496493c5df86e03e006eebf59169133a6a5597523eff676",
+      "training_manifest_sha256": "c501c6adf7b4e410f901a20c170a18f154dd2e13b04285f980cbff779f8496a7",
+      "training_source_sha256": {
+        "surface_mlp_actor.py": "a4e7e84d92066170bab09a1c25eea4a9cd1e658bb55ca2f8747c59116bba45a1",
+        "train_surface_ppo.py": "208b61ff71b5b72e31bde86fd27ecf2cdc25c2059bd3de8822502041ec84dbf8"
+      },
+      "validation_evidence_sha256": {
+        "COMPLETE": "08509e9157a6ed0cd856b3c70a916a4a09dd6a8bc4d396fae0212a91a15f21e1",
+        "manifest.json": "d0c945c9d6827be2b98bfc2175c7215eb1466188cdb84edcc569bcb805f3857c",
+        "protocol_json": "48cda6a890c1e69bea32a5b0c415499f93833161c4033e471ecc31c77a0daba6",
+        "protocol_marker": "2430e1bbd5f7fdafd133da87ac97d22d80bba0a87e091709580da9cc6d67b516",
+        "published_layout": false,
+        "report.json": "1a951b3dafb0b6538c576a908f2a3b368ea4eb95a36aa16b961c7cd4977f83fa"
+      },
+      "validation_report": {
+        "acceptance_met": true,
+        "all_episodes_succeeded": true,
+        "all_metrics_available": true,
+        "evaluation_case_ids": [
+          "g002_seed11",
+          "g002_seed29",
+          "g007_seed11",
+          "g007_seed29"
+        ],
+        "evaluation_split": "validation",
+        "expected_case_count": 4,
+        "gates": {
+          "contact_ratio_pct": {
+            "actual": 100.0,
+            "passed": true,
+            "rule": {
+              "aggregation": "min",
+              "operator": ">=",
+              "value": 99
+            }
+          },
+          "force_rmse_n": {
+            "actual": 0.18274948391369839,
+            "passed": true,
+            "rule": {
+              "aggregation": "max",
+              "operator": "<=",
+              "value": 2
+            }
+          },
+          "max_penetration_mm": {
+            "actual": 0.8510813313464434,
+            "passed": true,
+            "rule": {
+              "aggregation": "max",
+              "operator": "<=",
+              "value": 2
+            }
+          },
+          "max_speed_m_s": {
+            "actual": 0.07373485618003466,
+            "passed": true,
+            "rule": {
+              "aggregation": "max",
+              "operator": "<=",
+              "value": 0.3
+            }
+          },
+          "peak_force_n": {
+            "actual": 15.642918442018077,
+            "passed": true,
+            "rule": {
+              "aggregation": "max",
+              "operator": "<=",
+              "value": 35
+            }
+          },
+          "saturation_pct": {
+            "actual": 0.0,
+            "passed": true,
+            "rule": {
+              "aggregation": "max",
+              "operator": "<=",
+              "value": 0
+            }
+          },
+          "tangent_rmse_mm": {
+            "actual": 7.387758995275641,
+            "passed": true,
+            "rule": {
+              "aggregation": "max",
+              "operator": "<=",
+              "value": 10
+            }
+          }
+        },
+        "metrics": {
+          "contact_ratio_pct": {
+            "aggregation": "min",
+            "available": true,
+            "value": 100.0,
+            "values": [
+              100.0,
+              100.0,
+              100.0,
+              100.0
+            ]
+          },
+          "episode_return": {
+            "available": true,
+            "values": [
+              11.976474275527611,
+              11.97633412809665,
+              11.685413176902971,
+              11.68415091553613
+            ]
+          },
+          "force_rmse_n": {
+            "aggregation": "max",
+            "available": true,
+            "value": 0.18274948391369839,
+            "values": [
+              0.10575174578071321,
+              0.11106924275247414,
+              0.17769712451266498,
+              0.18274948391369839
+            ]
+          },
+          "intervention_pct": {
+            "available": true,
+            "values": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "max_contact_loss_s": {
+            "available": true,
+            "values": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "max_force_age_s": {
+            "available": true,
+            "values": [
+              0.002000000000000668,
+              0.002000000000000668,
+              0.006000000000000227,
+              0.006000000000000227
+            ]
+          },
+          "max_kinematic_age_s": {
+            "available": true,
+            "values": [
+              0.0,
+              0.0,
+              0.004000000000001336,
+              0.004000000000001336
+            ]
+          },
+          "max_penetration_mm": {
+            "aggregation": "max",
+            "available": true,
+            "value": 0.8510813313464434,
+            "values": [
+              0.8506257065828762,
+              0.8510813313464434,
+              0.8457651029941914,
+              0.8460373804521741
+            ]
+          },
+          "max_speed_m_s": {
+            "aggregation": "max",
+            "available": true,
+            "value": 0.07373485618003466,
+            "values": [
+              0.07312714192514713,
+              0.07373485618003466,
+              0.071483478576039,
+              0.07135710110983012
+            ]
+          },
+          "nominal_projection_pct": {
+            "available": true,
+            "values": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "orientation_rmse_deg": {
+            "available": true,
+            "values": [
+              0.3545723609340999,
+              0.35437764119510534,
+              1.1818021837727481,
+              1.1818229439629424
+            ]
+          },
+          "peak_force_n": {
+            "aggregation": "max",
+            "available": true,
+            "value": 15.642918442018077,
+            "values": [
+              12.613018642147306,
+              12.661131002331203,
+              15.609420287173387,
+              15.642918442018077
+            ]
+          },
+          "residual_projection_pct": {
+            "available": true,
+            "values": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "saturation_pct": {
+            "aggregation": "max",
+            "available": true,
+            "value": 0.0,
+            "values": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "seconds_over_35_n": {
+            "available": true,
+            "values": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "tangent_rmse_mm": {
+            "aggregation": "max",
+            "available": true,
+            "value": 7.387758995275641,
+            "values": [
+              1.7247374495753112,
+              1.7330752822690914,
+              7.36803994794309,
+              7.387758995275641
+            ]
+          },
+          "torque_mapping_max_error_nm": {
+            "available": true,
+            "values": [
+              3.552713678800501e-15,
+              3.552713678800501e-15,
+              3.552713678800501e-15,
+              3.552713678800501e-15
+            ]
+          }
+        },
+        "new_holdout": false,
+        "runs": [
+          {
+            "actor_failure_count": 0,
+            "case_id": "g002_seed11",
+            "complete_execution_log": true,
+            "contact_ratio_pct": 100.0,
+            "endpoint_valid": true,
+            "episode_return": 11.976474275527611,
+            "episode_success": true,
+            "evaluation_observed": true,
+            "events_file": "case_000_events.json",
+            "exception_detail": null,
+            "force_rmse_n": 0.10575174578071321,
+            "group_id": "7de4a580a6c8ff1c7f8c59061686922a216fdde972b1a2d29c6c5658355a75fc",
+            "independent_physical_gates_met": true,
+            "intervention_pct": 0.0,
+            "max_actor_latency_s": 5.6101999689417426e-05,
+            "max_contact_loss_s": 0.0,
+            "max_force_age_s": 0.002000000000000668,
+            "max_kinematic_age_s": 0.0,
+            "max_penetration_mm": 0.8506257065828762,
+            "max_speed_m_s": 0.07312714192514713,
+            "nominal_projection_pct": 0.0,
+            "orientation_rmse_deg": 0.3545723609340999,
+            "peak_force_n": 12.613018642147306,
+            "physics_steps": 6000,
+            "policy_steps": 600,
+            "residual_projection_pct": 0.0,
+            "saturation_pct": 0.0,
+            "seconds_over_35_n": 0.0,
+            "simulation_seed": 287335974,
+            "split": "validation",
+            "tangent_rmse_mm": 1.7247374495753112,
+            "terminated": false,
+            "termination_reasons": [],
+            "torque_mapping_max_error_nm": 3.552713678800501e-15,
+            "trace_file": "case_000.npz",
+            "trace_finite": true,
+            "truncated": true
+          },
+          {
+            "actor_failure_count": 0,
+            "case_id": "g002_seed29",
+            "complete_execution_log": true,
+            "contact_ratio_pct": 100.0,
+            "endpoint_valid": true,
+            "episode_return": 11.97633412809665,
+            "episode_success": true,
+            "evaluation_observed": true,
+            "events_file": "case_001_events.json",
+            "exception_detail": null,
+            "force_rmse_n": 0.11106924275247414,
+            "group_id": "7de4a580a6c8ff1c7f8c59061686922a216fdde972b1a2d29c6c5658355a75fc",
+            "independent_physical_gates_met": true,
+            "intervention_pct": 0.0,
+            "max_actor_latency_s": 5.2150000556139275e-05,
+            "max_contact_loss_s": 0.0,
+            "max_force_age_s": 0.002000000000000668,
+            "max_kinematic_age_s": 0.0,
+            "max_penetration_mm": 0.8510813313464434,
+            "max_speed_m_s": 0.07373485618003466,
+            "nominal_projection_pct": 0.0,
+            "orientation_rmse_deg": 0.35437764119510534,
+            "peak_force_n": 12.661131002331203,
+            "physics_steps": 6000,
+            "policy_steps": 600,
+            "residual_projection_pct": 0.0,
+            "saturation_pct": 0.0,
+            "seconds_over_35_n": 0.0,
+            "simulation_seed": 2007055255,
+            "split": "validation",
+            "tangent_rmse_mm": 1.7330752822690914,
+            "terminated": false,
+            "termination_reasons": [],
+            "torque_mapping_max_error_nm": 3.552713678800501e-15,
+            "trace_file": "case_001.npz",
+            "trace_finite": true,
+            "truncated": true
+          },
+          {
+            "actor_failure_count": 0,
+            "case_id": "g007_seed11",
+            "complete_execution_log": true,
+            "contact_ratio_pct": 100.0,
+            "endpoint_valid": true,
+            "episode_return": 11.685413176902971,
+            "episode_success": true,
+            "evaluation_observed": true,
+            "events_file": "case_002_events.json",
+            "exception_detail": null,
+            "force_rmse_n": 0.17769712451266498,
+            "group_id": "f867c0c8c648e69fef3c38ba45159a37264884db9cb86980f30dc525f65d5fd5",
+            "independent_physical_gates_met": true,
+            "intervention_pct": 0.0,
+            "max_actor_latency_s": 4.40440007878351e-05,
+            "max_contact_loss_s": 0.0,
+            "max_force_age_s": 0.006000000000000227,
+            "max_kinematic_age_s": 0.004000000000001336,
+            "max_penetration_mm": 0.8457651029941914,
+            "max_speed_m_s": 0.071483478576039,
+            "nominal_projection_pct": 0.0,
+            "orientation_rmse_deg": 1.1818021837727481,
+            "peak_force_n": 15.609420287173387,
+            "physics_steps": 6000,
+            "policy_steps": 600,
+            "residual_projection_pct": 0.0,
+            "saturation_pct": 0.0,
+            "seconds_over_35_n": 0.0,
+            "simulation_seed": 287335974,
+            "split": "validation",
+            "tangent_rmse_mm": 7.36803994794309,
+            "terminated": false,
+            "termination_reasons": [],
+            "torque_mapping_max_error_nm": 3.552713678800501e-15,
+            "trace_file": "case_002.npz",
+            "trace_finite": true,
+            "truncated": true
+          },
+          {
+            "actor_failure_count": 0,
+            "case_id": "g007_seed29",
+            "complete_execution_log": true,
+            "contact_ratio_pct": 100.0,
+            "endpoint_valid": true,
+            "episode_return": 11.68415091553613,
+            "episode_success": true,
+            "evaluation_observed": true,
+            "events_file": "case_003_events.json",
+            "exception_detail": null,
+            "force_rmse_n": 0.18274948391369839,
+            "group_id": "f867c0c8c648e69fef3c38ba45159a37264884db9cb86980f30dc525f65d5fd5",
+            "independent_physical_gates_met": true,
+            "intervention_pct": 0.0,
+            "max_actor_latency_s": 5.5901999985508155e-05,
+            "max_contact_loss_s": 0.0,
+            "max_force_age_s": 0.006000000000000227,
+            "max_kinematic_age_s": 0.004000000000001336,
+            "max_penetration_mm": 0.8460373804521741,
+            "max_speed_m_s": 0.07135710110983012,
+            "nominal_projection_pct": 0.0,
+            "orientation_rmse_deg": 1.1818229439629424,
+            "peak_force_n": 15.642918442018077,
+            "physics_steps": 6000,
+            "policy_steps": 600,
+            "residual_projection_pct": 0.0,
+            "saturation_pct": 0.0,
+            "seconds_over_35_n": 0.0,
+            "simulation_seed": 2007055255,
+            "split": "validation",
+            "tangent_rmse_mm": 7.387758995275641,
+            "terminated": false,
+            "termination_reasons": [],
+            "torque_mapping_max_error_nm": 3.552713678800501e-15,
+            "trace_file": "case_003.npz",
+            "trace_finite": true,
+            "truncated": true
+          }
+        ],
+        "schema": "surface_candidate_evaluation_v1"
+      },
+      "versions": {
+        "gymnasium": "1.3.0",
+        "mujoco": "3.12.0",
+        "numpy": "2.2.6",
+        "python": "3.10.12",
+        "torch": "2.12.1+cu130"
+      }
+    },
+    {
+      "actual_simulation_seeds": [
+        1360922221,
+        689178313,
+        1998296705,
+        1754184540,
+        501311403,
+        1636237616,
+        1057987746,
+        2143612080,
+        1256807152,
+        1240599836,
+        1645322368,
+        1197519558,
+        982878188,
+        1369486627,
+        365605670,
+        2033608383,
+        182526787,
+        724432462,
+        188337046,
+        1799778113,
+        1890053238,
+        1134348727,
+        957973759,
+        315311937,
+        673662995,
+        1191884190,
+        880446672,
+        1403300044,
+        1910662944,
+        813401535,
+        1950325932,
+        438367265
+      ],
+      "candidate": "ppo_seed47/checkpoint_ep032.json",
+      "candidate_sha256": "f799e545bc2fd0263254582e928b9251d1f3ddeccb7b232a5b648dacced8e380",
+      "reset_seeds": [
+        448041167,
+        1523352839,
+        2107606802,
+        1072728431,
+        1236071868,
+        41858965,
+        1882152958,
+        1256811250,
+        507706001,
+        851804480,
+        432564282,
+        759184162,
+        1758024806,
+        1566829341,
+        846542736,
+        73598649,
+        1493573770,
+        474228644,
+        781678842,
+        1688431523,
+        1115676689,
+        547919181,
+        1932632773,
+        552644344,
+        1455447732,
+        1748060102,
+        417653956,
+        2059897296,
+        336403345,
+        448547215,
+        1102331242,
+        1069685901
+      ],
+      "runtime": {
+        "deterministic_algorithms": true,
+        "device": "cpu",
+        "dtype": "float64",
+        "torch_num_threads": 1
+      },
+      "schedule_case_ids": [
+        "g009_seed29",
+        "g006_seed29",
+        "g006_seed11",
+        "g011_seed29",
+        "g003_seed29",
+        "g010_seed11",
+        "g004_seed11",
+        "g008_seed11",
+        "g000_seed11",
+        "g003_seed11",
+        "g011_seed11",
+        "g004_seed29",
+        "g000_seed29",
+        "g010_seed29",
+        "g008_seed29",
+        "g009_seed11",
+        "g011_seed11",
+        "g004_seed11",
+        "g003_seed11",
+        "g006_seed29",
+        "g008_seed11",
+        "g004_seed29",
+        "g011_seed29",
+        "g003_seed29",
+        "g009_seed29",
+        "g000_seed29",
+        "g009_seed11",
+        "g006_seed11",
+        "g010_seed29",
+        "g010_seed11",
+        "g000_seed11",
+        "g008_seed29"
+      ],
+      "seed": 47,
+      "source_and_assets_sha256": {
+        "__init__.py": "ea3952b679dfacc78ddd79d60f76f2f2e2cc4019aff05b9a0b90a55d79425c8a",
+        "assets/franka_emika_panda/CHANGELOG.md": "164a6ec704aa1714b1311f8b1538e20b4223b6ef08b7d3cb03edc26192892f67",
+        "assets/franka_emika_panda/LICENSE": "a6cba85bc92e0cff7a450b1d873c0eaa2e9fc96bf472df0247a26bec77bf3ff9",
+        "assets/franka_emika_panda/README.md": "e12684556d0154bdf2a9e77e7009ed680cd06ca89904f9e6303050f9fe59300c",
+        "assets/franka_emika_panda/UPSTREAM.md": "42960942ebe33fb3bf627367c3d2274a981d0a7a53ea202fb444809435ba0add",
+        "assets/franka_emika_panda/assets/finger_0.obj": "215098c0fcdf7192f6c503a37cf49e3efecf8a9e1320f02b17c5584d89cc5b2c",
+        "assets/franka_emika_panda/assets/finger_1.obj": "cf239e9aca26bba09dbbf1c544c47d87cfc9a2f0637c8bb786af750b6d4eca44",
+        "assets/franka_emika_panda/assets/hand.stl": "94493e94f30fe940f2c8ca2f155c3bbe67bbff406d3edf5e261670d2f0f6e2ed",
+        "assets/franka_emika_panda/assets/hand_0.obj": "b94aab901086f85df04c019b30f43bf9aa23a7ad0443ec80a8c14662a41cabd2",
+        "assets/franka_emika_panda/assets/hand_1.obj": "cd76f7494bb314406a1819c46eb826ee254894f87235714f604a470653d9badb",
+        "assets/franka_emika_panda/assets/hand_2.obj": "e0f44a71712afa5b98eb20355eff17763d3e2e19f459b2bef19abed3727e64b3",
+        "assets/franka_emika_panda/assets/hand_3.obj": "a431a06d99e88a1b322b3122a01424ee7704daeaad0bc343b90b9604f014ad0c",
+        "assets/franka_emika_panda/assets/hand_4.obj": "21f96ef6a8de082e41b1ea9834f1043de359e5d60305541bcb63539581f53bff",
+        "assets/franka_emika_panda/assets/link0.stl": "dfc6d94330de8ddb005b311bfdba9f3b8e1aa7c256b71592ee7ff32cb9a9a5aa",
+        "assets/franka_emika_panda/assets/link0_0.obj": "6b9f41a4c203540daaeb7a33cc3d0d6c6a32dc8bba187074eeaf97b3e36b3f9c",
+        "assets/franka_emika_panda/assets/link0_1.obj": "57673d2ee2a9db2e10c8986ae57c56a7c39c012b60fd26d7d8549553b664a5ed",
+        "assets/franka_emika_panda/assets/link0_10.obj": "c9198b9d8534d628d097b0f2b239bb30343353182df098ce0d9db6bc13326848",
+        "assets/franka_emika_panda/assets/link0_11.obj": "f0adec78d6677b7799d25121981270e8bfe119b5c18d08a91ee37a54ad75f65c",
+        "assets/franka_emika_panda/assets/link0_2.obj": "1ca435a2a87a9608a146a47955724d43dd7ce10fc3dd3018800aa98f8ba86e05",
+        "assets/franka_emika_panda/assets/link0_3.obj": "3e9c6334d2b3b47944af3458ee5f20519abc20fe7ee23063bb53405ccab28046",
+        "assets/franka_emika_panda/assets/link0_4.obj": "215d25789704936120f119c0bc1cc7f68516dd3f8f1df61457b71acac3873f26",
+        "assets/franka_emika_panda/assets/link0_5.obj": "9361b104e93743045107aa5b15fb1a0835ba9c1f355aae71f56403cf6a9c33f6",
+        "assets/franka_emika_panda/assets/link0_7.obj": "2dc0b8ebbbc80e4c065d71e195adbc384f673438641fac82b07b801b4d2837cb",
+        "assets/franka_emika_panda/assets/link0_8.obj": "3b8c436999db5586b8eb47bed2b0aa7de6993868b2681b4c04246eeac42fdb7a",
+        "assets/franka_emika_panda/assets/link0_9.obj": "45178f97d2b5da6bce11f610212c4ef7d08c73db33a4fc38e1b7f66b93d023f5",
+        "assets/franka_emika_panda/assets/link1.obj": "51091e776b16babdbe2f3849b5c041f921d1f11dd94ac19a0f1c81abf496fbae",
+        "assets/franka_emika_panda/assets/link1.stl": "e41a39a94108fcf56aacff603fc91ec80541f4c1af17b51a0de5617f5566e6d2",
+        "assets/franka_emika_panda/assets/link2.obj": "5c9f8e715de52c3eb71b475de35993b3b96081e02abea9f28c414768877fc59b",
+        "assets/franka_emika_panda/assets/link2.stl": "370f7605a0fae3529db169ded50f52f171024aa792d4d773bc84197301f6a039",
+        "assets/franka_emika_panda/assets/link3.stl": "0a8d638b9349c6c0eefc4e888636ac4838c4b27170f18a51699321118af709c1",
+        "assets/franka_emika_panda/assets/link3_0.obj": "ce2da87f51708e11b189249d41401065dabe89a06e251185a06cef4d5ff27178",
+        "assets/franka_emika_panda/assets/link3_1.obj": "2880b7753a7173f38fa87ee21da4dfc7fa7be46fbe07bac5aef9e128513cb118",
+        "assets/franka_emika_panda/assets/link3_2.obj": "670cff81ae84693769ca4ae658c154cf909d81167e7c8d22b70ea977f2504efa",
+        "assets/franka_emika_panda/assets/link3_3.obj": "30ede0c812efd0e0b767d134a4eae0b84e0fa407bb6325a5a555e0569b3a3ffd",
+        "assets/franka_emika_panda/assets/link4.stl": "0180ebb5772ec9840cb049750cffb29a9ddc90311752a16ea34757782ef9e48d",
+        "assets/franka_emika_panda/assets/link4_0.obj": "443bf6d178177cf347951ecf107ccd10ca444e605e375b67304579e5f948806f",
+        "assets/franka_emika_panda/assets/link4_1.obj": "ca935ec7cc8b3f0e86aa079c76b0b3bf593b1e9830bab0fa7131ac51577c74f0",
+        "assets/franka_emika_panda/assets/link4_2.obj": "c89caf26d379c35bb9e191ee2d91d09ab29ecc792b48d8bc10b39e5b38222175",
+        "assets/franka_emika_panda/assets/link4_3.obj": "1495d17f45bdb230cf58b0beef9da4e8c9cfe76a3d2d38da89017efe5e093136",
+        "assets/franka_emika_panda/assets/link5_0.obj": "a3238b8f2af0f2eb66d9fe63dc5d41ac52d5d38507241b5ed10e3cb019ab3e71",
+        "assets/franka_emika_panda/assets/link5_1.obj": "9d994bbf83ec241e301b5197a6846da13f2a4a0582edb2c0f76962c5549649d6",
+        "assets/franka_emika_panda/assets/link5_2.obj": "83b4ffe9f772cd7fe182e98640650eebc899aaf01842656574b0416c90dd40a4",
+        "assets/franka_emika_panda/assets/link5_collision_0.obj": "3e5aa75fb13f193555c3dfb999df91d81df25006a5c3af5338297d78137c129b",
+        "assets/franka_emika_panda/assets/link5_collision_1.obj": "87cd8f621071df010f774cbde789282b8463840dfe704f8bdfa2e29be0142e15",
+        "assets/franka_emika_panda/assets/link5_collision_2.obj": "823ab6c8f7b1d79e0844fa071d82a03499ff68e34fddb1ba3451032c22736040",
+        "assets/franka_emika_panda/assets/link6.stl": "20b768e99a0e0440b5754dcca108016434e57937cc356acd9c352ccd3cb27f77",
+        "assets/franka_emika_panda/assets/link6_0.obj": "0504c70ebf1b284ee8faae7dcb896b8830bc672a6552015dd5dbd121fa031fb9",
+        "assets/franka_emika_panda/assets/link6_1.obj": "45f7ca77695198b6d86ec2417ad4e42e6275044f0f96266699ee8e1057757ac1",
+        "assets/franka_emika_panda/assets/link6_10.obj": "365f26c21d10332cab8d8704645cb46930c30b3085956f2d097498c793f24db4",
+        "assets/franka_emika_panda/assets/link6_11.obj": "8ae61e08b3ad064f25bbf03b22e59cc15d65883b5a7ce92711aff29df2493901",
+        "assets/franka_emika_panda/assets/link6_12.obj": "f28d1bfd62b0244ffd19fb35fe9edefdf583d3c9167db944e87185d919e1d021",
+        "assets/franka_emika_panda/assets/link6_13.obj": "0a55fa92dccb261d07200e6565fca4c850fd17f0c1ecf38821c0b97d51796c7d",
+        "assets/franka_emika_panda/assets/link6_14.obj": "750ae3ee4781e62e3a045c662195247b03f6642b05aa93104f08258e5f6eba26",
+        "assets/franka_emika_panda/assets/link6_15.obj": "5999c1c2497a004a7c4bbe034cdf13744f839d85ae7a11b1bc386c48a3e642e6",
+        "assets/franka_emika_panda/assets/link6_16.obj": "551d7a8b37c53e7a152d008b4e36992e5b5abe74a4be18b57ee6319c27def09f",
+        "assets/franka_emika_panda/assets/link6_2.obj": "e54eee4d8232947ee8af65afd5a067e09dac2da6e7e585cb1dccb65496457da0",
+        "assets/franka_emika_panda/assets/link6_3.obj": "d4f6a25ef32fa1fa4734146981994ee760232cb077c80fea6487d78a077c7f27",
+        "assets/franka_emika_panda/assets/link6_4.obj": "be353480fe71d46f7a96f0a3cbb7e112caaf8d88368826f321a36a253c8749b2",
+        "assets/franka_emika_panda/assets/link6_5.obj": "7c87664623c3e1a6cb330db273227a69626dc5e53b4caff1d4ee7911eb3340c6",
+        "assets/franka_emika_panda/assets/link6_6.obj": "8fbc031e0d07b795ebf99115c75223141caaba317cab569159f3d477a7821681",
+        "assets/franka_emika_panda/assets/link6_7.obj": "7dc5ebb799fe281aab27d6e84e7a4efa0a8e42da2369ec83de3ea3f206f62d73",
+        "assets/franka_emika_panda/assets/link6_8.obj": "e3f77381817a341030f9dcc4c4aa7c559f80411b453fd87eb0fefecca82151bf",
+        "assets/franka_emika_panda/assets/link6_9.obj": "25a56ea9b02a03b6cb5a81f31c54f54d0185e1a0b3937c37e4289d896e50215a",
+        "assets/franka_emika_panda/assets/link7.stl": "92ac6afcf7574c034d3170d8a68e95ac9048ab9d0dd5bbd8311b86e551b9ab1c",
+        "assets/franka_emika_panda/assets/link7_0.obj": "04586b0bde011715cfc22072ac72fe0717eb4d4817bcf665987ce6cd88eb2b93",
+        "assets/franka_emika_panda/assets/link7_1.obj": "c3f72289f394c9d6749a4a327fb11f05b203c37c95032c92f28019b40ebe7e00",
+        "assets/franka_emika_panda/assets/link7_2.obj": "d2faecedb304d0989040d082410378dc949dbbda23bd18c05134f08aae984db5",
+        "assets/franka_emika_panda/assets/link7_3.obj": "b62d87c4d4bdb7b281ed341d347c39dad0e50bf36aed8ac11d050073701d5f70",
+        "assets/franka_emika_panda/assets/link7_4.obj": "cb78ccb61fd4ad6c7bff4c4d2e6cb41e1964a5a3e1a28e67c0c6202371cfc018",
+        "assets/franka_emika_panda/assets/link7_5.obj": "099071d3090b51471ba52f4f90814fd3089f4975d196e4d488117073d0bfe491",
+        "assets/franka_emika_panda/assets/link7_6.obj": "99469e2d95ab74ce0292f2f16954c87a8a7dc16652e62e970fe37c94330a81bb",
+        "assets/franka_emika_panda/assets/link7_7.obj": "426c3db8a19373f3dc73d4bec672e948121b2914c10e2e7b9c7ea80643a19e54",
+        "assets/franka_emika_panda/hand.xml": "d2a6539d0fd7c55c75c14f11c78f04505ee33f31d93e6112e3ad7120e5ee786a",
+        "assets/franka_emika_panda/mjx_hand.xml": "cf1d16467d4bd5c69f77cdcc5af2e7e1ad957416661f20d3c4029b73622b4068",
+        "assets/franka_emika_panda/mjx_panda.xml": "8c0f15b755f686a09f04a2cae4afa3b8444d61d3318ea36cee87cc8bb98f9098",
+        "assets/franka_emika_panda/mjx_panda_nohand.xml": "92a6ff0be23a90f3a5888e57067f0ecad1b2bda95c58aa30c4284750da97d075",
+        "assets/franka_emika_panda/mjx_scene.xml": "7877363e91409da51973cc042209b34257354c17c8e7b4eccde8353e88398af7",
+        "assets/franka_emika_panda/mjx_single_cube.xml": "333997ddcb065ff94871247fb2b96e1847119549bfba7a6db645fdb6cdc5199b",
+        "assets/franka_emika_panda/panda.png": "d6ad5fcfc60237f0f006cf22d6e0b70febb559f609d915cd4316e9f1ad383c2d",
+        "assets/franka_emika_panda/panda.xml": "96ad67da03710f17f798c9478fd9e9efdf24a3bf8359f05e456dd9fb158ea273",
+        "assets/franka_emika_panda/panda_nohand.xml": "e7090a5e2384b18a223ef532d98bf914f7f9a6b74dc8bc9f74c8291201074071",
+        "assets/franka_emika_panda/panda_torque.xml": "f9bbb4a22c6f90b5f1c0fcf710616036f649e46886cb08fdfe696b30b92d2271",
+        "assets/franka_emika_panda/scene.xml": "4b08c2e5108f0ed67fa689e096e58850210130c3e6ef889b1e22822d369fd8c3",
+        "assets/franka_scene.xml": "742e121b5817a578e320c4c34fe8862f94fb75ac78dec091c2eeae5b10a86f49",
+        "assets/franka_surface_scene.xml": "7e398c8d763c10f5af0e3124f02678aff1d4ebfe4c269b343cd52dc80a80e1ea",
+        "assets/planar_arm.xml": "cbd2a5b33a1bae6d79992da24a0bad1e2fbb0915c4b3f014178382849aa3e20e",
+        "contact_event_analysis.py": "a5d771e15117046fcffb1d2583ce793e68dfac93cce1dd945ca62ca5602ccde3",
+        "controllers.py": "5d64fe44b4cce33dc14f08fd97c4e082652ee31fcb57a4e5b899dfe6e107b95e",
+        "experiments.py": "ff5ea1304f6890a8a5a319c56bc6931ca174af1f85351e9846db803ffd484020",
+        "franka_adaptive.py": "638f9ff1923802fce259fa26d6395f39699ced32a7c2e23e8ec10f8fa1fba953",
+        "franka_control.py": "4b8568d98f92f81ac2adbc1c92fd30d0e587e5a8a0790cd0518b83b8703c4186",
+        "franka_experiments.py": "77d5f7d24b108a084c6ede93616bca68c890698c21f2f6afa9e606abcdaad6e4",
+        "franka_learning.py": "1dcd78138f056c075045eb7a648dc6be611e8f01f41ff7ec7d86c8768758fbd9",
+        "franka_plotting.py": "af25b67939a9c24ebb2805f4acb6679718dc05de70523cd6db80829c199ae717",
+        "franka_reference.py": "f6516c1398f7a9c4f697f4320b1d6e24d3155eb8ee61f4314b6ed68b05dcffa8",
+        "franka_safety_learning.py": "9982ae66c5bac0f0354c2a018edbe3a5d3de781ce64bec84e69ca8dad55a8649",
+        "franka_simulation.py": "df5c6ddb3ecd5e7d67edb694f7274cc434fff48521852965276043d7479d6818",
+        "franka_stress.py": "e7ecb02886687f21663c3fa007079cecd7b4bccc35f653319ad83e635e8ed911",
+        "franka_torque_safety.py": "66906939003ef030e6414639c513162f75f97f2b4df6a7ceb2c6f04dc44ca9f2",
+        "kinematics.py": "3e9cfd6cc2a13ac7cba0e7f223a1e1fa0ea70c5ff8be279ec40de75f65926a73",
+        "learning_surface_task.py": "fde25d8252d67992c2d7d52fda8a573b416b74ff2be8b70b344373657e18f9be",
+        "plotting.py": "0e1c05bca91ab393d7884c80137241b495b10d1ea87244541cc8792738ada258",
+        "post_reveal_analysis.py": "775c3bda7c4da73a4576569332ccc438da6ef43a6eb8ede0e2bdcf8db62d07da",
+        "published_results_audit.py": "d02531aa2a2c265dbfad8d38107296fe1a8bea5233757fcc0fb59fb0daaa0ec7",
+        "reference_ablation.py": "9f8428affc7e96e3b600a518883871d13fd2476242fb9b11c82d9506a8b2a07d",
+        "residual_rl.py": "bc166fa07acb4dd46f9691a76a7921e24fedbf6fb6e97b6f047507b660b8c848",
+        "simulation.py": "36dfdae8aabe00db0c32b5c19f85a25c95136f057491ca6c35651bc8a8b580e1",
+        "smoke.py": "70c6e252114694859b922b87324858672971699f1f3b7d5f3bb59463400496ea",
+        "surface_contact_validation.py": "c9d1b6d0da5cf0a5a76fa055569bdf7f30697bd9c827c6ebbd0eca3d6204eb66",
+        "surface_control.py": "445e06af46568f2ffc510ae43715b0aeb60928088133f435a51d968577121425",
+        "surface_dataset.py": "be9c942e60f7e12a70ba1e8729b281b74c7e082114fa777b56c88501bdd2e23c",
+        "surface_dataset_replay.py": "d287e26b87e04fb8d1e87f379f9688d53cd819799b8b576eefa965f996235c04",
+        "surface_env.py": "ae50987eb3a7ae996edd3997ca1c3cba8cad28a0d88a13330c3dbb7aef0a8b80",
+        "surface_experiment.py": "657499af7a682396c570040ed932f748d0fc2ff93305f7489a3c1d740200abd5",
+        "surface_policy.py": "cd3fa300b67ac5b6702b2f885d289c7a0b2610a9e68c139e8898d3771ef94738",
+        "surface_policy_artifact.py": "83ceae33d762d4888c994e262f30b5c3189f3ea961462db72d5e8dd257bcec56",
+        "surface_readiness_benchmark.py": "db9e1fc4906bf1b2ec153e97b367406cbec188059c5647e0e38da2bb1a53045d",
+        "surface_readiness_cases.py": "e670fb63821dc2251063ade8f9b7bf4e3b2571ddef8cc96c1a76156c1df6e930",
+        "surface_replay.py": "caca2ba45191e7ce9c1359a3e47d2164d4e750fa1607e947e16acab71b19ff16",
+        "surface_sensing.py": "6584764290a603db2837e84b0ef5a4bb9651fab6ff8dcfd77aa56288e6ee2e2b",
+        "surface_simulation.py": "6ff501d58a88093fb969028f2860b1b47d8e94e5cf904725a8a558bb83c1f26d",
+        "surface_splits.py": "59bfe004ed64a9cdfd52f04881259951d773c21f9b9164f8bea2b37412ffbcfc",
+        "surface_transitions.py": "9521e08593bb2c6ea640fae76da7e660fad1a2dcb13e808e004a36ca873e6bb5",
+        "tangential_compensation.py": "acd65fb1bd331281b5da0c7da182ab9d8e3cc117f99a75b190eabe54884f38af",
+        "tangential_experiment.py": "b19f299cee3f9f9a4a16a3ef120a73e00f341a7df009bffea09f143ae37aaf0c"
+      },
+      "torch_seed": 1876405030404121332,
+      "training_complete_sha256": "c1197fd3617b8d6317e89a9fe8e003e5e29a47068c745cfcd082770c48ebea8c",
+      "training_manifest_sha256": "e2d5b41c54e2dfb5181556d211f2c27980ee32af035d9accd27103286b6cc81b",
+      "training_source_sha256": {
+        "surface_mlp_actor.py": "a4e7e84d92066170bab09a1c25eea4a9cd1e658bb55ca2f8747c59116bba45a1",
+        "train_surface_ppo.py": "208b61ff71b5b72e31bde86fd27ecf2cdc25c2059bd3de8822502041ec84dbf8"
+      },
+      "validation_evidence_sha256": {
+        "COMPLETE": "6369393b1d8201c727a0febc4a0f407ee683fff399b5b40df708a62b1b65dea1",
+        "manifest.json": "17652ea6ee5cd5f7b60e68bd698e6a2f1a40c839a5845cb9837b6ad90b5e34ec",
+        "protocol_json": "0b2e62450c0314aaaf33998685a6f796e1b2bc520a591967938036c942ce3e3f",
+        "protocol_marker": "aa809c2aaff1636994417459ad5e11d569e4c40e3ce8a8ba8c726aef994ef6ae",
+        "published_layout": false,
+        "report.json": "dc8e5166ef760f59502fb0c7f09f5f88e6d31aee280f1abf0ab039a2e3a6d4fd"
+      },
+      "validation_report": {
+        "acceptance_met": true,
+        "all_episodes_succeeded": true,
+        "all_metrics_available": true,
+        "evaluation_case_ids": [
+          "g002_seed11",
+          "g002_seed29",
+          "g007_seed11",
+          "g007_seed29"
+        ],
+        "evaluation_split": "validation",
+        "expected_case_count": 4,
+        "gates": {
+          "contact_ratio_pct": {
+            "actual": 100.0,
+            "passed": true,
+            "rule": {
+              "aggregation": "min",
+              "operator": ">=",
+              "value": 99
+            }
+          },
+          "force_rmse_n": {
+            "actual": 0.18506747584583486,
+            "passed": true,
+            "rule": {
+              "aggregation": "max",
+              "operator": "<=",
+              "value": 2
+            }
+          },
+          "max_penetration_mm": {
+            "actual": 0.8510813313464434,
+            "passed": true,
+            "rule": {
+              "aggregation": "max",
+              "operator": "<=",
+              "value": 2
+            }
+          },
+          "max_speed_m_s": {
+            "actual": 0.07367397238594432,
+            "passed": true,
+            "rule": {
+              "aggregation": "max",
+              "operator": "<=",
+              "value": 0.3
+            }
+          },
+          "peak_force_n": {
+            "actual": 15.642918442018077,
+            "passed": true,
+            "rule": {
+              "aggregation": "max",
+              "operator": "<=",
+              "value": 35
+            }
+          },
+          "saturation_pct": {
+            "actual": 0.0,
+            "passed": true,
+            "rule": {
+              "aggregation": "max",
+              "operator": "<=",
+              "value": 0
+            }
+          },
+          "tangent_rmse_mm": {
+            "actual": 7.46391098322291,
+            "passed": true,
+            "rule": {
+              "aggregation": "max",
+              "operator": "<=",
+              "value": 10
+            }
+          }
+        },
+        "metrics": {
+          "contact_ratio_pct": {
+            "aggregation": "min",
+            "available": true,
+            "value": 100.0,
+            "values": [
+              100.0,
+              100.0,
+              100.0,
+              100.0
+            ]
+          },
+          "episode_return": {
+            "available": true,
+            "values": [
+              11.977072786691977,
+              11.976936562649204,
+              11.679579930187534,
+              11.678327812458274
+            ]
+          },
+          "force_rmse_n": {
+            "aggregation": "max",
+            "available": true,
+            "value": 0.18506747584583486,
+            "values": [
+              0.10870511806084532,
+              0.11408214949423286,
+              0.1800091096097609,
+              0.18506747584583486
+            ]
+          },
+          "intervention_pct": {
+            "available": true,
+            "values": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "max_contact_loss_s": {
+            "available": true,
+            "values": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "max_force_age_s": {
+            "available": true,
+            "values": [
+              0.002000000000000668,
+              0.002000000000000668,
+              0.006000000000000227,
+              0.006000000000000227
+            ]
+          },
+          "max_kinematic_age_s": {
+            "available": true,
+            "values": [
+              0.0,
+              0.0,
+              0.004000000000001336,
+              0.004000000000001336
+            ]
+          },
+          "max_penetration_mm": {
+            "aggregation": "max",
+            "available": true,
+            "value": 0.8510813313464434,
+            "values": [
+              0.8506257065828762,
+              0.8510813313464434,
+              0.8457651029941914,
+              0.8460373804521741
+            ]
+          },
+          "max_speed_m_s": {
+            "aggregation": "max",
+            "available": true,
+            "value": 0.07367397238594432,
+            "values": [
+              0.07306815500736277,
+              0.07367397238594432,
+              0.07151123910519458,
+              0.07137937067776698
+            ]
+          },
+          "nominal_projection_pct": {
+            "available": true,
+            "values": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "orientation_rmse_deg": {
+            "available": true,
+            "values": [
+              0.3546706510848031,
+              0.3544744650648277,
+              1.1810538787882037,
+              1.1810767499194712
+            ]
+          },
+          "peak_force_n": {
+            "aggregation": "max",
+            "available": true,
+            "value": 15.642918442018077,
+            "values": [
+              12.613018642147306,
+              12.661131002331203,
+              15.609420287173387,
+              15.642918442018077
+            ]
+          },
+          "residual_projection_pct": {
+            "available": true,
+            "values": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "saturation_pct": {
+            "aggregation": "max",
+            "available": true,
+            "value": 0.0,
+            "values": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "seconds_over_35_n": {
+            "available": true,
+            "values": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "tangent_rmse_mm": {
+            "aggregation": "max",
+            "available": true,
+            "value": 7.46391098322291,
+            "values": [
+              1.6996601266183649,
+              1.7078649714077232,
+              7.444527762460947,
+              7.46391098322291
+            ]
+          },
+          "torque_mapping_max_error_nm": {
+            "available": true,
+            "values": [
+              3.552713678800501e-15,
+              3.552713678800501e-15,
+              3.552713678800501e-15,
+              3.552713678800501e-15
+            ]
+          }
+        },
+        "new_holdout": false,
+        "runs": [
+          {
+            "actor_failure_count": 0,
+            "case_id": "g002_seed11",
+            "complete_execution_log": true,
+            "contact_ratio_pct": 100.0,
+            "endpoint_valid": true,
+            "episode_return": 11.977072786691977,
+            "episode_success": true,
+            "evaluation_observed": true,
+            "events_file": "case_000_events.json",
+            "exception_detail": null,
+            "force_rmse_n": 0.10870511806084532,
+            "group_id": "7de4a580a6c8ff1c7f8c59061686922a216fdde972b1a2d29c6c5658355a75fc",
+            "independent_physical_gates_met": true,
+            "intervention_pct": 0.0,
+            "max_actor_latency_s": 7.429299967043335e-05,
+            "max_contact_loss_s": 0.0,
+            "max_force_age_s": 0.002000000000000668,
+            "max_kinematic_age_s": 0.0,
+            "max_penetration_mm": 0.8506257065828762,
+            "max_speed_m_s": 0.07306815500736277,
+            "nominal_projection_pct": 0.0,
+            "orientation_rmse_deg": 0.3546706510848031,
+            "peak_force_n": 12.613018642147306,
+            "physics_steps": 6000,
+            "policy_steps": 600,
+            "residual_projection_pct": 0.0,
+            "saturation_pct": 0.0,
+            "seconds_over_35_n": 0.0,
+            "simulation_seed": 287335974,
+            "split": "validation",
+            "tangent_rmse_mm": 1.6996601266183649,
+            "terminated": false,
+            "termination_reasons": [],
+            "torque_mapping_max_error_nm": 3.552713678800501e-15,
+            "trace_file": "case_000.npz",
+            "trace_finite": true,
+            "truncated": true
+          },
+          {
+            "actor_failure_count": 0,
+            "case_id": "g002_seed29",
+            "complete_execution_log": true,
+            "contact_ratio_pct": 100.0,
+            "endpoint_valid": true,
+            "episode_return": 11.976936562649204,
+            "episode_success": true,
+            "evaluation_observed": true,
+            "events_file": "case_001_events.json",
+            "exception_detail": null,
+            "force_rmse_n": 0.11408214949423286,
+            "group_id": "7de4a580a6c8ff1c7f8c59061686922a216fdde972b1a2d29c6c5658355a75fc",
+            "independent_physical_gates_met": true,
+            "intervention_pct": 0.0,
+            "max_actor_latency_s": 6.61429994579521e-05,
+            "max_contact_loss_s": 0.0,
+            "max_force_age_s": 0.002000000000000668,
+            "max_kinematic_age_s": 0.0,
+            "max_penetration_mm": 0.8510813313464434,
+            "max_speed_m_s": 0.07367397238594432,
+            "nominal_projection_pct": 0.0,
+            "orientation_rmse_deg": 0.3544744650648277,
+            "peak_force_n": 12.661131002331203,
+            "physics_steps": 6000,
+            "policy_steps": 600,
+            "residual_projection_pct": 0.0,
+            "saturation_pct": 0.0,
+            "seconds_over_35_n": 0.0,
+            "simulation_seed": 2007055255,
+            "split": "validation",
+            "tangent_rmse_mm": 1.7078649714077232,
+            "terminated": false,
+            "termination_reasons": [],
+            "torque_mapping_max_error_nm": 3.552713678800501e-15,
+            "trace_file": "case_001.npz",
+            "trace_finite": true,
+            "truncated": true
+          },
+          {
+            "actor_failure_count": 0,
+            "case_id": "g007_seed11",
+            "complete_execution_log": true,
+            "contact_ratio_pct": 100.0,
+            "endpoint_valid": true,
+            "episode_return": 11.679579930187534,
+            "episode_success": true,
+            "evaluation_observed": true,
+            "events_file": "case_002_events.json",
+            "exception_detail": null,
+            "force_rmse_n": 0.1800091096097609,
+            "group_id": "f867c0c8c648e69fef3c38ba45159a37264884db9cb86980f30dc525f65d5fd5",
+            "independent_physical_gates_met": true,
+            "intervention_pct": 0.0,
+            "max_actor_latency_s": 5.366299956222065e-05,
+            "max_contact_loss_s": 0.0,
+            "max_force_age_s": 0.006000000000000227,
+            "max_kinematic_age_s": 0.004000000000001336,
+            "max_penetration_mm": 0.8457651029941914,
+            "max_speed_m_s": 0.07151123910519458,
+            "nominal_projection_pct": 0.0,
+            "orientation_rmse_deg": 1.1810538787882037,
+            "peak_force_n": 15.609420287173387,
+            "physics_steps": 6000,
+            "policy_steps": 600,
+            "residual_projection_pct": 0.0,
+            "saturation_pct": 0.0,
+            "seconds_over_35_n": 0.0,
+            "simulation_seed": 287335974,
+            "split": "validation",
+            "tangent_rmse_mm": 7.444527762460947,
+            "terminated": false,
+            "termination_reasons": [],
+            "torque_mapping_max_error_nm": 3.552713678800501e-15,
+            "trace_file": "case_002.npz",
+            "trace_finite": true,
+            "truncated": true
+          },
+          {
+            "actor_failure_count": 0,
+            "case_id": "g007_seed29",
+            "complete_execution_log": true,
+            "contact_ratio_pct": 100.0,
+            "endpoint_valid": true,
+            "episode_return": 11.678327812458274,
+            "episode_success": true,
+            "evaluation_observed": true,
+            "events_file": "case_003_events.json",
+            "exception_detail": null,
+            "force_rmse_n": 0.18506747584583486,
+            "group_id": "f867c0c8c648e69fef3c38ba45159a37264884db9cb86980f30dc525f65d5fd5",
+            "independent_physical_gates_met": true,
+            "intervention_pct": 0.0,
+            "max_actor_latency_s": 5.5577000239281915e-05,
+            "max_contact_loss_s": 0.0,
+            "max_force_age_s": 0.006000000000000227,
+            "max_kinematic_age_s": 0.004000000000001336,
+            "max_penetration_mm": 0.8460373804521741,
+            "max_speed_m_s": 0.07137937067776698,
+            "nominal_projection_pct": 0.0,
+            "orientation_rmse_deg": 1.1810767499194712,
+            "peak_force_n": 15.642918442018077,
+            "physics_steps": 6000,
+            "policy_steps": 600,
+            "residual_projection_pct": 0.0,
+            "saturation_pct": 0.0,
+            "seconds_over_35_n": 0.0,
+            "simulation_seed": 2007055255,
+            "split": "validation",
+            "tangent_rmse_mm": 7.46391098322291,
+            "terminated": false,
+            "termination_reasons": [],
+            "torque_mapping_max_error_nm": 3.552713678800501e-15,
+            "trace_file": "case_003.npz",
+            "trace_finite": true,
+            "truncated": true
+          }
+        ],
+        "schema": "surface_candidate_evaluation_v1"
+      },
+      "versions": {
+        "gymnasium": "1.3.0",
+        "mujoco": "3.12.0",
+        "numpy": "2.2.6",
+        "python": "3.10.12",
+        "torch": "2.12.1+cu130"
+      }
+    }
+  ],
+  "initialization": {
+    "copied": "BC actor hidden layers 0 and 1 only",
+    "episode0": "fresh exactly-zero residual head",
+    "nominal_kind": "friction",
+    "not_copied": "BC action head; BC actions are not converted to friction residuals",
+    "optimization": "transferred trunk remains unfrozen; all actor/critic parameters train",
+    "rl_inputs": "all 49 measured observations"
+  },
+  "input_roots_relative_to_output": {
+    "bc_transfer": "../surface-bc-transfer-v1",
+    "parent": "../surface-learning-pilot-v1"
+  },
+  "metrics": [
+    "force_rmse_n",
+    "tangent_rmse_mm",
+    "contact_ratio_pct",
+    "peak_force_n",
+    "seconds_over_35_n",
+    "max_penetration_mm",
+    "orientation_rmse_deg",
+    "saturation_pct",
+    "nominal_projection_pct",
+    "residual_projection_pct",
+    "intervention_pct",
+    "max_speed_m_s",
+    "max_kinematic_age_s",
+    "max_force_age_s",
+    "torque_mapping_max_error_nm",
+    "max_contact_loss_s",
+    "episode_return"
+  ],
+  "new_holdout": false,
+  "parent_plan_sha256": "f52e0c8bcfcb9bcc47fc3c53ce1564cdd337e60d93d54e8d4a96a42c1dd8f1f2",
+  "ppo": {
+    "batch_size": 128,
+    "checkpoint_episodes": [
+      0,
+      16,
+      32
+    ],
+    "clip_epsilon": 0.2,
+    "episodes": 32,
+    "episodes_per_update": 4,
+    "gae_lambda": 0.95,
+    "gamma": 0.99,
+    "learning_rate": 0.0003,
+    "max_grad_norm": 0.5,
+    "std": 0.05,
+    "target_kl": 0.02,
+    "update_epochs": 4
+  },
+  "runtime": {
+    "deterministic_algorithms": true,
+    "device": "cpu",
+    "dtype": "float64",
+    "gymnasium_version": "1.3.0",
+    "mujoco_version": "3.12.0",
+    "numpy_version": "2.2.6",
+    "python_version": "3.10.12",
+    "torch_git_version": "7269437d655783a26cba32aa88195b741ff496aa",
+    "torch_num_threads": 1,
+    "torch_version": "2.12.1+cu130"
+  },
+  "schema": "surface_ppo_bc_hidden_transfer_plan_v1",
+  "scope": "fixed public validation/development representation-transfer comparison",
+  "seeds": [
+    11,
+    29,
+    47
+  ],
+  "selected_bc_arm": "drop_previous_residual",
+  "selected_bc_candidates": {
+    "11": {
+      "candidate": "drop_previous_residual_seed11/selected_model.json",
+      "candidate_sha256": "a9b8f3bc4d5c1c2b408b187e0ece9a03b3f7fdc6b267c2c680075297ada30dd3",
+      "folded_export": {
+        "absolute_tolerance": 2e-14,
+        "inactive_extremes_vs_raw_numpy_max_abs": 0.0,
+        "passed": true,
+        "sample_count": 12000,
+        "torch_masked_vs_numpy_raw_max_abs": 7.771561172376096e-16
+      },
+      "validation_constant_mse": 0.2678373752289556,
+      "validation_model_mse": 0.003953051422717335
+    },
+    "29": {
+      "candidate": "drop_previous_residual_seed29/selected_model.json",
+      "candidate_sha256": "fca9f1f750271b9b08b8140180cb01a525d5fb3bfa874b30d615455dea9588ac",
+      "folded_export": {
+        "absolute_tolerance": 2e-14,
+        "inactive_extremes_vs_raw_numpy_max_abs": 0.0,
+        "passed": true,
+        "sample_count": 12000,
+        "torch_masked_vs_numpy_raw_max_abs": 7.494005416219807e-16
+      },
+      "validation_constant_mse": 0.2678373752289556,
+      "validation_model_mse": 0.003230916587530156
+    },
+    "47": {
+      "candidate": "drop_previous_residual_seed47/selected_model.json",
+      "candidate_sha256": "895062db2bc22a5a92d11a895484dbae4d50cd62d4d3ebf868e5c75964e764a8",
+      "folded_export": {
+        "absolute_tolerance": 2e-14,
+        "inactive_extremes_vs_raw_numpy_max_abs": 0.0,
+        "passed": true,
+        "sample_count": 12000,
+        "torch_masked_vs_numpy_raw_max_abs": 9.43689570931383e-16
+      },
+      "validation_constant_mse": 0.2678373752289556,
+      "validation_model_mse": 0.003442894986508782
+    }
+  },
+  "source_sha256": {
+    "tools/surface_learning_pilot.py": "3524201ee7eb3acb1deab4e5edb6e8b5458e3473a4ccbee7981e3c46ea5962d7",
+    "tools/surface_mlp_actor.py": "a4e7e84d92066170bab09a1c25eea4a9cd1e658bb55ca2f8747c59116bba45a1",
+    "tools/surface_ppo_transfer.py": "854f81aa5aa882c4ba9fed71d59b030bc3eeb176dc138890d09f02092d048c11",
+    "tools/train_surface_ppo.py": "208b61ff71b5b72e31bde86fd27ecf2cdc25c2059bd3de8822502041ec84dbf8",
+    "tools/train_surface_ppo_transfer.py": "5243fe28941a04bca0ed294f8fcdab019a7c22f0cbed09c8bac4c41080183f34"
+  },
+  "thresholds": {
+    "contact_ratio_pct": {
+      "aggregation": "min",
+      "operator": ">=",
+      "value": 99.0
+    },
+    "force_rmse_n": {
+      "aggregation": "max",
+      "operator": "<=",
+      "value": 2.0
+    },
+    "max_penetration_mm": {
+      "aggregation": "max",
+      "operator": "<=",
+      "value": 2.0
+    },
+    "max_speed_m_s": {
+      "aggregation": "max",
+      "operator": "<=",
+      "value": 0.3
+    },
+    "peak_force_n": {
+      "aggregation": "max",
+      "operator": "<=",
+      "value": 35.0
+    },
+    "saturation_pct": {
+      "aggregation": "max",
+      "operator": "<=",
+      "value": 0.0
+    },
+    "tangent_rmse_mm": {
+      "aggregation": "max",
+      "operator": "<=",
+      "value": 10.0
+    }
+  }
+}

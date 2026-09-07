@@ -1,0 +1,407 @@
+{
+  "acceptance_met": true,
+  "all_episodes_succeeded": true,
+  "all_metrics_available": true,
+  "evaluation_case_ids": [
+    "g001_seed11",
+    "g001_seed29",
+    "g005_seed11",
+    "g005_seed29"
+  ],
+  "evaluation_split": "development_test",
+  "expected_case_count": 4,
+  "gates": {
+    "contact_ratio_pct": {
+      "actual": 100.0,
+      "passed": true,
+      "rule": {
+        "aggregation": "min",
+        "operator": ">=",
+        "value": 99
+      }
+    },
+    "force_rmse_n": {
+      "actual": 0.30101949890981544,
+      "passed": true,
+      "rule": {
+        "aggregation": "max",
+        "operator": "<=",
+        "value": 2
+      }
+    },
+    "max_penetration_mm": {
+      "actual": 0.8509199734516928,
+      "passed": true,
+      "rule": {
+        "aggregation": "max",
+        "operator": "<=",
+        "value": 2
+      }
+    },
+    "max_speed_m_s": {
+      "actual": 0.07402968032418233,
+      "passed": true,
+      "rule": {
+        "aggregation": "max",
+        "operator": "<=",
+        "value": 0.3
+      }
+    },
+    "peak_force_n": {
+      "actual": 13.443276525564498,
+      "passed": true,
+      "rule": {
+        "aggregation": "max",
+        "operator": "<=",
+        "value": 35
+      }
+    },
+    "saturation_pct": {
+      "actual": 0.0,
+      "passed": true,
+      "rule": {
+        "aggregation": "max",
+        "operator": "<=",
+        "value": 0
+      }
+    },
+    "tangent_rmse_mm": {
+      "actual": 3.19668006372395,
+      "passed": true,
+      "rule": {
+        "aggregation": "max",
+        "operator": "<=",
+        "value": 10
+      }
+    }
+  },
+  "metrics": {
+    "contact_ratio_pct": {
+      "aggregation": "min",
+      "available": true,
+      "value": 100.0,
+      "values": [
+        100.0,
+        100.0,
+        100.0,
+        100.0
+      ]
+    },
+    "episode_return": {
+      "available": true,
+      "values": [
+        11.976628021046416,
+        11.976539799392182,
+        11.933837474615574,
+        11.933812922976479
+      ]
+    },
+    "force_rmse_n": {
+      "aggregation": "max",
+      "available": true,
+      "value": 0.30101949890981544,
+      "values": [
+        0.10488822807864441,
+        0.10706147121679982,
+        0.3000118035863477,
+        0.30101949890981544
+      ]
+    },
+    "intervention_pct": {
+      "available": true,
+      "values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "max_contact_loss_s": {
+      "available": true,
+      "values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "max_force_age_s": {
+      "available": true,
+      "values": [
+        0.002000000000000668,
+        0.002000000000000668,
+        0.008000000000000895,
+        0.008000000000000895
+      ]
+    },
+    "max_kinematic_age_s": {
+      "available": true,
+      "values": [
+        0.0,
+        0.0,
+        0.006000000000000227,
+        0.006000000000000227
+      ]
+    },
+    "max_penetration_mm": {
+      "aggregation": "max",
+      "available": true,
+      "value": 0.8509199734516928,
+      "values": [
+        0.8509199734516928,
+        0.8508852377887357,
+        0.8103101615256625,
+        0.8102750189211451
+      ]
+    },
+    "max_speed_m_s": {
+      "aggregation": "max",
+      "available": true,
+      "value": 0.07402968032418233,
+      "values": [
+        0.07347781272954887,
+        0.07402968032418233,
+        0.0657111858427979,
+        0.0658465922720833
+      ]
+    },
+    "nominal_projection_pct": {
+      "available": true,
+      "values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "orientation_rmse_deg": {
+      "available": true,
+      "values": [
+        0.39628178796362823,
+        0.39618016721880606,
+        0.4566400981955218,
+        0.4564438814701056
+      ]
+    },
+    "peak_force_n": {
+      "aggregation": "max",
+      "available": true,
+      "value": 13.443276525564498,
+      "values": [
+        12.627871577794696,
+        12.628594523364416,
+        13.427128753784059,
+        13.443276525564498
+      ]
+    },
+    "residual_projection_pct": {
+      "available": true,
+      "values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "saturation_pct": {
+      "aggregation": "max",
+      "available": true,
+      "value": 0.0,
+      "values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "seconds_over_35_n": {
+      "available": true,
+      "values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "tangent_rmse_mm": {
+      "aggregation": "max",
+      "available": true,
+      "value": 3.19668006372395,
+      "values": [
+        1.612227791094459,
+        1.617998010396487,
+        3.196262592725661,
+        3.19668006372395
+      ]
+    },
+    "torque_mapping_max_error_nm": {
+      "available": true,
+      "values": [
+        3.552713678800501e-15,
+        3.552713678800501e-15,
+        3.552713678800501e-15,
+        3.552713678800501e-15
+      ]
+    }
+  },
+  "new_holdout": false,
+  "runs": [
+    {
+      "actor_failure_count": 0,
+      "case_id": "g001_seed11",
+      "complete_execution_log": true,
+      "contact_ratio_pct": 100.0,
+      "endpoint_valid": true,
+      "episode_return": 11.976628021046416,
+      "episode_success": true,
+      "evaluation_observed": true,
+      "events_file": "case_000_events.json",
+      "exception_detail": null,
+      "force_rmse_n": 0.10488822807864441,
+      "group_id": "76b1a9cdc26befb201d8995fa84ed0878e8eeef436f67587d023c9e35564bfff",
+      "independent_physical_gates_met": true,
+      "intervention_pct": 0.0,
+      "max_actor_latency_s": 4.4270000216783956e-05,
+      "max_contact_loss_s": 0.0,
+      "max_force_age_s": 0.002000000000000668,
+      "max_kinematic_age_s": 0.0,
+      "max_penetration_mm": 0.8509199734516928,
+      "max_speed_m_s": 0.07347781272954887,
+      "nominal_projection_pct": 0.0,
+      "orientation_rmse_deg": 0.39628178796362823,
+      "peak_force_n": 12.627871577794696,
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "residual_projection_pct": 0.0,
+      "saturation_pct": 0.0,
+      "seconds_over_35_n": 0.0,
+      "simulation_seed": 287335974,
+      "split": "development_test",
+      "tangent_rmse_mm": 1.612227791094459,
+      "terminated": false,
+      "termination_reasons": [],
+      "torque_mapping_max_error_nm": 3.552713678800501e-15,
+      "trace_file": "case_000.npz",
+      "trace_finite": true,
+      "truncated": true
+    },
+    {
+      "actor_failure_count": 0,
+      "case_id": "g001_seed29",
+      "complete_execution_log": true,
+      "contact_ratio_pct": 100.0,
+      "endpoint_valid": true,
+      "episode_return": 11.976539799392182,
+      "episode_success": true,
+      "evaluation_observed": true,
+      "events_file": "case_001_events.json",
+      "exception_detail": null,
+      "force_rmse_n": 0.10706147121679982,
+      "group_id": "76b1a9cdc26befb201d8995fa84ed0878e8eeef436f67587d023c9e35564bfff",
+      "independent_physical_gates_met": true,
+      "intervention_pct": 0.0,
+      "max_actor_latency_s": 4.909000017505605e-05,
+      "max_contact_loss_s": 0.0,
+      "max_force_age_s": 0.002000000000000668,
+      "max_kinematic_age_s": 0.0,
+      "max_penetration_mm": 0.8508852377887357,
+      "max_speed_m_s": 0.07402968032418233,
+      "nominal_projection_pct": 0.0,
+      "orientation_rmse_deg": 0.39618016721880606,
+      "peak_force_n": 12.628594523364416,
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "residual_projection_pct": 0.0,
+      "saturation_pct": 0.0,
+      "seconds_over_35_n": 0.0,
+      "simulation_seed": 2007055255,
+      "split": "development_test",
+      "tangent_rmse_mm": 1.617998010396487,
+      "terminated": false,
+      "termination_reasons": [],
+      "torque_mapping_max_error_nm": 3.552713678800501e-15,
+      "trace_file": "case_001.npz",
+      "trace_finite": true,
+      "truncated": true
+    },
+    {
+      "actor_failure_count": 0,
+      "case_id": "g005_seed11",
+      "complete_execution_log": true,
+      "contact_ratio_pct": 100.0,
+      "endpoint_valid": true,
+      "episode_return": 11.933837474615574,
+      "episode_success": true,
+      "evaluation_observed": true,
+      "events_file": "case_002_events.json",
+      "exception_detail": null,
+      "force_rmse_n": 0.3000118035863477,
+      "group_id": "02d1135b618f4bb3d559c8fd49d64ce93c43986b9e6d59576110bfabc47f2de3",
+      "independent_physical_gates_met": true,
+      "intervention_pct": 0.0,
+      "max_actor_latency_s": 4.889100091531873e-05,
+      "max_contact_loss_s": 0.0,
+      "max_force_age_s": 0.008000000000000895,
+      "max_kinematic_age_s": 0.006000000000000227,
+      "max_penetration_mm": 0.8103101615256625,
+      "max_speed_m_s": 0.0657111858427979,
+      "nominal_projection_pct": 0.0,
+      "orientation_rmse_deg": 0.4566400981955218,
+      "peak_force_n": 13.427128753784059,
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "residual_projection_pct": 0.0,
+      "saturation_pct": 0.0,
+      "seconds_over_35_n": 0.0,
+      "simulation_seed": 287335974,
+      "split": "development_test",
+      "tangent_rmse_mm": 3.196262592725661,
+      "terminated": false,
+      "termination_reasons": [],
+      "torque_mapping_max_error_nm": 3.552713678800501e-15,
+      "trace_file": "case_002.npz",
+      "trace_finite": true,
+      "truncated": true
+    },
+    {
+      "actor_failure_count": 0,
+      "case_id": "g005_seed29",
+      "complete_execution_log": true,
+      "contact_ratio_pct": 100.0,
+      "endpoint_valid": true,
+      "episode_return": 11.933812922976479,
+      "episode_success": true,
+      "evaluation_observed": true,
+      "events_file": "case_003_events.json",
+      "exception_detail": null,
+      "force_rmse_n": 0.30101949890981544,
+      "group_id": "02d1135b618f4bb3d559c8fd49d64ce93c43986b9e6d59576110bfabc47f2de3",
+      "independent_physical_gates_met": true,
+      "intervention_pct": 0.0,
+      "max_actor_latency_s": 4.93119987368118e-05,
+      "max_contact_loss_s": 0.0,
+      "max_force_age_s": 0.008000000000000895,
+      "max_kinematic_age_s": 0.006000000000000227,
+      "max_penetration_mm": 0.8102750189211451,
+      "max_speed_m_s": 0.0658465922720833,
+      "nominal_projection_pct": 0.0,
+      "orientation_rmse_deg": 0.4564438814701056,
+      "peak_force_n": 13.443276525564498,
+      "physics_steps": 6000,
+      "policy_steps": 600,
+      "residual_projection_pct": 0.0,
+      "saturation_pct": 0.0,
+      "seconds_over_35_n": 0.0,
+      "simulation_seed": 2007055255,
+      "split": "development_test",
+      "tangent_rmse_mm": 3.19668006372395,
+      "terminated": false,
+      "termination_reasons": [],
+      "torque_mapping_max_error_nm": 3.552713678800501e-15,
+      "trace_file": "case_003.npz",
+      "trace_finite": true,
+      "truncated": true
+    }
+  ],
+  "schema": "surface_candidate_evaluation_v1"
+}
