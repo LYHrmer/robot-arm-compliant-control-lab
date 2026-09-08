@@ -273,4 +273,23 @@ Wrench HybridForcePositionController::compute(
   return wrench;
 }
 
+void HybridForcePositionController::set_scheduled_gains(
+    double force_kp,
+    double force_ki,
+    double normal_damping,
+    double approach_stiffness,
+    double approach_damping,
+    double max_approach_command,
+    const Vector3& tangential_stiffness,
+    const Vector3& tangential_damping) noexcept {
+  parameters_.force_kp = force_kp;
+  parameters_.force_ki = force_ki;
+  parameters_.normal_damping = normal_damping;
+  parameters_.approach_stiffness = approach_stiffness;
+  parameters_.approach_damping = approach_damping;
+  parameters_.max_approach_command = max_approach_command;
+  parameters_.tangential_stiffness = tangential_stiffness;
+  parameters_.tangential_damping = tangential_damping;
+}
+
 }  // namespace compliant_control_lab

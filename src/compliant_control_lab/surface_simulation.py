@@ -500,7 +500,7 @@ def run_surface_trial(
     """Batch adapter over the same causal surface simulator used by interactive callers."""
     if controller_kind == "surface_adaptive":
         controller = SurfaceAdaptiveController(controller_frame)
-    elif controller_kind in {"surface_integral", "surface_friction"}:
+    elif controller_kind in {"surface_integral", "surface_friction", "surface_online"}:
         controller = SurfaceAdaptiveController(
             controller_frame, tangential_mode=controller_kind.removeprefix("surface_")
         )

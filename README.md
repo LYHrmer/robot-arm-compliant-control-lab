@@ -2,75 +2,80 @@
 
 [![tests](https://github.com/LYHrmer/robot-arm-compliant-control-lab/actions/workflows/tests.yml/badge.svg)](https://github.com/LYHrmer/robot-arm-compliant-control-lab/actions/workflows/tests.yml)
 
-Franka Panda 7-DOF 在 MuJoCo 中以 500 Hz 维持 12 N 法向接触力，同时沿墙面执行擦拭轨迹。
-仓库从固定增益基线开始，随后加入自适应柔顺控制。Bounded Residual RL 只修正经典控制器
-留下的误差。仓库保留实验冻结条件、完整结果表和产物索引，失败 case 不删除。
-较大的学习实验只公开部分完整轨迹，具体分发范围写在各归档的说明中。
+Franka Panda 7-DOF 在 MuJoCo 中沿表面擦拭，同时跟踪 12 N 法向接触力。
+经典控制器运行在 500 Hz；独立的 BC/PPO 实验使用 50 Hz 策略叠加三轴有界请求。
+控制请求经过接触处理和 6D wrench 到 7 关节力矩的包络投影。
+“有界”指命令接口，不保证真实接触力有界。当前没有真机部署。
 
-冻结的 v0.5 已完成 48-case first reveal。关节力矩投影把 torque-safe 方法的最差 actuator
-saturation 降到 0%，但五个 residual 只通过 22–26/48，未达到 44/48，结论为 `FAIL`。
-完整轨迹 raw peak P95 是 59.54 N；揭盲后的事件重放显示，超限峰值分布在入触初段和擦拭
-阶段，不能全部归因于首次接触。所有 checkpoint 仅供仿真研究，禁止直接用于真机。
+## 当前重点：在线补偿与误差验证
 
-仓库软件版本是 0.5.1；冻结实验的协议身份仍是 v0.5，已有结果没有重算或改名。
+在固定摩擦前馈上，根据测量到的运动误差在线调整等效切向负载系数，保留同一 6 N
+补偿上限。原有 24-case、4.5 秒公开回归中，切向 RMSE 中位数从固定前馈的
+**1.885 mm 降到 1.359 mm**；全部 24 个配对 case 都有改善，并通过本轮验收检查。
+旧三种方法的 72 条指标逐项复现，最大差值为 0。
 
-v0.6 的开发实验已加入分步采样和有状态接近参考。四组对照分别检查采样时序、解析速度参考
-与参考限速的影响，继续使用已公开场景，保留 v0.5 的 `FAIL`。实现和复现命令见
-[接近参考与采样时序](docs/reference_governor_v0.6.md)。
-同分步时序下，原始参考、解析速度和限速参考分别通过 23、24、23/48；限速参考目前只作为
-实验选项，[192 次仿真结果](results/franka_reference_ablation/summary.md) 已保留。
+[算法与状态更新](docs/online_compensation.md)解释了换向、接触丢失和力矩约束下何时停止
+学习；[完整结果](results/franka_online_compensation_regression/)保留所有配对差值。
+另做了 10 种误差工况 × 2 个预定噪声种子 × 4 种方法的 12 秒对照。
+在线方法在全部 20 个配对运行中降低全程切向误差，但阶段检查只通过 **40/42**：
+两个反向加速段的姿态误差增量超过 0.1° 门槛。高摩擦变化后也未恢复到 3 mm 阈值。
+[全部 80 次结果](results/franka_online_compensation_errors/)与
+[阶段失败说明](docs/online_compensation.md#实测结果与没有通过的部分)均保留，没有重新调门槛。
 
-后续开发已加入[表面坐标控制与工具端六维 F/T](docs/surface_frame_and_sensing.md)。
-独立的 24-case 开发网格比较世界坐标控制与法向标定偏差；任务和指标定义有变化，
-结果不与旧 holdout 混算。代表轨迹保存完整控制输入，可逐步重放 wrench 和关节力矩。
-这轮 96 次仿真中，准确法向组的切向误差配对中位数降低 0.66 mm，但四组真实接触比例
-中位数都约 57%，当时尚未解决持续接触。[完整结果](results/franka_surface_development/summary.md)
-使用未滤波力指标，不能与旧版滤波力 RMSE 直接比较。
+所选 C++ 表面控制链已完成四份完整仿真轨迹的逐步核验，共 24,000 个周期，
+最大 wrench 分量误差小于 `4.45e-15`。见 [C++ 回放报告](results/franka_online_cpp_replay/report.json)；
+这验证的是数值移植，不是真机部署或实时性保证。
 
-随后针对擦拭微分离增加了显式平滑接触模型。保持控制器和摩擦不变的
-[192 次配对仿真](results/franka_surface_contact_fix/summary.md)中，新模型 96 组均保持 100%
-接触、0% 力矩饱和；准确法向组 raw-force RMSE 中位数为 0.181 N。代价是更大的软接触
-压入量，代表 case 约 0.67 mm，切向误差仍约 11.8 mm。这属于接触模型修正，不是控制器或
-真机性能提升；默认旧模型和所有旧归档保留。[排查过程与复现](docs/wiping_contact_diagnosis.md)
+## BC 与 Residual RL 的独立对照
 
-在固定平滑模型上，新增的有界摩擦前馈将同一 24-case 切向 RMSE 中位数从 **11.800 mm
-降至 1.885 mm**；独立切向积分为 8.093 mm，未达到减半目标。三组均保持 100% 接触、
-0% 饱和。另做 12 s 摩擦失配诊断：实际系数 0.65 时前馈误差升至 6.484 mm，仍依赖名义
-摩擦先验，不能泛化成未知接触下的鲁棒性证明。[算法推导与排错教程](docs/tangential_tracking.md)
-解释了传感器输入、积分 anti-windup 和全 wrench 投影；[81 次仿真](results/franka_tangential_development/summary.md)
-将主网格与长时诊断分开保存。这轮没有训练 RL。
+24 个公开 case 按物理任务组固定为 16 train / 4 validation / 4 development test。
+种子 `11 / 29 / 47` 重复的是同四个开发 case，不能算作 12 个独立场景或新的盲测。
 
-[12 秒擦拭视频](results/franka_tangential_demo/demo.mp4)同步显示七轴日志轨迹、原始法向力和
-切向误差；它是仿真日志可视化，不是重新积分动力学或真机演示。
+| 方法 | 开发测试跟踪通过 | 平均切向 RMSE [mm] | 结论 |
+|---|---:|---:|---|
+| 解析摩擦前馈 | 4/4 | 2.403 | 这轮学习对照的强基线 |
+| BC，屏蔽上一步残差，seed 11/29/47 | 各 4/4 | 2.818 / 2.825 / 2.781 | 这批 case 均通过，仍不及解析前馈 |
+| Bounded PPO，验证集选 checkpoint，seed 11/29/47 | 各 4/4 | 2.467 / 2.470 / 2.381 | 没有跨种子一致改善 |
 
-新的学习入口见[从稳定擦拭到学习控制](docs/surface_learning.md)：表面坐标的 49 维测量观测、
-50 Hz 决策/500 Hz 控制环境、真实同频教师数据和按物理任务分组的切分。
-RL 在摩擦前馈强基线上学习残差；IL 在不含摩擦前馈的名义控制器上模仿教师，避免重复补偿。
-这轮准备没有训练新策略，旧 world-axis checkpoint 也不能直接加载到新接口。
-在[72 次公开准备实验](results/franka_surface_learning_preparation/benchmark_summary.md)中，
-强基线和同频教师均通过 24/24 的安全与跟踪目标，切向 RMSE 中位数分别为 3.466、3.606 mm。
-教师数据包含 14,400 个学习步；GitHub 附带三回合示例，全集有可复现采集命令。
-划分中的标称场景聚集问题在训练前按配置分层修正，[原始清单](results/franka_surface_learning_partition/)
-保留，未改物理数据或性能数字，也不把公开开发集称为新的盲测。
+这三行使用相同开发 case 和评价门槛，但 BC 与 PPO 的名义控制器不同：BC 模仿摩擦补偿，
+PPO 则在已有摩擦前馈上学习残差，网络动作不能直接互换。
+这轮是 12 秒任务，不能与上方 4.5 秒回归的中位数直接比较。
 
-随后实际完成了[小规模 BC 与 bounded Residual PPO](docs/surface_learning_pilot.md)，各三个训练种子。
-BC 的离线验证 MSE 为 0.0012–0.0016，但开发测试跟踪仅通过 0/4、4/4、2/4，尚不能可靠替代教师。
-PPO 每种子训练 32 回合，开发测试均通过 4/4；平均切向 RMSE 为 2.467、2.470、2.381 mm，
-同 case 摩擦强基线为 2.403 mm，没有一致改善。[完整结果](results/franka_surface_learning_pilot/)
-保留全部检查点选择记录与两份代表轨迹，可直接重算指标。这四个 case 属于公开开发测试，
-不增加新盲测主张；当前仍保留经典摩擦前馈作为首选基线。
+BC 使用 `49 → 32 → 32 → 3` 网络模仿摩擦教师。首轮 full-49 输入虽然离线 MSE 只有
+0.0012–0.0016，开发测试却只通过 `0/4、4/4、2/4`。固定训练预算后，仅屏蔽上一步施加的
+三轴残差，三个种子都通过 4/4；[输入消融](docs/bc_closed_loop_transfer.md)和
+[完整归档](results/franka_surface_bc_transfer/)保留了未成功的原模型及两种屏蔽方案。
 
-继续做[BC 输入消融](docs/bc_closed_loop_transfer.md)后，只屏蔽上一步施加的三轴残差，
-三个种子的开发测试均通过 4/4，切向 RMSE 降至 2.818、2.825、2.781 mm。
-网络规模和训练预算未变；离线误差略有上升，学生状态上的动作误差却明显下降。
-[原模型与两种屏蔽方案的完整对照](results/franka_surface_bc_transfer/)保留全部种子，
-仍使用公开开发域。BC 跟踪已改善，但解析摩擦前馈仍更准确。
+PPO 在已经带摩擦前馈的强基线上学习 bounded residual。上表使用首轮试验按验证集选择的
+checkpoint：seed 11/29 选第 32 回合，seed 47 选第 16 回合。另一个预先固定的对照只比较
+第 32 回合，并把 BC 隐藏层迁移给 PPO、重新置零动作层。迁移相对 fresh PPO 的验证差值为
+`+0.039、+0.063、−0.092 mm`，没有达到三个种子一致改善的条件，因此保留 `fresh_ep32`。
+不要把这组固定终点比较与上表的验证集选模结果混在一起。细节见
+[PPO 公式与首轮训练](docs/surface_learning_pilot.md)、[迁移对照](docs/bc_to_residual_rl.md)和
+[迁移归档](results/franka_surface_ppo_transfer/)。
 
-随后把已选 BC 的两个隐藏层交给 PPO，动作层重新置零，三个种子各训练 32 回合。
-与同预算的随机初始化 PPO 比较，三个验证差值只有一个改善，未达到预先固定的一致性
-条件，因此不采用这种初始化作为本轮优选。[迁移方式、结果与复现](docs/bc_to_residual_rl.md)
-说明了为什么 BC 输出不能直接作为另一名义控制器上的残差；[公开记录](results/franka_surface_ppo_transfer/)
-保留两组最终策略对照，不把小预算试验的负结果解释为 RL 普遍无效。
+这些策略只在仿真公开开发域中评价。命令限幅、4/4 通过和 100% 接触率都不是硬件安全、
+未知表面泛化或收敛证明。公开归档含全部候选与训练统计，但每轮只分发少量代表性完整轨迹；
+其余原始轨迹留在本地源产物中。上方在线负载补偿则另保留全部 80 次可重算指标的紧凑
+轨迹及 4 份完整输入轨迹，不与这些学习归档混为同一实验。
+
+## 任务、公式与源码入口
+
+| 想看什么 | 说明 | 实现 |
+|---|---|---|
+| 误差驱动的在线补偿 | 当前力与下一步系数的更新顺序、换向冻结、共同 6 N 上限 | [在线补偿](docs/online_compensation.md)、[`tangential_compensation.py`](src/compliant_control_lab/tangential_compensation.py) |
+| Python 到 C++ 的控制链 | 表面坐标、自适应状态、接触过渡、力矩投影和输入超时 | [C++ 接口与范围](docs/cpp_core.md)、[`surface_control.cpp`](cpp/src/surface_control.cpp) |
+| 擦拭任务与 49 维观测 | 50 Hz/500 Hz 时序、数据分组、教师标签 | [学习任务](docs/surface_learning.md)、[`surface_env.py`](src/compliant_control_lab/surface_env.py)、[`surface_dataset.py`](src/compliant_control_lab/surface_dataset.py) |
+| 摩擦强基线与 BC 教师 | 有界摩擦前馈公式、输入消融和闭环偏移 | [切向补偿](docs/tangential_tracking.md)、[BC 对照](docs/bc_closed_loop_transfer.md)、[`surface_policy.py`](src/compliant_control_lab/surface_policy.py) |
+| Bounded PPO | clipped objective、变时长 GAE、checkpoint 规则 | [学习试验](docs/surface_learning_pilot.md)、[`train_surface_ppo.py`](tools/train_surface_ppo.py) |
+| 残差安全边界 | 接触门控、slew/filter、joint-torque headroom | [`residual_rl.py`](src/compliant_control_lab/residual_rl.py)、[`franka_torque_safety.py`](src/compliant_control_lab/franka_torque_safety.py) |
+
+[12 秒擦拭视频](results/franka_tangential_demo/demo.mp4)同步显示七轴日志、原始法向力和切向
+误差。它是已有仿真日志的可视化，不是真机演示，也没有重新积分动力学。
+
+早期开发从接触微分离排查、平滑接触模型、切向积分和固定摩擦前馈一路推进到当前任务。
+实验次序及各版本证据见[实验记录](docs/experiments/README.md)。冻结 v0.5 的 48-case first
+reveal 仍为 `FAIL`，原始归档没有重算或改名。
 
 ## v0.5 首次揭盲结果
 
@@ -120,7 +125,7 @@ raw contact 的时间作图；颜色表示运动阶段，形状表示 controller
 | 在线 bias/刚度估计与 gain scheduling | [`franka_adaptive.py`](src/compliant_control_lab/franka_adaptive.py) | [adaptive tests](tests/test_franka_adaptive.py)、[48-case event replay](results/franka_safety_postreveal/contact_events/summary.md) |
 | 有状态接近参考与因果力反馈 | [`franka_reference.py`](src/compliant_control_lab/franka_reference.py)、[split-step simulation](src/compliant_control_lab/franka_simulation.py) | [参考约束](tests/test_franka_reference.py)、[采样契约](tests/test_franka_timing.py)、[四组实验](docs/reference_governor_v0.6.md) |
 | 表面坐标、工具端 F/T 与完整输入回放 | [`surface_control.py`](src/compliant_control_lab/surface_control.py)、[`surface_sensing.py`](src/compliant_control_lab/surface_sensing.py)、[`surface_replay.py`](src/compliant_control_lab/surface_replay.py) | [坐标与传感器教程](docs/surface_frame_and_sensing.md)、[因果采样测试](tests/test_surface_simulation.py) |
-| 切向负载偏差、有界积分与平滑摩擦前馈 | [`tangential_compensation.py`](src/compliant_control_lab/tangential_compensation.py) | [公式与诊断](docs/tangential_tracking.md)、[安全时序](tests/test_tangential_safety.py)、[配对实验](results/franka_tangential_development/summary.md) |
+| 切向负载偏差、有界积分、固定前馈与在线补偿 | [`tangential_compensation.py`](src/compliant_control_lab/tangential_compensation.py) | [固定补偿诊断](docs/tangential_tracking.md)、[在线更新与回归](docs/online_compensation.md)、[安全时序](tests/test_tangential_safety.py) |
 | 新表面任务的交互环境、端点安全与学习数据 | [`surface_env.py`](src/compliant_control_lab/surface_env.py)、[`surface_dataset.py`](src/compliant_control_lab/surface_dataset.py)、[`surface_transitions.py`](src/compliant_control_lab/surface_transitions.py) | [学习前准备](docs/surface_learning.md)、[末步回归](tests/test_surface_endpoint.py)、[数据因果重放](tests/test_surface_dataset_replay.py) |
 | 6D wrench 到 7 关节力矩包络投影 | [Python](src/compliant_control_lab/franka_torque_safety.py)、[C++17](cpp/src/torque_safety.cpp) | [native edge cases](cpp/tests/test_torque_safety.cpp)、[160-case randomized parity](tests/test_cpp_parity.py) |
 | 50 Hz bounded residual 与 500 Hz safety wrapper | [`residual_rl.py`](src/compliant_control_lab/residual_rl.py) | [residual tests](tests/test_residual_rl.py)、[paired effect](results/franka_safety_postreveal/summary.md) |
@@ -145,25 +150,29 @@ raw contact 的时间作图；颜色表示运动阶段，形状表示 controller
 | 能力 | Python | C++17/Eigen | 公开实验 |
 |---|---:|---:|---:|
 | Impedance / admittance / fixed hybrid | 是 | 是，逐分量 parity | nominal、v0.3、v0.4、v0.5 |
-| Adaptive gain scheduling | 是 | 否 | v0.4、v0.5 |
+| Adaptive gain scheduling / surface controller | 是 | 是，有状态序列 parity | Python 仿真；C++ 记录输入核验 |
+| 在线切向负载补偿 | 是 | 是，含更新冻结与重置 | 原有 24-case 回归；动态误差对照另列 |
 | Torque projection / residual headroom | 是 | 是，160-case parity | v0.5 rollout 使用 Python；C++ port 为揭盲后工程验证 |
-| Bounded Residual RL | 是 | 否 | v0.4、v0.5 |
+| Bounded Residual RL | 是 | 否 | v0.4、v0.5、独立表面学习试验 |
 | ROS 2 / Franka hardware adapter | 否 | 否 | 无 |
 
-C++ 核心的接口只包含固定尺寸状态、目标和 Cartesian wrench。完整的主张、测试和结果对应关系
+C++ 数值接口使用固定尺寸状态、目标、actuation context 和 Cartesian wrench，并返回状态标志。
+完整的主张、测试和结果对应关系
 见 [verification matrix](docs/verification_matrix.md)。
 
-## 从哪里开始读
+## 新手最短路线
 
-| 目标 | 阅读入口 |
-|---|---|
-| 五分钟核验项目 | [招聘方走查](docs/recruiter_walkthrough.md)、本页结果、[架构图](docs/architecture.md) |
-| 系统学习柔顺控制 | [教程目录](docs/tutorial/README.md)，从 2-DOF 一直读到 Franka 与 Residual RL |
-| 在新表面任务上准备 RL / IL | [环境、教师标签、训练数组与候选冻结](docs/surface_learning.md) |
-| 检查算法和数值实现 | [Franka control notes](docs/franka_control.md)、[torque-safe residual notes](docs/torque_safe_residual_v0.5.md) |
-| 学习接触峰值怎么定位 | [contact-event diagnosis](docs/contact_event_diagnosis.md)、[48-case CSV](results/franka_safety_postreveal/contact_events/safe_adaptive_contact_events.csv) |
-| 审核实验可信度 | [v0.5 protocol](docs/reproduction_plan_v0.5.md)、[manifest](results/franka_safety_blind/manifest.json) |
-| 准备面试 | [练习、故障定位和项目表达](docs/tutorial/06_exercises_and_interview.md) |
+| 顺序 | 动手或阅读 | 核对什么 |
+|---:|---|---|
+| 1 | 安装后运行 `franka-smoke` | 代码能运行，旧 v0.5 归档仍是 `FAIL` |
+| 2 | 打开[招聘方走查](docs/recruiter_walkthrough.md) | 当前结果、对照是否公平、范围限制 |
+| 3 | 阅读[切向补偿](docs/tangential_tracking.md)和[在线更新](docs/online_compensation.md) | 从误差来源到固定前馈，再到有界参数更新 |
+| 4 | 按在线补偿页复核实验和阶段指标 | 不只看平均误差，也检查换向、测量误差和失败项 |
+| 5 | 构建 [C++ 控制核心](docs/cpp_core.md)，运行 parity | 同一输入序列下，状态与命令能否逐步对齐 |
+| 6 | 再读[表面学习任务](docs/surface_learning.md)，运行学习归档的 audit | 49 维观测、16/4/4 分组，以及 BC/PPO 是否超过强基线 |
+
+系统学习柔顺控制可从[教程目录](docs/tutorial/README.md)开始，由 2-DOF 推到 Franka 与
+Residual RL。面试练习见[练习、故障定位和项目表达](docs/tutorial/06_exercises_and_interview.md)。
 
 完整导航和术语说明分别在 [docs/README.md](docs/README.md) 与
 [CONTEXT.md](CONTEXT.md)。
@@ -279,21 +288,21 @@ tests/                         # math, controller, simulation, safety and protoc
 - 仿真使用理想力矩接口，没有电流环、编码器量化和真实通信抖动。
 - 接触参数直接取自 MuJoCo，未做真机辨识。
 - 零空间投影采用阻尼运动学形式，尚未实现 dynamically consistent operational-space control。
-- C++ 覆盖固定经典控制器和 torque projection/headroom。Adaptive scheduling 与 reference
-  governor 仍在 Python；policy 和训练也未移植。
+- C++ 已包含选定表面控制器的状态更新与 torque projection。另一条加速度受限参考实验、
+  policy 和训练尚未移植；传感器采集、机器人模型计算和真实通信仍由外部接口负责。
 - torque projection 没有提供 torque-rate、碰撞阈值或硬件安全认证。
 - 当前机器没有 Franka hardware/model interface，仓库不声称完成 ros2_control 真机插件。
 
-## 下一项实验
+## v0.5 揭盲后的事件诊断
 
 事件重放先逐 case 核对 7 个冻结指标，再读取峰值时刻的 controller 与 actuation telemetry。
 48/48 case 的最大指标误差为 0。18 个 peak-gate
 failure 中，7 个峰值位于首次 raw contact 后 0.432 s 内；另外 11 个在 1.222 s 以后达到
 峰值。独立的 motion-phase 统计为 pre-wiping 6 / wiping 12。
 
-下一轮会把问题拆开：入触 cohort 比较较低能量的 approach/reference governor，擦拭 cohort
-检查在接触运动中的法向速度和 wrench 调节。现有 48 cases 只用于生成假设；新的最终结论
-需要冻结 v0.6 协议并使用未来 beacon。
+当时据此把问题拆成入触与擦拭两个 cohort，并把公开 48 cases 只用于生成后续假设。
+随后完成的 reference、接触模型、切向补偿和表面学习实验都列在
+[实验记录](docs/experiments/README.md)中；它们不回写 v0.5 的冻结结论。
 
 现有 failure breakdown 与 event replay 可用下面的命令重新生成：
 

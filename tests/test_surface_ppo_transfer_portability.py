@@ -13,9 +13,10 @@ ARCHIVE = Path(__file__).resolve().parents[1] / "results" / "franka_surface_ppo_
 
 
 @pytest.mark.parametrize(
-    "field", ["python_version", "numpy_version", "mujoco_version", "gymnasium_version"]
+    "field", ["python_version", "numpy_version", "mujoco_version", "gymnasium_version",
+              "package_source_and_assets_sha256"]
 )
-def test_offline_audit_accepts_different_host_versions_but_live_runner_does_not(
+def test_offline_audit_accepts_changed_host_or_package_but_live_runner_does_not(
     monkeypatch, field
 ):
     identity = surface_mlp_actor.current_runner_identity()

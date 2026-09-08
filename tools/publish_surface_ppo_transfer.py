@@ -229,8 +229,12 @@ def _zero_and_trunk_audit(checkpoint, bc_candidate, plan, seed):
         "schema",
         "runner_sha256",
         "evaluator_sha256",
-        "package_source_and_assets_sha256",
     )
+    # This path compares frozen weights and redoes archived arithmetic; it does
+    # not execute the current simulator/controller. The candidate's historical
+    # package digest remains checked against its frozen plan in checked_layers.
+    # Unrelated later package additions must not invalidate an intact archive.
+    # Live actor loading still requires the entire current runner identity.
     if any(expected_runner[key] != current_runner[key] for key in stable_identity):
         raise ValueError("frozen runner/source identity differs from the audit code")
     layers, bc_layers = checked_layers(artifact), checked_layers(bc_artifact)

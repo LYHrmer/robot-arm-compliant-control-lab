@@ -138,6 +138,14 @@ class SurfaceAdaptiveController:
         return self._frame.vector_to_world(force)
 
     @property
+    def equivalent_tangential_coefficient(self) -> float:
+        return self._base.tangential.equivalent_mu if self._base.tangential else 0.0
+
+    @property
+    def tangential_update_ready(self) -> bool:
+        return bool(self._base.tangential and self._base.tangential.update_ready)
+
+    @property
     def frame(self) -> SurfaceFrame:
         return self._frame
 

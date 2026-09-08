@@ -11,7 +11,7 @@ from compliant_control_lab.surface_control import SurfaceAdaptiveController, Sur
 from compliant_control_lab.surface_replay import replay_surface_trace, save_surface_trace
 
 
-@pytest.fixture(scope="module", params=["integral", "friction"])
+@pytest.fixture(scope="module", params=["integral", "friction", "online"])
 def trial(request):
     return sim.run_surface_trial(
         sim.yaw_frame(15),
@@ -56,7 +56,7 @@ def test_poisoned_live_evaluator_force_cannot_change_controller_or_replay(
     ).matches
 
 
-@pytest.mark.parametrize("mode", ["integral", "friction"])
+@pytest.mark.parametrize("mode", ["integral", "friction", "online"])
 def test_full_world_rotation_covariance_with_active_addition_and_projection(mode):
     frame = sim.yaw_frame(15)
     rotation = np.array([[0.0, 0, 1], [1, 0, 0], [0, 1, 0]])

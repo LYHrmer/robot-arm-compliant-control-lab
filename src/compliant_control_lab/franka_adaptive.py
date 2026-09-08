@@ -325,6 +325,7 @@ class FrankaSafeAdaptiveController:
                 self.corrected_force_n,
                 self.contact_blend,
                 self.base.base.in_contact,
+                dt=dt,
             )
         if state.actuation is None:
             self._last_torque_projection_scale = 1.0

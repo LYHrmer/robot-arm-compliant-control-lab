@@ -1,0 +1,27 @@
+{
+  "applied_friction_note": "Environmental diagnostic only; not an estimator target.",
+  "archive_complete_sha256": "286938c5bee4b1283902ca3afd89844d01b3cb3cc37ec0146615852bcadea100",
+  "archive_identity": "online-compensation-error-comparison-v1",
+  "archive_manifest_sha256": "36b1190b2afc6c4e622896a9bf540dd938cdcc55fe5e371b118cf668946ce75d",
+  "arms": [
+    "friction",
+    "online"
+  ],
+  "cases": [
+    "friction_step_down",
+    "stop_hold_reverse"
+  ],
+  "figure_sha256": "f088ac554c4db273684ba8a69b9d3c51ef9d89ca44dfdd64cd9e64315e73d8e5",
+  "input_trace_sha256": {
+    "traces/friction_step_down__seed_11__friction__compact.npz": "29b21cb100b0ee94912801eaaa5a034a05cee0ef834eeb5bf570ab18043559a3",
+    "traces/friction_step_down__seed_11__online__compact.npz": "7587af59dae1f1ea6514699fef0523ba61099ecc2eb53c0bff5a8c50136f6d94",
+    "traces/stop_hold_reverse__seed_11__friction__compact.npz": "2972f41110dd78e61e8746f63a56e6c8f18f2edfbc3aba30978f2197452c8d42",
+    "traces/stop_hold_reverse__seed_11__online__compact.npz": "744dd98f2de3c9d33821585d53027727c73f2257ff9f0ff6ddbdaa39c8690bbf"
+  },
+  "schema_version": 1,
+  "seed": 11,
+  "source_sha256": {
+    "tools/audit_online_compensation_errors.py": "28f01996e4612679b2b45f2b07617c698a8ee3c9ca60c424b910b655364872da",
+    "tools/plot_online_compensation_errors.py": "e84507c27febf0c0f7dd2f12d1dd04842e2b61c312bf6a73f927964ee387fbde"
+  }
+}

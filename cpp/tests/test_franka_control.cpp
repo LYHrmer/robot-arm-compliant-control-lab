@@ -1,4 +1,5 @@
 #include "compliant_control_lab/franka_control.hpp"
+#include "compliant_control_lab/surface_control.hpp"
 
 #include <Eigen/Geometry>
 
@@ -122,6 +123,29 @@ void test_invalid_contact_hysteresis_is_rejected() {
   expect_true(threw, "release threshold must remain below contact threshold");
 }
 
+void test_safe_adaptive_rejects_invalid_public_inputs() {
+  ccl::FrankaSafeAdaptiveController controller;
+  ccl::CartesianState state;
+  ccl::CartesianTarget target;
+  controller.reset(state);
+  bool rejected_dt = false;
+  try {
+    static_cast<void>(controller.compute(state, target, 0.0, nullptr));
+  } catch (const std::invalid_argument&) {
+    rejected_dt = true;
+  }
+  expect_true(rejected_dt, "safe adaptive public API rejects zero dt");
+
+  state.position.x() = std::nan("");
+  bool rejected_state = false;
+  try {
+    static_cast<void>(controller.compute(state, target, 0.002, nullptr));
+  } catch (const std::invalid_argument&) {
+    rejected_state = true;
+  }
+  expect_true(rejected_state, "safe adaptive public API rejects nonfinite state");
+}
+
 }  // namespace
 
 int main() {
@@ -132,6 +156,7 @@ int main() {
   test_hybrid_uses_bounded_position_control_before_contact();
   test_invalid_normal_is_rejected();
   test_invalid_contact_hysteresis_is_rejected();
+  test_safe_adaptive_rejects_invalid_public_inputs();
   if (failures == 0) {
     std::cout << "all C++ controller tests passed\n";
   }

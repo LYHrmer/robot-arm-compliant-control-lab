@@ -1,0 +1,4 @@
+# Experiment manifests hash bytes; checkout must not convert their line endings.
+results/** -text
+# csv.DictWriter uses valid CRLF record endings in some archived exporters.
+results/**/*.csv whitespace=cr-at-eol

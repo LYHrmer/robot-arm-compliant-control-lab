@@ -75,7 +75,8 @@ def _validate_trace(arrays: dict[str, np.ndarray]) -> int:
         kind.shape != ()
         or kind.dtype.kind != "U"
         or kind.item()
-        not in {"surface_adaptive", "world_safe_adaptive", "surface_integral", "surface_friction"}
+        not in {"surface_adaptive", "world_safe_adaptive", "surface_integral", "surface_friction",
+                "surface_online"}
     ):
         raise ValueError("controller_kind must identify a supported surface or world controller")
     frame = SurfaceFrame(arrays["controller_frame_rotation"])

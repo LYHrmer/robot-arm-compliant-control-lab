@@ -28,6 +28,9 @@
 | 工具端六轴传感使用 sensordata，仅补偿名义重力；法向投影进入闭环 | [`surface_sensing.py`](../src/compliant_control_lab/surface_sensing.py) | [外力符号与惯性残留](../tests/test_surface_sensing.py)、[因果采样与真值隔离](../tests/test_surface_simulation.py) | [建模限定](surface_frame_and_sensing.md) |
 | 完整控制输入可重放 wrench 和未裁剪 joint torque，不积分新动力学 | [`surface_replay.py`](../src/compliant_control_lab/surface_replay.py) | [序列回放与格式拒绝](../tests/test_surface_replay.py)、[归档复核](../tests/test_surface_published_results.py) | [四份代表轨迹与 replay_checks](../results/franka_surface_development/manifest.json) |
 | 切向积分/前馈使用测量状态，在同次 nominal 投影之前相加；条件积分有界且丢失接触清零 | [`tangential_compensation.py`](../src/compliant_control_lab/tangential_compensation.py)、[`franka_adaptive.py`](../src/compliant_control_lab/franka_adaptive.py) | [范数与换向](../tests/test_tangential_feedforward.py)、[积分时序与冻结](../tests/test_tangential_safety.py)、[真值隔离与回放](../tests/test_tangential_replay.py) | [固定模型 72 行主对照与独立 9 行失配](../results/franka_tangential_development/summary.md)；不证明任意摩擦鲁棒性 |
+| 在线补偿使用运动误差调整等效系数，受参数/请求变化率和投影接受条件约束 | [`tangential_compensation.py`](../src/compliant_control_lab/tangential_compensation.py) | [更新顺序、冻结与参数边界](../tests/test_online_tangential_compensation.py)、[回放与真值隔离](../tests/test_tangential_replay.py) | [原有 24-case 的 96 条对照](../results/franka_online_compensation_regression/comparison.csv)；不等同于摩擦辨识 |
+| 动态摩擦、停顿换向与测量误差使用预定时序，保留阶段失败 | [`online_compensation_experiment.py`](../src/compliant_control_lab/online_compensation_experiment.py)、[只读审计](../tools/audit_online_compensation_errors.py) | [时序与真值隔离](../tests/test_online_compensation_experiment.py)、[重封篡改与非法重置拒绝](../tests/test_online_compensation_error_audit.py) | [80 次运行](../results/franka_online_compensation_errors/comparison.csv)、[168 条阶段结果](../results/franka_online_compensation_errors/phase_metrics.csv)；在线阶段通过 40/42，不是新 holdout |
+| 所选 C++ 表面控制链与保存的 Python 命令逐周期一致 | [`surface_control.cpp`](../cpp/src/surface_control.cpp)、[完整输入回放](../tools/verify_cpp_surface_replay.py) | [状态、换向与超时](../tests/test_cpp_surface_loop.py)、[解析及拒绝路径](../tests/test_cpp_surface_replay_verifier.py) | [四份轨迹、24,000 步报告](../results/franka_online_cpp_replay/report.json)；不涵盖真实机器人通信或实时性 |
 
 ## 实验完整性
 
@@ -79,9 +82,12 @@ C++17/Eigen parity 覆盖三类固定经典控制器：
 - `CartesianAdmittanceController` ↔ `FrankaAdmittanceController`
 - `HybridForcePositionController` ↔ `FrankaHybridController`
 
-三个 torque-safety API 另用 160 个固定随机 7-DOF case 对照 Python。自适应增益调度与
-reference governor 尚未移植。Policy 及其实验流水线仍是 Python 实现。Parity 结论不代表
-ROS 2 或 Franka 真机插件已经完成。
+三个 torque-safety API 另用 160 个固定随机 7-DOF case 对照 Python。
+新增的[表面控制器](../cpp/src/surface_control.cpp)包含自适应增益调度、接近 governor、
+切向补偿与完整 wrench 投影，[长序列测试](../tests/test_cpp_surface_loop.py)核对有状态输出。
+这里移植的是 `FrankaSafeAdaptiveController` 的 governor，不包括另一条
+`FrankaRateLimitedAdaptiveController` 的速度/加速度参考实验。
+Policy 及其训练流水线仍是 Python 实现。Parity 结论不代表 ROS 2 或 Franka 真机插件已完成。
 
 ## 读表时的限制
 

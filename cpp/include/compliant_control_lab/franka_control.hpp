@@ -130,6 +130,22 @@ class HybridForcePositionController final : public WrenchController {
       const CartesianTarget& target,
       double dt) noexcept override;
 
+  // Adaptive wrappers may schedule these gains without duplicating the hybrid kernel.
+  void set_scheduled_gains(
+      double force_kp,
+      double force_ki,
+      double normal_damping,
+      double approach_stiffness,
+      double approach_damping,
+      double max_approach_command,
+      const Vector3& tangential_stiffness,
+      const Vector3& tangential_damping) noexcept;
+  const Vector3& normal() const noexcept { return parameters_.normal; }
+  double max_normal_command() const noexcept { return parameters_.max_normal_command; }
+  double contact_threshold() const noexcept { return parameters_.contact_threshold; }
+  double force_blend() const noexcept { return force_blend_; }
+  bool in_contact() const noexcept { return in_contact_; }
+
  private:
   HybridParameters parameters_;
   double force_integral_ = 0.0;

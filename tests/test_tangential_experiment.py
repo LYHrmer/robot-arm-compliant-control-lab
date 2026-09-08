@@ -111,6 +111,16 @@ def test_complete_protocol_fixed_pairs_and_atomic_artifact_integrity(tmp_path, f
             "nominal_mu": 0.45,
             "max_force": 6,
             "velocity_scale": 0.005,
+            # Recorded constructor defaults include the opt-in online fields;
+            # these are inactive for both legacy modes in this experiment.
+            "adaptation_gain": 800.0,
+            "velocity_error_time": 0.05,
+            "force_regularizer": 2.0,
+            "max_equivalent_mu": 0.9,
+            "min_update_speed": 0.005,
+            "force_slew_rate": 20.0,
+            "coefficient_rate_limit": 0.3,
+            "motion_confirm_time": 0.05,
         }
     assert manifest["baseline_archive"]["directory"] == "results/franka_surface_contact_fix"
     for name, digest in manifest["artifact_sha256"].items():
