@@ -121,6 +121,10 @@ python -m tools.audit_rotation_gain_regression --audit results/franka_rotation_g
 重新计算哈希的伪造摘要。来源必须匹配当前生成器，或审计器中已固定的历史来源摘要；
 实验目录不能自行声明一个陌生来源后就获得信任。
 
+后续另做了[36 次跨方向动态回归](cross_surface_regression.md)，把原有停顿换向和组合误差
+迁移到 −15°、0°。新增方向未出现额外工程阶段失效，跟踪代价和后段残余误差仍保留；
+这份 192 次短时归档没有修改，也不与后续单种子 12 秒结果合并计算。
+
 预选的 12 份完整轨迹另完成了 27,000 步 Python/C++ 数值回放。Python 重算与保存命令
 完全一致，C++ wrench／关节力矩最大分量差均为 `3.5527136788e-15`。
 [回放报告](../results/franka_rotation_gain_public24_cpp/report.json)保存逐轨迹结果；

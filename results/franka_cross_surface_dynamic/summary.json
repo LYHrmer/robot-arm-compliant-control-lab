@@ -1,0 +1,379 @@
+{
+  "comparison_rows": 36,
+  "default_changed": false,
+  "failures": [
+    {
+      "arm": "friction",
+      "case": "stop_hold_reverse",
+      "contact_ratio_pct": 100.0,
+      "failed_gates": "paired_orientation_rmse",
+      "force_rmse_n": 0.15774910786617796,
+      "minimum_reserved_torque_headroom_nm": 5.491579247336997,
+      "minimum_torque_headroom_nm": 6.691579247336996,
+      "orientation_rmse_deg": 0.3501154949525959,
+      "peak_force_n": 12.318716488789892,
+      "phase": "reverse_ramp",
+      "projection_pct": 0.0,
+      "saturation_pct": 0.0,
+      "scale": 1,
+      "simulation_seed": 11,
+      "supplemental_failures": "",
+      "surface_yaw_deg": 15.0,
+      "tangent_rmse_mm": 1.6684719505452745,
+      "tangent_velocity_error_rms_m_s": 0.004009245005392013
+    },
+    {
+      "arm": "online",
+      "case": "stop_hold_reverse",
+      "contact_ratio_pct": 100.0,
+      "failed_gates": "paired_orientation_rmse",
+      "force_rmse_n": 0.15585884772618513,
+      "minimum_reserved_torque_headroom_nm": 5.5204875860229805,
+      "minimum_torque_headroom_nm": 6.72048758602298,
+      "orientation_rmse_deg": 0.3686682849190459,
+      "peak_force_n": 12.302954424222708,
+      "phase": "reverse_ramp",
+      "projection_pct": 0.0,
+      "saturation_pct": 0.0,
+      "scale": 1,
+      "simulation_seed": 11,
+      "supplemental_failures": "",
+      "surface_yaw_deg": 15.0,
+      "tangent_rmse_mm": 1.0586137722017652,
+      "tangent_velocity_error_rms_m_s": 0.0023098601410064677
+    }
+  ],
+  "gain_delta_direction": "scale2_minus_scale1_same_yaw_profile_arm_seed_phase",
+  "gain_pairs": 90,
+  "groups": [
+    {
+      "arm": "baseline",
+      "overall_passed": 2,
+      "overall_total": 2,
+      "phase_passed": 8,
+      "phase_total": 8,
+      "scale": 1,
+      "surface_yaw_deg": -15
+    },
+    {
+      "arm": "friction",
+      "overall_passed": 2,
+      "overall_total": 2,
+      "phase_passed": 8,
+      "phase_total": 8,
+      "scale": 1,
+      "surface_yaw_deg": -15
+    },
+    {
+      "arm": "online",
+      "overall_passed": 2,
+      "overall_total": 2,
+      "phase_passed": 8,
+      "phase_total": 8,
+      "scale": 1,
+      "surface_yaw_deg": -15
+    },
+    {
+      "arm": "baseline",
+      "overall_passed": 2,
+      "overall_total": 2,
+      "phase_passed": 8,
+      "phase_total": 8,
+      "scale": 2,
+      "surface_yaw_deg": -15
+    },
+    {
+      "arm": "friction",
+      "overall_passed": 2,
+      "overall_total": 2,
+      "phase_passed": 8,
+      "phase_total": 8,
+      "scale": 2,
+      "surface_yaw_deg": -15
+    },
+    {
+      "arm": "online",
+      "overall_passed": 2,
+      "overall_total": 2,
+      "phase_passed": 8,
+      "phase_total": 8,
+      "scale": 2,
+      "surface_yaw_deg": -15
+    },
+    {
+      "arm": "baseline",
+      "overall_passed": 2,
+      "overall_total": 2,
+      "phase_passed": 8,
+      "phase_total": 8,
+      "scale": 1,
+      "surface_yaw_deg": 0
+    },
+    {
+      "arm": "friction",
+      "overall_passed": 2,
+      "overall_total": 2,
+      "phase_passed": 8,
+      "phase_total": 8,
+      "scale": 1,
+      "surface_yaw_deg": 0
+    },
+    {
+      "arm": "online",
+      "overall_passed": 2,
+      "overall_total": 2,
+      "phase_passed": 8,
+      "phase_total": 8,
+      "scale": 1,
+      "surface_yaw_deg": 0
+    },
+    {
+      "arm": "baseline",
+      "overall_passed": 2,
+      "overall_total": 2,
+      "phase_passed": 8,
+      "phase_total": 8,
+      "scale": 2,
+      "surface_yaw_deg": 0
+    },
+    {
+      "arm": "friction",
+      "overall_passed": 2,
+      "overall_total": 2,
+      "phase_passed": 8,
+      "phase_total": 8,
+      "scale": 2,
+      "surface_yaw_deg": 0
+    },
+    {
+      "arm": "online",
+      "overall_passed": 2,
+      "overall_total": 2,
+      "phase_passed": 8,
+      "phase_total": 8,
+      "scale": 2,
+      "surface_yaw_deg": 0
+    },
+    {
+      "arm": "baseline",
+      "overall_passed": 2,
+      "overall_total": 2,
+      "phase_passed": 8,
+      "phase_total": 8,
+      "scale": 1,
+      "surface_yaw_deg": 15
+    },
+    {
+      "arm": "friction",
+      "overall_passed": 2,
+      "overall_total": 2,
+      "phase_passed": 7,
+      "phase_total": 8,
+      "scale": 1,
+      "surface_yaw_deg": 15
+    },
+    {
+      "arm": "online",
+      "overall_passed": 2,
+      "overall_total": 2,
+      "phase_passed": 7,
+      "phase_total": 8,
+      "scale": 1,
+      "surface_yaw_deg": 15
+    },
+    {
+      "arm": "baseline",
+      "overall_passed": 2,
+      "overall_total": 2,
+      "phase_passed": 8,
+      "phase_total": 8,
+      "scale": 2,
+      "surface_yaw_deg": 15
+    },
+    {
+      "arm": "friction",
+      "overall_passed": 2,
+      "overall_total": 2,
+      "phase_passed": 8,
+      "phase_total": 8,
+      "scale": 2,
+      "surface_yaw_deg": 15
+    },
+    {
+      "arm": "online",
+      "overall_passed": 2,
+      "overall_total": 2,
+      "phase_passed": 8,
+      "phase_total": 8,
+      "scale": 2,
+      "surface_yaw_deg": 15
+    }
+  ],
+  "identity": "cross-surface-dynamic-v1",
+  "new_holdout": false,
+  "overall_gain_delta_ranges": {
+    "baseline": {
+      "contact_ratio_pct": {
+        "max": 0.0,
+        "min": 0.0
+      },
+      "force_recovery_time_s": {
+        "max": 1.17,
+        "min": 0.0
+      },
+      "force_rmse_n": {
+        "max": 0.004757667732419674,
+        "min": -0.0028722021277491627
+      },
+      "minimum_reserved_torque_headroom_nm": {
+        "max": 0.009808828067579434,
+        "min": -0.01588337382794691
+      },
+      "minimum_torque_headroom_nm": {
+        "max": 0.009808828067579434,
+        "min": -0.01588337382794691
+      },
+      "orientation_rmse_deg": {
+        "max": -0.16019672628878154,
+        "min": -0.18170214172414373
+      },
+      "peak_force_n": {
+        "max": -0.010551622271060879,
+        "min": -0.09383067459624783
+      },
+      "projection_pct": {
+        "max": 0.0,
+        "min": 0.0
+      },
+      "saturation_pct": {
+        "max": 0.0,
+        "min": 0.0
+      },
+      "tangent_recovery_time_s": {
+        "max": null,
+        "min": null
+      },
+      "tangent_rmse_mm": {
+        "max": 0.004782968366782825,
+        "min": -0.002850343885306472
+      },
+      "tangent_velocity_error_rms_m_s": {
+        "max": 0.00010118167208366183,
+        "min": 5.978575171021808e-05
+      }
+    },
+    "friction": {
+      "contact_ratio_pct": {
+        "max": 0.0,
+        "min": 0.0
+      },
+      "force_recovery_time_s": {
+        "max": 1.290000000000001,
+        "min": -0.041999999999999815
+      },
+      "force_rmse_n": {
+        "max": 0.00044426871631050857,
+        "min": -0.0033731561327522974
+      },
+      "minimum_reserved_torque_headroom_nm": {
+        "max": 0.0049639119087308,
+        "min": -0.025526176391129418
+      },
+      "minimum_torque_headroom_nm": {
+        "max": 0.0049639119087308,
+        "min": -0.025526176391129418
+      },
+      "orientation_rmse_deg": {
+        "max": -0.16305670687710724,
+        "min": -0.18663272904915174
+      },
+      "peak_force_n": {
+        "max": -0.02801211708718654,
+        "min": -0.09383067459624783
+      },
+      "projection_pct": {
+        "max": 0.0,
+        "min": 0.0
+      },
+      "saturation_pct": {
+        "max": 0.0,
+        "min": 0.0
+      },
+      "tangent_recovery_time_s": {
+        "max": 0.0,
+        "min": -0.034000000000000696
+      },
+      "tangent_rmse_mm": {
+        "max": 0.01713563951820052,
+        "min": 0.004129811127440597
+      },
+      "tangent_velocity_error_rms_m_s": {
+        "max": 0.00015850905351501646,
+        "min": 3.479422536050748e-05
+      }
+    },
+    "online": {
+      "contact_ratio_pct": {
+        "max": 0.0,
+        "min": 0.0
+      },
+      "force_recovery_time_s": {
+        "max": 1.274000000000001,
+        "min": -0.041999999999999815
+      },
+      "force_rmse_n": {
+        "max": 0.001677790460007017,
+        "min": -0.0033824310020578174
+      },
+      "minimum_reserved_torque_headroom_nm": {
+        "max": 0.004870640286439354,
+        "min": -0.026559594680865217
+      },
+      "minimum_torque_headroom_nm": {
+        "max": 0.004870640286439354,
+        "min": -0.026559594680865217
+      },
+      "orientation_rmse_deg": {
+        "max": -0.16615659468397345,
+        "min": -0.18810433160378798
+      },
+      "peak_force_n": {
+        "max": -0.0071754053343440205,
+        "min": -0.09339808804443983
+      },
+      "projection_pct": {
+        "max": 0.0,
+        "min": 0.0
+      },
+      "saturation_pct": {
+        "max": 0.0,
+        "min": 0.0
+      },
+      "tangent_recovery_time_s": {
+        "max": 0.0,
+        "min": -0.02200000000000024
+      },
+      "tangent_rmse_mm": {
+        "max": 0.05043666578196171,
+        "min": 0.010858888136088929
+      },
+      "tangent_velocity_error_rms_m_s": {
+        "max": 0.00025947628349968317,
+        "min": 0.00013399922580614992
+      }
+    }
+  },
+  "phase_rows": 144,
+  "reference_max_abs_error": {
+    "1": {
+      "compact": 0.0,
+      "comparison": 0.0,
+      "phase_metrics": 0.0
+    },
+    "2": {
+      "compact": 0.0,
+      "comparison": 0.0,
+      "phase_metrics": 0.0
+    }
+  }
+}

@@ -1,0 +1,3580 @@
+{
+  "executions": [
+    {
+      "arm": "baseline",
+      "case": "stop_hold_reverse",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                5.0,
+                5.0,
+                5.0
+              ],
+              "rotational_stiffness": [
+                20.0,
+                20.0,
+                20.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": null,
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            0.9659258262890683,
+            0.25881904510252074,
+            0.0
+          ],
+          [
+            -0.25881904510252074,
+            0.9659258262890683,
+            0.0
+          ],
+          [
+            0.0,
+            -0.0,
+            1.0
+          ]
+        ]
+      },
+      "scale": 1,
+      "simulation_seed": 11,
+      "stem": "yaw_-15__stop_hold_reverse__seed_11__baseline__s1",
+      "surface_yaw_deg": -15
+    },
+    {
+      "arm": "friction",
+      "case": "stop_hold_reverse",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                5.0,
+                5.0,
+                5.0
+              ],
+              "rotational_stiffness": [
+                20.0,
+                20.0,
+                20.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": {
+            "adaptation_gain": 800.0,
+            "coefficient_rate_limit": 0.3,
+            "force_regularizer": 2.0,
+            "force_slew_rate": 20.0,
+            "integral_gain": 800.0,
+            "max_equivalent_mu": 0.9,
+            "max_force": 6.0,
+            "min_update_speed": 0.005,
+            "mode": "friction",
+            "motion_confirm_time": 0.05,
+            "nominal_mu": 0.45,
+            "velocity_error_time": 0.05,
+            "velocity_scale": 0.005
+          },
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            0.9659258262890683,
+            0.25881904510252074,
+            0.0
+          ],
+          [
+            -0.25881904510252074,
+            0.9659258262890683,
+            0.0
+          ],
+          [
+            0.0,
+            -0.0,
+            1.0
+          ]
+        ]
+      },
+      "scale": 1,
+      "simulation_seed": 11,
+      "stem": "yaw_-15__stop_hold_reverse__seed_11__friction__s1",
+      "surface_yaw_deg": -15
+    },
+    {
+      "arm": "online",
+      "case": "stop_hold_reverse",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                5.0,
+                5.0,
+                5.0
+              ],
+              "rotational_stiffness": [
+                20.0,
+                20.0,
+                20.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": {
+            "adaptation_gain": 800.0,
+            "coefficient_rate_limit": 0.3,
+            "force_regularizer": 2.0,
+            "force_slew_rate": 20.0,
+            "integral_gain": 800.0,
+            "max_equivalent_mu": 0.9,
+            "max_force": 6.0,
+            "min_update_speed": 0.005,
+            "mode": "online",
+            "motion_confirm_time": 0.05,
+            "nominal_mu": 0.45,
+            "velocity_error_time": 0.05,
+            "velocity_scale": 0.005
+          },
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            0.9659258262890683,
+            0.25881904510252074,
+            0.0
+          ],
+          [
+            -0.25881904510252074,
+            0.9659258262890683,
+            0.0
+          ],
+          [
+            0.0,
+            -0.0,
+            1.0
+          ]
+        ]
+      },
+      "scale": 1,
+      "simulation_seed": 11,
+      "stem": "yaw_-15__stop_hold_reverse__seed_11__online__s1",
+      "surface_yaw_deg": -15
+    },
+    {
+      "arm": "baseline",
+      "case": "modest_combined",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                5.0,
+                5.0,
+                5.0
+              ],
+              "rotational_stiffness": [
+                20.0,
+                20.0,
+                20.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": null,
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            0.9781476007338057,
+            0.20791169081775934,
+            0.0
+          ],
+          [
+            -0.20791169081775934,
+            0.9781476007338057,
+            0.0
+          ],
+          [
+            0.0,
+            -0.0,
+            1.0000000000000002
+          ]
+        ]
+      },
+      "scale": 1,
+      "simulation_seed": 11,
+      "stem": "yaw_-15__modest_combined__seed_11__baseline__s1",
+      "surface_yaw_deg": -15
+    },
+    {
+      "arm": "friction",
+      "case": "modest_combined",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                5.0,
+                5.0,
+                5.0
+              ],
+              "rotational_stiffness": [
+                20.0,
+                20.0,
+                20.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": {
+            "adaptation_gain": 800.0,
+            "coefficient_rate_limit": 0.3,
+            "force_regularizer": 2.0,
+            "force_slew_rate": 20.0,
+            "integral_gain": 800.0,
+            "max_equivalent_mu": 0.9,
+            "max_force": 6.0,
+            "min_update_speed": 0.005,
+            "mode": "friction",
+            "motion_confirm_time": 0.05,
+            "nominal_mu": 0.45,
+            "velocity_error_time": 0.05,
+            "velocity_scale": 0.005
+          },
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            0.9781476007338057,
+            0.20791169081775934,
+            0.0
+          ],
+          [
+            -0.20791169081775934,
+            0.9781476007338057,
+            0.0
+          ],
+          [
+            0.0,
+            -0.0,
+            1.0000000000000002
+          ]
+        ]
+      },
+      "scale": 1,
+      "simulation_seed": 11,
+      "stem": "yaw_-15__modest_combined__seed_11__friction__s1",
+      "surface_yaw_deg": -15
+    },
+    {
+      "arm": "online",
+      "case": "modest_combined",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                5.0,
+                5.0,
+                5.0
+              ],
+              "rotational_stiffness": [
+                20.0,
+                20.0,
+                20.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": {
+            "adaptation_gain": 800.0,
+            "coefficient_rate_limit": 0.3,
+            "force_regularizer": 2.0,
+            "force_slew_rate": 20.0,
+            "integral_gain": 800.0,
+            "max_equivalent_mu": 0.9,
+            "max_force": 6.0,
+            "min_update_speed": 0.005,
+            "mode": "online",
+            "motion_confirm_time": 0.05,
+            "nominal_mu": 0.45,
+            "velocity_error_time": 0.05,
+            "velocity_scale": 0.005
+          },
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            0.9781476007338057,
+            0.20791169081775934,
+            0.0
+          ],
+          [
+            -0.20791169081775934,
+            0.9781476007338057,
+            0.0
+          ],
+          [
+            0.0,
+            -0.0,
+            1.0000000000000002
+          ]
+        ]
+      },
+      "scale": 1,
+      "simulation_seed": 11,
+      "stem": "yaw_-15__modest_combined__seed_11__online__s1",
+      "surface_yaw_deg": -15
+    },
+    {
+      "arm": "baseline",
+      "case": "stop_hold_reverse",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                5.0,
+                5.0,
+                5.0
+              ],
+              "rotational_stiffness": [
+                20.0,
+                20.0,
+                20.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": null,
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      "scale": 1,
+      "simulation_seed": 11,
+      "stem": "yaw_0__stop_hold_reverse__seed_11__baseline__s1",
+      "surface_yaw_deg": 0
+    },
+    {
+      "arm": "friction",
+      "case": "stop_hold_reverse",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                5.0,
+                5.0,
+                5.0
+              ],
+              "rotational_stiffness": [
+                20.0,
+                20.0,
+                20.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": {
+            "adaptation_gain": 800.0,
+            "coefficient_rate_limit": 0.3,
+            "force_regularizer": 2.0,
+            "force_slew_rate": 20.0,
+            "integral_gain": 800.0,
+            "max_equivalent_mu": 0.9,
+            "max_force": 6.0,
+            "min_update_speed": 0.005,
+            "mode": "friction",
+            "motion_confirm_time": 0.05,
+            "nominal_mu": 0.45,
+            "velocity_error_time": 0.05,
+            "velocity_scale": 0.005
+          },
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      "scale": 1,
+      "simulation_seed": 11,
+      "stem": "yaw_0__stop_hold_reverse__seed_11__friction__s1",
+      "surface_yaw_deg": 0
+    },
+    {
+      "arm": "online",
+      "case": "stop_hold_reverse",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                5.0,
+                5.0,
+                5.0
+              ],
+              "rotational_stiffness": [
+                20.0,
+                20.0,
+                20.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": {
+            "adaptation_gain": 800.0,
+            "coefficient_rate_limit": 0.3,
+            "force_regularizer": 2.0,
+            "force_slew_rate": 20.0,
+            "integral_gain": 800.0,
+            "max_equivalent_mu": 0.9,
+            "max_force": 6.0,
+            "min_update_speed": 0.005,
+            "mode": "online",
+            "motion_confirm_time": 0.05,
+            "nominal_mu": 0.45,
+            "velocity_error_time": 0.05,
+            "velocity_scale": 0.005
+          },
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      "scale": 1,
+      "simulation_seed": 11,
+      "stem": "yaw_0__stop_hold_reverse__seed_11__online__s1",
+      "surface_yaw_deg": 0
+    },
+    {
+      "arm": "baseline",
+      "case": "modest_combined",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                5.0,
+                5.0,
+                5.0
+              ],
+              "rotational_stiffness": [
+                20.0,
+                20.0,
+                20.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": null,
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            0.9986295347545739,
+            -0.05233595624294384,
+            0.0
+          ],
+          [
+            0.05233595624294384,
+            0.9986295347545739,
+            -0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      "scale": 1,
+      "simulation_seed": 11,
+      "stem": "yaw_0__modest_combined__seed_11__baseline__s1",
+      "surface_yaw_deg": 0
+    },
+    {
+      "arm": "friction",
+      "case": "modest_combined",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                5.0,
+                5.0,
+                5.0
+              ],
+              "rotational_stiffness": [
+                20.0,
+                20.0,
+                20.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": {
+            "adaptation_gain": 800.0,
+            "coefficient_rate_limit": 0.3,
+            "force_regularizer": 2.0,
+            "force_slew_rate": 20.0,
+            "integral_gain": 800.0,
+            "max_equivalent_mu": 0.9,
+            "max_force": 6.0,
+            "min_update_speed": 0.005,
+            "mode": "friction",
+            "motion_confirm_time": 0.05,
+            "nominal_mu": 0.45,
+            "velocity_error_time": 0.05,
+            "velocity_scale": 0.005
+          },
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            0.9986295347545739,
+            -0.05233595624294384,
+            0.0
+          ],
+          [
+            0.05233595624294384,
+            0.9986295347545739,
+            -0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      "scale": 1,
+      "simulation_seed": 11,
+      "stem": "yaw_0__modest_combined__seed_11__friction__s1",
+      "surface_yaw_deg": 0
+    },
+    {
+      "arm": "online",
+      "case": "modest_combined",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                5.0,
+                5.0,
+                5.0
+              ],
+              "rotational_stiffness": [
+                20.0,
+                20.0,
+                20.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": {
+            "adaptation_gain": 800.0,
+            "coefficient_rate_limit": 0.3,
+            "force_regularizer": 2.0,
+            "force_slew_rate": 20.0,
+            "integral_gain": 800.0,
+            "max_equivalent_mu": 0.9,
+            "max_force": 6.0,
+            "min_update_speed": 0.005,
+            "mode": "online",
+            "motion_confirm_time": 0.05,
+            "nominal_mu": 0.45,
+            "velocity_error_time": 0.05,
+            "velocity_scale": 0.005
+          },
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            0.9986295347545739,
+            -0.05233595624294384,
+            0.0
+          ],
+          [
+            0.05233595624294384,
+            0.9986295347545739,
+            -0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      "scale": 1,
+      "simulation_seed": 11,
+      "stem": "yaw_0__modest_combined__seed_11__online__s1",
+      "surface_yaw_deg": 0
+    },
+    {
+      "arm": "baseline",
+      "case": "stop_hold_reverse",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                5.0,
+                5.0,
+                5.0
+              ],
+              "rotational_stiffness": [
+                20.0,
+                20.0,
+                20.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": null,
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            0.9659258262890683,
+            -0.25881904510252074,
+            0.0
+          ],
+          [
+            0.25881904510252074,
+            0.9659258262890683,
+            -0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      "scale": 1,
+      "simulation_seed": 11,
+      "stem": "yaw_15__stop_hold_reverse__seed_11__baseline__s1",
+      "surface_yaw_deg": 15.0
+    },
+    {
+      "arm": "friction",
+      "case": "stop_hold_reverse",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                5.0,
+                5.0,
+                5.0
+              ],
+              "rotational_stiffness": [
+                20.0,
+                20.0,
+                20.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": {
+            "adaptation_gain": 800.0,
+            "coefficient_rate_limit": 0.3,
+            "force_regularizer": 2.0,
+            "force_slew_rate": 20.0,
+            "integral_gain": 800.0,
+            "max_equivalent_mu": 0.9,
+            "max_force": 6.0,
+            "min_update_speed": 0.005,
+            "mode": "friction",
+            "motion_confirm_time": 0.05,
+            "nominal_mu": 0.45,
+            "velocity_error_time": 0.05,
+            "velocity_scale": 0.005
+          },
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            0.9659258262890683,
+            -0.25881904510252074,
+            0.0
+          ],
+          [
+            0.25881904510252074,
+            0.9659258262890683,
+            -0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      "scale": 1,
+      "simulation_seed": 11,
+      "stem": "yaw_15__stop_hold_reverse__seed_11__friction__s1",
+      "surface_yaw_deg": 15.0
+    },
+    {
+      "arm": "online",
+      "case": "stop_hold_reverse",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                5.0,
+                5.0,
+                5.0
+              ],
+              "rotational_stiffness": [
+                20.0,
+                20.0,
+                20.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": {
+            "adaptation_gain": 800.0,
+            "coefficient_rate_limit": 0.3,
+            "force_regularizer": 2.0,
+            "force_slew_rate": 20.0,
+            "integral_gain": 800.0,
+            "max_equivalent_mu": 0.9,
+            "max_force": 6.0,
+            "min_update_speed": 0.005,
+            "mode": "online",
+            "motion_confirm_time": 0.05,
+            "nominal_mu": 0.45,
+            "velocity_error_time": 0.05,
+            "velocity_scale": 0.005
+          },
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            0.9659258262890683,
+            -0.25881904510252074,
+            0.0
+          ],
+          [
+            0.25881904510252074,
+            0.9659258262890683,
+            -0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      "scale": 1,
+      "simulation_seed": 11,
+      "stem": "yaw_15__stop_hold_reverse__seed_11__online__s1",
+      "surface_yaw_deg": 15.0
+    },
+    {
+      "arm": "baseline",
+      "case": "modest_combined",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                5.0,
+                5.0,
+                5.0
+              ],
+              "rotational_stiffness": [
+                20.0,
+                20.0,
+                20.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": null,
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            0.9510565162951536,
+            -0.30901699437494745,
+            0.0
+          ],
+          [
+            0.30901699437494745,
+            0.9510565162951536,
+            -0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0000000000000002
+          ]
+        ]
+      },
+      "scale": 1,
+      "simulation_seed": 11,
+      "stem": "yaw_15__modest_combined__seed_11__baseline__s1",
+      "surface_yaw_deg": 15.0
+    },
+    {
+      "arm": "friction",
+      "case": "modest_combined",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                5.0,
+                5.0,
+                5.0
+              ],
+              "rotational_stiffness": [
+                20.0,
+                20.0,
+                20.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": {
+            "adaptation_gain": 800.0,
+            "coefficient_rate_limit": 0.3,
+            "force_regularizer": 2.0,
+            "force_slew_rate": 20.0,
+            "integral_gain": 800.0,
+            "max_equivalent_mu": 0.9,
+            "max_force": 6.0,
+            "min_update_speed": 0.005,
+            "mode": "friction",
+            "motion_confirm_time": 0.05,
+            "nominal_mu": 0.45,
+            "velocity_error_time": 0.05,
+            "velocity_scale": 0.005
+          },
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            0.9510565162951536,
+            -0.30901699437494745,
+            0.0
+          ],
+          [
+            0.30901699437494745,
+            0.9510565162951536,
+            -0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0000000000000002
+          ]
+        ]
+      },
+      "scale": 1,
+      "simulation_seed": 11,
+      "stem": "yaw_15__modest_combined__seed_11__friction__s1",
+      "surface_yaw_deg": 15.0
+    },
+    {
+      "arm": "online",
+      "case": "modest_combined",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                5.0,
+                5.0,
+                5.0
+              ],
+              "rotational_stiffness": [
+                20.0,
+                20.0,
+                20.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": {
+            "adaptation_gain": 800.0,
+            "coefficient_rate_limit": 0.3,
+            "force_regularizer": 2.0,
+            "force_slew_rate": 20.0,
+            "integral_gain": 800.0,
+            "max_equivalent_mu": 0.9,
+            "max_force": 6.0,
+            "min_update_speed": 0.005,
+            "mode": "online",
+            "motion_confirm_time": 0.05,
+            "nominal_mu": 0.45,
+            "velocity_error_time": 0.05,
+            "velocity_scale": 0.005
+          },
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            0.9510565162951536,
+            -0.30901699437494745,
+            0.0
+          ],
+          [
+            0.30901699437494745,
+            0.9510565162951536,
+            -0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0000000000000002
+          ]
+        ]
+      },
+      "scale": 1,
+      "simulation_seed": 11,
+      "stem": "yaw_15__modest_combined__seed_11__online__s1",
+      "surface_yaw_deg": 15.0
+    },
+    {
+      "arm": "baseline",
+      "case": "stop_hold_reverse",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                7.0710678118654755,
+                7.0710678118654755,
+                7.0710678118654755
+              ],
+              "rotational_stiffness": [
+                40.0,
+                40.0,
+                40.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": null,
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            0.9659258262890683,
+            0.25881904510252074,
+            0.0
+          ],
+          [
+            -0.25881904510252074,
+            0.9659258262890683,
+            0.0
+          ],
+          [
+            0.0,
+            -0.0,
+            1.0
+          ]
+        ]
+      },
+      "scale": 2,
+      "simulation_seed": 11,
+      "stem": "yaw_-15__stop_hold_reverse__seed_11__baseline__s2",
+      "surface_yaw_deg": -15
+    },
+    {
+      "arm": "friction",
+      "case": "stop_hold_reverse",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                7.0710678118654755,
+                7.0710678118654755,
+                7.0710678118654755
+              ],
+              "rotational_stiffness": [
+                40.0,
+                40.0,
+                40.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": {
+            "adaptation_gain": 800.0,
+            "coefficient_rate_limit": 0.3,
+            "force_regularizer": 2.0,
+            "force_slew_rate": 20.0,
+            "integral_gain": 800.0,
+            "max_equivalent_mu": 0.9,
+            "max_force": 6.0,
+            "min_update_speed": 0.005,
+            "mode": "friction",
+            "motion_confirm_time": 0.05,
+            "nominal_mu": 0.45,
+            "velocity_error_time": 0.05,
+            "velocity_scale": 0.005
+          },
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            0.9659258262890683,
+            0.25881904510252074,
+            0.0
+          ],
+          [
+            -0.25881904510252074,
+            0.9659258262890683,
+            0.0
+          ],
+          [
+            0.0,
+            -0.0,
+            1.0
+          ]
+        ]
+      },
+      "scale": 2,
+      "simulation_seed": 11,
+      "stem": "yaw_-15__stop_hold_reverse__seed_11__friction__s2",
+      "surface_yaw_deg": -15
+    },
+    {
+      "arm": "online",
+      "case": "stop_hold_reverse",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                7.0710678118654755,
+                7.0710678118654755,
+                7.0710678118654755
+              ],
+              "rotational_stiffness": [
+                40.0,
+                40.0,
+                40.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": {
+            "adaptation_gain": 800.0,
+            "coefficient_rate_limit": 0.3,
+            "force_regularizer": 2.0,
+            "force_slew_rate": 20.0,
+            "integral_gain": 800.0,
+            "max_equivalent_mu": 0.9,
+            "max_force": 6.0,
+            "min_update_speed": 0.005,
+            "mode": "online",
+            "motion_confirm_time": 0.05,
+            "nominal_mu": 0.45,
+            "velocity_error_time": 0.05,
+            "velocity_scale": 0.005
+          },
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            0.9659258262890683,
+            0.25881904510252074,
+            0.0
+          ],
+          [
+            -0.25881904510252074,
+            0.9659258262890683,
+            0.0
+          ],
+          [
+            0.0,
+            -0.0,
+            1.0
+          ]
+        ]
+      },
+      "scale": 2,
+      "simulation_seed": 11,
+      "stem": "yaw_-15__stop_hold_reverse__seed_11__online__s2",
+      "surface_yaw_deg": -15
+    },
+    {
+      "arm": "baseline",
+      "case": "modest_combined",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                7.0710678118654755,
+                7.0710678118654755,
+                7.0710678118654755
+              ],
+              "rotational_stiffness": [
+                40.0,
+                40.0,
+                40.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": null,
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            0.9781476007338057,
+            0.20791169081775934,
+            0.0
+          ],
+          [
+            -0.20791169081775934,
+            0.9781476007338057,
+            0.0
+          ],
+          [
+            0.0,
+            -0.0,
+            1.0000000000000002
+          ]
+        ]
+      },
+      "scale": 2,
+      "simulation_seed": 11,
+      "stem": "yaw_-15__modest_combined__seed_11__baseline__s2",
+      "surface_yaw_deg": -15
+    },
+    {
+      "arm": "friction",
+      "case": "modest_combined",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                7.0710678118654755,
+                7.0710678118654755,
+                7.0710678118654755
+              ],
+              "rotational_stiffness": [
+                40.0,
+                40.0,
+                40.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": {
+            "adaptation_gain": 800.0,
+            "coefficient_rate_limit": 0.3,
+            "force_regularizer": 2.0,
+            "force_slew_rate": 20.0,
+            "integral_gain": 800.0,
+            "max_equivalent_mu": 0.9,
+            "max_force": 6.0,
+            "min_update_speed": 0.005,
+            "mode": "friction",
+            "motion_confirm_time": 0.05,
+            "nominal_mu": 0.45,
+            "velocity_error_time": 0.05,
+            "velocity_scale": 0.005
+          },
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            0.9781476007338057,
+            0.20791169081775934,
+            0.0
+          ],
+          [
+            -0.20791169081775934,
+            0.9781476007338057,
+            0.0
+          ],
+          [
+            0.0,
+            -0.0,
+            1.0000000000000002
+          ]
+        ]
+      },
+      "scale": 2,
+      "simulation_seed": 11,
+      "stem": "yaw_-15__modest_combined__seed_11__friction__s2",
+      "surface_yaw_deg": -15
+    },
+    {
+      "arm": "online",
+      "case": "modest_combined",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                7.0710678118654755,
+                7.0710678118654755,
+                7.0710678118654755
+              ],
+              "rotational_stiffness": [
+                40.0,
+                40.0,
+                40.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": {
+            "adaptation_gain": 800.0,
+            "coefficient_rate_limit": 0.3,
+            "force_regularizer": 2.0,
+            "force_slew_rate": 20.0,
+            "integral_gain": 800.0,
+            "max_equivalent_mu": 0.9,
+            "max_force": 6.0,
+            "min_update_speed": 0.005,
+            "mode": "online",
+            "motion_confirm_time": 0.05,
+            "nominal_mu": 0.45,
+            "velocity_error_time": 0.05,
+            "velocity_scale": 0.005
+          },
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            0.9781476007338057,
+            0.20791169081775934,
+            0.0
+          ],
+          [
+            -0.20791169081775934,
+            0.9781476007338057,
+            0.0
+          ],
+          [
+            0.0,
+            -0.0,
+            1.0000000000000002
+          ]
+        ]
+      },
+      "scale": 2,
+      "simulation_seed": 11,
+      "stem": "yaw_-15__modest_combined__seed_11__online__s2",
+      "surface_yaw_deg": -15
+    },
+    {
+      "arm": "baseline",
+      "case": "stop_hold_reverse",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                7.0710678118654755,
+                7.0710678118654755,
+                7.0710678118654755
+              ],
+              "rotational_stiffness": [
+                40.0,
+                40.0,
+                40.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": null,
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      "scale": 2,
+      "simulation_seed": 11,
+      "stem": "yaw_0__stop_hold_reverse__seed_11__baseline__s2",
+      "surface_yaw_deg": 0
+    },
+    {
+      "arm": "friction",
+      "case": "stop_hold_reverse",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                7.0710678118654755,
+                7.0710678118654755,
+                7.0710678118654755
+              ],
+              "rotational_stiffness": [
+                40.0,
+                40.0,
+                40.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": {
+            "adaptation_gain": 800.0,
+            "coefficient_rate_limit": 0.3,
+            "force_regularizer": 2.0,
+            "force_slew_rate": 20.0,
+            "integral_gain": 800.0,
+            "max_equivalent_mu": 0.9,
+            "max_force": 6.0,
+            "min_update_speed": 0.005,
+            "mode": "friction",
+            "motion_confirm_time": 0.05,
+            "nominal_mu": 0.45,
+            "velocity_error_time": 0.05,
+            "velocity_scale": 0.005
+          },
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      "scale": 2,
+      "simulation_seed": 11,
+      "stem": "yaw_0__stop_hold_reverse__seed_11__friction__s2",
+      "surface_yaw_deg": 0
+    },
+    {
+      "arm": "online",
+      "case": "stop_hold_reverse",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                7.0710678118654755,
+                7.0710678118654755,
+                7.0710678118654755
+              ],
+              "rotational_stiffness": [
+                40.0,
+                40.0,
+                40.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": {
+            "adaptation_gain": 800.0,
+            "coefficient_rate_limit": 0.3,
+            "force_regularizer": 2.0,
+            "force_slew_rate": 20.0,
+            "integral_gain": 800.0,
+            "max_equivalent_mu": 0.9,
+            "max_force": 6.0,
+            "min_update_speed": 0.005,
+            "mode": "online",
+            "motion_confirm_time": 0.05,
+            "nominal_mu": 0.45,
+            "velocity_error_time": 0.05,
+            "velocity_scale": 0.005
+          },
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      "scale": 2,
+      "simulation_seed": 11,
+      "stem": "yaw_0__stop_hold_reverse__seed_11__online__s2",
+      "surface_yaw_deg": 0
+    },
+    {
+      "arm": "baseline",
+      "case": "modest_combined",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                7.0710678118654755,
+                7.0710678118654755,
+                7.0710678118654755
+              ],
+              "rotational_stiffness": [
+                40.0,
+                40.0,
+                40.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": null,
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            0.9986295347545739,
+            -0.05233595624294384,
+            0.0
+          ],
+          [
+            0.05233595624294384,
+            0.9986295347545739,
+            -0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      "scale": 2,
+      "simulation_seed": 11,
+      "stem": "yaw_0__modest_combined__seed_11__baseline__s2",
+      "surface_yaw_deg": 0
+    },
+    {
+      "arm": "friction",
+      "case": "modest_combined",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                7.0710678118654755,
+                7.0710678118654755,
+                7.0710678118654755
+              ],
+              "rotational_stiffness": [
+                40.0,
+                40.0,
+                40.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": {
+            "adaptation_gain": 800.0,
+            "coefficient_rate_limit": 0.3,
+            "force_regularizer": 2.0,
+            "force_slew_rate": 20.0,
+            "integral_gain": 800.0,
+            "max_equivalent_mu": 0.9,
+            "max_force": 6.0,
+            "min_update_speed": 0.005,
+            "mode": "friction",
+            "motion_confirm_time": 0.05,
+            "nominal_mu": 0.45,
+            "velocity_error_time": 0.05,
+            "velocity_scale": 0.005
+          },
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            0.9986295347545739,
+            -0.05233595624294384,
+            0.0
+          ],
+          [
+            0.05233595624294384,
+            0.9986295347545739,
+            -0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      "scale": 2,
+      "simulation_seed": 11,
+      "stem": "yaw_0__modest_combined__seed_11__friction__s2",
+      "surface_yaw_deg": 0
+    },
+    {
+      "arm": "online",
+      "case": "modest_combined",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                7.0710678118654755,
+                7.0710678118654755,
+                7.0710678118654755
+              ],
+              "rotational_stiffness": [
+                40.0,
+                40.0,
+                40.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": {
+            "adaptation_gain": 800.0,
+            "coefficient_rate_limit": 0.3,
+            "force_regularizer": 2.0,
+            "force_slew_rate": 20.0,
+            "integral_gain": 800.0,
+            "max_equivalent_mu": 0.9,
+            "max_force": 6.0,
+            "min_update_speed": 0.005,
+            "mode": "online",
+            "motion_confirm_time": 0.05,
+            "nominal_mu": 0.45,
+            "velocity_error_time": 0.05,
+            "velocity_scale": 0.005
+          },
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            0.9986295347545739,
+            -0.05233595624294384,
+            0.0
+          ],
+          [
+            0.05233595624294384,
+            0.9986295347545739,
+            -0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      "scale": 2,
+      "simulation_seed": 11,
+      "stem": "yaw_0__modest_combined__seed_11__online__s2",
+      "surface_yaw_deg": 0
+    },
+    {
+      "arm": "baseline",
+      "case": "stop_hold_reverse",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                7.0710678118654755,
+                7.0710678118654755,
+                7.0710678118654755
+              ],
+              "rotational_stiffness": [
+                40.0,
+                40.0,
+                40.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": null,
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            0.9659258262890683,
+            -0.25881904510252074,
+            0.0
+          ],
+          [
+            0.25881904510252074,
+            0.9659258262890683,
+            -0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      "scale": 2,
+      "simulation_seed": 11,
+      "stem": "yaw_15__stop_hold_reverse__seed_11__baseline__s2",
+      "surface_yaw_deg": 15.0
+    },
+    {
+      "arm": "friction",
+      "case": "stop_hold_reverse",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                7.0710678118654755,
+                7.0710678118654755,
+                7.0710678118654755
+              ],
+              "rotational_stiffness": [
+                40.0,
+                40.0,
+                40.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": {
+            "adaptation_gain": 800.0,
+            "coefficient_rate_limit": 0.3,
+            "force_regularizer": 2.0,
+            "force_slew_rate": 20.0,
+            "integral_gain": 800.0,
+            "max_equivalent_mu": 0.9,
+            "max_force": 6.0,
+            "min_update_speed": 0.005,
+            "mode": "friction",
+            "motion_confirm_time": 0.05,
+            "nominal_mu": 0.45,
+            "velocity_error_time": 0.05,
+            "velocity_scale": 0.005
+          },
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            0.9659258262890683,
+            -0.25881904510252074,
+            0.0
+          ],
+          [
+            0.25881904510252074,
+            0.9659258262890683,
+            -0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      "scale": 2,
+      "simulation_seed": 11,
+      "stem": "yaw_15__stop_hold_reverse__seed_11__friction__s2",
+      "surface_yaw_deg": 15.0
+    },
+    {
+      "arm": "online",
+      "case": "stop_hold_reverse",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                7.0710678118654755,
+                7.0710678118654755,
+                7.0710678118654755
+              ],
+              "rotational_stiffness": [
+                40.0,
+                40.0,
+                40.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": {
+            "adaptation_gain": 800.0,
+            "coefficient_rate_limit": 0.3,
+            "force_regularizer": 2.0,
+            "force_slew_rate": 20.0,
+            "integral_gain": 800.0,
+            "max_equivalent_mu": 0.9,
+            "max_force": 6.0,
+            "min_update_speed": 0.005,
+            "mode": "online",
+            "motion_confirm_time": 0.05,
+            "nominal_mu": 0.45,
+            "velocity_error_time": 0.05,
+            "velocity_scale": 0.005
+          },
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            0.9659258262890683,
+            -0.25881904510252074,
+            0.0
+          ],
+          [
+            0.25881904510252074,
+            0.9659258262890683,
+            -0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      "scale": 2,
+      "simulation_seed": 11,
+      "stem": "yaw_15__stop_hold_reverse__seed_11__online__s2",
+      "surface_yaw_deg": 15.0
+    },
+    {
+      "arm": "baseline",
+      "case": "modest_combined",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                7.0710678118654755,
+                7.0710678118654755,
+                7.0710678118654755
+              ],
+              "rotational_stiffness": [
+                40.0,
+                40.0,
+                40.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": null,
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            0.9510565162951536,
+            -0.30901699437494745,
+            0.0
+          ],
+          [
+            0.30901699437494745,
+            0.9510565162951536,
+            -0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0000000000000002
+          ]
+        ]
+      },
+      "scale": 2,
+      "simulation_seed": 11,
+      "stem": "yaw_15__modest_combined__seed_11__baseline__s2",
+      "surface_yaw_deg": 15.0
+    },
+    {
+      "arm": "friction",
+      "case": "modest_combined",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                7.0710678118654755,
+                7.0710678118654755,
+                7.0710678118654755
+              ],
+              "rotational_stiffness": [
+                40.0,
+                40.0,
+                40.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": {
+            "adaptation_gain": 800.0,
+            "coefficient_rate_limit": 0.3,
+            "force_regularizer": 2.0,
+            "force_slew_rate": 20.0,
+            "integral_gain": 800.0,
+            "max_equivalent_mu": 0.9,
+            "max_force": 6.0,
+            "min_update_speed": 0.005,
+            "mode": "friction",
+            "motion_confirm_time": 0.05,
+            "nominal_mu": 0.45,
+            "velocity_error_time": 0.05,
+            "velocity_scale": 0.005
+          },
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            0.9510565162951536,
+            -0.30901699437494745,
+            0.0
+          ],
+          [
+            0.30901699437494745,
+            0.9510565162951536,
+            -0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0000000000000002
+          ]
+        ]
+      },
+      "scale": 2,
+      "simulation_seed": 11,
+      "stem": "yaw_15__modest_combined__seed_11__friction__s2",
+      "surface_yaw_deg": 15.0
+    },
+    {
+      "arm": "online",
+      "case": "modest_combined",
+      "controller": {
+        "safe_adaptive_base": {
+          "base": {
+            "base": {
+              "approach_damping": 120.0,
+              "approach_stiffness": 800.0,
+              "contact_confirm_time": 0.02,
+              "contact_release_threshold": 1.0,
+              "contact_release_time": 0.05,
+              "contact_threshold": 3.0,
+              "force_ki": 1.5,
+              "force_kp": 0.35,
+              "force_transition_time": 0.5,
+              "integral_limit": 2.0,
+              "max_approach_command": 12.0,
+              "max_normal_command": 25.0,
+              "name": "hybrid",
+              "normal": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "normal_damping": 10.0,
+              "rotational_damping": [
+                7.0710678118654755,
+                7.0710678118654755,
+                7.0710678118654755
+              ],
+              "rotational_stiffness": [
+                40.0,
+                40.0,
+                40.0
+              ],
+              "tangential_damping": [
+                0.0,
+                38.0,
+                38.0
+              ],
+              "tangential_stiffness": [
+                0.0,
+                450.0,
+                450.0
+              ]
+            },
+            "bias_time_constant": 0.08,
+            "force_rate_time_constant": 0.03,
+            "max_contact_stiffness": 30000.0,
+            "max_force_bias": 3.0,
+            "max_force_gain_scale": 1.1,
+            "max_retreat_command": 2.0,
+            "min_contact_stiffness": 500.0,
+            "min_force_gain_scale": 0.65,
+            "name": "adaptive_hybrid",
+            "reference_contact_stiffness": 4000.0,
+            "stiffness_time_constant": 0.15
+          },
+          "impact_force_margin": 3.0,
+          "impact_force_rate": 120.0,
+          "max_approach_velocity": 0.025,
+          "max_normal_lead": 0.01,
+          "name": "safe_adaptive_hybrid",
+          "tangential": {
+            "adaptation_gain": 800.0,
+            "coefficient_rate_limit": 0.3,
+            "force_regularizer": 2.0,
+            "force_slew_rate": 20.0,
+            "integral_gain": 800.0,
+            "max_equivalent_mu": 0.9,
+            "max_force": 6.0,
+            "min_update_speed": 0.005,
+            "mode": "online",
+            "motion_confirm_time": 0.05,
+            "nominal_mu": 0.45,
+            "velocity_error_time": 0.05,
+            "velocity_scale": 0.005
+          },
+          "torque_reserve_fraction": 0.1
+        },
+        "surface_frame_rotation": [
+          [
+            0.9510565162951536,
+            -0.30901699437494745,
+            0.0
+          ],
+          [
+            0.30901699437494745,
+            0.9510565162951536,
+            -0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0000000000000002
+          ]
+        ]
+      },
+      "scale": 2,
+      "simulation_seed": 11,
+      "stem": "yaw_15__modest_combined__seed_11__online__s2",
+      "surface_yaw_deg": 15.0
+    }
+  ]
+}

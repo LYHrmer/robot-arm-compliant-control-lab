@@ -14,6 +14,8 @@
 在线阶段通过 42/42；自身平均切向 RMSE 增加约 0.016 mm。
 随后[原 24-case 的 192 次回归](rotation_gain_public24.md)也通过工程检查，但切向速度误差
 在全部 case 中增加，默认配置不替换。
+后续[跨方向动态回归](cross_surface_regression.md)增加 −15°、0° 的换向和组合误差覆盖，
+未新增工程阶段失效；组合误差后段约 3.25–3.33 mm 的切向误差仍保留为精度局限。
 C++ 在四份完整仿真轨迹、24,000 个周期上逐步对齐，
 [最大 wrench 误差小于 4.45e-15](../results/franka_online_cpp_replay/report.json)。
 新增益的[另四份完整轨迹](../results/franka_rotation_gain_cpp_replay/report.json)也通过回放。

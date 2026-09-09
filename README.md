@@ -30,6 +30,10 @@ Franka Panda 7-DOF 在 MuJoCo 中沿表面擦拭，同时跟踪 12 N 法向接�
 在线姿态 RMSE 中位数从 0.464° 降到 0.248°，切向位置误差则从 1.359 增到 1.409 mm，
 速度误差在全部 case 中增加。因此保留为姿态优先任务的可选预设，默认及 BC/PPO 基线不变。
 
+再将换向／组合误差扩展到三个表面方向，完成[36 次单种子回归](docs/cross_surface_regression.md)。
+新增方向没有额外工程阶段失效；原 +15° 的两条姿态失败保留。组合误差后段仍有约
+3.25–3.33 mm 切向 RMSE，新增益也仍有跟踪代价，因此本轮未修改控制算法。
+
 所选 C++ 表面控制链已完成四份完整仿真轨迹的逐步核验，共 24,000 个周期，
 最大 wrench 分量误差小于 `4.45e-15`。见 [C++ 回放报告](results/franka_online_cpp_replay/report.json)；
 [新增益的另四份轨迹](results/franka_rotation_gain_cpp_replay/report.json)也通过 24,000 步核验。

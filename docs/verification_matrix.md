@@ -37,6 +37,11 @@
 
 ## 实验完整性
 
+[跨方向动态回归](cross_surface_regression.md)新增 36 次运行、144 个阶段及 90 个同身份增益配对。
+[配置与边界测试](../tests/test_cross_surface_regression.py)、[配对测试](../tests/test_cross_surface_pairs.py)
+和[重封篡改审计测试](../tests/test_cross_surface_audit.py)分别核对几何转换、配对身份、旧结果复现、
+原始输入与紧凑指标、固定力矩限值及完整轨迹一致性。既有源代码与实验归档均未修改。
+
 新表面任务的[学习前准备](surface_learning.md)与旧 v0.5 学习实验使用不同接口和数据身份：
 
 | 检查范围 | 实现 | 可执行证据 |
