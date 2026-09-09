@@ -91,6 +91,15 @@
 
 ## C++ parity 的范围
 
+补偿预算的[独立对照](compensation_budget.md)另外使用
+[生成器](../tools/compensation_budget_study.py)、[固定筛选规则](../tools/compensation_budget_screen.py)
+和[预算感知校验](../tools/compensation_budget_validation.py)。
+[构造与协议测试](../tests/test_compensation_budget_study.py)确认只改变幅值上限，
+[筛选测试](../tests/test_compensation_budget_screen.py)拒绝用平均值隐藏单组代价，
+[篡改测试](../tests/test_compensation_budget_audit.py)独立复核
+[12 次归档](../results/franka_compensation_budget/)。这轮没有新增 8 N 的 C++ 完整控制链回放，
+不能把下面的原有 parity 结果自动推广到新配置。
+
 C++17/Eigen parity 覆盖三类固定经典控制器：
 
 - `CartesianImpedanceController` ↔ `FrankaImpedanceController`

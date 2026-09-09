@@ -19,6 +19,7 @@
 | Rotation gain public24 | 原 24-case × 4 方法 × 2 增益，192 次运行 | 原96行精确复现；新96行全部通过工程检查；在线姿态中位数 0.464 → 0.248°，切向位置中位数 1.359 → 1.409 mm，速度误差全部增加 | 不替换全局默认；保留姿态优先的可选预设 |
 | Cross-surface dynamic v1 | 3 个 yaw × 2 个既有工况 × 3 方法 × 2 增益，固定 seed 11 | 整体 36/36、阶段 142/144；新增方向无额外阶段失效；组合误差后段切向 RMSE 仍约 3.25–3.33 mm | [不改算法及默认值，保留跟踪代价](../cross_surface_regression.md)；单种子开发筛查，不是新盲测 |
 | Combined residual diagnosis v1 | 3 yaw × 4 输入变体，原增益、在线方法、seed 11 | 原组合三组精确复现；后段幅值限幅 95.6%–98.0%；低摩擦变体切向 RMSE 1.09–1.13 mm，移除测量偏置反而增大切向误差 | [诊断负载与补偿边界](../combined_residual_diagnosis.md)，未改算法或上限；不计算原配对方法 gate |
+| Compensation budget screen v1 | 3 yaw × 组合／无偏置 × 6 N／8 N，固定 seed 11、增益 1 | 六条 6 N 轨迹精确复现；8 N 后段切向 RMSE 1.22–1.47 mm，六组工程筛选全部通过 | [限定工况的实验配置](../compensation_budget.md)，默认仍为 6 N；不算同预算算法提升，不更新旧通过数 |
 
 ## 版本锚点与证据
 

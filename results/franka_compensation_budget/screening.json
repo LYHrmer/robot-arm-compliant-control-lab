@@ -1,0 +1,100 @@
+{
+  "criteria": {
+    "maximum_full_raw_peak_increase_n": 1.0,
+    "maximum_full_raw_peak_n": 35.0,
+    "maximum_late_tangent_rmse_mm": 3.0,
+    "maximum_phase_force_rmse_increase_n": 0.2,
+    "maximum_phase_orientation_rmse_increase_deg": 0.1,
+    "maximum_post_tangent_rmse_mm": 3.0,
+    "minimum_candidate_uncapped_amplitude_exclusive_n": 6.0,
+    "minimum_contact_ratio_pct": 99.0,
+    "minimum_post_tangent_reduction_pct": 20.0,
+    "minimum_reserved_headroom_nm": 1.0,
+    "required_clipping_pct": 0.0,
+    "required_projection_pct": 0.0
+  },
+  "default_changed": false,
+  "pairs": [
+    {
+      "candidate_late_tangent_rmse_mm": 1.1095537607422983,
+      "candidate_post_tangent_rmse_mm": 1.2456755961955523,
+      "failed_checks": [],
+      "full_raw_peak_increase_n": 0.0,
+      "post_tangent_reduction_pct": 62.62104523424301,
+      "reference_post_tangent_rmse_mm": 3.3325586657033037,
+      "status": "PASS",
+      "surface_yaw_deg": -15,
+      "variant": "combined",
+      "worst_phase_force_rmse_increase_n": 0.0020496572111355915,
+      "worst_phase_orientation_rmse_increase_deg": 0.015231694685918673
+    },
+    {
+      "candidate_late_tangent_rmse_mm": 1.3882639559864014,
+      "candidate_post_tangent_rmse_mm": 1.4463590278541294,
+      "failed_checks": [],
+      "full_raw_peak_increase_n": 0.0,
+      "post_tangent_reduction_pct": 65.57871236355221,
+      "reference_post_tangent_rmse_mm": 4.201931790380261,
+      "status": "PASS",
+      "surface_yaw_deg": -15,
+      "variant": "no_bias",
+      "worst_phase_force_rmse_increase_n": 0.002961784831532005,
+      "worst_phase_orientation_rmse_increase_deg": 0.016475878860875814
+    },
+    {
+      "candidate_late_tangent_rmse_mm": 1.051898963544877,
+      "candidate_post_tangent_rmse_mm": 1.2232721525844001,
+      "failed_checks": [],
+      "full_raw_peak_increase_n": 0.0,
+      "post_tangent_reduction_pct": 62.50788431177846,
+      "reference_post_tangent_rmse_mm": 3.2627450602066217,
+      "status": "PASS",
+      "surface_yaw_deg": 0,
+      "variant": "combined",
+      "worst_phase_force_rmse_increase_n": 0.0009474522633944882,
+      "worst_phase_orientation_rmse_increase_deg": 0.01718888253374634
+    },
+    {
+      "candidate_late_tangent_rmse_mm": 1.3024558684775236,
+      "candidate_post_tangent_rmse_mm": 1.411035730745816,
+      "failed_checks": [],
+      "full_raw_peak_increase_n": 0.0,
+      "post_tangent_reduction_pct": 65.85452663125272,
+      "reference_post_tangent_rmse_mm": 4.132423983430001,
+      "status": "PASS",
+      "surface_yaw_deg": 0,
+      "variant": "no_bias",
+      "worst_phase_force_rmse_increase_n": 0.0030580419629340216,
+      "worst_phase_orientation_rmse_increase_deg": 0.01831680082081355
+    },
+    {
+      "candidate_late_tangent_rmse_mm": 1.0706723366572368,
+      "candidate_post_tangent_rmse_mm": 1.2640303047829278,
+      "failed_checks": [],
+      "full_raw_peak_increase_n": 0.0,
+      "post_tangent_reduction_pct": 61.90763691298113,
+      "reference_post_tangent_rmse_mm": 3.3183299809868836,
+      "status": "PASS",
+      "surface_yaw_deg": 15,
+      "variant": "combined",
+      "worst_phase_force_rmse_increase_n": 0.0,
+      "worst_phase_orientation_rmse_increase_deg": 0.01945514501689688
+    },
+    {
+      "candidate_late_tangent_rmse_mm": 1.3516618229754005,
+      "candidate_post_tangent_rmse_mm": 1.466833908186656,
+      "failed_checks": [],
+      "full_raw_peak_increase_n": 0.0,
+      "post_tangent_reduction_pct": 64.94122266390936,
+      "reference_post_tangent_rmse_mm": 4.183927734058911,
+      "status": "PASS",
+      "surface_yaw_deg": 15,
+      "variant": "no_bias",
+      "worst_phase_force_rmse_increase_n": 0.004666157173698171,
+      "worst_phase_orientation_rmse_increase_deg": 0.02033295288882675
+    }
+  ],
+  "passed_pairs": 6,
+  "scope": "public-development parameter-budget feasibility only",
+  "status": "PASS"
+}
