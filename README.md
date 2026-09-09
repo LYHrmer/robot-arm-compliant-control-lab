@@ -22,8 +22,15 @@ Franka Panda 7-DOF 在 MuJoCo 中沿表面擦拭，同时跟踪 12 N 法向接�
 [全部 80 次结果](results/franka_online_compensation_errors/)与
 [阶段失败说明](docs/online_compensation.md#实测结果与没有通过的部分)均保留，没有重新调门槛。
 
+后续给四种方法统一使用两倍旋转刚度、 $\sqrt{2}$ 倍旋转阻尼，重跑相同的 80 次对照。
+在线方法阶段通过 **42/42**，反向加速的姿态增量降至约 0.087°。
+代价是在线方法的平均切向 RMSE 从 2.559 增至 2.575 mm；积分方法仍有两条阶段失败。
+[增益对照与推导](docs/rotation_gain_comparison.md)说明了被否定的假设和完整配对结果。
+这项常量预设尚未覆盖原 24-case 几何网格，默认增益不变，也没有给 BC/PPO 换基线。
+
 所选 C++ 表面控制链已完成四份完整仿真轨迹的逐步核验，共 24,000 个周期，
 最大 wrench 分量误差小于 `4.45e-15`。见 [C++ 回放报告](results/franka_online_cpp_replay/report.json)；
+[新增益的另四份轨迹](results/franka_rotation_gain_cpp_replay/report.json)也通过 24,000 步核验。
 这验证的是数值移植，不是真机部署或实时性保证。
 
 ## BC 与 Residual RL 的独立对照
@@ -64,6 +71,7 @@ checkpoint：seed 11/29 选第 32 回合，seed 47 选第 16 回合。另一个�
 | 想看什么 | 说明 | 实现 |
 |---|---|---|
 | 误差驱动的在线补偿 | 当前力与下一步系数的更新顺序、换向冻结、共同 6 N 上限 | [在线补偿](docs/online_compensation.md)、[`tangential_compensation.py`](src/compliant_control_lab/tangential_compensation.py) |
+| 换向时的姿态代价 | 旋转刚度与阻尼的同步缩放、同增益配对比较 | [姿态增益对照](docs/rotation_gain_comparison.md)、[`surface_control.py`](src/compliant_control_lab/surface_control.py) |
 | Python 到 C++ 的控制链 | 表面坐标、自适应状态、接触过渡、力矩投影和输入超时 | [C++ 接口与范围](docs/cpp_core.md)、[`surface_control.cpp`](cpp/src/surface_control.cpp) |
 | 擦拭任务与 49 维观测 | 50 Hz/500 Hz 时序、数据分组、教师标签 | [学习任务](docs/surface_learning.md)、[`surface_env.py`](src/compliant_control_lab/surface_env.py)、[`surface_dataset.py`](src/compliant_control_lab/surface_dataset.py) |
 | 摩擦强基线与 BC 教师 | 有界摩擦前馈公式、输入消融和闭环偏移 | [切向补偿](docs/tangential_tracking.md)、[BC 对照](docs/bc_closed_loop_transfer.md)、[`surface_policy.py`](src/compliant_control_lab/surface_policy.py) |

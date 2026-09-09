@@ -146,6 +146,14 @@ Numerical agreement verifies the port, not the suitability of the underlying con
 the [reverse-ramp orientation failures](online_compensation.md#实测结果与没有通过的部分)
 remain failures in both languages.
 
+A [separate four-trace report](../results/franka_rotation_gain_cpp_replay/report.json) checks
+the opt-in [rotation-gain preset](rotation_gain_comparison.md): another 24,000 samples match,
+with maximum wrench/torque errors `4.45e-15` / `3.56e-15`. The verifier reads the scalar
+`rotation_gain_scale` from each full trace (absent means 1) and passes it to the probe.
+To repeat this check, replace the four input directory names above with
+`results/franka_rotation_gain_comparison` and use a new output directory.
+The report's separate timing benchmark still uses the default gains; it does not time this preset.
+
 ## ROS 2 integration boundary
 
 A real Franka torque-controller plugin additionally needs the model/state signals from a hardware

@@ -17,6 +17,26 @@ from compliant_control_lab.franka_control import (
 from compliant_control_lab.surface_control import SurfaceAdaptiveController, SurfaceFrame
 
 
+@pytest.mark.parametrize("scale", [0, -1, np.nan, np.inf, 1e308, True, "2", np.array([2.0])])
+def test_rotation_gain_scale_rejects_invalid_values(scale):
+    with pytest.raises(ValueError, match="rotation_gain_scale"):
+        SurfaceAdaptiveController(SurfaceFrame(np.eye(3)), rotation_gain_scale=scale)
+
+
+def test_rotation_gain_scale_changes_only_constant_rotational_gains():
+    default = SurfaceAdaptiveController(SurfaceFrame(np.eye(3)))
+    scaled = SurfaceAdaptiveController(SurfaceFrame(np.eye(3)), rotation_gain_scale=2.0)
+    original = default._base.base.base
+    changed = scaled._base.base.base
+    np.testing.assert_array_equal(changed.rotational_stiffness, original.rotational_stiffness * 2)
+    np.testing.assert_array_equal(changed.rotational_damping, original.rotational_damping * np.sqrt(2))
+    np.testing.assert_array_equal(changed.tangential_stiffness, original.tangential_stiffness)
+    np.testing.assert_array_equal(changed.tangential_damping, original.tangential_damping)
+    assert changed.force_kp == original.force_kp and changed.force_ki == original.force_ki
+    with pytest.raises(ValueError, match="supplied base"):
+        SurfaceAdaptiveController(default.frame, base=default._base, rotation_gain_scale=2)
+
+
 def _rotation(seed: int) -> np.ndarray:
     rotation, _ = np.linalg.qr(np.random.default_rng(seed).normal(size=(3, 3)))
     rotation[:, -1] *= np.linalg.det(rotation)

@@ -48,6 +48,7 @@ Residual RL，每章都给出公式、源码入口和练习。
 | 擦拭微分离、接触柔度与步长检查 | [wiping_contact_diagnosis.md](wiping_contact_diagnosis.md) |
 | 接触稳定后的切向误差、积分与摩擦前馈 | [tangential_tracking.md](tangential_tracking.md) |
 | 在线等效负载补偿、停止更新条件和原有 24-case 回归 | [online_compensation.md](online_compensation.md) |
+| 换向姿态代价、旋转增益推导与同配置配对 | [rotation_gain_comparison.md](rotation_gain_comparison.md) |
 | 新表面任务的 RL / IL 环境、数据与评价准备 | [surface_learning.md](surface_learning.md) |
 | 小规模行为克隆、残差 PPO 与闭环选型 | [surface_learning_pilot.md](surface_learning_pilot.md) |
 | BC 离线拟合良好，闭环为什么偏：历史输入消融 | [bc_closed_loop_transfer.md](bc_closed_loop_transfer.md) |
@@ -71,6 +72,7 @@ Residual RL，每章都给出公式、源码入口和练习。
 | 固定平滑模型的切向补偿：24 × 3，加独立长时 9 次 | [公式、时序和失配边界](tangential_tracking.md) | [81 次实验](../results/franka_tangential_development/)、[单因素与静态保持](../results/franka_tangential_diagnostics/diagnosis.json) |
 | 在线补偿：原有 24 × 4 配对回归 | [更新律与共同 6 N 上限](online_compensation.md) | [96 次实验](../results/franka_online_compensation_regression/) |
 | 12 秒误差对照：10 工况 × 2 噪声种子 × 4 方法 | [阶段结果与剩余问题](online_compensation.md#实测结果与没有通过的部分) | [80 次实验](../results/franka_online_compensation_errors/)、[对照图](../results/franka_online_compensation_figures/dynamic_errors.png) |
+| 姿态阻抗常量预设：相同 80 次误差对照，所有方法统一增益 | [增益与跟踪代价](rotation_gain_comparison.md) | [新对照](../results/franka_rotation_gain_comparison/)、[新增益 C++ 回放](../results/franka_rotation_gain_cpp_replay/) |
 | C++ 完整数值控制链回放 | [输入、状态与硬件边界](cpp_core.md) | [四份完整轨迹核验](../results/franka_online_cpp_replay/) |
 | 表面任务学习前准备：24 × 3、12 次压力测试与同频教师数据 | [训练接口、标签与复现](surface_learning.md) | [数值索引](../results/franka_surface_learning_preparation/)、[三回合示例](../results/franka_surface_learning_examples/)、[分层修正记录](../results/franka_surface_learning_partition/) |
 | 小规模 BC 与 bounded Residual PPO：各三个训练种子 | [损失、更新与选择规则](surface_learning_pilot.md) | [完整种子对照](../results/franka_surface_learning_pilot/) |

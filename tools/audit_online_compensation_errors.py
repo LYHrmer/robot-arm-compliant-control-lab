@@ -45,6 +45,14 @@ FULL_TRACE_SELECTION = {
     ("stop_hold_reverse", 11, "online"),
 }
 FLOAT_ATOL = 1e-10
+KNOWN_ARCHIVE_SOURCE_HASHES_SHA256 = frozenset(
+    {
+        # results/franka_online_compensation_errors/source_hashes.json
+        "8332aa912b287d6b7ea40cebaf36fd9fd10c0e223cb40bcdf1cc1d4eb6ceb25d",
+        # results/franka_rotation_gain_comparison/source_hashes.json
+        "414b7fdb0104eee8eeb61a6c22d2d52da6ffe3fe3106fdc94d7678451083930a",
+    }
+)
 
 
 def _sha256(path: Path) -> str:
@@ -163,6 +171,67 @@ def _assert_close(actual, expected, context: str) -> None:
     if not np.allclose(actual, expected, rtol=1e-10, atol=FLOAT_ATOL):
         difference = float(np.max(np.abs(np.asarray(actual) - np.asarray(expected))))
         raise ValueError(f"{context} mismatch (max_abs={difference})")
+
+
+def _positive_finite_float(value, context: str) -> float:
+    if isinstance(value, (bool, np.bool_)) or not isinstance(
+        value, (int, float, np.integer, np.floating)
+    ):
+        raise TypeError(f"{context} must be a positive finite number")
+    result = float(value)
+    if not np.isfinite(result) or result <= 0:
+        raise ValueError(f"{context} must be a positive finite number")
+    return result
+
+
+def _rotation_gain_scale(manifest: dict, protocol: dict, configurations: dict) -> float:
+    documents = (manifest, protocol, configurations)
+    present = tuple("rotation_gain_scale" in document for document in documents)
+    if any(present) and not all(present):
+        raise ValueError("rotation gain scale metadata differs across frozen JSON files")
+    if not any(present):
+        scale = 1.0
+    else:
+        scales = tuple(
+            _positive_finite_float(document["rotation_gain_scale"], "rotation_gain_scale")
+            for document in documents
+        )
+        if scales[1:] != scales[:-1]:
+            raise ValueError("rotation gain scale metadata differs across frozen JSON files")
+        scale = scales[0]
+
+    controllers = protocol.get("controller_constructor_configurations")
+    if not isinstance(controllers, dict) or not set(EXPECTED_ARMS) <= set(controllers):
+        raise ValueError("controller configurations do not contain every frozen arm")
+    expected_stiffness = np.full(3, 20.0 * scale)
+    expected_damping = np.full(3, 5.0 * np.sqrt(scale))
+    for arm in EXPECTED_ARMS:
+        try:
+            base = controllers[arm]["safe_adaptive_base"]["base"]["base"]
+            stiffness = np.asarray(base["rotational_stiffness"])
+            damping = np.asarray(base["rotational_damping"])
+        except (KeyError, TypeError) as error:
+            raise ValueError(f"{arm} controller rotation gains are missing") from error
+        for values, expected, label in (
+            (stiffness, expected_stiffness, "rotational stiffness"),
+            (damping, expected_damping, "rotational damping"),
+        ):
+            if values.shape != (3,) or values.dtype.kind not in "iuf" or not np.all(
+                np.isfinite(values)
+            ):
+                raise ValueError(f"{arm} controller {label} must be three finite numbers")
+            _assert_close(values, expected, f"{arm} controller {label}")
+    return scale
+
+
+def _full_trace_rotation_gain_scale(path: Path) -> float:
+    with np.load(path, allow_pickle=False) as loaded:
+        if "rotation_gain_scale" not in loaded.files:
+            return 1.0
+        value = loaded["rotation_gain_scale"]
+    if value.shape != ():
+        raise ValueError(f"full trace rotation_gain_scale must be scalar: {path.name}")
+    return _positive_finite_float(value.item(), f"full trace rotation_gain_scale: {path.name}")
 
 
 def _load_compact(path: Path, case: dict, arm: str, controller: dict) -> dict[str, np.ndarray]:
@@ -556,8 +625,14 @@ def _validate_protocol(manifest: dict, protocol: dict, configurations: dict) -> 
 def audit_archive(directory: Path | str) -> dict:
     root = Path(directory).resolve()
     manifest, protocol, configurations, source_hashes = _verify_hashes(root)
-    if source_hashes != _live_source_hashes():
-        raise ValueError("archive source hashes do not match the live package")
+    current_source_matches_archive = source_hashes == _live_source_hashes()
+    if current_source_matches_archive:
+        source_identity_status = "current"
+    elif _sha256(root / "source_hashes.json") in KNOWN_ARCHIVE_SOURCE_HASHES_SHA256:
+        source_identity_status = "known_archive"
+    else:
+        raise ValueError("archive source identity is neither current nor a known archive")
+    rotation_gain_scale = _rotation_gain_scale(manifest, protocol, configurations)
     cases, _, _, arms = _validate_protocol(manifest, protocol, configurations)
     case_map = {(case["name"], case["config"]["seed"]): case for case in cases}
     expected_grid = {(name, seed, arm) for name, seed in case_map for arm in arms}
@@ -672,9 +747,14 @@ def audit_archive(directory: Path | str) -> dict:
     }
     if full_files != expected_full_files:
         raise ValueError("full trace inventory differs from the predeclared retention policy")
+    for path in full_files:
+        if _full_trace_rotation_gain_scale(path) != rotation_gain_scale:
+            raise ValueError(f"full trace rotation_gain_scale differs from archive: {path.name}")
     return {
         "archive": str(root),
         "identity": PROTOCOL_ID,
+        "current_source_matches_archive": current_source_matches_archive,
+        "source_identity_status": source_identity_status,
         "is_subset": manifest["is_subset"],
         "comparison_rows": len(comparison),
         "phase_rows": len(published_phases),

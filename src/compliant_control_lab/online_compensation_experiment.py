@@ -409,12 +409,16 @@ class ScheduledSurfaceSimulator(SurfaceSimulator):
         return row
 
 
-def run_protocol_trial(case: ProtocolCase, arm: str) -> SurfaceTrialResult:
+def run_protocol_trial(
+    case: ProtocolCase, arm: str, *, rotation_gain_scale: float = 1.0,
+) -> SurfaceTrialResult:
     """Run one measured-input-only arm/case pair on the common simulation seed."""
     if arm not in ARMS:
         raise ValueError(f"unknown arm: {arm}")
     frame = yaw_frame(case.task.yaw_deg + case.controller_yaw_error_deg)
-    controller = SurfaceAdaptiveController(frame, tangential_mode=ARMS[arm])
+    controller = SurfaceAdaptiveController(
+        frame, tangential_mode=ARMS[arm], rotation_gain_scale=rotation_gain_scale,
+    )
     simulator = ScheduledSurfaceSimulator(case, frame, arm)
     steps = round(case.config.duration / case.config.timestep)
     for step in range(steps):
@@ -427,7 +431,9 @@ def run_protocol_trial(case: ProtocolCase, arm: str) -> SurfaceTrialResult:
         )
         wrench = controller.compute(sample.state, sample.target, case.config.timestep)
         simulator.step(wrench, controller, telemetry_before=before)
-    return simulator.result()
+    result = simulator.result()
+    result.trace["rotation_gain_scale"] = np.array(float(rotation_gain_scale))
+    return result
 
 
 def _window_metrics(trace: dict[str, np.ndarray], mask: np.ndarray, normal: np.ndarray) -> dict:
@@ -693,11 +699,13 @@ def _constructor_config(value):
     return value
 
 
-def _controller_configs() -> dict:
+def _controller_configs(rotation_gain_scale: float = 1.0) -> dict:
     frame = yaw_frame(15.0)
     configs = {}
     for arm, mode in ARMS.items():
-        controller = SurfaceAdaptiveController(frame, tangential_mode=mode)
+        controller = SurfaceAdaptiveController(
+            frame, tangential_mode=mode, rotation_gain_scale=rotation_gain_scale,
+        )
         configs[arm] = {
             "surface_frame_rotation": frame.rotation.tolist(),
             "safe_adaptive_base": _constructor_config(controller._base),
@@ -793,6 +801,7 @@ def generate_online_compensation_experiment(
     arms=None,
     seeds=None,
     full_traces: bool = False,
+    rotation_gain_scale: float = 1.0,
 ) -> Path:
     """Run a selected fixed matrix and atomically publish complete evidence."""
     output = Path(output_dir).absolute()
@@ -800,6 +809,8 @@ def generate_online_compensation_experiment(
         raise ValueError("output path must not contain symlinks")
     if output.exists():
         raise FileExistsError(f"output already exists: {output}")
+    controller_configs = _controller_configs(rotation_gain_scale)
+    rotation_gain_scale = float(rotation_gain_scale)
     cases = protocol_cases()
     profile_names = tuple(dict.fromkeys(case.name for case in cases))
     selected_names = _select(case_names, profile_names, "case names")
@@ -839,7 +850,8 @@ def generate_online_compensation_experiment(
         "representative_original_case_index": REPRESENTATIVE_CASE_INDEX,
         "predetermined_noise_seeds": PROTOCOL_SEEDS,
         "arms": ARMS,
-        "controller_constructor_configurations": _controller_configs(),
+        "controller_constructor_configurations": controller_configs,
+        "rotation_gain_scale": rotation_gain_scale,
         "gates": GATES,
         "recovery": {
             "window_s": RECOVERY_WINDOW_S,
@@ -857,6 +869,7 @@ def generate_online_compensation_experiment(
         "all_cases": [_case_document(case) for case in cases],
     }
     configurations = {
+        "rotation_gain_scale": rotation_gain_scale,
         "selected_case_names": selected_names,
         "selected_seeds": selected_seeds,
         "selected_arms": selected_arms,
@@ -891,7 +904,7 @@ def generate_online_compensation_experiment(
             case_summaries = {}
             case_phases = {}
             for arm in selected_arms:
-                result = run_protocol_trial(case, arm)
+                result = run_protocol_trial(case, arm, rotation_gain_scale=rotation_gain_scale)
                 summary, phases = summarize_trial(result, case)
                 case_summaries[arm] = summary
                 case_phases[arm] = phases
@@ -967,6 +980,7 @@ def generate_online_compensation_experiment(
         manifest = {
             "schema_version": 1,
             "experiment_identity": PROTOCOL_ID,
+            "rotation_gain_scale": rotation_gain_scale,
             "new_holdout": False,
             "is_subset": configurations["is_subset"],
             "selected_case_names": selected_names,
@@ -998,6 +1012,8 @@ def main() -> None:
     parser.add_argument("--arms", choices=tuple(ARMS), nargs="+")
     parser.add_argument("--seeds", choices=PROTOCOL_SEEDS, type=int, nargs="+")
     parser.add_argument("--full-traces", action="store_true")
+    parser.add_argument("--rotation-gain-scale", type=float, default=1.0,
+                        help="Constant Krot multiplier; Drot is multiplied by its square root.")
     arguments = parser.parse_args()
     output = generate_online_compensation_experiment(
         arguments.output,
@@ -1005,6 +1021,7 @@ def main() -> None:
         arms=arguments.arms,
         seeds=arguments.seeds,
         full_traces=arguments.full_traces,
+        rotation_gain_scale=arguments.rotation_gain_scale,
     )
     print(f"Public-development error comparison complete: {output}")
 

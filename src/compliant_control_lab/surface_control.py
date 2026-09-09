@@ -114,14 +114,28 @@ class SurfaceAdaptiveController:
         base: FrankaSafeAdaptiveController | None = None,
         *,
         tangential_mode: str | None = None,
+        rotation_gain_scale: float = 1.0,
     ) -> None:
+        if (
+            isinstance(rotation_gain_scale, (bool, np.bool_))
+            or not isinstance(rotation_gain_scale, (int, float, np.integer, np.floating))
+            or not np.isfinite(rotation_gain_scale)
+            or rotation_gain_scale <= 0.0
+            or rotation_gain_scale > np.finfo(float).max / 20.0
+        ):
+            raise ValueError("rotation_gain_scale must be a finite positive real scalar")
         self._frame = frame
         if base is not None and tangential_mode is not None:
             raise ValueError("configure compensation on the supplied base, not both interfaces")
+        if base is not None and rotation_gain_scale != 1.0:
+            raise ValueError("configure rotational gains on the supplied base")
         if base is None:
             nominal = FrankaHybridController(
                 normal=np.array([1.0, 0.0, 0.0]), force_transition_time=0.50
             )
+            # Constant per-controller impedance preset, not an online gain update.
+            nominal.rotational_stiffness *= rotation_gain_scale
+            nominal.rotational_damping *= np.sqrt(rotation_gain_scale)
             adaptive = FrankaAdaptiveHybridController(base=nominal)
             compensation = (
                 TangentialCompensation(tangential_mode) if tangential_mode is not None else None

@@ -9,6 +9,31 @@ from compliant_control_lab.surface_control import SurfaceAdaptiveController, Sur
 from compliant_control_lab.surface_replay import replay_surface_trace, save_surface_trace
 
 
+def test_recorded_rotational_preset_is_used_by_automatic_replay(tmp_path):
+    frame = SurfaceFrame(_history()["controller_frame_rotation"])
+    arrays = _history(controller=SurfaceAdaptiveController(frame, rotation_gain_scale=2.0))
+    arrays["rotation_gain_scale"] = np.array(2.0)
+    path = save_surface_trace(tmp_path / "scaled.npz", arrays)
+    assert replay_surface_trace(path).matches
+    # The ordinary, unscaled controller must not be mistaken for the recorded one.
+    assert not replay_surface_trace(path, SurfaceAdaptiveController(frame)).matches
+
+
+@pytest.mark.parametrize("scale", [0.0, -1.0, np.nan, np.inf, 1e308, True, "2", [2.0]])
+def test_replay_rejects_invalid_rotational_preset(tmp_path, scale):
+    arrays = _history()
+    arrays["rotation_gain_scale"] = np.asarray(scale)
+    with pytest.raises(ValueError, match="rotation_gain_scale"):
+        save_surface_trace(tmp_path / "invalid.npz", arrays)
+
+
+def test_world_trace_cannot_silently_ignore_surface_gain_metadata(tmp_path):
+    arrays = _history(world=True)
+    arrays["rotation_gain_scale"] = np.array(2.0)
+    with pytest.raises(ValueError, match="surface controllers"):
+        save_surface_trace(tmp_path / "world.npz", arrays)
+
+
 def _history(*, world=False, controller=None):
     """Nonconstant measured inputs exercising reset, contact transition and controller memory."""
     count, dt = 360, 0.002

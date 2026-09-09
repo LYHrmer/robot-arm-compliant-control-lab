@@ -70,6 +70,13 @@ def _validate_trace(arrays: dict[str, np.ndarray]) -> int:
     dt = arrays["dt"]
     if dt.shape != () or dt.dtype.kind not in "iuf" or float(dt) <= 0:
         raise ValueError("dt must be a finite positive real scalar")
+    rotation_scale = arrays.get("rotation_gain_scale", np.array(1.0))
+    if (
+        rotation_scale.shape != () or rotation_scale.dtype.kind not in "iuf"
+        or float(rotation_scale) <= 0.0
+        or float(rotation_scale) > np.finfo(float).max / 20.0
+    ):
+        raise ValueError("rotation_gain_scale must be a finite positive real scalar")
     kind = arrays["controller_kind"]
     if (
         kind.shape != ()
@@ -80,6 +87,8 @@ def _validate_trace(arrays: dict[str, np.ndarray]) -> int:
     ):
         raise ValueError("controller_kind must identify a supported surface or world controller")
     frame = SurfaceFrame(arrays["controller_frame_rotation"])
+    if kind.item() == "world_safe_adaptive" and float(rotation_scale) != 1.0:
+        raise ValueError("rotation_gain_scale is only supported by surface controllers")
     if kind.item() == "world_safe_adaptive" and not np.allclose(
         frame.rotation, np.eye(3), rtol=0, atol=REPLAY_ABSOLUTE_TOLERANCE
     ):
@@ -120,7 +129,8 @@ def save_surface_trace(path: Path | str, arrays: dict[str, np.ndarray]) -> Path:
     """Validate and atomically publish a compressed NPZ; never replace an existing path.
 
     Schema version defaults to 1. Controller kind describes the default controller
-    configuration; a replay with altered parameters must supply that controller.
+    configuration, optionally with the recorded rotation_gain_scale. Other changed
+    parameters require a supplied controller.
     """
     target = _new_trace_path(path)
     payload = {name: np.asarray(values) for name, values in arrays.items()}
@@ -184,6 +194,7 @@ def replay_surface_trace(
             controller = SurfaceAdaptiveController(
                 SurfaceFrame(arrays["controller_frame_rotation"]),
                 tangential_mode=mode,
+                rotation_gain_scale=float(arrays.get("rotation_gain_scale", 1.0)),
             )
     controller.reset(_state(arrays, 0))
     max_wrench_error = max_torque_error = 0.0

@@ -10,8 +10,11 @@
 另有 80 次误差对照：在线方法降低了全部 20 个配对运行的全程切向误差，
 但 42 条阶段检查有 2 条未通过，均发生在反向加速时的姿态误差增量。
 [逐阶段结果](../results/franka_online_compensation_errors/phase_metrics.csv)没有删掉这两条。
+后续[同增益配对](rotation_gain_comparison.md)给全部方法统一调整常量姿态阻抗，
+在线阶段通过 42/42；自身平均切向 RMSE 增加约 0.016 mm，默认配置暂不替换。
 C++ 在四份完整仿真轨迹、24,000 个周期上逐步对齐，
 [最大 wrench 误差小于 4.45e-15](../results/franka_online_cpp_replay/report.json)。
+新增益的[另四份完整轨迹](../results/franka_rotation_gain_cpp_replay/report.json)也通过回放。
 
 ## 1. 先看现在做的任务（约 1 分钟）
 
@@ -46,6 +49,7 @@ BC 的输入消融改善了首轮明显的闭环偏移，但仍没有超过解�
 | 问题 | 公式和协议 | 源码 |
 |---|---|---|
 | 补偿系数如何更新，什么时候冻结 | [在线负载补偿](online_compensation.md) | [`tangential_compensation.py`](../src/compliant_control_lab/tangential_compensation.py) |
+| 怎样验证姿态调参，避免不公平比较 | [同增益对照与代价](rotation_gain_comparison.md) | [`surface_control.py`](../src/compliant_control_lab/surface_control.py) |
 | C++ 控制链怎么接输入、处理过期数据 | [C++ 控制核心](cpp_core.md) | [`surface_control.cpp`](../cpp/src/surface_control.cpp) |
 | 状态、动作和数据怎么定义 | [表面学习任务](surface_learning.md) | [`surface_env.py`](../src/compliant_control_lab/surface_env.py)、[`surface_dataset.py`](../src/compliant_control_lab/surface_dataset.py) |
 | BC 学什么，为什么要屏蔽历史残差 | [BC 输入消融](bc_closed_loop_transfer.md) | [`surface_policy.py`](../src/compliant_control_lab/surface_policy.py)、[`train_surface_bc.py`](../tools/train_surface_bc.py) |
@@ -83,6 +87,7 @@ smoke: PASS
 
 ```bash
 python -m tools.audit_online_compensation_errors --audit results/franka_online_compensation_errors
+python -m tools.audit_online_compensation_errors --audit results/franka_rotation_gain_comparison
 python -m tools.publish_surface_learning_pilot --audit results/franka_surface_learning_pilot
 python -m tools.publish_surface_bc_transfer --audit results/franka_surface_bc_transfer
 python -m tools.publish_surface_ppo_transfer --audit results/franka_surface_ppo_transfer
@@ -113,7 +118,8 @@ peak P95 仍为 59.54 N，超过 35 N gate。
 泛化。公开学习归档只附少量代表性完整轨迹，其余原始轨迹留在本地源产物中。
 
 仓库没有 ROS 2/Franka hardware adapter，没有硬件 safety 或 passivity 证明。
-在线负载补偿已有 24-case 回归与 80 次误差对照，但反向加速的姿态代价仍未通过阶段门槛。
+在线负载补偿的默认配置在反向加速时仍未通过姿态阶段门槛。可选的新增益在相同 80 次
+误差对照中通过，但尚未覆盖原 24-case 几何网格；积分方法也仍有两条阶段失败。
 [C++ 表面控制器](cpp_core.md)已通过记录输入的完整序列核验；状态更新、补偿与力矩投影
 属于数值控制核心，不包括传感器驱动和机器人模型计算，也不等同于真机实时性测试。
 逐条主张对应的实现、测试与产物见[验证矩阵](verification_matrix.md)，版本顺序见

@@ -1,8 +1,11 @@
 #include "compliant_control_lab/surface_control.hpp"
 
+#include <cmath>
 #include <iomanip>
 #include <iostream>
+#include <limits>
 #include <memory>
+#include <stdexcept>
 #include <string>
 #include <string_view>
 
@@ -70,10 +73,27 @@ void append_vector(const Eigen::MatrixBase<Derived>& vector) {
 }  // namespace
 
 int main(int argc, char** argv) {
-  if (argc != 3 || std::string_view(argv[1]) != "--mode") {
+  if ((argc != 3 && argc != 5) || std::string_view(argv[1]) != "--mode" ||
+      (argc == 5 && std::string_view(argv[3]) != "--rotation-gain-scale")) {
     std::cerr << "usage: compliant_control_surface_probe --mode "
-                 "none|friction|integral|online\n";
+                 "none|friction|integral|online "
+                 "[--rotation-gain-scale FLOAT]\n";
     return 2;
+  }
+  double rotation_gain_scale = 1.0;
+  if (argc == 5) {
+    try {
+      std::size_t consumed = 0;
+      rotation_gain_scale = std::stod(argv[4], &consumed);
+      if (consumed != std::string_view(argv[4]).size() ||
+          !std::isfinite(rotation_gain_scale) || rotation_gain_scale <= 0.0 ||
+          rotation_gain_scale > std::numeric_limits<double>::max() / 20.0) {
+        throw std::invalid_argument("invalid rotation gain scale");
+      }
+    } catch (const std::exception&) {
+      std::cerr << "rotation gain scale must be a finite positive number\n";
+      return 2;
+    }
   }
   ccl::Matrix3 frame_rotation;
   if (!read_matrix(frame_rotation)) {
@@ -87,6 +107,8 @@ int main(int argc, char** argv) {
     std::cerr << error.what() << '\n';
     return 2;
   }
+  parameters.adaptive.hybrid.rotational_stiffness *= rotation_gain_scale;
+  parameters.adaptive.hybrid.rotational_damping *= std::sqrt(rotation_gain_scale);
   ccl::SurfaceAdaptiveController controller(ccl::SurfaceFrame(frame_rotation), parameters);
   std::cout << std::setprecision(17);
 

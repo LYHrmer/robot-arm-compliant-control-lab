@@ -202,7 +202,7 @@ def test_stop_hold_reverse_target_velocity_is_the_path_derivative(time_s):
 def fake_runs(monkeypatch):
     calls = []
 
-    def run(case, arm):
+    def run(case, arm, *, rotation_gain_scale=1.0):
         calls.append((case, arm))
         return _fake_trace(case, arm)
 
@@ -252,6 +252,28 @@ def test_subset_runner_writes_reproducible_atomic_evidence(tmp_path, fake_runs):
     assert (output / "COMPLETE").read_text().strip() == experiment._sha256(
         output / "manifest.json"
     )
+
+
+def test_rotational_preset_is_declared_and_applied_to_every_arm(tmp_path, monkeypatch):
+    scales = []
+
+    def run(case, arm, *, rotation_gain_scale):
+        scales.append(rotation_gain_scale)
+        return _fake_trace(case, arm)
+
+    monkeypatch.setattr(experiment, "run_protocol_trial", run)
+    output = experiment.generate_online_compensation_experiment(
+        tmp_path / "scaled", case_names=["static_nominal"],
+        arms=["baseline", "friction", "online"], seeds=[11], rotation_gain_scale=2.0,
+    )
+    assert scales == [2.0, 2.0, 2.0]
+    for name in ("protocol.json", "configurations.json", "manifest.json"):
+        assert json.loads((output / name).read_text())["rotation_gain_scale"] == 2.0
+    protocol = json.loads((output / "protocol.json").read_text())
+    for configuration in protocol["controller_constructor_configurations"].values():
+        hybrid = configuration["safe_adaptive_base"]["base"]["base"]
+        np.testing.assert_array_equal(hybrid["rotational_stiffness"], [40.0] * 3)
+        np.testing.assert_array_equal(hybrid["rotational_damping"], [5 * np.sqrt(2)] * 3)
 
 
 def test_runner_refuses_overwrite_and_invalid_unpaired_selection(tmp_path, fake_runs):

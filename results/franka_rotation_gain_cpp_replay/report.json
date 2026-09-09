@@ -1,0 +1,168 @@
+{
+  "benchmark": {
+    "binary_sha256": "f74bd7277fb6c1314eb62dd16f63b7a008f4c8069df773d10813041d28c43c23",
+    "executable": "/home/lyh/robot-arm-compliant-control-lab/build/compliant_control_surface_benchmark",
+    "max_us": 10.679,
+    "overruns_2ms": 0.0,
+    "p50_us": 0.585,
+    "p99_us": 0.683,
+    "samples": 20000.0
+  },
+  "frozen_sha256": {
+    "benchmark_binary": "f74bd7277fb6c1314eb62dd16f63b7a008f4c8069df773d10813041d28c43c23",
+    "probe_binary": "d08c56387a6750af68723d656a5128d7a6ddcc0505d7516304a891b537440b0e",
+    "sources": {
+      "CMakeLists.txt": "b297598ccf8ec731f4e24579b0fff1ff0e1c1178b301bdee45199f1ee6d7bafa",
+      "cpp/include/compliant_control_lab/franka_control.hpp": "4c156f5335f351eee99960be048573e1b36bb9a166f1d10547b0849ecbedd729",
+      "cpp/include/compliant_control_lab/surface_control.hpp": "aa9777731e37a74a663b82687cb5ba00d268a0503ad5da0c8b0121a0862b8b11",
+      "cpp/include/compliant_control_lab/torque_safety.hpp": "809f8a09b446cf9fc91bf5d1cec2c414d6635d26dbdd235f759101970d938901",
+      "cpp/src/franka_control.cpp": "ccbd53aeb73ca62bc2e977d26ffb42a34ecdd3e12eefe35fe79c27faf86be698",
+      "cpp/src/surface_control.cpp": "45a242858109d53e6dd661139b3232da3c4d05f22f8ca68f25d524544797e1d4",
+      "cpp/src/torque_safety.cpp": "e1c4d6baf04232eabf0a09f892255f63dfbbf620ca604ba4ed1ad26d6fc11759",
+      "cpp/tools/surface_control_benchmark.cpp": "c2492fbb2ecb86104927dd8860c3e88e4948d6fafca2d49a8cd9a32222ffffbc",
+      "cpp/tools/surface_controller_probe.cpp": "0e7f39646295deb89a0a9e35fbcf803ce735fa08b119572dfef05f81ea608955",
+      "src/compliant_control_lab/franka_adaptive.py": "6aaf2aaf22194b182f7aa549135f7f5c5b335c6dfb28ff9fc8177a00efde3259",
+      "src/compliant_control_lab/franka_control.py": "4b8568d98f92f81ac2adbc1c92fd30d0e587e5a8a0790cd0518b83b8703c4186",
+      "src/compliant_control_lab/surface_control.py": "ecd98e6e4556c1f6a6c85378a292f66957288d72ed311fbceb63e52bc373d9c9",
+      "src/compliant_control_lab/surface_replay.py": "e1b49ef9a70fc88ef7270af2c874b9b07214f315cb8162f7ebd303d8e389b6fa",
+      "src/compliant_control_lab/tangential_compensation.py": "0998f3128b1ce0c87a36414b6acff7fc2e5465888850cb3fa64c94b66768171a",
+      "tools/verify_cpp_surface_replay.py": "56ef99432e96f93e3fb9ff96b3cf61620077e02eb62d60e14df21cfa8e3ae035"
+    },
+    "traces": {
+      "/home/lyh/robot-arm-compliant-control-lab/results/franka_rotation_gain_comparison/traces/friction_step_down__seed_11__friction__full.npz": "2a9fca2ec83294cd7c986543628d9194069ea6fca3fd19343dfcb9a2a758373f",
+      "/home/lyh/robot-arm-compliant-control-lab/results/franka_rotation_gain_comparison/traces/friction_step_down__seed_11__online__full.npz": "09b0494cbbc03e6eefabe76755c2951adc0a5199e60e93248a5e25aeb1ff2edf",
+      "/home/lyh/robot-arm-compliant-control-lab/results/franka_rotation_gain_comparison/traces/stop_hold_reverse__seed_11__friction__full.npz": "626b7b4403c0c6d92bf56fb937c18dace5957f611b8416c2dfaf4ee3ab007b14",
+      "/home/lyh/robot-arm-compliant-control-lab/results/franka_rotation_gain_comparison/traces/stop_hold_reverse__seed_11__online__full.npz": "574c419b0d0d14de252622a535b180ee3ccdc24c8504dd27ec893de171ab09f9"
+    }
+  },
+  "matches": true,
+  "runtime": {
+    "compiler": {
+      "path": "/usr/bin/c++",
+      "version": "c++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+    },
+    "hostname": "lyh-OMEN-Gaming-Laptop-16-am0xxx",
+    "machine": "x86_64",
+    "numpy": "2.2.6",
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+    "python": "3.10.12"
+  },
+  "schema_version": 1,
+  "scope": "deterministic_full_input_controller_replay_not_live_physics",
+  "tolerance": 1e-08,
+  "traces": [
+    {
+      "controller_kind": "surface_friction",
+      "cpp_max_torque_error": 3.552713678800501e-15,
+      "cpp_max_wrench_error": 4.440892098500626e-15,
+      "equivalent_mu": {
+        "final": 0.45,
+        "initial": 0.45,
+        "learning_update_count": 0,
+        "maximum": 0.45,
+        "minimum": 0.45,
+        "ready_sample_count": 0,
+        "recorded_max_error": 0.0,
+        "recorded_ready_mismatch_count": 0
+      },
+      "matches": true,
+      "python_cross_check": {
+        "matches": true,
+        "max_torque_error": 0.0,
+        "max_wrench_error": 0.0
+      },
+      "recorded_telemetry_max_errors": {
+        "contact_blend": 0.0,
+        "requested_tangential_force_world": 1.7763568394002505e-15,
+        "torque_projection_scale": 0.0
+      },
+      "sample_count": 6000,
+      "trace": "/home/lyh/robot-arm-compliant-control-lab/results/franka_rotation_gain_comparison/traces/friction_step_down__seed_11__friction__full.npz"
+    },
+    {
+      "controller_kind": "surface_online",
+      "cpp_max_torque_error": 3.552713678800501e-15,
+      "cpp_max_wrench_error": 2.220446049250313e-15,
+      "equivalent_mu": {
+        "final": 0.30353721904227365,
+        "initial": 0.45,
+        "learning_update_count": 3053,
+        "maximum": 0.5087894723907103,
+        "minimum": 0.30345488372071755,
+        "ready_sample_count": 5234,
+        "recorded_max_error": 0.0,
+        "recorded_ready_mismatch_count": 0
+      },
+      "matches": true,
+      "python_cross_check": {
+        "matches": true,
+        "max_torque_error": 0.0,
+        "max_wrench_error": 0.0
+      },
+      "recorded_telemetry_max_errors": {
+        "contact_blend": 0.0,
+        "requested_tangential_force_world": 8.881784197001252e-16,
+        "torque_projection_scale": 0.0
+      },
+      "sample_count": 6000,
+      "trace": "/home/lyh/robot-arm-compliant-control-lab/results/franka_rotation_gain_comparison/traces/friction_step_down__seed_11__online__full.npz"
+    },
+    {
+      "controller_kind": "surface_friction",
+      "cpp_max_torque_error": 3.552713678800501e-15,
+      "cpp_max_wrench_error": 3.552713678800501e-15,
+      "equivalent_mu": {
+        "final": 0.45,
+        "initial": 0.45,
+        "learning_update_count": 0,
+        "maximum": 0.45,
+        "minimum": 0.45,
+        "ready_sample_count": 0,
+        "recorded_max_error": 0.0,
+        "recorded_ready_mismatch_count": 0
+      },
+      "matches": true,
+      "python_cross_check": {
+        "matches": true,
+        "max_torque_error": 0.0,
+        "max_wrench_error": 0.0
+      },
+      "recorded_telemetry_max_errors": {
+        "contact_blend": 0.0,
+        "requested_tangential_force_world": 1.7763568394002505e-15,
+        "torque_projection_scale": 0.0
+      },
+      "sample_count": 6000,
+      "trace": "/home/lyh/robot-arm-compliant-control-lab/results/franka_rotation_gain_comparison/traces/stop_hold_reverse__seed_11__friction__full.npz"
+    },
+    {
+      "controller_kind": "surface_online",
+      "cpp_max_torque_error": 3.552713678800501e-15,
+      "cpp_max_wrench_error": 2.220446049250313e-15,
+      "equivalent_mu": {
+        "final": 0.5021062893984745,
+        "initial": 0.45,
+        "learning_update_count": 2254,
+        "maximum": 0.5069903515440979,
+        "minimum": 0.45,
+        "ready_sample_count": 4212,
+        "recorded_max_error": 0.0,
+        "recorded_ready_mismatch_count": 0
+      },
+      "matches": true,
+      "python_cross_check": {
+        "matches": true,
+        "max_torque_error": 0.0,
+        "max_wrench_error": 0.0
+      },
+      "recorded_telemetry_max_errors": {
+        "contact_blend": 0.0,
+        "requested_tangential_force_world": 8.881784197001252e-16,
+        "torque_projection_scale": 0.0
+      },
+      "sample_count": 6000,
+      "trace": "/home/lyh/robot-arm-compliant-control-lab/results/franka_rotation_gain_comparison/traces/stop_hold_reverse__seed_11__online__full.npz"
+    }
+  ],
+  "watchdog_timestamp_policy": "fresh strictly increasing timestamps are synthesized as (index+1)*dt; this replay does not validate archived sensor transport age"
+}

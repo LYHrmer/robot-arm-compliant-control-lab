@@ -155,12 +155,32 @@ def _load_trace(path: Path) -> tuple[dict[str, np.ndarray], int]:
     return arrays, count
 
 
+def _rotation_gain_scale(arrays: dict[str, np.ndarray]) -> float:
+    value = np.asarray(arrays.get("rotation_gain_scale", np.array(1.0)))
+    if (
+        value.shape != ()
+        or value.dtype.kind not in "iuf"
+        or not np.isfinite(value.item())
+        or float(value) <= 0.0
+        or float(value) > np.finfo(float).max / 20.0
+    ):
+        raise ValueError("rotation_gain_scale must be a finite positive real scalar")
+    return float(value)
+
+
 def _run_trace(path: Path, probe: Path) -> tuple[dict, list[dict]]:
     arrays, count = _load_trace(path)
     kind = str(arrays["controller_kind"].item())
+    rotation_gain_scale = _rotation_gain_scale(arrays)
     python_result = replay_surface_trace(path)
     completed = subprocess.run(
-        [str(probe), "--mode", _mode(kind)],
+        [
+            str(probe),
+            "--mode",
+            _mode(kind),
+            "--rotation-gain-scale",
+            format(rotation_gain_scale, ".17g"),
+        ],
         input=_encode_probe_input(arrays, count),
         text=True,
         capture_output=True,
