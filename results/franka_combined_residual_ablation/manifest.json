@@ -1,0 +1,37 @@
+{
+  "artifact_sha256": {
+    "comparison.csv": "41aa97d060ddf5627c51df33e387063c1893f960eaf3c970d319c6e3b88d5316",
+    "diagnostics.csv": "d67fba50caaf49cde2330a3ae8c81943fda8fef33decefe88a1e264ec8da527c",
+    "paired_diagnostics.csv": "a9fb1992ad4f3b351d9ea9c5f7fe1a31128be30da11ab37b6462a4f4bbe342a1",
+    "phase_metrics.csv": "7a253ecf044e8af012e85786a9385a9316384b2fe05b221c45098ff5e18b8380",
+    "protocol.json": "f01bd43dd1257d569651dfead2466084c3c7f19c9955f3a4d884167002d8eea6",
+    "source_hashes.json": "d474a79c7d441a02523ba33b33e3b58bed8918e39cf5d1815beb66e02df308b6",
+    "traces/yaw_-15__modest_combined__combined__seed_11__online__s1__diagnostic.npz": "f3498143952c44f1b9d71768315e8f9b12484fb73426c070f9f56d04affe681a",
+    "traces/yaw_-15__modest_combined__constant_initial_friction__seed_11__online__s1__diagnostic.npz": "9e8d5ec621f783fb59443814468771762fd56fb2f4410c18f1d505624699ef31",
+    "traces/yaw_-15__modest_combined__no_bias__seed_11__online__s1__diagnostic.npz": "86cb87a7d57eef9cd32c881c6742364925c410e922a049fad7d4872cb9770d8a",
+    "traces/yaw_-15__modest_combined__no_yaw_error__seed_11__online__s1__diagnostic.npz": "ac6dbf4f385863ec4d1f87cce10990e24c3e652d5e56e5fee4c22baa238dbc53",
+    "traces/yaw_0__modest_combined__combined__seed_11__online__s1__diagnostic.npz": "41942074f4e682009bcfe33460af726672960b1b82237e0fee92c91083e4752f",
+    "traces/yaw_0__modest_combined__constant_initial_friction__seed_11__online__s1__diagnostic.npz": "f0e5b7566a7365d0cc6e6c10db89c238c82efeace09c39bb2802e6d2113dbad2",
+    "traces/yaw_0__modest_combined__no_bias__seed_11__online__s1__diagnostic.npz": "bfd853b0d397a1f700df98e559c0436d7a71aa1bbeb2d5ad456895463dea4427",
+    "traces/yaw_0__modest_combined__no_yaw_error__seed_11__online__s1__diagnostic.npz": "a749885e705eaac8f1804c51f8925b6efe28880d29963e08452a78aa25d44919",
+    "traces/yaw_15__modest_combined__combined__seed_11__online__s1__diagnostic.npz": "944c741cdaee19c39190b891bcebb6304e93d089c2629c10bbc69db4b3dfa7ea",
+    "traces/yaw_15__modest_combined__constant_initial_friction__seed_11__online__s1__diagnostic.npz": "1f6bbac4b1875d8d491cf65662e6a7e2caeb85dc5f9acc03ad8be215e0bdc3fc",
+    "traces/yaw_15__modest_combined__no_bias__seed_11__online__s1__diagnostic.npz": "e1a1ef4e004f965e796240b9082b1fe48fa4c49bf0a1cc27d1f98b8badd034e5",
+    "traces/yaw_15__modest_combined__no_yaw_error__seed_11__online__s1__diagnostic.npz": "74053d3249696cc17f25e1b43f7c638acc9f3cef6bfada367a6756be311d6e26"
+  },
+  "comparator_gates_evaluated": false,
+  "default_changed": false,
+  "identity": "modest-combined-input-ablation-v1",
+  "input_sha256": {
+    "protocol.json": "f01bd43dd1257d569651dfead2466084c3c7f19c9955f3a4d884167002d8eea6",
+    "source_hashes.json": "d474a79c7d441a02523ba33b33e3b58bed8918e39cf5d1815beb66e02df308b6"
+  },
+  "new_holdout": false,
+  "runs": 12,
+  "schema_version": 1,
+  "versions": {
+    "mujoco": "3.12.0",
+    "numpy": "2.2.6",
+    "python": "3.10.12"
+  }
+}

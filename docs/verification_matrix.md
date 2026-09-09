@@ -37,6 +37,13 @@
 
 ## 实验完整性
 
+[组合误差诊断](combined_residual_diagnosis.md)保留 12 次单因素移除运行。
+[指标测试](../tests/test_combined_residual_diagnostics.py)核对真实切平面分解与滚动窗口，
+[协议测试](../tests/test_combined_residual_ablation.py)限制每项移除只改一个输入，
+[独立回放](../tests/test_combined_residual_observer.py)检查系数和命令时序，
+[重封篡改测试](../tests/test_combined_residual_audit.py)检查观测标志、配对差值及物理边界。
+这是输入反事实分析，不更新原配对方法的通过数。
+
 [跨方向动态回归](cross_surface_regression.md)新增 36 次运行、144 个阶段及 90 个同身份增益配对。
 [配置与边界测试](../tests/test_cross_surface_regression.py)、[配对测试](../tests/test_cross_surface_pairs.py)
 和[重封篡改审计测试](../tests/test_cross_surface_audit.py)分别核对几何转换、配对身份、旧结果复现、

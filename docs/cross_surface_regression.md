@@ -51,6 +51,9 @@
 没有根据这一个种子的结果引入方向调度或新的学习策略。若后续任务明确要求组合误差后段
 也保持在 3 mm 内，应先单独分析补偿上限与残余误差，再决定控制改动。
 
+后续[12 次单因素诊断](combined_residual_diagnosis.md)已检查这条残差：区分了补偿幅值限制
+与力矩裁剪，并保留移除偏置后切向误差反而增大的结果。本页的原通过数与归档不变。
+
 [36 行整体结果](../results/franka_cross_surface_dynamic/comparison.csv)、
 [144 行阶段结果](../results/franka_cross_surface_dynamic/phase_metrics.csv)、
 [90 个增益配对](../results/franka_cross_surface_dynamic/gain_paired.csv)和
