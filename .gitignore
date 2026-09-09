@@ -10,4 +10,5 @@ dist/
 node_modules/
 # Atomic experiment staging is not a published result (including interrupted runs).
 results/.online-compensation-*/
+results/.rotation-public24-*/
 results/.franka_online_cpp_replay-*/

@@ -11,7 +11,9 @@
 但 42 条阶段检查有 2 条未通过，均发生在反向加速时的姿态误差增量。
 [逐阶段结果](../results/franka_online_compensation_errors/phase_metrics.csv)没有删掉这两条。
 后续[同增益配对](rotation_gain_comparison.md)给全部方法统一调整常量姿态阻抗，
-在线阶段通过 42/42；自身平均切向 RMSE 增加约 0.016 mm，默认配置暂不替换。
+在线阶段通过 42/42；自身平均切向 RMSE 增加约 0.016 mm。
+随后[原 24-case 的 192 次回归](rotation_gain_public24.md)也通过工程检查，但切向速度误差
+在全部 case 中增加，默认配置不替换。
 C++ 在四份完整仿真轨迹、24,000 个周期上逐步对齐，
 [最大 wrench 误差小于 4.45e-15](../results/franka_online_cpp_replay/report.json)。
 新增益的[另四份完整轨迹](../results/franka_rotation_gain_cpp_replay/report.json)也通过回放。
@@ -119,7 +121,8 @@ peak P95 仍为 59.54 N，超过 35 N gate。
 
 仓库没有 ROS 2/Franka hardware adapter，没有硬件 safety 或 passivity 证明。
 在线负载补偿的默认配置在反向加速时仍未通过姿态阶段门槛。可选的新增益在相同 80 次
-误差对照中通过，但尚未覆盖原 24-case 几何网格；积分方法也仍有两条阶段失败。
+误差对照中通过，原 24-case 的回归也已完成；姿态收益伴随切向速度代价。
+积分方法在 12 秒误差实验中仍有两条阶段失败，不要拿 4.5 秒回归的通过数覆盖它们。
 [C++ 表面控制器](cpp_core.md)已通过记录输入的完整序列核验；状态更新、补偿与力矩投影
 属于数值控制核心，不包括传感器驱动和机器人模型计算，也不等同于真机实时性测试。
 逐条主张对应的实现、测试与产物见[验证矩阵](verification_matrix.md)，版本顺序见

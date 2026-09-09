@@ -33,6 +33,7 @@
 | 常量旋转刚度乘 2、阻尼乘 sqrt(2)，四种方法使用同一预设 | [`surface_control.py`](../src/compliant_control_lab/surface_control.py)、[配置与推导](rotation_gain_comparison.md) | [增益隔离](../tests/test_surface_control.py)、[Python 回放](../tests/test_surface_replay.py)、[元数据篡改拒绝](../tests/test_online_compensation_error_audit.py) | [相同 80 次新对照](../results/franka_rotation_gain_comparison/comparison.csv)；在线阶段 42/42，切向代价保留，未改默认值 |
 | 所选 C++ 表面控制链与保存的 Python 命令逐周期一致 | [`surface_control.cpp`](../cpp/src/surface_control.cpp)、[完整输入回放](../tools/verify_cpp_surface_replay.py) | [状态、换向与超时](../tests/test_cpp_surface_loop.py)、[解析及拒绝路径](../tests/test_cpp_surface_replay_verifier.py) | [四份轨迹、24,000 步报告](../results/franka_online_cpp_replay/report.json)；不涵盖真实机器人通信或实时性 |
 | 新姿态预设能在 C++ 完整输入回放中重建 | [`surface_controller_probe.cpp`](../cpp/tools/surface_controller_probe.cpp)、[参数转发](../tools/verify_cpp_surface_replay.py) | [标量校验、默认兼容和 CLI 测试](../tests/test_cpp_surface_replay_verifier.py) | [新增益四份轨迹、24,000 步报告](../results/franka_rotation_gain_cpp_replay/report.json)；耗时附录仍对应独立默认参数 benchmark |
+| 新姿态预设在原表面方向／已知质量网格做同方法配对，保留跟踪代价 | [192 次生成器](../tools/rotation_gain_regression.py)、[独立审计](../tools/audit_rotation_gain_regression.py) | [原网格、配对与边界](../tests/test_rotation_gain_regression.py)、[重封篡改和 full/compact 一致性](../tests/test_rotation_gain_audit.py) | [全部对照](../results/franka_rotation_gain_public24/)、[27,000 步回放](../results/franka_rotation_gain_public24_cpp/report.json)；[不改默认值的理由](rotation_gain_public24.md) |
 
 ## 实验完整性
 

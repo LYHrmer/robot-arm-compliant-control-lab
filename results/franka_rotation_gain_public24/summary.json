@@ -1,0 +1,1958 @@
+{
+  "comparison_rows": 192,
+  "decision_scope": "Engineering checks and tradeoffs; no automatic global-default promotion.",
+  "default_changed": false,
+  "delta_direction": "scale2_minus_scale1_same_method_case_seed",
+  "failures": [],
+  "frozen_metric_max_abs_error": 0.0,
+  "gate_counts": {
+    "1": {
+      "baseline": 24,
+      "friction": 24,
+      "integral": 24,
+      "online": 24
+    },
+    "2": {
+      "baseline": 24,
+      "friction": 24,
+      "integral": 24,
+      "online": 24
+    }
+  },
+  "identity": "rotation-gain-public24-v1",
+  "is_subset": false,
+  "new_holdout": false,
+  "paired_effects": {
+    "baseline": {
+      "contact_ratio_pct": {
+        "count": 24,
+        "maximum": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "negative_count": 0,
+        "positive_count": 0
+      },
+      "evaluation_median_penetration_mm": {
+        "count": 24,
+        "maximum": 0.0003808397745982406,
+        "mean": -0.00016365081836933193,
+        "median": -0.0001724856302925959,
+        "minimum": -0.0006559212719863261,
+        "negative_count": 18,
+        "positive_count": 6
+      },
+      "first_raw_contact_time_s": {
+        "count": 24,
+        "maximum": 0.0040000000000000036,
+        "mean": 0.0028333333333333175,
+        "median": 0.0020000000000000018,
+        "minimum": 0.0020000000000000018,
+        "negative_count": 0,
+        "positive_count": 24
+      },
+      "force_rmse_n": {
+        "count": 24,
+        "maximum": 0.011282053428189165,
+        "mean": 0.0040550098435795795,
+        "median": 0.0030156704362368503,
+        "minimum": -0.002767323307792363,
+        "negative_count": 7,
+        "positive_count": 17
+      },
+      "max_compensation_force_n": {
+        "count": 24,
+        "maximum": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "negative_count": 0,
+        "positive_count": 0
+      },
+      "max_penetration_mm": {
+        "count": 24,
+        "maximum": -0.0007416280967710298,
+        "mean": -0.0008605675984022556,
+        "median": -0.0008461776594727577,
+        "minimum": -0.0010421960228157445,
+        "negative_count": 24,
+        "positive_count": 0
+      },
+      "measurement_rmse_n": {
+        "count": 24,
+        "maximum": 2.9037312157559336e-05,
+        "mean": -0.00030739906645608123,
+        "median": -0.0003207211335621851,
+        "minimum": -0.0005364662858975411,
+        "negative_count": 20,
+        "positive_count": 4
+      },
+      "minimum_reserved_torque_headroom_nm": {
+        "count": 24,
+        "maximum": 0.005634146679790675,
+        "mean": 0.0007877156882556413,
+        "median": 0.00018104180289801874,
+        "minimum": -0.0009682059807261112,
+        "negative_count": 8,
+        "positive_count": 16
+      },
+      "minimum_torque_headroom_nm": {
+        "count": 24,
+        "maximum": 0.005634146679790675,
+        "mean": 0.0007877156882556413,
+        "median": 0.00018104180289801874,
+        "minimum": -0.0009682059807261112,
+        "negative_count": 8,
+        "positive_count": 16
+      },
+      "orientation_rmse_deg": {
+        "count": 24,
+        "maximum": -0.17926450370260533,
+        "mean": -0.2087793777885223,
+        "median": -0.1983730532861837,
+        "minimum": -0.24873496941065404,
+        "negative_count": 24,
+        "positive_count": 0
+      },
+      "peak_force_n": {
+        "count": 24,
+        "maximum": 0.032078721967780055,
+        "mean": -0.05623558282438634,
+        "median": -0.08383213373215792,
+        "minimum": -0.10157793015235583,
+        "negative_count": 18,
+        "positive_count": 6
+      },
+      "projection_pct": {
+        "count": 24,
+        "maximum": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "negative_count": 0,
+        "positive_count": 0
+      },
+      "saturation_pct": {
+        "count": 24,
+        "maximum": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "negative_count": 0,
+        "positive_count": 0
+      },
+      "seconds_over_35_n": {
+        "count": 24,
+        "maximum": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "negative_count": 0,
+        "positive_count": 0
+      },
+      "tangent_rmse_mm": {
+        "count": 24,
+        "maximum": -0.0010502152169813428,
+        "mean": -0.0027182934704191495,
+        "median": -0.0021443702917123275,
+        "minimum": -0.005118168271071255,
+        "negative_count": 24,
+        "positive_count": 0
+      },
+      "tangent_velocity_error_rms_m_s": {
+        "count": 24,
+        "maximum": 0.00019432092033816462,
+        "mean": 0.00016647105972942647,
+        "median": 0.0001597630589213351,
+        "minimum": 0.00014535610637416568,
+        "negative_count": 0,
+        "positive_count": 24
+      }
+    },
+    "friction": {
+      "contact_ratio_pct": {
+        "count": 24,
+        "maximum": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "negative_count": 0,
+        "positive_count": 0
+      },
+      "evaluation_median_penetration_mm": {
+        "count": 24,
+        "maximum": 9.531283026720239e-05,
+        "mean": -0.00019339898190802915,
+        "median": -0.00019405671762384724,
+        "minimum": -0.000522090310850154,
+        "negative_count": 22,
+        "positive_count": 2
+      },
+      "first_raw_contact_time_s": {
+        "count": 24,
+        "maximum": 0.0040000000000000036,
+        "mean": 0.0028333333333333175,
+        "median": 0.0020000000000000018,
+        "minimum": 0.0020000000000000018,
+        "negative_count": 0,
+        "positive_count": 24
+      },
+      "force_rmse_n": {
+        "count": 24,
+        "maximum": 0.006157002739414802,
+        "mean": 0.0016231754382830751,
+        "median": 0.0018617128708134506,
+        "minimum": -0.0036237592007906383,
+        "negative_count": 8,
+        "positive_count": 16
+      },
+      "max_compensation_force_n": {
+        "count": 24,
+        "maximum": 0.020291254722142327,
+        "mean": 0.005127203944622886,
+        "median": 0.0017464177832335892,
+        "minimum": -0.008595757111010016,
+        "negative_count": 12,
+        "positive_count": 12
+      },
+      "max_penetration_mm": {
+        "count": 24,
+        "maximum": -0.000741628096677438,
+        "mean": -0.0008605675983967646,
+        "median": -0.0008461776595109494,
+        "minimum": -0.0010421960228157445,
+        "negative_count": 24,
+        "positive_count": 0
+      },
+      "measurement_rmse_n": {
+        "count": 24,
+        "maximum": 7.525937051977571e-05,
+        "mean": -0.0002919245394630045,
+        "median": -0.0003649878737938955,
+        "minimum": -0.0005090550939562399,
+        "negative_count": 20,
+        "positive_count": 4
+      },
+      "minimum_reserved_torque_headroom_nm": {
+        "count": 24,
+        "maximum": 0.010585146626976183,
+        "mean": 0.004087304078917775,
+        "median": 0.0015125640148712094,
+        "minimum": 0.0004257064672579247,
+        "negative_count": 0,
+        "positive_count": 24
+      },
+      "minimum_torque_headroom_nm": {
+        "count": 24,
+        "maximum": 0.010585146626976183,
+        "mean": 0.004087304078917775,
+        "median": 0.0015125640148712094,
+        "minimum": 0.0004257064672579247,
+        "negative_count": 0,
+        "positive_count": 24
+      },
+      "orientation_rmse_deg": {
+        "count": 24,
+        "maximum": -0.19574575109330236,
+        "mean": -0.22303192118213833,
+        "median": -0.211790625435965,
+        "minimum": -0.26162487651595534,
+        "negative_count": 24,
+        "positive_count": 0
+      },
+      "peak_force_n": {
+        "count": 24,
+        "maximum": -0.018599185111431993,
+        "mean": -0.06958063162687515,
+        "median": -0.08383213372883969,
+        "minimum": -0.10167464984929886,
+        "negative_count": 24,
+        "positive_count": 0
+      },
+      "projection_pct": {
+        "count": 24,
+        "maximum": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "negative_count": 0,
+        "positive_count": 0
+      },
+      "saturation_pct": {
+        "count": 24,
+        "maximum": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "negative_count": 0,
+        "positive_count": 0
+      },
+      "seconds_over_35_n": {
+        "count": 24,
+        "maximum": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "negative_count": 0,
+        "positive_count": 0
+      },
+      "tangent_rmse_mm": {
+        "count": 24,
+        "maximum": 0.01963565602629247,
+        "mean": 0.015941734750588687,
+        "median": 0.015246400916085867,
+        "minimum": 0.012908129751524777,
+        "negative_count": 0,
+        "positive_count": 24
+      },
+      "tangent_velocity_error_rms_m_s": {
+        "count": 24,
+        "maximum": 0.0003355942087735959,
+        "mean": 0.00029224099422810944,
+        "median": 0.0002752067951152647,
+        "minimum": 0.0002671009976456134,
+        "negative_count": 0,
+        "positive_count": 24
+      }
+    },
+    "integral": {
+      "contact_ratio_pct": {
+        "count": 24,
+        "maximum": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "negative_count": 0,
+        "positive_count": 0
+      },
+      "evaluation_median_penetration_mm": {
+        "count": 24,
+        "maximum": 0.0006522423003312294,
+        "mean": 3.654913770138416e-05,
+        "median": -4.480033789772131e-05,
+        "minimum": -0.0003432232415223613,
+        "negative_count": 16,
+        "positive_count": 8
+      },
+      "first_raw_contact_time_s": {
+        "count": 24,
+        "maximum": 0.0040000000000000036,
+        "mean": 0.0028333333333333175,
+        "median": 0.0020000000000000018,
+        "minimum": 0.0020000000000000018,
+        "negative_count": 0,
+        "positive_count": 24
+      },
+      "force_rmse_n": {
+        "count": 24,
+        "maximum": 0.01715143485610396,
+        "mean": 0.006610161596124992,
+        "median": 0.005043606470065257,
+        "minimum": -0.0029013816613648047,
+        "negative_count": 7,
+        "positive_count": 17
+      },
+      "max_compensation_force_n": {
+        "count": 24,
+        "maximum": 0.012939536804268847,
+        "mean": -0.010174728078970352,
+        "median": -0.007998525509067544,
+        "minimum": -0.03428780951293131,
+        "negative_count": 16,
+        "positive_count": 8
+      },
+      "max_penetration_mm": {
+        "count": 24,
+        "maximum": -0.0007465416099299294,
+        "mean": -0.0008646317562071246,
+        "median": -0.0008507801963035799,
+        "minimum": -0.0010454979166296674,
+        "negative_count": 24,
+        "positive_count": 0
+      },
+      "measurement_rmse_n": {
+        "count": 24,
+        "maximum": 0.0001485395473617701,
+        "mean": -0.00023563876949049198,
+        "median": -0.00027370177272108276,
+        "minimum": -0.0004838188150683709,
+        "negative_count": 20,
+        "positive_count": 4
+      },
+      "minimum_reserved_torque_headroom_nm": {
+        "count": 24,
+        "maximum": 0.0006299668403730863,
+        "mean": -0.001762631261122638,
+        "median": -0.0007705880163588752,
+        "minimum": -0.007583515165593191,
+        "negative_count": 20,
+        "positive_count": 4
+      },
+      "minimum_torque_headroom_nm": {
+        "count": 24,
+        "maximum": 0.0006299668403730863,
+        "mean": -0.001762631261122638,
+        "median": -0.0007705880163588752,
+        "minimum": -0.007583515165593191,
+        "negative_count": 20,
+        "positive_count": 4
+      },
+      "orientation_rmse_deg": {
+        "count": 24,
+        "maximum": -0.22272382245989036,
+        "mean": -0.25667821923518824,
+        "median": -0.24521287783285792,
+        "minimum": -0.30211237219460685,
+        "negative_count": 24,
+        "positive_count": 0
+      },
+      "peak_force_n": {
+        "count": 24,
+        "maximum": 0.0675601358118616,
+        "mean": -0.04600136433220562,
+        "median": -0.08425374870631241,
+        "minimum": -0.1019169223313412,
+        "negative_count": 16,
+        "positive_count": 8
+      },
+      "projection_pct": {
+        "count": 24,
+        "maximum": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "negative_count": 0,
+        "positive_count": 0
+      },
+      "saturation_pct": {
+        "count": 24,
+        "maximum": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "negative_count": 0,
+        "positive_count": 0
+      },
+      "seconds_over_35_n": {
+        "count": 24,
+        "maximum": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "negative_count": 0,
+        "positive_count": 0
+      },
+      "tangent_rmse_mm": {
+        "count": 24,
+        "maximum": 0.031271107335360426,
+        "mean": 0.0290050430042393,
+        "median": 0.02902579338524891,
+        "minimum": 0.026560634666308758,
+        "negative_count": 0,
+        "positive_count": 24
+      },
+      "tangent_velocity_error_rms_m_s": {
+        "count": 24,
+        "maximum": 0.0004199283305681041,
+        "mean": 0.000340623370019467,
+        "median": 0.00032473953390165476,
+        "minimum": 0.00027814458508340287,
+        "negative_count": 0,
+        "positive_count": 24
+      }
+    },
+    "online": {
+      "contact_ratio_pct": {
+        "count": 24,
+        "maximum": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "negative_count": 0,
+        "positive_count": 0
+      },
+      "evaluation_median_penetration_mm": {
+        "count": 24,
+        "maximum": 0.0005939722186270036,
+        "mean": -0.0001111802138804759,
+        "median": -0.00017147779577281197,
+        "minimum": -0.0005490512666773695,
+        "negative_count": 20,
+        "positive_count": 4
+      },
+      "first_raw_contact_time_s": {
+        "count": 24,
+        "maximum": 0.0040000000000000036,
+        "mean": 0.0028333333333333175,
+        "median": 0.0020000000000000018,
+        "minimum": 0.0020000000000000018,
+        "negative_count": 0,
+        "positive_count": 24
+      },
+      "force_rmse_n": {
+        "count": 24,
+        "maximum": 0.01034793863751135,
+        "mean": 0.003842658587807711,
+        "median": 0.00434736574643052,
+        "minimum": -0.003528317278723714,
+        "negative_count": 8,
+        "positive_count": 16
+      },
+      "max_compensation_force_n": {
+        "count": 24,
+        "maximum": 0.0,
+        "mean": -3.862816067012886e-09,
+        "median": 0.0,
+        "minimum": -4.6353792804154637e-08,
+        "negative_count": 2,
+        "positive_count": 0
+      },
+      "max_penetration_mm": {
+        "count": 24,
+        "maximum": -0.000741628096677438,
+        "mean": -0.0008605675983967646,
+        "median": -0.0008461776595109494,
+        "minimum": -0.0010421960228157445,
+        "negative_count": 24,
+        "positive_count": 0
+      },
+      "measurement_rmse_n": {
+        "count": 24,
+        "maximum": 0.0001367371653891447,
+        "mean": -0.00014110324359587617,
+        "median": -0.00023137497918858385,
+        "minimum": -0.00029392895108590333,
+        "negative_count": 18,
+        "positive_count": 6
+      },
+      "minimum_reserved_torque_headroom_nm": {
+        "count": 24,
+        "maximum": 0.00742529635155087,
+        "mean": 0.00277238008185506,
+        "median": 0.001330964528835299,
+        "minimum": 0.0006774218698657464,
+        "negative_count": 0,
+        "positive_count": 24
+      },
+      "minimum_torque_headroom_nm": {
+        "count": 24,
+        "maximum": 0.00742529635155087,
+        "mean": 0.00277238008185506,
+        "median": 0.001330964528835299,
+        "minimum": 0.0006774218698657464,
+        "negative_count": 0,
+        "positive_count": 24
+      },
+      "orientation_rmse_deg": {
+        "count": 24,
+        "maximum": -0.20038611076155574,
+        "mean": -0.22718666035078372,
+        "median": -0.2159442827116295,
+        "minimum": -0.2652685856719843,
+        "negative_count": 24,
+        "positive_count": 0
+      },
+      "peak_force_n": {
+        "count": 24,
+        "maximum": -0.004812781974191438,
+        "mean": -0.053230507946008476,
+        "median": -0.06972353076213,
+        "minimum": -0.10074690554110788,
+        "negative_count": 24,
+        "positive_count": 0
+      },
+      "projection_pct": {
+        "count": 24,
+        "maximum": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "negative_count": 0,
+        "positive_count": 0
+      },
+      "saturation_pct": {
+        "count": 24,
+        "maximum": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "negative_count": 0,
+        "positive_count": 0
+      },
+      "seconds_over_35_n": {
+        "count": 24,
+        "maximum": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "minimum": 0.0,
+        "negative_count": 0,
+        "positive_count": 0
+      },
+      "tangent_rmse_mm": {
+        "count": 24,
+        "maximum": 0.05600533562066068,
+        "mean": 0.0467306964167894,
+        "median": 0.04302525371181487,
+        "minimum": 0.04129207465608431,
+        "negative_count": 0,
+        "positive_count": 24
+      },
+      "tangent_velocity_error_rms_m_s": {
+        "count": 24,
+        "maximum": 0.0005135332486848132,
+        "mean": 0.0004687692959974905,
+        "median": 0.00045777872149579566,
+        "minimum": 0.0004387096727389928,
+        "negative_count": 0,
+        "positive_count": 24
+      }
+    }
+  },
+  "paired_rows": 96,
+  "physical_groups": [
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": 0.00025360937310703324,
+        "first_raw_contact_time_s": 0.0030000000000000027,
+        "force_rmse_n": 0.0030016822320466235,
+        "max_compensation_force_n": 0.0,
+        "max_penetration_mm": -0.0007907293520514891,
+        "measurement_rmse_n": -0.00035602765627539,
+        "minimum_reserved_torque_headroom_nm": 0.003448725348510706,
+        "minimum_torque_headroom_nm": 0.003448725348510706,
+        "orientation_rmse_deg": -0.24853317608942427,
+        "peak_force_n": -0.08500520118841326,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": -0.001270380408987748,
+        "tangent_velocity_error_rms_m_s": 0.00014560373834191995
+      },
+      "method": "baseline",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.1,
+      "wall_time_constant_s": 0.005,
+      "wall_yaw_deg": -15.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": 0.00023517845069642718,
+        "first_raw_contact_time_s": 0.0030000000000000027,
+        "force_rmse_n": 0.0029181395639552854,
+        "max_compensation_force_n": 0.0,
+        "max_penetration_mm": -0.0007888731467630694,
+        "measurement_rmse_n": -0.000350427795806435,
+        "minimum_reserved_torque_headroom_nm": 0.003365579562784937,
+        "minimum_torque_headroom_nm": 0.003365579562784937,
+        "orientation_rmse_deg": -0.24854722601559623,
+        "peak_force_n": -0.08506757932981746,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": -0.001256564753219891,
+        "tangent_velocity_error_rms_m_s": 0.00014607071054807165
+      },
+      "method": "baseline",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.13,
+      "wall_time_constant_s": 0.005,
+      "wall_yaw_deg": -15.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": 0.00011892377926003839,
+        "first_raw_contact_time_s": 0.0030000000000000027,
+        "force_rmse_n": 0.003107189570094676,
+        "max_compensation_force_n": 0.0,
+        "max_penetration_mm": -0.0008719318722958391,
+        "measurement_rmse_n": -0.00034480276153778244,
+        "minimum_reserved_torque_headroom_nm": 0.002785923618169761,
+        "minimum_torque_headroom_nm": 0.002785923618169761,
+        "orientation_rmse_deg": -0.24870202048192466,
+        "peak_force_n": -0.08378563482726431,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": -0.0010696011092319324,
+        "tangent_velocity_error_rms_m_s": 0.00014811378336154063
+      },
+      "method": "baseline",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.1,
+      "wall_time_constant_s": 0.012,
+      "wall_yaw_deg": -15.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": 0.0001044759724471156,
+        "first_raw_contact_time_s": 0.0030000000000000027,
+        "force_rmse_n": 0.0030219572132342554,
+        "max_compensation_force_n": 0.0,
+        "max_penetration_mm": -0.0008705125574773875,
+        "measurement_rmse_n": -0.0003401128868036618,
+        "minimum_reserved_torque_headroom_nm": 0.0027029502528721494,
+        "minimum_torque_headroom_nm": 0.0027029502528721494,
+        "orientation_rmse_deg": -0.24871638266280874,
+        "peak_force_n": -0.0838593128231846,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": -0.0010578319304013206,
+        "tangent_velocity_error_rms_m_s": 0.00014853343891833674
+      },
+      "method": "baseline",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.13,
+      "wall_time_constant_s": 0.012,
+      "wall_yaw_deg": -15.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -0.0001830187572604558,
+        "first_raw_contact_time_s": 0.002999999999999947,
+        "force_rmse_n": -0.001134821512057363,
+        "max_compensation_force_n": 0.0,
+        "max_penetration_mm": -0.0009135200517706998,
+        "measurement_rmse_n": -0.00045200240942129544,
+        "minimum_reserved_torque_headroom_nm": 0.00015378780478991771,
+        "minimum_torque_headroom_nm": 0.00015378780478991771,
+        "orientation_rmse_deg": -0.19830241584058605,
+        "peak_force_n": -0.09728879006867786,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": -0.002149487362530067,
+        "tangent_velocity_error_rms_m_s": 0.00015827685019022264
+      },
+      "method": "baseline",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.1,
+      "wall_time_constant_s": 0.005,
+      "wall_yaw_deg": 0.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -0.00016123438097148668,
+        "first_raw_contact_time_s": 0.002999999999999947,
+        "force_rmse_n": -0.00042740148531918154,
+        "max_compensation_force_n": 0.0,
+        "max_penetration_mm": -0.0008727900490113072,
+        "measurement_rmse_n": -0.0004289891780556443,
+        "minimum_reserved_torque_headroom_nm": 0.00014966779517644468,
+        "minimum_torque_headroom_nm": 0.00014966779517644468,
+        "orientation_rmse_deg": -0.19831253139698374,
+        "peak_force_n": -0.09319293438376608,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": -0.001637851945738511,
+        "tangent_velocity_error_rms_m_s": 0.00016005751056635993
+      },
+      "method": "baseline",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.13,
+      "wall_time_constant_s": 0.005,
+      "wall_yaw_deg": 0.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -0.0001922077122046284,
+        "first_raw_contact_time_s": 0.002999999999999947,
+        "force_rmse_n": -0.0015802508202888976,
+        "max_compensation_force_n": 0.0,
+        "max_penetration_mm": -0.00103613413271475,
+        "measurement_rmse_n": -0.0004643334116365,
+        "minimum_reserved_torque_headroom_nm": 0.0001857701911984755,
+        "minimum_torque_headroom_nm": 0.0001857701911984755,
+        "orientation_rmse_deg": -0.19843331634913092,
+        "peak_force_n": -0.10110470492374457,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": -0.002199028561605587,
+        "tangent_velocity_error_rms_m_s": 0.00016054331714236703
+      },
+      "method": "baseline",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.1,
+      "wall_time_constant_s": 0.012,
+      "wall_yaw_deg": 0.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -0.00016534897695485995,
+        "first_raw_contact_time_s": 0.002999999999999947,
+        "force_rmse_n": -0.0016801433977675778,
+        "max_compensation_force_n": 0.0,
+        "max_penetration_mm": -0.001034129151283869,
+        "measurement_rmse_n": -0.00046016828907349816,
+        "minimum_reserved_torque_headroom_nm": 0.00020017261101967776,
+        "minimum_torque_headroom_nm": 0.00020017261101967776,
+        "orientation_rmse_deg": -0.19844045655530645,
+        "peak_force_n": -0.10091132543524939,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": -0.0021898576650878354,
+        "tangent_velocity_error_rms_m_s": 0.00016100320121666123
+      },
+      "method": "baseline",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.13,
+      "wall_time_constant_s": 0.012,
+      "wall_yaw_deg": 0.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -0.0005249870197854278,
+        "first_raw_contact_time_s": 0.0020000000000000018,
+        "force_rmse_n": 0.010444328580145726,
+        "max_compensation_force_n": 0.0,
+        "max_penetration_mm": -0.0007434450511305535,
+        "measurement_rmse_n": -0.0001210455770767338,
+        "minimum_reserved_torque_headroom_nm": -0.0009677327306643058,
+        "minimum_torque_headroom_nm": -0.0009677327306643058,
+        "orientation_rmse_deg": -0.17931143722046883,
+        "peak_force_n": 0.01042955650975319,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": -0.005076071520171865,
+        "tangent_velocity_error_rms_m_s": 0.00019056738872880695
+      },
+      "method": "baseline",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.1,
+      "wall_time_constant_s": 0.005,
+      "wall_yaw_deg": 15.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -0.000519230050005981,
+        "first_raw_contact_time_s": 0.0030000000000000027,
+        "force_rmse_n": 0.010387711511729888,
+        "max_compensation_force_n": 0.0,
+        "max_penetration_mm": -0.0007419133855566806,
+        "measurement_rmse_n": -0.00011673638332572456,
+        "minimum_reserved_torque_headroom_nm": -0.0008268406721589905,
+        "minimum_torque_headroom_nm": -0.0008268406721589905,
+        "orientation_rmse_deg": -0.17931712020624996,
+        "peak_force_n": 0.01022242278624308,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": -0.005050900511633927,
+        "tangent_velocity_error_rms_m_s": 0.00019110356619643498
+      },
+      "method": "baseline",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.13,
+      "wall_time_constant_s": 0.005,
+      "wall_yaw_deg": 15.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -0.00046154720713664776,
+        "first_raw_contact_time_s": 0.0020000000000000018,
+        "force_rmse_n": 0.010328876941780668,
+        "max_compensation_force_n": 0.0,
+        "max_penetration_mm": -0.0008321690635575418,
+        "measurement_rmse_n": -0.00012915608823123315,
+        "minimum_reserved_torque_headroom_nm": -0.0009431930430694457,
+        "minimum_torque_headroom_nm": -0.0009431930430694457,
+        "orientation_rmse_deg": -0.17936533067014732,
+        "peak_force_n": 0.017326785536353917,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": -0.004842354576677366,
+        "tangent_velocity_error_rms_m_s": 0.00019364846099046915
+      },
+      "method": "baseline",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.1,
+      "wall_time_constant_s": 0.012,
+      "wall_yaw_deg": 15.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -0.00046842329162311014,
+        "first_raw_contact_time_s": 0.0030000000000000027,
+        "force_rmse_n": 0.010272849725400851,
+        "max_compensation_force_n": 0.0,
+        "max_penetration_mm": -0.0008306633672138797,
+        "measurement_rmse_n": -0.00012498636022907628,
+        "minimum_reserved_torque_headroom_nm": -0.0008022224795616317,
+        "minimum_torque_headroom_nm": -0.0008022224795616317,
+        "orientation_rmse_deg": -0.17937111997364028,
+        "peak_force_n": 0.01740972425513121,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": -0.004819591299743742,
+        "tangent_velocity_error_rms_m_s": 0.00019413075055192686
+      },
+      "method": "baseline",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.13,
+      "wall_time_constant_s": 0.012,
+      "wall_yaw_deg": 15.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -0.00016259896911013927,
+        "first_raw_contact_time_s": 0.0030000000000000027,
+        "force_rmse_n": 0.0018501429051926283,
+        "max_compensation_force_n": 0.007758670779223653,
+        "max_penetration_mm": -0.0007907293520514891,
+        "measurement_rmse_n": -0.0005074488449697406,
+        "minimum_reserved_torque_headroom_nm": 0.01037319940950665,
+        "minimum_torque_headroom_nm": 0.01037319940950665,
+        "orientation_rmse_deg": -0.2613772420836982,
+        "peak_force_n": -0.08500520118849941,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.01870057879628295,
+        "tangent_velocity_error_rms_m_s": 0.0002742292827864756
+      },
+      "method": "friction",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.1,
+      "wall_time_constant_s": 0.005,
+      "wall_yaw_deg": -15.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -0.00016290221946813066,
+        "first_raw_contact_time_s": 0.0030000000000000027,
+        "force_rmse_n": 0.0017745062185964555,
+        "max_compensation_force_n": 0.007881312279262698,
+        "max_penetration_mm": -0.0007888731467301513,
+        "measurement_rmse_n": -0.0005029696856338473,
+        "minimum_reserved_torque_headroom_nm": 0.010262675656608433,
+        "minimum_torque_headroom_nm": 0.010262675656608433,
+        "orientation_rmse_deg": -0.26139518863628525,
+        "peak_force_n": -0.085067579327462,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.018833158538583694,
+        "tangent_velocity_error_rms_m_s": 0.00027576382013603075
+      },
+      "method": "friction",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.13,
+      "wall_time_constant_s": 0.005,
+      "wall_yaw_deg": -15.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -0.0001911461859558372,
+        "first_raw_contact_time_s": 0.0030000000000000027,
+        "force_rmse_n": 0.0019548416322422157,
+        "max_compensation_force_n": 0.00805432275835205,
+        "max_penetration_mm": -0.0008719318722958391,
+        "measurement_rmse_n": -0.0005030520813706918,
+        "minimum_reserved_torque_headroom_nm": 0.010086459464812236,
+        "minimum_torque_headroom_nm": 0.010086459464812236,
+        "orientation_rmse_deg": -0.26156401529629736,
+        "peak_force_n": -0.08378563482726253,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.01919689785235057,
+        "tangent_velocity_error_rms_m_s": 0.00027458793827973447
+      },
+      "method": "friction",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.1,
+      "wall_time_constant_s": 0.012,
+      "wall_yaw_deg": -15.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -0.00020915294634765713,
+        "first_raw_contact_time_s": 0.0030000000000000027,
+        "force_rmse_n": 0.0018782180820026695,
+        "max_compensation_force_n": 0.008236489187882334,
+        "max_penetration_mm": -0.0008705125575086403,
+        "measurement_rmse_n": -0.0004987366337951549,
+        "minimum_reserved_torque_headroom_nm": 0.009974584342728132,
+        "minimum_torque_headroom_nm": 0.009974584342728132,
+        "orientation_rmse_deg": -0.2615821066269829,
+        "peak_force_n": -0.08385931281840175,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.0193289559205736,
+        "tangent_velocity_error_rms_m_s": 0.00027613388165123685
+      },
+      "method": "friction",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.13,
+      "wall_time_constant_s": 0.012,
+      "wall_yaw_deg": -15.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -0.0001275219630170188,
+        "first_raw_contact_time_s": 0.002999999999999947,
+        "force_rmse_n": -0.002170486612567843,
+        "max_compensation_force_n": -0.0067610700066396134,
+        "max_penetration_mm": -0.0009135200517706998,
+        "measurement_rmse_n": -0.0003670062604556601,
+        "minimum_reserved_torque_headroom_nm": 0.0014525965417240272,
+        "minimum_torque_headroom_nm": 0.0014525965417240272,
+        "orientation_rmse_deg": -0.21170800777050305,
+        "peak_force_n": -0.09728879006867786,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.014981288483890798,
+        "tangent_velocity_error_rms_m_s": 0.00026929814405977914
+      },
+      "method": "friction",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.1,
+      "wall_time_constant_s": 0.005,
+      "wall_yaw_deg": 0.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -0.00011213909896501395,
+        "first_raw_contact_time_s": 0.002999999999999947,
+        "force_rmse_n": -0.0014907603395866859,
+        "max_compensation_force_n": -0.005568655920596299,
+        "max_penetration_mm": -0.0008727900490113072,
+        "measurement_rmse_n": -0.00034412327968204315,
+        "minimum_reserved_torque_headroom_nm": 0.001514275226205175,
+        "minimum_torque_headroom_nm": 0.001514275226205175,
+        "orientation_rmse_deg": -0.21172543302884592,
+        "peak_force_n": -0.09319293438376608,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.015076358952018087,
+        "tangent_velocity_error_rms_m_s": 0.0002708758003577029
+      },
+      "method": "friction",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.13,
+      "wall_time_constant_s": 0.005,
+      "wall_yaw_deg": 0.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -9.313475207717303e-05,
+        "first_raw_contact_time_s": 0.002999999999999947,
+        "force_rmse_n": -0.002606834501532207,
+        "max_compensation_force_n": -0.00723507730465478,
+        "max_penetration_mm": -0.00103613413271475,
+        "measurement_rmse_n": -0.0003716282680763239,
+        "minimum_reserved_torque_headroom_nm": 0.0014832714456227691,
+        "minimum_torque_headroom_nm": 0.0014832714456227691,
+        "orientation_rmse_deg": -0.21185511476468277,
+        "peak_force_n": -0.1016023162529116,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.01538489105505747,
+        "tangent_velocity_error_rms_m_s": 0.00026905635363833275
+      },
+      "method": "friction",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.1,
+      "wall_time_constant_s": 0.012,
+      "wall_yaw_deg": 0.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -9.713857609949805e-05,
+        "first_raw_contact_time_s": 0.002999999999999947,
+        "force_rmse_n": -0.0027041491612735807,
+        "max_compensation_force_n": -0.007239765016610278,
+        "max_penetration_mm": -0.001034129151283869,
+        "measurement_rmse_n": -0.00036811204163476885,
+        "minimum_reserved_torque_headroom_nm": 0.001565586013402509,
+        "minimum_torque_headroom_nm": 0.001565586013402509,
+        "orientation_rmse_deg": -0.21186656993006747,
+        "peak_force_n": -0.10161006807606565,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.015505526258171254,
+        "tangent_velocity_error_rms_m_s": 0.00027071256156986525
+      },
+      "method": "friction",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.13,
+      "wall_time_constant_s": 0.012,
+      "wall_yaw_deg": 0.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -0.00022558708739728317,
+        "first_raw_contact_time_s": 0.0020000000000000018,
+        "force_rmse_n": 0.005357519717984094,
+        "max_compensation_force_n": 0.01466276800094013,
+        "max_penetration_mm": -0.0007434450511096813,
+        "measurement_rmse_n": -1.581370000662552e-05,
+        "minimum_reserved_torque_headroom_nm": 0.00047677788959488154,
+        "minimum_torque_headroom_nm": 0.00047677788959488154,
+        "orientation_rmse_deg": -0.19578199014093545,
+        "peak_force_n": -0.027621811178677014,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.0132638438818512,
+        "tangent_velocity_error_rms_m_s": 0.00033064301606640996
+      },
+      "method": "friction",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.1,
+      "wall_time_constant_s": 0.005,
+      "wall_yaw_deg": 15.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -0.00022018623698022433,
+        "first_raw_contact_time_s": 0.0030000000000000027,
+        "force_rmse_n": 0.005297900720053372,
+        "max_compensation_force_n": 0.014698263988539129,
+        "max_penetration_mm": -0.0007419133853988624,
+        "measurement_rmse_n": -1.212169130707097e-05,
+        "minimum_reserved_torque_headroom_nm": 0.0006702866774226379,
+        "minimum_torque_headroom_nm": 0.0006702866774226379,
+        "orientation_rmse_deg": -0.1957945739043867,
+        "peak_force_n": -0.02753903526878876,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.013442289215765957,
+        "tangent_velocity_error_rms_m_s": 0.00033237145548492683
+      },
+      "method": "friction",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.13,
+      "wall_time_constant_s": 0.005,
+      "wall_yaw_deg": 15.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -0.00035202456413663263,
+        "first_raw_contact_time_s": 0.0020000000000000018,
+        "force_rmse_n": 0.005197696640037816,
+        "max_compensation_force_n": 0.013471906334702854,
+        "max_penetration_mm": -0.0008321690636476919,
+        "measurement_rmse_n": -7.474847338442836e-06,
+        "minimum_reserved_torque_headroom_nm": 0.0004969079462009418,
+        "minimum_torque_headroom_nm": 0.0004969079462009418,
+        "orientation_rmse_deg": -0.19586016574523551,
+        "peak_force_n": -0.024108317963390746,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.013706002750446422,
+        "tangent_velocity_error_rms_m_s": 0.000330739072003485
+      },
+      "method": "friction",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.1,
+      "wall_time_constant_s": 0.012,
+      "wall_yaw_deg": 15.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -0.00036725518334174145,
+        "first_raw_contact_time_s": 0.0030000000000000027,
+        "force_rmse_n": 0.0051395099582479675,
+        "max_compensation_force_n": 0.013567282255072755,
+        "max_penetration_mm": -0.0008306633672381936,
+        "measurement_rmse_n": -4.607139285683903e-06,
+        "minimum_reserved_torque_headroom_nm": 0.0006910283331849065,
+        "minimum_torque_headroom_nm": 0.0006910283331849065,
+        "orientation_rmse_deg": -0.1958726462577391,
+        "peak_force_n": -0.02428657816859836,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.013881025302072247,
+        "tangent_velocity_error_rms_m_s": 0.00033248060470333365
+      },
+      "method": "friction",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.13,
+      "wall_time_constant_s": 0.012,
+      "wall_yaw_deg": 15.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": 0.00029672761052251806,
+        "first_raw_contact_time_s": 0.0030000000000000027,
+        "force_rmse_n": 0.004980597119844776,
+        "max_compensation_force_n": -0.03411659602442452,
+        "max_penetration_mm": -0.0007950761463648148,
+        "measurement_rmse_n": -0.0002774061978077502,
+        "minimum_reserved_torque_headroom_nm": -0.003951004802129177,
+        "minimum_torque_headroom_nm": -0.003951004802129177,
+        "orientation_rmse_deg": -0.3019280755103905,
+        "peak_force_n": -0.08541782225956585,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.030311219291859537,
+        "tangent_velocity_error_rms_m_s": 0.0002794112359336045
+      },
+      "method": "integral",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.1,
+      "wall_time_constant_s": 0.005,
+      "wall_yaw_deg": -15.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": 0.000251111661771497,
+        "first_raw_contact_time_s": 0.0030000000000000027,
+        "force_rmse_n": 0.004926584531055864,
+        "max_compensation_force_n": -0.03408722805733122,
+        "max_penetration_mm": -0.000793128122428266,
+        "measurement_rmse_n": -0.0002726337900421649,
+        "minimum_reserved_torque_headroom_nm": -0.0040378288046833966,
+        "minimum_torque_headroom_nm": -0.0040378288046833966,
+        "orientation_rmse_deg": -0.3019509356669636,
+        "peak_force_n": -0.08548401256182103,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.03049480566217877,
+        "tangent_velocity_error_rms_m_s": 0.0002806203697382822
+      },
+      "method": "integral",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.13,
+      "wall_time_constant_s": 0.005,
+      "wall_yaw_deg": -15.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": 0.0003039028794198373,
+        "first_raw_contact_time_s": 0.0030000000000000027,
+        "force_rmse_n": 0.0051474896760374395,
+        "max_compensation_force_n": -0.034202674675277045,
+        "max_penetration_mm": -0.000876346236952652,
+        "measurement_rmse_n": -0.000269375419848325,
+        "minimum_reserved_torque_headroom_nm": -0.00460676424123907,
+        "minimum_torque_headroom_nm": -0.00460676424123907,
+        "orientation_rmse_deg": -0.30208392577272825,
+        "peak_force_n": -0.08421675471622869,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.031045733027252886,
+        "tangent_velocity_error_rms_m_s": 0.0002826794540391909
+      },
+      "method": "integral",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.1,
+      "wall_time_constant_s": 0.012,
+      "wall_yaw_deg": -15.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": 0.0003028457473113755,
+        "first_raw_contact_time_s": 0.0030000000000000027,
+        "force_rmse_n": 0.005091272682230336,
+        "max_compensation_force_n": -0.03416067872260564,
+        "max_penetration_mm": -0.0008749515707073274,
+        "measurement_rmse_n": -0.0002648772491859325,
+        "minimum_reserved_torque_headroom_nm": -0.004685719094142726,
+        "minimum_torque_headroom_nm": -0.004685719094142726,
+        "orientation_rmse_deg": -0.3021070245462517,
+        "peak_force_n": -0.08428276105921206,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.031224467250177135,
+        "tangent_velocity_error_rms_m_s": 0.0002838502108467641
+      },
+      "method": "integral",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.13,
+      "wall_time_constant_s": 0.012,
+      "wall_yaw_deg": -15.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -1.853469815127351e-05,
+        "first_raw_contact_time_s": 0.002999999999999947,
+        "force_rmse_n": -0.001377327045047838,
+        "max_compensation_force_n": 0.011680359255816342,
+        "max_penetration_mm": -0.000916419462010376,
+        "measurement_rmse_n": -0.0004449161193498252,
+        "minimum_reserved_torque_headroom_nm": -0.0009088058258481801,
+        "minimum_torque_headroom_nm": -0.0009088058258481801,
+        "orientation_rmse_deg": -0.24514194157046426,
+        "peak_force_n": -0.09756290175170879,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.028568724442395776,
+        "tangent_velocity_error_rms_m_s": 0.00032178229219704223
+      },
+      "method": "integral",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.1,
+      "wall_time_constant_s": 0.005,
+      "wall_yaw_deg": 0.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -1.477851008235831e-05,
+        "first_raw_contact_time_s": 0.002999999999999947,
+        "force_rmse_n": -0.0007402703990991855,
+        "max_compensation_force_n": 0.011973650618405163,
+        "max_penetration_mm": -0.0008756954383015714,
+        "measurement_rmse_n": -0.000421873881852719,
+        "minimum_reserved_torque_headroom_nm": -0.0008396109254711348,
+        "minimum_torque_headroom_nm": -0.0008396109254711348,
+        "orientation_rmse_deg": -0.2451583424943585,
+        "peak_force_n": -0.0934694855047109,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.029241320084676836,
+        "tangent_velocity_error_rms_m_s": 0.0003248074497962366
+      },
+      "method": "integral",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.13,
+      "wall_time_constant_s": 0.005,
+      "wall_yaw_deg": 0.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -6.511822481236607e-05,
+        "first_raw_contact_time_s": 0.002999999999999947,
+        "force_rmse_n": -0.0017769248196259357,
+        "max_compensation_force_n": 0.011437024130402929,
+        "max_penetration_mm": -0.0010392415950022382,
+        "measurement_rmse_n": -0.00046060072160404586,
+        "minimum_reserved_torque_headroom_nm": -0.000862456263758915,
+        "minimum_torque_headroom_nm": -0.000862456263758915,
+        "orientation_rmse_deg": -0.24527039220862268,
+        "peak_force_n": -0.09968298483362137,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.029039216569858084,
+        "tangent_velocity_error_rms_m_s": 0.00032525509192690705
+      },
+      "method": "integral",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.1,
+      "wall_time_constant_s": 0.012,
+      "wall_yaw_deg": 0.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -7.709315356929647e-05,
+        "first_raw_contact_time_s": 0.002999999999999947,
+        "force_rmse_n": -0.0018723658015170203,
+        "max_compensation_force_n": 0.011445770357493057,
+        "max_penetration_mm": -0.0010372590222573752,
+        "measurement_rmse_n": -0.0004578854700040824,
+        "minimum_reserved_torque_headroom_nm": -0.000772467161019641,
+        "minimum_torque_headroom_nm": -0.000772467161019641,
+        "orientation_rmse_deg": -0.24528609995995307,
+        "peak_force_n": -0.09937801723421913,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.02924515131543881,
+        "tangent_velocity_error_rms_m_s": 0.0003266101837140177
+      },
+      "method": "integral",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.13,
+      "wall_time_constant_s": 0.012,
+      "wall_yaw_deg": 0.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -0.00015409241972252907,
+        "first_raw_contact_time_s": 0.0020000000000000018,
+        "force_rmse_n": 0.016349826247144983,
+        "max_compensation_force_n": -0.00798818571699389,
+        "max_penetration_mm": -0.0007482466361039553,
+        "measurement_rmse_n": 1.2155233971133939e-05,
+        "minimum_reserved_torque_headroom_nm": -0.00030080875815174934,
+        "minimum_torque_headroom_nm": -0.00030080875815174934,
+        "orientation_rmse_deg": -0.22276605123165308,
+        "peak_force_n": 0.05261239691670827,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.02667343805857403,
+        "tangent_velocity_error_rms_m_s": 0.0004121421555924581
+      },
+      "method": "integral",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.1,
+      "wall_time_constant_s": 0.005,
+      "wall_yaw_deg": 15.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -0.00014956982204072933,
+        "first_raw_contact_time_s": 0.0030000000000000027,
+        "force_rmse_n": 0.01631470831249525,
+        "max_compensation_force_n": -0.00796098772111753,
+        "max_penetration_mm": -0.0007467286517598981,
+        "measurement_rmse_n": 1.610007766154886e-05,
+        "minimum_reserved_torque_headroom_nm": -3.60173334512659e-05,
+        "minimum_torque_headroom_nm": -3.60173334512659e-05,
+        "orientation_rmse_deg": -0.22277659370232752,
+        "peak_force_n": 0.05258447581417869,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.026931619417012165,
+        "tangent_velocity_error_rms_m_s": 0.0004137256071885236
+      },
+      "method": "integral",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.13,
+      "wall_time_constant_s": 0.005,
+      "wall_yaw_deg": 15.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -0.00011874359154367964,
+        "first_raw_contact_time_s": 0.0020000000000000018,
+        "force_rmse_n": 0.016156829155566696,
+        "max_compensation_force_n": -0.008073064033072175,
+        "max_penetration_mm": -0.0008369859068845797,
+        "measurement_rmse_n": 5.516415429271393e-06,
+        "minimum_reserved_torque_headroom_nm": -0.00020746466397580932,
+        "minimum_torque_headroom_nm": -0.00020746466397580932,
+        "orientation_rmse_deg": -0.22282931268760675,
+        "peak_force_n": 0.03607421299843061,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.02751609421962531,
+        "tangent_velocity_error_rms_m_s": 0.0004175310758859751
+      },
+      "method": "integral",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.1,
+      "wall_time_constant_s": 0.012,
+      "wall_yaw_deg": 15.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -0.00011806782668638549,
+        "first_raw_contact_time_s": 0.0030000000000000027,
+        "force_rmse_n": 0.016121519494414538,
+        "max_compensation_force_n": -0.008044126358939696,
+        "max_penetration_mm": -0.0008355022857124417,
+        "measurement_rmse_n": 8.131888746987226e-06,
+        "minimum_reserved_torque_headroom_nm": 5.737274039940843e-05,
+        "minimum_torque_headroom_nm": 5.737274039940843e-05,
+        "orientation_rmse_deg": -0.22283993547093953,
+        "peak_force_n": 0.03620728220530278,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.02776872671182229,
+        "tangent_velocity_error_rms_m_s": 0.000419065313374602
+      },
+      "method": "integral",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.13,
+      "wall_time_constant_s": 0.012,
+      "wall_yaw_deg": 15.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": 0.0001350511559006784,
+        "first_raw_contact_time_s": 0.0030000000000000027,
+        "force_rmse_n": 0.004315855099221069,
+        "max_compensation_force_n": -2.3176896402077318e-08,
+        "max_penetration_mm": -0.0007907293520514891,
+        "measurement_rmse_n": -0.0002799426965048313,
+        "minimum_reserved_torque_headroom_nm": 0.006579861545826127,
+        "minimum_torque_headroom_nm": 0.006579861545826127,
+        "orientation_rmse_deg": -0.2650274672083197,
+        "peak_force_n": -0.08500520118849941,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.042598895774861756,
+        "tangent_velocity_error_rms_m_s": 0.0004389720629977907
+      },
+      "method": "online",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.1,
+      "wall_time_constant_s": 0.005,
+      "wall_yaw_deg": -15.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": 0.00013972515602350688,
+        "first_raw_contact_time_s": 0.0030000000000000027,
+        "force_rmse_n": 0.00424160674698125,
+        "max_compensation_force_n": -2.3176896402077318e-08,
+        "max_penetration_mm": -0.0007888731467301513,
+        "measurement_rmse_n": -0.00027770968943909013,
+        "minimum_reserved_torque_headroom_nm": 0.0064721579545552466,
+        "minimum_torque_headroom_nm": 0.0064721579545552466,
+        "orientation_rmse_deg": -0.2650471708145098,
+        "peak_force_n": -0.085067579327462,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.042733800417679824,
+        "tangent_velocity_error_rms_m_s": 0.00043994561141698276
+      },
+      "method": "online",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.13,
+      "wall_time_constant_s": 0.005,
+      "wall_yaw_deg": -15.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": 0.00021167131264610006,
+        "first_raw_contact_time_s": 0.0030000000000000027,
+        "force_rmse_n": 0.004446421817004165,
+        "max_compensation_force_n": 0.0,
+        "max_penetration_mm": -0.0008719318722958391,
+        "measurement_rmse_n": -0.00024788036791464907,
+        "minimum_reserved_torque_headroom_nm": 0.0058441226136607405,
+        "minimum_torque_headroom_nm": 0.0058441226136607405,
+        "orientation_rmse_deg": -0.2652124286920501,
+        "peak_force_n": -0.08378563482726253,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.04394781079918131,
+        "tangent_velocity_error_rms_m_s": 0.0004434550156974678
+      },
+      "method": "online",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.1,
+      "wall_time_constant_s": 0.012,
+      "wall_yaw_deg": -15.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": 0.00018415986162856335,
+        "first_raw_contact_time_s": 0.0030000000000000027,
+        "force_rmse_n": 0.004370223898466363,
+        "max_compensation_force_n": 0.0,
+        "max_penetration_mm": -0.0008705125575086403,
+        "measurement_rmse_n": -0.0002459194235124862,
+        "minimum_reserved_torque_headroom_nm": 0.00573295984630473,
+        "minimum_torque_headroom_nm": 0.00573295984630473,
+        "orientation_rmse_deg": -0.2652325241800455,
+        "peak_force_n": -0.08385931281840175,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.04409040984411605,
+        "tangent_velocity_error_rms_m_s": 0.0004444351004495727
+      },
+      "method": "online",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.13,
+      "wall_time_constant_s": 0.012,
+      "wall_yaw_deg": -15.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -0.00021262836753799252,
+        "first_raw_contact_time_s": 0.002999999999999947,
+        "force_rmse_n": -0.0020975063776481756,
+        "max_compensation_force_n": 0.0,
+        "max_penetration_mm": -0.0009135200517706998,
+        "measurement_rmse_n": -0.00023960566366833247,
+        "minimum_reserved_torque_headroom_nm": 0.0012655178181018023,
+        "minimum_torque_headroom_nm": 0.0012655178181018023,
+        "orientation_rmse_deg": -0.21586549522280504,
+        "peak_force_n": -0.07879340706782045,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.04184187534549044,
+        "tangent_velocity_error_rms_m_s": 0.00045583440625251515
+      },
+      "method": "online",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.1,
+      "wall_time_constant_s": 0.005,
+      "wall_yaw_deg": 0.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -0.00023464766650549418,
+        "first_raw_contact_time_s": 0.002999999999999947,
+        "force_rmse_n": -0.001423484650186449,
+        "max_compensation_force_n": 0.0,
+        "max_penetration_mm": -0.0008727900490113072,
+        "measurement_rmse_n": -0.00021602877400321574,
+        "minimum_reserved_torque_headroom_nm": 0.0013360422314536713,
+        "minimum_torque_headroom_nm": 0.0013360422314536713,
+        "orientation_rmse_deg": -0.21588268535041205,
+        "peak_force_n": -0.07453455945521359,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.042050612973164814,
+        "tangent_velocity_error_rms_m_s": 0.0004564223179919567
+      },
+      "method": "online",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.13,
+      "wall_time_constant_s": 0.005,
+      "wall_yaw_deg": 0.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -0.00019050824591471116,
+        "first_raw_contact_time_s": 0.002999999999999947,
+        "force_rmse_n": -0.0025554269429334114,
+        "max_compensation_force_n": 0.0,
+        "max_penetration_mm": -0.00103613413271475,
+        "measurement_rmse_n": -0.0002181414682831534,
+        "minimum_reserved_torque_headroom_nm": 0.0012966187359131354,
+        "minimum_torque_headroom_nm": 0.0012966187359131354,
+        "orientation_rmse_deg": -0.21600775302280495,
+        "peak_force_n": -0.06065579737365123,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.04223317344110533,
+        "tangent_velocity_error_rms_m_s": 0.0004583721780431417
+      },
+      "method": "online",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.1,
+      "wall_time_constant_s": 0.012,
+      "wall_yaw_deg": 0.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -0.00018615720369374866,
+        "first_raw_contact_time_s": 0.002999999999999947,
+        "force_rmse_n": -0.0026526331464297587,
+        "max_compensation_force_n": 0.0,
+        "max_penetration_mm": -0.001034129151283869,
+        "measurement_rmse_n": -0.00021865598092932204,
+        "minimum_reserved_torque_headroom_nm": 0.0013873095081642361,
+        "minimum_torque_headroom_nm": 0.0013873095081642361,
+        "orientation_rmse_deg": -0.21601985432369214,
+        "peak_force_n": -0.060136377656092144,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.04236054706536574,
+        "tangent_velocity_error_rms_m_s": 0.00045958936045725285
+      },
+      "method": "online",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.13,
+      "wall_time_constant_s": 0.012,
+      "wall_yaw_deg": 0.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -0.00023659941514236893,
+        "first_raw_contact_time_s": 0.0020000000000000018,
+        "force_rmse_n": 0.009470388444823633,
+        "max_compensation_force_n": 0.0,
+        "max_penetration_mm": -0.0007434450511096813,
+        "measurement_rmse_n": 5.48003202684999e-05,
+        "minimum_reserved_torque_headroom_nm": 0.0007238750308160569,
+        "minimum_torque_headroom_nm": 0.0007238750308160569,
+        "orientation_rmse_deg": -0.20044304394600018,
+        "peak_force_n": -0.006127596624396325,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.0547807842880047,
+        "tangent_velocity_error_rms_m_s": 0.0005070617187705843
+      },
+      "method": "online",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.1,
+      "wall_time_constant_s": 0.005,
+      "wall_yaw_deg": 15.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -0.0002461748434511857,
+        "first_raw_contact_time_s": 0.0030000000000000027,
+        "force_rmse_n": 0.009414833057070499,
+        "max_compensation_force_n": 0.0,
+        "max_penetration_mm": -0.0007419133853988624,
+        "measurement_rmse_n": 5.475901747999112e-05,
+        "minimum_reserved_torque_headroom_nm": 0.0009219237622581922,
+        "minimum_torque_headroom_nm": 0.0009219237622581922,
+        "orientation_rmse_deg": -0.200455132494213,
+        "peak_force_n": -0.005995996531643399,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.05490365055395352,
+        "tangent_velocity_error_rms_m_s": 0.0005080635052543778
+      },
+      "method": "online",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.13,
+      "wall_time_constant_s": 0.005,
+      "wall_yaw_deg": 15.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -0.0003388978595782466,
+        "first_raw_contact_time_s": 0.0020000000000000018,
+        "force_rmse_n": 0.009319775383726234,
+        "max_compensation_force_n": 0.0,
+        "max_penetration_mm": -0.0008321690636476919,
+        "measurement_rmse_n": 7.08512546728074e-05,
+        "minimum_reserved_torque_headroom_nm": 0.000755027302830058,
+        "minimum_torque_headroom_nm": 0.000755027302830058,
+        "orientation_rmse_deg": -0.20051710285795915,
+        "peak_force_n": -0.007399385981692319,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.054502009288381115,
+        "tangent_velocity_error_rms_m_s": 0.0005060430842228876
+      },
+      "method": "online",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.1,
+      "wall_time_constant_s": 0.012,
+      "wall_yaw_deg": 15.0
+    },
+    {
+      "mean_deltas": {
+        "contact_ratio_pct": 0.0,
+        "evaluation_median_penetration_mm": -0.00035915645094081183,
+        "first_raw_contact_time_s": 0.0030000000000000027,
+        "force_rmse_n": 0.009261849723597115,
+        "max_compensation_force_n": 0.0,
+        "max_penetration_mm": -0.0008306633672381936,
+        "measurement_rmse_n": 7.023454868326784e-05,
+        "minimum_reserved_torque_headroom_nm": 0.0009531446323767234,
+        "minimum_torque_headroom_nm": 0.0009531446323767234,
+        "orientation_rmse_deg": -0.20052926609659297,
+        "peak_force_n": -0.007405246499966545,
+        "projection_pct": 0.0,
+        "saturation_pct": 0.0,
+        "seconds_over_35_n": 0.0,
+        "tangent_rmse_mm": 0.05472478721016816,
+        "tangent_velocity_error_rms_m_s": 0.0005070371904153555
+      },
+      "method": "online",
+      "noise_seeds": [
+        11,
+        29
+      ],
+      "tool_mass_kg": 0.13,
+      "wall_time_constant_s": 0.012,
+      "wall_yaw_deg": 15.0
+    }
+  ]
+}
