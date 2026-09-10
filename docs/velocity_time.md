@@ -87,6 +87,8 @@ $C(T_v)=\mathrm{RMS}_{v,8N}(T_v)-\mathrm{RMS}_{v,6N}(T_v)$。
 
 ## 固定判据与复核
 
+若要连同预算转移、窗口分解和内部观测一起检查，可运行[证据链复核命令](velocity_evidence_audit.md)。
+
 [协议](../results/franka_velocity_time/protocol.json)在新仿真前固定：四个同预算对照的速度 RMS
 不能增加，数值容差为 $10^{-12}\,\mathrm{m/s}$；位置保留原 +0.10 mm 容限，控力和姿态等原门槛也不变。
 两档增益的预算速度代价都必须下降，新的 8 N−6 N 对照必须通过原兼容性门槛，才允许扩大网格。

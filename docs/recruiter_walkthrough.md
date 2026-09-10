@@ -111,6 +111,16 @@ python -m tools.publish_surface_ppo_transfer --audit results/franka_surface_ppo_
 ```
 
 它们校验分发文件、重算选择或代表轨迹指标，不重新训练，也不重新积分全部动力学。
+本页提到的预算转移、速度代价分解、内部观测和时间系数对照，还需运行：
+
+```bash
+python -m tools.audit_velocity_evidence
+```
+
+四项都应返回 `audit_status: PASS`，但预算转移仍为实验 `FAIL`，时间系数对照仍为
+`do_not_expand`。命令不会新跑仿真，运行时间取决于读取和重算归档的速度；不计入上面的
+最短冒烟检查。字段含义、覆盖范围和超时设置见[复核说明](velocity_evidence_audit.md)。
+
 想直接看动作和指标，可打开[12 秒擦拭视频](../results/franka_tangential_demo/demo.mp4)；它来自
 保存的仿真日志，不是真机录像。
 

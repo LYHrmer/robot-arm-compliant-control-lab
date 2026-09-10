@@ -143,6 +143,15 @@ franka-published-results-audit \
 仿真。`audit PASS` 只表示归档未变且内部推导自洽，冻结结论仍是 `FAIL`。在线补偿与三个学习归档
 有各自的 audit 入口，命令列在[招聘方走查](docs/recruiter_walkthrough.md#3-跑最短检查约-1-分钟)。
 
+近期预算与速度误差的四项实验可用一个命令只读复核，不运行新仿真：
+
+```bash
+python -m tools.audit_velocity_evidence
+```
+
+它覆盖预算转移、速度代价分解、内部观测和时间系数对照，逐项保留实验 `FAIL`／`do_not_expand`。
+输出字段与失败处理见[复核说明](docs/velocity_evidence_audit.md)。它只覆盖这四项，不包含全仓库所有实验。
+
 正式训练、公开验证和新一轮 first-reveal 命令放在[实验复现文档](docs/reproduction_plan_v0.5.md)，
 以免把一次正式实验误当成快速示例。
 

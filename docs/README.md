@@ -60,6 +60,9 @@ Residual RL，每章都给出公式、源码入口和练习。
 
 ## 复现实验
 
+只想核对已发布的预算与速度误差结论，可运行 `python -m tools.audit_velocity_evidence`。
+它复核最近四项实验，不增加仿真；覆盖范围和输出解释见[复核说明](velocity_evidence_audit.md)。
+
 先按[教程环境说明](tutorial/README.md#环境与第一轮复现)安装 Python 依赖并运行测试。不同
 实验的数据身份不能混用：
 
