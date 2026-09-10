@@ -103,5 +103,6 @@ python -m tools.velocity_cost_study --output /tmp/compliant-control-velocity-cos
 除以 `summary.json` 中的 `groups.all.mean_mse_delta_m2_s2`；表里的单位是 $\mathrm{m^2/s^2}$，
 乘 $10^6$ 换成 $(\mathrm{mm/s})^2$。
 
-下一步只做少量精确重放，在 1.5–2.0 s 附近加装观测量，检查补偿系数的增长、变化速率限制
-与更新就绪情况，再根据观测决定是否改变更新律。失效判据不因这页结果改动。
+后续已完成[八次带内部观测的复现](onset_observer.md)：新轨迹精确匹配旧轨迹，
+1.5–2.0 s 内速度误差项平均抵消部分位置驱动，补偿变化速率限制未触发。
+新增运行单独计数；本页仍为零新增仿真的离线分析，原失效判据不变。

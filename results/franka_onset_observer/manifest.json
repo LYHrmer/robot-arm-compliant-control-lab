@@ -1,0 +1,37 @@
+{
+  "artifact_sha256": {
+    "comparison.csv": "3d8d4082bfd389f907999bd3d2098f6245c15a4194ee4c4b891e80d85d26b287",
+    "events.csv": "9cb083ba34268c0547407d7f8f2949eaf17c8d5e6ebf69203d7728a7d1cd19dc",
+    "protocol.json": "2584a68cfd6579ceaaa4950fe0a41c53b08bbfe52847b459efe1ba1bbf6b580b",
+    "source_hashes.json": "cf7772bab247d9487c79c1238cf8435f8b3503da9b1634c8127aab2bf6a5165b",
+    "traces/case07__s1__f6n.npz": "778112e3425ea6fb74b88cfb88609c2fb09879b19f802f40c926ed72aeb11d58",
+    "traces/case07__s1__f8n.npz": "c5ad7d471b704ae405cfda52df571221cb531feb645405806ffdffe3c8f92fb0",
+    "traces/case15__s1__f6n.npz": "d2dfd617df49abf88ede9bb804d3eaabda40dcd709fa8a6077adfb1ace685af2",
+    "traces/case15__s1__f8n.npz": "c5a1743a472ab9bb1bd51228722986443a16dbfa9016c137c99864f8cb42d10a",
+    "traces/case23__s1__f6n.npz": "e5ee6d030c71c6b9c49db3e1ef0c9941cd4c3f1afafaf2549c1cbc72fc75a8f5",
+    "traces/case23__s1__f8n.npz": "b68c58a738e12ab734b035a5bb68a2199176e6617ec59d8732bb5802f97e5760",
+    "traces/case23__s2__f6n.npz": "8b5a309fae67f5e66cc7157e510627808ce0c1a8353fc73d84f0afbf43bb298a",
+    "traces/case23__s2__f8n.npz": "7187e38d5a08a9251f47e2b60f3e693e24bc25d09fc46237eb2a6e23e3bd8d16",
+    "windows.csv": "7291eeace526bf65125063032cc5d50c8dee64de2e6d4fbed9b45b2fb95b8b9c"
+  },
+  "identity": "public24-onset-observer-v1",
+  "new_simulations": 8,
+  "parents": {
+    "public24": {
+      "directory": "results/franka_rotation_gain_public24",
+      "manifest_sha256": "bbd94ed631c5b5858308eaba762d41d4412c1f69400298e62571b2f27c3f3fee"
+    },
+    "transfer": {
+      "directory": "results/franka_budget_transfer",
+      "manifest_sha256": "bce10bd63e2879ab9a7e89ed3375d3e971eefce8fb681e2ad57feb37d49e55c6"
+    },
+    "velocity": {
+      "directory": "results/franka_velocity_cost",
+      "manifest_sha256": "1179f95aff09ca82174abccdf7cd65b643050ba682f36d4f59509c6f249ab488"
+    }
+  },
+  "versions": {
+    "numpy": "2.2.6",
+    "python": "3.10.12"
+  }
+}

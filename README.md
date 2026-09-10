@@ -157,6 +157,8 @@ franka-published-results-audit \
 - 默认在线补偿在 12 秒对照的反向加速段仍未通过姿态阶段门槛；组合误差后段仍有约 3.3 mm 切向
   残差。[预算转移](docs/budget_transfer.md)在原 public24 仅通过 23/48，25 组因切向速度代价失败。
   [窗口分解](docs/velocity_cost.md)显示平均净速度 MSE 代价主要集中在 1.5–2.0 s，最后 1 s 的两个窗口速度 MSE 在全部配对中均降低。
+  [八次内部观测复现](docs/onset_observer.md)精确匹配旧轨迹：该窗口的位置滞后驱动系数增长，速度项平均起抵消作用。
+  限幅先改变本周期请求，随后阻断用于下一周期的系数正增量。
   8 N 只保留为高摩擦实验配置；默认保持 6 N、增益 1，也没有新增 8 N 的 C++ 完整控制链回放。
 - 当前机器没有 Franka hardware/model interface，仓库不声称完成 ros2_control 真机插件。
 

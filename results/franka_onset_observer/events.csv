@@ -1,0 +1,5 @@
+case_index,rotation_gain_scale,first_cap_difference_s,first_coefficient_difference_s,first_request_difference_s,first_measured_velocity_difference_s,first_measured_position_difference_s,first_velocity_difference_s,first_position_difference_s,first_6n_cap_s,first_6n_cap_blocks_positive_update_s
+7,1.0,1.78,1.78,1.78,1.782,1.782,1.782,1.782,1.78,1.78
+15,1.0,1.77,1.77,1.77,1.772,1.772,1.772,1.772,1.77,1.77
+23,1.0,1.678,1.678,1.678,1.68,1.68,1.68,1.68,1.678,1.678
+23,2.0,1.6560000000000001,1.6560000000000001,1.6560000000000001,1.6580000000000001,1.6580000000000001,1.6580000000000001,1.6580000000000001,1.6560000000000001,1.6560000000000001
