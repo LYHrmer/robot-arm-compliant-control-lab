@@ -46,7 +46,7 @@ smoke: PASS
 | [在线补偿：24 case、4.5 s](docs/online_compensation.md)，[96 次运行](results/franka_online_compensation_regression/) | 相对固定前馈，切向 RMSE 中位数 **1.885 → 1.359 mm**，24/24 配对改善，旧三方法指标精确复现。 |
 | [动态误差：80 次运行](docs/online_compensation.md#实测结果与没有通过的部分) | 原增益阶段检查 **40/42**；[可选姿态增益](docs/rotation_gain_comparison.md)达到 42/42，但[192 次回归](docs/rotation_gain_public24.md)显示切向位置与速度有代价，不替换默认增益。 |
 | [跨方向 36 次回归](docs/cross_surface_regression.md)与[12 次残差诊断](docs/combined_residual_diagnosis.md) | 组合误差后段仍约 **3.3 mm**；95.6%–98.0% 的采样触发内部补偿幅值限制。移除输入因素不是算法提升。 |
-| [补偿预算：6 N 对 8 N](docs/compensation_budget.md)，12 次运行（6 组配对） | 高摩擦 8–12 s RMSE **3.26–4.20 → 1.22–1.47 mm**，六组预定工程筛查均通过。仅保留为这些工况的实验配置，默认仍为 6 N，不算同预算算法提升。 |
+| [补偿预算初筛](docs/compensation_budget.md)，12 次运行；[120 行转移检查](docs/budget_transfer.md) | 原高摩擦 RMSE **3.26–4.20 → 1.22–1.47 mm**；后续两档增益的预算筛查均为 6/6，但 public24 兼容仅 **23/48**，整体 `FAIL`。默认保持 6 N、增益 1。 |
 | [BC 输入消融](docs/bc_closed_loop_transfer.md)与[bounded PPO](docs/surface_learning_pilot.md)：12 s、4 个开发 case | 解析前馈均值 **2.403 mm**；三个种子的 BC 为 2.781–2.825 mm，PPO 为 2.381–2.470 mm，均无跨种子一致优势。 |
 | [冻结 v0.5：48 case](results/franka_safety_blind/summary.md) | 五个 residual 策略通过 **22–26/48**，未达到各 44/48；主结果 **FAIL**，保留[全部 384 行数据](results/franka_safety_blind/comparison.csv)，不部署策略。 |
 | [C++ 完整控制链回放](results/franka_online_cpp_replay/report.json) | 4 份轨迹、24,000 周期，最大 wrench 分量误差 < `4.45e-15`；[新增益另 4 份](results/franka_rotation_gain_cpp_replay/report.json)也通过。这是数值移植证据，不是真机实时性保证。 |
@@ -155,7 +155,8 @@ franka-published-results-audit \
   尚未移植，传感器采集、机器人模型计算和真实通信仍由外部接口负责。
 - torque projection 没有提供 torque-rate、碰撞阈值或硬件安全认证。
 - 默认在线补偿在 12 秒对照的反向加速段仍未通过姿态阶段门槛；组合误差后段仍有约 3.3 mm 切向
-  残差。8 N 实验配置改善了指定高摩擦工况，但未覆盖全部原 24-case，也未与可选姿态增益组合验证。
+  残差。[预算转移](docs/budget_transfer.md)在原 public24 仅通过 23/48，25 组因切向速度代价失败。
+  8 N 只保留为高摩擦实验配置；默认保持 6 N、增益 1，也没有新增 8 N 的 C++ 完整控制链回放。
 - 当前机器没有 Franka hardware/model interface，仓库不声称完成 ros2_control 真机插件。
 
 ## 模型与许可证

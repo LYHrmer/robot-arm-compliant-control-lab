@@ -44,6 +44,13 @@
 [重封篡改测试](../tests/test_combined_residual_audit.py)检查观测标志、配对差值及物理边界。
 这是输入反事实分析，不更新原配对方法的通过数。
 
+[预算转移](budget_transfer.md)使用[生成与离线审计入口](../tools/budget_transfer.py)和
+[独立轨迹校验](../tools/budget_transfer_validation.py)。[协议测试](../tests/test_budget_transfer.py)
+检查固定矩阵与参考行身份；[归档](../results/franka_budget_transfer/)包含 120 行评价，其中
+60 次新运行、60 行固定参考。两档增益的动态预算筛查均为 6/6，增益兼容为 12/12；public24 兼容仅 23/48，
+最差切向速度 RMS 增量约 0.357 mm/s，超过 0.2 mm/s 限值，整体筛查 `FAIL`。
+默认保持 6 N、增益 1，本轮没有新增 8 N 的 C++ 控制链回放。
+
 [跨方向动态回归](cross_surface_regression.md)新增 36 次运行、144 个阶段及 90 个同身份增益配对。
 [配置与边界测试](../tests/test_cross_surface_regression.py)、[配对测试](../tests/test_cross_surface_pairs.py)
 和[重封篡改审计测试](../tests/test_cross_surface_audit.py)分别核对几何转换、配对身份、旧结果复现、

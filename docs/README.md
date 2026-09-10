@@ -52,7 +52,7 @@ Residual RL，每章都给出公式、源码入口和练习。
 | 新姿态增益的表面方向／已知质量回归与力矩余量 | [rotation_gain_public24.md](rotation_gain_public24.md) |
 | 换向／组合误差能否转移到其他表面方向 | [cross_surface_regression.md](cross_surface_regression.md) |
 | 力矩未饱和为何仍有切向误差：幅值限幅与单因素诊断 | [combined_residual_diagnosis.md](combined_residual_diagnosis.md) |
-| 增加补偿预算是否有效，姿态／控力／力矩代价多大 | [compensation_budget.md](compensation_budget.md) |
+| 补偿预算的局部效果及跨工况／增益检查 | [6 N／8 N 高摩擦筛查](compensation_budget.md)、[预算转移](budget_transfer.md) |
 | 新表面任务的 RL / IL 环境、数据与评价准备 | [surface_learning.md](surface_learning.md) |
 | 小规模行为克隆、残差 PPO 与闭环选型 | [surface_learning_pilot.md](surface_learning_pilot.md) |
 | BC 离线拟合良好，闭环为什么偏：历史输入消融 | [bc_closed_loop_transfer.md](bc_closed_loop_transfer.md) |
@@ -81,6 +81,7 @@ Residual RL，每章都给出公式、源码入口和练习。
 | 小规模跨方向动态回归：3 yaw × 2 工况 × 3 方法 × 2 增益，seed 11 | [阶段失效、残余误差与采用决定](cross_surface_regression.md) | [36 次运行与 144 个阶段](../results/franka_cross_surface_dynamic/) |
 | 组合误差后段诊断：3 yaw × 4 输入变体，原增益在线方法 | [沿轨迹滞后、限幅和误差耦合](combined_residual_diagnosis.md) | [12 次运行及配对诊断](../results/franka_combined_residual_ablation/) |
 | 补偿预算：3 yaw × 2 输入变体 × 6 N／8 N，原增益在线方法 | [收益、代价与采用范围](compensation_budget.md) | [12 次运行与六组筛查](../results/franka_compensation_budget/) |
+| 补偿预算转移：原 public24 与 6 个动态配置，两个旋转增益 | [固定协议与证据范围](budget_transfer.md) | [120 行评价：动态筛查通过，public24 兼容 23/48，整体 FAIL](../results/franka_budget_transfer/) |
 | C++ 完整数值控制链回放 | [输入、状态与硬件边界](cpp_core.md) | [四份完整轨迹核验](../results/franka_online_cpp_replay/) |
 | 表面任务学习前准备：24 × 3、12 次压力测试与同频教师数据 | [训练接口、标签与复现](surface_learning.md) | [数值索引](../results/franka_surface_learning_preparation/)、[三回合示例](../results/franka_surface_learning_examples/)、[分层修正记录](../results/franka_surface_learning_partition/) |
 | 小规模 BC 与 bounded Residual PPO：各三个训练种子 | [损失、更新与选择规则](surface_learning_pilot.md) | [完整种子对照](../results/franka_surface_learning_pilot/) |
