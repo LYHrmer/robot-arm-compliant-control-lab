@@ -1,0 +1,46 @@
+{
+  "default_changed": false,
+  "error_sign": "actual_minus_target",
+  "evaluation_interval_s": [
+    1.5,
+    4.5
+  ],
+  "first_difference": "full-trace vector norm > 1e-12 in recorded field units",
+  "frame": "true normal; unit target tangent; normal cross along",
+  "identity": "public24-velocity-cost-v1",
+  "input_traces": 96,
+  "interval_convention": "start <= t < end",
+  "limitations": [
+    "Public-development observations, not a new blind holdout or independent physical samples.",
+    "Requested compensation is not measured contact friction or identified excess force.",
+    "No compact-trace cap, update-ready, slew, filtered-force or applied Cartesian wrench inference.",
+    "Window means/variance do not identify oscillation, noise or causal mediation.",
+    "First differences are descriptive chronology, not measured system delay.",
+    "All original compatibility thresholds and FAIL decisions remain unchanged."
+  ],
+  "mse_contribution": "window samples / total samples * (MSE8 - MSE6)",
+  "new_holdout": false,
+  "new_simulations": 0,
+  "pairs": 48,
+  "parents": {
+    "public24": {
+      "directory": "results/franka_rotation_gain_public24",
+      "manifest_sha256": "bbd94ed631c5b5858308eaba762d41d4412c1f69400298e62571b2f27c3f3fee"
+    },
+    "transfer": {
+      "directory": "results/franka_budget_transfer",
+      "manifest_sha256": "bce10bd63e2879ab9a7e89ed3375d3e971eefce8fb681e2ad57feb37d49e55c6"
+    }
+  },
+  "sample_period_s": 0.002,
+  "summary_float_audit_tolerance": {
+    "atol": 1e-15,
+    "counts_and_labels": "exact",
+    "rtol": 1e-10
+  },
+  "timing_convention": "state x[k] precedes command u[k] within the same recorded row",
+  "variance": "population variance in each moving along/cross coordinate, ddof=0",
+  "window_s": 0.5,
+  "windows_per_pair": 6,
+  "zero_target_speed": "reject evaluated tangent speed <= 1e-12 m/s"
+}

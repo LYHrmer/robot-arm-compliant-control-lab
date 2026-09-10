@@ -1,0 +1,117 @@
+{
+  "analysis_kind": "descriptive_paired_decomposition",
+  "default_changed": false,
+  "groups": {
+    "all": {
+      "mean_along_mse_delta_m2_s2": 2.372848148864534e-06,
+      "mean_cross_mse_delta_m2_s2": -2.864864457821806e-07,
+      "mean_mse_delta_m2_s2": 2.0863617030823533e-06,
+      "pairs": 48,
+      "positive_along_mse_pairs": 48,
+      "positive_cross_mse_pairs": 0,
+      "positive_total_mse_pairs": 48,
+      "window_contributions": [
+        {
+          "end_s": 2.0,
+          "mean_weighted_mse_delta_m2_s2": 1.7711202018357606e-06,
+          "negative_pairs": 0,
+          "positive_pairs": 48,
+          "start_s": 1.5
+        },
+        {
+          "end_s": 2.5,
+          "mean_weighted_mse_delta_m2_s2": 1.0864485550428479e-07,
+          "negative_pairs": 16,
+          "positive_pairs": 32,
+          "start_s": 2.0
+        },
+        {
+          "end_s": 3.0,
+          "mean_weighted_mse_delta_m2_s2": 3.3407534958266835e-07,
+          "negative_pairs": 0,
+          "positive_pairs": 48,
+          "start_s": 2.5
+        },
+        {
+          "end_s": 3.5,
+          "mean_weighted_mse_delta_m2_s2": 1.856925878081813e-07,
+          "negative_pairs": 0,
+          "positive_pairs": 48,
+          "start_s": 3.0
+        },
+        {
+          "end_s": 4.0,
+          "mean_weighted_mse_delta_m2_s2": -8.909020232481394e-08,
+          "negative_pairs": 48,
+          "positive_pairs": 0,
+          "start_s": 3.5
+        },
+        {
+          "end_s": 4.5,
+          "mean_weighted_mse_delta_m2_s2": -2.2408108932372867e-07,
+          "negative_pairs": 48,
+          "positive_pairs": 0,
+          "start_s": 4.0
+        }
+      ]
+    },
+    "original_fail": {
+      "mean_along_mse_delta_m2_s2": 2.983435547681672e-06,
+      "mean_cross_mse_delta_m2_s2": -3.006993902005996e-07,
+      "mean_mse_delta_m2_s2": 2.6827361574810727e-06,
+      "pairs": 25,
+      "positive_along_mse_pairs": 25,
+      "positive_cross_mse_pairs": 0,
+      "positive_total_mse_pairs": 25,
+      "window_contributions": [
+        {
+          "end_s": 2.0,
+          "mean_weighted_mse_delta_m2_s2": 2.3466842346149494e-06,
+          "negative_pairs": 0,
+          "positive_pairs": 25,
+          "start_s": 1.5
+        },
+        {
+          "end_s": 2.5,
+          "mean_weighted_mse_delta_m2_s2": 1.0025638405477362e-07,
+          "negative_pairs": 16,
+          "positive_pairs": 9,
+          "start_s": 2.0
+        },
+        {
+          "end_s": 3.0,
+          "mean_weighted_mse_delta_m2_s2": 3.369344901842957e-07,
+          "negative_pairs": 0,
+          "positive_pairs": 25,
+          "start_s": 2.5
+        },
+        {
+          "end_s": 3.5,
+          "mean_weighted_mse_delta_m2_s2": 1.7268336335766933e-07,
+          "negative_pairs": 0,
+          "positive_pairs": 25,
+          "start_s": 3.0
+        },
+        {
+          "end_s": 4.0,
+          "mean_weighted_mse_delta_m2_s2": -6.886158981460874e-08,
+          "negative_pairs": 25,
+          "positive_pairs": 0,
+          "start_s": 3.5
+        },
+        {
+          "end_s": 4.5,
+          "mean_weighted_mse_delta_m2_s2": -2.0496072491600666e-07,
+          "negative_pairs": 25,
+          "positive_pairs": 0,
+          "start_s": 4.0
+        }
+      ]
+    }
+  },
+  "identity": "public24-velocity-cost-v1",
+  "new_simulations": 0,
+  "original_compatibility_passed": 23,
+  "pairs": 48,
+  "windows": 288
+}

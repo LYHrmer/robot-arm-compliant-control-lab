@@ -1,0 +1,26 @@
+{
+  "artifact_sha256": {
+    "pairs.csv": "48b01e5e238d34fc202d015de1bb868d21bbaa042300357fac9cbe5720cab80b",
+    "protocol.json": "942f6b2db2b61b3dc4218ee435a94b939386fa99b36a404c0e41de41d5437892",
+    "source_hashes.json": "cbaa05ed8f73f966e6cba34139616ecc0e48ed695cb8032c481d13d3d6074da7",
+    "summary.json": "6cdd43b7028644b9491775fecf61e62842e8dd0cebcad98ab7deadaacb6726fd",
+    "timing.csv": "1be75f3199e409087d00189ee97f3911aa3b5cc0055cea6cd02e63858d08cbf5",
+    "windows.csv": "e2948df936086c92a4d09b3050511403453f90ceb31439c8d0149c2fceee5f2b"
+  },
+  "identity": "public24-velocity-cost-v1",
+  "new_simulations": 0,
+  "parents": {
+    "public24": {
+      "directory": "results/franka_rotation_gain_public24",
+      "manifest_sha256": "bbd94ed631c5b5858308eaba762d41d4412c1f69400298e62571b2f27c3f3fee"
+    },
+    "transfer": {
+      "directory": "results/franka_budget_transfer",
+      "manifest_sha256": "bce10bd63e2879ab9a7e89ed3375d3e971eefce8fb681e2ad57feb37d49e55c6"
+    }
+  },
+  "versions": {
+    "numpy": "2.2.6",
+    "python": "3.10.12"
+  }
+}

@@ -124,5 +124,7 @@ python -m tools.budget_transfer --output /tmp/compliant-control-budget-transfer-
 两个执行适配器分别见 [public24](../tools/budget_public24.py) 与
 [动态增益组合](../tools/budget_gain_interaction.py)。默认类参数、旧实验档案和 BC/RL 结果没有改动。
 
-下一步先在少量 public24 失效例中定位速度代价出现的时段，再决定是否需要按负载调度上限。
+[后续离线分解](velocity_cost.md)已经覆盖全部 48 对：1.5–2.0 s 贡献了平均净速度 MSE 增量的
+84.89%，最后两个 0.5 s 窗口在全部配对中均为负贡献。下一步用少量带内部观测的回放检查
+补偿增长过程，暂不根据“持续过推”假设加入遗忘项。
 当前结果不支持直接推广 8 N，也没有新增 8 N 的 C++ 全轨迹回放或真机证据。

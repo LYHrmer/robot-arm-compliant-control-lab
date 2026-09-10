@@ -52,7 +52,7 @@ Residual RL，每章都给出公式、源码入口和练习。
 | 新姿态增益的表面方向／已知质量回归与力矩余量 | [rotation_gain_public24.md](rotation_gain_public24.md) |
 | 换向／组合误差能否转移到其他表面方向 | [cross_surface_regression.md](cross_surface_regression.md) |
 | 力矩未饱和为何仍有切向误差：幅值限幅与单因素诊断 | [combined_residual_diagnosis.md](combined_residual_diagnosis.md) |
-| 补偿预算的局部效果及跨工况／增益检查 | [6 N／8 N 高摩擦筛查](compensation_budget.md)、[预算转移](budget_transfer.md) |
+| 补偿预算的局部效果及跨工况／增益检查 | [6 N／8 N 高摩擦筛查](compensation_budget.md)、[预算转移](budget_transfer.md)、[速度代价分解](velocity_cost.md) |
 | 新表面任务的 RL / IL 环境、数据与评价准备 | [surface_learning.md](surface_learning.md) |
 | 小规模行为克隆、残差 PPO 与闭环选型 | [surface_learning_pilot.md](surface_learning_pilot.md) |
 | BC 离线拟合良好，闭环为什么偏：历史输入消融 | [bc_closed_loop_transfer.md](bc_closed_loop_transfer.md) |

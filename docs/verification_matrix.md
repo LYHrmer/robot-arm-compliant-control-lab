@@ -51,6 +51,11 @@
 最差切向速度 RMS 增量约 0.357 mm/s，超过 0.2 mm/s 限值，整体筛查 `FAIL`。
 默认保持 6 N、增益 1，本轮没有新增 8 N 的 C++ 控制链回放。
 
+[速度代价分解](velocity_cost.md)只读 96 条已有轨迹，保留全部 48 对和 288 个窗口。
+[分析器测试](../tests/test_velocity_cost_analysis.py)检查正交分解及窗口权重；
+[派生归档测试](../tests/test_velocity_cost_study.py)检查父归档身份和重封篡改。
+[结果](../results/franka_velocity_cost/)没有新增仿真，也没有更改原来的兼容性判定。
+
 [跨方向动态回归](cross_surface_regression.md)新增 36 次运行、144 个阶段及 90 个同身份增益配对。
 [配置与边界测试](../tests/test_cross_surface_regression.py)、[配对测试](../tests/test_cross_surface_pairs.py)
 和[重封篡改审计测试](../tests/test_cross_surface_audit.py)分别核对几何转换、配对身份、旧结果复现、

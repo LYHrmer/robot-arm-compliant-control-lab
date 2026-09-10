@@ -21,6 +21,7 @@
 | Combined residual diagnosis v1 | 3 yaw × 4 输入变体，原增益、在线方法、seed 11 | 原组合三组精确复现；后段幅值限幅 95.6%–98.0%；低摩擦变体切向 RMSE 1.09–1.13 mm，移除测量偏置反而增大切向误差 | [诊断负载与补偿边界](../combined_residual_diagnosis.md)，未改算法或上限；不计算原配对方法 gate |
 | Compensation budget screen v1 | 3 yaw × 组合／无偏置 × 6 N／8 N，固定 seed 11、增益 1 | 六条 6 N 轨迹精确复现；8 N 后段切向 RMSE 1.22–1.47 mm，六组工程筛选全部通过 | [限定工况的实验配置](../compensation_budget.md)，默认仍为 6 N；不算同预算算法提升，不更新旧通过数 |
 | Budget transfer v1 | 原 public24 的 12 个物理配置 × 2 seeds × 2 增益，加 6 个动态配置 × 2 增益；每组配对 6 N／8 N | 两档增益的预算筛查均为 6/6，增益兼容 12/12；public24 兼容 23/48，25 组速度代价超限，整体 `FAIL` | [协议与证据范围](../budget_transfer.md)、[120 行结果](../../results/franka_budget_transfer/)；默认仍为 6 N、增益 1，8 N 只用于高摩擦实验 |
+| Public24 velocity cost v1 | 复用 48 对、96 条已有轨迹；六个不重叠窗口，新增仿真 0 次 | 1.5–2.0 s 占平均净速度 MSE 增量的 84.89%，最后两个窗口的速度 MSE 在全部配对中均降低；保留原 25 组 FAIL | [分解公式与复现](../velocity_cost.md)、[288 行窗口结果](../../results/franka_velocity_cost/windows.csv)；不据时序相关归因内部机制 |
 
 ## 版本锚点与证据
 
