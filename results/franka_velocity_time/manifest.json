@@ -1,0 +1,26 @@
+{
+  "artifact_sha256": {
+    "catchup.csv": "e704478484955e548a3bfe70dd34f298da4a8832bb869432ee88f872ed584a5a",
+    "comparison.csv": "d9b522db64df18bd6d0bfbbef36bd23c9f3ee8198552f80e7bc0ffe1316f2d53",
+    "events.csv": "4bb55c2354b1647ea94afa40fc5352ac69f17d8fa24158601c6cc7815deda426",
+    "observer_windows.csv": "76910ad467c567774c9a14f6e7d694a9ecdcc0843efbee49fcf2c03e7d858c8f",
+    "protocol.json": "fd71c24e07ee7a03b6fbb1aed2818c684a9a6d14c65598e843e7f2c0be60e540",
+    "screening.json": "5c0cb71a0c83ad5a6d49d9a2bc2bbb345e8c74f90a2c0690ed4c795d6aadb83b",
+    "source_hashes.json": "aee9999fb85657c4bec895f491aafe1d3df8f3f11f1475212bce583ab641a23b",
+    "traces/case23__s1__f6n__tv100ms.npz": "8037e9bc68546b447d5edf242e45c90dd8c69ab18866f87decf282068e42f67e",
+    "traces/case23__s1__f8n__tv100ms.npz": "e950e04bb6a30b81bf123996f1215bfc21a6fba8df1baf0f2dbfa66c93fb61a3",
+    "traces/case23__s2__f6n__tv100ms.npz": "47f084f7fdf267f4865961af482b3c6f26becf63c5cad9601cdfde367ed5c537",
+    "traces/case23__s2__f8n__tv100ms.npz": "aa525d46f3f7f9c21efb5b8fe3543522080f005ccf7dec0c7b3db58199ffaa49"
+  },
+  "identity": "public24-velocity-error-time-v1",
+  "new_simulations": 4,
+  "reference": {
+    "directory": "results/franka_onset_observer",
+    "manifest_sha256": "e01db28864f04057d5272c4f0e469e2261c5166e5afe877afe2f00ef2d66a2ce"
+  },
+  "versions": {
+    "mujoco": "3.12.0",
+    "numpy": "2.2.6",
+    "python": "3.10.12"
+  }
+}

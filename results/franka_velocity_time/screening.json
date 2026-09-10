@@ -1,0 +1,127 @@
+{
+  "arm_pairs": [
+    {
+      "delta_direction": "0.10_minus_0.05",
+      "deltas": {
+        "force_rmse_n": 8.20256336083458e-05,
+        "orientation_rmse_deg": -0.00011004584407769968,
+        "peak_force_n": 0.0,
+        "tangent_rmse_mm": -0.0023872885351994277,
+        "tangent_velocity_error_rms_m_s": -2.0211994015637176e-05
+      },
+      "failed_checks": [],
+      "max_force_n": 6.0,
+      "rotation_gain_scale": 1.0,
+      "status": "PASS"
+    },
+    {
+      "delta_direction": "0.10_minus_0.05",
+      "deltas": {
+        "force_rmse_n": -1.4562021165648309e-05,
+        "orientation_rmse_deg": -0.00093356350089846,
+        "peak_force_n": 0.0,
+        "tangent_rmse_mm": -0.011712747836253978,
+        "tangent_velocity_error_rms_m_s": -0.00013592611738638596
+      },
+      "failed_checks": [],
+      "max_force_n": 8.0,
+      "rotation_gain_scale": 1.0,
+      "status": "PASS"
+    },
+    {
+      "delta_direction": "0.10_minus_0.05",
+      "deltas": {
+        "force_rmse_n": 0.00012192457671211798,
+        "orientation_rmse_deg": -9.268789962693647e-05,
+        "peak_force_n": 0.0,
+        "tangent_rmse_mm": -0.0035805771287784616,
+        "tangent_velocity_error_rms_m_s": -3.6290367561035014e-05
+      },
+      "failed_checks": [],
+      "max_force_n": 6.0,
+      "rotation_gain_scale": 2.0,
+      "status": "PASS"
+    },
+    {
+      "delta_direction": "0.10_minus_0.05",
+      "deltas": {
+        "force_rmse_n": -4.947357419424203e-05,
+        "orientation_rmse_deg": -0.0006202951139084867,
+        "peak_force_n": 0.0,
+        "tangent_rmse_mm": -0.01578922936438043,
+        "tangent_velocity_error_rms_m_s": -0.0001511815202833661
+      },
+      "failed_checks": [],
+      "max_force_n": 8.0,
+      "rotation_gain_scale": 2.0,
+      "status": "PASS"
+    }
+  ],
+  "budget_pairs": [
+    {
+      "compatibility": {
+        "0.05": {
+          "failed_checks": [
+            "tangent_velocity_error_rms_m_s"
+          ],
+          "force_rmse_n": 0.00040813598692682196,
+          "orientation_rmse_deg": 0.0025765102121710903,
+          "peak_force_n": 0.0,
+          "status": "FAIL",
+          "tangent_rmse_mm": -0.0037296522040808355,
+          "tangent_velocity_error_rms_m_s": 0.0002940893431771785
+        },
+        "0.1": {
+          "failed_checks": [],
+          "force_rmse_n": 0.00031154833215282784,
+          "orientation_rmse_deg": 0.00175299255535033,
+          "peak_force_n": 0.0,
+          "status": "PASS",
+          "tangent_rmse_mm": -0.013055111505135386,
+          "tangent_velocity_error_rms_m_s": 0.00017837521980642972
+        }
+      },
+      "cost_005_m_s": 0.0002940893431771785,
+      "cost_010_m_s": 0.00017837521980642972,
+      "cost_change_m_s": -0.00011571412337074878,
+      "rotation_gain_scale": 1.0,
+      "velocity_cost_reduced": true
+    },
+    {
+      "compatibility": {
+        "0.05": {
+          "failed_checks": [
+            "tangent_velocity_error_rms_m_s"
+          ],
+          "force_rmse_n": 0.0008975980264290251,
+          "orientation_rmse_deg": 0.0017943858059332185,
+          "peak_force_n": 0.0,
+          "status": "FAIL",
+          "tangent_rmse_mm": 0.000827467012105565,
+          "tangent_velocity_error_rms_m_s": 0.00035687236783935733
+        },
+        "0.1": {
+          "failed_checks": [
+            "tangent_velocity_error_rms_m_s"
+          ],
+          "force_rmse_n": 0.0007261998755226651,
+          "orientation_rmse_deg": 0.0012667785916516683,
+          "peak_force_n": 0.0,
+          "status": "FAIL",
+          "tangent_rmse_mm": -0.011381185223496404,
+          "tangent_velocity_error_rms_m_s": 0.00024198121511702624
+        }
+      },
+      "cost_005_m_s": 0.00035687236783935733,
+      "cost_010_m_s": 0.00024198121511702624,
+      "cost_change_m_s": -0.00011489115272233109,
+      "rotation_gain_scale": 2.0,
+      "velocity_cost_reduced": true
+    }
+  ],
+  "decision": "do_not_expand",
+  "default_changed": false,
+  "eligible_for_full_grid": false,
+  "new_simulations": 4,
+  "reused_traces": 4
+}

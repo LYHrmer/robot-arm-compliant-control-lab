@@ -1,0 +1,5 @@
+case_index,rotation_gain_scale,max_force_n,velocity_error_time_s,trace_path,row_origin,first_cap_difference_s,first_coefficient_difference_s,first_request_difference_s,first_measured_velocity_difference_s,first_measured_position_difference_s,first_velocity_difference_s,first_position_difference_s,first_reference_cap_s,first_reference_cap_blocks_positive_update_s
+23,1.0,6.0,0.1,traces/case23__s1__f6n__tv100ms.npz,executed,1.676,1.538,1.54,1.542,1.542,1.542,1.542,1.678,1.678
+23,1.0,8.0,0.1,traces/case23__s1__f8n__tv100ms.npz,executed,,1.538,1.54,1.542,1.542,1.542,1.542,,
+23,2.0,6.0,0.1,traces/case23__s2__f6n__tv100ms.npz,executed,1.6400000000000001,1.538,1.54,1.542,1.542,1.542,1.542,1.6560000000000001,1.6560000000000001
+23,2.0,8.0,0.1,traces/case23__s2__f8n__tv100ms.npz,executed,,1.538,1.54,1.542,1.542,1.542,1.542,,

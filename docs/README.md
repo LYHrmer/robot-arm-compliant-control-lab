@@ -83,6 +83,7 @@ Residual RL，每章都给出公式、源码入口和练习。
 | 补偿预算：3 yaw × 2 输入变体 × 6 N／8 N，原增益在线方法 | [收益、代价与采用范围](compensation_budget.md) | [12 次运行与六组筛查](../results/franka_compensation_budget/) |
 | 补偿预算转移：原 public24 与 6 个动态配置，两个旋转增益 | [固定协议与证据范围](budget_transfer.md) | [120 行评价：动态筛查通过，public24 兼容 23/48，整体 FAIL](../results/franka_budget_transfer/) |
 | 四对内部观测：三个表面方向，另加最高速度代价配置 | [实际输入、更新公式与限幅时序](onset_observer.md) | [8 次精确复现、18,000 周期公式校验；不改变原判定](../results/franka_onset_observer/) |
+| 速度误差时间系数：只比较 0.05 s／0.10 s，case 23 的两档增益和预算 | [速度收益与位置追赶代价](velocity_time.md) | [4 次新仿真＋4 条旧基线，高增益仍超速度门槛，不扩大回归](../results/franka_velocity_time/) |
 | C++ 完整数值控制链回放 | [输入、状态与硬件边界](cpp_core.md) | [四份完整轨迹核验](../results/franka_online_cpp_replay/) |
 | 表面任务学习前准备：24 × 3、12 次压力测试与同频教师数据 | [训练接口、标签与复现](surface_learning.md) | [数值索引](../results/franka_surface_learning_preparation/)、[三回合示例](../results/franka_surface_learning_examples/)、[分层修正记录](../results/franka_surface_learning_partition/) |
 | 小规模 BC 与 bounded Residual PPO：各三个训练种子 | [损失、更新与选择规则](surface_learning_pilot.md) | [完整种子对照](../results/franka_surface_learning_pilot/) |
