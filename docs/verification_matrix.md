@@ -37,6 +37,13 @@
 
 ## 实验完整性
 
+[测得负载调度](load_budget.md)先经[逐周期控制测试](../tests/test_load_aware_compensation.py)，
+再使用[测量输入白名单](../tests/test_load_budget_inputs.py)和
+[数值重构检查](../tests/test_load_budget_validation.py)验证预算更新与补偿请求。
+[协议/发布测试](../tests/test_load_budget_study.py)覆盖同工况配对、先 A 后 B 的执行条件及不完整输出隔离。
+[归档](../results/franka_load_budget_pilot/comparison.json)含 18 条候选及 2 个复现控制组；
+不把纯数组重构当作重新积分物理，也不声称已逐拍重算精简轨迹中未保存的测量状态更新。
+
 [组合误差诊断](combined_residual_diagnosis.md)保留 12 次单因素移除运行。
 [指标测试](../tests/test_combined_residual_diagnostics.py)核对真实切平面分解与滚动窗口，
 [协议测试](../tests/test_combined_residual_ablation.py)限制每项移除只改一个输入，

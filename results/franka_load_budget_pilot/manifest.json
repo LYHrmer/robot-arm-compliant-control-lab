@@ -1,0 +1,30 @@
+{
+  "artifact_sha256": {
+    "comparison.json": "07c83dbd879741f995382dce251652fb229d7e34ade1cf2c4436f6b8e2d61b30",
+    "protocol.json": "7ed81ca91efa1fbd1a97dfac4660af2420296c2c7ff9aa0944463c7016804102",
+    "source_hashes.json": "4679e3745a74b5858ef094c10fe05f991c28ab3a925e5d981ae9804125b3e138",
+    "traces/control__dynamic__s1__fixed6.npz": "e9e83650c9a14610008b7b38c834b2abbc59fd328a3ef2a4be70eb8eaa8178e7",
+    "traces/control__public__s2__fixed6.npz": "668afcbcdc0d4919c7f441f4ab3f4e8af03d58850ee390609f8bdf7d4e834d5a",
+    "traces/dynamic__yaw-15__combined__s1.npz": "47d3e208928afaa0c73c9fdb92b8dcb8e68c07b085845b8b621d8bd81afed765",
+    "traces/dynamic__yaw-15__combined__s2.npz": "1d05345d7ed4f5b44a3512e6e5e61d79a91d0dfde2813dad6cfe4e1f6d2fbdf3",
+    "traces/dynamic__yaw0__combined__s1.npz": "85158a9bde9238ad787429483853e54295f1ea6437f0114a61dfb3faaf58471a",
+    "traces/dynamic__yaw0__combined__s2.npz": "99eff17796a7974bf88f2b16785fcad7229f3588b47d643268e6dfd1fd67b768",
+    "traces/dynamic__yaw15__combined__s1.npz": "b38a362837f2412beb0fbcdc2942df5ae53f0525ce801c41899bef76b5a25c80",
+    "traces/dynamic__yaw15__combined__s2.npz": "3c6f2e0b5ef18370fabe843578b60ba45e504e5fa5991f0331586e53ceb4af96",
+    "traces/public__case14__s1.npz": "a5ba4b16c7389fd50c653c62a78f2d29c2e76b15a83de77213f02f4ad905532d",
+    "traces/public__case14__s2.npz": "d14ef7d693a3ea9175ddedd560ac7a10dfaff450b94397c2be117cb1f64f0a85",
+    "traces/public__case15__s1.npz": "cb27051e2e3a03a14ac9490764914f1091e9ba9b4b5fd02b11ea0a06432b21f6",
+    "traces/public__case15__s2.npz": "55f5209b02c7d20f28bfd457b87cb4e455f88415aa04078aee99ed92fab0f24e",
+    "traces/public__case22__s1.npz": "44349d1c89f88b43dcd35bde0ea214988ba3c3bfdec02e091bf2023dda674823",
+    "traces/public__case22__s2.npz": "cf17d2a4169b93ffed9fa8031ca3325304af53f810d93c46a1a08d3e25fd26f1",
+    "traces/public__case23__s1.npz": "6540d0ca8dc4035b67f11ab4ecee421dd39021bdbc3bc3d19f5d00bcf4294808",
+    "traces/public__case23__s2.npz": "1dd02fc54c632961da23f787a24f6f77878daf91d6ea99334093d58d702ca3d0",
+    "traces/public__case6__s1.npz": "2f9583f7d549c9781b57c1a446459bd7bd194d30d185e05ff679b90cee65259f",
+    "traces/public__case6__s2.npz": "29e0013d4bb94dbf46d12a0b942a8414434ff0dad56693f91fc08393eb537f5d",
+    "traces/public__case7__s1.npz": "fe5df0e3583b561fd9cc48274e5afa79e2982ca608c7f856cbe8ccdf7afbac8a",
+    "traces/public__case7__s2.npz": "ea57a7c0226af2f3c9fd3b6e8ed9f9fb69cf138d47b2bbb1cad7f7632a43d65c"
+  },
+  "default_changed": false,
+  "identity": "measured-load-budget-pilot-v1",
+  "new_holdout": false
+}

@@ -1,0 +1,97 @@
+{
+  "absolute_checks_on_candidate_and_reference": {
+    "contact_ratio_min_pct": 99.0,
+    "full_raw_peak_force_max_n": 35.0,
+    "minimum_reserved_torque_headroom_nm": 1.0,
+    "projection_pct": 0.0,
+    "saturation_pct": 0.0
+  },
+  "algorithm": {
+    "antiwindup": "Original coefficient advance uses the ceiling that generated the current request, before updating next-cycle budget.",
+    "budget": "clip(L_next + 0.25, 6, 8) N, applied on the NEXT cycle. Effective filter time counts only accepted update cycles.",
+    "contact_loss": "Reset both original compensation and scheduler state.",
+    "falling_budget": "Scheduled cap limits the target request; stored force still falls at the original slew rate, so it can transiently exceed a newly lowered cap but not the global 8 N norm ceiling.",
+    "filter": "L_next = L + (1-exp(-dt/0.20))*(projected_load-L); update only after force, when active, motion-ready and torque projection unchanged.",
+    "input": "Delayed filtered measured_wrench_world from the same causal sample as the original normal-force controller; rotated into its controller frame.",
+    "missing_input": "Reset load estimate and scheduled budget to minimum; do not clear the original coefficient solely because auxiliary measurement is missing.",
+    "projection": "clip(dot(measured_force_local, unit_target_tangent), 0, 8) N; robot-on-environment convention, no sign negation."
+  },
+  "controls_before_candidate_runs": "Fixed 6/6 and 8/8 N scheduler must exactly reproduce old force cycles; additionally reproduce public case 23/gain 2 and dynamic yaw 0/combined/gain 1 fixed 6 N physics traces.",
+  "expansion": "Only after A and B pass: add the remaining 36 public24 gain pairs and 6 no_bias dynamic gain pairs with identical parameters; no default promotion from the pilot.",
+  "identity": "measured-load-budget-pilot-v1",
+  "limitations": [
+    "Public development data already examined; not an unseen holdout.",
+    "Candidate adds a measured tangential-force input as well as a scheduling law; this is not an equal-input single-parameter causal comparison.",
+    "No claim of beating fixed 8 N catch-up speed. Stage 2 transient tradeoff remains a separate question.",
+    "No BC/PPO training or changed baseline claims from this pilot.",
+    "Measured load includes inertia, mass/calibration errors, noise and bias; it is not identified friction.",
+    "No passivity or physical hardware safety proof; production defaults and historical FAIL records remain unchanged."
+  ],
+  "parameters": {
+    "force_slew_rate_n_s": 20.0,
+    "load_margin_n": 0.25,
+    "load_time_constant_s": 0.2,
+    "maximum_force_n": 8.0,
+    "minimum_force_n": 6.0,
+    "velocity_error_time_s": 0.05
+  },
+  "parent_manifest_sha256": {
+    "results/franka_budget_transfer": "bce10bd63e2879ab9a7e89ed3375d3e971eefce8fb681e2ad57feb37d49e55c6",
+    "results/franka_compensation_budget": "6f183c8112ca5d1f6512357650b26f8e499d53ed8489b666c9274c9e12047dd2",
+    "results/franka_rotation_gain_public24": "bbd94ed631c5b5858308eaba762d41d4412c1f69400298e62571b2f27c3f3fee"
+  },
+  "purpose": "Test a measured-load scheduled 6-8 N ceiling against the frozen fixed 6 N online controller before expanding the public development grid.",
+  "stage_a": {
+    "candidate_gain2_minus_gain1_limits": {
+      "full_raw_peak_increase_n": 1.0,
+      "post_tangent_rmse_mm": 0.1,
+      "worst_phase_force_rmse_increase_n": 0.2,
+      "worst_phase_orientation_rmse_increase_deg": 0.1
+    },
+    "candidate_runs": 6,
+    "gates": {
+      "additional_budget_actually_exercised": true,
+      "full_peak_force_increase_max_n": 1.0,
+      "late_10_12_s_tangent_rmse_max_mm": 3.0,
+      "post_8_12_s_tangent_rmse_max_mm": 3.0,
+      "post_reduction_min_pct": 20.0,
+      "worst_phase_force_rmse_increase_max_n": 0.2,
+      "worst_phase_orientation_rmse_increase_max_deg": 0.1
+    },
+    "reference": "Same yaw and gain, original fixed 6 N traces.",
+    "rotation_gain_scales": [
+      1,
+      2
+    ],
+    "simulation_seed": 11,
+    "surface_yaws_deg": [
+      -15,
+      0,
+      15
+    ],
+    "variant": "combined"
+  },
+  "stage_b": {
+    "candidate_minus_same_case_fixed6_limits": {
+      "force_rmse_n": 0.2,
+      "orientation_rmse_deg": 0.2,
+      "peak_force_n": 1.0,
+      "tangent_rmse_mm": 0.1,
+      "tangent_velocity_error_rms_m_s": 0.0002
+    },
+    "candidate_runs": 12,
+    "public_case_indices": [
+      6,
+      7,
+      14,
+      15,
+      22,
+      23
+    ],
+    "rotation_gain_scales": [
+      1,
+      2
+    ],
+    "run_only_if_stage_a_passes": true
+  }
+}

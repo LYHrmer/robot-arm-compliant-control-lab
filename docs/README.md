@@ -53,6 +53,7 @@ Residual RL，每章都给出公式、源码入口和练习。
 | 换向／组合误差能否转移到其他表面方向 | [cross_surface_regression.md](cross_surface_regression.md) |
 | 力矩未饱和为何仍有切向误差：幅值限幅与单因素诊断 | [combined_residual_diagnosis.md](combined_residual_diagnosis.md) |
 | 补偿预算的局部效果及跨工况／增益检查 | [6 N／8 N 高摩擦筛查](compensation_budget.md)、[预算转移](budget_transfer.md)、[速度代价分解](velocity_cost.md)；内部更新见[限幅时序](onset_observer.md) |
+| 根据测得负载开放 6–8 N 预算 | [输入、更新公式和小规模采用门槛](load_budget.md) |
 | 新表面任务的 RL / IL 环境、数据与评价准备 | [surface_learning.md](surface_learning.md) |
 | 小规模行为克隆、残差 PPO 与闭环选型 | [surface_learning_pilot.md](surface_learning_pilot.md) |
 | BC 离线拟合良好，闭环为什么偏：历史输入消融 | [bc_closed_loop_transfer.md](bc_closed_loop_transfer.md) |
@@ -87,6 +88,7 @@ Residual RL，每章都给出公式、源码入口和练习。
 | 补偿预算转移：原 public24 与 6 个动态配置，两个旋转增益 | [固定协议与证据范围](budget_transfer.md) | [120 行评价：动态筛查通过，public24 兼容 23/48，整体 FAIL](../results/franka_budget_transfer/) |
 | 四对内部观测：三个表面方向，另加最高速度代价配置 | [实际输入、更新公式与限幅时序](onset_observer.md) | [8 次精确复现、18,000 周期公式校验；不改变原判定](../results/franka_onset_observer/) |
 | 速度误差时间系数：只比较 0.05 s／0.10 s，case 23 的两档增益和预算 | [速度收益与位置追赶代价](velocity_time.md) | [4 次新仿真＋4 条旧基线，高增益仍超速度门槛，不扩大回归](../results/franka_velocity_time/) |
+| 测得负载调度：6 个组合误差候选＋12 个原 public 工况候选 | [小规模结果与扩展条件](load_budget.md) | [6/6、12/12 通过；2 个旧控制组精确复现，不推广默认值](../results/franka_load_budget_pilot/) |
 | C++ 完整数值控制链回放 | [输入、状态与硬件边界](cpp_core.md) | [四份完整轨迹核验](../results/franka_online_cpp_replay/) |
 | 表面任务学习前准备：24 × 3、12 次压力测试与同频教师数据 | [训练接口、标签与复现](surface_learning.md) | [数值索引](../results/franka_surface_learning_preparation/)、[三回合示例](../results/franka_surface_learning_examples/)、[分层修正记录](../results/franka_surface_learning_partition/) |
 | 小规模 BC 与 bounded Residual PPO：各三个训练种子 | [损失、更新与选择规则](surface_learning_pilot.md) | [完整种子对照](../results/franka_surface_learning_pilot/) |
