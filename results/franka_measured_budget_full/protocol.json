@@ -1,0 +1,3681 @@
+{
+  "absolute_limits": {
+    "contact_ratio_pct": 99.0,
+    "minimum_reserved_torque_headroom_nm": 1.0,
+    "peak_force_n": 35.0,
+    "projection_pct": 0.0,
+    "saturation_pct": 0.0
+  },
+  "adoption_rule": "All 48 public pairs, 12 dynamic pairs and 6 gain interactions must pass unchanged gates.",
+  "candidate_rows": 60,
+  "catchup_statistics": "Descriptive versus fixed 6 N only; no posthoc catchup acceptance gate.",
+  "configurations": [
+    {
+      "configuration": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              6.0,
+              [
+                0.7244443697168013,
+                -0.19411428382689055,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 3.0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.3
+            ],
+            [
+              4.0,
+              0.3
+            ],
+            [
+              8.0,
+              0.6
+            ]
+          ]
+        },
+        "name": "modest_combined",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "pre_change",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 8.0,
+            "name": "combined_transition",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "combined_post",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "online_error_modest_combined_seed_11_yaw_-15",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.3,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.3,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": -15
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": -15
+        },
+        "variant": "combined"
+      },
+      "reference_trace": "results/franka_compensation_budget/traces/yaw_-15__modest_combined__combined__seed_11__online__s1__f6n__diagnostic.npz",
+      "reused": true,
+      "scale": 1.0,
+      "suite": "dynamic",
+      "surface_yaw_deg": -15,
+      "trace_name": "dynamic__yaw-15__combined__s1.npz",
+      "variant": "combined"
+    },
+    {
+      "configuration": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              6.0,
+              [
+                0.7244443697168013,
+                -0.19411428382689055,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 3.0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.3
+            ],
+            [
+              4.0,
+              0.3
+            ],
+            [
+              8.0,
+              0.6
+            ]
+          ]
+        },
+        "name": "modest_combined",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "pre_change",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 8.0,
+            "name": "combined_transition",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "combined_post",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "online_error_modest_combined_seed_11_yaw_-15",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.3,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.3,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": -15
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": -15
+        },
+        "variant": "combined"
+      },
+      "reference_trace": "results/franka_budget_transfer/traces/dynamic__yaw-15__combined__s2__f6n.npz",
+      "reused": true,
+      "scale": 2.0,
+      "suite": "dynamic",
+      "surface_yaw_deg": -15,
+      "trace_name": "dynamic__yaw-15__combined__s2.npz",
+      "variant": "combined"
+    },
+    {
+      "configuration": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 3.0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.3
+            ],
+            [
+              4.0,
+              0.3
+            ],
+            [
+              8.0,
+              0.6
+            ]
+          ]
+        },
+        "name": "modest_combined",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "pre_change",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 8.0,
+            "name": "combined_transition",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "combined_post",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "online_error_modest_combined_seed_11_yaw_-15",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.3,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.3,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": -15
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": -15
+        },
+        "variant": "no_bias"
+      },
+      "reference_trace": "results/franka_compensation_budget/traces/yaw_-15__modest_combined__no_bias__seed_11__online__s1__f6n__diagnostic.npz",
+      "reused": false,
+      "scale": 1.0,
+      "suite": "dynamic",
+      "surface_yaw_deg": -15,
+      "trace_name": "dynamic__yaw-15__no_bias__s1.npz",
+      "variant": "no_bias"
+    },
+    {
+      "configuration": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 3.0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.3
+            ],
+            [
+              4.0,
+              0.3
+            ],
+            [
+              8.0,
+              0.6
+            ]
+          ]
+        },
+        "name": "modest_combined",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "pre_change",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 8.0,
+            "name": "combined_transition",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "combined_post",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "online_error_modest_combined_seed_11_yaw_-15",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.3,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.3,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": -15
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": -15
+        },
+        "variant": "no_bias"
+      },
+      "reference_trace": "results/franka_budget_transfer/traces/dynamic__yaw-15__no_bias__s2__f6n.npz",
+      "reused": false,
+      "scale": 2.0,
+      "suite": "dynamic",
+      "surface_yaw_deg": -15,
+      "trace_name": "dynamic__yaw-15__no_bias__s2.npz",
+      "variant": "no_bias"
+    },
+    {
+      "configuration": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              6.0,
+              [
+                0.75,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 3.0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.3
+            ],
+            [
+              4.0,
+              0.3
+            ],
+            [
+              8.0,
+              0.6
+            ]
+          ]
+        },
+        "name": "modest_combined",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "pre_change",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 8.0,
+            "name": "combined_transition",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "combined_post",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "online_error_modest_combined_seed_11_yaw_0",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.3,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.3,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": 0
+        },
+        "variant": "combined"
+      },
+      "reference_trace": "results/franka_compensation_budget/traces/yaw_0__modest_combined__combined__seed_11__online__s1__f6n__diagnostic.npz",
+      "reused": true,
+      "scale": 1.0,
+      "suite": "dynamic",
+      "surface_yaw_deg": 0,
+      "trace_name": "dynamic__yaw0__combined__s1.npz",
+      "variant": "combined"
+    },
+    {
+      "configuration": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              6.0,
+              [
+                0.75,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 3.0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.3
+            ],
+            [
+              4.0,
+              0.3
+            ],
+            [
+              8.0,
+              0.6
+            ]
+          ]
+        },
+        "name": "modest_combined",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "pre_change",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 8.0,
+            "name": "combined_transition",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "combined_post",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "online_error_modest_combined_seed_11_yaw_0",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.3,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.3,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": 0
+        },
+        "variant": "combined"
+      },
+      "reference_trace": "results/franka_budget_transfer/traces/dynamic__yaw0__combined__s2__f6n.npz",
+      "reused": true,
+      "scale": 2.0,
+      "suite": "dynamic",
+      "surface_yaw_deg": 0,
+      "trace_name": "dynamic__yaw0__combined__s2.npz",
+      "variant": "combined"
+    },
+    {
+      "configuration": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 3.0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.3
+            ],
+            [
+              4.0,
+              0.3
+            ],
+            [
+              8.0,
+              0.6
+            ]
+          ]
+        },
+        "name": "modest_combined",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "pre_change",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 8.0,
+            "name": "combined_transition",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "combined_post",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "online_error_modest_combined_seed_11_yaw_0",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.3,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.3,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": 0
+        },
+        "variant": "no_bias"
+      },
+      "reference_trace": "results/franka_compensation_budget/traces/yaw_0__modest_combined__no_bias__seed_11__online__s1__f6n__diagnostic.npz",
+      "reused": false,
+      "scale": 1.0,
+      "suite": "dynamic",
+      "surface_yaw_deg": 0,
+      "trace_name": "dynamic__yaw0__no_bias__s1.npz",
+      "variant": "no_bias"
+    },
+    {
+      "configuration": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 3.0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.3
+            ],
+            [
+              4.0,
+              0.3
+            ],
+            [
+              8.0,
+              0.6
+            ]
+          ]
+        },
+        "name": "modest_combined",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "pre_change",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 8.0,
+            "name": "combined_transition",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "combined_post",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "online_error_modest_combined_seed_11_yaw_0",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.3,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.3,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": 0
+        },
+        "variant": "no_bias"
+      },
+      "reference_trace": "results/franka_budget_transfer/traces/dynamic__yaw0__no_bias__s2__f6n.npz",
+      "reused": false,
+      "scale": 2.0,
+      "suite": "dynamic",
+      "surface_yaw_deg": 0,
+      "trace_name": "dynamic__yaw0__no_bias__s2.npz",
+      "variant": "no_bias"
+    },
+    {
+      "configuration": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              6.0,
+              [
+                0.7244443697168013,
+                0.19411428382689055,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 3.0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.3
+            ],
+            [
+              4.0,
+              0.3
+            ],
+            [
+              8.0,
+              0.6
+            ]
+          ]
+        },
+        "name": "modest_combined",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "pre_change",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 8.0,
+            "name": "combined_transition",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "combined_post",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "online_error_modest_combined_seed_11",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.3,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.3,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": 15.0
+        },
+        "variant": "combined"
+      },
+      "reference_trace": "results/franka_compensation_budget/traces/yaw_15__modest_combined__combined__seed_11__online__s1__f6n__diagnostic.npz",
+      "reused": true,
+      "scale": 1.0,
+      "suite": "dynamic",
+      "surface_yaw_deg": 15,
+      "trace_name": "dynamic__yaw15__combined__s1.npz",
+      "variant": "combined"
+    },
+    {
+      "configuration": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              6.0,
+              [
+                0.7244443697168013,
+                0.19411428382689055,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 3.0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.3
+            ],
+            [
+              4.0,
+              0.3
+            ],
+            [
+              8.0,
+              0.6
+            ]
+          ]
+        },
+        "name": "modest_combined",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "pre_change",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 8.0,
+            "name": "combined_transition",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "combined_post",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "online_error_modest_combined_seed_11",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.3,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.3,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": 15.0
+        },
+        "variant": "combined"
+      },
+      "reference_trace": "results/franka_budget_transfer/traces/dynamic__yaw15__combined__s2__f6n.npz",
+      "reused": true,
+      "scale": 2.0,
+      "suite": "dynamic",
+      "surface_yaw_deg": 15,
+      "trace_name": "dynamic__yaw15__combined__s2.npz",
+      "variant": "combined"
+    },
+    {
+      "configuration": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 3.0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.3
+            ],
+            [
+              4.0,
+              0.3
+            ],
+            [
+              8.0,
+              0.6
+            ]
+          ]
+        },
+        "name": "modest_combined",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "pre_change",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 8.0,
+            "name": "combined_transition",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "combined_post",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "online_error_modest_combined_seed_11",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.3,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.3,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": 15.0
+        },
+        "variant": "no_bias"
+      },
+      "reference_trace": "results/franka_compensation_budget/traces/yaw_15__modest_combined__no_bias__seed_11__online__s1__f6n__diagnostic.npz",
+      "reused": false,
+      "scale": 1.0,
+      "suite": "dynamic",
+      "surface_yaw_deg": 15,
+      "trace_name": "dynamic__yaw15__no_bias__s1.npz",
+      "variant": "no_bias"
+    },
+    {
+      "configuration": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 3.0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.3
+            ],
+            [
+              4.0,
+              0.3
+            ],
+            [
+              8.0,
+              0.6
+            ]
+          ]
+        },
+        "name": "modest_combined",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "pre_change",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 8.0,
+            "name": "combined_transition",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "combined_post",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "online_error_modest_combined_seed_11",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.3,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.3,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": 15.0
+        },
+        "variant": "no_bias"
+      },
+      "reference_trace": "results/franka_budget_transfer/traces/dynamic__yaw15__no_bias__s2__f6n.npz",
+      "reused": false,
+      "scale": 2.0,
+      "suite": "dynamic",
+      "surface_yaw_deg": 15,
+      "trace_name": "dynamic__yaw15__no_bias__s2.npz",
+      "variant": "no_bias"
+    },
+    {
+      "case_index": 0,
+      "configuration": {
+        "case_index": 0,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_00",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": -15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": -15.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s1__online__case_00__compact.npz",
+      "reused": false,
+      "scale": 1.0,
+      "suite": "public",
+      "trace_name": "public__case0__s1.npz"
+    },
+    {
+      "case_index": 0,
+      "configuration": {
+        "case_index": 0,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_00",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": -15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": -15.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s2__online__case_00__compact.npz",
+      "reused": false,
+      "scale": 2.0,
+      "suite": "public",
+      "trace_name": "public__case0__s2.npz"
+    },
+    {
+      "case_index": 1,
+      "configuration": {
+        "case_index": 1,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 29,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_01",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": -15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": -15.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s1__online__case_01__compact.npz",
+      "reused": false,
+      "scale": 1.0,
+      "suite": "public",
+      "trace_name": "public__case1__s1.npz"
+    },
+    {
+      "case_index": 1,
+      "configuration": {
+        "case_index": 1,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 29,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_01",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": -15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": -15.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s2__online__case_01__compact.npz",
+      "reused": false,
+      "scale": 2.0,
+      "suite": "public",
+      "trace_name": "public__case1__s2.npz"
+    },
+    {
+      "case_index": 2,
+      "configuration": {
+        "case_index": 2,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_02",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.13,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": -15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": -15.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s1__online__case_02__compact.npz",
+      "reused": false,
+      "scale": 1.0,
+      "suite": "public",
+      "trace_name": "public__case2__s1.npz"
+    },
+    {
+      "case_index": 2,
+      "configuration": {
+        "case_index": 2,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_02",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.13,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": -15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": -15.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s2__online__case_02__compact.npz",
+      "reused": false,
+      "scale": 2.0,
+      "suite": "public",
+      "trace_name": "public__case2__s2.npz"
+    },
+    {
+      "case_index": 3,
+      "configuration": {
+        "case_index": 3,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 29,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_03",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.13,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": -15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": -15.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s1__online__case_03__compact.npz",
+      "reused": false,
+      "scale": 1.0,
+      "suite": "public",
+      "trace_name": "public__case3__s1.npz"
+    },
+    {
+      "case_index": 3,
+      "configuration": {
+        "case_index": 3,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 29,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_03",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.13,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": -15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": -15.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s2__online__case_03__compact.npz",
+      "reused": false,
+      "scale": 2.0,
+      "suite": "public",
+      "trace_name": "public__case3__s2.npz"
+    },
+    {
+      "case_index": 4,
+      "configuration": {
+        "case_index": 4,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_04",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.012,
+          "wall_yaw_deg": -15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": -15.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s1__online__case_04__compact.npz",
+      "reused": false,
+      "scale": 1.0,
+      "suite": "public",
+      "trace_name": "public__case4__s1.npz"
+    },
+    {
+      "case_index": 4,
+      "configuration": {
+        "case_index": 4,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_04",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.012,
+          "wall_yaw_deg": -15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": -15.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s2__online__case_04__compact.npz",
+      "reused": false,
+      "scale": 2.0,
+      "suite": "public",
+      "trace_name": "public__case4__s2.npz"
+    },
+    {
+      "case_index": 5,
+      "configuration": {
+        "case_index": 5,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 29,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_05",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.012,
+          "wall_yaw_deg": -15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": -15.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s1__online__case_05__compact.npz",
+      "reused": false,
+      "scale": 1.0,
+      "suite": "public",
+      "trace_name": "public__case5__s1.npz"
+    },
+    {
+      "case_index": 5,
+      "configuration": {
+        "case_index": 5,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 29,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_05",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.012,
+          "wall_yaw_deg": -15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": -15.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s2__online__case_05__compact.npz",
+      "reused": false,
+      "scale": 2.0,
+      "suite": "public",
+      "trace_name": "public__case5__s2.npz"
+    },
+    {
+      "case_index": 6,
+      "configuration": {
+        "case_index": 6,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_06",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.13,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.012,
+          "wall_yaw_deg": -15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": -15.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s1__online__case_06__compact.npz",
+      "reused": true,
+      "scale": 1.0,
+      "suite": "public",
+      "trace_name": "public__case6__s1.npz"
+    },
+    {
+      "case_index": 6,
+      "configuration": {
+        "case_index": 6,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_06",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.13,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.012,
+          "wall_yaw_deg": -15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": -15.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s2__online__case_06__compact.npz",
+      "reused": true,
+      "scale": 2.0,
+      "suite": "public",
+      "trace_name": "public__case6__s2.npz"
+    },
+    {
+      "case_index": 7,
+      "configuration": {
+        "case_index": 7,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 29,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_07",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.13,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.012,
+          "wall_yaw_deg": -15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": -15.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s1__online__case_07__compact.npz",
+      "reused": true,
+      "scale": 1.0,
+      "suite": "public",
+      "trace_name": "public__case7__s1.npz"
+    },
+    {
+      "case_index": 7,
+      "configuration": {
+        "case_index": 7,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 29,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_07",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.13,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.012,
+          "wall_yaw_deg": -15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": -15.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s2__online__case_07__compact.npz",
+      "reused": true,
+      "scale": 2.0,
+      "suite": "public",
+      "trace_name": "public__case7__s2.npz"
+    },
+    {
+      "case_index": 8,
+      "configuration": {
+        "case_index": 8,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_08",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 0.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": 0.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s1__online__case_08__compact.npz",
+      "reused": false,
+      "scale": 1.0,
+      "suite": "public",
+      "trace_name": "public__case8__s1.npz"
+    },
+    {
+      "case_index": 8,
+      "configuration": {
+        "case_index": 8,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_08",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 0.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": 0.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s2__online__case_08__compact.npz",
+      "reused": false,
+      "scale": 2.0,
+      "suite": "public",
+      "trace_name": "public__case8__s2.npz"
+    },
+    {
+      "case_index": 9,
+      "configuration": {
+        "case_index": 9,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 29,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_09",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 0.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": 0.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s1__online__case_09__compact.npz",
+      "reused": false,
+      "scale": 1.0,
+      "suite": "public",
+      "trace_name": "public__case9__s1.npz"
+    },
+    {
+      "case_index": 9,
+      "configuration": {
+        "case_index": 9,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 29,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_09",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 0.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": 0.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s2__online__case_09__compact.npz",
+      "reused": false,
+      "scale": 2.0,
+      "suite": "public",
+      "trace_name": "public__case9__s2.npz"
+    },
+    {
+      "case_index": 10,
+      "configuration": {
+        "case_index": 10,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_10",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.13,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 0.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": 0.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s1__online__case_10__compact.npz",
+      "reused": false,
+      "scale": 1.0,
+      "suite": "public",
+      "trace_name": "public__case10__s1.npz"
+    },
+    {
+      "case_index": 10,
+      "configuration": {
+        "case_index": 10,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_10",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.13,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 0.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": 0.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s2__online__case_10__compact.npz",
+      "reused": false,
+      "scale": 2.0,
+      "suite": "public",
+      "trace_name": "public__case10__s2.npz"
+    },
+    {
+      "case_index": 11,
+      "configuration": {
+        "case_index": 11,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 29,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_11",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.13,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 0.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": 0.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s1__online__case_11__compact.npz",
+      "reused": false,
+      "scale": 1.0,
+      "suite": "public",
+      "trace_name": "public__case11__s1.npz"
+    },
+    {
+      "case_index": 11,
+      "configuration": {
+        "case_index": 11,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 29,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_11",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.13,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 0.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": 0.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s2__online__case_11__compact.npz",
+      "reused": false,
+      "scale": 2.0,
+      "suite": "public",
+      "trace_name": "public__case11__s2.npz"
+    },
+    {
+      "case_index": 12,
+      "configuration": {
+        "case_index": 12,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_12",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.012,
+          "wall_yaw_deg": 0.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": 0.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s1__online__case_12__compact.npz",
+      "reused": false,
+      "scale": 1.0,
+      "suite": "public",
+      "trace_name": "public__case12__s1.npz"
+    },
+    {
+      "case_index": 12,
+      "configuration": {
+        "case_index": 12,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_12",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.012,
+          "wall_yaw_deg": 0.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": 0.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s2__online__case_12__compact.npz",
+      "reused": false,
+      "scale": 2.0,
+      "suite": "public",
+      "trace_name": "public__case12__s2.npz"
+    },
+    {
+      "case_index": 13,
+      "configuration": {
+        "case_index": 13,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 29,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_13",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.012,
+          "wall_yaw_deg": 0.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": 0.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s1__online__case_13__compact.npz",
+      "reused": false,
+      "scale": 1.0,
+      "suite": "public",
+      "trace_name": "public__case13__s1.npz"
+    },
+    {
+      "case_index": 13,
+      "configuration": {
+        "case_index": 13,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 29,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_13",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.012,
+          "wall_yaw_deg": 0.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": 0.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s2__online__case_13__compact.npz",
+      "reused": false,
+      "scale": 2.0,
+      "suite": "public",
+      "trace_name": "public__case13__s2.npz"
+    },
+    {
+      "case_index": 14,
+      "configuration": {
+        "case_index": 14,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_14",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.13,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.012,
+          "wall_yaw_deg": 0.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": 0.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s1__online__case_14__compact.npz",
+      "reused": true,
+      "scale": 1.0,
+      "suite": "public",
+      "trace_name": "public__case14__s1.npz"
+    },
+    {
+      "case_index": 14,
+      "configuration": {
+        "case_index": 14,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_14",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.13,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.012,
+          "wall_yaw_deg": 0.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": 0.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s2__online__case_14__compact.npz",
+      "reused": true,
+      "scale": 2.0,
+      "suite": "public",
+      "trace_name": "public__case14__s2.npz"
+    },
+    {
+      "case_index": 15,
+      "configuration": {
+        "case_index": 15,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 29,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_15",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.13,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.012,
+          "wall_yaw_deg": 0.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": 0.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s1__online__case_15__compact.npz",
+      "reused": true,
+      "scale": 1.0,
+      "suite": "public",
+      "trace_name": "public__case15__s1.npz"
+    },
+    {
+      "case_index": 15,
+      "configuration": {
+        "case_index": 15,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 29,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_15",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.13,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.012,
+          "wall_yaw_deg": 0.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": 0.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s2__online__case_15__compact.npz",
+      "reused": true,
+      "scale": 2.0,
+      "suite": "public",
+      "trace_name": "public__case15__s2.npz"
+    },
+    {
+      "case_index": 16,
+      "configuration": {
+        "case_index": 16,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_16",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": 15.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s1__online__case_16__compact.npz",
+      "reused": false,
+      "scale": 1.0,
+      "suite": "public",
+      "trace_name": "public__case16__s1.npz"
+    },
+    {
+      "case_index": 16,
+      "configuration": {
+        "case_index": 16,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_16",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": 15.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s2__online__case_16__compact.npz",
+      "reused": false,
+      "scale": 2.0,
+      "suite": "public",
+      "trace_name": "public__case16__s2.npz"
+    },
+    {
+      "case_index": 17,
+      "configuration": {
+        "case_index": 17,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 29,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_17",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": 15.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s1__online__case_17__compact.npz",
+      "reused": false,
+      "scale": 1.0,
+      "suite": "public",
+      "trace_name": "public__case17__s1.npz"
+    },
+    {
+      "case_index": 17,
+      "configuration": {
+        "case_index": 17,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 29,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_17",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": 15.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s2__online__case_17__compact.npz",
+      "reused": false,
+      "scale": 2.0,
+      "suite": "public",
+      "trace_name": "public__case17__s2.npz"
+    },
+    {
+      "case_index": 18,
+      "configuration": {
+        "case_index": 18,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_18",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.13,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": 15.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s1__online__case_18__compact.npz",
+      "reused": false,
+      "scale": 1.0,
+      "suite": "public",
+      "trace_name": "public__case18__s1.npz"
+    },
+    {
+      "case_index": 18,
+      "configuration": {
+        "case_index": 18,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_18",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.13,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": 15.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s2__online__case_18__compact.npz",
+      "reused": false,
+      "scale": 2.0,
+      "suite": "public",
+      "trace_name": "public__case18__s2.npz"
+    },
+    {
+      "case_index": 19,
+      "configuration": {
+        "case_index": 19,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 29,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_19",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.13,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": 15.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s1__online__case_19__compact.npz",
+      "reused": false,
+      "scale": 1.0,
+      "suite": "public",
+      "trace_name": "public__case19__s1.npz"
+    },
+    {
+      "case_index": 19,
+      "configuration": {
+        "case_index": 19,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 29,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_19",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.13,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": 15.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s2__online__case_19__compact.npz",
+      "reused": false,
+      "scale": 2.0,
+      "suite": "public",
+      "trace_name": "public__case19__s2.npz"
+    },
+    {
+      "case_index": 20,
+      "configuration": {
+        "case_index": 20,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_20",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.012,
+          "wall_yaw_deg": 15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": 15.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s1__online__case_20__compact.npz",
+      "reused": false,
+      "scale": 1.0,
+      "suite": "public",
+      "trace_name": "public__case20__s1.npz"
+    },
+    {
+      "case_index": 20,
+      "configuration": {
+        "case_index": 20,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_20",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.012,
+          "wall_yaw_deg": 15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": 15.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s2__online__case_20__compact.npz",
+      "reused": false,
+      "scale": 2.0,
+      "suite": "public",
+      "trace_name": "public__case20__s2.npz"
+    },
+    {
+      "case_index": 21,
+      "configuration": {
+        "case_index": 21,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 29,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_21",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.012,
+          "wall_yaw_deg": 15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": 15.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s1__online__case_21__compact.npz",
+      "reused": false,
+      "scale": 1.0,
+      "suite": "public",
+      "trace_name": "public__case21__s1.npz"
+    },
+    {
+      "case_index": 21,
+      "configuration": {
+        "case_index": 21,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 29,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_21",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.012,
+          "wall_yaw_deg": 15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": 15.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s2__online__case_21__compact.npz",
+      "reused": false,
+      "scale": 2.0,
+      "suite": "public",
+      "trace_name": "public__case21__s2.npz"
+    },
+    {
+      "case_index": 22,
+      "configuration": {
+        "case_index": 22,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_22",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.13,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.012,
+          "wall_yaw_deg": 15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": 15.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s1__online__case_22__compact.npz",
+      "reused": true,
+      "scale": 1.0,
+      "suite": "public",
+      "trace_name": "public__case22__s1.npz"
+    },
+    {
+      "case_index": 22,
+      "configuration": {
+        "case_index": 22,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_22",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.13,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.012,
+          "wall_yaw_deg": 15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": 15.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s2__online__case_22__compact.npz",
+      "reused": true,
+      "scale": 2.0,
+      "suite": "public",
+      "trace_name": "public__case22__s2.npz"
+    },
+    {
+      "case_index": 23,
+      "configuration": {
+        "case_index": 23,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 29,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_23",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.13,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.012,
+          "wall_yaw_deg": 15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": 15.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s1__online__case_23__compact.npz",
+      "reused": true,
+      "scale": 1.0,
+      "suite": "public",
+      "trace_name": "public__case23__s1.npz"
+    },
+    {
+      "case_index": 23,
+      "configuration": {
+        "case_index": 23,
+        "config": {
+          "contact_model": "smooth",
+          "duration": 4.5,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 29,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "surface_dev_23",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.13,
+          "tool_sliding_friction": 0.45,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.45,
+          "wall_time_constant": 0.012,
+          "wall_yaw_deg": 15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "yaw_deg": 15.0
+        }
+      },
+      "reference_trace": "results/franka_rotation_gain_public24/traces/s2__online__case_23__compact.npz",
+      "reused": true,
+      "scale": 2.0,
+      "suite": "public",
+      "trace_name": "public__case23__s2.npz"
+    }
+  ],
+  "dynamic_limits": {
+    "maximum_full_raw_peak_increase_n": 1.0,
+    "maximum_full_raw_peak_n": 35.0,
+    "maximum_late_tangent_rmse_mm": 3.0,
+    "maximum_phase_force_rmse_increase_n": 0.2,
+    "maximum_phase_orientation_rmse_increase_deg": 0.1,
+    "maximum_post_tangent_rmse_mm": 3.0,
+    "minimum_candidate_uncapped_amplitude_exclusive_n": 6.0,
+    "minimum_contact_ratio_pct": 99.0,
+    "minimum_post_tangent_reduction_pct": 20.0,
+    "minimum_reserved_headroom_nm": 1.0,
+    "required_clipping_pct": 0.0,
+    "required_projection_pct": 0.0
+  },
+  "gain_limits": {
+    "full_raw_peak_increase_n": 1.0,
+    "post_tangent_rmse_mm": 0.1,
+    "worst_phase_force_rmse_increase_n": 0.2,
+    "worst_phase_orientation_rmse_increase_deg": 0.1
+  },
+  "global_default_changed": false,
+  "identity": "measured-load-budget-full-regression-v1",
+  "if_fail": "Do not promote; preserve all failures and both variants without retuning this round.",
+  "if_pass": "Recommend the unchanged measured-load preset for the covered public development configurations.",
+  "limitations": [
+    "Candidate adds measured tangential-force input; not an equal-input single-parameter comparison.",
+    "Public configurations already examined; no unseen-data claim.",
+    "Combined/no_bias uses seed 11; not all historical dynamic profiles or C++/BC/PPO baselines.",
+    "No global-default replacement, physical hardware safety, passivity or identified-friction claim.",
+    "Compact traces do not support full measured-state coefficient replay; report skipped audit explicitly."
+  ],
+  "new_holdout": false,
+  "new_no_bias_runs": 6,
+  "new_public_runs": 36,
+  "new_simulations": 42,
+  "paired_prefix": "Combined and no_bias must have bit-exact cycle arrays before the first bias change at 6 s.",
+  "parameters": {
+    "force_slew_rate_n_s": 20.0,
+    "load_margin_n": 0.25,
+    "load_time_constant_s": 0.2,
+    "maximum_force_n": 8.0,
+    "minimum_force_n": 6.0,
+    "velocity_error_time_s": 0.05
+  },
+  "pilot": {
+    "directory": "results/franka_load_budget_pilot",
+    "manifest_sha256": "cfa79734700c42585be364a3016efc5290b8761db60f25631231efb9de68bf4f"
+  },
+  "public_limits": {
+    "force_rmse_n": 0.2,
+    "orientation_rmse_deg": 0.2,
+    "peak_force_n": 1.0,
+    "tangent_rmse_mm": 0.1,
+    "tangent_velocity_error_rms_m_s": 0.0002
+  },
+  "reference_manifests": {
+    "results/franka_budget_transfer": "bce10bd63e2879ab9a7e89ed3375d3e971eefce8fb681e2ad57feb37d49e55c6",
+    "results/franka_compensation_budget": "6f183c8112ca5d1f6512357650b26f8e499d53ed8489b666c9274c9e12047dd2",
+    "results/franka_rotation_gain_public24": "bbd94ed631c5b5858308eaba762d41d4412c1f69400298e62571b2f27c3f3fee"
+  },
+  "reused_pilot_candidates": 18
+}

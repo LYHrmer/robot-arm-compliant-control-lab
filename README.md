@@ -47,7 +47,7 @@ smoke: PASS
 | [动态误差：80 次运行](docs/online_compensation.md#实测结果与没有通过的部分) | 原增益阶段检查 **40/42**；[可选姿态增益](docs/rotation_gain_comparison.md)达到 42/42，但[192 次回归](docs/rotation_gain_public24.md)显示切向位置与速度有代价，不替换默认增益。 |
 | [跨方向 36 次回归](docs/cross_surface_regression.md)与[12 次残差诊断](docs/combined_residual_diagnosis.md) | 组合误差后段仍约 **3.3 mm**；95.6%–98.0% 的采样触发内部补偿幅值限制。移除输入因素不是算法提升。 |
 | [补偿预算初筛](docs/compensation_budget.md)，12 次运行；[120 行转移检查](docs/budget_transfer.md) | 原高摩擦 RMSE **3.26–4.20 → 1.22–1.47 mm**；后续两档增益的预算筛查均为 6/6，但 public24 兼容仅 **23/48**，整体 `FAIL`。默认保持 6 N、增益 1。 |
-| [测得负载调度预算初筛](docs/load_budget.md)，18 条候选＋2 个复现控制组 | 组合误差 8–12 s RMSE **3.25–3.33 → 1.47–1.58 mm**，6/6 通过；12 条普通工况验收指标与旧 6 N 相同。新增切向力测量输入，尚未补齐 48 组兼容检查，不改默认值。 |
+| [测得负载调度预算](docs/load_budget.md)，42 条新增＋18 条复用候选 | 原 public24 两档增益 **48/48**、动态 **12/12**、增益交互 **6/6** 通过；普通工况验收及追赶统计与旧 6 N 相同。组合误差后段 RMSE **1.47–1.58 mm**。新增切向力测量输入，作为已覆盖工况的可选仿真预设，不改全局默认。 |
 | [BC 输入消融](docs/bc_closed_loop_transfer.md)与[bounded PPO](docs/surface_learning_pilot.md)：12 s、4 个开发 case | 解析前馈均值 **2.403 mm**；三个种子的 BC 为 2.781–2.825 mm，PPO 为 2.381–2.470 mm，均无跨种子一致优势。 |
 | [冻结 v0.5：48 case](results/franka_safety_blind/summary.md) | 五个 residual 策略通过 **22–26/48**，未达到各 44/48；主结果 **FAIL**，保留[全部 384 行数据](results/franka_safety_blind/comparison.csv)，不部署策略。 |
 | [C++ 完整控制链回放](results/franka_online_cpp_replay/report.json) | 4 份轨迹、24,000 周期，最大 wrench 分量误差 < `4.45e-15`；[新增益另 4 份](results/franka_rotation_gain_cpp_replay/report.json)也通过。这是数值移植证据，不是真机实时性保证。 |
@@ -74,7 +74,7 @@ actuator saturation 降到 0%，但完整轨迹峰值仍未过 gate。揭盲后�
 | 想看什么 | 说明 | 实现 |
 |---|---|---|
 | 误差驱动的在线补偿 | 更新顺序、换向冻结、共同 6 N 上限 | [在线补偿](docs/online_compensation.md)、[`tangential_compensation.py`](src/compliant_control_lab/tangential_compensation.py) |
-| 仅高负载时开放额外预算 | 测量符号、下一拍生效、当前上限 anti-windup | [负载调度初筛](docs/load_budget.md)、[`load_aware_compensation.py`](tools/load_aware_compensation.py) |
+| 仅高负载时开放额外预算 | 测量符号、下一拍生效、当前上限 anti-windup | [负载调度与完整回归](docs/load_budget.md)、[`load_aware_compensation.py`](tools/load_aware_compensation.py) |
 | 换向时的姿态代价 | 旋转刚度与阻尼同步缩放、同增益配对比较 | [姿态增益对照](docs/rotation_gain_comparison.md)、[`surface_control.py`](src/compliant_control_lab/surface_control.py) |
 | 摩擦强基线与 BC 教师 | 有界摩擦前馈公式、输入消融与闭环偏移 | [切向补偿](docs/tangential_tracking.md)、[BC 对照](docs/bc_closed_loop_transfer.md)、[`surface_policy.py`](src/compliant_control_lab/surface_policy.py) |
 | 擦拭任务与 49 维观测 | 50 Hz / 500 Hz 时序、数据分组、教师标签 | [学习任务](docs/surface_learning.md)、[`surface_env.py`](src/compliant_control_lab/surface_env.py)、[`surface_dataset.py`](src/compliant_control_lab/surface_dataset.py) |

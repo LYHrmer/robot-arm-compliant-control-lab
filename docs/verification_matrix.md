@@ -41,8 +41,14 @@
 再使用[测量输入白名单](../tests/test_load_budget_inputs.py)和
 [数值重构检查](../tests/test_load_budget_validation.py)验证预算更新与补偿请求。
 [协议/发布测试](../tests/test_load_budget_study.py)覆盖同工况配对、先 A 后 B 的执行条件及不完整输出隔离。
-[归档](../results/franka_load_budget_pilot/comparison.json)含 18 条候选及 2 个复现控制组；
-不把纯数组重构当作重新积分物理，也不声称已逐拍重算精简轨迹中未保存的测量状态更新。
+[初筛归档](../results/franka_load_budget_pilot/comparison.json)含 18 条候选及 2 个复现控制组。
+[完整回归](../results/franka_measured_budget_full/comparison.json)复用这 18 条候选并新增 42 条，
+合计验证 180,000 个候选控制周期；48 个 public 配对、12 个动态配对和 6 个增益交互均通过。
+[网格测试](../tests/test_measured_budget_grid.py)检查配置覆盖，
+[封存测试](../tests/test_measured_budget_study.py)检查复用来源、JSON 往返一致性与篡改拒绝。
+六组动态配对在 `t < 6 s` 的 3,000 拍、42 个周期字段完全相同。
+这些数组检查不重新积分物理；精简轨迹缺少完整测量状态，
+`coefficient_transition_checked=false`，不声称已逐拍重算原系数更新。
 
 [组合误差诊断](combined_residual_diagnosis.md)保留 12 次单因素移除运行。
 [指标测试](../tests/test_combined_residual_diagnostics.py)核对真实切平面分解与滚动窗口，

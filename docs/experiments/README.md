@@ -25,10 +25,12 @@
 
 ## 版本锚点与证据
 
-最近的[测得负载预算初筛](../load_budget.md)增加 18 条候选与 2 个固定 6 N 复现控制组。
-组合误差 8–12 s 切向 RMSE 为 1.465–1.581 mm，6/6 通过；12 条普通工况的验收及追赶统计
-与旧 6 N 相同。[完整结果](../../results/franka_load_budget_pilot/comparison.json)保留逐工况数值，
-支持补齐原矩阵回归，尚不修改默认值。这次增加了切向力测量输入，不能算成等输入单参数对比。
+[测得负载预算调度](../load_budget.md)已补齐剩余 42 条候选，复用
+[初筛归档](../../results/franka_load_budget_pilot/comparison.json)中的 18 条候选，共 60 条。
+[完整结果](../../results/franka_measured_budget_full/comparison.json)为 public24 两档增益 48/48、
+动态 12/12、增益交互 6/6 通过。普通工况的验收及追赶统计与旧 6 N 相同；
+无偏置动态的 8–12 s 切向 RMSE 从 4.123–4.202 降到 1.566–1.680 mm。
+推荐用于这套已覆盖的公开仿真工况，全局默认不变。新增了切向力测量输入，不能算成等输入单参数对比。
 
 - **Initial**：revision `f5755e5`；[metrics](../../results/franka/metrics.md)。
 - **v0.3**：revision `b126ef3`；[summary](../../results/franka_stress/summary.md)、
