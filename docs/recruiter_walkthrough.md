@@ -17,6 +17,20 @@ Franka Panda 在 MuJoCo 中沿表面擦拭，同时维持 12 N 法向接触力�
 
 ### 问题一：当前控制结果好在哪，代价是什么
 
+目前可展示的改进是[按测得负载开放 6–8 N 补偿预算](load_budget.md)。原 public24 的两档
+增益检查 48/48 通过，动态配对 12/12、增益交互 6/6 通过；组合误差后段切向 RMSE 从
+3.255–3.333 mm 降到 1.465–1.581 mm。普通工况预算始终保持 6 N，与旧 6 N 的原有轨迹字段
+完全相同，所以这里验证的是回退兼容性，不能改写固定 8 N 原先的 23/48。
+证据为[42 条新增＋18 条复用候选](../results/franka_measured_budget_full/comparison.json)。
+
+[当前演示](../results/franka_measured_budget_demo/demo.mp4)只选一个 12 秒组合误差 case，
+动作与误差、力和预算曲线同步。它增加了辅助切向力测量输入，默认控制器仍用固定 6 N。
+下面说明这一步之前的对照与取舍，避免只展示最终较好的配置。
+
+后续[27 次测量误差对照](measured_budget_robustness.md)完整回放了 162,000 拍。
+组合误差采用检查 7/8 通过，辅助力幅值低估 20% 时未达门槛；下降负载后的换向也有位置代价。
+这些结果保留在同一份公开归档里，项目不把它描述成对传感器误差普遍稳健的控制器。
+
 [在线负载补偿](online_compensation.md)按测量到的运动误差在线调整等效切向负载系数，保留固定
 前馈同样的 6 N 补偿上限。原有 24-case、4.5 秒回归中，切向 RMSE 中位数从 1.885 mm 降到
 **1.359 mm**，24 个配对 case 全部改善（[96 次运行](../results/franka_online_compensation_regression/)）。
@@ -67,6 +81,7 @@ Franka Panda 在 MuJoCo 中沿表面擦拭，同时维持 12 N 法向接触力�
 | 问题 | 公式和协议 | 源码 |
 |---|---|---|
 | 补偿系数如何更新，什么时候冻结 | [在线负载补偿](online_compensation.md) | [`tangential_compensation.py`](../src/compliant_control_lab/tangential_compensation.py) |
+| 预算下降和缺包怎样逐拍验证 | [带练习的状态回放](tutorial/07_measured_budget_replay.md) | [`measured_budget_validation.py`](../tools/measured_budget_validation.py) |
 | 怎样验证姿态调参，避免不公平比较 | [同增益对照与代价](rotation_gain_comparison.md) | [`surface_control.py`](../src/compliant_control_lab/surface_control.py) |
 | 状态、动作和数据怎么定义 | [表面学习任务](surface_learning.md) | [`surface_env.py`](../src/compliant_control_lab/surface_env.py)、[`surface_dataset.py`](../src/compliant_control_lab/surface_dataset.py) |
 | BC 学什么，PPO 的 clipped loss 与变时长 GAE | [BC 输入消融](bc_closed_loop_transfer.md)、[小规模 BC/PPO](surface_learning_pilot.md) | [`train_surface_bc.py`](../tools/train_surface_bc.py)、[`train_surface_ppo.py`](../tools/train_surface_ppo.py) |
@@ -117,6 +132,15 @@ python -m tools.publish_surface_ppo_transfer --audit results/franka_surface_ppo_
 python -m tools.audit_velocity_evidence
 ```
 
+测得负载调度的原 60 条候选归档另用：
+
+```bash
+python -m tools.measured_budget_study audit results/franka_measured_budget_full
+```
+
+原归档是精简轨迹，完整的测得位置/速度系数回放仍标记为未检查。新增完整轨迹的验收与
+缺包测试见[回放练习](tutorial/07_measured_budget_replay.md)，不能把新测试算作旧归档的额外证据。
+
 四项都应返回 `audit_status: PASS`，但预算转移仍为实验 `FAIL`，时间系数对照仍为
 `do_not_expand`。命令不会新跑仿真，运行时间取决于读取和重算归档的速度；不计入上面的
 最短冒烟检查。字段含义、覆盖范围和超时设置见[复核说明](velocity_evidence_audit.md)。
@@ -129,9 +153,11 @@ python -m tools.audit_velocity_evidence
 当前证据限于 MuJoCo 和公开开发域。命令有界不等于接触力有界；4/4 通过不证明未知表面泛化。
 公开学习归档只附少量代表性完整轨迹，其余原始轨迹留在本地源产物中。
 
-[C++ 表面控制核心](cpp_core.md)已在四份完整仿真轨迹、24,000 个周期上逐步核验，
-[最大 wrench 分量误差小于 4.45e-15](../results/franka_online_cpp_replay/report.json)，新增益的
-[另四份轨迹](../results/franka_rotation_gain_cpp_replay/report.json)同样通过。这验证的是数值
-移植，不包括传感器驱动、机器人模型计算，也不等同于真机实时性测试。仓库没有硬件 safety 或
+[C++ 表面控制核心](cpp_core.md)新增了带测量包的完整回放：
+[27 次配对仿真＋1 份重复演示](../results/franka_measured_budget_cpp_replay/report.json)，
+共 168,000 个周期，状态和命令逐步对齐，最大分量误差小于 `3.56e-15`。
+原[固定预算四份报告](../results/franka_online_cpp_replay/report.json)和
+[姿态新增益四份报告](../results/franka_rotation_gain_cpp_replay/report.json)仍单独保留。
+这些验证的是数值移植，不包括传感器驱动、机器人模型计算，也不等同于真机实时性测试。仓库没有硬件 safety 或
 passivity 证明。逐条主张对应的实现、测试与产物见[验证矩阵](verification_matrix.md)，版本顺序
 见[实验记录](experiments/README.md)。

@@ -146,6 +146,34 @@ void test_safe_adaptive_rejects_invalid_public_inputs() {
   expect_true(rejected_state, "safe adaptive public API rejects nonfinite state");
 }
 
+void test_load_budget_constructor_telemetry_matches_configuration() {
+  ccl::TangentialParameters tangential;
+  tangential.mode = ccl::TangentialMode::online;
+  tangential.max_force = 8.0;
+
+  ccl::TangentialCompensation disabled(tangential);
+  expect_true(!disabled.load_budget_enabled(), "standalone load budget remains disabled");
+  expect_near(disabled.applied_budget(), 8.0, 0.0,
+              "disabled constructor reports global force ceiling");
+  expect_near(disabled.next_budget(), 8.0, 0.0,
+              "disabled constructor reports next global force ceiling");
+  disabled.reset();
+  expect_near(disabled.applied_budget(), 8.0, 0.0,
+              "disabled reset preserves reported global force ceiling");
+
+  ccl::LoadBudgetParameters load_budget;
+  load_budget.minimum_force = 6.0;
+  ccl::TangentialCompensation enabled(tangential, load_budget);
+  expect_true(enabled.load_budget_enabled(), "standalone load budget is enabled");
+  expect_near(enabled.applied_budget(), 6.0, 0.0,
+              "enabled constructor reports minimum budget");
+  expect_near(enabled.next_budget(), 6.0, 0.0,
+              "enabled constructor reports next minimum budget");
+  enabled.reset();
+  expect_near(enabled.applied_budget(), 6.0, 0.0,
+              "enabled reset preserves reported minimum budget");
+}
+
 }  // namespace
 
 int main() {
@@ -157,6 +185,7 @@ int main() {
   test_invalid_normal_is_rejected();
   test_invalid_contact_hysteresis_is_rejected();
   test_safe_adaptive_rejects_invalid_public_inputs();
+  test_load_budget_constructor_telemetry_matches_configuration();
   if (failures == 0) {
     std::cout << "all C++ controller tests passed\n";
   }

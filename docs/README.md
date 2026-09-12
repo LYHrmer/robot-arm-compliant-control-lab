@@ -54,6 +54,8 @@ Residual RL，每章都给出公式、源码入口和练习。
 | 力矩未饱和为何仍有切向误差：幅值限幅与单因素诊断 | [combined_residual_diagnosis.md](combined_residual_diagnosis.md) |
 | 补偿预算的局部效果及跨工况／增益检查 | [6 N／8 N 高摩擦筛查](compensation_budget.md)、[预算转移](budget_transfer.md)、[速度代价分解](velocity_cost.md)；内部更新见[限幅时序](onset_observer.md) |
 | 根据测得负载开放 6–8 N 预算 | [输入、更新公式和完整回归的采用范围](load_budget.md) |
+| 从下降预算和缺包理解完整状态回放 | [公式、字段与可执行练习](tutorial/07_measured_budget_replay.md) |
+| 测量幅值低估、缺包和负载下降的采用边界 | [27 次配对仿真与保留的失败](measured_budget_robustness.md) |
 | 新表面任务的 RL / IL 环境、数据与评价准备 | [surface_learning.md](surface_learning.md) |
 | 小规模行为克隆、残差 PPO 与闭环选型 | [surface_learning_pilot.md](surface_learning_pilot.md) |
 | BC 离线拟合良好，闭环为什么偏：历史输入消融 | [bc_closed_loop_transfer.md](bc_closed_loop_transfer.md) |

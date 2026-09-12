@@ -154,6 +154,97 @@ To repeat this check, replace the four input directory names above with
 `results/franka_rotation_gain_comparison` and use a new output directory.
 The report's separate timing benchmark still uses the default gains; it does not time this preset.
 
+## Measured-load budget opt-in
+
+The measured-load scheduler is disabled unless `SafeAdaptiveParameters::load_budget` is set.
+Existing callers therefore keep the fixed 6 N tangential-force ceiling. Enabling it requires the
+online tangential mode, a `LoadBudgetParameters` value and a
+`LoadMeasurementPacket` on each surface update:
+
+```cpp
+ccl::SafeAdaptiveParameters parameters;
+parameters.tangential.mode = ccl::TangentialMode::online;
+parameters.tangential.max_force = 8.0;
+parameters.load_budget = ccl::LoadBudgetParameters{
+    6.0,   // minimum_force
+    0.25,  // load_margin
+    0.20,  // load_time_constant
+    0.020  // max_measurement_age
+};
+
+ccl::LoadMeasurementPacket packet;
+packet.present = true;
+packet.force_local = measured_force_in_controller_frame;
+packet.stamp_s = measurement_time_s;
+
+const auto result = controller.compute(
+    state, target, dt, state_sample_time_s, watchdog_now_s, &actuation, &packet);
+```
+
+`force_local` uses the controller's fixed surface frame, including both tangential components.
+The default packet-age limit is 20 ms. The gate reports `missing`, `accepted`, `stale`, `future`,
+`reordered` or `nonfinite`; only an accepted packet reaches the scheduler. A missing packet clears
+the load estimate and schedules the minimum ceiling. Normal-force feedback still uses
+`CartesianState::normal_force`.
+
+Packet gating and the state watchdog have separate clocks and state. The watchdog compares
+`state_sample_time_s` with `watchdog_now_s` and can reject the whole surface update. The packet
+gate compares `packet.stamp_s` with `state_sample_time_s`; a missing or stale auxiliary packet does
+not reject otherwise valid kinematics. `reset()` clears the packet-order watermark as well as the
+controller state.
+
+The command-line probe keeps its original 24-column output when `--load-budget` is absent. In the
+opt-in form below, each input row appends five values after the legacy actuation context:
+`present force_local[3] stamp_s`. The result row has 53 columns.
+
+```bash
+./build/compliant_control_surface_probe \
+  --mode online --load-budget 6 8 --maximum-packet-age 0.020
+```
+
+| Columns | Measured-load content appended after the legacy 24 columns |
+|---|---|
+| 24-25 | packet status code, measurement-available flag |
+| 26-30 | accepted local force, accepted timestamp and age |
+| 31-35 | applied/next budget, load estimate, update flag and projected load |
+| 36-39 | local compensation force and projection-accepted flag |
+| 40-44 | coefficient/readiness before compute and three compensation flags |
+| 45-52 | resulting seven-joint command torque and measured-contact flag |
+
+The [measured-budget C++ replay report](../results/franka_measured_budget_cpp_replay/report.json)
+checks the six-component wrench, the resulting seven-joint torque, scheduler state and packet
+decisions against both the Python reconstruction and the saved schema-2 traces. It contains 28
+replay inputs and 168,000 updates. One input is the presentation demo, which duplicates a matrix
+run. The other 27 are matrix runs across nine scenarios and three budget methods; the report field
+`independent_trace_count` only excludes the duplicate demo and is not a count of independent
+physical scenarios. Python reproduces the archive exactly. The largest C++ component error is
+`3.552713678800501e-15`, below the fixed `1e-8` numeric tolerance. Flags and packet status codes
+are compared exactly, with zero mismatches.
+
+The new archive is separate from the historical fixed-budget and rotation-gain reports. The run
+command refuses to replace an existing output directory.
+
+```bash
+# Portable audit: checks the report, aggregate errors, repository-relative inputs and sources.
+python -m tools.verify_measured_budget_cpp audit \
+  results/franka_measured_budget_cpp_replay
+
+# Optional local-binary check against the hash recorded by the run.
+python -m tools.verify_measured_budget_cpp audit \
+  results/franka_measured_budget_cpp_replay \
+  --probe build/compliant_control_surface_probe
+
+# Reproduce without touching the archived report.
+python -m tools.verify_measured_budget_cpp run \
+  --probe build/compliant_control_surface_probe \
+  --output /tmp/measured-budget-cpp-replay
+```
+
+The default portable audit reports binary verification as `not_checked`; `--probe` changes it to
+`verified` only after the supplied executable matches the recorded SHA-256. This replay exercises
+controller arithmetic on recorded inputs. It does not measure sensor transport, a robot adapter,
+OS scheduling or hard real-time performance, and it makes no performance-superiority claim.
+
 ## ROS 2 integration boundary
 
 A real Franka torque-controller plugin additionally needs the model/state signals from a hardware

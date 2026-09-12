@@ -37,6 +37,20 @@
 
 ## 实验完整性
 
+[测量鲁棒性对照](measured_budget_robustness.md)另存 27 次完整轨迹，不覆盖旧归档。
+[原始包与有效测量分离](../tools/measured_budget_trial.py)、
+[独立状态重算](../tools/measured_budget_validation.py)及
+[故障/篡改测试](../tests/test_measured_budget_validation.py)覆盖缺包、过期、预算下降、
+在线系数和 readiness 更新。162,000 拍通过回放检查，但组合误差采用检查仅 7/8 通过。
+[归档测试](../tests/test_measured_budget_archive.py)还核对固定预算控制器不受辅助包故障影响。
+
+[C++ 测量回放](../tools/verify_measured_budget_cpp.py)用相同输入重建整个表面控制链，
+[报告](../results/franka_measured_budget_cpp_replay/report.json)覆盖上述 27 次运行和一份重复演示，
+合计 168,000 拍，不是 28 个独立工况。
+[接口边界测试](../tests/test_cpp_load_aware_surface_loop.py)检查包状态、时间边界和复位，
+[回放工具测试](../tests/test_measured_cpp_verifier.py)检查格式、哈希与拒绝路径。
+这些检查证明实现一致，不改变算法性能的失败项，也不证明真实通信或硬实时性。
+
 [测得负载调度](load_budget.md)先经[逐周期控制测试](../tests/test_load_aware_compensation.py)，
 再使用[测量输入白名单](../tests/test_load_budget_inputs.py)和
 [数值重构检查](../tests/test_load_budget_validation.py)验证预算更新与补偿请求。

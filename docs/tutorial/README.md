@@ -19,6 +19,7 @@
 | 4 | 实验方法 | 怎样定义指标、压力测试和可复现实验？ | [04](04_experiments_and_validation.md) |
 | 5 | Residual RL | 什么时候该加 RL，动作/奖励/安全层如何设计？ | [05](05_residual_rl.md) |
 | 6 | 进阶练习与面试 | 如何从“会运行”进阶到“能解释、能扩展”？ | [06](06_exercises_and_interview.md) |
+| 7 | 负载调度实战 | 预算下降、缺包和在线系数怎样逐拍核对？ | [07](07_measured_budget_replay.md) |
 
 如果刚接触机器人控制，按 01 -> 02 -> 04 的 2-DOF 部分学习；如果已有机器人学基础，
 可从 03 开始；如果目标是复现实验或准备面试，至少完整阅读 03、04 和 06。
@@ -69,6 +70,9 @@ PPO 是在强基线之后的延伸，不需要先训练网络才能学习这个�
    区分验证集选择的 checkpoint 与固定第 32 回合的对照，保留每个种子的结果。
    对照[PPO 测试](../../tests/test_surface_ppo.py)与
    [学习归档](../../results/franka_surface_learning_pilot/)。
+
+完成第 5 步后，做[负载调度与完整回放练习](07_measured_budget_replay.md)，区分目标预算与
+全局硬上限。先验证缺包和换向的状态更新，再进入学习方法的对照。
 
 完成第 4 步后，就可以并行学习 [C++ 控制核心](../cpp_core.md)，用相同记录输入核对状态与
 命令（[完整控制链测试](../../tests/test_cpp_surface_loop.py)）；不必等到学习算法完成。

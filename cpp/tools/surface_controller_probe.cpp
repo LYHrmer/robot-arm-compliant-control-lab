@@ -73,27 +73,66 @@ void append_vector(const Eigen::MatrixBase<Derived>& vector) {
 }  // namespace
 
 int main(int argc, char** argv) {
-  if ((argc != 3 && argc != 5) || std::string_view(argv[1]) != "--mode" ||
-      (argc == 5 && std::string_view(argv[3]) != "--rotation-gain-scale")) {
-    std::cerr << "usage: compliant_control_surface_probe --mode "
-                 "none|friction|integral|online "
-                 "[--rotation-gain-scale FLOAT]\n";
-    return 2;
-  }
+  std::string mode;
+  bool load_budget_enabled = false;
+  double minimum_force = 6.0;
+  double maximum_force = 6.0;
+  double maximum_packet_age = 0.020;
   double rotation_gain_scale = 1.0;
-  if (argc == 5) {
-    try {
-      std::size_t consumed = 0;
-      rotation_gain_scale = std::stod(argv[4], &consumed);
-      if (consumed != std::string_view(argv[4]).size() ||
-          !std::isfinite(rotation_gain_scale) || rotation_gain_scale <= 0.0 ||
-          rotation_gain_scale > std::numeric_limits<double>::max() / 20.0) {
-        throw std::invalid_argument("invalid rotation gain scale");
+  bool parsing_rotation_gain = false;
+  auto parse_positive = [](const char* text, bool allow_zero = false) {
+    std::size_t consumed = 0;
+    const double value = std::stod(text, &consumed);
+    if (consumed != std::string_view(text).size() || !std::isfinite(value) ||
+        (allow_zero ? value < 0.0 : value <= 0.0)) {
+      throw std::invalid_argument("invalid numeric option");
+    }
+    return value;
+  };
+  try {
+    for (int index = 1; index < argc;) {
+      const std::string_view option(argv[index]);
+      if (option == "--mode" && index + 1 < argc) {
+        mode = argv[index + 1];
+        index += 2;
+      } else if (option == "--rotation-gain-scale" && index + 1 < argc) {
+        parsing_rotation_gain = true;
+        rotation_gain_scale = parse_positive(argv[index + 1]);
+        parsing_rotation_gain = false;
+        index += 2;
+      } else if (option == "--load-budget" && index + 2 < argc) {
+        minimum_force = parse_positive(argv[index + 1]);
+        maximum_force = parse_positive(argv[index + 2]);
+        load_budget_enabled = true;
+        index += 3;
+      } else if (option == "--maximum-packet-age" && index + 1 < argc) {
+        maximum_packet_age = parse_positive(argv[index + 1], true);
+        index += 2;
+      } else {
+        throw std::invalid_argument("unknown or incomplete option");
       }
-    } catch (const std::exception&) {
+    }
+  } catch (const std::exception&) {
+    if (parsing_rotation_gain) {
       std::cerr << "rotation gain scale must be a finite positive number\n";
       return 2;
     }
+    std::cerr << "usage: compliant_control_surface_probe --mode "
+                 "none|friction|integral|online "
+                 "[--rotation-gain-scale FLOAT] "
+                 "[--load-budget MIN MAX] [--maximum-packet-age SEC]\n";
+    return 2;
+  }
+  if (mode.empty() || rotation_gain_scale > std::numeric_limits<double>::max() / 20.0 ||
+      (load_budget_enabled && minimum_force > maximum_force) ||
+      (load_budget_enabled && mode != "online") ||
+      (!load_budget_enabled && maximum_packet_age != 0.020)) {
+    if (rotation_gain_scale > std::numeric_limits<double>::max() / 20.0) {
+      std::cerr << "rotation gain scale must be a finite positive number\n";
+    } else {
+      std::cerr << "invalid probe option combination\n";
+    }
+    return 2;
   }
   ccl::Matrix3 frame_rotation;
   if (!read_matrix(frame_rotation)) {
@@ -102,7 +141,12 @@ int main(int argc, char** argv) {
   }
   ccl::SafeAdaptiveParameters parameters;
   try {
-    parameters.tangential.mode = ccl::tangential_mode_from_string(argv[2]);
+    parameters.tangential.mode = ccl::tangential_mode_from_string(mode);
+    if (load_budget_enabled) {
+      parameters.tangential.max_force = maximum_force;
+      parameters.load_budget = ccl::LoadBudgetParameters{
+          minimum_force, 0.25, 0.20, maximum_packet_age};
+    }
   } catch (const std::invalid_argument& error) {
     std::cerr << error.what() << '\n';
     return 2;
@@ -145,9 +189,20 @@ int main(int argc, char** argv) {
       context = std::make_unique<ccl::FrankaActuationContext>(
           jacobian, offset, lower, upper);
     }
+    ccl::LoadMeasurementPacket load_packet;
+    if (load_budget_enabled) {
+      int present = 0;
+      if (!(std::cin >> present) || !read_vector(load_packet.force_local) ||
+          !read_double(load_packet.stamp_s)) {
+        std::cerr << "incomplete load packet in case " << case_index << '\n';
+        return 2;
+      }
+      load_packet.present = present != 0;
+    }
     if (reset != 0) controller.reset(state);
     const ccl::SurfaceControlResult result = controller.compute(
-        state, target, dt, timestamp, now, context.get());
+        state, target, dt, timestamp, now, context.get(),
+        load_budget_enabled ? &load_packet : nullptr);
     std::cout << "surface_case," << case_index << ','
               << ccl::to_string(result.watchdog_status) << ','
               << ccl::to_string(result.projection_status) << ','
@@ -159,7 +214,32 @@ int main(int argc, char** argv) {
     append_vector(result.requested_tangential_force_world);
     std::cout << ',' << result.governed_normal_lead << ',' << result.projection_scale << ','
               << result.estimated_contact_stiffness << ',' << result.force_gain_scale << ','
-              << static_cast<int>(result.tangential_update_ready) << '\n';
+              << static_cast<int>(result.tangential_update_ready);
+    if (load_budget_enabled) {
+      const ccl::LoadBudgetTelemetry& load = result.load_budget;
+      std::cout << ',' << static_cast<int>(load.packet_status) << ','
+                << static_cast<int>(load.measurement_available);
+      append_vector(load.accepted_force_local);
+      std::cout << ',' << load.accepted_stamp_s << ',' << load.accepted_age_s << ','
+                << load.applied_budget_n << ',' << load.next_budget_n << ','
+                << load.load_estimate_n << ',' << static_cast<int>(load.budget_updated)
+                << ',' << load.projected_load_n;
+      append_vector(load.compensation_force_local);
+      std::cout << ',' << static_cast<int>(load.projection_accepted) << ','
+                << result.coefficient_before << ','
+                << static_cast<int>(result.update_ready_before) << ','
+                << static_cast<int>(result.tangential_active) << ','
+                << static_cast<int>(result.tangential_amplitude_capped) << ','
+                << static_cast<int>(result.tangential_slew_limited);
+      ccl::JointTorque command = ccl::JointTorque::Zero();
+      if (context) {
+        command = context->joint_torque_offset +
+                  context->cartesian_jacobian.transpose() * result.wrench;
+      }
+      append_vector(command);
+      std::cout << ',' << static_cast<int>(result.measured_in_contact);
+    }
+    std::cout << '\n';
   }
   return 0;
 }

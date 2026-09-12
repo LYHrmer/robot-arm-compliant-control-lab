@@ -25,6 +25,13 @@
 
 ## 版本锚点与证据
 
+最新的[测量鲁棒性对照](../measured_budget_robustness.md)固定 9 个场景、3 种预算方法，
+新增 27 次仿真和 162,000 拍完整输入。8 项组合误差采用检查通过 7 项；辅助力幅值低估 20%
+时失败，负载下降后换向的跟踪也有代价，故不扩大采用范围。
+这轮补齐在线系数和 readiness 的完整重算；旧精简归档缺失的状态没有事后补造。
+[C++ 独立报告](../../results/franka_measured_budget_cpp_replay/report.json)回放这 27 次运行及
+一份重复演示，共 168,000 拍；不新增独立场景或物理仿真样本。
+
 [测得负载预算调度](../load_budget.md)已补齐剩余 42 条候选，复用
 [初筛归档](../../results/franka_load_budget_pilot/comparison.json)中的 18 条候选，共 60 条。
 [完整结果](../../results/franka_measured_budget_full/comparison.json)为 public24 两档增益 48/48、

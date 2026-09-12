@@ -10,6 +10,10 @@ Franka Panda 7-DOF 在 MuJoCo 中沿表面擦拭，同时跟踪 12 N 法向接�
 ROS 2 / Franka hardware adapter。冻结 v0.5 的 48-case 首次揭盲结论仍然是 `FAIL`，原始归档
 没有重算、没有改名，见下面的[结果与决定](#结果与决定)。
 
+看项目效果，从[当前负载调度演示](#当前负载调度演示)和[招聘方走查](docs/recruiter_walkthrough.md)开始。
+跟着项目学习，从[教程目录](docs/tutorial/README.md)开始；已有机器人学基础可直接做
+[预算下降与完整回放练习](docs/tutorial/07_measured_budget_replay.md)。
+
 ## 安装后快速复核
 
 需要 Python 3.10+。MuJoCo 仿真不要求 ROS 2 或 Franka hardware interface。
@@ -48,9 +52,11 @@ smoke: PASS
 | [跨方向 36 次回归](docs/cross_surface_regression.md)与[12 次残差诊断](docs/combined_residual_diagnosis.md) | 组合误差后段仍约 **3.3 mm**；95.6%–98.0% 的采样触发内部补偿幅值限制。移除输入因素不是算法提升。 |
 | [补偿预算初筛](docs/compensation_budget.md)，12 次运行；[120 行转移检查](docs/budget_transfer.md) | 原高摩擦 RMSE **3.26–4.20 → 1.22–1.47 mm**；后续两档增益的预算筛查均为 6/6，但 public24 兼容仅 **23/48**，整体 `FAIL`。默认保持 6 N、增益 1。 |
 | [测得负载调度预算](docs/load_budget.md)，42 条新增＋18 条复用候选 | 原 public24 两档增益 **48/48**、动态 **12/12**、增益交互 **6/6** 通过；普通工况验收及追赶统计与旧 6 N 相同。组合误差后段 RMSE **1.47–1.58 mm**。新增切向力测量输入，作为已覆盖工况的可选仿真预设，不改全局默认。 |
+| [测量鲁棒性：27 次配对仿真](docs/measured_budget_robustness.md) | 完整回放 **162,000 拍**；组合误差采用检查 **7/8**。辅助力幅值低估 20% 时失败；下降负载后的换向跟踪也有代价。不扩大采用范围。 |
 | [BC 输入消融](docs/bc_closed_loop_transfer.md)与[bounded PPO](docs/surface_learning_pilot.md)：12 s、4 个开发 case | 解析前馈均值 **2.403 mm**；三个种子的 BC 为 2.781–2.825 mm，PPO 为 2.381–2.470 mm，均无跨种子一致优势。 |
 | [冻结 v0.5：48 case](results/franka_safety_blind/summary.md) | 五个 residual 策略通过 **22–26/48**，未达到各 44/48；主结果 **FAIL**，保留[全部 384 行数据](results/franka_safety_blind/comparison.csv)，不部署策略。 |
 | [C++ 完整控制链回放](results/franka_online_cpp_replay/report.json) | 4 份轨迹、24,000 周期，最大 wrench 分量误差 < `4.45e-15`；[新增益另 4 份](results/franka_rotation_gain_cpp_replay/report.json)也通过。这是数值移植证据，不是真机实时性保证。 |
+| [带测量包的 C++ 回放](results/franka_measured_budget_cpp_replay/report.json) | 27 次配对仿真＋1 份重复演示，共 **168,000 周期**；完整状态、wrench 和 torque 对齐，最大分量误差 < `3.56e-15`。缺包与过期处理包含在回放内；不证明测量误差下跟踪更好。 |
 
 关于 BC/PPO 那一行：三种方法用同一批开发 case 和同一套门槛，但名义控制器不同——BC 模仿摩擦
 补偿，PPO 在已有摩擦前馈之上学残差，网络动作不能直接互换；PPO 另有一组固定第 32 回合的迁移
@@ -87,6 +93,23 @@ actuator saturation 降到 0%，但完整轨迹峰值仍未过 gate。揭盲后�
 模块边界的取舍见 [ADR](docs/adr/0001-cartesian-wrench-controller-seam.md)，数据流见
 [architecture](docs/architecture.md)。
 
+## 当前负载调度演示
+
+![Franka measured-load budget with synchronized diagnostics](results/franka_measured_budget_demo/overview.png)
+
+[打开 12 秒同步视频](results/franka_measured_budget_demo/demo.mp4)。左侧按同一条仿真日志中的
+七轴关节角重放动作；右侧光标同步指向切向误差、未滤波的仿真接触力和补偿预算。这里显式启用
+6–8 N 负载调度，姿态增益为 1，速度误差时间系数为 0.05 s。默认入口仍用固定 6 N。
+
+安装后在仓库根目录运行下面一条命令，只做一个组合误差 case，无需全量扫描或训练：
+
+```bash
+MUJOCO_GL=egl python -m tools.diagnostics.render_measured_budget_demo --output /tmp/compliant-control-measured-demo-01
+```
+
+需要 `ffmpeg`；输出目录须不存在。生成的 `trace.npz` 保存 500 Hz 记录，另有 `overview.png`
+和 `demo.mp4`。图中约 8 s 的误差尖峰也保留下来；这条演示不能代替多工况的配对回归。
+
 ## 标称演示
 
 ![Franka hybrid force-position control](results/franka/hybrid_demo.gif)
@@ -113,7 +136,8 @@ compliant-control-lab --output /tmp/compliant-control-planar-quick --gif
 | 5 | 构建 [C++ 控制核心](docs/cpp_core.md)并跑 parity | 同一输入序列下状态与命令能否逐步对齐 |
 | 6 | 读[表面学习任务](docs/surface_learning.md)，audit 学习归档 | 49 维观测、16/4/4 分组，BC/PPO 是否超过强基线 |
 
-系统学习柔顺控制从[教程目录](docs/tutorial/README.md)开始，由 2-DOF 推到 Franka、在线补偿与
+系统学习柔顺控制从[教程目录](docs/tutorial/README.md)开始；[逐拍回放练习](docs/tutorial/07_measured_budget_replay.md)
+把负载调度公式、缺包处理和独立验收连在一起。其余章节由 2-DOF 推到 Franka、在线补偿与
 Residual RL；面试练习见[练习、故障定位和项目表达](docs/tutorial/06_exercises_and_interview.md)。
 完整导航和术语见 [docs/README.md](docs/README.md) 与 [CONTEXT.md](CONTEXT.md)。
 
@@ -171,7 +195,11 @@ python -m tools.audit_velocity_evidence
   [八次内部观测复现](docs/onset_observer.md)精确匹配旧轨迹：该窗口的位置滞后驱动系数增长，速度项平均起抵消作用。
   限幅先改变本周期请求，随后阻断用于下一周期的系数正增量。
   [速度误差权重单因素对照](docs/velocity_time.md)降低了两档增益的速度代价，但高增益仍未过门槛，8 N 追赶略慢，暂不推广。
-  8 N 只保留为高摩擦实验配置；默认保持 6 N、增益 1，也没有新增 8 N 的 C++ 完整控制链回放。
+  8 N 只保留为高摩擦实验配置；默认保持 6 N、增益 1。新增 C++ 回放验证了数值移植，
+  不改变上述采用门槛和失败结论。
+- 可选负载调度依赖辅助力测量的准确性。[测量误差对照](docs/measured_budget_robustness.md)中，
+  幅值 ×0.8 的后段 RMSE 为 3.010 mm，未达原采用门槛；故障只注入辅助负载通道，没有验证整个
+  F/T 传感器失效的情形。
 - 当前机器没有 Franka hardware/model interface，仓库不声称完成 ros2_control 真机插件。
 
 ## 模型与许可证

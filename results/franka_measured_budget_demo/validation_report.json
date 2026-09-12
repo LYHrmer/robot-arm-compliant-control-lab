@@ -1,0 +1,22 @@
+{
+  "above_scheduled_budget_cycles": 0,
+  "coefficient_transition_checked": true,
+  "load_budget_update_count": 4242,
+  "max_active_slew_n_s": 20.00000000000021,
+  "max_coefficient_transition_error": 2.220446049250313e-16,
+  "max_compensation_reconstruction_error_n": 3.552713678800501e-15,
+  "max_force_input_reconstruction_error_n": 1.7763568394002505e-15,
+  "max_scheduler_reconstruction_error_n": 0.0,
+  "packet_status_counts": {
+    "0": 0,
+    "1": 6000,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0
+  },
+  "peak_requested_force_n": 7.889977105716856,
+  "readiness_transition_checked": true,
+  "trace_schema_version": 2,
+  "validated_cycles": 6000
+}

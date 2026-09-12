@@ -82,8 +82,11 @@ std::string_view to_string(TangentialMode mode) noexcept {
   return "none";
 }
 
-TangentialCompensation::TangentialCompensation(TangentialParameters parameters)
+TangentialCompensation::TangentialCompensation(
+    TangentialParameters parameters,
+    std::optional<LoadBudgetParameters> load_budget)
     : parameters_(std::move(parameters)),
+      load_budget_(std::move(load_budget)),
       equivalent_mu_(parameters_.mode == TangentialMode::none ? 0.0 : parameters_.nominal_mu) {
   require_nonnegative(parameters_.integral_gain, "integral gain");
   require_nonnegative(parameters_.nominal_mu, "nominal friction coefficient");
@@ -101,6 +104,21 @@ TangentialCompensation::TangentialCompensation(TangentialParameters parameters)
       parameters_.nominal_mu > parameters_.max_equivalent_mu) {
     throw std::invalid_argument("nominal coefficient exceeds online bound");
   }
+  next_budget_ = parameters_.max_force;
+  applied_budget_ = parameters_.max_force;
+  if (load_budget_) {
+    require_positive(load_budget_->minimum_force, "minimum load budget");
+    require_nonnegative(load_budget_->load_margin, "load margin");
+    require_positive(load_budget_->load_time_constant, "load time constant");
+    require_nonnegative(load_budget_->max_measurement_age, "maximum measurement age");
+    if (parameters_.mode != TangentialMode::online ||
+        load_budget_->minimum_force > parameters_.max_force) {
+      throw std::invalid_argument(
+          "load budget requires online mode and an ordered force range");
+    }
+    next_budget_ = load_budget_->minimum_force;
+    applied_budget_ = load_budget_->minimum_force;
+  }
 }
 
 void TangentialCompensation::reset() noexcept {
@@ -113,6 +131,23 @@ void TangentialCompensation::reset() noexcept {
   motion_elapsed_ = 0.0;
   active_ = false;
   update_ready_ = false;
+  amplitude_capped_ = false;
+  slew_limited_ = false;
+  pending_measurement_.reset();
+  cycle_measurement_.reset();
+  load_estimate_ = 0.0;
+  projected_load_ = 0.0;
+  load_budget_updated_ = false;
+  next_budget_ = load_budget_ ? load_budget_->minimum_force : parameters_.max_force;
+  applied_budget_ = next_budget_;
+}
+
+void TangentialCompensation::set_force_measurement(
+    const Vector3& force_local) noexcept {
+  pending_measurement_.reset();
+  if (load_budget_ && force_local.allFinite()) {
+    pending_measurement_ = force_local;
+  }
 }
 
 Vector3 TangentialCompensation::force(
@@ -123,6 +158,19 @@ Vector3 TangentialCompensation::force(
     double contact_blend,
     bool in_contact,
     double dt) noexcept {
+  if (load_budget_) {
+    cycle_measurement_ = pending_measurement_;
+    pending_measurement_.reset();
+    load_budget_updated_ = false;
+    projected_load_ = 0.0;
+    if (!cycle_measurement_) {
+      load_estimate_ = 0.0;
+      next_budget_ = load_budget_->minimum_force;
+    }
+    applied_budget_ = next_budget_;
+  }
+  amplitude_capped_ = false;
+  slew_limited_ = false;
   if (parameters_.mode == TangentialMode::none) {
     return Vector3::Zero();
   }
@@ -143,8 +191,10 @@ Vector3 TangentialCompensation::force(
   const double coefficient = parameters_.mode == TangentialMode::online
                                  ? equivalent_mu_
                                  : parameters_.nominal_mu;
-  const double amplitude = std::min(coefficient * std::max(normal_force, 0.0),
-                                    parameters_.max_force);
+  const double requested_amplitude = coefficient * std::max(normal_force, 0.0);
+  const double force_ceiling = load_budget_ ? applied_budget_ : parameters_.max_force;
+  const double amplitude = std::min(requested_amplitude, force_ceiling);
+  amplitude_capped_ = requested_amplitude >= force_ceiling;
   const Vector3 requested = contact_blend * amplitude * direction_;
   if (parameters_.mode == TangentialMode::friction) {
     last_force_ = requested;
@@ -156,6 +206,7 @@ Vector3 TangentialCompensation::force(
   const Vector3 delta = requested - previous;
   const double delta_norm = delta.norm();
   const bool slew_limited = delta_norm > parameters_.force_slew_rate * dt;
+  slew_limited_ = slew_limited;
   last_force_ = previous + delta * std::min(
       1.0, parameters_.force_slew_rate * dt / std::max(delta_norm, 1e-12));
   const bool reversal = direction_.dot(previous_direction_) < 0.0;
@@ -191,20 +242,35 @@ void TangentialCompensation::advance(
              parameters_.force_regularizer * parameters_.force_regularizer) * drive,
         -parameters_.coefficient_rate_limit * dt,
         parameters_.coefficient_rate_limit * dt);
-    if (increment > 0.0 && equivalent_mu_ * normal_force_ >= parameters_.max_force) {
-      return;
+    const double force_ceiling = load_budget_ ? applied_budget_ : parameters_.max_force;
+    if (!(increment > 0.0 && equivalent_mu_ * normal_force_ >= force_ceiling)) {
+      equivalent_mu_ = std::clamp(
+          equivalent_mu_ + increment, 0.0, parameters_.max_equivalent_mu);
     }
-    equivalent_mu_ = std::clamp(
-        equivalent_mu_ + increment, 0.0, parameters_.max_equivalent_mu);
-    return;
+    // Continue below so the independent load scheduler advances after the
+    // coefficient update on the same accepted cycle.
   }
-  if (!(active_ && parameters_.mode == TangentialMode::integral && allow_integration)) {
-    return;
+  if (active_ && parameters_.mode == TangentialMode::integral && allow_integration) {
+    const Vector3 error = tangent(normal, target.position - state.position);
+    const Vector3 candidate = integral_force_ + parameters_.integral_gain * dt * error;
+    integral_force_ = candidate * std::min(
+        1.0, parameters_.max_force / std::max(candidate.norm(), 1e-12));
   }
-  const Vector3 error = tangent(normal, target.position - state.position);
-  const Vector3 candidate = integral_force_ + parameters_.integral_gain * dt * error;
-  integral_force_ = candidate * std::min(
-      1.0, parameters_.max_force / std::max(candidate.norm(), 1e-12));
+  if (!load_budget_) return;
+  const std::optional<Vector3> measurement = cycle_measurement_;
+  cycle_measurement_.reset();
+  if (!(active_ && update_ready_ && allow_integration && measurement)) return;
+  const Vector3 velocity = tangent(normal, target.linear_velocity);
+  const double speed = velocity.norm();
+  if (speed < parameters_.min_update_speed) return;
+  projected_load_ = std::clamp(
+      measurement->dot(velocity / speed), 0.0, parameters_.max_force);
+  const double alpha = -std::expm1(-dt / load_budget_->load_time_constant);
+  load_estimate_ += alpha * (projected_load_ - load_estimate_);
+  next_budget_ = std::clamp(
+      load_estimate_ + load_budget_->load_margin,
+      load_budget_->minimum_force, parameters_.max_force);
+  load_budget_updated_ = true;
 }
 
 AdaptiveParameters::AdaptiveParameters() {
@@ -333,7 +399,7 @@ Wrench FrankaAdaptiveHybridController::compute(
 FrankaSafeAdaptiveController::FrankaSafeAdaptiveController(SafeAdaptiveParameters parameters)
     : parameters_(std::move(parameters)),
       base_(parameters_.adaptive),
-      tangential_(parameters_.tangential) {
+      tangential_(parameters_.tangential, parameters_.load_budget) {
   require_positive(parameters_.max_normal_lead, "maximum normal lead");
   require_positive(parameters_.max_approach_velocity, "maximum approach velocity");
   require_nonnegative(parameters_.impact_force_margin, "impact force margin");
@@ -439,6 +505,18 @@ std::string_view to_string(WatchdogStatus status) noexcept {
   return "nonfinite_input";
 }
 
+std::string_view to_string(LoadPacketStatus status) noexcept {
+  switch (status) {
+    case LoadPacketStatus::missing: return "missing";
+    case LoadPacketStatus::accepted: return "accepted";
+    case LoadPacketStatus::stale: return "stale";
+    case LoadPacketStatus::future: return "future";
+    case LoadPacketStatus::reordered: return "reordered";
+    case LoadPacketStatus::nonfinite: return "nonfinite";
+  }
+  return "nonfinite";
+}
+
 SurfaceAdaptiveController::SurfaceAdaptiveController(
     SurfaceFrame frame,
     SafeAdaptiveParameters parameters,
@@ -494,6 +572,7 @@ void SurfaceAdaptiveController::reset(const CartesianState& world_state) noexcep
   initialized_ = true;
   has_timestamp_ = false;
   has_watchdog_now_ = false;
+  has_load_packet_stamp_ = false;
 }
 
 void SurfaceAdaptiveController::invalidate(const CartesianState& world_state) noexcept {
@@ -506,24 +585,38 @@ void SurfaceAdaptiveController::invalidate(const CartesianState& world_state) no
   initialized_ = true;
 }
 
+void SurfaceAdaptiveController::populate_load_budget_telemetry(
+    SurfaceControlResult& result) const noexcept {
+  result.load_budget.applied_budget_n = base_.applied_load_budget();
+  result.load_budget.next_budget_n = base_.next_load_budget();
+  result.load_budget.load_estimate_n = base_.load_estimate();
+  result.load_budget.budget_updated = base_.load_budget_updated();
+  result.load_budget.projected_load_n = base_.projected_load();
+  result.load_budget.compensation_force_local = base_.tangential_force();
+}
+
 SurfaceControlResult SurfaceAdaptiveController::compute(
     const CartesianState& world_state,
     const CartesianTarget& world_target,
     double dt,
     double sample_timestamp,
     double watchdog_now,
-    const FrankaActuationContext* world_actuation) {
+    const FrankaActuationContext* world_actuation,
+    const LoadMeasurementPacket* load_packet) {
   SurfaceControlResult result;
+  result.load_budget.enabled = parameters_.load_budget.has_value();
   result.feasible = offset_is_feasible(
       world_actuation, parameters_.torque_reserve_fraction);
   if (!std::isfinite(sample_timestamp) || !std::isfinite(watchdog_now)) {
     result.watchdog_status = WatchdogStatus::nonfinite_input;
     invalidate(world_state);
+    populate_load_budget_telemetry(result);
     return result;
   }
   if (has_watchdog_now_ && watchdog_now < last_watchdog_now_) {
     result.watchdog_status = WatchdogStatus::nonmonotonic_now;
     invalidate(world_state);
+    populate_load_budget_telemetry(result);
     return result;
   }
   last_watchdog_now_ = watchdog_now;
@@ -535,22 +628,26 @@ SurfaceControlResult SurfaceAdaptiveController::compute(
   if (!finite) {
     result.watchdog_status = WatchdogStatus::nonfinite_input;
     invalidate(world_state);
+    populate_load_budget_telemetry(result);
     return result;
   }
   const double age = watchdog_now - sample_timestamp;
   if (age < 0.0) {
     result.watchdog_status = WatchdogStatus::future_timestamp;
     invalidate(world_state);
+    populate_load_budget_telemetry(result);
     return result;
   }
   if (age > watchdog_.max_sample_age) {
     result.watchdog_status = WatchdogStatus::expired;
     invalidate(world_state);
+    populate_load_budget_telemetry(result);
     return result;
   }
   if (has_timestamp_ && sample_timestamp <= last_timestamp_) {
     result.watchdog_status = WatchdogStatus::stale_timestamp;
     invalidate(world_state);
+    populate_load_budget_telemetry(result);
     return result;
   }
 
@@ -560,6 +657,38 @@ SurfaceControlResult SurfaceAdaptiveController::compute(
     base_.reset(state);
     initialized_ = true;
   }
+  if (parameters_.load_budget) {
+    LoadPacketStatus packet_status = LoadPacketStatus::missing;
+    if (load_packet != nullptr && load_packet->present) {
+      if (!std::isfinite(load_packet->stamp_s) ||
+          !load_packet->force_local.allFinite()) {
+        packet_status = LoadPacketStatus::nonfinite;
+      } else {
+        const double packet_age = sample_timestamp - load_packet->stamp_s;
+        if (packet_age < 0.0) {
+          packet_status = LoadPacketStatus::future;
+        } else if (load_packet->stamp_s < 0.0 ||
+                   packet_age > parameters_.load_budget->max_measurement_age + 1e-12) {
+          packet_status = LoadPacketStatus::stale;
+        } else if (has_load_packet_stamp_ &&
+                   load_packet->stamp_s < last_load_packet_stamp_) {
+          packet_status = LoadPacketStatus::reordered;
+        } else {
+          packet_status = LoadPacketStatus::accepted;
+          last_load_packet_stamp_ = load_packet->stamp_s;
+          has_load_packet_stamp_ = true;
+          result.load_budget.measurement_available = true;
+          result.load_budget.accepted_force_local = load_packet->force_local;
+          result.load_budget.accepted_stamp_s = load_packet->stamp_s;
+          result.load_budget.accepted_age_s = packet_age;
+          base_.set_load_measurement(load_packet->force_local);
+        }
+      }
+    }
+    result.load_budget.packet_status = packet_status;
+  }
+  result.coefficient_before = base_.equivalent_mu();
+  result.update_ready_before = base_.tangential_update_ready();
   const std::optional<FrankaActuationContext> actuation = local_actuation(world_actuation);
   const SafeControlResult local_result = base_.compute(
       state, target, dt, actuation ? &*actuation : nullptr);
@@ -582,6 +711,14 @@ SurfaceControlResult SurfaceAdaptiveController::compute(
   result.tangential_update_ready = base_.tangential_update_ready();
   result.fallback = local_result.fallback;
   result.feasible = local_result.feasible;
+  populate_load_budget_telemetry(result);
+  result.load_budget.projection_accepted =
+      world_actuation != nullptr &&
+      local_result.projection_status == TorqueProjectionStatus::unchanged;
+  result.tangential_active = base_.tangential_active();
+  result.tangential_amplitude_capped = base_.tangential_amplitude_capped();
+  result.tangential_slew_limited = base_.tangential_slew_limited();
+  result.measured_in_contact = base_.in_contact();
   return result;
 }
 

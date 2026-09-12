@@ -6,15 +6,43 @@
 #include <cstdint>
 #include <iomanip>
 #include <iostream>
+#include <stdexcept>
+#include <string_view>
 #include <vector>
 
 namespace ccl = compliant_control_lab;
 
-int main() {
+int main(int argc, char** argv) {
   constexpr std::size_t iterations = 20000;
   constexpr double dt = 0.001;
   ccl::SafeAdaptiveParameters parameters;
   parameters.tangential.mode = ccl::TangentialMode::online;
+  bool load_budget_enabled = false;
+  if (argc != 1) {
+    if (argc != 4 || std::string_view(argv[1]) != "--load-budget") {
+      std::cerr << "usage: compliant_control_surface_benchmark "
+                   "[--load-budget MIN MAX]\n";
+      return 2;
+    }
+    try {
+      std::size_t consumed_min = 0;
+      std::size_t consumed_max = 0;
+      const double minimum = std::stod(argv[2], &consumed_min);
+      const double maximum = std::stod(argv[3], &consumed_max);
+      if (consumed_min != std::string_view(argv[2]).size() ||
+          consumed_max != std::string_view(argv[3]).size() ||
+          !std::isfinite(minimum) || !std::isfinite(maximum) ||
+          minimum <= 0.0 || maximum < minimum) {
+        throw std::invalid_argument("invalid load budget");
+      }
+      parameters.tangential.max_force = maximum;
+      parameters.load_budget = ccl::LoadBudgetParameters{minimum, 0.25, 0.20, 0.020};
+      load_budget_enabled = true;
+    } catch (const std::exception&) {
+      std::cerr << "load budget bounds must be finite, positive and ordered\n";
+      return 2;
+    }
+  }
   ccl::SurfaceAdaptiveController controller(
       ccl::SurfaceFrame(ccl::Matrix3::Identity()), parameters);
 
@@ -40,9 +68,14 @@ int main() {
   std::size_t overruns = 0;
   for (std::size_t index = 0; index < iterations; ++index) {
     const double timestamp = (index + 1) * dt;
+    ccl::LoadMeasurementPacket load_packet;
+    load_packet.present = true;
+    load_packet.force_local = ccl::Vector3(0.0, 7.0, 0.0);
+    load_packet.stamp_s = timestamp;
     const auto start = std::chrono::steady_clock::now();
     const ccl::SurfaceControlResult result = controller.compute(
-        state, target, dt, timestamp, timestamp, &context);
+        state, target, dt, timestamp, timestamp, &context,
+        load_budget_enabled ? &load_packet : nullptr);
     const auto stop = std::chrono::steady_clock::now();
     const auto nanoseconds = std::chrono::duration_cast<std::chrono::nanoseconds>(
         stop - start).count();

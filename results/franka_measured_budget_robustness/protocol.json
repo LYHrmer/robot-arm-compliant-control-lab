@@ -1,0 +1,1247 @@
+{
+  "common_cost_limits": {
+    "maximum_full_raw_peak_increase_n": 1.0,
+    "maximum_phase_force_rmse_increase_n": 0.2,
+    "maximum_phase_orientation_rmse_increase_deg": 0.1
+  },
+  "comparison_defined_before_execution": true,
+  "comparison_rule": "For the eight original combined scenarios, adaptive versus fixed 6 N uses the unchanged measured-load dynamic criteria. The new falling-friction scenario has no 20% improvement requirement. Every pair reports unchanged common force, pose and raw-peak costs; fixed-8 tracking and velocity deltas are descriptive.",
+  "default_changed": false,
+  "diagnostic_delta_metrics": [
+    "tangent_rmse_mm",
+    "along_track_rmse_mm",
+    "cross_track_rmse_mm",
+    "tangent_velocity_error_rms_m_s",
+    "amplitude_capped_pct",
+    "slew_limited_pct",
+    "normal_force_error_rms_n",
+    "orientation_error_rms_deg",
+    "minimum_reserved_torque_headroom_nm"
+  ],
+  "duration_s": 12.0,
+  "evaluation_start_s": 1.5,
+  "existing_preset_criteria": {
+    "maximum_full_raw_peak_increase_n": 1.0,
+    "maximum_full_raw_peak_n": 35.0,
+    "maximum_late_tangent_rmse_mm": 3.0,
+    "maximum_phase_force_rmse_increase_n": 0.2,
+    "maximum_phase_orientation_rmse_increase_deg": 0.1,
+    "maximum_post_tangent_rmse_mm": 3.0,
+    "minimum_candidate_uncapped_amplitude_exclusive_n": 6.0,
+    "minimum_contact_ratio_pct": 99.0,
+    "minimum_post_tangent_reduction_pct": 20.0,
+    "minimum_reserved_headroom_nm": 1.0,
+    "required_clipping_pct": 0.0,
+    "required_projection_pct": 0.0
+  },
+  "full_trace_fields": [
+    "applied_raw_wrench_bias_world",
+    "applied_tool_friction",
+    "applied_torque",
+    "applied_wall_friction",
+    "cartesian_jacobian",
+    "commanded_torque",
+    "commanded_wrench",
+    "contact_blend",
+    "contact_model",
+    "controller_coefficient_after_compute",
+    "controller_coefficient_before_compute",
+    "controller_frame_rotation",
+    "controller_kind",
+    "controller_update_ready_after_compute",
+    "controller_update_ready_before_compute",
+    "controller_yaw_error_deg",
+    "diagnostic_amplitude_capped",
+    "diagnostic_compensation_active",
+    "diagnostic_corrected_force_n",
+    "diagnostic_slew_limited",
+    "dt",
+    "fault_end_s",
+    "fault_kind",
+    "fault_name",
+    "fault_start_s",
+    "fault_value",
+    "feedback_raw_wrench_bias_world",
+    "feedback_raw_wrench_world",
+    "feedback_wrench_sample_time",
+    "filtered_wrench_world",
+    "force_filter_alpha",
+    "governed_normal_lead_m",
+    "joint_torque_offset",
+    "joint_velocity",
+    "kinematic_sample_time",
+    "linear_velocity",
+    "load_budget_applied_n",
+    "load_budget_next_n",
+    "load_budget_updated",
+    "load_compensation_force_local",
+    "load_estimate_n",
+    "load_force_local",
+    "load_max_measurement_age_s",
+    "load_measurement_age_s",
+    "load_measurement_available",
+    "load_measurement_time_s",
+    "load_packet_status",
+    "load_projected_n",
+    "load_projection_accepted",
+    "lower_torque_limit",
+    "max_force_n",
+    "measured_angular_velocity",
+    "measured_in_contact",
+    "measured_kinematic_sample_time",
+    "measured_linear_velocity",
+    "measured_normal_force",
+    "measured_position",
+    "measured_rotation",
+    "measured_wrench_sample_time",
+    "measured_wrench_world",
+    "method",
+    "minimum_force_n",
+    "orientation_error_rad",
+    "position",
+    "q",
+    "raw_load_packet_force",
+    "raw_load_packet_present",
+    "raw_load_packet_stamp",
+    "raw_wrench_sample_time",
+    "raw_wrench_world",
+    "requested_tangential_force_world",
+    "rotation_gain_scale",
+    "schema_version",
+    "slew_reconstruction_max_error_n",
+    "slew_reconstruction_mismatch_cycles",
+    "target_angular_velocity",
+    "target_linear_velocity",
+    "target_normal_force",
+    "target_position",
+    "target_rotation",
+    "time",
+    "torque_projection_scale",
+    "trace_schema_version",
+    "trajectory_rate_scale",
+    "true_contact_gap_m",
+    "true_normal_force",
+    "true_tangent_force_n",
+    "upper_torque_limit"
+  ],
+  "gain_scale": 1.0,
+  "identity": "measured-load-budget-robustness-v1",
+  "limitations": [
+    "Auxiliary scheduler-force packet faults only; the normal-control channel is unchanged.",
+    "Public development study, not an unseen holdout and not a default-change decision.",
+    "One seed, gain scale 1 and velocity-error time constant 0.05 are covered.",
+    "The falling-friction case is a predeclared counterfactual built from the original stop_hold_reverse trajectory, not a historical archived case.",
+    "During the zero-velocity hold, readiness and load updates freeze; the load filter's time constant advances on eligible updates rather than wall-clock time."
+  ],
+  "maximum_packet_age_s": 0.02,
+  "methods": {
+    "adaptive6_8": {
+      "maximum_force_n": 8.0,
+      "minimum_force_n": 6.0
+    },
+    "fixed6": {
+      "maximum_force_n": 6.0,
+      "minimum_force_n": 6.0
+    },
+    "fixed8": {
+      "maximum_force_n": 8.0,
+      "minimum_force_n": 8.0
+    }
+  },
+  "new_holdout": false,
+  "new_simulations": 27,
+  "old_absolute_safety_gates": {
+    "contact_ratio_pct": 99.0,
+    "minimum_reserved_torque_headroom_nm": 1.0,
+    "peak_force_n": 35.0,
+    "projection_pct": 0.0,
+    "saturation_pct": 0.0
+  },
+  "overall_delta_metrics": [
+    "tangent_rmse_mm",
+    "tangent_velocity_error_rms_m_s",
+    "force_rmse_n",
+    "orientation_rmse_deg",
+    "peak_force_n",
+    "contact_ratio_pct",
+    "saturation_pct",
+    "projection_pct",
+    "minimum_reserved_torque_headroom_nm"
+  ],
+  "paired_prefix_rule": "For each method, every yaw-0 combined packet-fault trace must be bit-exact with its fresh control on all cycle arrays before the declared fault onset.",
+  "phase_delta_metrics": [
+    "tangent_rmse_mm",
+    "tangent_velocity_error_rms_m_s",
+    "force_rmse_n",
+    "orientation_rmse_deg",
+    "peak_force_n",
+    "contact_ratio_pct",
+    "saturation_pct"
+  ],
+  "public_development": true,
+  "recovery_windows": [
+    {
+      "end_s": 9.0,
+      "name": "packet_recovery",
+      "start_s": 8.3
+    },
+    {
+      "end_s": 12.0,
+      "name": "late_recovery",
+      "start_s": 10.0
+    }
+  ],
+  "reference": {
+    "directory": "results/franka_measured_budget_full",
+    "manifest_sha256": "e4a93740b952707a50e2132dfcf931298e97132edc5fb3a8b0a8cb147b3c8496"
+  },
+  "scenario_count": 9,
+  "scenarios": [
+    {
+      "case": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              6.0,
+              [
+                0.75,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 3.0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.3
+            ],
+            [
+              4.0,
+              0.3
+            ],
+            [
+              8.0,
+              0.6
+            ]
+          ]
+        },
+        "name": "modest_combined",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "pre_change",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 8.0,
+            "name": "combined_transition",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "combined_post",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "online_error_modest_combined_seed_11_yaw_0",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.3,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.3,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": 0
+        }
+      },
+      "case_kind": "combined",
+      "fault": {
+        "end_s": 0.0,
+        "kind": "fresh",
+        "name": "fresh",
+        "start_s": 0.0,
+        "value": 0.0
+      },
+      "scenario_id": "yaw0_combined_fresh"
+    },
+    {
+      "case": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              6.0,
+              [
+                0.75,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 3.0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.3
+            ],
+            [
+              4.0,
+              0.3
+            ],
+            [
+              8.0,
+              0.6
+            ]
+          ]
+        },
+        "name": "modest_combined",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "pre_change",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 8.0,
+            "name": "combined_transition",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "combined_post",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "online_error_modest_combined_seed_11_yaw_0",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.3,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.3,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": 0
+        }
+      },
+      "case_kind": "combined",
+      "fault": {
+        "end_s": 12.0,
+        "kind": "bias",
+        "name": "bias_plus",
+        "start_s": 6.0,
+        "value": 0.75
+      },
+      "scenario_id": "yaw0_combined_bias_plus"
+    },
+    {
+      "case": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              6.0,
+              [
+                0.75,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 3.0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.3
+            ],
+            [
+              4.0,
+              0.3
+            ],
+            [
+              8.0,
+              0.6
+            ]
+          ]
+        },
+        "name": "modest_combined",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "pre_change",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 8.0,
+            "name": "combined_transition",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "combined_post",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "online_error_modest_combined_seed_11_yaw_0",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.3,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.3,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": 0
+        }
+      },
+      "case_kind": "combined",
+      "fault": {
+        "end_s": 12.0,
+        "kind": "bias",
+        "name": "bias_minus",
+        "start_s": 6.0,
+        "value": -0.75
+      },
+      "scenario_id": "yaw0_combined_bias_minus"
+    },
+    {
+      "case": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              6.0,
+              [
+                0.75,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 3.0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.3
+            ],
+            [
+              4.0,
+              0.3
+            ],
+            [
+              8.0,
+              0.6
+            ]
+          ]
+        },
+        "name": "modest_combined",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "pre_change",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 8.0,
+            "name": "combined_transition",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "combined_post",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "online_error_modest_combined_seed_11_yaw_0",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.3,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.3,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": 0
+        }
+      },
+      "case_kind": "combined",
+      "fault": {
+        "end_s": 12.0,
+        "kind": "scale",
+        "name": "scale_0p8",
+        "start_s": 6.0,
+        "value": 0.8
+      },
+      "scenario_id": "yaw0_combined_scale_0p8"
+    },
+    {
+      "case": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              6.0,
+              [
+                0.75,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 3.0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.3
+            ],
+            [
+              4.0,
+              0.3
+            ],
+            [
+              8.0,
+              0.6
+            ]
+          ]
+        },
+        "name": "modest_combined",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "pre_change",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 8.0,
+            "name": "combined_transition",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "combined_post",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "online_error_modest_combined_seed_11_yaw_0",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.3,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.3,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": 0
+        }
+      },
+      "case_kind": "combined",
+      "fault": {
+        "end_s": 12.0,
+        "kind": "scale",
+        "name": "scale_1p2",
+        "start_s": 6.0,
+        "value": 1.2
+      },
+      "scenario_id": "yaw0_combined_scale_1p2"
+    },
+    {
+      "case": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              6.0,
+              [
+                0.75,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 3.0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.3
+            ],
+            [
+              4.0,
+              0.3
+            ],
+            [
+              8.0,
+              0.6
+            ]
+          ]
+        },
+        "name": "modest_combined",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "pre_change",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 8.0,
+            "name": "combined_transition",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "combined_post",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "online_error_modest_combined_seed_11_yaw_0",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.3,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.3,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": 0
+        }
+      },
+      "case_kind": "combined",
+      "fault": {
+        "end_s": 8.3,
+        "kind": "missing",
+        "name": "missing",
+        "start_s": 8.0,
+        "value": 0.0
+      },
+      "scenario_id": "yaw0_combined_missing"
+    },
+    {
+      "case": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              6.0,
+              [
+                0.75,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 3.0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.3
+            ],
+            [
+              4.0,
+              0.3
+            ],
+            [
+              8.0,
+              0.6
+            ]
+          ]
+        },
+        "name": "modest_combined",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "pre_change",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 8.0,
+            "name": "combined_transition",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "combined_post",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "online_error_modest_combined_seed_11_yaw_0",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.3,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.3,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": 0
+        }
+      },
+      "case_kind": "combined",
+      "fault": {
+        "end_s": 8.3,
+        "kind": "stale",
+        "name": "stale",
+        "start_s": 8.0,
+        "value": 0.0
+      },
+      "scenario_id": "yaw0_combined_stale"
+    },
+    {
+      "case": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              6.0,
+              [
+                0.7244443697168013,
+                0.19411428382689055,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 3.0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.3
+            ],
+            [
+              4.0,
+              0.3
+            ],
+            [
+              8.0,
+              0.6
+            ]
+          ]
+        },
+        "name": "modest_combined",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "pre_change",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 8.0,
+            "name": "combined_transition",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "combined_post",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "online_error_modest_combined_seed_11",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.3,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.3,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 15.0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": 15.0
+        }
+      },
+      "case_kind": "combined",
+      "fault": {
+        "end_s": 0.0,
+        "kind": "fresh",
+        "name": "fresh",
+        "start_s": 0.0,
+        "value": 0.0
+      },
+      "scenario_id": "yaw15_combined_fresh"
+    },
+    {
+      "case": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 0.0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.65
+            ],
+            [
+              4.0,
+              0.65
+            ],
+            [
+              6.0,
+              0.3
+            ]
+          ]
+        },
+        "name": "falling_friction_stop_hold_reverse",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "high_forward",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 4.5,
+            "name": "falling_forward",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 5.5,
+            "name": "falling_stopping",
+            "start_s": 4.5
+          },
+          {
+            "end_s": 6.0,
+            "name": "falling_hold",
+            "start_s": 5.5
+          },
+          {
+            "end_s": 7.0,
+            "name": "low_hold",
+            "start_s": 6.0
+          },
+          {
+            "end_s": 8.0,
+            "name": "low_reverse_ramp",
+            "start_s": 7.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "low_reverse",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "online_error_falling_friction_stop_hold_reverse_seed_11",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.65,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.65,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": 0
+        }
+      },
+      "case_kind": "falling_friction_stop_reverse",
+      "fault": {
+        "end_s": 0.0,
+        "kind": "fresh",
+        "name": "fresh",
+        "start_s": 0.0,
+        "value": 0.0
+      },
+      "scenario_id": "yaw0_falling_friction_stop_reverse_fresh"
+    }
+  ],
+  "seed": 11,
+  "timestep_s": 0.002
+}
