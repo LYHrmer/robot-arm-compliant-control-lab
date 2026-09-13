@@ -2,17 +2,45 @@
 
 [![tests](https://github.com/LYHrmer/robot-arm-compliant-control-lab/actions/workflows/tests.yml/badge.svg)](https://github.com/LYHrmer/robot-arm-compliant-control-lab/actions/workflows/tests.yml)
 
-Franka Panda 7-DOF 在 MuJoCo 中沿表面擦拭，同时跟踪 12 N 法向接触力。经典控制器运行在
-500 Hz；独立的 BC/PPO 实验用 50 Hz 策略叠加三轴有界请求。当前 torque-safe 表面控制链包含接触处理和
-6D wrench 到 7 关节力矩的包络投影。
+Franka Panda 7-DOF 在 MuJoCo 中沿表面擦拭，同时跟踪 12 N 法向接触力。
+主线是 500 Hz 柔顺控制：从阻抗／导纳／力位混合到在线切向补偿，再验证 Python 与 C++ 的实现是否一致。
+BC/PPO 保留为强基线之后的独立学习实验。
 
-范围先说清楚：“有界”只描述命令接口，不保证真实接触力有界；当前没有真机部署，仓库也没有
-ROS 2 / Franka hardware adapter。冻结 v0.5 的 48-case 首次揭盲结论仍然是 `FAIL`，原始归档
-没有重算、没有改名，见下面的[结果与决定](#结果与决定)。
+## 当前负载调度演示
 
-看项目效果，从[当前负载调度演示](#当前负载调度演示)和[招聘方走查](docs/recruiter_walkthrough.md)开始。
-跟着项目学习，从[教程目录](docs/tutorial/README.md)开始；已有机器人学基础可直接做
-[预算下降与完整回放练习](docs/tutorial/07_measured_budget_replay.md)。
+![Franka 擦拭动作与同步的误差、法向力、补偿预算](results/franka_measured_budget_demo/overview.png)
+
+[打开 12 秒同步视频](results/franka_measured_budget_demo/demo.mp4)。左侧按同一条仿真日志中的
+七轴关节角重放动作；右侧光标同步指向切向误差、未滤波接触力和补偿预算。约 8 s 的误差尖峰
+也保留在图中。这是单个组合误差 case 的演示，不能代替多工况回归。
+
+演示显式启用 6–8 N 负载调度，姿态增益为 1，速度误差时间系数为 0.05 s。
+默认入口仍用固定 6 N。项目目前只有仿真验证，没有 ROS 2 / Franka 真机接口；命令有界不保证
+真实接触力有界。
+
+看项目取舍：[招聘方走查](docs/recruiter_walkthrough.md)。
+跟着动手：[实验一：误差到关节力矩](docs/tutorial/labs/01_wrench_to_torque.md)、
+[实验二：预算下降与缺包](docs/tutorial/labs/02_budget_drop.md)，两份都附参考答案。
+需要从基础开始，按[教程目录](docs/tutorial/README.md)阅读。
+
+安装项目后，在仓库根目录运行一条命令即可重做演示，无需训练：
+
+```bash
+MUJOCO_GL=egl python -m tools.diagnostics.render_measured_budget_demo --output /tmp/compliant-control-measured-demo-01
+```
+
+需要 `ffmpeg`；输出目录须不存在。产物为 500 Hz 的 `trace.npz`、`overview.png` 和 `demo.mp4`。
+
+### 当前结果速览
+
+| 看什么 | 已验证的结果 | 范围 |
+|---|---|---|
+| 在线切向补偿 | 相对固定前馈，切向 RMSE 中位数 1.885 → 1.359 mm | 原公开 24-case、4.5 s 配对回归；[原实验](docs/online_compensation.md) |
+| 测量误差下的负载调度 | 27 次仿真；组合误差采用检查 7/8 通过 | 幅值低估 20% 时失败，默认仍为固定 6 N；[完整对照](docs/measured_budget_robustness.md) |
+| Python/C++ 数值移植 | 168,000 周期对齐，最大分量误差 < 3.56e-15 | 含重复演示；不证明真机实时性；[核验说明](docs/cpp_core.md) |
+
+BC/PPO 尚无跨种子一致优于解析前馈的证据，冻结 v0.5 的 48-case 首次揭盲仍为 `FAIL`。
+完整结果和各次实验的取舍在下方折叠表中。
 
 ## 安装后快速复核
 
@@ -40,6 +68,9 @@ smoke: PASS
 `smoke: PASS` 不会把冻结结论改成通过，也不等于重跑 48 cases。CI 使用同一个入口。
 
 ## 结果与决定
+
+<details>
+<summary>展开完整实验结果与历史取舍（保留失败项）</summary>
 
 下表列出主要结果，每行链接到对应协议与公开产物。三种实验的数据身份不同，不要互相
 覆盖：**原有 24-case、4.5 秒公开回归**用于在线补偿；**12 秒擦拭任务的 4 个开发测试 case**
@@ -75,6 +106,8 @@ actuator saturation 降到 0%，但完整轨迹峰值仍未过 gate。揭盲后�
 学习策略只在仿真公开开发域评价。命令限幅、4/4 通过和 100% 接触率都不是硬件安全、未知表面泛化
 或收敛证明。公开归档含全部候选与训练统计，但每轮只分发少量代表性完整轨迹。
 
+</details>
+
 ## 算法与源码入口
 
 | 想看什么 | 说明 | 实现 |
@@ -92,23 +125,6 @@ actuator saturation 降到 0%，但完整轨迹峰值仍未过 gate。揭盲后�
 模型到当前任务的版本顺序、假设与被否定的结论集中在[实验记录](docs/experiments/README.md)；
 模块边界的取舍见 [ADR](docs/adr/0001-cartesian-wrench-controller-seam.md)，数据流见
 [architecture](docs/architecture.md)。
-
-## 当前负载调度演示
-
-![Franka measured-load budget with synchronized diagnostics](results/franka_measured_budget_demo/overview.png)
-
-[打开 12 秒同步视频](results/franka_measured_budget_demo/demo.mp4)。左侧按同一条仿真日志中的
-七轴关节角重放动作；右侧光标同步指向切向误差、未滤波的仿真接触力和补偿预算。这里显式启用
-6–8 N 负载调度，姿态增益为 1，速度误差时间系数为 0.05 s。默认入口仍用固定 6 N。
-
-安装后在仓库根目录运行下面一条命令，只做一个组合误差 case，无需全量扫描或训练：
-
-```bash
-MUJOCO_GL=egl python -m tools.diagnostics.render_measured_budget_demo --output /tmp/compliant-control-measured-demo-01
-```
-
-需要 `ffmpeg`；输出目录须不存在。生成的 `trace.npz` 保存 500 Hz 记录，另有 `overview.png`
-和 `demo.mp4`。图中约 8 s 的误差尖峰也保留下来；这条演示不能代替多工况的配对回归。
 
 ## 标称演示
 
@@ -131,7 +147,7 @@ compliant-control-lab --output /tmp/compliant-control-planar-quick --gif
 |---:|---|---|
 | 1 | 安装后运行 `franka-smoke` | 代码能运行，且冻结 v0.5 归档仍是 `FAIL` |
 | 2 | 打开[招聘方走查](docs/recruiter_walkthrough.md) | 当前结果、对照是否公平、范围限制 |
-| 3 | 读[切向补偿](docs/tangential_tracking.md)与[在线更新](docs/online_compensation.md) | 从误差来源到固定前馈，再到有界参数更新 |
+| 3 | 做[误差到力矩](docs/tutorial/labs/01_wrench_to_torque.md)和[预算下降](docs/tutorial/labs/02_budget_drop.md)两份实验 | 先手算，再运行命令核对参考答案 |
 | 4 | 按在线补偿页复核阶段指标 | 不只看平均误差，也看换向、测量误差和失败项 |
 | 5 | 构建 [C++ 控制核心](docs/cpp_core.md)并跑 parity | 同一输入序列下状态与命令能否逐步对齐 |
 | 6 | 读[表面学习任务](docs/surface_learning.md)，audit 学习归档 | 49 维观测、16/4/4 分组，BC/PPO 是否超过强基线 |

@@ -22,12 +22,24 @@
 | 7 | 负载调度实战 | 预算下降、缺包和在线系数怎样逐拍核对？ | [07](07_measured_budget_replay.md) |
 
 如果刚接触机器人控制，按 01 -> 02 -> 04 的 2-DOF 部分学习；如果已有机器人学基础，
-可从 03 开始；如果目标是复现实验或准备面试，至少完整阅读 03、04 和 06。
+可从 03 开始；如果目标是复现实验或准备面试，至少完整阅读 03、04、06 和 07。
+
+## 带答案的数值实验
+
+这两份实验不启动 MuJoCo，也不生成结果文件。命令打印可核对的数值，实验页给出中间步骤。
+
+| 实验 | 运行命令 | 适合在什么时候做 |
+|---|---|---|
+| [从 wrench 算到 joint torque](labs/01_wrench_to_torque.md) | `python -m tools.tutorials.wrench_to_torque` | 读完 03，核对阻抗输出、单位和 `J.T @ wrench` |
+| [预算下降为什么不会立即裁到 6 N](labs/02_budget_drop.md) | `python -m tools.tutorials.budget_drop` | 读完 07，核对一次预算下降后的限速输出与系数更新 |
+
+先自己算，再展开实验页里的答案。第一条命令打印七个关节力矩；第二条先显示
+`full-state replay: PASS (6000 cycles)`，再列出预算下降事件。答案会把中间量对应到实现。
 
 ## 读完 03 之后的实战路线
 
-六章讲通用方法，下面用当前表面接触任务把公式、误差和实验连起来。经典控制是主线，BC 与
-PPO 是在强基线之后的延伸，不需要先训练网络才能学习这个项目。
+前四章讲通用方法，下面用当前表面接触任务把公式和实验连起来。先走下面的控制主线，
+BC 与 PPO 放在后面的研究延伸里。
 
 1. **先分清接触问题和跟踪问题。** 读[擦拭微分离诊断](../wiping_contact_diagnosis.md)，
    在新的输出目录比较同一 case 的原接触模型与平滑模型。检查接触率、分离持续时间、
@@ -59,23 +71,33 @@ PPO 是在强基线之后的延伸，不需要先训练网络才能学习这个�
    再读[6 N／8 N 预算对照](../compensation_budget.md)，检查更低的窗口 RMSE 是否等于
    所有瞬时误差都通过，并区分增加控制预算与改进算法。
 
-6. **先看 BC 的闭环，不只看训练损失。** 复核[BC 输入消融](../bc_closed_loop_transfer.md)
+6. **让预算跟着测得负载变化。** 读[测得负载预算](../load_budget.md)，再做
+   [预算下降实验](labs/02_budget_drop.md)。先核对目标预算和实际限速输出的区别，再看
+   [9 个测量与负载变化场景](../measured_budget_robustness.md)。8 项采用检查只通过 7 项，
+   幅值低估和停止／换向代价都应留在结论里。
+   对照[调度器](../../tools/load_aware_compensation.py)和
+   [完整状态验收](../../tools/measured_budget_validation.py)。
+
+7. **用同一输入检查 C++ 移植。** 读[C++ 控制核心](../cpp_core.md)，区分数值回放与真机
+   实时性。当前报告回放 9 场景 × 3 方法的 27 条轨迹和 1 条重复演示，共 168,000 拍；重复演示不算新的
+   物理工况。先做[wrench 到 torque 实验](labs/01_wrench_to_torque.md)，再看完整链路的状态
+   与命令对齐。
+
+## 学习方法延伸
+
+经典与在线控制主线不要求训练网络。想继续比较数据驱动方法，再按下面两步读。
+
+1. **先看 BC 的闭环，不只看训练损失。** 复核[BC 输入消融](../bc_closed_loop_transfer.md)
    的完整 49 维输入与屏蔽历史残差方案。解释教师标签、历史动作反馈和闭环分布变化，
    并核对是否真的超过解析前馈。
    对照[策略实现](../../src/compliant_control_lab/surface_policy.py)、
    [BC 测试](../../tests/test_surface_bc.py)与[实验归档](../../results/franka_surface_bc_transfer/)。
 
-7. **最后再判断 Residual PPO 是否值得加入。** 读[小规模 BC/PPO](../surface_learning_pilot.md)
+2. **再判断 Residual PPO 是否值得加入。** 读[小规模 BC/PPO](../surface_learning_pilot.md)
    和[隐藏层迁移](../bc_to_residual_rl.md)，写清名义控制器、残差动作、训练预算和选模规则。
    区分验证集选择的 checkpoint 与固定第 32 回合的对照，保留每个种子的结果。
    对照[PPO 测试](../../tests/test_surface_ppo.py)与
    [学习归档](../../results/franka_surface_learning_pilot/)。
-
-完成第 5 步后，做[负载调度与完整回放练习](07_measured_budget_replay.md)，区分目标预算与
-全局硬上限。先验证缺包和换向的状态更新，再进入学习方法的对照。
-
-完成第 4 步后，就可以并行学习 [C++ 控制核心](../cpp_core.md)，用相同记录输入核对状态与
-命令（[完整控制链测试](../../tests/test_cpp_surface_loop.py)）；不必等到学习算法完成。
 
 注意数据身份：在线补偿的原有 24-case 回归为 4.5 秒；学习任务是 12 秒，24 个公开 case 按物理
 任务组分为 16 train / 4 validation / 4 development test。三个训练种子重复同四个开发 case，
@@ -151,9 +173,12 @@ Surface wiping task
 ├── src/compliant_control_lab/surface_control.py
 ├── src/compliant_control_lab/surface_sensing.py
 ├── src/compliant_control_lab/tangential_compensation.py
+├── tools/load_aware_compensation.py
+├── tools/measured_budget_validation.py
 ├── src/compliant_control_lab/surface_env.py
 ├── src/compliant_control_lab/surface_dataset.py
-└── src/compliant_control_lab/surface_replay.py
+├── src/compliant_control_lab/surface_replay.py
+└── cpp/src/surface_control.cpp
 ```
 
 核心原则是：控制器只接收状态/目标并输出 Cartesian wrench；MuJoCo、未来的 ROS 2
@@ -169,6 +194,8 @@ Surface wiping task
 - 说明 `J^T w`、bias compensation 和 null-space posture torque 各自负责什么；
 - 区分 filtered-force tracking RMSE 与 full-trial raw peak force；
 - 说明在线补偿的更新时机、换向冻结条件和共同 6 N 上限，并指出它没有通过的阶段检查；
+- 用带答案实验算出 `J.T @ wrench`，并解释预算下降时目标上限与限速输出为何暂时不同；
+- 说明测得负载配置为何只通过 7/8 项鲁棒性检查，以及 C++ 的重复演示为何不算新工况；
 - 给出 Residual RL 的 nominal controller、残差动作、安全限制和零残差回退；
 - 说明为什么当前 BC 与 PPO 都没有取代解析摩擦前馈；
 - 改动 Python 公式后，同步修改 C++ 并让 parity test 继续通过。

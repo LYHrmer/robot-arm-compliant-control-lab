@@ -10,19 +10,20 @@
 
 1. 看[项目首页](../README.md)，了解 500 Hz Franka 擦拭任务、控制器范围和当前局限。
    面试官可直接走[五分钟验收路径](recruiter_walkthrough.md)。
-2. 安装后运行 `franka-smoke`，确认冻结档案和主仿真入口都能读取。
-3. 看[系统架构](architecture.md)的五节点概览，再按需展开实时控制或实验冻结流程。
-4. 打开[v0.5 first-reveal 摘要](../results/franka_safety_blind/summary.md)，确认预注册结论是
-   `FAIL`，再读[为什么暂不部署](residual_rl_decision.md)。
-5. 需要核实某项说法时，到[验证矩阵](verification_matrix.md)找源码、测试和实验产物。
+2. 沿[当前表面控制主线](#当前表面控制主线)读到测得负载预算和 C++ 回放。
+3. 快速检查可在安装后运行 `franka-smoke`；需要动手学习时，再做
+   [两份带答案实验](tutorial/README.md#带答案的数值实验)。
+   旧 v0.5 的实验结论仍是 `FAIL`，可从[为什么暂不部署](residual_rl_decision.md)回看。
+4. 看[系统架构](architecture.md)的五节点概览。需要核实某项说法时，到
+   [验证矩阵](verification_matrix.md)找源码、测试和实验产物。
 
 这条路线应能回答四件事：项目解决什么问题，算法加在什么位置，结果是否通过门槛，哪些
 能力还没有做到真机。
 
 ## 系统学习
 
-入口是[教程目录](tutorial/README.md)。六章从 2-DOF 解析模型走到 Franka、实验方法和
-Residual RL，每章都给出公式、源码入口和练习。
+入口是[教程目录](tutorial/README.md)。七章从 2-DOF 解析模型走到 Franka、实验方法、
+Residual RL 和测得负载调度。两份短实验给出完整数值与答案，运行时只向终端输出。
 
 | 顺序 | 教程 | 读完以后应能做什么 |
 |---:|---|---|
@@ -32,6 +33,22 @@ Residual RL，每章都给出公式、源码入口和练习。
 | 4 | [实验与验证](tutorial/04_experiments_and_validation.md) | 区分稳态指标、完整轨迹安全指标和数据身份 |
 | 5 | [Residual RL](tutorial/05_residual_rl.md) | 说明 observation、动作、安全包络和 ARS 训练 |
 | 6 | [练习与面试](tutorial/06_exercises_and_interview.md) | 独立排错，并用证据讲清项目取舍 |
+| 7 | [负载调度与回放](tutorial/07_measured_budget_replay.md) | 逐拍核对预算下降、缺包和在线系数 |
+
+### 当前表面控制主线
+
+按下面的顺序读。这里先放解释页，原始报告留给需要核数的人。
+
+| 顺序 | 当前表面控制主线 | 接着看 |
+|---:|---|---|
+| 1 | 表面建模与测量 | [坐标和 F/T](surface_frame_and_sensing.md)、[接触模型](wiping_contact_diagnosis.md) |
+| 2 | 经典切向补偿 | [积分与摩擦前馈](tangential_tracking.md) |
+| 3 | 在线等效负载补偿 | [更新时序与阶段失败](online_compensation.md) |
+| 4 | 按测得负载开放 6–8 N | [完整回归](load_budget.md)、[测量误差边界](measured_budget_robustness.md) |
+| 5 | Python/C++ 同输入回放 | [C++ 控制核心](cpp_core.md) |
+
+BC 与 PPO 从[表面学习任务](surface_learning.md)继续。它们是经典基线之后的研究延伸；已有
+失败和没有超过解析前馈的结果均保留在相应实验页。
 
 教程读到某个公式仍不清楚时，再查对应参考页：
 
@@ -63,6 +80,15 @@ Residual RL，每章都给出公式、源码入口和练习。
 
 ## 复现实验
 
+完成安装后，先做不写文件的数值实验，确认环境和符号约定：
+
+```bash
+python -m tools.tutorials.wrench_to_torque
+python -m tools.tutorials.budget_drop
+```
+
+题目、逐步答案和输出解释见[带答案的数值实验](tutorial/README.md#带答案的数值实验)。
+
 只想核对已发布的预算与速度误差结论，可运行 `python -m tools.audit_velocity_evidence`。
 它复核最近四项实验，不增加仿真；覆盖范围和输出解释见[复核说明](velocity_evidence_audit.md)。
 
@@ -91,7 +117,8 @@ Residual RL，每章都给出公式、源码入口和练习。
 | 四对内部观测：三个表面方向，另加最高速度代价配置 | [实际输入、更新公式与限幅时序](onset_observer.md) | [8 次精确复现、18,000 周期公式校验；不改变原判定](../results/franka_onset_observer/) |
 | 速度误差时间系数：只比较 0.05 s／0.10 s，case 23 的两档增益和预算 | [速度收益与位置追赶代价](velocity_time.md) | [4 次新仿真＋4 条旧基线，高增益仍超速度门槛，不扩大回归](../results/franka_velocity_time/) |
 | 测得负载调度：42 条新增＋18 条复用候选 | [完整回归与推广决定](load_budget.md) | [public24 48/48、动态 12/12、增益交互 6/6 通过；仅推荐已覆盖仿真工况](../results/franka_measured_budget_full/) |
-| C++ 完整数值控制链回放 | [输入、状态与硬件边界](cpp_core.md) | [四份完整轨迹核验](../results/franka_online_cpp_replay/) |
+| 测量误差与负载下降：9 场景 × 3 方法 | [保留 7/8 与负载下降代价](measured_budget_robustness.md) | [27 次运行、162,000 拍完整状态回放](../results/franka_measured_budget_robustness/) |
+| C++ 完整数值控制链回放 | [输入、状态与硬件边界](cpp_core.md) | [27 条鲁棒性轨迹＋1 条重复演示，共 168,000 拍](../results/franka_measured_budget_cpp_replay/) |
 | 表面任务学习前准备：24 × 3、12 次压力测试与同频教师数据 | [训练接口、标签与复现](surface_learning.md) | [数值索引](../results/franka_surface_learning_preparation/)、[三回合示例](../results/franka_surface_learning_examples/)、[分层修正记录](../results/franka_surface_learning_partition/) |
 | 小规模 BC 与 bounded Residual PPO：各三个训练种子 | [损失、更新与选择规则](surface_learning_pilot.md) | [完整种子对照](../results/franka_surface_learning_pilot/) |
 | BC 输入消融：同网络、预算和三个种子 | [输入先验与导出掩码](bc_closed_loop_transfer.md) | [完整对照与代表轨迹](../results/franka_surface_bc_transfer/) |

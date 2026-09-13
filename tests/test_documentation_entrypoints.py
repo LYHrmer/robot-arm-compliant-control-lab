@@ -1,4 +1,4 @@
-"""Safety and local-anchor checks for the three introductory documentation pages."""
+"""Safety, navigation and local-anchor checks for introductory documentation."""
 
 from __future__ import annotations
 
@@ -11,6 +11,8 @@ from urllib.parse import unquote, urlsplit
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 ENTRY_PAGES = (
     REPOSITORY_ROOT / "README.md",
+    REPOSITORY_ROOT / "docs/README.md",
+    REPOSITORY_ROOT / "docs/experiments/README.md",
     REPOSITORY_ROOT / "docs/recruiter_walkthrough.md",
     REPOSITORY_ROOT / "docs/tutorial/README.md",
 )
@@ -212,3 +214,43 @@ def test_entry_page_generators_write_only_to_scratch_paths() -> None:
                     violations.append(f"{source.relative_to(REPOSITORY_ROOT)}:{line} lacks --output")
 
     assert not violations, "unsafe introductory generator command(s):\n" + "\n".join(violations)
+
+
+def test_homepage_shows_current_demo_before_setup_and_history() -> None:
+    text = (REPOSITORY_ROOT / "README.md").read_text(encoding="utf-8")
+    demo = text.index("results/franka_measured_budget_demo/overview.png")
+    assert demo < text.index("## 安装后快速复核") < text.index("## 结果与决定")
+    assert demo < text.index("## 算法与源码入口")
+    assert text.count("## 当前负载调度演示") == 1
+    history = text[text.index("## 结果与决定"):text.index("## 算法与源码入口")]
+    assert "<details>" in history and "</details>" in history
+    assert "results/franka_safety_blind/summary.md" in history
+    assert "`FAIL`" in text[:text.index("## 结果与决定")]
+
+
+def test_worked_labs_are_linked_from_homepage_and_learning_entrypoints() -> None:
+    lab_paths = {
+        REPOSITORY_ROOT / "docs/tutorial/labs/01_wrench_to_torque.md",
+        REPOSITORY_ROOT / "docs/tutorial/labs/02_budget_drop.md",
+    }
+    for relative_path in ("README.md", "docs/tutorial/README.md", "docs/recruiter_walkthrough.md"):
+        source = REPOSITORY_ROOT / relative_path
+        destinations = {
+            resolved[0]
+            for _, raw in _raw_link_targets(source.read_text(encoding="utf-8"))
+            if (resolved := _link_destination(source, raw)) is not None
+        }
+        assert lab_paths <= destinations, relative_path
+    for path in lab_paths:
+        text = path.read_text(encoding="utf-8")
+        assert "```bash" in text
+        assert "<details>" in text and "参考答案" in text
+
+
+def test_navigation_includes_current_replay_and_chapter_seven() -> None:
+    index = (REPOSITORY_ROOT / "docs/README.md").read_text(encoding="utf-8")
+    tutorial = (REPOSITORY_ROOT / "docs/tutorial/README.md").read_text(encoding="utf-8")
+    assert "07_measured_budget_replay.md" in index
+    assert "07_measured_budget_replay.md" in tutorial
+    assert "franka_measured_budget_cpp_replay/" in index
+    assert "BC" in tutorial and "PPO" in tutorial and "FAIL" in tutorial

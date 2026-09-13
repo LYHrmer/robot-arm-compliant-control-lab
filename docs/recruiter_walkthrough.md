@@ -21,7 +21,8 @@ Franka Panda 在 MuJoCo 中沿表面擦拭，同时维持 12 N 法向接触力�
 增益检查 48/48 通过，动态配对 12/12、增益交互 6/6 通过；组合误差后段切向 RMSE 从
 3.255–3.333 mm 降到 1.465–1.581 mm。普通工况预算始终保持 6 N，与旧 6 N 的原有轨迹字段
 完全相同，所以这里验证的是回退兼容性，不能改写固定 8 N 原先的 23/48。
-证据为[42 条新增＋18 条复用候选](../results/franka_measured_budget_full/comparison.json)。
+先读[完整回归说明](load_budget.md#完整回归与推广决定)；逐项数字保存在
+[42 条新增＋18 条复用候选](../results/franka_measured_budget_full/comparison.json)中。
 
 [当前演示](../results/franka_measured_budget_demo/demo.mp4)只选一个 12 秒组合误差 case，
 动作与误差、力和预算曲线同步。它增加了辅助切向力测量输入，默认控制器仍用固定 6 N。
@@ -31,28 +32,22 @@ Franka Panda 在 MuJoCo 中沿表面擦拭，同时维持 12 N 法向接触力�
 组合误差采用检查 7/8 通过，辅助力幅值低估 20% 时未达门槛；下降负载后的换向也有位置代价。
 这些结果保留在同一份公开归档里，项目不把它描述成对传感器误差普遍稳健的控制器。
 
-[在线负载补偿](online_compensation.md)按测量到的运动误差在线调整等效切向负载系数，保留固定
-前馈同样的 6 N 补偿上限。原有 24-case、4.5 秒回归中，切向 RMSE 中位数从 1.885 mm 降到
-**1.359 mm**，24 个配对 case 全部改善（[96 次运行](../results/franka_online_compensation_regression/)）。
+<details>
+<summary>展开：经典补偿怎样走到测得负载预算</summary>
 
-代价写在同一页：另一组 12 秒、80 次误差对照里，在线方法降低了全部 20 个配对运行的全程切向
-误差，但 42 条阶段检查只通过 40 条，两条失败都是反向加速时的姿态误差增量超过 0.1°。
-[逐阶段结果](../results/franka_online_compensation_errors/phase_metrics.csv)没有删掉这两条。
-把全部方法统一改成 2 倍旋转刚度、 $\sqrt{2}$ 倍旋转阻尼后，在线方法阶段通过
-**42/42**（[增益对照](rotation_gain_comparison.md)），[原 24-case 的 192 次回归](rotation_gain_public24.md)
-也显示姿态 RMSE 中位数由 0.464° 降到 0.248°；但切向 RMSE 中位数从 1.359 升到 1.409 mm，切向
-速度误差在全部 case 中增加，所以这只是姿态优先任务的可选预设，默认配置不替换。
+[经典切向补偿](tangential_tracking.md)先建立积分与摩擦前馈基线。[在线负载补偿](online_compensation.md)
+再按运动误差调整等效负载系数；原有 24-case 回归的切向 RMSE 中位数由 1.885 mm 降到
+1.359 mm。另一组 12 秒实验保留了两条反向加速姿态失败，只通过 40/42 阶段检查。
 
-剩余误差也有进一步诊断：[跨方向回归](cross_surface_regression.md)显示组合误差后段仍有约
-3.25–3.33 mm 切向 RMSE，[单因素诊断](combined_residual_diagnosis.md)进一步指出该段
-95.6%–98.0% 的采样触发切向补偿幅值限制，主要表现为沿轨迹滞后，属于输入反事实分析，不是
-算法改进。后续[6 N／8 N 预算对照](compensation_budget.md)在六组相同输入配对中将后段
-误差从 3.26–4.20 mm 降到 1.22–1.47 mm，姿态和控力代价均通过预定检查。它增加了补偿
-预算。后续[跨工况和两档姿态增益检查](budget_transfer.md)中，动态预算筛查均通过 6/6，
-但原 public24 仅 23/48 兼容，默认上限仍为 6 N。
-[八次内部观测复现](onset_observer.md)进一步检查了速度代价：评估开头的位置滞后驱动系数增长，
-速度项的窗口均值则起抵消作用。[时间系数加倍](velocity_time.md)的四次新对照降低了速度代价，
-但 8 N 追赶略慢，高增益仍未过原门槛，默认参数保持不变。
+[统一提高旋转阻抗](rotation_gain_comparison.md)后，在线阶段变为 42/42，但
+[原 24-case 回归](rotation_gain_public24.md)的切向 RMSE 中位数由 1.359 mm 升到 1.409 mm，
+速度误差也全部增加。[组合误差诊断](combined_residual_diagnosis.md)随后定位到
+补偿幅值限制；固定 8 N 虽改善高摩擦段，[跨工况检查](budget_transfer.md)仍只有 23/48，整体
+`FAIL`。内部观测与[时间系数对照](velocity_time.md)没有改变这个判定。测得负载预算沿用这些
+失败约束，普通工况回到 6 N，高负载时才开放额外预算。完整顺序保留在
+[实验总账](experiments/README.md)。
+
+</details>
 
 ### 问题二：学习方法有没有超过解析基线
 
@@ -71,10 +66,8 @@ Franka Panda 在 MuJoCo 中沿表面擦拭，同时维持 12 N 法向接触力�
 仍未超过解析前馈；原始表格与选择记录在 [BC 归档](../results/franka_surface_bc_transfer/)和
 [BC/PPO 首轮归档](../results/franka_surface_learning_pilot/)。
 
-还有一组容易混淆的 PPO 结果：它固定比较第 32 回合的 fresh PPO 与 BC 隐藏层初始化，三个验证
-配对差值为 `+0.039、+0.063、−0.092 mm`，只有一个种子改善，冻结规则选择 `fresh_ep32`。这组
-比较不包含首轮试验中 seed 47 的第 16 回合选模成绩，见[迁移对照](bc_to_residual_rl.md)与
-[迁移归档](../results/franka_surface_ppo_transfer/)。
+BC 隐藏层初始化 PPO 的结果也没有三个种子一致改善，冻结规则仍选择 `fresh_ep32`。详情见
+[迁移对照](bc_to_residual_rl.md)；完整检查点与原始评估仍可从[迁移归档](../results/franka_surface_ppo_transfer/)读取。
 
 顺着公式找代码：
 
@@ -103,6 +96,17 @@ evaluation，也不回写冻结结论。同样保留的还有在线补偿那两�
 实验中的两条阶段失败，以及组合误差后段约 3.3 mm 的切向残差。
 
 ## 3. 跑最短检查（约 1 分钟）
+
+完成首页安装后，可先跑两条不生成结果文件的数值实验，分别检查 wrench 到 torque 的映射和预算下降时的限速输出：
+
+```bash
+python -m tools.tutorials.wrench_to_torque
+python -m tools.tutorials.budget_drop
+```
+
+逐步答案见[实验一：误差到关节力矩](tutorial/labs/01_wrench_to_torque.md)和
+[实验二：预算下降与缺包](tutorial/labs/02_budget_drop.md)；前置章节见
+[教程实验目录](tutorial/README.md#带答案的数值实验)。
 
 按[首页安装](../README.md#安装后快速复核)装好后运行 `franka-smoke`，预期同时出现：
 
@@ -136,14 +140,17 @@ python -m tools.audit_velocity_evidence
 
 ```bash
 python -m tools.measured_budget_study audit results/franka_measured_budget_full
+python -m tools.measured_budget_robustness audit results/franka_measured_budget_robustness
 ```
 
 原归档是精简轨迹，完整的测得位置/速度系数回放仍标记为未检查。新增完整轨迹的验收与
-缺包测试见[回放练习](tutorial/07_measured_budget_replay.md)，不能把新测试算作旧归档的额外证据。
+缺包测试见[回放练习](tutorial/07_measured_budget_replay.md)。27 次鲁棒性运行是后一份独立归档，
+不会把旧精简轨迹改写成完整证据。
 
-四项都应返回 `audit_status: PASS`，但预算转移仍为实验 `FAIL`，时间系数对照仍为
-`do_not_expand`。命令不会新跑仿真，运行时间取决于读取和重算归档的速度；不计入上面的
-最短冒烟检查。字段含义、覆盖范围和超时设置见[复核说明](velocity_evidence_audit.md)。
+`audit_velocity_evidence` 汇总的四项都应返回 `audit_status: PASS`，但预算转移仍为实验
+`FAIL`，时间系数对照仍为 `do_not_expand`。命令不会新跑仿真，运行时间取决于读取和重算
+归档的速度；不计入上面的最短冒烟检查。字段含义、覆盖范围和超时设置见
+[复核说明](velocity_evidence_audit.md)。
 
 想直接看动作和指标，可打开[12 秒擦拭视频](../results/franka_tangential_demo/demo.mp4)；它来自
 保存的仿真日志，不是真机录像。

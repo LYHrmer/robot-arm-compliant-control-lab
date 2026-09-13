@@ -2,6 +2,11 @@
 
 这里索引已经发布的实验。叙述文档中的数字是阅读摘要；最终以链接的 CSV 和冻结产物为准。
 
+想了解当前实现，先读[测得负载预算](../load_budget.md)，再看
+[测量误差与负载下降](../measured_budget_robustness.md)。C++ 移植单独见[控制链说明](../cpp_core.md)。
+教程里的[两份带答案实验](../tutorial/README.md#带答案的数值实验)适合先核对公式。BC/PPO
+列在后面作为研究延伸；v0.4、v0.5 的失败记录仍按原数据身份保留。
+
 | 版本 | 数据身份 | 结果 | 决策 |
 |---|---|---|---|
 | Initial | 命名标称场景 | Hybrid force RMSE 0.95 N，saturation 0% | 增加随机参数失配测试 |
@@ -22,22 +27,15 @@
 | Compensation budget screen v1 | 3 yaw × 组合／无偏置 × 6 N／8 N，固定 seed 11、增益 1 | 六条 6 N 轨迹精确复现；8 N 后段切向 RMSE 1.22–1.47 mm，六组工程筛选全部通过 | [限定工况的实验配置](../compensation_budget.md)，默认仍为 6 N；不算同预算算法提升，不更新旧通过数 |
 | Budget transfer v1 | 原 public24 的 12 个物理配置 × 2 seeds × 2 增益，加 6 个动态配置 × 2 增益；每组配对 6 N／8 N | 两档增益的预算筛查均为 6/6，增益兼容 12/12；public24 兼容 23/48，25 组速度代价超限，整体 `FAIL` | [协议与证据范围](../budget_transfer.md)、[120 行结果](../../results/franka_budget_transfer/)；默认仍为 6 N、增益 1，8 N 只用于高摩擦实验 |
 | Public24 velocity cost v1 | 复用 48 对、96 条已有轨迹；六个不重叠窗口，新增仿真 0 次 | 1.5–2.0 s 占平均净速度 MSE 增量的 84.89%，最后两个窗口的速度 MSE 在全部配对中均降低；保留原 25 组 FAIL | [分解公式与复现](../velocity_cost.md)、[288 行窗口结果](../../results/franka_velocity_cost/windows.csv)；不据时序相关归因内部机制 |
+| Measured-load budget v1 | 42 条新增＋18 条复用候选；公开开发工况 | public24 48/48、动态 12/12、增益交互 6/6 通过 | [算法、完整回归与采用范围](../load_budget.md)；作为显式仿真预设，默认仍为固定 6 N |
+| Measurement robustness v1 | 9 场景 × 3 方法，27 次仿真、162,000 拍完整状态 | 原采用检查 7/8；辅助力幅值 ×0.8 失败，负载下降后换向有代价 | [误差注入、失败与复核](../measured_budget_robustness.md)；不扩大采用范围 |
+| Measured-load C++ replay v1 | 上述 27 条轨迹＋1 条重复演示，168,000 拍 | Python/C++ 状态和命令逐拍一致 | [控制链与边界](../cpp_core.md)；重复演示不算独立场景，不是真机实时性证据 |
 
 ## 版本锚点与证据
 
-最新的[测量鲁棒性对照](../measured_budget_robustness.md)固定 9 个场景、3 种预算方法，
-新增 27 次仿真和 162,000 拍完整输入。8 项组合误差采用检查通过 7 项；辅助力幅值低估 20%
-时失败，负载下降后换向的跟踪也有代价，故不扩大采用范围。
-这轮补齐在线系数和 readiness 的完整重算；旧精简归档缺失的状态没有事后补造。
-[C++ 独立报告](../../results/franka_measured_budget_cpp_replay/report.json)回放这 27 次运行及
-一份重复演示，共 168,000 拍；不新增独立场景或物理仿真样本。
-
-[测得负载预算调度](../load_budget.md)已补齐剩余 42 条候选，复用
-[初筛归档](../../results/franka_load_budget_pilot/comparison.json)中的 18 条候选，共 60 条。
-[完整结果](../../results/franka_measured_budget_full/comparison.json)为 public24 两档增益 48/48、
-动态 12/12、增益交互 6/6 通过。普通工况的验收及追赶统计与旧 6 N 相同；
-无偏置动态的 8–12 s 切向 RMSE 从 4.123–4.202 降到 1.566–1.680 mm。
-推荐用于这套已覆盖的公开仿真工况，全局默认不变。新增了切向力测量输入，不能算成等输入单参数对比。
+上表的三项当前证据按时间排序，并分别注明了适用边界。旧精简轨迹缺少的测量状态
+没有事后补造；完整状态证据来自后续 9 场景 × 3 方法的 27 次仿真。下面保留早期版本锚点，便于追溯当时的
+协议和失败结论。
 
 - **Initial**：revision `f5755e5`；[metrics](../../results/franka/metrics.md)。
 - **v0.3**：revision `b126ef3`；[summary](../../results/franka_stress/summary.md)、
