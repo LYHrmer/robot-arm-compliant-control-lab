@@ -164,7 +164,8 @@ def test_nonfinite_full_trace_value_is_rejected(demo_arrays):
         verifier._validate_measured_trace(changed(demo_arrays, "raw_load_packet_force", force))
 
 
-def test_python_full_chain_replays_recorded_prefix_exactly(demo_arrays):
+@pytest.mark.parametrize("roundoff", [False, True], ids=["recorded", "one_ulp"])
+def test_python_full_chain_replays_recorded_prefix_within_tolerance(demo_arrays, roundoff):
     count = 350
     arrays = {
         name: value[:count].copy() if name not in verifier.STATIC_TRACE_FIELDS else value.copy()
@@ -172,9 +173,18 @@ def test_python_full_chain_replays_recorded_prefix_exactly(demo_arrays):
     }
     actual_count, metadata = verifier._validate_measured_trace(arrays)
     replay = verifier._python_replay(arrays, actual_count, metadata)
+    if roundoff:
+        for name in ("commanded_wrench", "commanded_torque"):
+            replay[name] = replay[name].copy()
+            value, expected = replay[name][0, 0], arrays[name][0, 0]
+            direction = np.inf if value >= expected else -np.inf
+            replay[name][0, 0] = np.nextafter(value, direction)
     comparison = verifier._compare(replay, arrays)
     assert comparison["matches"] is True
-    assert max(comparison["max_abs_errors"].values()) == 0.0
+    if roundoff:
+        assert comparison["max_abs_errors"]["commanded_wrench"] > 0.0
+        assert comparison["max_abs_errors"]["commanded_torque"] > 0.0
+    assert all(error <= verifier.TOLERANCE for error in comparison["max_abs_errors"].values())
     assert not any(comparison["exact_mismatch_counts"].values())
 
 
