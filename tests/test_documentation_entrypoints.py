@@ -232,6 +232,7 @@ def test_worked_labs_are_linked_from_homepage_and_learning_entrypoints() -> None
     lab_paths = {
         REPOSITORY_ROOT / "docs/tutorial/labs/01_wrench_to_torque.md",
         REPOSITORY_ROOT / "docs/tutorial/labs/02_budget_drop.md",
+        REPOSITORY_ROOT / "docs/tutorial/labs/03_reversal_recovery.md",
     }
     for relative_path in ("README.md", "docs/tutorial/README.md", "docs/recruiter_walkthrough.md"):
         source = REPOSITORY_ROOT / relative_path

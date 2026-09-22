@@ -20,7 +20,8 @@ BC/PPO 保留为强基线之后的独立学习实验。
 
 看项目取舍：[招聘方走查](docs/recruiter_walkthrough.md)。
 跟着动手：[实验一：误差到关节力矩](docs/tutorial/labs/01_wrench_to_torque.md)、
-[实验二：预算下降与缺包](docs/tutorial/labs/02_budget_drop.md)，两份都附参考答案。
+[实验二：预算下降与缺包](docs/tutorial/labs/02_budget_drop.md)、
+[实验三：换向恢复故障分析](docs/tutorial/labs/03_reversal_recovery.md)，均附参考答案。
 需要从基础开始，按[教程目录](docs/tutorial/README.md)阅读。
 
 安装项目后，在仓库根目录运行一条命令即可重做演示，无需训练：
@@ -112,6 +113,7 @@ smoke: PASS
 | [补偿预算初筛](docs/compensation_budget.md)，12 次运行；[120 行转移检查](docs/budget_transfer.md) | 原高摩擦 RMSE **3.26–4.20 → 1.22–1.47 mm**；后续两档增益的预算筛查均为 6/6，但 public24 兼容仅 **23/48**，整体 `FAIL`。默认保持 6 N、增益 1。 |
 | [测得负载调度预算](docs/load_budget.md)，42 条新增＋18 条复用候选 | 原 public24 两档增益 **48/48**、动态 **12/12**、增益交互 **6/6** 通过；普通工况验收及追赶统计与旧 6 N 相同。组合误差后段 RMSE **1.47–1.58 mm**。新增切向力测量输入，作为已覆盖工况的可选仿真预设，不改全局默认。 |
 | [测量鲁棒性：27 次配对仿真](docs/measured_budget_robustness.md) | 完整回放 **162,000 拍**；组合误差采用检查 **7/8**。辅助力幅值低估 20% 时失败；下降负载后的换向跟踪也有代价。不扩大采用范围。 |
+| [换向恢复：停顿系数回退](docs/reversal_recovery.md) | 新增 4 对、8 次仿真。降载场景恢复初段误差降低约 40.7%；高负载反向加速仍有小幅位置和速度代价，4 对均在预定门槛内。仅实验候选，未替换默认值或完成 C++ 移植。 |
 | [BC 输入消融](docs/bc_closed_loop_transfer.md)与[bounded PPO](docs/surface_learning_pilot.md)：12 s、4 个开发 case | 解析前馈均值 **2.403 mm**；三个种子的 BC 为 2.781–2.825 mm，PPO 为 2.381–2.470 mm，均无跨种子一致优势。 |
 | [冻结 v0.5：48 case](results/franka_safety_blind/summary.md) | 五个 residual 策略通过 **22–26/48**，未达到各 44/48；主结果 **FAIL**，保留[全部 384 行数据](results/franka_safety_blind/comparison.csv)，不部署策略。 |
 | [C++ 完整控制链回放](results/franka_online_cpp_replay/report.json) | 4 份轨迹、24,000 周期，最大 wrench 分量误差 < `4.45e-15`；[新增益另 4 份](results/franka_rotation_gain_cpp_replay/report.json)也通过。这是数值移植证据，不是真机实时性保证。 |
@@ -175,7 +177,7 @@ compliant-control-lab --output /tmp/compliant-control-planar-quick --gif
 |---:|---|---|
 | 1 | 安装后运行 `franka-smoke` | 代码能运行，且冻结 v0.5 归档仍是 `FAIL` |
 | 2 | 打开[招聘方走查](docs/recruiter_walkthrough.md) | 当前结果、对照是否公平、范围限制 |
-| 3 | 做[误差到力矩](docs/tutorial/labs/01_wrench_to_torque.md)和[预算下降](docs/tutorial/labs/02_budget_drop.md)两份实验 | 先手算，再运行命令核对参考答案 |
+| 3 | 做[误差到力矩](docs/tutorial/labs/01_wrench_to_torque.md)、[预算下降](docs/tutorial/labs/02_budget_drop.md)和[换向排错](docs/tutorial/labs/03_reversal_recovery.md)实验 | 先手算与提出假设，再运行命令核对参考答案 |
 | 4 | 按在线补偿页复核阶段指标 | 不只看平均误差，也看换向、测量误差和失败项 |
 | 5 | 构建 [C++ 控制核心](docs/cpp_core.md)并跑 parity | 同一输入序列下状态与命令能否逐步对齐 |
 | 6 | 读[表面学习任务](docs/surface_learning.md)，audit 学习归档 | 49 维观测、16/4/4 分组，BC/PPO 是否超过强基线 |

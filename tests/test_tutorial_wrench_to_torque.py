@@ -51,8 +51,13 @@ def test_lab_accepts_only_the_two_documented_inputs(x_error_mm):
 def test_cli_prints_answer_without_creating_output_files(tmp_path, args, expected_torque):
     root = Path(__file__).resolve().parents[1]
     env = dict(os.environ)
+    inherited_paths = [
+        str(Path(entry).resolve())
+        for entry in env.get("PYTHONPATH", "").split(os.pathsep) if entry
+    ]
+    # Keep explicit caller paths, but never inject a legacy dependency directory.
     env["PYTHONPATH"] = os.pathsep.join(
-        (str(root), str(root / "src"), str(root / ".local-deps"), env.get("PYTHONPATH", ""))
+        (str(root), str(root / "src"), *inherited_paths)
     )
     env["PYTHONDONTWRITEBYTECODE"] = "1"
     result = subprocess.run(

@@ -97,15 +97,17 @@ evaluation，也不回写冻结结论。同样保留的还有在线补偿那两�
 
 ## 3. 跑最短检查（约 1 分钟）
 
-完成首页安装后，可先跑两条不生成结果文件的数值实验，分别检查 wrench 到 torque 的映射和预算下降时的限速输出：
+完成首页安装后，可先跑不生成结果文件的数值实验，核对力矩映射、预算下降与换向故障：
 
 ```bash
 python -m tools.tutorials.wrench_to_torque
 python -m tools.tutorials.budget_drop
+python -m tools.tutorials.reversal_recovery --events
 ```
 
-逐步答案见[实验一：误差到关节力矩](tutorial/labs/01_wrench_to_torque.md)和
-[实验二：预算下降与缺包](tutorial/labs/02_budget_drop.md)；前置章节见
+逐步答案见[实验一：误差到关节力矩](tutorial/labs/01_wrench_to_torque.md)、
+[实验二：预算下降与缺包](tutorial/labs/02_budget_drop.md)和
+[实验三：换向恢复排错](tutorial/labs/03_reversal_recovery.md)；前置章节见
 [教程实验目录](tutorial/README.md#带答案的数值实验)。
 
 按[首页安装](../README.md#安装后快速复核)装好后运行 `franka-smoke`，预期同时出现：

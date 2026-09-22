@@ -26,15 +26,17 @@
 
 ## 带答案的数值实验
 
-这两份实验不启动 MuJoCo，也不生成结果文件。命令打印可核对的数值，实验页给出中间步骤。
+这三份实验不启动 MuJoCo，也不生成结果文件。命令打印可核对的数值，实验页给出中间步骤。
 
 | 实验 | 运行命令 | 适合在什么时候做 |
 |---|---|---|
 | [从 wrench 算到 joint torque](labs/01_wrench_to_torque.md) | `python -m tools.tutorials.wrench_to_torque` | 读完 03，核对阻抗输出、单位和 `J.T @ wrench` |
 | [预算下降为什么不会立即裁到 6 N](labs/02_budget_drop.md) | `python -m tools.tutorials.budget_drop` | 读完 07，核对一次预算下降后的限速输出与系数更新 |
+| [最后两秒正常，换向恢复为何仍差](labs/03_reversal_recovery.md) | `python -m tools.tutorials.reversal_recovery --events` | 读完 04 和 07，用分段误差与内部状态排除错误假设 |
 
 先自己算，再展开实验页里的答案。第一条命令打印七个关节力矩；第二条先显示
 `full-state replay: PASS (6000 cycles)`，再列出预算下降事件。答案会把中间量对应到实现。
+第三条读取三份旧轨迹，核对 18,000 拍辅助状态，区分预算、系数与实际恢复效果。
 
 ## 读完 03 之后的实战路线
 
@@ -77,6 +79,8 @@ BC 与 PPO 放在后面的研究延伸里。
    幅值低估和停止／换向代价都应留在结论里。
    对照[调度器](../../tools/load_aware_compensation.py)和
    [完整状态验收](../../tools/measured_budget_validation.py)。
+   用[换向故障实验](labs/03_reversal_recovery.md)检查“预算没有下降”是否符合原始数据，
+   再看[单变量候选与高负载反例](../reversal_recovery.md)。
 
 7. **用同一输入检查 C++ 移植。** 读[C++ 控制核心](../cpp_core.md)，区分数值回放与真机
    实时性。当前报告回放 9 场景 × 3 方法的 27 条轨迹和 1 条重复演示，共 168,000 拍；重复演示不算新的

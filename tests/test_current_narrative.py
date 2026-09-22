@@ -87,7 +87,7 @@ def test_cpp_replay_counts_and_bound_match_current_report() -> None:
 
 def test_exercises_label_scope_and_retain_measured_failure() -> None:
     text = (ROOT / "docs/tutorial/06_exercises_and_interview.md").read_text(encoding="utf-8")
-    for label in ("已有实现，可复现", "新增练习", "尚未实现的扩展", "下一轮算法实验"):
+    for label in ("已有实现，可复现", "新增练习", "尚未实现的扩展", "已有小规模实验，可复现"):
         assert label in text
     assert "labs/01_wrench_to_torque.md" in text and "labs/02_budget_drop.md" in text
     assert "高负载下短暂停顿后恢复" in text

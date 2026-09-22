@@ -4,7 +4,7 @@
 
 想了解当前实现，先读[测得负载预算](../load_budget.md)，再看
 [测量误差与负载下降](../measured_budget_robustness.md)。C++ 移植单独见[控制链说明](../cpp_core.md)。
-教程里的[两份带答案实验](../tutorial/README.md#带答案的数值实验)适合先核对公式。BC/PPO
+教程里的[带答案实验](../tutorial/README.md#带答案的数值实验)适合先核对公式和故障假设。BC/PPO
 列在后面作为研究延伸；v0.4、v0.5 的失败记录仍按原数据身份保留。
 
 | 版本 | 数据身份 | 结果 | 决策 |
@@ -29,6 +29,7 @@
 | Public24 velocity cost v1 | 复用 48 对、96 条已有轨迹；六个不重叠窗口，新增仿真 0 次 | 1.5–2.0 s 占平均净速度 MSE 增量的 84.89%，最后两个窗口的速度 MSE 在全部配对中均降低；保留原 25 组 FAIL | [分解公式与复现](../velocity_cost.md)、[288 行窗口结果](../../results/franka_velocity_cost/windows.csv)；不据时序相关归因内部机制 |
 | Measured-load budget v1 | 42 条新增＋18 条复用候选；公开开发工况 | public24 48/48、动态 12/12、增益交互 6/6 通过 | [算法、完整回归与采用范围](../load_budget.md)；作为显式仿真预设，默认仍为固定 6 N |
 | Measurement robustness v1 | 9 场景 × 3 方法，27 次仿真、162,000 拍完整状态 | 原采用检查 7/8；辅助力幅值 ×0.8 失败，负载下降后换向有代价 | [误差注入、失败与复核](../measured_budget_robustness.md)；不扩大采用范围 |
+| Reversal recovery v1 | 降载／恒定高摩擦 × 2 种子 × 原调度／候选，8 次仿真 | 4 对通过；降载 8–10 s 位置误差降低约 40.7%，高负载加速仍有代价 | [系数回退与故障实验](../reversal_recovery.md)；只进入后续回归，不改默认 |
 | Measured-load C++ replay v1 | 上述 27 条轨迹＋1 条重复演示，168,000 拍 | Python/C++ 状态和命令逐拍一致 | [控制链与边界](../cpp_core.md)；重复演示不算独立场景，不是真机实时性证据 |
 
 ## 版本锚点与证据

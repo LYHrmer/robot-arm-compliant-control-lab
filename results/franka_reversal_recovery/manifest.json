@@ -1,0 +1,31 @@
+{
+  "artifact_sha256": {
+    "comparison.json": "ba42b8fbe8e56cf2e3682d0d2ae59fca67ce5d21244039d4f511416b889e7be4",
+    "protocol.json": "6bc13b91c55874b9931b9b296f5cb15653a0c83352ed855ca7b3a3ba40abe6a1",
+    "source_hashes.json": "f0309a2577eb2aa17b85561e8b21c4eb255525a6c650b97db486118c08a7dc3f",
+    "traces/constant_high_seed11__adaptive6_8.npz": "4e412c1fb738a26d28630e5be2e531af53d1aabc6b01360fa0a2fbd225e51c43",
+    "traces/constant_high_seed11__hold_cap_tracking.npz": "432cf169e7ec3a7745f0897a8902f8ab90bcb5257a56eb0061604748d05752a1",
+    "traces/constant_high_seed29__adaptive6_8.npz": "34e48492c67bf32d543d8cc0093c6e2e681fa8925b1a6a729bdda65f2e2aec03",
+    "traces/constant_high_seed29__hold_cap_tracking.npz": "3cd3c85dff6b0e646b327dcd688ff7ecd6566026227c5002bb2f5b6d1f98ce28",
+    "traces/falling_seed11__adaptive6_8.npz": "480e522c38d8ffc9e3fae6a87c7ee810fb315fc0de1e2ed123fa85dcd075d523",
+    "traces/falling_seed11__hold_cap_tracking.npz": "00c9d9d7f8593699e02e1410eb90f1d4c4d67c52670499181027d64877ab2f12",
+    "traces/falling_seed29__adaptive6_8.npz": "923afaed770aafa16de549d9d9f0a89ee3cad617a05e522d998467f16d1d3ef5",
+    "traces/falling_seed29__hold_cap_tracking.npz": "088c7dbdfb756f8fb6ea2ff5539df631baec686832b000ef47573593f5678b9c"
+  },
+  "default_changed": false,
+  "environment": {
+    "packages": {
+      "gymnasium": "1.3.0",
+      "matplotlib": "3.10.6",
+      "mujoco": "3.12.0",
+      "numpy": "2.2.6"
+    },
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+    "python": "3.10.12"
+  },
+  "identity": "reversal-recovery-hold-cap-v1",
+  "new_holdout": false,
+  "new_simulations": 8,
+  "source_commit": "64176beffd1a21b0d86b14a92254cc424f7a2674",
+  "source_commit_role": "execution HEAD; working inputs pinned in source_hashes.json"
+}

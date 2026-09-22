@@ -12,9 +12,9 @@
    面试官可直接走[五分钟验收路径](recruiter_walkthrough.md)。
 2. 沿[当前表面控制主线](#当前表面控制主线)读到测得负载预算和 C++ 回放。
 3. 快速检查可在安装后运行 `franka-smoke`；需要动手学习时，再做
-   [两份带答案实验](tutorial/README.md#带答案的数值实验)。
+   [带答案实验](tutorial/README.md#带答案的数值实验)。
    旧 v0.5 的实验结论仍是 `FAIL`，可从[为什么暂不部署](residual_rl_decision.md)回看。
-4. 看[系统架构](architecture.md)的五节点概览。需要核实某项说法时，到
+4. 看[系统架构](architecture.md)的当前控制链。需要核实某项说法时，到
    [验证矩阵](verification_matrix.md)找源码、测试和实验产物。
 
 这条路线应能回答四件事：项目解决什么问题，算法加在什么位置，结果是否通过门槛，哪些
@@ -23,7 +23,7 @@
 ## 系统学习
 
 入口是[教程目录](tutorial/README.md)。七章从 2-DOF 解析模型走到 Franka、实验方法、
-Residual RL 和测得负载调度。两份短实验给出完整数值与答案，运行时只向终端输出。
+Residual RL 和测得负载调度。三份短实验给出完整数值与答案，运行时只向终端输出。
 
 | 顺序 | 教程 | 读完以后应能做什么 |
 |---:|---|---|
@@ -46,6 +46,8 @@ Residual RL 和测得负载调度。两份短实验给出完整数值与答案�
 | 3 | 在线等效负载补偿 | [更新时序与阶段失败](online_compensation.md) |
 | 4 | 按测得负载开放 6–8 N | [完整回归](load_budget.md)、[测量误差边界](measured_budget_robustness.md) |
 | 5 | Python/C++ 同输入回放 | [C++ 控制核心](cpp_core.md) |
+
+换向恢复的单因素研究另见[停顿系数回退](reversal_recovery.md)，与当前默认控制器分开。
 
 BC 与 PPO 从[表面学习任务](surface_learning.md)继续。它们是经典基线之后的研究延伸；已有
 失败和没有超过解析前馈的结果均保留在相应实验页。
@@ -88,6 +90,7 @@ BC 与 PPO 从[表面学习任务](surface_learning.md)继续。它们是经典�
 ```bash
 python -m tools.tutorials.wrench_to_torque
 python -m tools.tutorials.budget_drop
+python -m tools.tutorials.reversal_recovery
 ```
 
 题目、逐步答案和输出解释见[带答案的数值实验](tutorial/README.md#带答案的数值实验)。

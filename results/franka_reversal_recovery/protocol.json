@@ -1,0 +1,123 @@
+{
+  "absolute_gates": {
+    "contact_ratio_pct": 99.0,
+    "minimum_reserved_torque_headroom_nm": 1.0,
+    "peak_force_n": 35.0,
+    "projection_pct": 0.0,
+    "saturation_pct": 0.0
+  },
+  "acceptance": {
+    "maximum_full_raw_peak_increase_n": 1.0,
+    "maximum_other_window_tangent_increase_mm": 0.1,
+    "maximum_phase_force_rmse_increase_n": 0.2,
+    "maximum_phase_orientation_rmse_increase_deg": 0.1,
+    "maximum_window_tangent_velocity_rmse_increase_mm_s": 0.5,
+    "minimum_falling_early_tangent_reduction_pct_each_seed": 10.0,
+    "minimum_falling_post_tangent_reduction_pct_each_seed": 10.0,
+    "passing_means": "eligible for wider public regression only, not default promotion",
+    "require_all_four_pairs": true
+  },
+  "auxiliary_packet_fault": "fresh",
+  "candidate_count": 1,
+  "candidate_rule": {
+    "conditions": [
+      "active measured contact",
+      "a fresh accepted auxiliary force packet was consumed this cycle",
+      "torque projection accepted the unscaled request",
+      "target tangential speed below the existing min_update_speed",
+      "corrected normal force greater than 1 N"
+    ],
+    "maximum_downward_rate": "existing coefficient_rate_limit (0.3 / s)",
+    "target_coefficient": "min(current_coefficient, applied_budget_n / corrected_normal_force_n)",
+    "unchanged": [
+      "20 N/s force-vector slew",
+      "motion confirmation",
+      "moving update law",
+      "6-8 N budget scheduler",
+      "normal-force controller",
+      "joint-torque projection"
+    ],
+    "update_point": "after the unchanged parent advance, for the next cycle only"
+  },
+  "comparison_defined_before_execution": true,
+  "default_changed": false,
+  "duration_s": 12.0,
+  "friction_schedules": {
+    "constant_high": [
+      [
+        0.0,
+        0.65
+      ]
+    ],
+    "falling": [
+      [
+        0.0,
+        0.65
+      ],
+      [
+        4.0,
+        0.65
+      ],
+      [
+        6.0,
+        0.3
+      ]
+    ]
+  },
+  "identity": "reversal-recovery-hold-cap-v1",
+  "maximum_new_simulations": 8,
+  "methods": [
+    "adaptive6_8",
+    "hold_cap_tracking"
+  ],
+  "new_holdout": false,
+  "physical_scenario_count": 2,
+  "prior_observations": [
+    "Old falling seed-11 hold: both adaptive and fixed6 budgets are already 6 N.",
+    "Their retained equivalent coefficients differ; this is not identified material friction.",
+    "Simple idle budget decay is rejected by the existing trace, before any new candidate run."
+  ],
+  "public_development": true,
+  "rotation_gain_scale": 1.0,
+  "scenario_names": [
+    "falling",
+    "constant_high"
+  ],
+  "scope_limits": [
+    "Two noise seeds do not create two additional independent physical scenarios.",
+    "No sensor-scale correction, BC/PPO training, six-axis integration or hardware validation.",
+    "All candidate failures are retained; this protocol is not edited after observing results.",
+    "Old 24-case, 60-run, 27-run and C++ replay archives remain unchanged.",
+    "This new experimental rule has not been ported to C++ or adopted as a default."
+  ],
+  "seeds": [
+    11,
+    29
+  ],
+  "source_case": "tools.measured_budget_robustness._falling_friction_case",
+  "surface_yaw_deg": 0.0,
+  "timestep_s": 0.002,
+  "velocity_error_time_s": 0.05,
+  "windows": [
+    {
+      "end_s": 8.0,
+      "name": "ramp",
+      "start_s": 7.0
+    },
+    {
+      "end_s": 10.0,
+      "name": "early",
+      "start_s": 8.0
+    },
+    {
+      "end_s": 12.0,
+      "name": "late",
+      "start_s": 10.0
+    },
+    {
+      "end_s": 12.0,
+      "name": "post",
+      "start_s": 8.0
+    }
+  ]
+}

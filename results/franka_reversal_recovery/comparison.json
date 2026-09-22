@@ -1,0 +1,2905 @@
+{
+  "comparisons": [
+    {
+      "failed_checks": [],
+      "scenario": "falling",
+      "seed": 11,
+      "status": "PASS",
+      "window_deltas": [
+        {
+          "name": "ramp",
+          "tangent_reduction_pct": 26.334331454168158,
+          "tangent_rmse_mm": -0.6300767098048021,
+          "tangent_velocity_rmse_mm_s": 0.23606743861432644
+        },
+        {
+          "name": "early",
+          "tangent_reduction_pct": 40.688567497775665,
+          "tangent_rmse_mm": -0.7207589547246833,
+          "tangent_velocity_rmse_mm_s": -1.0233070709874963
+        },
+        {
+          "name": "late",
+          "tangent_reduction_pct": 0.643902660791551,
+          "tangent_rmse_mm": -0.005159876161453636,
+          "tangent_velocity_rmse_mm_s": 0.00830387193035187
+        },
+        {
+          "name": "post",
+          "tangent_reduction_pct": 32.19712004377075,
+          "tangent_rmse_mm": -0.44263867791825195,
+          "tangent_velocity_rmse_mm_s": -0.5519276225284484
+        }
+      ]
+    },
+    {
+      "failed_checks": [],
+      "scenario": "falling",
+      "seed": 29,
+      "status": "PASS",
+      "window_deltas": [
+        {
+          "name": "ramp",
+          "tangent_reduction_pct": 26.61428012283259,
+          "tangent_rmse_mm": -0.6353615588436556,
+          "tangent_velocity_rmse_mm_s": 0.18626006187476207
+        },
+        {
+          "name": "early",
+          "tangent_reduction_pct": 40.656381953177835,
+          "tangent_rmse_mm": -0.7210677992168919,
+          "tangent_velocity_rmse_mm_s": -1.0121952688080822
+        },
+        {
+          "name": "late",
+          "tangent_reduction_pct": 0.685421600370939,
+          "tangent_rmse_mm": -0.005539797406429181,
+          "tangent_velocity_rmse_mm_s": 0.007840458936539507
+        },
+        {
+          "name": "post",
+          "tangent_reduction_pct": 32.08689367825106,
+          "tangent_rmse_mm": -0.4422160558952698,
+          "tangent_velocity_rmse_mm_s": -0.548009316477966
+        }
+      ]
+    },
+    {
+      "failed_checks": [],
+      "scenario": "constant_high",
+      "seed": 11,
+      "status": "PASS",
+      "window_deltas": [
+        {
+          "name": "ramp",
+          "tangent_reduction_pct": -4.5362941342893315,
+          "tangent_rmse_mm": 0.07406839723927217,
+          "tangent_velocity_rmse_mm_s": 0.37511815119503833
+        },
+        {
+          "name": "early",
+          "tangent_reduction_pct": 0.13191856492715814,
+          "tangent_rmse_mm": -0.0015236500712809686,
+          "tangent_velocity_rmse_mm_s": 0.004626935944108901
+        },
+        {
+          "name": "late",
+          "tangent_reduction_pct": 0.00012009299985571431,
+          "tangent_rmse_mm": -1.399683411840158e-06,
+          "tangent_velocity_rmse_mm_s": 1.816871059889813e-05
+        },
+        {
+          "name": "post",
+          "tangent_reduction_pct": 0.06540086111280763,
+          "tangent_rmse_mm": -0.0007588188139522334,
+          "tangent_velocity_rmse_mm_s": 0.00258387220084777
+        }
+      ]
+    },
+    {
+      "failed_checks": [],
+      "scenario": "constant_high",
+      "seed": 29,
+      "status": "PASS",
+      "window_deltas": [
+        {
+          "name": "ramp",
+          "tangent_reduction_pct": -4.929757388388545,
+          "tangent_rmse_mm": 0.07946083759690592,
+          "tangent_velocity_rmse_mm_s": 0.41518078294567484
+        },
+        {
+          "name": "early",
+          "tangent_reduction_pct": 0.15553631249520805,
+          "tangent_rmse_mm": -0.0018039353604690778,
+          "tangent_velocity_rmse_mm_s": 0.004592359966545612
+        },
+        {
+          "name": "late",
+          "tangent_reduction_pct": 0.00014497052055473247,
+          "tangent_rmse_mm": -1.6505018634038748e-06,
+          "tangent_velocity_rmse_mm_s": 1.671639487854648e-05
+        },
+        {
+          "name": "post",
+          "tangent_reduction_pct": 0.07925094231195917,
+          "tangent_rmse_mm": -0.000910761176321051,
+          "tangent_velocity_rmse_mm_s": 0.0025842188655840204
+        }
+      ]
+    }
+  ],
+  "default_changed": false,
+  "eligible_for_default_change": false,
+  "runs": [
+    {
+      "audit": {
+        "hold_release_cycles": 0,
+        "max_coefficient_transition_error": 0.0,
+        "max_compensation_reconstruction_error_n": 8.881784197001252e-16,
+        "max_packet_reconstruction_error_n": 0.0,
+        "max_scheduler_reconstruction_error_n": 0.0,
+        "projection_gate_basis": "recorded scale; actuation-present simulator; fallback scale is zero",
+        "projection_scaled_or_fallback_cycles": 0,
+        "scope": "coefficient/slew/readiness/scheduler replay; not independent dynamics",
+        "trace_schema_version": 3,
+        "validated_cycles": 6000
+      },
+      "case": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 0.0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.65
+            ],
+            [
+              4.0,
+              0.65
+            ],
+            [
+              6.0,
+              0.3
+            ]
+          ]
+        },
+        "name": "falling_stop_hold_reverse",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "high_forward",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 4.5,
+            "name": "falling_forward",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 5.5,
+            "name": "falling_stopping",
+            "start_s": 4.5
+          },
+          {
+            "end_s": 6.0,
+            "name": "falling_hold",
+            "start_s": 5.5
+          },
+          {
+            "end_s": 7.0,
+            "name": "low_hold",
+            "start_s": 6.0
+          },
+          {
+            "end_s": 8.0,
+            "name": "low_reverse_ramp",
+            "start_s": 7.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "low_reverse",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "falling_stop_hold_reverse_seed_11",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.65,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.65,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": 0
+        }
+      },
+      "method": "adaptive6_8",
+      "overall": {
+        "absolute_checks_pass": "yes",
+        "coefficient_max": 0.6752004817489115,
+        "coefficient_min": 0.34945926843263453,
+        "comparator_gate_status": "not_evaluated",
+        "comparator_gates_evaluated": "no",
+        "contact_ratio_pct": 100.0,
+        "diagnostic_amplitude_capped_pct": 50.01904761904762,
+        "diagnostic_compensation_active_pct": 100.0,
+        "diagnostic_slew_limited_pct": 4.3428571428571425,
+        "failed_absolute_checks": "",
+        "force_recovered": true,
+        "force_recovery_status": "recovered",
+        "force_recovery_time_s": 0.0,
+        "force_rmse_n": 0.12333597378959518,
+        "max_coefficient_reset_jump": 0.0,
+        "max_force_reset_jump_n": 0.0,
+        "max_normal_operation_coefficient_rate_s": 0.30000000000002247,
+        "max_normal_operation_force_slew_n_s": 20.00000000000022,
+        "max_requested_tangential_force_n": 7.979147683995649,
+        "max_uncapped_tangential_amplitude_n": 8.081904199662867,
+        "minimum_reserved_torque_headroom_nm": 4.445709799796113,
+        "minimum_torque_headroom_nm": 5.645709799796112,
+        "orientation_rmse_deg": 0.37354730235691114,
+        "peak_force_n": 12.636585788580819,
+        "projection_pct": 0.0,
+        "sample_count": 5250,
+        "saturation_pct": 0.0,
+        "slew_reconstruction_max_error_n": 0.0,
+        "slew_reconstruction_mismatch_cycles": 0.0,
+        "tangent_recovered": true,
+        "tangent_recovery_status": "recovered",
+        "tangent_recovery_time_s": 0.0,
+        "tangent_rmse_mm": 2.101647822204621,
+        "tangent_velocity_error_rms_m_s": 0.00499392489737302,
+        "tangential_update_ready_pct": 80.22857142857143,
+        "worst_force_phase": "high_forward",
+        "worst_orientation_phase": "low_reverse",
+        "worst_phase_force_rmse_n": 0.17751868426593423,
+        "worst_phase_orientation_rmse_deg": 0.42663169134053025,
+        "worst_phase_tangent_rmse_mm": 3.360923474094087,
+        "worst_tangent_phase": "high_forward"
+      },
+      "parameters": {
+        "adaptation_gain": 800.0,
+        "coefficient_rate_limit": 0.3,
+        "force_regularizer": 2.0,
+        "force_slew_rate": 20.0,
+        "integral_gain": 800.0,
+        "load_margin": 0.25,
+        "load_time_constant": 0.2,
+        "max_equivalent_mu": 0.9,
+        "max_force": 8.0,
+        "min_update_speed": 0.005,
+        "minimum_force": 6.0,
+        "mode": "online",
+        "motion_confirm_time": 0.05,
+        "nominal_mu": 0.45,
+        "velocity_error_time": 0.05,
+        "velocity_scale": 0.005
+      },
+      "phases": [
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 50.88,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 0.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.17751868426593423,
+          "orientation_rmse_deg": 0.42307431685110986,
+          "peak_force_n": 12.544622003572414,
+          "phase": "high_forward",
+          "sample_count": 1250,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 3.360923474094087,
+          "tangent_velocity_error_rms_m_s": 0.00840464768067566
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 98.0,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 0.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.10389939390277567,
+          "orientation_rmse_deg": 0.3025888113796925,
+          "peak_force_n": 12.036628783088533,
+          "phase": "falling_forward",
+          "sample_count": 250,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 0.6887446668177046,
+          "tangent_velocity_error_rms_m_s": 0.0033449630616193713
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 100.0,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 19.2,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.1471905504649647,
+          "orientation_rmse_deg": 0.2582010127000225,
+          "peak_force_n": 12.317187199214205,
+          "phase": "falling_stopping",
+          "sample_count": 500,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 1.53841238044035,
+          "tangent_velocity_error_rms_m_s": 0.0029618994831054246
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 100.0,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 4.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.10657245853359984,
+          "orientation_rmse_deg": 0.2587826550681287,
+          "peak_force_n": 12.254453655079743,
+          "phase": "falling_hold",
+          "sample_count": 250,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 1.5669814129374473,
+          "tangent_velocity_error_rms_m_s": 0.0009827090276605464
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 100.0,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 0.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.022383603334024903,
+          "orientation_rmse_deg": 0.1088020444035056,
+          "peak_force_n": 12.06935606706829,
+          "phase": "low_hold",
+          "sample_count": 500,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 1.0109186810455613,
+          "tangent_velocity_error_rms_m_s": 0.0005978501494276983
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 99.0,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 24.4,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.13353990805628355,
+          "orientation_rmse_deg": 0.3630932343965763,
+          "peak_force_n": 12.302972550656712,
+          "phase": "low_reverse_ramp",
+          "sample_count": 500,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 2.3926056786418797,
+          "tangent_velocity_error_rms_m_s": 0.007734602144005008
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 0.0,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 0.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.08640879583282435,
+          "orientation_rmse_deg": 0.42663169134053025,
+          "peak_force_n": 12.220738176012606,
+          "phase": "low_reverse",
+          "sample_count": 2000,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 1.3747772388229185,
+          "tangent_velocity_error_rms_m_s": 0.0015996604344395969
+        }
+      ],
+      "scenario": "falling",
+      "seed": 11,
+      "trace_path": "traces/falling_seed11__adaptive6_8.npz",
+      "windows": [
+        {
+          "end_s": 8.0,
+          "name": "ramp",
+          "start_s": 7.0,
+          "tangent_rmse_mm": 2.3926056786418797,
+          "tangent_velocity_rmse_mm_s": 7.734602144005008
+        },
+        {
+          "end_s": 10.0,
+          "name": "early",
+          "start_s": 8.0,
+          "tangent_rmse_mm": 1.7714041045167916,
+          "tangent_velocity_rmse_mm_s": 1.948898555616992
+        },
+        {
+          "end_s": 12.0,
+          "name": "late",
+          "start_s": 10.0,
+          "tangent_rmse_mm": 0.8013441278702922,
+          "tangent_velocity_rmse_mm_s": 1.148747766455701
+        },
+        {
+          "end_s": 12.0,
+          "name": "post",
+          "start_s": 8.0,
+          "tangent_rmse_mm": 1.3747772388229185,
+          "tangent_velocity_rmse_mm_s": 1.5996604344395968
+        }
+      ]
+    },
+    {
+      "audit": {
+        "hold_release_cycles": 205,
+        "max_coefficient_transition_error": 0.0,
+        "max_compensation_reconstruction_error_n": 8.881784197001252e-16,
+        "max_packet_reconstruction_error_n": 0.0,
+        "max_scheduler_reconstruction_error_n": 0.0,
+        "projection_gate_basis": "recorded scale; actuation-present simulator; fallback scale is zero",
+        "projection_scaled_or_fallback_cycles": 0,
+        "scope": "coefficient/slew/readiness/scheduler replay; not independent dynamics",
+        "trace_schema_version": 3,
+        "validated_cycles": 6000
+      },
+      "case": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 0.0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.65
+            ],
+            [
+              4.0,
+              0.65
+            ],
+            [
+              6.0,
+              0.3
+            ]
+          ]
+        },
+        "name": "falling_stop_hold_reverse",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "high_forward",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 4.5,
+            "name": "falling_forward",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 5.5,
+            "name": "falling_stopping",
+            "start_s": 4.5
+          },
+          {
+            "end_s": 6.0,
+            "name": "falling_hold",
+            "start_s": 5.5
+          },
+          {
+            "end_s": 7.0,
+            "name": "low_hold",
+            "start_s": 6.0
+          },
+          {
+            "end_s": 8.0,
+            "name": "low_reverse_ramp",
+            "start_s": 7.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "low_reverse",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "falling_stop_hold_reverse_seed_11",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.65,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.65,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": 0
+        }
+      },
+      "method": "hold_cap_tracking",
+      "overall": {
+        "absolute_checks_pass": "yes",
+        "coefficient_max": 0.6752004817489115,
+        "coefficient_min": 0.3493896562463711,
+        "comparator_gate_status": "not_evaluated",
+        "comparator_gates_evaluated": "no",
+        "contact_ratio_pct": 100.0,
+        "diagnostic_amplitude_capped_pct": 28.476190476190478,
+        "diagnostic_compensation_active_pct": 100.0,
+        "diagnostic_slew_limited_pct": 4.266666666666667,
+        "failed_absolute_checks": "",
+        "force_recovered": true,
+        "force_recovery_status": "recovered",
+        "force_recovery_time_s": 0.0,
+        "force_rmse_n": 0.12328267764403777,
+        "max_coefficient_reset_jump": 0.0,
+        "max_force_reset_jump_n": 0.0,
+        "max_normal_operation_coefficient_rate_s": 0.30000000000002247,
+        "max_normal_operation_force_slew_n_s": 20.00000000000022,
+        "max_requested_tangential_force_n": 7.979147683995649,
+        "max_uncapped_tangential_amplitude_n": 8.081904199662867,
+        "minimum_reserved_torque_headroom_nm": 4.445709799796113,
+        "minimum_torque_headroom_nm": 5.645709799796112,
+        "orientation_rmse_deg": 0.37326565168092524,
+        "peak_force_n": 12.636585788580819,
+        "projection_pct": 0.0,
+        "sample_count": 5250,
+        "saturation_pct": 0.0,
+        "slew_reconstruction_max_error_n": 0.0,
+        "slew_reconstruction_mismatch_cycles": 0.0,
+        "tangent_recovered": true,
+        "tangent_recovery_status": "recovered",
+        "tangent_recovery_time_s": 0.0,
+        "tangent_rmse_mm": 1.943857805497759,
+        "tangent_velocity_error_rms_m_s": 0.004973504342529172,
+        "tangential_update_ready_pct": 80.32380952380952,
+        "worst_force_phase": "high_forward",
+        "worst_orientation_phase": "low_reverse",
+        "worst_phase_force_rmse_n": 0.17751868426593423,
+        "worst_phase_orientation_rmse_deg": 0.43153380083661985,
+        "worst_phase_tangent_rmse_mm": 3.360923474094087,
+        "worst_tangent_phase": "high_forward"
+      },
+      "parameters": {
+        "adaptation_gain": 800.0,
+        "coefficient_rate_limit": 0.3,
+        "force_regularizer": 2.0,
+        "force_slew_rate": 20.0,
+        "integral_gain": 800.0,
+        "load_margin": 0.25,
+        "load_time_constant": 0.2,
+        "max_equivalent_mu": 0.9,
+        "max_force": 8.0,
+        "min_update_speed": 0.005,
+        "minimum_force": 6.0,
+        "mode": "online",
+        "motion_confirm_time": 0.05,
+        "nominal_mu": 0.45,
+        "velocity_error_time": 0.05,
+        "velocity_scale": 0.005
+      },
+      "phases": [
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 50.88,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 0.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.17751868426593423,
+          "orientation_rmse_deg": 0.42307431685110986,
+          "peak_force_n": 12.544622003572414,
+          "phase": "high_forward",
+          "sample_count": 1250,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 3.360923474094087,
+          "tangent_velocity_error_rms_m_s": 0.00840464768067566
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 98.0,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 0.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.10389939390277567,
+          "orientation_rmse_deg": 0.3025888113796925,
+          "peak_force_n": 12.036628783088533,
+          "phase": "falling_forward",
+          "sample_count": 250,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 0.6887446668177046,
+          "tangent_velocity_error_rms_m_s": 0.0033449630616193713
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 100.0,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 19.2,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.1471905504649647,
+          "orientation_rmse_deg": 0.2582010127000225,
+          "peak_force_n": 12.317187199214205,
+          "phase": "falling_stopping",
+          "sample_count": 500,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 1.53841238044035,
+          "tangent_velocity_error_rms_m_s": 0.0029618994831054246
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 43.6,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 4.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.10657245853359984,
+          "orientation_rmse_deg": 0.2587826550681287,
+          "peak_force_n": 12.254453655079743,
+          "phase": "falling_hold",
+          "sample_count": 250,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 1.5669814129374473,
+          "tangent_velocity_error_rms_m_s": 0.0009827090276605464
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 0.0,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 0.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.022383603334024903,
+          "orientation_rmse_deg": 0.1088020444035056,
+          "peak_force_n": 12.06935606706829,
+          "phase": "low_hold",
+          "sample_count": 500,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 1.0109186810455613,
+          "tangent_velocity_error_rms_m_s": 0.0005978501494276983
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 1.0,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 23.599999999999998,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.13107446593261476,
+          "orientation_rmse_deg": 0.3358583601919527,
+          "peak_force_n": 12.297283836173628,
+          "phase": "low_reverse_ramp",
+          "sample_count": 500,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 1.7625289688370775,
+          "tangent_velocity_error_rms_m_s": 0.007970669582619336
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 0.0,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 0.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.08714972929685953,
+          "orientation_rmse_deg": 0.43153380083661985,
+          "peak_force_n": 12.220802685875407,
+          "phase": "low_reverse",
+          "sample_count": 2000,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 0.9321385609046665,
+          "tangent_velocity_error_rms_m_s": 0.0010477328119111483
+        }
+      ],
+      "scenario": "falling",
+      "seed": 11,
+      "trace_path": "traces/falling_seed11__hold_cap_tracking.npz",
+      "windows": [
+        {
+          "end_s": 8.0,
+          "name": "ramp",
+          "start_s": 7.0,
+          "tangent_rmse_mm": 1.7625289688370775,
+          "tangent_velocity_rmse_mm_s": 7.970669582619334
+        },
+        {
+          "end_s": 10.0,
+          "name": "early",
+          "start_s": 8.0,
+          "tangent_rmse_mm": 1.0506451497921083,
+          "tangent_velocity_rmse_mm_s": 0.9255914846294958
+        },
+        {
+          "end_s": 12.0,
+          "name": "late",
+          "start_s": 10.0,
+          "tangent_rmse_mm": 0.7961842517088386,
+          "tangent_velocity_rmse_mm_s": 1.157051638386053
+        },
+        {
+          "end_s": 12.0,
+          "name": "post",
+          "start_s": 8.0,
+          "tangent_rmse_mm": 0.9321385609046665,
+          "tangent_velocity_rmse_mm_s": 1.0477328119111484
+        }
+      ]
+    },
+    {
+      "audit": {
+        "hold_release_cycles": 0,
+        "max_coefficient_transition_error": 0.0,
+        "max_compensation_reconstruction_error_n": 8.881784197001252e-16,
+        "max_packet_reconstruction_error_n": 0.0,
+        "max_scheduler_reconstruction_error_n": 0.0,
+        "projection_gate_basis": "recorded scale; actuation-present simulator; fallback scale is zero",
+        "projection_scaled_or_fallback_cycles": 0,
+        "scope": "coefficient/slew/readiness/scheduler replay; not independent dynamics",
+        "trace_schema_version": 3,
+        "validated_cycles": 6000
+      },
+      "case": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 29,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 0.0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.65
+            ],
+            [
+              4.0,
+              0.65
+            ],
+            [
+              6.0,
+              0.3
+            ]
+          ]
+        },
+        "name": "falling_stop_hold_reverse",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "high_forward",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 4.5,
+            "name": "falling_forward",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 5.5,
+            "name": "falling_stopping",
+            "start_s": 4.5
+          },
+          {
+            "end_s": 6.0,
+            "name": "falling_hold",
+            "start_s": 5.5
+          },
+          {
+            "end_s": 7.0,
+            "name": "low_hold",
+            "start_s": 6.0
+          },
+          {
+            "end_s": 8.0,
+            "name": "low_reverse_ramp",
+            "start_s": 7.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "low_reverse",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "falling_stop_hold_reverse_seed_29",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.65,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.65,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": 0
+        }
+      },
+      "method": "adaptive6_8",
+      "overall": {
+        "absolute_checks_pass": "yes",
+        "coefficient_max": 0.6742915579285903,
+        "coefficient_min": 0.3493110619286277,
+        "comparator_gate_status": "not_evaluated",
+        "comparator_gates_evaluated": "no",
+        "contact_ratio_pct": 100.0,
+        "diagnostic_amplitude_capped_pct": 50.0,
+        "diagnostic_compensation_active_pct": 100.0,
+        "diagnostic_slew_limited_pct": 4.3428571428571425,
+        "failed_absolute_checks": "",
+        "force_recovered": true,
+        "force_recovery_status": "recovered",
+        "force_recovery_time_s": 0.0,
+        "force_rmse_n": 0.11926173254321254,
+        "max_coefficient_reset_jump": 0.0,
+        "max_force_reset_jump_n": 0.0,
+        "max_normal_operation_coefficient_rate_s": 0.30000000000002247,
+        "max_normal_operation_force_slew_n_s": 20.000000000000206,
+        "max_requested_tangential_force_n": 7.979147683995649,
+        "max_uncapped_tangential_amplitude_n": 8.085174976568412,
+        "minimum_reserved_torque_headroom_nm": 4.464222562732948,
+        "minimum_torque_headroom_nm": 5.664222562732947,
+        "orientation_rmse_deg": 0.37376822705662843,
+        "peak_force_n": 12.622467681460728,
+        "projection_pct": 0.0,
+        "sample_count": 5250,
+        "saturation_pct": 0.0,
+        "slew_reconstruction_max_error_n": 0.0,
+        "slew_reconstruction_mismatch_cycles": 0.0,
+        "tangent_recovered": true,
+        "tangent_recovery_status": "recovered",
+        "tangent_recovery_time_s": 0.0039999999999995595,
+        "tangent_rmse_mm": 2.089662528588989,
+        "tangent_velocity_error_rms_m_s": 0.005010589509256608,
+        "tangential_update_ready_pct": 80.22857142857143,
+        "worst_force_phase": "high_forward",
+        "worst_orientation_phase": "low_reverse",
+        "worst_phase_force_rmse_n": 0.16165375975829152,
+        "worst_phase_orientation_rmse_deg": 0.4270308126634943,
+        "worst_phase_tangent_rmse_mm": 3.342251681680413,
+        "worst_tangent_phase": "high_forward"
+      },
+      "parameters": {
+        "adaptation_gain": 800.0,
+        "coefficient_rate_limit": 0.3,
+        "force_regularizer": 2.0,
+        "force_slew_rate": 20.0,
+        "integral_gain": 800.0,
+        "load_margin": 0.25,
+        "load_time_constant": 0.2,
+        "max_equivalent_mu": 0.9,
+        "max_force": 8.0,
+        "min_update_speed": 0.005,
+        "minimum_force": 6.0,
+        "mode": "online",
+        "motion_confirm_time": 0.05,
+        "nominal_mu": 0.45,
+        "velocity_error_time": 0.05,
+        "velocity_scale": 0.005
+      },
+      "phases": [
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 50.480000000000004,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 0.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.16165375975829152,
+          "orientation_rmse_deg": 0.423335290790809,
+          "peak_force_n": 12.500403042558125,
+          "phase": "high_forward",
+          "sample_count": 1250,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 3.342251681680413,
+          "tangent_velocity_error_rms_m_s": 0.008464437566491238
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 100.0,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 0.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.12788986111723294,
+          "orientation_rmse_deg": 0.30220191940447155,
+          "peak_force_n": 11.945763393334609,
+          "phase": "falling_forward",
+          "sample_count": 250,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 0.6793034821689107,
+          "tangent_velocity_error_rms_m_s": 0.0032856047320825336
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 100.0,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 19.2,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.1458002191432386,
+          "orientation_rmse_deg": 0.25767342392294207,
+          "peak_force_n": 12.3050742880491,
+          "phase": "falling_stopping",
+          "sample_count": 500,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 1.496384229376699,
+          "tangent_velocity_error_rms_m_s": 0.0028481023116512395
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 100.0,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 4.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.0932928230830199,
+          "orientation_rmse_deg": 0.25846151963973646,
+          "peak_force_n": 12.223751144207489,
+          "phase": "falling_hold",
+          "sample_count": 250,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 1.5369995240692536,
+          "tangent_velocity_error_rms_m_s": 0.0009577028857748242
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 100.0,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 0.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.01731504718436123,
+          "orientation_rmse_deg": 0.108693971207955,
+          "peak_force_n": 12.046170689668783,
+          "phase": "low_hold",
+          "sample_count": 500,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 0.9878337376085947,
+          "tangent_velocity_error_rms_m_s": 0.0005917627425259553
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 98.8,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 24.4,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.13131713849899843,
+          "orientation_rmse_deg": 0.36352563463160964,
+          "peak_force_n": 12.293349227889603,
+          "phase": "low_reverse_ramp",
+          "sample_count": 500,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 2.38729567702481,
+          "tangent_velocity_error_rms_m_s": 0.007733597608636731
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 0.0,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 0.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.09039365917231532,
+          "orientation_rmse_deg": 0.4270308126634943,
+          "peak_force_n": 12.180853075745139,
+          "phase": "low_reverse",
+          "sample_count": 2000,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 1.3781828192207024,
+          "tangent_velocity_error_rms_m_s": 0.0016101024109859289
+        }
+      ],
+      "scenario": "falling",
+      "seed": 29,
+      "trace_path": "traces/falling_seed29__adaptive6_8.npz",
+      "windows": [
+        {
+          "end_s": 8.0,
+          "name": "ramp",
+          "start_s": 7.0,
+          "tangent_rmse_mm": 2.38729567702481,
+          "tangent_velocity_rmse_mm_s": 7.733597608636732
+        },
+        {
+          "end_s": 10.0,
+          "name": "early",
+          "start_s": 8.0,
+          "tangent_rmse_mm": 1.7735660788687835,
+          "tangent_velocity_rmse_mm_s": 1.961826164716623
+        },
+        {
+          "end_s": 12.0,
+          "name": "late",
+          "start_s": 10.0,
+          "tangent_rmse_mm": 0.8082321017357913,
+          "tangent_velocity_rmse_mm_s": 1.1558969016130576
+        },
+        {
+          "end_s": 12.0,
+          "name": "post",
+          "start_s": 8.0,
+          "tangent_rmse_mm": 1.3781828192207024,
+          "tangent_velocity_rmse_mm_s": 1.6101024109859288
+        }
+      ]
+    },
+    {
+      "audit": {
+        "hold_release_cycles": 204,
+        "max_coefficient_transition_error": 0.0,
+        "max_compensation_reconstruction_error_n": 8.881784197001252e-16,
+        "max_packet_reconstruction_error_n": 0.0,
+        "max_scheduler_reconstruction_error_n": 0.0,
+        "projection_gate_basis": "recorded scale; actuation-present simulator; fallback scale is zero",
+        "projection_scaled_or_fallback_cycles": 0,
+        "scope": "coefficient/slew/readiness/scheduler replay; not independent dynamics",
+        "trace_schema_version": 3,
+        "validated_cycles": 6000
+      },
+      "case": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 29,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 0.0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.65
+            ],
+            [
+              4.0,
+              0.65
+            ],
+            [
+              6.0,
+              0.3
+            ]
+          ]
+        },
+        "name": "falling_stop_hold_reverse",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "high_forward",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 4.5,
+            "name": "falling_forward",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 5.5,
+            "name": "falling_stopping",
+            "start_s": 4.5
+          },
+          {
+            "end_s": 6.0,
+            "name": "falling_hold",
+            "start_s": 5.5
+          },
+          {
+            "end_s": 7.0,
+            "name": "low_hold",
+            "start_s": 6.0
+          },
+          {
+            "end_s": 8.0,
+            "name": "low_reverse_ramp",
+            "start_s": 7.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "low_reverse",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "falling_stop_hold_reverse_seed_29",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.65,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.65,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": 0
+        }
+      },
+      "method": "hold_cap_tracking",
+      "overall": {
+        "absolute_checks_pass": "yes",
+        "coefficient_max": 0.6742915579285903,
+        "coefficient_min": 0.3492361640405269,
+        "comparator_gate_status": "not_evaluated",
+        "comparator_gates_evaluated": "no",
+        "contact_ratio_pct": 100.0,
+        "diagnostic_amplitude_capped_pct": 28.36190476190476,
+        "diagnostic_compensation_active_pct": 100.0,
+        "diagnostic_slew_limited_pct": 4.266666666666667,
+        "failed_absolute_checks": "",
+        "force_recovered": true,
+        "force_recovery_status": "recovered",
+        "force_recovery_time_s": 0.0,
+        "force_rmse_n": 0.11919965103278206,
+        "max_coefficient_reset_jump": 0.0,
+        "max_force_reset_jump_n": 0.0,
+        "max_normal_operation_coefficient_rate_s": 0.30000000000002247,
+        "max_normal_operation_force_slew_n_s": 20.00000000000022,
+        "max_requested_tangential_force_n": 7.979147683995649,
+        "max_uncapped_tangential_amplitude_n": 8.085174976568412,
+        "minimum_reserved_torque_headroom_nm": 4.464222562732948,
+        "minimum_torque_headroom_nm": 5.664222562732947,
+        "orientation_rmse_deg": 0.3734838415629119,
+        "peak_force_n": 12.622467681460728,
+        "projection_pct": 0.0,
+        "sample_count": 5250,
+        "saturation_pct": 0.0,
+        "slew_reconstruction_max_error_n": 0.0,
+        "slew_reconstruction_mismatch_cycles": 0.0,
+        "tangent_recovered": true,
+        "tangent_recovery_status": "recovered",
+        "tangent_recovery_time_s": 0.0,
+        "tangent_rmse_mm": 1.9303815481699742,
+        "tangent_velocity_error_rms_m_s": 0.004982551816440125,
+        "tangential_update_ready_pct": 80.3047619047619,
+        "worst_force_phase": "high_forward",
+        "worst_orientation_phase": "low_reverse",
+        "worst_phase_force_rmse_n": 0.16165375975829152,
+        "worst_phase_orientation_rmse_deg": 0.4319135962901277,
+        "worst_phase_tangent_rmse_mm": 3.342251681680413,
+        "worst_tangent_phase": "high_forward"
+      },
+      "parameters": {
+        "adaptation_gain": 800.0,
+        "coefficient_rate_limit": 0.3,
+        "force_regularizer": 2.0,
+        "force_slew_rate": 20.0,
+        "integral_gain": 800.0,
+        "load_margin": 0.25,
+        "load_time_constant": 0.2,
+        "max_equivalent_mu": 0.9,
+        "max_force": 8.0,
+        "min_update_speed": 0.005,
+        "minimum_force": 6.0,
+        "mode": "online",
+        "motion_confirm_time": 0.05,
+        "nominal_mu": 0.45,
+        "velocity_error_time": 0.05,
+        "velocity_scale": 0.005
+      },
+      "phases": [
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 50.480000000000004,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 0.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.16165375975829152,
+          "orientation_rmse_deg": 0.423335290790809,
+          "peak_force_n": 12.500403042558125,
+          "phase": "high_forward",
+          "sample_count": 1250,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 3.342251681680413,
+          "tangent_velocity_error_rms_m_s": 0.008464437566491238
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 100.0,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 0.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.12788986111723294,
+          "orientation_rmse_deg": 0.30220191940447155,
+          "peak_force_n": 11.945763393334609,
+          "phase": "falling_forward",
+          "sample_count": 250,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 0.6793034821689107,
+          "tangent_velocity_error_rms_m_s": 0.0032856047320825336
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 100.0,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 19.2,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.1458002191432386,
+          "orientation_rmse_deg": 0.25767342392294207,
+          "peak_force_n": 12.3050742880491,
+          "phase": "falling_stopping",
+          "sample_count": 500,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 1.496384229376699,
+          "tangent_velocity_error_rms_m_s": 0.0028481023116512395
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 43.2,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 4.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.0932928230830199,
+          "orientation_rmse_deg": 0.25846151963973646,
+          "peak_force_n": 12.223751144207489,
+          "phase": "falling_hold",
+          "sample_count": 250,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 1.5369995240692536,
+          "tangent_velocity_error_rms_m_s": 0.0009577028857748242
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 0.0,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 0.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.01731504718436123,
+          "orientation_rmse_deg": 0.108693971207955,
+          "peak_force_n": 12.046170689668783,
+          "phase": "low_hold",
+          "sample_count": 500,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 0.9878337376085947,
+          "tangent_velocity_error_rms_m_s": 0.0005917627425259553
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 0.0,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 23.599999999999998,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.12957986610704847,
+          "orientation_rmse_deg": 0.33636795022790644,
+          "peak_force_n": 12.311274229353472,
+          "phase": "low_reverse_ramp",
+          "sample_count": 500,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 1.7519341181811543,
+          "tangent_velocity_error_rms_m_s": 0.007919857670511496
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 0.0,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 0.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.09080454447236393,
+          "orientation_rmse_deg": 0.4319135962901277,
+          "peak_force_n": 12.18091698398552,
+          "phase": "low_reverse",
+          "sample_count": 2000,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 0.9359667633254326,
+          "tangent_velocity_error_rms_m_s": 0.001062093094507963
+        }
+      ],
+      "scenario": "falling",
+      "seed": 29,
+      "trace_path": "traces/falling_seed29__hold_cap_tracking.npz",
+      "windows": [
+        {
+          "end_s": 8.0,
+          "name": "ramp",
+          "start_s": 7.0,
+          "tangent_rmse_mm": 1.7519341181811543,
+          "tangent_velocity_rmse_mm_s": 7.919857670511494
+        },
+        {
+          "end_s": 10.0,
+          "name": "early",
+          "start_s": 8.0,
+          "tangent_rmse_mm": 1.0524982796518916,
+          "tangent_velocity_rmse_mm_s": 0.9496308959085408
+        },
+        {
+          "end_s": 12.0,
+          "name": "late",
+          "start_s": 10.0,
+          "tangent_rmse_mm": 0.8026923043293621,
+          "tangent_velocity_rmse_mm_s": 1.163737360549597
+        },
+        {
+          "end_s": 12.0,
+          "name": "post",
+          "start_s": 8.0,
+          "tangent_rmse_mm": 0.9359667633254326,
+          "tangent_velocity_rmse_mm_s": 1.0620930945079627
+        }
+      ]
+    },
+    {
+      "audit": {
+        "hold_release_cycles": 0,
+        "max_coefficient_transition_error": 0.0,
+        "max_compensation_reconstruction_error_n": 8.881784197001252e-16,
+        "max_packet_reconstruction_error_n": 0.0,
+        "max_scheduler_reconstruction_error_n": 0.0,
+        "projection_gate_basis": "recorded scale; actuation-present simulator; fallback scale is zero",
+        "projection_scaled_or_fallback_cycles": 0,
+        "scope": "coefficient/slew/readiness/scheduler replay; not independent dynamics",
+        "trace_schema_version": 3,
+        "validated_cycles": 6000
+      },
+      "case": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 0.0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.65
+            ]
+          ]
+        },
+        "name": "constant_high_stop_hold_reverse",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "high_forward",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 4.5,
+            "name": "high_forward_before_stop",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 5.5,
+            "name": "high_stopping",
+            "start_s": 4.5
+          },
+          {
+            "end_s": 6.0,
+            "name": "high_hold_initial",
+            "start_s": 5.5
+          },
+          {
+            "end_s": 7.0,
+            "name": "high_hold",
+            "start_s": 6.0
+          },
+          {
+            "end_s": 8.0,
+            "name": "high_reverse_ramp",
+            "start_s": 7.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "high_reverse",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "constant_high_stop_hold_reverse_seed_11",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.65,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.65,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": 0
+        }
+      },
+      "method": "adaptive6_8",
+      "overall": {
+        "absolute_checks_pass": "yes",
+        "coefficient_max": 0.6764509448339533,
+        "coefficient_min": 0.45,
+        "comparator_gate_status": "not_evaluated",
+        "comparator_gates_evaluated": "no",
+        "contact_ratio_pct": 100.0,
+        "diagnostic_amplitude_capped_pct": 86.09523809523809,
+        "diagnostic_compensation_active_pct": 100.0,
+        "diagnostic_slew_limited_pct": 6.304761904761905,
+        "failed_absolute_checks": "",
+        "force_recovered": true,
+        "force_recovery_status": "recovered",
+        "force_recovery_time_s": 0.0,
+        "force_rmse_n": 0.12190677156485175,
+        "max_coefficient_reset_jump": 0.0,
+        "max_force_reset_jump_n": 0.0,
+        "max_normal_operation_coefficient_rate_s": 0.30000000000002247,
+        "max_normal_operation_force_slew_n_s": 20.00000000000022,
+        "max_requested_tangential_force_n": 7.979147683995649,
+        "max_uncapped_tangential_amplitude_n": 8.2456979750983,
+        "minimum_reserved_torque_headroom_nm": 4.070008244968647,
+        "minimum_torque_headroom_nm": 5.270008244968646,
+        "orientation_rmse_deg": 0.32020552602292024,
+        "peak_force_n": 12.636585788580819,
+        "projection_pct": 0.0,
+        "sample_count": 5250,
+        "saturation_pct": 0.0,
+        "slew_reconstruction_max_error_n": 0.0,
+        "slew_reconstruction_mismatch_cycles": 0.0,
+        "tangent_recovered": true,
+        "tangent_recovery_status": "recovered",
+        "tangent_recovery_time_s": 0.0,
+        "tangent_rmse_mm": 1.9173455861775588,
+        "tangent_velocity_error_rms_m_s": 0.004498654662051173,
+        "tangential_update_ready_pct": 78.91428571428571,
+        "worst_force_phase": "high_forward",
+        "worst_orientation_phase": "high_forward",
+        "worst_phase_force_rmse_n": 0.17751868426593423,
+        "worst_phase_orientation_rmse_deg": 0.42307431685110986,
+        "worst_phase_tangent_rmse_mm": 3.360923474094087,
+        "worst_tangent_phase": "high_forward"
+      },
+      "parameters": {
+        "adaptation_gain": 800.0,
+        "coefficient_rate_limit": 0.3,
+        "force_regularizer": 2.0,
+        "force_slew_rate": 20.0,
+        "integral_gain": 800.0,
+        "load_margin": 0.25,
+        "load_time_constant": 0.2,
+        "max_equivalent_mu": 0.9,
+        "max_force": 8.0,
+        "min_update_speed": 0.005,
+        "minimum_force": 6.0,
+        "mode": "online",
+        "motion_confirm_time": 0.05,
+        "nominal_mu": 0.45,
+        "velocity_error_time": 0.05,
+        "velocity_scale": 0.005
+      },
+      "phases": [
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 50.88,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 0.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.17751868426593423,
+          "orientation_rmse_deg": 0.42307431685110986,
+          "peak_force_n": 12.544622003572414,
+          "phase": "high_forward",
+          "sample_count": 1250,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 3.360923474094087,
+          "tangent_velocity_error_rms_m_s": 0.00840464768067566
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 97.6,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 0.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.10212963345688873,
+          "orientation_rmse_deg": 0.29246373582028207,
+          "peak_force_n": 12.033233966275558,
+          "phase": "high_forward_before_stop",
+          "sample_count": 250,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 0.8752341395052187,
+          "tangent_velocity_error_rms_m_s": 0.0019789825132868187
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 92.80000000000001,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 21.8,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.1567640780333809,
+          "orientation_rmse_deg": 0.2981936241963264,
+          "peak_force_n": 12.327704209960562,
+          "phase": "high_stopping",
+          "sample_count": 500,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 0.8318693753412288,
+          "tangent_velocity_error_rms_m_s": 0.0029459285853383585
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 100.0,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 17.599999999999998,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.11473104626417183,
+          "orientation_rmse_deg": 0.3328125707209228,
+          "peak_force_n": 12.22922008062645,
+          "phase": "high_hold_initial",
+          "sample_count": 250,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 1.162762164283035,
+          "tangent_velocity_error_rms_m_s": 0.0008826564509618039
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 100.0,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 0.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.021277338659034965,
+          "orientation_rmse_deg": 0.11758488325301245,
+          "peak_force_n": 12.064196092028055,
+          "phase": "high_hold",
+          "sample_count": 500,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 0.7475849540294918,
+          "tangent_velocity_error_rms_m_s": 0.0004447266269872846
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 99.2,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 35.6,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.09516887278165229,
+          "orientation_rmse_deg": 0.24710088365099728,
+          "peak_force_n": 12.184109314532693,
+          "phase": "high_reverse_ramp",
+          "sample_count": 500,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 1.6327952960412695,
+          "tangent_velocity_error_rms_m_s": 0.003382055216547568
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 96.5,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 0.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.08857112777241283,
+          "orientation_rmse_deg": 0.30296360073216466,
+          "peak_force_n": 12.227102870889013,
+          "phase": "high_reverse",
+          "sample_count": 2000,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 1.1602581388696545,
+          "tangent_velocity_error_rms_m_s": 0.0018193629645995987
+        }
+      ],
+      "scenario": "constant_high",
+      "seed": 11,
+      "trace_path": "traces/constant_high_seed11__adaptive6_8.npz",
+      "windows": [
+        {
+          "end_s": 8.0,
+          "name": "ramp",
+          "start_s": 7.0,
+          "tangent_rmse_mm": 1.6327952960412695,
+          "tangent_velocity_rmse_mm_s": 3.3820552165475677
+        },
+        {
+          "end_s": 10.0,
+          "name": "early",
+          "start_s": 8.0,
+          "tangent_rmse_mm": 1.1549929095441047,
+          "tangent_velocity_rmse_mm_s": 2.0249109769675755
+        },
+        {
+          "end_s": 12.0,
+          "name": "late",
+          "start_s": 10.0,
+          "tangent_rmse_mm": 1.165499582380617,
+          "tangent_velocity_rmse_mm_s": 1.5874188890363816
+        },
+        {
+          "end_s": 12.0,
+          "name": "post",
+          "start_s": 8.0,
+          "tangent_rmse_mm": 1.1602581388696545,
+          "tangent_velocity_rmse_mm_s": 1.8193629645995988
+        }
+      ]
+    },
+    {
+      "audit": {
+        "hold_release_cycles": 51,
+        "max_coefficient_transition_error": 0.0,
+        "max_compensation_reconstruction_error_n": 8.881784197001252e-16,
+        "max_packet_reconstruction_error_n": 0.0,
+        "max_scheduler_reconstruction_error_n": 0.0,
+        "projection_gate_basis": "recorded scale; actuation-present simulator; fallback scale is zero",
+        "projection_scaled_or_fallback_cycles": 0,
+        "scope": "coefficient/slew/readiness/scheduler replay; not independent dynamics",
+        "trace_schema_version": 3,
+        "validated_cycles": 6000
+      },
+      "case": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 0.0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.65
+            ]
+          ]
+        },
+        "name": "constant_high_stop_hold_reverse",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "high_forward",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 4.5,
+            "name": "high_forward_before_stop",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 5.5,
+            "name": "high_stopping",
+            "start_s": 4.5
+          },
+          {
+            "end_s": 6.0,
+            "name": "high_hold_initial",
+            "start_s": 5.5
+          },
+          {
+            "end_s": 7.0,
+            "name": "high_hold",
+            "start_s": 6.0
+          },
+          {
+            "end_s": 8.0,
+            "name": "high_reverse_ramp",
+            "start_s": 7.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "high_reverse",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "constant_high_stop_hold_reverse_seed_11",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.65,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.65,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": 0
+        }
+      },
+      "method": "hold_cap_tracking",
+      "overall": {
+        "absolute_checks_pass": "yes",
+        "coefficient_max": 0.6764749721332178,
+        "coefficient_min": 0.45,
+        "comparator_gate_status": "not_evaluated",
+        "comparator_gates_evaluated": "no",
+        "contact_ratio_pct": 100.0,
+        "diagnostic_amplitude_capped_pct": 64.8,
+        "diagnostic_compensation_active_pct": 100.0,
+        "diagnostic_slew_limited_pct": 6.266666666666667,
+        "failed_absolute_checks": "",
+        "force_recovered": true,
+        "force_recovery_status": "recovered",
+        "force_recovery_time_s": 0.0,
+        "force_rmse_n": 0.12229097328679003,
+        "max_coefficient_reset_jump": 0.0,
+        "max_force_reset_jump_n": 0.0,
+        "max_normal_operation_coefficient_rate_s": 0.30000000000002247,
+        "max_normal_operation_force_slew_n_s": 20.00000000000022,
+        "max_requested_tangential_force_n": 7.979147683995649,
+        "max_uncapped_tangential_amplitude_n": 8.245990976800213,
+        "minimum_reserved_torque_headroom_nm": 4.070008244968647,
+        "minimum_torque_headroom_nm": 5.270008244968646,
+        "orientation_rmse_deg": 0.3203239646935749,
+        "peak_force_n": 12.636585788580819,
+        "projection_pct": 0.0,
+        "sample_count": 5250,
+        "saturation_pct": 0.0,
+        "slew_reconstruction_max_error_n": 0.0,
+        "slew_reconstruction_mismatch_cycles": 0.0,
+        "tangent_recovered": true,
+        "tangent_recovery_status": "recovered",
+        "tangent_recovery_time_s": 0.0,
+        "tangent_rmse_mm": 1.9233049584922237,
+        "tangent_velocity_error_rms_m_s": 0.004527309438231985,
+        "tangential_update_ready_pct": 78.95238095238095,
+        "worst_force_phase": "high_forward",
+        "worst_orientation_phase": "high_forward",
+        "worst_phase_force_rmse_n": 0.17751868426593423,
+        "worst_phase_orientation_rmse_deg": 0.42307431685110986,
+        "worst_phase_tangent_rmse_mm": 3.360923474094087,
+        "worst_tangent_phase": "high_forward"
+      },
+      "parameters": {
+        "adaptation_gain": 800.0,
+        "coefficient_rate_limit": 0.3,
+        "force_regularizer": 2.0,
+        "force_slew_rate": 20.0,
+        "integral_gain": 800.0,
+        "load_margin": 0.25,
+        "load_time_constant": 0.2,
+        "max_equivalent_mu": 0.9,
+        "max_force": 8.0,
+        "min_update_speed": 0.005,
+        "minimum_force": 6.0,
+        "mode": "online",
+        "motion_confirm_time": 0.05,
+        "nominal_mu": 0.45,
+        "velocity_error_time": 0.05,
+        "velocity_scale": 0.005
+      },
+      "phases": [
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 50.88,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 0.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.17751868426593423,
+          "orientation_rmse_deg": 0.42307431685110986,
+          "peak_force_n": 12.544622003572414,
+          "phase": "high_forward",
+          "sample_count": 1250,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 3.360923474094087,
+          "tangent_velocity_error_rms_m_s": 0.00840464768067566
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 97.6,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 0.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.10212963345688873,
+          "orientation_rmse_deg": 0.29246373582028207,
+          "peak_force_n": 12.033233966275558,
+          "phase": "high_forward_before_stop",
+          "sample_count": 250,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 0.8752341395052187,
+          "tangent_velocity_error_rms_m_s": 0.0019789825132868187
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 83.8,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 21.8,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.15676407721551675,
+          "orientation_rmse_deg": 0.29819362415525397,
+          "peak_force_n": 12.327704209960562,
+          "phase": "high_stopping",
+          "sample_count": 500,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 0.8318693859176713,
+          "tangent_velocity_error_rms_m_s": 0.0029459285070334335
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 0.0,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 17.599999999999998,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.1147310520835295,
+          "orientation_rmse_deg": 0.33281256321101227,
+          "peak_force_n": 12.2292201546166,
+          "phase": "high_hold_initial",
+          "sample_count": 250,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 1.1627624179437537,
+          "tangent_velocity_error_rms_m_s": 0.0008826561022137731
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 0.0,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 0.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.021277338824870998,
+          "orientation_rmse_deg": 0.11758488590881322,
+          "peak_force_n": 12.06419609413954,
+          "phase": "high_hold",
+          "sample_count": 500,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 0.747585087613886,
+          "tangent_velocity_error_rms_m_s": 0.00044472676938675894
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 35.6,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 35.199999999999996,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.10012917041690822,
+          "orientation_rmse_deg": 0.2483901053058901,
+          "peak_force_n": 12.198547359296377,
+          "phase": "high_reverse_ramp",
+          "sample_count": 500,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 1.7068636932805417,
+          "tangent_velocity_error_rms_m_s": 0.003757173367742606
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 96.25,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 0.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.08859424980924678,
+          "orientation_rmse_deg": 0.30302868841316133,
+          "peak_force_n": 12.227103017894981,
+          "phase": "high_reverse",
+          "sample_count": 2000,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 1.1594993200557022,
+          "tangent_velocity_error_rms_m_s": 0.0018219468368004465
+        }
+      ],
+      "scenario": "constant_high",
+      "seed": 11,
+      "trace_path": "traces/constant_high_seed11__hold_cap_tracking.npz",
+      "windows": [
+        {
+          "end_s": 8.0,
+          "name": "ramp",
+          "start_s": 7.0,
+          "tangent_rmse_mm": 1.7068636932805417,
+          "tangent_velocity_rmse_mm_s": 3.757173367742606
+        },
+        {
+          "end_s": 10.0,
+          "name": "early",
+          "start_s": 8.0,
+          "tangent_rmse_mm": 1.1534692594728237,
+          "tangent_velocity_rmse_mm_s": 2.0295379129116844
+        },
+        {
+          "end_s": 12.0,
+          "name": "late",
+          "start_s": 10.0,
+          "tangent_rmse_mm": 1.165498182697205,
+          "tangent_velocity_rmse_mm_s": 1.5874370577469805
+        },
+        {
+          "end_s": 12.0,
+          "name": "post",
+          "start_s": 8.0,
+          "tangent_rmse_mm": 1.1594993200557022,
+          "tangent_velocity_rmse_mm_s": 1.8219468368004466
+        }
+      ]
+    },
+    {
+      "audit": {
+        "hold_release_cycles": 0,
+        "max_coefficient_transition_error": 0.0,
+        "max_compensation_reconstruction_error_n": 8.881784197001252e-16,
+        "max_packet_reconstruction_error_n": 0.0,
+        "max_scheduler_reconstruction_error_n": 0.0,
+        "projection_gate_basis": "recorded scale; actuation-present simulator; fallback scale is zero",
+        "projection_scaled_or_fallback_cycles": 0,
+        "scope": "coefficient/slew/readiness/scheduler replay; not independent dynamics",
+        "trace_schema_version": 3,
+        "validated_cycles": 6000
+      },
+      "case": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 29,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 0.0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.65
+            ]
+          ]
+        },
+        "name": "constant_high_stop_hold_reverse",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "high_forward",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 4.5,
+            "name": "high_forward_before_stop",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 5.5,
+            "name": "high_stopping",
+            "start_s": 4.5
+          },
+          {
+            "end_s": 6.0,
+            "name": "high_hold_initial",
+            "start_s": 5.5
+          },
+          {
+            "end_s": 7.0,
+            "name": "high_hold",
+            "start_s": 6.0
+          },
+          {
+            "end_s": 8.0,
+            "name": "high_reverse_ramp",
+            "start_s": 7.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "high_reverse",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "constant_high_stop_hold_reverse_seed_29",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.65,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.65,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": 0
+        }
+      },
+      "method": "adaptive6_8",
+      "overall": {
+        "absolute_checks_pass": "yes",
+        "coefficient_max": 0.675088006577684,
+        "coefficient_min": 0.45,
+        "comparator_gate_status": "not_evaluated",
+        "comparator_gates_evaluated": "no",
+        "contact_ratio_pct": 100.0,
+        "diagnostic_amplitude_capped_pct": 86.91428571428571,
+        "diagnostic_compensation_active_pct": 100.0,
+        "diagnostic_slew_limited_pct": 6.304761904761905,
+        "failed_absolute_checks": "",
+        "force_recovered": true,
+        "force_recovery_status": "recovered",
+        "force_recovery_time_s": 0.0,
+        "force_rmse_n": 0.11654011299707612,
+        "max_coefficient_reset_jump": 0.0,
+        "max_force_reset_jump_n": 0.0,
+        "max_normal_operation_coefficient_rate_s": 0.30000000000002247,
+        "max_normal_operation_force_slew_n_s": 20.00000000000022,
+        "max_requested_tangential_force_n": 7.979147683995649,
+        "max_uncapped_tangential_amplitude_n": 8.254876158189806,
+        "minimum_reserved_torque_headroom_nm": 4.073095305026322,
+        "minimum_torque_headroom_nm": 5.273095305026321,
+        "orientation_rmse_deg": 0.32032923538326885,
+        "peak_force_n": 12.622467681460728,
+        "projection_pct": 0.0,
+        "sample_count": 5250,
+        "saturation_pct": 0.0,
+        "slew_reconstruction_max_error_n": 0.0,
+        "slew_reconstruction_mismatch_cycles": 0.0,
+        "tangent_recovered": true,
+        "tangent_recovery_status": "recovered",
+        "tangent_recovery_time_s": 0.0,
+        "tangent_rmse_mm": 1.9022362722422148,
+        "tangent_velocity_error_rms_m_s": 0.004513268285205796,
+        "tangential_update_ready_pct": 78.91428571428571,
+        "worst_force_phase": "high_forward",
+        "worst_orientation_phase": "high_forward",
+        "worst_phase_force_rmse_n": 0.16165375975829152,
+        "worst_phase_orientation_rmse_deg": 0.423335290790809,
+        "worst_phase_tangent_rmse_mm": 3.342251681680413,
+        "worst_tangent_phase": "high_forward"
+      },
+      "parameters": {
+        "adaptation_gain": 800.0,
+        "coefficient_rate_limit": 0.3,
+        "force_regularizer": 2.0,
+        "force_slew_rate": 20.0,
+        "integral_gain": 800.0,
+        "load_margin": 0.25,
+        "load_time_constant": 0.2,
+        "max_equivalent_mu": 0.9,
+        "max_force": 8.0,
+        "min_update_speed": 0.005,
+        "minimum_force": 6.0,
+        "mode": "online",
+        "motion_confirm_time": 0.05,
+        "nominal_mu": 0.45,
+        "velocity_error_time": 0.05,
+        "velocity_scale": 0.005
+      },
+      "phases": [
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 50.480000000000004,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 0.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.16165375975829152,
+          "orientation_rmse_deg": 0.423335290790809,
+          "peak_force_n": 12.500403042558125,
+          "phase": "high_forward",
+          "sample_count": 1250,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 3.342251681680413,
+          "tangent_velocity_error_rms_m_s": 0.008464437566491238
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 100.0,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 0.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.12632279586356246,
+          "orientation_rmse_deg": 0.2920706100502443,
+          "peak_force_n": 11.95310278339578,
+          "phase": "high_forward_before_stop",
+          "sample_count": 250,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 0.8810367369995089,
+          "tangent_velocity_error_rms_m_s": 0.0019519405192633891
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 99.8,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 21.8,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.15456855165295896,
+          "orientation_rmse_deg": 0.2979211551756973,
+          "peak_force_n": 12.288781547664769,
+          "phase": "high_stopping",
+          "sample_count": 500,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 0.7980901245093918,
+          "tangent_velocity_error_rms_m_s": 0.0028573506768973505
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 100.0,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 17.599999999999998,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.10075250303618677,
+          "orientation_rmse_deg": 0.33301339726964796,
+          "peak_force_n": 12.217775498259874,
+          "phase": "high_hold_initial",
+          "sample_count": 250,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 1.1307866034033354,
+          "tangent_velocity_error_rms_m_s": 0.0008717137567441014
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 100.0,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 0.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.019891328607546853,
+          "orientation_rmse_deg": 0.11764799756182424,
+          "peak_force_n": 12.045055540566146,
+          "phase": "high_hold",
+          "sample_count": 500,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 0.7227843347817084,
+          "tangent_velocity_error_rms_m_s": 0.0004378269744116707
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 99.2,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 35.6,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.08123740075845665,
+          "orientation_rmse_deg": 0.24743673532258786,
+          "peak_force_n": 12.17958408185135,
+          "phase": "high_reverse_ramp",
+          "sample_count": 500,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 1.611861017421797,
+          "tangent_velocity_error_rms_m_s": 0.003322426261814184
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 96.85000000000001,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 0.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.09129082377920134,
+          "orientation_rmse_deg": 0.3030911961909476,
+          "peak_force_n": 12.201841091327369,
+          "phase": "high_reverse",
+          "sample_count": 2000,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 1.1492117945247073,
+          "tangent_velocity_error_rms_m_s": 0.00180861156756338
+        }
+      ],
+      "scenario": "constant_high",
+      "seed": 29,
+      "trace_path": "traces/constant_high_seed29__adaptive6_8.npz",
+      "windows": [
+        {
+          "end_s": 8.0,
+          "name": "ramp",
+          "start_s": 7.0,
+          "tangent_rmse_mm": 1.6118610174217973,
+          "tangent_velocity_rmse_mm_s": 3.3224262618141838
+        },
+        {
+          "end_s": 10.0,
+          "name": "early",
+          "start_s": 8.0,
+          "tangent_rmse_mm": 1.1598162072440144,
+          "tangent_velocity_rmse_mm_s": 2.0289776684959877
+        },
+        {
+          "end_s": 12.0,
+          "name": "late",
+          "start_s": 10.0,
+          "tangent_rmse_mm": 1.1385086133901252,
+          "tangent_velocity_rmse_mm_s": 1.5573699706212132
+        },
+        {
+          "end_s": 12.0,
+          "name": "post",
+          "start_s": 8.0,
+          "tangent_rmse_mm": 1.1492117945247073,
+          "tangent_velocity_rmse_mm_s": 1.80861156756338
+        }
+      ]
+    },
+    {
+      "audit": {
+        "hold_release_cycles": 50,
+        "max_coefficient_transition_error": 0.0,
+        "max_compensation_reconstruction_error_n": 8.881784197001252e-16,
+        "max_packet_reconstruction_error_n": 0.0,
+        "max_scheduler_reconstruction_error_n": 0.0,
+        "projection_gate_basis": "recorded scale; actuation-present simulator; fallback scale is zero",
+        "projection_scaled_or_fallback_cycles": 0,
+        "scope": "coefficient/slew/readiness/scheduler replay; not independent dynamics",
+        "trace_schema_version": 3,
+        "validated_cycles": 6000
+      },
+      "case": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 29,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 0.0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.65
+            ]
+          ]
+        },
+        "name": "constant_high_stop_hold_reverse",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "high_forward",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 4.5,
+            "name": "high_forward_before_stop",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 5.5,
+            "name": "high_stopping",
+            "start_s": 4.5
+          },
+          {
+            "end_s": 6.0,
+            "name": "high_hold_initial",
+            "start_s": 5.5
+          },
+          {
+            "end_s": 7.0,
+            "name": "high_hold",
+            "start_s": 6.0
+          },
+          {
+            "end_s": 8.0,
+            "name": "high_reverse_ramp",
+            "start_s": 7.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "high_reverse",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "constant_high_stop_hold_reverse_seed_29",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.65,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.65,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": 0
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": 0
+        }
+      },
+      "method": "hold_cap_tracking",
+      "overall": {
+        "absolute_checks_pass": "yes",
+        "coefficient_max": 0.6751417290675109,
+        "coefficient_min": 0.45,
+        "comparator_gate_status": "not_evaluated",
+        "comparator_gates_evaluated": "no",
+        "contact_ratio_pct": 100.0,
+        "diagnostic_amplitude_capped_pct": 65.6952380952381,
+        "diagnostic_compensation_active_pct": 100.0,
+        "diagnostic_slew_limited_pct": 6.247619047619048,
+        "failed_absolute_checks": "",
+        "force_recovered": true,
+        "force_recovery_status": "recovered",
+        "force_recovery_time_s": 0.0,
+        "force_rmse_n": 0.1169851202410813,
+        "max_coefficient_reset_jump": 0.0,
+        "max_force_reset_jump_n": 0.0,
+        "max_normal_operation_coefficient_rate_s": 0.30000000000002247,
+        "max_normal_operation_force_slew_n_s": 20.00000000000022,
+        "max_requested_tangential_force_n": 7.979147683995649,
+        "max_uncapped_tangential_amplitude_n": 8.255533063709215,
+        "minimum_reserved_torque_headroom_nm": 4.073095305026322,
+        "minimum_torque_headroom_nm": 5.273095305026321,
+        "orientation_rmse_deg": 0.3204576452574727,
+        "peak_force_n": 12.622467681460728,
+        "projection_pct": 0.0,
+        "sample_count": 5250,
+        "saturation_pct": 0.0,
+        "slew_reconstruction_max_error_n": 0.0,
+        "slew_reconstruction_mismatch_cycles": 0.0,
+        "tangent_recovered": true,
+        "tangent_recovery_status": "recovered",
+        "tangent_recovery_time_s": 0.0,
+        "tangent_rmse_mm": 1.908586711818188,
+        "tangent_velocity_error_rms_m_s": 0.004544481829618025,
+        "tangential_update_ready_pct": 78.97142857142858,
+        "worst_force_phase": "high_forward",
+        "worst_orientation_phase": "high_forward",
+        "worst_phase_force_rmse_n": 0.16165375975829152,
+        "worst_phase_orientation_rmse_deg": 0.423335290790809,
+        "worst_phase_tangent_rmse_mm": 3.342251681680413,
+        "worst_tangent_phase": "high_forward"
+      },
+      "parameters": {
+        "adaptation_gain": 800.0,
+        "coefficient_rate_limit": 0.3,
+        "force_regularizer": 2.0,
+        "force_slew_rate": 20.0,
+        "integral_gain": 800.0,
+        "load_margin": 0.25,
+        "load_time_constant": 0.2,
+        "max_equivalent_mu": 0.9,
+        "max_force": 8.0,
+        "min_update_speed": 0.005,
+        "minimum_force": 6.0,
+        "mode": "online",
+        "motion_confirm_time": 0.05,
+        "nominal_mu": 0.45,
+        "velocity_error_time": 0.05,
+        "velocity_scale": 0.005
+      },
+      "phases": [
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 50.480000000000004,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 0.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.16165375975829152,
+          "orientation_rmse_deg": 0.423335290790809,
+          "peak_force_n": 12.500403042558125,
+          "phase": "high_forward",
+          "sample_count": 1250,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 3.342251681680413,
+          "tangent_velocity_error_rms_m_s": 0.008464437566491238
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 100.0,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 0.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.12632279586356246,
+          "orientation_rmse_deg": 0.2920706100502443,
+          "peak_force_n": 11.95310278339578,
+          "phase": "high_forward_before_stop",
+          "sample_count": 250,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 0.8810367369995089,
+          "tangent_velocity_error_rms_m_s": 0.0019519405192633891
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 90.60000000000001,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 21.8,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.15456855213756673,
+          "orientation_rmse_deg": 0.29792115515431217,
+          "peak_force_n": 12.288781547664769,
+          "phase": "high_stopping",
+          "sample_count": 500,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 0.7980901363161239,
+          "tangent_velocity_error_rms_m_s": 0.0028573505999638454
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 0.0,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 17.599999999999998,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.10075250703884622,
+          "orientation_rmse_deg": 0.33301339024166887,
+          "peak_force_n": 12.217775583248697,
+          "phase": "high_hold_initial",
+          "sample_count": 250,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 1.130786843622606,
+          "tangent_velocity_error_rms_m_s": 0.000871713484789545
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 0.0,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 0.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.019891327576147214,
+          "orientation_rmse_deg": 0.11764800019486067,
+          "peak_force_n": 12.045055540571358,
+          "phase": "high_hold",
+          "sample_count": 500,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 0.7227844628822615,
+          "tangent_velocity_error_rms_m_s": 0.00043782711218057484
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 36.4,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 35.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.08755445564087806,
+          "orientation_rmse_deg": 0.2488520072329409,
+          "peak_force_n": 12.185429985825992,
+          "phase": "high_reverse_ramp",
+          "sample_count": 500,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 1.6913218550187032,
+          "tangent_velocity_error_rms_m_s": 0.0037376070447598586
+        },
+        {
+          "absolute_checks_pass": "yes",
+          "comparator_gate_status": "not_evaluated",
+          "comparator_gates_evaluated": "no",
+          "contact_ratio_pct": 100.0,
+          "diagnostic_amplitude_capped_pct": 96.65,
+          "diagnostic_compensation_active_pct": 100.0,
+          "diagnostic_slew_limited_pct": 0.0,
+          "failed_absolute_checks": "",
+          "force_rmse_n": 0.0913249069356469,
+          "orientation_rmse_deg": 0.3031578328030623,
+          "peak_force_n": 12.201841205086959,
+          "phase": "high_reverse",
+          "sample_count": 2000,
+          "saturation_pct": 0.0,
+          "tangent_rmse_mm": 1.1483010333483863,
+          "tangent_velocity_error_rms_m_s": 0.0018111957864289639
+        }
+      ],
+      "scenario": "constant_high",
+      "seed": 29,
+      "trace_path": "traces/constant_high_seed29__hold_cap_tracking.npz",
+      "windows": [
+        {
+          "end_s": 8.0,
+          "name": "ramp",
+          "start_s": 7.0,
+          "tangent_rmse_mm": 1.6913218550187032,
+          "tangent_velocity_rmse_mm_s": 3.7376070447598586
+        },
+        {
+          "end_s": 10.0,
+          "name": "early",
+          "start_s": 8.0,
+          "tangent_rmse_mm": 1.1580122718835453,
+          "tangent_velocity_rmse_mm_s": 2.0335700284625333
+        },
+        {
+          "end_s": 12.0,
+          "name": "late",
+          "start_s": 10.0,
+          "tangent_rmse_mm": 1.1385069628882618,
+          "tangent_velocity_rmse_mm_s": 1.5573866870160917
+        },
+        {
+          "end_s": 12.0,
+          "name": "post",
+          "start_s": 8.0,
+          "tangent_rmse_mm": 1.1483010333483863,
+          "tangent_velocity_rmse_mm_s": 1.811195786428964
+        }
+      ]
+    }
+  ],
+  "status": "PASS"
+}
