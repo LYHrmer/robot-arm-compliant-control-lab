@@ -3,6 +3,8 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 .venv/
+.venv-repro/
+.venv-learning-cpu/
 .local-deps/
 *.egg-info/
 build/

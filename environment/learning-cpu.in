@@ -1,0 +1,3 @@
+-r core.in
+# Official CPU wheel, CPython 3.10 / Linux x86_64; no CUDA packages.
+torch @ https://download-r2.pytorch.org/whl/cpu/torch-2.12.1%2Bcpu-cp310-cp310-manylinux_2_28_x86_64.whl#sha256=41c4824c535315dc8a4f92a4a61203df2074d052dbf8f75fda8bfe472fe3cdde

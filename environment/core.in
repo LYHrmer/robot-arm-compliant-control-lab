@@ -1,0 +1,12 @@
+# Baseline runtime versions match the measured-budget robustness archive.
+numpy==2.2.6
+mujoco==3.12.0
+matplotlib==3.10.6
+gymnasium==1.3.0
+pytest==8.4.2
+ruff==0.16.5
+# Install the editable project without an unpinned isolated build environment.
+# Torch CPU also requires setuptools <82; keep both profiles identical.
+setuptools>=77,<82
+wheel
+pip

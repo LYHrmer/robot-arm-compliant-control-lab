@@ -46,15 +46,43 @@ BC/PPO 尚无跨种子一致优于解析前馈的证据，冻结 v0.5 的 48-cas
 
 需要 Python 3.10+。MuJoCo 仿真不要求 ROS 2 或 Franka hardware interface。
 
+先获取代码，再选择下面一种安装方式：
+
 ```bash
 git clone https://github.com/LYHrmer/robot-arm-compliant-control-lab.git
 cd robot-arm-compliant-control-lab
+```
+
+复现已发布实验时，使用[固定环境](docs/reproducible_environment.md)：Linux x86_64、
+Python 版本见 [`environment/python-version`](environment/python-version)，依赖及文件哈希
+保存在 `environment/`。在新的虚拟环境中安装，不覆盖已有环境：
+
+```bash
+python3.10 -m venv .venv-repro
+source .venv-repro/bin/activate
+unset PYTHONPATH
+python tools/ci/install_locked.py --profile core
+franka-smoke
+```
+
+所有命令均在仓库根目录执行。安装器会核对 Python 版本；CPU 学习环境和
+学习测试见固定环境说明。清空 `PYTHONPATH` 只影响当前终端，避免 ROS 或旧包路径
+混入新环境。版本锁定不保证不同 CPU 的浮点结果逐位相等。
+
+<details>
+<summary>其他 Python 版本或平台：范围依赖安装</summary>
+
+下面的方式用于试用和兼容性检查，与固定实验环境分开维护：
+
+```bash
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -e ".[dev]"
 
 franka-smoke
 ```
+
+</details>
 
 `franka-smoke` 先校验 384 行冻结归档，再运行 2 s torque-safe adaptive nominal 仿真。正常
 输出会同时保留“实验失败”和“工程检查通过”两个状态：
