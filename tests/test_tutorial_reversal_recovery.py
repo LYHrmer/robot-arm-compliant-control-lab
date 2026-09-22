@@ -98,10 +98,13 @@ def test_changed_tracking_data_rejected_by_archived_metric(experiment):
         lab.analyze(changed, row)
 
 
-def test_documented_stdout_and_events_write_no_files(tmp_path):
+def test_documented_stdout_and_events_write_no_files(tmp_path, monkeypatch):
+    # Invalid inherited backend makes this isolation check independent of
+    # whether the developer machine happens to have a working EGL driver.
+    monkeypatch.setenv("MUJOCO_GL", "inherited-invalid-backend")
     document = (lab.ROOT / "docs/tutorial/labs/03_reversal_recovery.md").read_text()
     expected = re.search(r"```text\n(.*?)\n```", document, re.DOTALL).group(1)
-    environment = dict(os.environ, PYTHONDONTWRITEBYTECODE="1")
+    environment = dict(os.environ, PYTHONDONTWRITEBYTECODE="1", MUJOCO_GL="disable")
     inherited_paths = [
         str(Path(entry).resolve())
         for entry in environment.get("PYTHONPATH", "").split(os.pathsep) if entry

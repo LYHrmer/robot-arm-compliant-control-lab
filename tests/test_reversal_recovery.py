@@ -386,7 +386,12 @@ def _artifact_hashes(directory):
             for path in directory.rglob("*") if path.is_file()}
 
 
-def test_finalize_cli_only_audits_and_preserves_every_original_artifact(copied_recovery_archive, tmp_path):
+def test_finalize_cli_only_audits_and_preserves_every_original_artifact(
+    copied_recovery_archive, tmp_path, monkeypatch,
+):
+    # Collection may select EGL after MuJoCo was already imported. A fresh
+    # numerical-only CLI must not inherit that renderer selection.
+    monkeypatch.setenv("MUJOCO_GL", "inherited-invalid-backend")
     staging = copied_recovery_archive
     manifest_before = (staging / "manifest.json").read_bytes()
     hashes_before = _artifact_hashes(staging)
@@ -394,6 +399,7 @@ def test_finalize_cli_only_audits_and_preserves_every_original_artifact(copied_r
     output = subprocess.run(
         [sys.executable, "-m", "tools.reversal_recovery.study", "--output", str(destination),
          "--finalize", str(staging)], cwd=study.ROOT, capture_output=True, text=True, check=True,
+        env={**os.environ, "MUJOCO_GL": "disable"}, timeout=60,
     )
     report = json.loads(output.stdout)
     assert report["archive_integrity"] == "PASS"
