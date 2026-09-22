@@ -39,6 +39,13 @@ from tools.reversal_recovery.controller import HoldCapTracking
 ROOT = Path(__file__).resolve().parents[2]
 PROTOCOL = Path(__file__).with_name("protocol.json")
 SCHEMA = 3
+# The eight original traces completed at this exact revision. That runner compared
+# tuple-containing case metadata directly with JSON lists and stopped before rename.
+# This sole compatibility path changes only summary serialization/finalization;
+# the recorded execution identity and every other input hash remain untouched.
+SERIALIZATION_FIX_EXECUTION_COMMIT = "64176beffd1a21b0d86b14a92254cc424f7a2674"
+SERIALIZATION_FIX_STUDY_SHA256 = "9954d696d107886a23fa01f5605d54264abcb364b5a39be1234dd4601562f54e"
+STUDY_SOURCE_PATH = "tools/reversal_recovery/study.py"
 
 
 def protocol_document():
@@ -372,6 +379,25 @@ def collect(directory, protocol, *, execute):
             "default_changed": False, "eligible_for_default_change": False}
 
 
+def verify_comparison(saved, rebuilt):
+    # JSON gives tuples and lists the same representation; no numeric tolerance.
+    # Comparing serialized values also keeps False distinct from a forged numeric 0.
+    if json.dumps(saved, sort_keys=True, allow_nan=False) != json.dumps(
+        rebuilt, sort_keys=True, allow_nan=False,
+    ):
+        raise ValueError("recomputed comparison differs")
+
+
+def verify_sources(saved, commit):
+    current = source_identity()
+    if saved == current:
+        return "exact"
+    compatible = {**current, STUDY_SOURCE_PATH: SERIALIZATION_FIX_STUDY_SHA256}
+    if commit == SERIALIZATION_FIX_EXECUTION_COMMIT and saved == compatible:
+        return "serialization-finalization-only compatibility"
+    raise ValueError("source identity differs")
+
+
 def audit_archive(directory):
     directory = Path(directory)
     manifest = previous.archive.verify_archive(directory)
@@ -388,13 +414,28 @@ def audit_archive(directory):
         raise ValueError("source commit must be a 40-character hexadecimal Git commit")
     if json.loads((directory / "protocol.json").read_text()) != protocol:
         raise ValueError("protocol differs")
-    if json.loads((directory / "source_hashes.json").read_text()) != source_identity():
-        raise ValueError("source identity differs")
+    source_check = verify_sources(json.loads((directory / "source_hashes.json").read_text()), commit)
     rebuilt = collect(directory, protocol, execute=False)
-    if json.loads((directory / "comparison.json").read_text()) != rebuilt:
-        raise ValueError("recomputed comparison differs")
+    verify_comparison(json.loads((directory / "comparison.json").read_text()), rebuilt)
     return {"archive_integrity": "PASS", "comparison_status": rebuilt["status"],
-            "new_simulations": manifest["new_simulations"], "default_changed": False}
+            "new_simulations": manifest["new_simulations"], "default_changed": False,
+            "source_identity_check": source_check}
+
+
+def finalize(staging, directory):
+    """Audit a completed archive and rename it; never regenerate or rewrite artifacts."""
+    staging, destination = Path(staging).absolute(), Path(directory).absolute()
+    if not staging.is_dir() or any(path.is_symlink() for path in (staging, *staging.parents)):
+        raise ValueError("staging must be a directory and must not traverse a symlink")
+    if (destination.exists() or staging == destination or staging in destination.parents
+            or any(path.is_symlink() for path in (destination, *destination.parents))):
+        raise ValueError("output must be new, outside staging, and must not traverse a symlink")
+    audited = audit_archive(staging)
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    if destination.exists() or destination.is_symlink():
+        raise ValueError("destination appeared during audit; staging preserved")
+    staging.rename(destination)
+    return audited
 
 
 def run(directory):
@@ -425,11 +466,7 @@ def run(directory):
         }, "default_changed": False, "new_holdout": False,
     })
     (staging / "COMPLETE").write_text(_sha256(staging / "manifest.json") + "\n")
-    audited = audit_archive(staging)
-    if destination.exists():
-        raise ValueError("destination appeared during execution; staging preserved")
-    staging.rename(destination)
-    return audited
+    return finalize(staging, destination)
 
 
 def main():
@@ -437,8 +474,17 @@ def main():
     operation = parser.add_mutually_exclusive_group(required=True)
     operation.add_argument("--output", type=Path)
     operation.add_argument("--audit", type=Path)
+    parser.add_argument("--finalize", type=Path, help="audit and rename an existing complete staging archive")
     args = parser.parse_args()
-    print(json.dumps(audit_archive(args.audit) if args.audit else run(args.output), indent=2))
+    if args.finalize and not args.output:
+        parser.error("--finalize requires --output and cannot be combined with --audit")
+    if args.audit:
+        report = audit_archive(args.audit)
+    elif args.finalize:
+        report = finalize(args.finalize, args.output)
+    else:
+        report = run(args.output)
+    print(json.dumps(report, indent=2))
 
 
 if __name__ == "__main__":

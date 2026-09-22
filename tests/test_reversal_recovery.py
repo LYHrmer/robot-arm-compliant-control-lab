@@ -1,6 +1,11 @@
 from __future__ import annotations
 
 import json
+import os
+import shutil
+import subprocess
+import sys
+from pathlib import Path
 
 import numpy as np
 import pytest
@@ -318,3 +323,119 @@ def test_resealed_manifest_rejects_changed_scope_flags(tmp_path, key, value):
     _sealed_manifest_with_change(tmp_path, key, value)
     with pytest.raises(ValueError, match="archive identity/count/inventory differs"):
         study.audit_archive(tmp_path)
+
+
+def test_json_roundtrip_of_real_case_metadata_does_not_invalidate_the_summary():
+    spec = study.specifications(study.protocol_document())[0]
+    rebuilt = {"case": study._case_document(spec["case"]), "metric": 1.375}
+    saved = json.loads(json.dumps(rebuilt))
+    assert saved != rebuilt  # Real schedule/configuration tuples become JSON lists.
+    study.verify_comparison(saved, rebuilt)
+
+
+@pytest.mark.parametrize("changed", [1.375 + 1e-12, True, float("nan")])
+def test_json_normalization_does_not_relax_values(changed):
+    with pytest.raises(ValueError):
+        study.verify_comparison({"metric": changed}, {"metric": 1.375})
+    with pytest.raises(ValueError, match="comparison differs"):
+        study.verify_comparison({"default_changed": 0}, {"default_changed": False})
+
+
+def test_source_check_accepts_exact_inputs_or_the_one_recorded_serialization_fix():
+    sources = study.source_identity()
+    assert study.verify_sources(sources, "a" * 40) == "exact"
+    sources[study.STUDY_SOURCE_PATH] = study.SERIALIZATION_FIX_STUDY_SHA256
+    assert study.verify_sources(sources, study.SERIALIZATION_FIX_EXECUTION_COMMIT) == (
+        "serialization-finalization-only compatibility"
+    )
+
+
+@pytest.mark.parametrize("change", ["commit", "runner_hash", "other_source", "extra_source"])
+def test_legacy_source_exception_rejects_every_other_change(change):
+    sources = study.source_identity()
+    sources[study.STUDY_SOURCE_PATH] = study.SERIALIZATION_FIX_STUDY_SHA256
+    commit = study.SERIALIZATION_FIX_EXECUTION_COMMIT
+    if change == "commit":
+        commit = "b" * 40
+    elif change == "runner_hash":
+        sources[study.STUDY_SOURCE_PATH] = "c" * 64
+    elif change == "other_source":
+        sources["tools/reversal_recovery/controller.py"] = "d" * 64
+    else:
+        sources["tools/not_part_of_the_experiment.py"] = "e" * 64
+    with pytest.raises(ValueError, match="source identity differs"):
+        study.verify_sources(sources, commit)
+
+
+@pytest.fixture
+def copied_recovery_archive(tmp_path):
+    # During pre-publication testing this points at the complete, read-only staging
+    # archive. CI uses the published directory. Neither source is modified by tests.
+    source = Path(os.environ.get(
+        "REVERSAL_RECOVERY_TEST_ARCHIVE", study.ROOT / "results/franka_reversal_recovery",
+    ))
+    if not source.is_dir():
+        raise AssertionError("the real eight-trace archive is required for finalization tests")
+    destination = tmp_path / "staging"
+    shutil.copytree(source, destination)
+    return destination
+
+
+def _artifact_hashes(directory):
+    return {path.relative_to(directory).as_posix(): study._sha256(path)
+            for path in directory.rglob("*") if path.is_file()}
+
+
+def test_finalize_cli_only_audits_and_preserves_every_original_artifact(copied_recovery_archive, tmp_path):
+    staging = copied_recovery_archive
+    manifest_before = (staging / "manifest.json").read_bytes()
+    hashes_before = _artifact_hashes(staging)
+    destination = tmp_path / "published"
+    output = subprocess.run(
+        [sys.executable, "-m", "tools.reversal_recovery.study", "--output", str(destination),
+         "--finalize", str(staging)], cwd=study.ROOT, capture_output=True, text=True, check=True,
+    )
+    report = json.loads(output.stdout)
+    assert report["archive_integrity"] == "PASS"
+    assert report["comparison_status"] == "PASS"
+    assert "executed " not in output.stdout
+    assert not staging.exists()
+    assert (destination / "manifest.json").read_bytes() == manifest_before
+    assert _artifact_hashes(destination) == hashes_before
+
+
+def test_finalize_refuses_an_existing_destination_without_touching_staging(copied_recovery_archive, tmp_path):
+    staging = copied_recovery_archive
+    before = _artifact_hashes(staging)
+    destination = tmp_path / "already_exists"
+    destination.mkdir()
+    marker = destination / "keep.txt"
+    marker.write_text("user content")
+    with pytest.raises(ValueError, match="output must be new"):
+        study.finalize(staging, destination)
+    assert marker.read_text() == "user content"
+    assert _artifact_hashes(staging) == before
+
+
+def test_finalize_failed_audit_preserves_original_files(copied_recovery_archive, tmp_path):
+    staging = copied_recovery_archive
+    comparison = staging / "comparison.json"
+    comparison.write_text('{"status":"forged"}')
+    before = _artifact_hashes(staging)
+    destination = tmp_path / "not_created"
+    with pytest.raises(ValueError, match="artifact hash differs"):
+        study.finalize(staging, destination)
+    assert staging.exists() and not destination.exists()
+    assert _artifact_hashes(staging) == before
+
+
+def test_finalize_rejects_a_symlink_source_before_reading_or_moving_it(tmp_path):
+    original = tmp_path / "original"
+    original.mkdir()
+    link = tmp_path / "staging-link"
+    link.symlink_to(original, target_is_directory=True)
+    destination = tmp_path / "published"
+    with pytest.raises(ValueError, match="staging.*symlink"):
+        study.finalize(link, destination)
+    assert link.is_symlink() and original.is_dir()
+    assert not destination.exists()
