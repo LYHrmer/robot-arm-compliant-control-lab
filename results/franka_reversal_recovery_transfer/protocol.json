@@ -1,0 +1,164 @@
+{
+  "absolute_gates": {
+    "contact_ratio_pct": 99,
+    "minimum_reserved_torque_headroom_nm": 1,
+    "peak_force_n": 35,
+    "projection_pct": 0,
+    "saturation_pct": 0
+  },
+  "acceptance": {
+    "maximum_full_raw_peak_increase_n": 1,
+    "maximum_other_window_tangent_increase_mm": 0.1,
+    "maximum_phase_force_rmse_increase_n": 0.2,
+    "maximum_phase_orientation_rmse_increase_deg": 0.1,
+    "maximum_window_tangent_velocity_rmse_increase_mm_s": 0.5,
+    "minimum_falling_early_tangent_reduction_pct_each_seed": 10,
+    "minimum_falling_post_tangent_reduction_pct_each_seed": 10,
+    "passing_means": "passes only this public recovery-transfer matrix; no default promotion, public24 claim or C++ qualification",
+    "require_all_pairs": true
+  },
+  "auxiliary_scale_fault": {
+    "affected_channel": "auxiliary tangential load packet only; normal-force feedback not scaled",
+    "end_s": 12,
+    "start_s": 6,
+    "value": 0.8
+  },
+  "candidate_change": "none; reuse the exact published hold-cap candidate",
+  "candidate_count": 1,
+  "candidate_source": "tools.reversal_recovery.controller.HoldCapTracking",
+  "comparison_defined_before_execution": true,
+  "comparison_replay": {
+    "audit_absolute_tolerance": 1e-12,
+    "exact": [
+      "schema/configuration/parameters",
+      "counts/flags/status/failures",
+      "prefix_bytes",
+      "source/artifact_hashes"
+    ],
+    "metrics_absolute_tolerance": 1e-10,
+    "relative_tolerance": 0
+  },
+  "default_changed": false,
+  "duration_s": 12,
+  "error_profiles": {
+    "clean": {
+      "controller_yaw_error_deg": 0,
+      "fault": "fresh",
+      "normal_bias_n": 0
+    },
+    "combined": {
+      "controller_yaw_error_deg": 3,
+      "fault": "fresh",
+      "normal_bias_n": 0.75
+    },
+    "combined_scale_0p8": {
+      "controller_yaw_error_deg": 3,
+      "fault": "scale_0p8",
+      "normal_bias_n": 0.75
+    }
+  },
+  "evaluated_runs": 72,
+  "friction_schedules": {
+    "constant_high": [
+      [
+        0,
+        0.65
+      ]
+    ],
+    "falling": [
+      [
+        0,
+        0.65
+      ],
+      [
+        4,
+        0.65
+      ],
+      [
+        6,
+        0.3
+      ]
+    ]
+  },
+  "identity": "reversal-recovery-cross-direction-errors-v1",
+  "maximum_new_simulations": 64,
+  "methods": [
+    "adaptive6_8",
+    "hold_cap_tracking"
+  ],
+  "new_holdout": false,
+  "normal_bias_frame": "true surface normal, rotated into world; zero torque bias",
+  "normal_bias_start_s": 6,
+  "paired_comparisons": 36,
+  "physical_surface_load_combinations": 6,
+  "prefix_checks": [
+    {
+      "before_s": 4.5,
+      "comparison": "candidate versus original in each pair",
+      "fields": "all full-trace cycle fields",
+      "require_bit_exact": true
+    },
+    {
+      "before_s": 6,
+      "comparison": "combined_scale_0p8 versus combined, same method/scenario/yaw/seed",
+      "fields": "all full-trace cycle fields",
+      "require_bit_exact": true
+    }
+  ],
+  "public_development": true,
+  "reference": {
+    "directory": "results/franka_reversal_recovery",
+    "manifest_sha256": "e8310dca906626267a8d8884aea4a3c6f619e66cc79a8627acbff220604746e5",
+    "reuse_error_profile": "clean",
+    "reuse_surface_yaw_deg": 0,
+    "rule": "Reference all eight original traces in place; no copying or additional simulation."
+  },
+  "reused_runs": 8,
+  "rotation_gain_scale": 1,
+  "scenario_names": [
+    "falling",
+    "constant_high"
+  ],
+  "scope_limits": [
+    "Six surface-yaw/load combinations with three input-error settings; noise seeds and methods are not independent physical scenarios.",
+    "All thresholds retained from the original pilot; a missed 10 percent benefit is reported separately from absolute engineering failure.",
+    "Scale 0.8 is a prespecified stress boundary, not a sensor calibration fix.",
+    "No missing/stale packets, overestimated force, new pitch/roll, payload grid or randomized environment sweep in this matrix.",
+    "No new candidate tuning, six-axis integration, BC/PPO training, hardware or C++ validation.",
+    "The eight reference runs are already public and not independent new evidence.",
+    "All outcomes retained; protocol and candidate remain fixed during execution."
+  ],
+  "seeds": [
+    11,
+    29
+  ],
+  "surface_yaws_deg": [
+    -15,
+    0,
+    15
+  ],
+  "timestep_s": 0.002,
+  "velocity_error_time_s": 0.05,
+  "windows": [
+    {
+      "end_s": 8,
+      "name": "ramp",
+      "start_s": 7
+    },
+    {
+      "end_s": 10,
+      "name": "early",
+      "start_s": 8
+    },
+    {
+      "end_s": 12,
+      "name": "late",
+      "start_s": 10
+    },
+    {
+      "end_s": 12,
+      "name": "post",
+      "start_s": 8
+    }
+  ]
+}
