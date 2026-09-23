@@ -1,0 +1,58 @@
+name: recovery-runtime
+
+# Read-only replay of published traces. This is not a simulation or a replacement
+# for the tests workflow. A native mismatch must leave this diagnostic run red.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  OPENBLAS_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+  PYTHONNOUSERSITE: "1"
+
+jobs:
+  replay:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [locked-core, reported-failure]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        if: matrix.profile == 'locked-core'
+        with:
+          python-version-file: environment/python-version
+      - uses: actions/setup-python@v7
+        if: matrix.profile == 'reported-failure'
+        with:
+          python-version: "3.11.16"
+      - name: Record source and create isolated environment
+        run: |
+          git rev-parse HEAD
+          python -m venv .venv-runtime
+          echo "$PWD/.venv-runtime/bin" >> "$GITHUB_PATH"
+      - name: Install locked core
+        if: matrix.profile == 'locked-core'
+        run: python tools/ci/install_locked.py --profile core
+      - name: Install versions from the reported failure
+        if: matrix.profile == 'reported-failure'
+        run: |
+          python -m pip install -e ".[dev]" numpy==2.4.6 mujoco==3.13.0
+          python -m pip check
+          python -m pip freeze
+      - name: Compare numeric paths on the same runner
+        shell: bash
+        run: python -m tools.ci.recovery_runtime_matrix --repo . | tee recovery-runtime.log
+      - name: Preserve diagnostic evidence even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: recovery-runtime-${{ matrix.profile }}-${{ github.sha }}
+          path: recovery-runtime.log
+          if-no-files-found: error
+          retention-days: 14
