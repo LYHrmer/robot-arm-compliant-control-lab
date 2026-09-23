@@ -50,6 +50,20 @@ def test_lock_satisfies_direct_inputs_and_preserves_the_official_torch_url():
     assert torch_input in (ROOT / "environment/learning-cpu.lock").read_text()
 
 
+@pytest.mark.parametrize("version,supported", [
+    ("3.0.0", False), ("3.12.0", True), ("3.13.0", True),
+    ("3.14.0", False), ("3.15.0", False),
+])
+def test_install_range_preserves_the_qualified_mujoco_boundary(version, supported):
+    project = (ROOT / "pyproject.toml").read_text()
+    declarations = re.findall(r'^\s*"(mujoco[^"]+)",?$', project, re.MULTILINE)
+    assert len(declarations) == 1
+    requirement = Requirement(declarations[0])
+    assert requirement.name == "mujoco"
+    assert (version in requirement.specifier) is supported
+    assert _pins("core")["mujoco"] in requirement.specifier
+
+
 def test_installer_enforces_hashes_and_disables_unpinned_build_dependencies():
     commands = install_locked.install_commands("core")
     assert "--require-hashes" in commands[0] and "--only-binary=:all:" in commands[0]
