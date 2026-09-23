@@ -20,8 +20,10 @@
 unset PYTHONPATH
 python3 -m venv .venv-repro
 source .venv-repro/bin/activate
+export OPENBLAS_CORETYPE=Haswell OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1
 python tools/ci/install_locked.py --profile core --check-only
 python tools/ci/install_locked.py --profile core
+python -m tools.ci.check_replay_kernel
 franka-smoke
 python -m tools.tutorials.wrench_to_torque
 python -m tools.tutorials.budget_drop --check-tamper
@@ -39,7 +41,9 @@ python -m tools.tutorials.budget_drop --check-tamper
 unset PYTHONPATH
 python3 -m venv .venv-learning-cpu
 source .venv-learning-cpu/bin/activate
+export OPENBLAS_CORETYPE=Haswell OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1
 python tools/ci/install_locked.py --profile learning-cpu
+python -m tools.ci.check_replay_kernel
 python -c 'import torch; assert torch.version.cuda is None; print(torch.__version__)'
 mapfile -t learning_tests < environment/learning-tests.txt
 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
@@ -99,7 +103,7 @@ core 和兼容性任务允许原有可选学习测试跳过；学习任务单独
 所以仍报 `recomputed comparison differs`。本轮 72 条回归的审计先调用这份旧归档审计，
 因此也会被阻断；新摘要自己的容差不会绕过旧检查。
 
-不同云端任务并非每次失败。已确认的是触发失败的字段，尚未确认末位差异来自哪条数值计算路径。
+不同云端任务并非每次失败。上面的日志确认了触发失败的字段，后续同机对照才定位到 OpenBLAS 路径。
 旧诊断曾尝试禁用一组 AVX512 特性，但 NumPy 2.4 仍报告部分分组启用，不能把这次设置
 当作“已排除所有 AVX512 影响”的证据。MuJoCo 的版本上限也没有解决这一项问题。
 
@@ -128,6 +132,33 @@ GitHub 的 [`recovery-runtime`](../.github/workflows/recovery-runtime.yml) 工�
 它分别使用固定 core 环境和上述失败任务的 Python／NumPy／MuJoCo 版本，在每台运行器内做
 四路对照。后一环境的其余依赖仍按安装范围解析，日志会记录实际版本，不能视为完整锁定。
 工作流保存诊断日志，原生路径失败不会被某个替代路径的成功覆盖；正常 `tests` 工作流仍独立运行。
+
+### 复现环境限定为 Haswell 数值内核
+
+[同机四路对照](https://github.com/LYHrmer/robot-arm-compliant-control-lab/actions/runs/35867214077)
+在两台云端 CPU 上得到相同结果。[证据摘录](evidence/recovery-runtime-2026-09-23.json)
+保存实际内核信息与全部差异，并绑定原始日志的 SHA-256。下表是重算摘要与冻结摘要的精确差异数：
+
+| 单变量对照 | Intel Xeon 8573C／固定 core | AMD EPYC 9V45／报错版本 |
+|---|---:|---:|
+| 原生 OpenBLAS `SkylakeX` | 16 | 16 |
+| 仅指定 OpenBLAS `Haswell` | 0 | 0 |
+| 仅指定 OpenBLAS `Sandybridge` | 0 | 0 |
+| 仅禁用 NumPy AVX512 分派 | 16 | 16 |
+
+BLAS 对照中的库哈希、线程数和 NumPy 分派都不变。最早调度差异位于第 837 拍、1.674 s
+的投影力点积，相差 1 ULP；此前负载和 `alpha` 一致。两种 BLAS 内核切换都消除了该差异。
+这将本次问题定位到 OpenBLAS 的内核选择，不是 `expm1` 系数变化。
+
+固定环境和普通 CI 因而使用 `OPENBLAS_CORETYPE=Haswell`、单线程，并通过
+`python -m tools.ci.check_replay_kernel` 检查实际加载的内核。只设置变量但库未采用它时，
+检查仍会失败。上面的安装命令已包含这一步；变量须在启动 Python 前设置，只影响当前终端。
+Haswell 是这里选用的数值内核名称，不要求 CPU 品牌为 Intel；检查器还要求 CPU 支持 AVX2 和 FMA3。
+此限定不适用于 ARM 或其他 BLAS 后端，也不是跨所有 CPU 的逐位一致性保证。
+
+零差异指摘要精确匹配。补偿力逐拍重构原本就有约 `8.88e-16` N 的残差，Haswell 路径
+复现了这个残差，并没有让所有逐拍字段变成逐位相同。原轨迹、源码哈希、验收门槛与旧摘要
+比较器都未修改；手动对照保留原生路径的失败。72 条换向回归仍为 34/36、整体 `FAIL`。
 
 ## 更新锁文件
 

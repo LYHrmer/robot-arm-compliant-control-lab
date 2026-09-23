@@ -145,3 +145,16 @@ def test_ci_separates_locked_compatibility_and_required_learning_jobs():
     assert "contents: read" in workflow
     assert "python tools/ci/check_learning_junit.py learning-junit.xml" in workflow
     assert "continue-on-error" not in workflow
+
+
+def test_ci_qualifies_actual_blas_kernel_without_replacing_frozen_audits():
+    workflow = (ROOT / ".github/workflows/tests.yml").read_text()
+    global_environment = workflow.split("jobs:", 1)[0]
+    assert 'OPENBLAS_CORETYPE: "Haswell"' in global_environment
+    assert workflow.count("run: python -m tools.ci.check_replay_kernel") == 3
+    assert "run: python -m pytest" in workflow
+    forensic = (ROOT / ".github/workflows/recovery-runtime.yml").read_text()
+    assert "OPENBLAS_CORETYPE:" not in forensic
+    for path in ("tools/reversal_recovery/study.py", "tools/reversal_recovery_transfer/study.py"):
+        source = (ROOT / path).read_text()
+        assert "OPENBLAS_CORETYPE" not in source

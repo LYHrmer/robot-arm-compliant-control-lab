@@ -1,0 +1,1926 @@
+{
+  "kind": "read-only runtime diagnosis; not new physics or a performance evaluation",
+  "runners": [
+    {
+      "aggregate": {
+        "diagnostic_status": "FAIL",
+        "note": "No compatibility claim; all original exact differences remain failures.",
+        "profile_results": [
+          {
+            "completed": true,
+            "profile": "native",
+            "returncode": 1
+          },
+          {
+            "completed": true,
+            "profile": "blas_haswell",
+            "returncode": 0
+          },
+          {
+            "completed": true,
+            "profile": "blas_sandybridge",
+            "returncode": 0
+          },
+          {
+            "completed": true,
+            "profile": "numpy_portable",
+            "returncode": 1
+          }
+        ]
+      },
+      "artifact": "recovery-runtime-locked-core-0ce5c97daaa3cdd814ec5b21e116a0ee4270da29",
+      "profiles": [
+        {
+          "blas": [
+            {
+              "get_config": "OpenBLAS 0.3.29  USE64BITINT DYNAMIC_ARCH NO_AFFINITY SkylakeX MAX_THREADS=64",
+              "get_config_symbol": "scipy_openblas_get_config64_",
+              "get_corename": "SkylakeX",
+              "get_corename_symbol": "scipy_openblas_get_corename64_",
+              "get_num_threads": 1,
+              "get_num_threads_symbol": "scipy_openblas_get_num_threads64_",
+              "library": "/home/runner/work/robot-arm-compliant-control-lab/robot-arm-compliant-control-lab/.venv-runtime/lib/python3.10/site-packages/numpy.libs/libscipy_openblas64_-56d6093b.so",
+              "sha256": "0bd815d04b6b54990e3cccc7528fbb696456d09569f533d0390c13f0cdc4dd4a"
+            }
+          ],
+          "cpu_models": [
+            "INTEL(R) XEON(R) PLATINUM 8573C"
+          ],
+          "environment": {
+            "GLIBC_TUNABLES": null,
+            "NPY_DISABLE_CPU_FEATURES": null,
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_CORETYPE": null,
+            "OPENBLAS_NUM_THREADS": "1"
+          },
+          "packages": {
+            "mujoco": "3.12.0",
+            "numpy": "2.2.6"
+          },
+          "platform": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
+          "profile": "native",
+          "python": "3.10.12",
+          "result": {
+            "archive_stamp_unchanged": true,
+            "control_errors": [],
+            "differences": [
+              {
+                "absolute_difference": 2.5673907444456745e-16,
+                "kind": "value",
+                "path": "root/runs/0/audit/max_compensation_reconstruction_error_n",
+                "rebuilt": "1.1449174941446927e-15",
+                "rebuilt_hex": "0x1.4a00000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "8.881784197001252e-16",
+                "saved_hex": "0x1.0000000000000p-50",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/0/audit/max_scheduler_reconstruction_error_n",
+                "rebuilt": "8.881784197001252e-16",
+                "rebuilt_hex": "0x1.0000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 2.5673907444456745e-16,
+                "kind": "value",
+                "path": "root/runs/1/audit/max_compensation_reconstruction_error_n",
+                "rebuilt": "1.1449174941446927e-15",
+                "rebuilt_hex": "0x1.4a00000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "8.881784197001252e-16",
+                "saved_hex": "0x1.0000000000000p-50",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/1/audit/max_scheduler_reconstruction_error_n",
+                "rebuilt": "8.881784197001252e-16",
+                "rebuilt_hex": "0x1.0000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 2.5673907444456745e-16,
+                "kind": "value",
+                "path": "root/runs/2/audit/max_compensation_reconstruction_error_n",
+                "rebuilt": "1.1449174941446927e-15",
+                "rebuilt_hex": "0x1.4a00000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "8.881784197001252e-16",
+                "saved_hex": "0x1.0000000000000p-50",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/2/audit/max_scheduler_reconstruction_error_n",
+                "rebuilt": "8.881784197001252e-16",
+                "rebuilt_hex": "0x1.0000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 2.5673907444456745e-16,
+                "kind": "value",
+                "path": "root/runs/3/audit/max_compensation_reconstruction_error_n",
+                "rebuilt": "1.1449174941446927e-15",
+                "rebuilt_hex": "0x1.4a00000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "8.881784197001252e-16",
+                "saved_hex": "0x1.0000000000000p-50",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/3/audit/max_scheduler_reconstruction_error_n",
+                "rebuilt": "8.881784197001252e-16",
+                "rebuilt_hex": "0x1.0000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/4/audit/max_scheduler_reconstruction_error_n",
+                "rebuilt": "8.881784197001252e-16",
+                "rebuilt_hex": "0x1.0000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 1.1102230246251565e-16,
+                "kind": "value",
+                "path": "root/runs/5/audit/max_coefficient_transition_error",
+                "rebuilt": "1.1102230246251565e-16",
+                "rebuilt_hex": "0x1.0000000000000p-53",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/5/audit/max_compensation_reconstruction_error_n",
+                "rebuilt": "1.7763568394002505e-15",
+                "rebuilt_hex": "0x1.0000000000000p-49",
+                "rebuilt_type": "float",
+                "saved": "8.881784197001252e-16",
+                "saved_hex": "0x1.0000000000000p-50",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/5/audit/max_scheduler_reconstruction_error_n",
+                "rebuilt": "8.881784197001252e-16",
+                "rebuilt_hex": "0x1.0000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/6/audit/max_scheduler_reconstruction_error_n",
+                "rebuilt": "8.881784197001252e-16",
+                "rebuilt_hex": "0x1.0000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 1.1102230246251565e-16,
+                "kind": "value",
+                "path": "root/runs/7/audit/max_coefficient_transition_error",
+                "rebuilt": "1.1102230246251565e-16",
+                "rebuilt_hex": "0x1.0000000000000p-53",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 5.551115123125783e-17,
+                "kind": "value",
+                "path": "root/runs/7/audit/max_compensation_reconstruction_error_n",
+                "rebuilt": "9.43689570931383e-16",
+                "rebuilt_hex": "0x1.1000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "8.881784197001252e-16",
+                "saved_hex": "0x1.0000000000000p-50",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/7/audit/max_scheduler_reconstruction_error_n",
+                "rebuilt": "8.881784197001252e-16",
+                "rebuilt_hex": "0x1.0000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              }
+            ],
+            "exact_difference_count": 16,
+            "first_trace_arithmetic": {
+              "alpha_argument_hex": "-0x1.47ae147ae147bp-7",
+              "alpha_hex": "0x1.460c0b518c09fp-7",
+              "audit": {
+                "hold_release_cycles": 0,
+                "max_coefficient_transition_error": 0.0,
+                "max_compensation_reconstruction_error_n": 1.1449174941446927e-15,
+                "max_packet_reconstruction_error_n": 0.0,
+                "max_scheduler_reconstruction_error_n": 8.881784197001252e-16,
+                "projection_gate_basis": "recorded scale; actuation-present simulator; fallback scale is zero",
+                "projection_scaled_or_fallback_cycles": 0,
+                "scope": "coefficient/slew/readiness/scheduler replay; not independent dynamics",
+                "trace_schema_version": 3,
+                "validated_cycles": 6000
+              },
+              "first_coefficient_difference": null,
+              "first_compensation_difference": {
+                "absolute_difference": 8.881784197001252e-16,
+                "column": "z",
+                "index": 1530,
+                "rebuilt_hex": "-0x1.a7e893ec625d9p+2",
+                "saved_hex": "-0x1.a7e893ec625d8p+2",
+                "time_s": 3.06
+              },
+              "first_scheduler_difference": {
+                "absolute_difference": 8.881784197001252e-16,
+                "column": "load_projected_n",
+                "force_hex": [
+                  "0x1.8dd00b78803fcp+3",
+                  "0x1.f8f8f62ecae1cp+2",
+                  "-0x1.1e4e0de5f6fcfp+0"
+                ],
+                "index": 837,
+                "previous_load_hex": {
+                  "rebuilt": "0x1.0334f7e5a3b13p+2",
+                  "saved": "0x1.0334f7e5a3b13p+2"
+                },
+                "projected_hex": {
+                  "rebuilt": "0x1.fce42bbabc957p+2",
+                  "saved": "0x1.fce42bbabc958p+2"
+                },
+                "rebuilt_hex": "0x1.fce42bbabc957p+2",
+                "saved_hex": "0x1.fce42bbabc958p+2",
+                "speed_hex": "0x1.13b91845b978cp-4",
+                "time_s": 1.674,
+                "unit_velocity_hex": [
+                  "0x0.0p+0",
+                  "0x1.f50888ad6e58dp-1",
+                  "-0x1.a59bb8a457ad4p-3"
+                ]
+              },
+              "identity": {
+                "method": "adaptive6_8",
+                "scenario": "falling",
+                "seed": 11
+              },
+              "math_alpha_hex": "0x1.460c0b518c09fp-7",
+              "trace_path": "results/franka_reversal_recovery/traces/falling_seed11__adaptive6_8.npz"
+            },
+            "manifest_sha256": "e8310dca906626267a8d8884aea4a3c6f619e66cc79a8627acbff220604746e5",
+            "profile": "native",
+            "same_pair_comparisons": true,
+            "same_status": true,
+            "source_check": "serialization-finalization-only compatibility"
+          },
+          "runtime_differences_from_native": []
+        },
+        {
+          "blas": [
+            {
+              "get_config": "OpenBLAS 0.3.29  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
+              "get_config_symbol": "scipy_openblas_get_config64_",
+              "get_corename": "Haswell",
+              "get_corename_symbol": "scipy_openblas_get_corename64_",
+              "get_num_threads": 1,
+              "get_num_threads_symbol": "scipy_openblas_get_num_threads64_",
+              "library": "/home/runner/work/robot-arm-compliant-control-lab/robot-arm-compliant-control-lab/.venv-runtime/lib/python3.10/site-packages/numpy.libs/libscipy_openblas64_-56d6093b.so",
+              "sha256": "0bd815d04b6b54990e3cccc7528fbb696456d09569f533d0390c13f0cdc4dd4a"
+            }
+          ],
+          "cpu_models": [
+            "INTEL(R) XEON(R) PLATINUM 8573C"
+          ],
+          "environment": {
+            "GLIBC_TUNABLES": null,
+            "NPY_DISABLE_CPU_FEATURES": null,
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_CORETYPE": "Haswell",
+            "OPENBLAS_NUM_THREADS": "1"
+          },
+          "packages": {
+            "mujoco": "3.12.0",
+            "numpy": "2.2.6"
+          },
+          "platform": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
+          "profile": "blas_haswell",
+          "python": "3.10.12",
+          "result": {
+            "archive_stamp_unchanged": true,
+            "control_errors": [],
+            "differences": [],
+            "exact_difference_count": 0,
+            "first_trace_arithmetic": {
+              "alpha_argument_hex": "-0x1.47ae147ae147bp-7",
+              "alpha_hex": "0x1.460c0b518c09fp-7",
+              "audit": {
+                "hold_release_cycles": 0,
+                "max_coefficient_transition_error": 0.0,
+                "max_compensation_reconstruction_error_n": 8.881784197001252e-16,
+                "max_packet_reconstruction_error_n": 0.0,
+                "max_scheduler_reconstruction_error_n": 0.0,
+                "projection_gate_basis": "recorded scale; actuation-present simulator; fallback scale is zero",
+                "projection_scaled_or_fallback_cycles": 0,
+                "scope": "coefficient/slew/readiness/scheduler replay; not independent dynamics",
+                "trace_schema_version": 3,
+                "validated_cycles": 6000
+              },
+              "first_coefficient_difference": null,
+              "first_compensation_difference": {
+                "absolute_difference": 8.881784197001252e-16,
+                "column": "z",
+                "index": 1530,
+                "rebuilt_hex": "-0x1.a7e893ec625d9p+2",
+                "saved_hex": "-0x1.a7e893ec625d8p+2",
+                "time_s": 3.06
+              },
+              "first_scheduler_difference": null,
+              "identity": {
+                "method": "adaptive6_8",
+                "scenario": "falling",
+                "seed": 11
+              },
+              "math_alpha_hex": "0x1.460c0b518c09fp-7",
+              "trace_path": "results/franka_reversal_recovery/traces/falling_seed11__adaptive6_8.npz"
+            },
+            "manifest_sha256": "e8310dca906626267a8d8884aea4a3c6f619e66cc79a8627acbff220604746e5",
+            "profile": "blas_haswell",
+            "same_pair_comparisons": true,
+            "same_status": true,
+            "source_check": "serialization-finalization-only compatibility"
+          },
+          "runtime_differences_from_native": [
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/blas/0/get_config",
+              "rebuilt": "'OpenBLAS 0.3.29  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64'",
+              "rebuilt_hex": null,
+              "rebuilt_type": "str",
+              "saved": "'OpenBLAS 0.3.29  USE64BITINT DYNAMIC_ARCH NO_AFFINITY SkylakeX MAX_THREADS=64'",
+              "saved_hex": null,
+              "saved_type": "str"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/blas/0/get_corename",
+              "rebuilt": "'Haswell'",
+              "rebuilt_hex": null,
+              "rebuilt_type": "str",
+              "saved": "'SkylakeX'",
+              "saved_hex": null,
+              "saved_type": "str"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/environment/OPENBLAS_CORETYPE",
+              "rebuilt": "'Haswell'",
+              "rebuilt_hex": null,
+              "rebuilt_type": "str",
+              "saved": "None",
+              "saved_hex": null,
+              "saved_type": "NoneType"
+            }
+          ]
+        },
+        {
+          "blas": [
+            {
+              "get_config": "OpenBLAS 0.3.29  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Sandybridge MAX_THREADS=64",
+              "get_config_symbol": "scipy_openblas_get_config64_",
+              "get_corename": "Sandybridge",
+              "get_corename_symbol": "scipy_openblas_get_corename64_",
+              "get_num_threads": 1,
+              "get_num_threads_symbol": "scipy_openblas_get_num_threads64_",
+              "library": "/home/runner/work/robot-arm-compliant-control-lab/robot-arm-compliant-control-lab/.venv-runtime/lib/python3.10/site-packages/numpy.libs/libscipy_openblas64_-56d6093b.so",
+              "sha256": "0bd815d04b6b54990e3cccc7528fbb696456d09569f533d0390c13f0cdc4dd4a"
+            }
+          ],
+          "cpu_models": [
+            "INTEL(R) XEON(R) PLATINUM 8573C"
+          ],
+          "environment": {
+            "GLIBC_TUNABLES": null,
+            "NPY_DISABLE_CPU_FEATURES": null,
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_CORETYPE": "Sandybridge",
+            "OPENBLAS_NUM_THREADS": "1"
+          },
+          "packages": {
+            "mujoco": "3.12.0",
+            "numpy": "2.2.6"
+          },
+          "platform": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
+          "profile": "blas_sandybridge",
+          "python": "3.10.12",
+          "result": {
+            "archive_stamp_unchanged": true,
+            "control_errors": [],
+            "differences": [],
+            "exact_difference_count": 0,
+            "first_trace_arithmetic": {
+              "alpha_argument_hex": "-0x1.47ae147ae147bp-7",
+              "alpha_hex": "0x1.460c0b518c09fp-7",
+              "audit": {
+                "hold_release_cycles": 0,
+                "max_coefficient_transition_error": 0.0,
+                "max_compensation_reconstruction_error_n": 8.881784197001252e-16,
+                "max_packet_reconstruction_error_n": 0.0,
+                "max_scheduler_reconstruction_error_n": 0.0,
+                "projection_gate_basis": "recorded scale; actuation-present simulator; fallback scale is zero",
+                "projection_scaled_or_fallback_cycles": 0,
+                "scope": "coefficient/slew/readiness/scheduler replay; not independent dynamics",
+                "trace_schema_version": 3,
+                "validated_cycles": 6000
+              },
+              "first_coefficient_difference": null,
+              "first_compensation_difference": {
+                "absolute_difference": 8.881784197001252e-16,
+                "column": "z",
+                "index": 1530,
+                "rebuilt_hex": "-0x1.a7e893ec625d9p+2",
+                "saved_hex": "-0x1.a7e893ec625d8p+2",
+                "time_s": 3.06
+              },
+              "first_scheduler_difference": null,
+              "identity": {
+                "method": "adaptive6_8",
+                "scenario": "falling",
+                "seed": 11
+              },
+              "math_alpha_hex": "0x1.460c0b518c09fp-7",
+              "trace_path": "results/franka_reversal_recovery/traces/falling_seed11__adaptive6_8.npz"
+            },
+            "manifest_sha256": "e8310dca906626267a8d8884aea4a3c6f619e66cc79a8627acbff220604746e5",
+            "profile": "blas_sandybridge",
+            "same_pair_comparisons": true,
+            "same_status": true,
+            "source_check": "serialization-finalization-only compatibility"
+          },
+          "runtime_differences_from_native": [
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/blas/0/get_config",
+              "rebuilt": "'OpenBLAS 0.3.29  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Sandybridge MAX_THREADS=64'",
+              "rebuilt_hex": null,
+              "rebuilt_type": "str",
+              "saved": "'OpenBLAS 0.3.29  USE64BITINT DYNAMIC_ARCH NO_AFFINITY SkylakeX MAX_THREADS=64'",
+              "saved_hex": null,
+              "saved_type": "str"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/blas/0/get_corename",
+              "rebuilt": "'Sandybridge'",
+              "rebuilt_hex": null,
+              "rebuilt_type": "str",
+              "saved": "'SkylakeX'",
+              "saved_hex": null,
+              "saved_type": "str"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/environment/OPENBLAS_CORETYPE",
+              "rebuilt": "'Sandybridge'",
+              "rebuilt_hex": null,
+              "rebuilt_type": "str",
+              "saved": "None",
+              "saved_hex": null,
+              "saved_type": "NoneType"
+            }
+          ]
+        },
+        {
+          "blas": [
+            {
+              "get_config": "OpenBLAS 0.3.29  USE64BITINT DYNAMIC_ARCH NO_AFFINITY SkylakeX MAX_THREADS=64",
+              "get_config_symbol": "scipy_openblas_get_config64_",
+              "get_corename": "SkylakeX",
+              "get_corename_symbol": "scipy_openblas_get_corename64_",
+              "get_num_threads": 1,
+              "get_num_threads_symbol": "scipy_openblas_get_num_threads64_",
+              "library": "/home/runner/work/robot-arm-compliant-control-lab/robot-arm-compliant-control-lab/.venv-runtime/lib/python3.10/site-packages/numpy.libs/libscipy_openblas64_-56d6093b.so",
+              "sha256": "0bd815d04b6b54990e3cccc7528fbb696456d09569f533d0390c13f0cdc4dd4a"
+            }
+          ],
+          "cpu_models": [
+            "INTEL(R) XEON(R) PLATINUM 8573C"
+          ],
+          "environment": {
+            "GLIBC_TUNABLES": null,
+            "NPY_DISABLE_CPU_FEATURES": "AVX512F,AVX512CD,AVX512_KNL,AVX512_KNM,AVX512_SKX,AVX512_CLX,AVX512_CNL,AVX512_ICL",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_CORETYPE": null,
+            "OPENBLAS_NUM_THREADS": "1"
+          },
+          "packages": {
+            "mujoco": "3.12.0",
+            "numpy": "2.2.6"
+          },
+          "platform": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
+          "profile": "numpy_portable",
+          "python": "3.10.12",
+          "result": {
+            "archive_stamp_unchanged": true,
+            "control_errors": [],
+            "differences": [
+              {
+                "absolute_difference": 2.5673907444456745e-16,
+                "kind": "value",
+                "path": "root/runs/0/audit/max_compensation_reconstruction_error_n",
+                "rebuilt": "1.1449174941446927e-15",
+                "rebuilt_hex": "0x1.4a00000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "8.881784197001252e-16",
+                "saved_hex": "0x1.0000000000000p-50",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/0/audit/max_scheduler_reconstruction_error_n",
+                "rebuilt": "8.881784197001252e-16",
+                "rebuilt_hex": "0x1.0000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 2.5673907444456745e-16,
+                "kind": "value",
+                "path": "root/runs/1/audit/max_compensation_reconstruction_error_n",
+                "rebuilt": "1.1449174941446927e-15",
+                "rebuilt_hex": "0x1.4a00000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "8.881784197001252e-16",
+                "saved_hex": "0x1.0000000000000p-50",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/1/audit/max_scheduler_reconstruction_error_n",
+                "rebuilt": "8.881784197001252e-16",
+                "rebuilt_hex": "0x1.0000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 2.5673907444456745e-16,
+                "kind": "value",
+                "path": "root/runs/2/audit/max_compensation_reconstruction_error_n",
+                "rebuilt": "1.1449174941446927e-15",
+                "rebuilt_hex": "0x1.4a00000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "8.881784197001252e-16",
+                "saved_hex": "0x1.0000000000000p-50",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/2/audit/max_scheduler_reconstruction_error_n",
+                "rebuilt": "8.881784197001252e-16",
+                "rebuilt_hex": "0x1.0000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 2.5673907444456745e-16,
+                "kind": "value",
+                "path": "root/runs/3/audit/max_compensation_reconstruction_error_n",
+                "rebuilt": "1.1449174941446927e-15",
+                "rebuilt_hex": "0x1.4a00000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "8.881784197001252e-16",
+                "saved_hex": "0x1.0000000000000p-50",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/3/audit/max_scheduler_reconstruction_error_n",
+                "rebuilt": "8.881784197001252e-16",
+                "rebuilt_hex": "0x1.0000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/4/audit/max_scheduler_reconstruction_error_n",
+                "rebuilt": "8.881784197001252e-16",
+                "rebuilt_hex": "0x1.0000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 1.1102230246251565e-16,
+                "kind": "value",
+                "path": "root/runs/5/audit/max_coefficient_transition_error",
+                "rebuilt": "1.1102230246251565e-16",
+                "rebuilt_hex": "0x1.0000000000000p-53",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/5/audit/max_compensation_reconstruction_error_n",
+                "rebuilt": "1.7763568394002505e-15",
+                "rebuilt_hex": "0x1.0000000000000p-49",
+                "rebuilt_type": "float",
+                "saved": "8.881784197001252e-16",
+                "saved_hex": "0x1.0000000000000p-50",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/5/audit/max_scheduler_reconstruction_error_n",
+                "rebuilt": "8.881784197001252e-16",
+                "rebuilt_hex": "0x1.0000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/6/audit/max_scheduler_reconstruction_error_n",
+                "rebuilt": "8.881784197001252e-16",
+                "rebuilt_hex": "0x1.0000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 1.1102230246251565e-16,
+                "kind": "value",
+                "path": "root/runs/7/audit/max_coefficient_transition_error",
+                "rebuilt": "1.1102230246251565e-16",
+                "rebuilt_hex": "0x1.0000000000000p-53",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 5.551115123125783e-17,
+                "kind": "value",
+                "path": "root/runs/7/audit/max_compensation_reconstruction_error_n",
+                "rebuilt": "9.43689570931383e-16",
+                "rebuilt_hex": "0x1.1000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "8.881784197001252e-16",
+                "saved_hex": "0x1.0000000000000p-50",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/7/audit/max_scheduler_reconstruction_error_n",
+                "rebuilt": "8.881784197001252e-16",
+                "rebuilt_hex": "0x1.0000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              }
+            ],
+            "exact_difference_count": 16,
+            "first_trace_arithmetic": {
+              "alpha_argument_hex": "-0x1.47ae147ae147bp-7",
+              "alpha_hex": "0x1.460c0b518c09fp-7",
+              "audit": {
+                "hold_release_cycles": 0,
+                "max_coefficient_transition_error": 0.0,
+                "max_compensation_reconstruction_error_n": 1.1449174941446927e-15,
+                "max_packet_reconstruction_error_n": 0.0,
+                "max_scheduler_reconstruction_error_n": 8.881784197001252e-16,
+                "projection_gate_basis": "recorded scale; actuation-present simulator; fallback scale is zero",
+                "projection_scaled_or_fallback_cycles": 0,
+                "scope": "coefficient/slew/readiness/scheduler replay; not independent dynamics",
+                "trace_schema_version": 3,
+                "validated_cycles": 6000
+              },
+              "first_coefficient_difference": null,
+              "first_compensation_difference": {
+                "absolute_difference": 8.881784197001252e-16,
+                "column": "z",
+                "index": 1530,
+                "rebuilt_hex": "-0x1.a7e893ec625d9p+2",
+                "saved_hex": "-0x1.a7e893ec625d8p+2",
+                "time_s": 3.06
+              },
+              "first_scheduler_difference": {
+                "absolute_difference": 8.881784197001252e-16,
+                "column": "load_projected_n",
+                "force_hex": [
+                  "0x1.8dd00b78803fcp+3",
+                  "0x1.f8f8f62ecae1cp+2",
+                  "-0x1.1e4e0de5f6fcfp+0"
+                ],
+                "index": 837,
+                "previous_load_hex": {
+                  "rebuilt": "0x1.0334f7e5a3b13p+2",
+                  "saved": "0x1.0334f7e5a3b13p+2"
+                },
+                "projected_hex": {
+                  "rebuilt": "0x1.fce42bbabc957p+2",
+                  "saved": "0x1.fce42bbabc958p+2"
+                },
+                "rebuilt_hex": "0x1.fce42bbabc957p+2",
+                "saved_hex": "0x1.fce42bbabc958p+2",
+                "speed_hex": "0x1.13b91845b978cp-4",
+                "time_s": 1.674,
+                "unit_velocity_hex": [
+                  "0x0.0p+0",
+                  "0x1.f50888ad6e58dp-1",
+                  "-0x1.a59bb8a457ad4p-3"
+                ]
+              },
+              "identity": {
+                "method": "adaptive6_8",
+                "scenario": "falling",
+                "seed": 11
+              },
+              "math_alpha_hex": "0x1.460c0b518c09fp-7",
+              "trace_path": "results/franka_reversal_recovery/traces/falling_seed11__adaptive6_8.npz"
+            },
+            "manifest_sha256": "e8310dca906626267a8d8884aea4a3c6f619e66cc79a8627acbff220604746e5",
+            "profile": "numpy_portable",
+            "same_pair_comparisons": true,
+            "same_status": true,
+            "source_check": "serialization-finalization-only compatibility"
+          },
+          "runtime_differences_from_native": [
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/environment/NPY_DISABLE_CPU_FEATURES",
+              "rebuilt": "'AVX512F,AVX512CD,AVX512_KNL,AVX512_KNM,AVX512_SKX,AVX512_CLX,AVX512_CNL,AVX512_ICL'",
+              "rebuilt_hex": null,
+              "rebuilt_type": "str",
+              "saved": "None",
+              "saved_hex": null,
+              "saved_type": "NoneType"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/numpy_features/AVX512CD",
+              "rebuilt": "False",
+              "rebuilt_hex": null,
+              "rebuilt_type": "bool",
+              "saved": "True",
+              "saved_hex": null,
+              "saved_type": "bool"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/numpy_features/AVX512F",
+              "rebuilt": "False",
+              "rebuilt_hex": null,
+              "rebuilt_type": "bool",
+              "saved": "True",
+              "saved_hex": null,
+              "saved_type": "bool"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/numpy_features/AVX512_CLX",
+              "rebuilt": "False",
+              "rebuilt_hex": null,
+              "rebuilt_type": "bool",
+              "saved": "True",
+              "saved_hex": null,
+              "saved_type": "bool"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/numpy_features/AVX512_CNL",
+              "rebuilt": "False",
+              "rebuilt_hex": null,
+              "rebuilt_type": "bool",
+              "saved": "True",
+              "saved_hex": null,
+              "saved_type": "bool"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/numpy_features/AVX512_ICL",
+              "rebuilt": "False",
+              "rebuilt_hex": null,
+              "rebuilt_type": "bool",
+              "saved": "True",
+              "saved_hex": null,
+              "saved_type": "bool"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/numpy_features/AVX512_SKX",
+              "rebuilt": "False",
+              "rebuilt_hex": null,
+              "rebuilt_type": "bool",
+              "saved": "True",
+              "saved_hex": null,
+              "saved_type": "bool"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/numpy_selected_functions/add/???/current",
+              "rebuilt": "'AVX2'",
+              "rebuilt_hex": null,
+              "rebuilt_type": "str",
+              "saved": "'AVX512_SKX'",
+              "saved_hex": null,
+              "saved_type": "str"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/numpy_selected_functions/expm1/dd/current",
+              "rebuilt": "'baseline(SSE SSE2 SSE3)'",
+              "rebuilt_hex": null,
+              "rebuilt_type": "str",
+              "saved": "'AVX512_SKX'",
+              "saved_hex": null,
+              "saved_type": "str"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/numpy_selected_functions/expm1/ee/current",
+              "rebuilt": "'baseline(SSE SSE2 SSE3)'",
+              "rebuilt_hex": null,
+              "rebuilt_type": "str",
+              "saved": "'AVX512_SKX'",
+              "saved_hex": null,
+              "saved_type": "str"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/numpy_selected_functions/expm1/ff/current",
+              "rebuilt": "'baseline(SSE SSE2 SSE3)'",
+              "rebuilt_hex": null,
+              "rebuilt_type": "str",
+              "saved": "'AVX512_SKX'",
+              "saved_hex": null,
+              "saved_type": "str"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/numpy_selected_functions/multiply/???/current",
+              "rebuilt": "'AVX2'",
+              "rebuilt_hex": null,
+              "rebuilt_type": "str",
+              "saved": "'AVX512_SKX'",
+              "saved_hex": null,
+              "saved_type": "str"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/numpy_selected_functions/tanh/dd/current",
+              "rebuilt": "'AVX2'",
+              "rebuilt_hex": null,
+              "rebuilt_type": "str",
+              "saved": "'AVX512_SKX'",
+              "saved_hex": null,
+              "saved_type": "str"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/numpy_selected_functions/tanh/ee/current",
+              "rebuilt": "'baseline(SSE SSE2 SSE3)'",
+              "rebuilt_hex": null,
+              "rebuilt_type": "str",
+              "saved": "'AVX512_SKX'",
+              "saved_hex": null,
+              "saved_type": "str"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/numpy_selected_functions/tanh/ff/current",
+              "rebuilt": "'AVX2'",
+              "rebuilt_hex": null,
+              "rebuilt_type": "str",
+              "saved": "'AVX512_SKX'",
+              "saved_hex": null,
+              "saved_type": "str"
+            }
+          ]
+        }
+      ],
+      "raw_log_sha256": "ab73199a6ca602db0a507bba87a07f66e26aa07490aa918cdfd22e0c82958a78"
+    },
+    {
+      "aggregate": {
+        "diagnostic_status": "FAIL",
+        "note": "No compatibility claim; all original exact differences remain failures.",
+        "profile_results": [
+          {
+            "completed": true,
+            "profile": "native",
+            "returncode": 1
+          },
+          {
+            "completed": true,
+            "profile": "blas_haswell",
+            "returncode": 0
+          },
+          {
+            "completed": true,
+            "profile": "blas_sandybridge",
+            "returncode": 0
+          },
+          {
+            "completed": true,
+            "profile": "numpy_portable",
+            "returncode": 1
+          }
+        ]
+      },
+      "artifact": "recovery-runtime-reported-failure-0ce5c97daaa3cdd814ec5b21e116a0ee4270da29",
+      "profiles": [
+        {
+          "blas": [
+            {
+              "get_config": "OpenBLAS 0.3.31.188.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY SkylakeX MAX_THREADS=64",
+              "get_config_symbol": "scipy_openblas_get_config64_",
+              "get_corename": "SkylakeX",
+              "get_corename_symbol": "scipy_openblas_get_corename64_",
+              "get_num_threads": 1,
+              "get_num_threads_symbol": "scipy_openblas_get_num_threads64_",
+              "library": "/home/runner/work/robot-arm-compliant-control-lab/robot-arm-compliant-control-lab/.venv-runtime/lib/python3.11/site-packages/numpy.libs/libscipy_openblas64_-32a4b2a6.so",
+              "sha256": "05c9f9eb89ee68a4b9d673184fa91c99587e736392c0c2d49180a8aa5303d080"
+            }
+          ],
+          "cpu_models": [
+            "AMD EPYC 9V45 96-Core Processor"
+          ],
+          "environment": {
+            "GLIBC_TUNABLES": null,
+            "NPY_DISABLE_CPU_FEATURES": null,
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_CORETYPE": null,
+            "OPENBLAS_NUM_THREADS": "1"
+          },
+          "packages": {
+            "mujoco": "3.13.0",
+            "numpy": "2.4.6"
+          },
+          "platform": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
+          "profile": "native",
+          "python": "3.11.16",
+          "result": {
+            "archive_stamp_unchanged": true,
+            "control_errors": [],
+            "differences": [
+              {
+                "absolute_difference": 2.5673907444456745e-16,
+                "kind": "value",
+                "path": "root/runs/0/audit/max_compensation_reconstruction_error_n",
+                "rebuilt": "1.1449174941446927e-15",
+                "rebuilt_hex": "0x1.4a00000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "8.881784197001252e-16",
+                "saved_hex": "0x1.0000000000000p-50",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/0/audit/max_scheduler_reconstruction_error_n",
+                "rebuilt": "8.881784197001252e-16",
+                "rebuilt_hex": "0x1.0000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 2.5673907444456745e-16,
+                "kind": "value",
+                "path": "root/runs/1/audit/max_compensation_reconstruction_error_n",
+                "rebuilt": "1.1449174941446927e-15",
+                "rebuilt_hex": "0x1.4a00000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "8.881784197001252e-16",
+                "saved_hex": "0x1.0000000000000p-50",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/1/audit/max_scheduler_reconstruction_error_n",
+                "rebuilt": "8.881784197001252e-16",
+                "rebuilt_hex": "0x1.0000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 2.5673907444456745e-16,
+                "kind": "value",
+                "path": "root/runs/2/audit/max_compensation_reconstruction_error_n",
+                "rebuilt": "1.1449174941446927e-15",
+                "rebuilt_hex": "0x1.4a00000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "8.881784197001252e-16",
+                "saved_hex": "0x1.0000000000000p-50",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/2/audit/max_scheduler_reconstruction_error_n",
+                "rebuilt": "8.881784197001252e-16",
+                "rebuilt_hex": "0x1.0000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 2.5673907444456745e-16,
+                "kind": "value",
+                "path": "root/runs/3/audit/max_compensation_reconstruction_error_n",
+                "rebuilt": "1.1449174941446927e-15",
+                "rebuilt_hex": "0x1.4a00000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "8.881784197001252e-16",
+                "saved_hex": "0x1.0000000000000p-50",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/3/audit/max_scheduler_reconstruction_error_n",
+                "rebuilt": "8.881784197001252e-16",
+                "rebuilt_hex": "0x1.0000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/4/audit/max_scheduler_reconstruction_error_n",
+                "rebuilt": "8.881784197001252e-16",
+                "rebuilt_hex": "0x1.0000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 1.1102230246251565e-16,
+                "kind": "value",
+                "path": "root/runs/5/audit/max_coefficient_transition_error",
+                "rebuilt": "1.1102230246251565e-16",
+                "rebuilt_hex": "0x1.0000000000000p-53",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/5/audit/max_compensation_reconstruction_error_n",
+                "rebuilt": "1.7763568394002505e-15",
+                "rebuilt_hex": "0x1.0000000000000p-49",
+                "rebuilt_type": "float",
+                "saved": "8.881784197001252e-16",
+                "saved_hex": "0x1.0000000000000p-50",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/5/audit/max_scheduler_reconstruction_error_n",
+                "rebuilt": "8.881784197001252e-16",
+                "rebuilt_hex": "0x1.0000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/6/audit/max_scheduler_reconstruction_error_n",
+                "rebuilt": "8.881784197001252e-16",
+                "rebuilt_hex": "0x1.0000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 1.1102230246251565e-16,
+                "kind": "value",
+                "path": "root/runs/7/audit/max_coefficient_transition_error",
+                "rebuilt": "1.1102230246251565e-16",
+                "rebuilt_hex": "0x1.0000000000000p-53",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 5.551115123125783e-17,
+                "kind": "value",
+                "path": "root/runs/7/audit/max_compensation_reconstruction_error_n",
+                "rebuilt": "9.43689570931383e-16",
+                "rebuilt_hex": "0x1.1000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "8.881784197001252e-16",
+                "saved_hex": "0x1.0000000000000p-50",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/7/audit/max_scheduler_reconstruction_error_n",
+                "rebuilt": "8.881784197001252e-16",
+                "rebuilt_hex": "0x1.0000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              }
+            ],
+            "exact_difference_count": 16,
+            "first_trace_arithmetic": {
+              "alpha_argument_hex": "-0x1.47ae147ae147bp-7",
+              "alpha_hex": "0x1.460c0b518c09fp-7",
+              "audit": {
+                "hold_release_cycles": 0,
+                "max_coefficient_transition_error": 0.0,
+                "max_compensation_reconstruction_error_n": 1.1449174941446927e-15,
+                "max_packet_reconstruction_error_n": 0.0,
+                "max_scheduler_reconstruction_error_n": 8.881784197001252e-16,
+                "projection_gate_basis": "recorded scale; actuation-present simulator; fallback scale is zero",
+                "projection_scaled_or_fallback_cycles": 0,
+                "scope": "coefficient/slew/readiness/scheduler replay; not independent dynamics",
+                "trace_schema_version": 3,
+                "validated_cycles": 6000
+              },
+              "first_coefficient_difference": null,
+              "first_compensation_difference": {
+                "absolute_difference": 8.881784197001252e-16,
+                "column": "z",
+                "index": 1530,
+                "rebuilt_hex": "-0x1.a7e893ec625d9p+2",
+                "saved_hex": "-0x1.a7e893ec625d8p+2",
+                "time_s": 3.06
+              },
+              "first_scheduler_difference": {
+                "absolute_difference": 8.881784197001252e-16,
+                "column": "load_projected_n",
+                "force_hex": [
+                  "0x1.8dd00b78803fcp+3",
+                  "0x1.f8f8f62ecae1cp+2",
+                  "-0x1.1e4e0de5f6fcfp+0"
+                ],
+                "index": 837,
+                "previous_load_hex": {
+                  "rebuilt": "0x1.0334f7e5a3b13p+2",
+                  "saved": "0x1.0334f7e5a3b13p+2"
+                },
+                "projected_hex": {
+                  "rebuilt": "0x1.fce42bbabc957p+2",
+                  "saved": "0x1.fce42bbabc958p+2"
+                },
+                "rebuilt_hex": "0x1.fce42bbabc957p+2",
+                "saved_hex": "0x1.fce42bbabc958p+2",
+                "speed_hex": "0x1.13b91845b978cp-4",
+                "time_s": 1.674,
+                "unit_velocity_hex": [
+                  "0x0.0p+0",
+                  "0x1.f50888ad6e58dp-1",
+                  "-0x1.a59bb8a457ad4p-3"
+                ]
+              },
+              "identity": {
+                "method": "adaptive6_8",
+                "scenario": "falling",
+                "seed": 11
+              },
+              "math_alpha_hex": "0x1.460c0b518c09fp-7",
+              "trace_path": "results/franka_reversal_recovery/traces/falling_seed11__adaptive6_8.npz"
+            },
+            "manifest_sha256": "e8310dca906626267a8d8884aea4a3c6f619e66cc79a8627acbff220604746e5",
+            "profile": "native",
+            "same_pair_comparisons": true,
+            "same_status": true,
+            "source_check": "serialization-finalization-only compatibility"
+          },
+          "runtime_differences_from_native": []
+        },
+        {
+          "blas": [
+            {
+              "get_config": "OpenBLAS 0.3.31.188.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64",
+              "get_config_symbol": "scipy_openblas_get_config64_",
+              "get_corename": "Haswell",
+              "get_corename_symbol": "scipy_openblas_get_corename64_",
+              "get_num_threads": 1,
+              "get_num_threads_symbol": "scipy_openblas_get_num_threads64_",
+              "library": "/home/runner/work/robot-arm-compliant-control-lab/robot-arm-compliant-control-lab/.venv-runtime/lib/python3.11/site-packages/numpy.libs/libscipy_openblas64_-32a4b2a6.so",
+              "sha256": "05c9f9eb89ee68a4b9d673184fa91c99587e736392c0c2d49180a8aa5303d080"
+            }
+          ],
+          "cpu_models": [
+            "AMD EPYC 9V45 96-Core Processor"
+          ],
+          "environment": {
+            "GLIBC_TUNABLES": null,
+            "NPY_DISABLE_CPU_FEATURES": null,
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_CORETYPE": "Haswell",
+            "OPENBLAS_NUM_THREADS": "1"
+          },
+          "packages": {
+            "mujoco": "3.13.0",
+            "numpy": "2.4.6"
+          },
+          "platform": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
+          "profile": "blas_haswell",
+          "python": "3.11.16",
+          "result": {
+            "archive_stamp_unchanged": true,
+            "control_errors": [],
+            "differences": [],
+            "exact_difference_count": 0,
+            "first_trace_arithmetic": {
+              "alpha_argument_hex": "-0x1.47ae147ae147bp-7",
+              "alpha_hex": "0x1.460c0b518c09fp-7",
+              "audit": {
+                "hold_release_cycles": 0,
+                "max_coefficient_transition_error": 0.0,
+                "max_compensation_reconstruction_error_n": 8.881784197001252e-16,
+                "max_packet_reconstruction_error_n": 0.0,
+                "max_scheduler_reconstruction_error_n": 0.0,
+                "projection_gate_basis": "recorded scale; actuation-present simulator; fallback scale is zero",
+                "projection_scaled_or_fallback_cycles": 0,
+                "scope": "coefficient/slew/readiness/scheduler replay; not independent dynamics",
+                "trace_schema_version": 3,
+                "validated_cycles": 6000
+              },
+              "first_coefficient_difference": null,
+              "first_compensation_difference": {
+                "absolute_difference": 8.881784197001252e-16,
+                "column": "z",
+                "index": 1530,
+                "rebuilt_hex": "-0x1.a7e893ec625d9p+2",
+                "saved_hex": "-0x1.a7e893ec625d8p+2",
+                "time_s": 3.06
+              },
+              "first_scheduler_difference": null,
+              "identity": {
+                "method": "adaptive6_8",
+                "scenario": "falling",
+                "seed": 11
+              },
+              "math_alpha_hex": "0x1.460c0b518c09fp-7",
+              "trace_path": "results/franka_reversal_recovery/traces/falling_seed11__adaptive6_8.npz"
+            },
+            "manifest_sha256": "e8310dca906626267a8d8884aea4a3c6f619e66cc79a8627acbff220604746e5",
+            "profile": "blas_haswell",
+            "same_pair_comparisons": true,
+            "same_status": true,
+            "source_check": "serialization-finalization-only compatibility"
+          },
+          "runtime_differences_from_native": [
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/blas/0/get_config",
+              "rebuilt": "'OpenBLAS 0.3.31.188.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64'",
+              "rebuilt_hex": null,
+              "rebuilt_type": "str",
+              "saved": "'OpenBLAS 0.3.31.188.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY SkylakeX MAX_THREADS=64'",
+              "saved_hex": null,
+              "saved_type": "str"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/blas/0/get_corename",
+              "rebuilt": "'Haswell'",
+              "rebuilt_hex": null,
+              "rebuilt_type": "str",
+              "saved": "'SkylakeX'",
+              "saved_hex": null,
+              "saved_type": "str"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/environment/OPENBLAS_CORETYPE",
+              "rebuilt": "'Haswell'",
+              "rebuilt_hex": null,
+              "rebuilt_type": "str",
+              "saved": "None",
+              "saved_hex": null,
+              "saved_type": "NoneType"
+            }
+          ]
+        },
+        {
+          "blas": [
+            {
+              "get_config": "OpenBLAS 0.3.31.188.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Sandybridge MAX_THREADS=64",
+              "get_config_symbol": "scipy_openblas_get_config64_",
+              "get_corename": "Sandybridge",
+              "get_corename_symbol": "scipy_openblas_get_corename64_",
+              "get_num_threads": 1,
+              "get_num_threads_symbol": "scipy_openblas_get_num_threads64_",
+              "library": "/home/runner/work/robot-arm-compliant-control-lab/robot-arm-compliant-control-lab/.venv-runtime/lib/python3.11/site-packages/numpy.libs/libscipy_openblas64_-32a4b2a6.so",
+              "sha256": "05c9f9eb89ee68a4b9d673184fa91c99587e736392c0c2d49180a8aa5303d080"
+            }
+          ],
+          "cpu_models": [
+            "AMD EPYC 9V45 96-Core Processor"
+          ],
+          "environment": {
+            "GLIBC_TUNABLES": null,
+            "NPY_DISABLE_CPU_FEATURES": null,
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_CORETYPE": "Sandybridge",
+            "OPENBLAS_NUM_THREADS": "1"
+          },
+          "packages": {
+            "mujoco": "3.13.0",
+            "numpy": "2.4.6"
+          },
+          "platform": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
+          "profile": "blas_sandybridge",
+          "python": "3.11.16",
+          "result": {
+            "archive_stamp_unchanged": true,
+            "control_errors": [],
+            "differences": [],
+            "exact_difference_count": 0,
+            "first_trace_arithmetic": {
+              "alpha_argument_hex": "-0x1.47ae147ae147bp-7",
+              "alpha_hex": "0x1.460c0b518c09fp-7",
+              "audit": {
+                "hold_release_cycles": 0,
+                "max_coefficient_transition_error": 0.0,
+                "max_compensation_reconstruction_error_n": 8.881784197001252e-16,
+                "max_packet_reconstruction_error_n": 0.0,
+                "max_scheduler_reconstruction_error_n": 0.0,
+                "projection_gate_basis": "recorded scale; actuation-present simulator; fallback scale is zero",
+                "projection_scaled_or_fallback_cycles": 0,
+                "scope": "coefficient/slew/readiness/scheduler replay; not independent dynamics",
+                "trace_schema_version": 3,
+                "validated_cycles": 6000
+              },
+              "first_coefficient_difference": null,
+              "first_compensation_difference": {
+                "absolute_difference": 8.881784197001252e-16,
+                "column": "z",
+                "index": 1530,
+                "rebuilt_hex": "-0x1.a7e893ec625d9p+2",
+                "saved_hex": "-0x1.a7e893ec625d8p+2",
+                "time_s": 3.06
+              },
+              "first_scheduler_difference": null,
+              "identity": {
+                "method": "adaptive6_8",
+                "scenario": "falling",
+                "seed": 11
+              },
+              "math_alpha_hex": "0x1.460c0b518c09fp-7",
+              "trace_path": "results/franka_reversal_recovery/traces/falling_seed11__adaptive6_8.npz"
+            },
+            "manifest_sha256": "e8310dca906626267a8d8884aea4a3c6f619e66cc79a8627acbff220604746e5",
+            "profile": "blas_sandybridge",
+            "same_pair_comparisons": true,
+            "same_status": true,
+            "source_check": "serialization-finalization-only compatibility"
+          },
+          "runtime_differences_from_native": [
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/blas/0/get_config",
+              "rebuilt": "'OpenBLAS 0.3.31.188.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Sandybridge MAX_THREADS=64'",
+              "rebuilt_hex": null,
+              "rebuilt_type": "str",
+              "saved": "'OpenBLAS 0.3.31.188.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY SkylakeX MAX_THREADS=64'",
+              "saved_hex": null,
+              "saved_type": "str"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/blas/0/get_corename",
+              "rebuilt": "'Sandybridge'",
+              "rebuilt_hex": null,
+              "rebuilt_type": "str",
+              "saved": "'SkylakeX'",
+              "saved_hex": null,
+              "saved_type": "str"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/environment/OPENBLAS_CORETYPE",
+              "rebuilt": "'Sandybridge'",
+              "rebuilt_hex": null,
+              "rebuilt_type": "str",
+              "saved": "None",
+              "saved_hex": null,
+              "saved_type": "NoneType"
+            }
+          ]
+        },
+        {
+          "blas": [
+            {
+              "get_config": "OpenBLAS 0.3.31.188.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY SkylakeX MAX_THREADS=64",
+              "get_config_symbol": "scipy_openblas_get_config64_",
+              "get_corename": "SkylakeX",
+              "get_corename_symbol": "scipy_openblas_get_corename64_",
+              "get_num_threads": 1,
+              "get_num_threads_symbol": "scipy_openblas_get_num_threads64_",
+              "library": "/home/runner/work/robot-arm-compliant-control-lab/robot-arm-compliant-control-lab/.venv-runtime/lib/python3.11/site-packages/numpy.libs/libscipy_openblas64_-32a4b2a6.so",
+              "sha256": "05c9f9eb89ee68a4b9d673184fa91c99587e736392c0c2d49180a8aa5303d080"
+            }
+          ],
+          "cpu_models": [
+            "AMD EPYC 9V45 96-Core Processor"
+          ],
+          "environment": {
+            "GLIBC_TUNABLES": null,
+            "NPY_DISABLE_CPU_FEATURES": "X86_V4,AVX512_ICL,AVX512_SPR",
+            "OMP_NUM_THREADS": "1",
+            "OPENBLAS_CORETYPE": null,
+            "OPENBLAS_NUM_THREADS": "1"
+          },
+          "packages": {
+            "mujoco": "3.13.0",
+            "numpy": "2.4.6"
+          },
+          "platform": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
+          "profile": "numpy_portable",
+          "python": "3.11.16",
+          "result": {
+            "archive_stamp_unchanged": true,
+            "control_errors": [],
+            "differences": [
+              {
+                "absolute_difference": 2.5673907444456745e-16,
+                "kind": "value",
+                "path": "root/runs/0/audit/max_compensation_reconstruction_error_n",
+                "rebuilt": "1.1449174941446927e-15",
+                "rebuilt_hex": "0x1.4a00000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "8.881784197001252e-16",
+                "saved_hex": "0x1.0000000000000p-50",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/0/audit/max_scheduler_reconstruction_error_n",
+                "rebuilt": "8.881784197001252e-16",
+                "rebuilt_hex": "0x1.0000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 2.5673907444456745e-16,
+                "kind": "value",
+                "path": "root/runs/1/audit/max_compensation_reconstruction_error_n",
+                "rebuilt": "1.1449174941446927e-15",
+                "rebuilt_hex": "0x1.4a00000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "8.881784197001252e-16",
+                "saved_hex": "0x1.0000000000000p-50",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/1/audit/max_scheduler_reconstruction_error_n",
+                "rebuilt": "8.881784197001252e-16",
+                "rebuilt_hex": "0x1.0000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 2.5673907444456745e-16,
+                "kind": "value",
+                "path": "root/runs/2/audit/max_compensation_reconstruction_error_n",
+                "rebuilt": "1.1449174941446927e-15",
+                "rebuilt_hex": "0x1.4a00000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "8.881784197001252e-16",
+                "saved_hex": "0x1.0000000000000p-50",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/2/audit/max_scheduler_reconstruction_error_n",
+                "rebuilt": "8.881784197001252e-16",
+                "rebuilt_hex": "0x1.0000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 2.5673907444456745e-16,
+                "kind": "value",
+                "path": "root/runs/3/audit/max_compensation_reconstruction_error_n",
+                "rebuilt": "1.1449174941446927e-15",
+                "rebuilt_hex": "0x1.4a00000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "8.881784197001252e-16",
+                "saved_hex": "0x1.0000000000000p-50",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/3/audit/max_scheduler_reconstruction_error_n",
+                "rebuilt": "8.881784197001252e-16",
+                "rebuilt_hex": "0x1.0000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/4/audit/max_scheduler_reconstruction_error_n",
+                "rebuilt": "8.881784197001252e-16",
+                "rebuilt_hex": "0x1.0000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 1.1102230246251565e-16,
+                "kind": "value",
+                "path": "root/runs/5/audit/max_coefficient_transition_error",
+                "rebuilt": "1.1102230246251565e-16",
+                "rebuilt_hex": "0x1.0000000000000p-53",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/5/audit/max_compensation_reconstruction_error_n",
+                "rebuilt": "1.7763568394002505e-15",
+                "rebuilt_hex": "0x1.0000000000000p-49",
+                "rebuilt_type": "float",
+                "saved": "8.881784197001252e-16",
+                "saved_hex": "0x1.0000000000000p-50",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/5/audit/max_scheduler_reconstruction_error_n",
+                "rebuilt": "8.881784197001252e-16",
+                "rebuilt_hex": "0x1.0000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/6/audit/max_scheduler_reconstruction_error_n",
+                "rebuilt": "8.881784197001252e-16",
+                "rebuilt_hex": "0x1.0000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 1.1102230246251565e-16,
+                "kind": "value",
+                "path": "root/runs/7/audit/max_coefficient_transition_error",
+                "rebuilt": "1.1102230246251565e-16",
+                "rebuilt_hex": "0x1.0000000000000p-53",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 5.551115123125783e-17,
+                "kind": "value",
+                "path": "root/runs/7/audit/max_compensation_reconstruction_error_n",
+                "rebuilt": "9.43689570931383e-16",
+                "rebuilt_hex": "0x1.1000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "8.881784197001252e-16",
+                "saved_hex": "0x1.0000000000000p-50",
+                "saved_type": "float"
+              },
+              {
+                "absolute_difference": 8.881784197001252e-16,
+                "kind": "value",
+                "path": "root/runs/7/audit/max_scheduler_reconstruction_error_n",
+                "rebuilt": "8.881784197001252e-16",
+                "rebuilt_hex": "0x1.0000000000000p-50",
+                "rebuilt_type": "float",
+                "saved": "0.0",
+                "saved_hex": "0x0.0p+0",
+                "saved_type": "float"
+              }
+            ],
+            "exact_difference_count": 16,
+            "first_trace_arithmetic": {
+              "alpha_argument_hex": "-0x1.47ae147ae147bp-7",
+              "alpha_hex": "0x1.460c0b518c09fp-7",
+              "audit": {
+                "hold_release_cycles": 0,
+                "max_coefficient_transition_error": 0.0,
+                "max_compensation_reconstruction_error_n": 1.1449174941446927e-15,
+                "max_packet_reconstruction_error_n": 0.0,
+                "max_scheduler_reconstruction_error_n": 8.881784197001252e-16,
+                "projection_gate_basis": "recorded scale; actuation-present simulator; fallback scale is zero",
+                "projection_scaled_or_fallback_cycles": 0,
+                "scope": "coefficient/slew/readiness/scheduler replay; not independent dynamics",
+                "trace_schema_version": 3,
+                "validated_cycles": 6000
+              },
+              "first_coefficient_difference": null,
+              "first_compensation_difference": {
+                "absolute_difference": 8.881784197001252e-16,
+                "column": "z",
+                "index": 1530,
+                "rebuilt_hex": "-0x1.a7e893ec625d9p+2",
+                "saved_hex": "-0x1.a7e893ec625d8p+2",
+                "time_s": 3.06
+              },
+              "first_scheduler_difference": {
+                "absolute_difference": 8.881784197001252e-16,
+                "column": "load_projected_n",
+                "force_hex": [
+                  "0x1.8dd00b78803fcp+3",
+                  "0x1.f8f8f62ecae1cp+2",
+                  "-0x1.1e4e0de5f6fcfp+0"
+                ],
+                "index": 837,
+                "previous_load_hex": {
+                  "rebuilt": "0x1.0334f7e5a3b13p+2",
+                  "saved": "0x1.0334f7e5a3b13p+2"
+                },
+                "projected_hex": {
+                  "rebuilt": "0x1.fce42bbabc957p+2",
+                  "saved": "0x1.fce42bbabc958p+2"
+                },
+                "rebuilt_hex": "0x1.fce42bbabc957p+2",
+                "saved_hex": "0x1.fce42bbabc958p+2",
+                "speed_hex": "0x1.13b91845b978cp-4",
+                "time_s": 1.674,
+                "unit_velocity_hex": [
+                  "0x0.0p+0",
+                  "0x1.f50888ad6e58dp-1",
+                  "-0x1.a59bb8a457ad4p-3"
+                ]
+              },
+              "identity": {
+                "method": "adaptive6_8",
+                "scenario": "falling",
+                "seed": 11
+              },
+              "math_alpha_hex": "0x1.460c0b518c09fp-7",
+              "trace_path": "results/franka_reversal_recovery/traces/falling_seed11__adaptive6_8.npz"
+            },
+            "manifest_sha256": "e8310dca906626267a8d8884aea4a3c6f619e66cc79a8627acbff220604746e5",
+            "profile": "numpy_portable",
+            "same_pair_comparisons": true,
+            "same_status": true,
+            "source_check": "serialization-finalization-only compatibility"
+          },
+          "runtime_differences_from_native": [
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/environment/NPY_DISABLE_CPU_FEATURES",
+              "rebuilt": "'X86_V4,AVX512_ICL,AVX512_SPR'",
+              "rebuilt_hex": null,
+              "rebuilt_type": "str",
+              "saved": "None",
+              "saved_hex": null,
+              "saved_type": "NoneType"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/numpy_features/AVX512_ICL",
+              "rebuilt": "False",
+              "rebuilt_hex": null,
+              "rebuilt_type": "bool",
+              "saved": "True",
+              "saved_hex": null,
+              "saved_type": "bool"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/numpy_features/AVX512_SKX",
+              "rebuilt": "False",
+              "rebuilt_hex": null,
+              "rebuilt_type": "bool",
+              "saved": "True",
+              "saved_hex": null,
+              "saved_type": "bool"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/numpy_features/X86_V4",
+              "rebuilt": "False",
+              "rebuilt_hex": null,
+              "rebuilt_type": "bool",
+              "saved": "True",
+              "saved_hex": null,
+              "saved_type": "bool"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/numpy_selected_functions/add/???/current",
+              "rebuilt": "'X86_V3'",
+              "rebuilt_hex": null,
+              "rebuilt_type": "str",
+              "saved": "'X86_V4'",
+              "saved_hex": null,
+              "saved_type": "str"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/numpy_selected_functions/expm1/dd/current",
+              "rebuilt": "'baseline(X86_V2)'",
+              "rebuilt_hex": null,
+              "rebuilt_type": "str",
+              "saved": "'X86_V4'",
+              "saved_hex": null,
+              "saved_type": "str"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/numpy_selected_functions/expm1/ee/current",
+              "rebuilt": "'baseline(X86_V2)'",
+              "rebuilt_hex": null,
+              "rebuilt_type": "str",
+              "saved": "'X86_V4'",
+              "saved_hex": null,
+              "saved_type": "str"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/numpy_selected_functions/expm1/ff/current",
+              "rebuilt": "'baseline(X86_V2)'",
+              "rebuilt_hex": null,
+              "rebuilt_type": "str",
+              "saved": "'X86_V4'",
+              "saved_hex": null,
+              "saved_type": "str"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/numpy_selected_functions/multiply/???/current",
+              "rebuilt": "'X86_V3'",
+              "rebuilt_hex": null,
+              "rebuilt_type": "str",
+              "saved": "'X86_V4'",
+              "saved_hex": null,
+              "saved_type": "str"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/numpy_selected_functions/tanh/dd/current",
+              "rebuilt": "'X86_V3'",
+              "rebuilt_hex": null,
+              "rebuilt_type": "str",
+              "saved": "'X86_V4'",
+              "saved_hex": null,
+              "saved_type": "str"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/numpy_selected_functions/tanh/ee/current",
+              "rebuilt": "'baseline(X86_V2)'",
+              "rebuilt_hex": null,
+              "rebuilt_type": "str",
+              "saved": "'X86_V4'",
+              "saved_hex": null,
+              "saved_type": "str"
+            },
+            {
+              "absolute_difference": null,
+              "kind": "value",
+              "path": "root/numpy_selected_functions/tanh/ff/current",
+              "rebuilt": "'X86_V3'",
+              "rebuilt_hex": null,
+              "rebuilt_type": "str",
+              "saved": "'X86_V4'",
+              "saved_hex": null,
+              "saved_type": "str"
+            }
+          ]
+        }
+      ],
+      "raw_log_sha256": "506f4c2b0823bad4f31147d52f29f6744ad122a139282b4f73ec5afce9b2d813"
+    }
+  ],
+  "source_commit": "0ce5c97daaa3cdd814ec5b21e116a0ee4270da29",
+  "workflow_run": "https://github.com/LYHrmer/robot-arm-compliant-control-lab/actions/runs/35867214077"
+}

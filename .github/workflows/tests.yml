@@ -8,6 +8,8 @@ permissions:
   contents: read
 
 env:
+  # Qualified replay kernel; native-path counterexamples remain in recovery-runtime.
+  OPENBLAS_CORETYPE: "Haswell"
   OPENBLAS_NUM_THREADS: "1"
   OMP_NUM_THREADS: "1"
   PYTEST_DISABLE_PLUGIN_AUTOLOAD: "1"
@@ -35,6 +37,8 @@ jobs:
           echo "$PWD/.venv-ci/bin" >> "$GITHUB_PATH"
       - name: Install locked core dependencies
         run: python tools/ci/install_locked.py --profile core
+      - name: Verify actual replay kernel
+        run: python -m tools.ci.check_replay_kernel
       - name: Install Eigen3
         run: |
           sudo apt-get update
@@ -84,6 +88,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libeigen3-dev
           npm ci --ignore-scripts --no-audit --no-fund
+      - name: Verify actual replay kernel
+        run: python -m tools.ci.check_replay_kernel
       - name: Build C++ probes and run compatibility suite
         run: |
           cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
@@ -118,6 +124,8 @@ jobs:
           echo "$PWD/.venv-ci/bin" >> "$GITHUB_PATH"
       - name: Install locked CPU learning dependencies
         run: python tools/ci/install_locked.py --profile learning-cpu
+      - name: Verify actual replay kernel
+        run: python -m tools.ci.check_replay_kernel
       - name: Require CPU Torch and all learning tests
         run: |
           python -c 'import torch; assert torch.version.cuda is None; print("CPU Torch:", torch.__version__)'

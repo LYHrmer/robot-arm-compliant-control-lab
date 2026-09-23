@@ -63,13 +63,16 @@ Python 版本见 [`environment/python-version`](environment/python-version)，�
 python3.10 -m venv .venv-repro
 source .venv-repro/bin/activate
 unset PYTHONPATH
+export OPENBLAS_CORETYPE=Haswell OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1
 python tools/ci/install_locked.py --profile core
+python -m tools.ci.check_replay_kernel
 franka-smoke
 ```
 
 所有命令均在仓库根目录执行。安装器会核对 Python 版本；CPU 学习环境和
 学习测试见固定环境说明。清空 `PYTHONPATH` 只影响当前终端，避免 ROS 或旧包路径
-混入新环境。版本锁定不保证不同 CPU 的浮点结果逐位相等。
+混入新环境。旧摘要精确复核使用单线程 Haswell 数值内核，需要 CPU 支持 AVX2／FMA3；
+这项环境限定不保证任意 CPU 上的逐位一致性，原因和对照证据见固定环境说明。
 
 <details>
 <summary>其他 Python 版本或平台：范围依赖安装</summary>
@@ -193,6 +196,7 @@ Residual RL；面试练习见[练习、故障定位和项目表达](docs/tutoria
 
 三种检查回答不同问题，不能互相替代：`pytest` / `ctest` 检查代码行为，`franka-smoke` 是最短的
 可运行性冒烟检查，`*-audit` 只离线核对已发布归档是否被改动。
+以下命令使用上面的固定环境及已核验的数值内核。
 
 ```bash
 pytest
