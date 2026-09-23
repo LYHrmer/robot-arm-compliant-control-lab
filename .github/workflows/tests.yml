@@ -49,6 +49,9 @@ jobs:
           cmake --build build --parallel 2
           ctest --test-dir build --output-on-failure
       - run: python -m pytest
+      - name: Diagnose exact recovery replay after failure
+        if: failure()
+        run: python -m tools.ci.diagnose_recovery_replay
       - run: python -m ruff check src tests tools
       - name: Run documented smoke path
         run: franka-smoke
@@ -85,6 +88,9 @@ jobs:
           ctest --test-dir build --output-on-failure
           python -m pytest
           franka-smoke
+      - name: Diagnose exact recovery replay after failure
+        if: failure()
+        run: python -m tools.ci.diagnose_recovery_replay
 
   learning-cpu:
     runs-on: ubuntu-22.04
