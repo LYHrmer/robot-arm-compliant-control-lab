@@ -1,7 +1,8 @@
 """The failure diagnostic exposes exact differences, not an alternate pass gate."""
 
-import pytest
 from pathlib import Path
+
+import pytest
 
 from tools.ci.diagnose_recovery_replay import differences
 
