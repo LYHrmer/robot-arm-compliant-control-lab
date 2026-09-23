@@ -1,6 +1,7 @@
 """The failure diagnostic exposes exact differences, not an alternate pass gate."""
 
 import pytest
+from pathlib import Path
 
 from tools.ci.diagnose_recovery_replay import differences
 
@@ -24,3 +25,11 @@ def test_structure_differences_and_unchanged_values_are_reported():
 def test_nonfinite_values_do_not_turn_into_a_success():
     with pytest.raises(ValueError):
         list(differences(float("nan"), float("nan")))
+
+
+def test_ci_cpu_probe_is_failure_only_and_does_not_change_test_environment():
+    workflow = (Path(__file__).resolve().parents[1] / ".github/workflows/tests.yml").read_text()
+    name = "      - name: Probe recovery replay without NumPy AVX512\n        if: failure()\n"
+    assert workflow.count(name) == 2
+    assert "NPY_DISABLE_CPU_FEATURES" not in workflow.split("jobs:", 1)[0]
+    assert "continue-on-error" not in workflow

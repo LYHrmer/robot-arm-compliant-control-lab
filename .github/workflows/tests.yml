@@ -52,6 +52,9 @@ jobs:
       - name: Diagnose exact recovery replay after failure
         if: failure()
         run: python -m tools.ci.diagnose_recovery_replay
+      - name: Probe recovery replay without NumPy AVX512
+        if: failure()
+        run: env NPY_DISABLE_CPU_FEATURES=AVX512F,AVX512CD,AVX512_SKX,AVX512_CLX,AVX512_CNL,AVX512_ICL,AVX512_KNL,AVX512_KNM python -m tools.ci.diagnose_recovery_replay
       - run: python -m ruff check src tests tools
       - name: Run documented smoke path
         run: franka-smoke
@@ -91,6 +94,9 @@ jobs:
       - name: Diagnose exact recovery replay after failure
         if: failure()
         run: python -m tools.ci.diagnose_recovery_replay
+      - name: Probe recovery replay without NumPy AVX512
+        if: failure()
+        run: env NPY_DISABLE_CPU_FEATURES=AVX512F,AVX512CD,AVX512_SKX,AVX512_CLX,AVX512_CNL,AVX512_ICL,AVX512_KNL,AVX512_KNM python -m tools.ci.diagnose_recovery_replay
 
   learning-cpu:
     runs-on: ubuntu-22.04
