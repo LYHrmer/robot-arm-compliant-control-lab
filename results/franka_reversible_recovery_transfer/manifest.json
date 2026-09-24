@@ -1,0 +1,62 @@
+{
+  "artifact_sha256": {
+    "comparison.json": "78729fbf0395ef435b08dd2c0e42a9fbd7820679eb67697297d32bd91c044873",
+    "protocol.json": "be0b20d0861f65ac2846d3d4fb8d27ba8dbb77c67309cc8ac586e5a23a56efaa",
+    "source_hashes.json": "28fbc78f9823c31c2fbff0e5586687f12dddd31f7c97256fd5409b797912641c",
+    "traces/constant_high_seed11__reversible_hold_cap.npz": "e065c0df1c41860d17cb2bb2ac170789efd8b372e3b6e43c721e7c29ae47bec5",
+    "traces/constant_high_seed29__reversible_hold_cap.npz": "c101afa30aa0f8c0459fc2fe6fda4b72d8047caca1656bc2d17ce8931c461e17",
+    "traces/falling_seed11__reversible_hold_cap.npz": "6b2cff39e39950c6c0fb699a4b977e1bf3d9afd8f4d6b7fc983ed3cc8ddc1d1b",
+    "traces/falling_seed29__reversible_hold_cap.npz": "fe683259cf2bd56a15ac1b4a9ab82b4d985ced9182a56388d7d2d1426a5bed36",
+    "traces/yaw-15__constant_high__combined__seed11__reversible_hold_cap.npz": "bebe13299921280a51a53e478bafb1d3b606d0159dd34ad91d5f668d4fcf438d",
+    "traces/yaw-15__constant_high__combined__seed29__reversible_hold_cap.npz": "d08146bb612589de14a5ded2d61b2f4bf0dad3942b09939f3f5c2dcf23e05dec",
+    "traces/yaw-15__constant_high__combined_scale_0p8__seed11__reversible_hold_cap.npz": "297e4b73a2cce83462512f43a9280a05fbf4d88804cbe3c297555b4c5f572e72",
+    "traces/yaw-15__constant_high__combined_scale_0p8__seed29__reversible_hold_cap.npz": "ca054b76346f269e3d1a6762812e8be9d74ad7222a56ba3514b570010c8ef96e",
+    "traces/yaw-15__falling__combined__seed11__reversible_hold_cap.npz": "ff1f8a878dbc7a2be6f03d592b6eb92c68463ad1b432eb8ad775a86d573bb280",
+    "traces/yaw-15__falling__combined__seed29__reversible_hold_cap.npz": "72cec241b63655b3884a9fe2194513810a04e5158240eb1c6d0d68e901b2f51e",
+    "traces/yaw-15__falling__combined_scale_0p8__seed11__reversible_hold_cap.npz": "bf3b4bd7e20d5a1fef0420ed13132c06ad5607d4df6bb8623154e82f0a7d5b27",
+    "traces/yaw-15__falling__combined_scale_0p8__seed29__reversible_hold_cap.npz": "d3f67711bc7f41e70aad9984ba7652eb0aef227425c6cfac87394d44e24e12f7",
+    "traces/yaw0__constant_high__combined__seed11__reversible_hold_cap.npz": "5ad06b7e41e3e9b35bd11660349484ef20cd8cc2cfb5ca03f06c4e4f9ec17c09",
+    "traces/yaw0__constant_high__combined__seed29__reversible_hold_cap.npz": "1b01b342a1395b1821b354f0e71c9aacf21429c7cae18e844589e7bd7c2988be",
+    "traces/yaw0__constant_high__combined_scale_0p8__seed11__reversible_hold_cap.npz": "7d93d699fdbdd8f84251585aa3b9b256846a481ea9f333fad9a5aaf25d706917",
+    "traces/yaw0__constant_high__combined_scale_0p8__seed29__reversible_hold_cap.npz": "560706cb1ee7bb5d26cf4a733726cda76739aed570ff3a32197066410a408517",
+    "traces/yaw0__falling__combined__seed11__reversible_hold_cap.npz": "58c67b2604dd90cdd61bab55666f3be14c23192c4925092421d159b2d27af665",
+    "traces/yaw0__falling__combined__seed29__reversible_hold_cap.npz": "4d579d522bcfead33e1b52e9625b3a7c229e30595daf218c1ad33560fe9ef3f7",
+    "traces/yaw0__falling__combined_scale_0p8__seed11__reversible_hold_cap.npz": "145efe815c5f75fa6eada8724c09dc0010ccdd033b8a48c0cf0107978fe68450",
+    "traces/yaw0__falling__combined_scale_0p8__seed29__reversible_hold_cap.npz": "a9c6602d80fe6f69f12a9a22e18b1d729608244abfe2a0f3b8791bf5d528fbca",
+    "traces/yaw15__constant_high__clean__seed11__reversible_hold_cap.npz": "dde039b98facf6aa64d4c2ac02bfe40210bf84fd44d97e65c232bbe0ea8c3da9",
+    "traces/yaw15__constant_high__clean__seed29__reversible_hold_cap.npz": "21a0d5221b344cd767851d8ec3414f29a63aba90dc7ef444f28215e23c8a7b35",
+    "traces/yaw15__constant_high__combined__seed11__reversible_hold_cap.npz": "121d4541410c3050a7c8a4e815edc6b630e5ed3f4ccc329d227ebe01b9a16a16",
+    "traces/yaw15__constant_high__combined__seed29__reversible_hold_cap.npz": "b03c405008e93c0df257b7d2e23c7c5a621b6731fcb8dbb1c98d74afb11790f7",
+    "traces/yaw15__constant_high__combined_scale_0p8__seed11__reversible_hold_cap.npz": "dd36d8ec13f3013fbd071e5d5d45110bac4c3bb7f1c105ed2c5261ec1c5b8463",
+    "traces/yaw15__constant_high__combined_scale_0p8__seed29__reversible_hold_cap.npz": "e25b7bd8a025e97da3171407478339b7c5a990cdd00a0e3da90278495e2dc99a",
+    "traces/yaw15__falling__clean__seed11__reversible_hold_cap.npz": "ede9aeb9c04d02443bc9035db6f16d0e6986510e07166d4258a60cc73f35565b",
+    "traces/yaw15__falling__clean__seed29__reversible_hold_cap.npz": "981707562d54eb537c1af60067337a9291cb1ba59598a9ead362d27cd7155522",
+    "traces/yaw15__falling__combined__seed11__reversible_hold_cap.npz": "5f4f1d85b98e78829f8b19fdeb5c6123fb3025638f6acd252ce46ca3f6ac47fb",
+    "traces/yaw15__falling__combined__seed29__reversible_hold_cap.npz": "ceaeaf80562f23aa1a1e4fcdb92f0949b892f86294757e3b6977c052926446e2",
+    "traces/yaw15__falling__combined_scale_0p8__seed11__reversible_hold_cap.npz": "f0937310ee52d7ee89e94be150568b90f97cf5d1d6b8a81d14a469ef66929023",
+    "traces/yaw15__falling__combined_scale_0p8__seed29__reversible_hold_cap.npz": "f2fbc92028b0e19e6f7c6d0fe183ca4f1331339ba8ffba3dbb9b3200f3f35c55"
+  },
+  "default_changed": false,
+  "environment": {
+    "packages": {
+      "mujoco": "3.12.0",
+      "numpy": "2.2.6"
+    },
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+    "python": "3.10.12"
+  },
+  "evaluated_runs": 108,
+  "identity": "reversible-release-transfer-v1",
+  "maximum_new_simulations": 32,
+  "new_holdout": false,
+  "paired_cases": 36,
+  "pilot_reference": {
+    "directory": "results/franka_reversible_recovery_pilot",
+    "manifest_sha256": "f76cd7bbd6c9ae971872cbbb4d4e55a9eca2d12d5cae0506f443f57590f4f5ba"
+  },
+  "public_development": true,
+  "reused_runs": 76,
+  "scope": "transfer",
+  "source_commit": "648d3e280263664bd45ee04d388e0e32d5834daa",
+  "source_commit_role": "clean tracked execution-start HEAD; exact inputs in source_hashes.json"
+}

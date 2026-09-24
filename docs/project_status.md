@@ -24,7 +24,8 @@
   [bc_closed_loop_transfer.md](bc_closed_loop_transfer.md)）。BC 模仿补偿，PPO 在已有前馈上学残差，
   两者名义控制器不同，网络动作不能直接互换。
 - 换向恢复候选：[局部实验](reversal_recovery.md)、[跨方向回归](reversal_recovery_transfer.md)、
-  [静止回退 pilot](stationary_recovery_pilot.md)。三轮都停在候选状态，默认控制器未改。
+  [静止回退 pilot](stationary_recovery_pilot.md)、[可逆回退](reversible_recovery.md)。
+  最新一轮小试 4/4、完整回归 32/36，仍未推广，默认控制器未改。
 
 六轴机械臂在独立项目中开发，不并入本仓库，也不以它的实物条件替代七轴项目的验证。
 
@@ -38,8 +39,8 @@
 
 先按[首页安装](../README.md#安装后快速复核)完成固定环境安装，再留出约 30 分钟依次操作并
 对照输出。安装时间不计，实际耗时取决于机器。这条路径含一次 2 秒 nominal 新仿真，其余步骤
-检查环境或已有证据，不训练网络。命令都在仓库根目录执行；需要另存结果时使用仓库外的新目录，
-不覆盖 `results/`。
+检查环境或已有证据，不训练网络。命令都在仓库根目录执行；另存结果须使用新目录，
+不覆盖已发布归档。需要可搬移引用的实验按对应入口要求选择仓库内的新目录。
 
 | 步骤 | 命令 | 预期 | 不能证明什么 |
 |---:|---|---|---|
@@ -47,7 +48,7 @@
 | 2 | `franka-smoke` | `archive: PASS (384 rows, frozen_decision=FAIL)`、`simulation: PASS (safe_adaptive_hybrid/nominal, steps=1000, ...)`、`smoke: PASS` | 仿真只跑 2 秒 nominal；不重跑 48-case 揭盲，也不改冻结 `FAIL` |
 | 3 | `python -m tools.tutorials.wrench_to_torque` | 打印一次阻抗 wrench 与七个关节力矩 | 合成 Jacobian 的单步计算，不含 bias、零空间、投影或动力学积分 |
 | 4 | `python -m tools.tutorials.budget_drop` | 先 `full-state replay: PASS (6000 cycles)`，再列出预算下降、缺包与系数更新 | 重算已保存轨迹，不新跑仿真 |
-| 5 | `MUJOCO_GL=disable python -m tools.stationary_recovery.study --audit results/franka_stationary_recovery_pilot` | `archive_integrity: PASS`、`comparison_status: FAIL`、`new_holdout: false` | 只核对归档完整性与配对重算；不积分新动力学，`FAIL` 仍是实验判定 |
+| 5 | `MUJOCO_GL=disable python -m tools.reversible_recovery.study --audit results/franka_reversible_recovery_transfer` | `archive_integrity: PASS`、`comparison_status: FAIL`、`new_holdout: false` | 只核对归档完整性与配对重算；不积分新动力学，`FAIL` 仍是实验判定 |
 | 6 | `pytest tests/test_documentation_links.py tests/test_tutorial_wrench_to_torque.py` | 两个目标通过 | 只检查本地链接和一个数值例子 |
 
 完整 `pytest`、`ruff`、C++ 构建与 `ctest`、BC/PPO 学习测试都不在这条路径里，
@@ -64,17 +65,23 @@
 
 ## 当前失败与后续边界
 
-最新已发布实验是[静止回退 pilot](stationary_recovery_pilot.md)，4 个配对通过 3 个，整体 `FAIL`。
-高负载 7–8 s 窗口相对原 6–8 N 调度的额外代价：seed 11 位置 +0.095464 mm、速度 +0.458643 mm/s；
-seed 29 位置 +0.106956 mm、速度 +0.545732 mm/s。门槛为 +0.1 mm 和 +0.5 mm/s，seed 29 两项都没过。
-这些数字是相对原 6–8 N 调度的增量，不对应默认固定 6 N，也不是绝对 RMSE。两个种子相对旧回退
-候选都改善，但没有通过全部门槛，两次噪声重复也不足以支持推广，
-采用范围与默认值不变。[跨方向回归](reversal_recovery_transfer.md)的 34/36 保持原样。
-这轮属于公开开发实验，不构成新的 holdout。
+最新[可逆回退](reversible_recovery.md)小试 4/4 后补跑 32 条候选，完整回归 **32/36，整体 `FAIL`**。
+它修复了旧候选的两个高负载反例：例如 seed 29 的 7–8 s 额外位置代价由上一轮静止回退的
++0.106956 降至 +0.033753 mm，额外速度代价由 +0.545732 降至 +0.163723 mm/s。
+这些是相对原 6–8 N 调度的增量，不是绝对 RMSE，也不对应默认固定 6 N。
+
+代价是 +15° 降载叠加组合误差时新增四条失败，7–8 s 速度增量 +0.635332–+0.643327 mm/s，
+超过 +0.5 mm/s 原门槛。高负载 18/18，降载 14/18；不能称为整体改进。
+候选和完整轨迹可通过独立实验入口复核，但不推广、不接入默认或 C++ 控制链。
+[旧跨方向回归](reversal_recovery_transfer.md)的 34/36、[静止回退](stationary_recovery_pilot.md)的
+3/4 均保留。这几轮都是公开开发实验，不构成新的 holdout。
 
 保持阶段的系数只降不升，是[控制器测试](../tests/test_stationary_recovery_controller.py)验证过的
 结构现象：预算 6 N、初始系数 0.5，法向力 12 → 14 → 12 N 时系数为 0.5 → 0.4994 → 0.4994。
-这个无动力学例子不证明它解释了 seed 29 的全部剩余代价。下一轮干预尚未执行。
+这个无动力学例子不证明它解释了 seed 29 的全部剩余代价。
+本次可逆恢复干预支持局部高负载改善，但扩展中缺少其余 32 个配对的静止回退对照，
+不能把新增降载失败单独归因于可逆项。[带答案实验](tutorial/labs/03_reversal_recovery.md#8-法向力恢复补偿系数应该回到哪里)
+用这组结果练习区分状态约束、局部改善和跨工况采用。
 
 其余保留的失败项：默认固定 6 N 在组合误差后段仍有约 3.3 mm 切向残差；可选负载调度在
 辅助力幅值 ×0.8 时后段 RMSE 为 3.010 mm，
@@ -90,8 +97,8 @@ seed 29 位置 +0.106956 mm、速度 +0.545732 mm/s。门槛为 +0.1 mm 和 +0.5
 [固定环境](reproducible_environment.md)：Linux x86_64、锁定依赖、单线程 Haswell OpenBLAS，
 CPU 需支持 AVX2／FMA3。执行新实验前提交源码，输出写到新目录；失败归档保留，不覆盖重跑。
 
-相关主张已列入[验证矩阵](verification_matrix.md)。静止回退小试的可执行证据是
-[候选控制器](../tools/stationary_recovery/controller.py)、[协议与执行入口](../tools/stationary_recovery/study.py)、
-[控制器测试](../tests/test_stationary_recovery_controller.py)、[协议测试](../tests/test_stationary_recovery_study.py)、
-[审计测试](../tests/test_stationary_recovery_audit.py)与
-[归档比较](../results/franka_stationary_recovery_pilot/comparison.json)。
+相关主张已列入[验证矩阵](verification_matrix.md)。最新候选的可执行证据是
+[控制器](../tools/reversible_recovery/controller.py)、[协议与执行入口](../tools/reversible_recovery/study.py)、
+[状态不变量](../tests/test_reversible_recovery_invariants.py)、[协议拒绝路径](../tests/test_reversible_recovery_study.py)、
+[归档回归](../tests/test_published_reversible_recovery.py)与
+[完整比较](../results/franka_reversible_recovery_transfer/comparison.json)。

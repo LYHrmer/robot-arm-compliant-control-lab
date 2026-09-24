@@ -1,0 +1,30 @@
+{
+  "artifact_sha256": {
+    "comparison.json": "f879ef9e255621873b063437374b873063629d6f89c79cb67b5001e46aa8588d",
+    "protocol.json": "cc129c27fe7077255b73d5955ed31d5a10c5a11961bdfdfcbf301b45a2e3486d",
+    "source_hashes.json": "28fbc78f9823c31c2fbff0e5586687f12dddd31f7c97256fd5409b797912641c",
+    "traces/yaw-15__constant_high__clean__seed11__reversible_hold_cap.npz": "b9e75f494b897026c7fcebcb88d8ac56a5cd5109d6a13e3732f6ca87643228c4",
+    "traces/yaw-15__constant_high__clean__seed29__reversible_hold_cap.npz": "2ebac2bb8bf87a792257858aad8f28c1e0d4e78ed3d0d63d336249a8e1953ea4",
+    "traces/yaw-15__falling__clean__seed11__reversible_hold_cap.npz": "307119b63df43e856c163dcd23c2e021f7dcb7b4a45eb83d7a750d4fc7785f75",
+    "traces/yaw-15__falling__clean__seed29__reversible_hold_cap.npz": "e13785796a6898d6d102c7001cae304790570b8ce9f1e847fc80ea2b48cb54b0"
+  },
+  "default_changed": false,
+  "environment": {
+    "packages": {
+      "mujoco": "3.12.0",
+      "numpy": "2.2.6"
+    },
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+    "python": "3.10.12"
+  },
+  "evaluated_runs": 16,
+  "identity": "reversible-release-pilot-v1",
+  "maximum_new_simulations": 4,
+  "new_holdout": false,
+  "paired_cases": 4,
+  "public_development": true,
+  "reused_runs": 12,
+  "scope": "pilot",
+  "source_commit": "648d3e280263664bd45ee04d388e0e32d5834daa",
+  "source_commit_role": "clean tracked execution-start HEAD; exact inputs in source_hashes.json"
+}

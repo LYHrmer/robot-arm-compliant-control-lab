@@ -50,7 +50,8 @@ Residual RL 和测得负载调度。三份短实验给出完整数值与答案�
 
 换向恢复先看[停顿系数回退的局部实验](reversal_recovery.md)，再看
 [跨方向与组合误差回归](reversal_recovery_transfer.md)。候选与当前默认控制器分开。
-最新一次是[静止回退 pilot](stationary_recovery_pilot.md)，4 个配对通过 3 个，整体 `FAIL`。
+后续[静止回退 pilot](stationary_recovery_pilot.md)为 3/4，最新[可逆回退](reversible_recovery.md)
+小试 4/4、完整回归 32/36，整体仍 `FAIL`：高负载改善，降载速度代价增加，不推广。
 
 BC 与 PPO 从[表面学习任务](surface_learning.md)继续。它们是经典基线之后的研究延伸；已有
 失败和没有超过解析前馈的结果均保留在相应实验页。
@@ -128,6 +129,7 @@ python -m tools.tutorials.reversal_recovery
 | 测得负载调度：42 条新增＋18 条复用候选 | [完整回归与推广决定](load_budget.md) | [public24 48/48、动态 12/12、增益交互 6/6 通过；仅推荐已覆盖仿真工况](../results/franka_measured_budget_full/) |
 | 测量误差与负载下降：9 场景 × 3 方法 | [保留 7/8 与负载下降代价](measured_budget_robustness.md) | [27 次运行、162,000 拍完整状态回放](../results/franka_measured_budget_robustness/) |
 | 换向恢复：局部实验及跨方向误差回归 | [4 对局部比较](reversal_recovery.md)、[36 对扩大回归](reversal_recovery_transfer.md) | [原 8 条轨迹](../results/franka_reversal_recovery/)、[64 条新增轨迹与完整配对结果](../results/franka_reversal_recovery_transfer/) |
+| 换向恢复：静止回退与入口限幅的可逆回退 | [静止回退 3/4](stationary_recovery_pilot.md)、[可逆回退小试 4/4、扩展 32/36](reversible_recovery.md) | [静止小试](../results/franka_stationary_recovery_pilot/)、[可逆小试](../results/franka_reversible_recovery_pilot/)、[可逆扩展](../results/franka_reversible_recovery_transfer/)；三份失败与成功判定分别保留 |
 | C++ 完整数值控制链回放 | [输入、状态与硬件边界](cpp_core.md) | [27 条鲁棒性轨迹＋1 条重复演示，共 168,000 拍](../results/franka_measured_budget_cpp_replay/) |
 | 表面任务学习前准备：24 × 3、12 次压力测试与同频教师数据 | [训练接口、标签与复现](surface_learning.md) | [数值索引](../results/franka_surface_learning_preparation/)、[三回合示例](../results/franka_surface_learning_examples/)、[分层修正记录](../results/franka_surface_learning_partition/) |
 | 小规模 BC 与 bounded Residual PPO：各三个训练种子 | [损失、更新与选择规则](surface_learning_pilot.md) | [完整种子对照](../results/franka_surface_learning_pilot/) |

@@ -39,7 +39,7 @@ MUJOCO_GL=egl python -m tools.diagnostics.render_measured_budget_demo --output /
 |---|---|---|
 | 在线切向补偿 | 相对固定前馈，切向 RMSE 中位数 1.885 → 1.359 mm | 原公开 24-case、4.5 s 配对回归；[原实验](docs/online_compensation.md) |
 | 测量误差下的负载调度 | 27 次仿真；组合误差采用检查 7/8 通过 | 幅值低估 20% 时失败，默认仍为固定 6 N；[完整对照](docs/measured_budget_robustness.md) |
-| 换向恢复候选 | 扩大回归 34/36；最新静止回退 pilot 3/4，两轮均 `FAIL` | 高负载反向加速仍有超限配对，不推广；[跨方向与误差回归](docs/reversal_recovery_transfer.md)、[静止回退 pilot](docs/stationary_recovery_pilot.md) |
+| 换向恢复候选 | 最新可逆回退小试 4/4，扩大回归 32/36，整体 `FAIL` | 修复两条高负载失败，却新增四条降载速度失败，不推广；[完整结果与取舍](docs/reversible_recovery.md)，旧 34/36 与静止回退 3/4 保留 |
 | Python/C++ 数值移植 | 168,000 周期对齐，最大分量误差 < 3.56e-15 | 含重复演示；不证明真机实时性；[核验说明](docs/cpp_core.md) |
 
 BC/PPO 尚无跨种子一致优于解析前馈的证据，冻结 v0.5 的 48-case 首次揭盲仍为 `FAIL`。
@@ -120,6 +120,7 @@ smoke: PASS
 | [测量鲁棒性：27 次配对仿真](docs/measured_budget_robustness.md) | 完整回放 **162,000 拍**；组合误差采用检查 **7/8**。辅助力幅值低估 20% 时失败；下降负载后的换向跟踪也有代价。不扩大采用范围。 |
 | [换向恢复：停顿系数回退](docs/reversal_recovery.md) | 新增 4 对、8 次仿真。降载场景恢复初段误差降低约 40.7%；高负载反向加速仍有小幅位置和速度代价，4 对均在预定门槛内。仅实验候选，未替换默认值或完成 C++ 移植。 |
 | [换向恢复：跨方向与组合误差](docs/reversal_recovery_transfer.md) | 64 条新增＋8 条引用轨迹，36 对中 34 对通过，整体 `FAIL`。降载收益保留；−15° 无额外误差的高负载反例，两个种子均超过加速位置／速度代价门槛。72 条绝对工程检查通过，不改变默认或原测量回归的 7/8。 |
+| [换向恢复：入口限幅的可逆回退](docs/reversible_recovery.md) | 小试 4/4 后补跑 32 条候选，完整回归 **32/36，FAIL**。高负载 18/18，降载 14/18；+15° 组合误差的速度代价超限。不据局部改善替换旧候选或默认值，另保留[静止回退 3/4](docs/stationary_recovery_pilot.md)。 |
 | [BC 输入消融](docs/bc_closed_loop_transfer.md)与[bounded PPO](docs/surface_learning_pilot.md)：12 s、4 个开发 case | 解析前馈均值 **2.403 mm**；三个种子的 BC 为 2.781–2.825 mm，PPO 为 2.381–2.470 mm，均无跨种子一致优势。 |
 | [冻结 v0.5：48 case](results/franka_safety_blind/summary.md) | 五个 residual 策略通过 **22–26/48**，未达到各 44/48；主结果 **FAIL**，保留[全部 384 行数据](results/franka_safety_blind/comparison.csv)，不部署策略。 |
 | [C++ 完整控制链回放](results/franka_online_cpp_replay/report.json) | 4 份轨迹、24,000 周期，最大 wrench 分量误差 < `4.45e-15`；[新增益另 4 份](results/franka_rotation_gain_cpp_replay/report.json)也通过。这是数值移植证据，不是真机实时性保证。 |
