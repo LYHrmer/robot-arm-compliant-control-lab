@@ -9,7 +9,8 @@
 适合第一次打开仓库，或面试前快速回忆项目主线。
 
 1. 看[项目首页](../README.md)，了解 500 Hz Franka 擦拭任务、控制器范围和当前局限。
-   面试官可直接走[五分钟验收路径](recruiter_walkthrough.md)。
+   面试官可直接走[五分钟验收路径](recruiter_walkthrough.md)；可运行范围、验收步骤和未解决项
+   见[项目状态](project_status.md)。
 2. 沿[当前表面控制主线](#当前表面控制主线)读到测得负载预算和 C++ 回放。
 3. 快速检查可在安装后运行 `franka-smoke`；需要动手学习时，再做
    [带答案实验](tutorial/README.md#带答案的数值实验)。
@@ -49,6 +50,7 @@ Residual RL 和测得负载调度。三份短实验给出完整数值与答案�
 
 换向恢复先看[停顿系数回退的局部实验](reversal_recovery.md)，再看
 [跨方向与组合误差回归](reversal_recovery_transfer.md)。候选与当前默认控制器分开。
+最新一次是[静止回退 pilot](stationary_recovery_pilot.md)，4 个配对通过 3 个，整体 `FAIL`。
 
 BC 与 PPO 从[表面学习任务](surface_learning.md)继续。它们是经典基线之后的研究延伸；已有
 失败和没有超过解析前馈的结果均保留在相应实验页。

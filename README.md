@@ -23,6 +23,7 @@ BC/PPO 保留为强基线之后的独立学习实验。
 [实验二：预算下降与缺包](docs/tutorial/labs/02_budget_drop.md)、
 [实验三：换向恢复故障分析](docs/tutorial/labs/03_reversal_recovery.md)，均附参考答案。
 需要从基础开始，按[教程目录](docs/tutorial/README.md)阅读。
+当前可运行范围、安装后的 30 分钟验收路线和未解决项：[项目状态](docs/project_status.md)。
 
 安装项目后，在仓库根目录运行一条命令即可重做演示，无需训练：
 
@@ -38,7 +39,7 @@ MUJOCO_GL=egl python -m tools.diagnostics.render_measured_budget_demo --output /
 |---|---|---|
 | 在线切向补偿 | 相对固定前馈，切向 RMSE 中位数 1.885 → 1.359 mm | 原公开 24-case、4.5 s 配对回归；[原实验](docs/online_compensation.md) |
 | 测量误差下的负载调度 | 27 次仿真；组合误差采用检查 7/8 通过 | 幅值低估 20% 时失败，默认仍为固定 6 N；[完整对照](docs/measured_budget_robustness.md) |
-| 换向恢复候选 | 扩大回归 34/36；降载 18/18，高负载反例 16/18 | −15° 两条反向加速代价超限，不推广；[跨方向与误差回归](docs/reversal_recovery_transfer.md) |
+| 换向恢复候选 | 扩大回归 34/36；最新静止回退 pilot 3/4，两轮均 `FAIL` | 高负载反向加速仍有超限配对，不推广；[跨方向与误差回归](docs/reversal_recovery_transfer.md)、[静止回退 pilot](docs/stationary_recovery_pilot.md) |
 | Python/C++ 数值移植 | 168,000 周期对齐，最大分量误差 < 3.56e-15 | 含重复演示；不证明真机实时性；[核验说明](docs/cpp_core.md) |
 
 BC/PPO 尚无跨种子一致优于解析前馈的证据，冻结 v0.5 的 48-case 首次揭盲仍为 `FAIL`。
