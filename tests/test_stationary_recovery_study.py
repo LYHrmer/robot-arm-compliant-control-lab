@@ -17,6 +17,7 @@ def forbid_physics(monkeypatch):
 
     monkeypatch.setattr(study.original.runner, "_run_loop", forbidden)
     monkeypatch.setattr(study, "ScheduledSurfaceSimulator", forbidden)
+    monkeypatch.setattr(study.original.previous, "_save_trace", forbidden)
 
 
 def test_exact_twelve_identities_reuse_eight_controls_and_add_four_candidates():
@@ -232,3 +233,145 @@ def test_existing_output_rejected_before_git_or_collection(existing, monkeypatch
         study.run(destination)
     assert sentinel.read_text() == "keep me"
     assert list(tmp_path.iterdir()) == [destination]
+
+
+def _seal_metadata_archive(directory, manifest):
+    manifest["artifact_sha256"] = {
+        name: study._sha256(directory / name) for name in manifest["artifact_sha256"]
+    }
+    (directory / "manifest.json").write_text(json.dumps(manifest))
+    (directory / "COMPLETE").write_text(study._sha256(directory / "manifest.json") + "\n")
+
+
+@pytest.fixture
+def metadata_archive(tmp_path, monkeypatch):
+    """Tiny, fully sealed artifacts that must be rejected before trace replay."""
+    artifacts = {
+        "protocol.json": json.dumps(study.protocol_document()),
+        "source_hashes.json": json.dumps(study.source_identity()),
+        "comparison.json": "{}",
+        **{spec["trace_path"]: "metadata-only fixture; not a simulated trace"
+           for spec in study.specifications() if spec["origin"] == "new"},
+    }
+    for name, content in artifacts.items():
+        path = tmp_path / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(content)
+    manifest = {
+        "identity": study.protocol_document()["identity"],
+        "source_commit": "a" * 40, "new_simulations": 4, "reused_runs": 8,
+        "default_changed": False, "new_holdout": False,
+        "artifact_sha256": dict.fromkeys(artifacts),
+    }
+    _seal_metadata_archive(tmp_path, manifest)
+
+    def forbidden(*_args, **_kwargs):
+        pytest.fail("invalid archive metadata reached trace replay")
+
+    monkeypatch.setattr(study, "collect", forbidden)
+    return tmp_path, manifest
+
+
+@pytest.mark.parametrize("field,value", [
+    ("identity", "different-pilot"), ("new_simulations", 5), ("reused_runs", 7),
+    ("default_changed", True), ("default_changed", 0),
+    ("new_holdout", True), ("new_holdout", 0),
+])
+def test_resealed_scope_changes_rejected_before_replay(metadata_archive, field, value):
+    directory, manifest = metadata_archive
+    manifest[field] = value
+    _seal_metadata_archive(directory, manifest)
+    with pytest.raises(ValueError, match="identity/scope/inventory"):
+        study.audit_archive(directory)
+
+
+@pytest.mark.parametrize("commit", [
+    None, 123, True, ["a" * 40], "a" * 39, "a" * 41, "g" * 40, "A" * 40,
+])
+def test_resealed_invalid_execution_commit_rejected_before_replay(metadata_archive, commit):
+    directory, manifest = metadata_archive
+    manifest["source_commit"] = commit
+    _seal_metadata_archive(directory, manifest)
+    with pytest.raises(ValueError, match="invalid execution commit"):
+        study.audit_archive(directory)
+
+
+@pytest.mark.parametrize("source", [
+    "tools/reversal_recovery/controller.py", "tools/stationary_recovery/controller.py",
+    "tools/stationary_recovery/audit.py", "tools/stationary_recovery/study.py",
+])
+def test_resealed_expected_source_hash_change_rejected_before_replay(metadata_archive, source):
+    directory, manifest = metadata_archive
+    source_file = directory / "source_hashes.json"
+    sources = json.loads(source_file.read_text())
+    assert source in sources
+    sources[source] = "0" * 64
+    source_file.write_text(json.dumps(sources))
+    _seal_metadata_archive(directory, manifest)
+    with pytest.raises(ValueError, match="source identity differs"):
+        study.audit_archive(directory)
+
+
+def test_resealed_protocol_cannot_replace_the_pinned_reference_manifest(metadata_archive):
+    directory, manifest = metadata_archive
+    protocol_file = directory / "protocol.json"
+    protocol = json.loads(protocol_file.read_text())
+    protocol["reference_manifest_sha256"] = "0" * 64
+    protocol_file.write_text(json.dumps(protocol))
+    _seal_metadata_archive(directory, manifest)
+    with pytest.raises(ValueError, match="differs"):
+        study.audit_archive(directory)
+
+
+def test_collection_rejects_a_changed_reference_manifest_before_loading_traces(tmp_path, monkeypatch):
+    (tmp_path / "manifest.json").write_text("{}")
+    (tmp_path / "COMPLETE").write_text(study._sha256(tmp_path / "manifest.json") + "\n")
+    monkeypatch.setattr(study, "REFERENCE", tmp_path)
+    monkeypatch.setattr(study.original.previous, "_load_trace",
+                        lambda *_: pytest.fail("invalid reference reached trace loading"))
+    with pytest.raises(ValueError, match="pinned reference manifest differs"):
+        study.collect(tmp_path / "unused", execute=False)
+
+
+def test_published_archive_audits_without_physics_and_preserves_three_of_four_failure():
+    directory = study.ROOT / "results/franka_stationary_recovery_pilot"
+    before = {path: (path.stat().st_size, path.stat().st_mtime_ns)
+              for path in directory.rglob("*") if path.is_file()}
+    manifest = study.verify_archive(
+        directory, "ae864f1a86658ecc308aa0e671cecf9f1dd0e3bf13dba0ebd1e46c6ed0c5a88f",
+    )
+    assert manifest["source_commit"] == "6eff326cea8765dee5ca422dd59e259c5a8e9b77"
+    checked = study.audit_archive(directory)
+    assert checked == {
+        "archive_integrity": "PASS", "comparison_status": "FAIL", "evaluated_runs": 12,
+        "new_simulations": 4, "reused_runs": 8, "default_changed": False, "new_holdout": False,
+    }
+    report = json.loads((directory / "comparison.json").read_text())
+    assert report["status"] == "FAIL"
+    assert report["default_changed"] is report["eligible_for_default_change"] is False
+    assert len(report["runs"]) == 12
+    primary = [row for row in report["comparisons"] if row["compared_method"] == study.METHOD]
+    assert len(primary) == 4 and sum(row["status"] == "PASS" for row in primary) == 3
+    failed = [row for row in primary if row["status"] == "FAIL"]
+    assert len(failed) == 1
+    assert (failed[0]["scenario"], failed[0]["seed"]) == ("constant_high", 29)
+    assert failed[0]["failed_checks"] == ["ramp:position_cost", "ramp:velocity_cost"]
+    ramp = next(row for row in failed[0]["window_deltas"] if row["name"] == "ramp")
+    assert ramp["tangent_rmse_mm"] == pytest.approx(0.10695571007888849, rel=0, abs=1e-10)
+    assert ramp["tangent_velocity_rmse_mm_s"] == pytest.approx(0.5457319472178757, rel=0, abs=1e-10)
+    limits = study.original.protocol_document()["acceptance"]
+    assert ramp["tangent_rmse_mm"] > limits["maximum_other_window_tangent_increase_mm"]
+    assert ramp["tangent_velocity_rmse_mm_s"] > limits["maximum_window_tangent_velocity_rmse_increase_mm_s"]
+    assert report["high_load_checks"] == [
+        {"seed": seed, "position_improved": True, "velocity_improved": True} for seed in (11, 29)
+    ]
+    prefixes = report["prefix_checks"]
+    assert len(prefixes) == 4
+    assert {(row["scenario"], row["seed"]) for row in prefixes} == {
+        (scenario, seed) for scenario in ("falling", "constant_high") for seed in (11, 29)
+    }
+    assert all(row["bit_exact"] and not row["different_fields"] for row in prefixes)
+    assert all(row["before_s"] == 5.5 and row["samples"] == 2750 for row in prefixes)
+    after = {path: (path.stat().st_size, path.stat().st_mtime_ns)
+             for path in directory.rglob("*") if path.is_file()}
+    assert after == before

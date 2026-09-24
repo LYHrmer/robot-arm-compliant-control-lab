@@ -158,3 +158,33 @@ def test_real_safe_controller_keeps_projection_before_stationary_release(gate, s
         np.testing.assert_array_equal(output, np.zeros(6))
     elif speed == 0.0:
         np.testing.assert_array_equal(output, base.wrench)
+
+
+def test_stationary_release_keeps_decrease_after_normal_force_returns():
+    candidate = StationaryHoldCapTracking("online", nominal_mu=0.5, max_force=8.0)
+    mu = [candidate.equivalent_mu]
+    for normal_force in (12.0, 14.0, 12.0):
+        force = _cycle(candidate, normal_force=normal_force)
+        assert candidate._active
+        assert candidate.applied_budget_n == candidate.next_budget_n == 6.0
+        np.testing.assert_array_equal(force, np.zeros(3))
+        mu.append(candidate.equivalent_mu)
+    np.testing.assert_allclose(mu, [0.5, 0.5, 0.4994, 0.4994], rtol=0.0, atol=1e-14)
+    assert mu[1] - mu[2] == pytest.approx(0.3 * DT, abs=1e-14)
+    # A normal-load peak leaves a decrease stored during the continuing hold.
+    assert mu[3] == mu[2] < 6.0 / 12.0
+
+
+def test_same_hold_force_peak_has_different_memory_when_it_arrives_later():
+    final_mu = []
+    for peak_cycle in (6, 70):
+        candidate = StationaryHoldCapTracking(
+            "online", nominal_mu=0.66, minimum_force=7.68, max_force=8.0,
+        )
+        for cycle in range(100):
+            _cycle(candidate, normal_force=12.25 if cycle == peak_cycle else 12.0)
+            assert candidate.applied_budget_n == 7.68
+        final_mu.append(candidate.equivalent_mu)
+    # At the early peak, the normal 12 N input already requests a rate-limited
+    # decrease. At the late peak mu has reached 7.68/12; one extra decrease sticks.
+    np.testing.assert_allclose(final_mu, [0.64, 0.6394], rtol=0, atol=1e-14)

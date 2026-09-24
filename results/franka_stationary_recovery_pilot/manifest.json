@@ -1,0 +1,26 @@
+{
+  "artifact_sha256": {
+    "comparison.json": "17ca8d448485c0231cbe60abbeda2a0842e60a762ea100aa1636275405c0d760",
+    "protocol.json": "a1f17bfe2a17e3ccee44de7a42c6f20a831d44328e94e8d9c397d740894755b5",
+    "source_hashes.json": "0a14b0ee3751bf70ea3fc38439f37ecf3adaa995484adbe23a36701680002c82",
+    "traces/yaw-15__constant_high__clean__seed11__stationary_hold_cap.npz": "219b41c3bfcb56d4d134cc97ce3ab4746cf711372dad8292da1a6cbe3a1de05b",
+    "traces/yaw-15__constant_high__clean__seed29__stationary_hold_cap.npz": "2ff25b8fb6ae73599fb61a69f9dc88379f16fd75dd57a896add37cf5b2675f8d",
+    "traces/yaw-15__falling__clean__seed11__stationary_hold_cap.npz": "029772267fc0124bef0bf7281750e646fc79f680533ebba6d892ea2401ce0bbc",
+    "traces/yaw-15__falling__clean__seed29__stationary_hold_cap.npz": "3af4a4dd73d6bd21f37c0e42bb5de17c69af327105c15a64bda724b27fde3ca0"
+  },
+  "default_changed": false,
+  "environment": {
+    "packages": {
+      "mujoco": "3.12.0",
+      "numpy": "2.2.6"
+    },
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+    "python": "3.10.12"
+  },
+  "identity": "stationary-release-public-pilot-v1",
+  "new_holdout": false,
+  "new_simulations": 4,
+  "reused_runs": 8,
+  "source_commit": "6eff326cea8765dee5ca422dd59e259c5a8e9b77",
+  "source_commit_role": "clean tracked execution-start HEAD; exact inputs in source_hashes.json"
+}

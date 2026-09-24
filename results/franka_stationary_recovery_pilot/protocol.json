@@ -1,0 +1,575 @@
+{
+  "absolute_gates": {
+    "contact_ratio_pct": 99.0,
+    "minimum_reserved_torque_headroom_nm": 1.0,
+    "peak_force_n": 35.0,
+    "projection_pct": 0.0,
+    "saturation_pct": 0.0
+  },
+  "acceptance": {
+    "maximum_full_raw_peak_increase_n": 1.0,
+    "maximum_other_window_tangent_increase_mm": 0.1,
+    "maximum_phase_force_rmse_increase_n": 0.2,
+    "maximum_phase_orientation_rmse_increase_deg": 0.1,
+    "maximum_window_tangent_velocity_rmse_increase_mm_s": 0.5,
+    "minimum_falling_early_tangent_reduction_pct_each_seed": 10.0,
+    "minimum_falling_post_tangent_reduction_pct_each_seed": 10.0,
+    "passing_means": "eligible for wider public regression only, not default promotion",
+    "require_all_four_pairs": true
+  },
+  "additional_gate": "each high-load seed: both ramp position and velocity RMSE lower than prior hold-cap",
+  "candidate_method": "stationary_hold_cap",
+  "cases": [
+    {
+      "case": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              6.0,
+              [
+                0.0,
+                -0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.65
+            ],
+            [
+              4.0,
+              0.65
+            ],
+            [
+              6.0,
+              0.3
+            ]
+          ]
+        },
+        "name": "yaw-15__falling__clean__seed11",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "high_forward",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 4.5,
+            "name": "falling_forward",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 5.5,
+            "name": "falling_stopping",
+            "start_s": 4.5
+          },
+          {
+            "end_s": 6.0,
+            "name": "falling_hold",
+            "start_s": 5.5
+          },
+          {
+            "end_s": 7.0,
+            "name": "low_hold",
+            "start_s": 6.0
+          },
+          {
+            "end_s": 8.0,
+            "name": "low_reverse_ramp",
+            "start_s": 7.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "low_reverse",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "yaw-15__falling__clean__seed11",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.65,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.65,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": -15
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": -15
+        }
+      },
+      "scenario": "falling",
+      "seed": 11
+    },
+    {
+      "case": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              6.0,
+              [
+                0.0,
+                -0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 29,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.65
+            ],
+            [
+              4.0,
+              0.65
+            ],
+            [
+              6.0,
+              0.3
+            ]
+          ]
+        },
+        "name": "yaw-15__falling__clean__seed29",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "high_forward",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 4.5,
+            "name": "falling_forward",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 5.5,
+            "name": "falling_stopping",
+            "start_s": 4.5
+          },
+          {
+            "end_s": 6.0,
+            "name": "falling_hold",
+            "start_s": 5.5
+          },
+          {
+            "end_s": 7.0,
+            "name": "low_hold",
+            "start_s": 6.0
+          },
+          {
+            "end_s": 8.0,
+            "name": "low_reverse_ramp",
+            "start_s": 7.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "low_reverse",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "yaw-15__falling__clean__seed29",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.65,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.65,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": -15
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": -15
+        }
+      },
+      "scenario": "falling",
+      "seed": 29
+    },
+    {
+      "case": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              6.0,
+              [
+                0.0,
+                -0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 11,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.65
+            ]
+          ]
+        },
+        "name": "yaw-15__constant_high__clean__seed11",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "high_forward",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 4.5,
+            "name": "high_forward_before_stop",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 5.5,
+            "name": "high_stopping",
+            "start_s": 4.5
+          },
+          {
+            "end_s": 6.0,
+            "name": "high_hold_initial",
+            "start_s": 5.5
+          },
+          {
+            "end_s": 7.0,
+            "name": "high_hold",
+            "start_s": 6.0
+          },
+          {
+            "end_s": 8.0,
+            "name": "high_reverse_ramp",
+            "start_s": 7.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "high_reverse",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "yaw-15__constant_high__clean__seed11",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.65,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.65,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": -15
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": -15
+        }
+      },
+      "scenario": "constant_high",
+      "seed": 11
+    },
+    {
+      "case": {
+        "additional_world_wrench_bias_schedule": {
+          "interpolation": "step",
+          "knots": [
+            [
+              0.0,
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              6.0,
+              [
+                0.0,
+                -0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          ]
+        },
+        "config": {
+          "contact_model": "smooth",
+          "duration": 12.0,
+          "evaluation_start": 1.5,
+          "force_filter_time_constant": 0.02,
+          "seed": 29,
+          "target_force": 12.0,
+          "timestep": 0.002
+        },
+        "controller_yaw_error_deg": 0,
+        "friction_schedule": {
+          "interpolation": "linear",
+          "knots": [
+            [
+              0.0,
+              0.65
+            ]
+          ]
+        },
+        "name": "yaw-15__constant_high__clean__seed29",
+        "phases": [
+          {
+            "end_s": 4.0,
+            "name": "high_forward",
+            "start_s": 1.5
+          },
+          {
+            "end_s": 4.5,
+            "name": "high_forward_before_stop",
+            "start_s": 4.0
+          },
+          {
+            "end_s": 5.5,
+            "name": "high_stopping",
+            "start_s": 4.5
+          },
+          {
+            "end_s": 6.0,
+            "name": "high_hold_initial",
+            "start_s": 5.5
+          },
+          {
+            "end_s": 7.0,
+            "name": "high_hold",
+            "start_s": 6.0
+          },
+          {
+            "end_s": 8.0,
+            "name": "high_reverse_ramp",
+            "start_s": 7.0
+          },
+          {
+            "end_s": 12.0,
+            "name": "high_reverse",
+            "start_s": 8.0
+          }
+        ],
+        "recovery_start_s": 8.0,
+        "scenario": {
+          "bias_compensation_scale": 1.0,
+          "delay_steps": 0,
+          "force_bias_sensor_n": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "force_noise_std_n": 0.15,
+          "name": "yaw-15__constant_high__clean__seed29",
+          "nominal_tool_mass_kg": 0.1,
+          "position_noise_std_m": 0.0002,
+          "tool_mass_kg": 0.1,
+          "tool_sliding_friction": 0.65,
+          "torque_bias_sensor_nm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "torque_noise_std_nm": 0.002,
+          "wall_sliding_friction": 0.65,
+          "wall_time_constant": 0.005,
+          "wall_yaw_deg": -15
+        },
+        "task": {
+          "nominal_plane_x_m": 0.4,
+          "trajectory": "stop_hold_reverse",
+          "yaw_deg": -15
+        }
+      },
+      "scenario": "constant_high",
+      "seed": 29
+    }
+  ],
+  "changed_factor": "only release speed gate; no clock/phase-label input",
+  "comparison_defined_before_execution": true,
+  "comparison_replay": {
+    "audit_absolute_tolerance": 1e-12,
+    "exact": [
+      "schema/configuration/parameters",
+      "counts/flags/status/failures",
+      "prefix_bytes",
+      "source/artifact_hashes"
+    ],
+    "metrics_absolute_tolerance": 1e-10,
+    "relative_tolerance": 0
+  },
+  "default_changed": false,
+  "error_profile": "clean",
+  "evaluated_runs": 12,
+  "gate_adapter": "reuse original gate; stationary method aliases hold_cap_tracking only inside comparison",
+  "identity": "stationary-release-public-pilot-v1",
+  "maximum_new_simulations": 4,
+  "new_holdout": false,
+  "physical_scenarios": 2,
+  "prefix_before_s": 5.5,
+  "public_development": true,
+  "reference_directory": "results/franka_reversal_recovery_transfer",
+  "reference_manifest_sha256": "eef733d9b228267f2987a0e4c743020c73a27541010dbeedd8f571a94681c44a",
+  "release_speed_max_m_s": 1e-12,
+  "reused_runs": 8,
+  "scope": "four public paired cases only; no default promotion, transfer, public24 or C++ claim",
+  "seeds": [
+    11,
+    29
+  ],
+  "surface_yaw_deg": -15,
+  "windows": [
+    {
+      "end_s": 8.0,
+      "name": "ramp",
+      "start_s": 7.0
+    },
+    {
+      "end_s": 10.0,
+      "name": "early",
+      "start_s": 8.0
+    },
+    {
+      "end_s": 12.0,
+      "name": "late",
+      "start_s": 10.0
+    },
+    {
+      "end_s": 12.0,
+      "name": "post",
+      "start_s": 8.0
+    }
+  ]
+}
