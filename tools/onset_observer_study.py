@@ -16,6 +16,7 @@ from tools import budget_public24 as public
 from tools import budget_transfer as transfer
 from tools import onset_observer as observer
 from tools import onset_observer_validation as validation
+from tools import provenance, provenance_migration
 from tools import velocity_cost_study as velocity
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -70,6 +71,11 @@ def protocol_document():
 
 def source_identity():
     result = velocity.source_identity()
+    # Narrow the inherited whole-package set to the modules this study actually
+    # imports; assets stay whole (see docs/provenance_refactor_design.md).
+    result = {name: digest for name, digest in result.items()
+              if not (name.startswith("src/") and name.endswith(".py"))}
+    result.update(provenance.closure_identity(__file__))
     for filename in (__file__, observer.__file__, validation.__file__):
         path = Path(filename).resolve()
         result[path.relative_to(ROOT).as_posix()] = _sha256(path)
@@ -89,9 +95,12 @@ def input_archives():
             raise ValueError("parent controller constructor differs")
     current = source_identity()
     for root in roots.values():
-        for name, digest in json.loads((root / "source_hashes.json").read_text()).items():
-            if name.startswith("src/") and current.get(name) != digest:
-                raise ValueError(f"parent simulation/controller source differs: {name}")
+        # Parents pinned the whole package; only the sources this study still
+        # imports can invalidate their reused traces.
+        provenance.verify_inherited_identity(
+            json.loads((root / "source_hashes.json").read_text()), current,
+            baseline=provenance_migration.baseline_for("tools/velocity_cost_study.py"),
+        )
     return roots
 
 
@@ -225,13 +234,21 @@ def audit_archive(directory):
         raise ValueError("onset archive identity/count differs")
     if manifest.get("parents") != PARENTS or set(manifest["artifact_sha256"]) != expected_files:
         raise ValueError("onset archive parents/inventory differs")
-    for name, value in (("protocol.json", protocol_document()), ("source_hashes.json", source_identity())):
-        if json.loads((root / name).read_text()) != value:
-            raise ValueError(f"frozen input differs: {name}")
+    if json.loads((root / "protocol.json").read_text()) != protocol_document():
+        raise ValueError("frozen input differs: protocol.json")
+    # The archive was sealed under the whole-package rule, so it records a superset
+    # of the closure; accept that rather than rewrite sealed bytes.
+    source_check = provenance.verify_frozen_source(
+        root, source_identity(),
+        baseline=provenance_migration.baseline_for(
+            "tools/onset_observer_study.py", "tools/velocity_cost_study.py"
+        ),
+    )
     tables = collect(root, execute=False)
     for name, rows in tables.items():
         transfer.check_table(root / f"{name}.csv", rows)
     return {"audit_status": "PASS", "new_simulations": 8, "parent_matched_traces": 8,
+            "source_identity_check": source_check,
             "observer_cycles": sum(r["validated_cycles"] for r in tables["comparison"]),
             "windows": len(tables["windows"]), "pairs": len(tables["events"]), "default_changed": False}
 

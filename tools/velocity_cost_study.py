@@ -16,6 +16,7 @@ import numpy as np
 
 from compliant_control_lab.online_compensation_experiment import _sha256, _write_csv, _write_json
 from tools import budget_transfer as transfer
+from tools import provenance, provenance_migration
 from tools import velocity_cost_analysis as analysis
 from tools.audit_online_compensation_errors import _cell
 
@@ -59,6 +60,11 @@ def protocol_document():
 def source_identity():
     # Preserve the parent audit dependency closure; add only these two new tools.
     result = transfer.source_identity()
+    # Narrow the inherited whole-package set to the modules this study actually
+    # imports; assets stay whole (see docs/provenance_refactor_design.md).
+    result = {name: digest for name, digest in result.items()
+              if not (name.startswith("src/") and name.endswith(".py"))}
+    result.update(provenance.closure_identity(__file__))
     for filename in (__file__, analysis.__file__):
         path = Path(filename).resolve()
         result[path.relative_to(ROOT).as_posix()] = _sha256(path)
@@ -239,14 +245,20 @@ def audit_archive(directory):
         raise ValueError("derived archive identity/inventory differs")
     if manifest.get("parents") != PARENTS or manifest.get("new_simulations") != 0:
         raise ValueError("derived archive parents/execution count differs")
-    for filename, expected in (("protocol.json", protocol_document()), ("source_hashes.json", source_identity())):
-        if json.loads((root / filename).read_text()) != expected:
-            raise ValueError(f"frozen input differs: {filename}")
+    if json.loads((root / "protocol.json").read_text()) != protocol_document():
+        raise ValueError("frozen input differs: protocol.json")
+    # The archive was sealed under the whole-package rule, so it records a superset
+    # of the closure; accept that rather than rewrite sealed bytes.
+    source_check = provenance.verify_frozen_source(
+        root, source_identity(),
+        baseline=provenance_migration.baseline_for("tools/velocity_cost_study.py"),
+    )
     tables = collect()
     for name in TABLES:
         transfer.check_table(root / f"{name}.csv", tables[name])
     check_summary(json.loads((root / "summary.json").read_text()), summarize(tables))
     return {"audit_status": "PASS", "pairs": len(tables["pairs"]), "windows": len(tables["windows"]),
+            "source_identity_check": source_check,
             "new_simulations": 0, "original_compatibility_passed": summarize(tables)["original_compatibility_passed"],
             "default_changed": False}
 

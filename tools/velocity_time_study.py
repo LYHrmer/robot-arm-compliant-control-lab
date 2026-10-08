@@ -15,6 +15,7 @@ from compliant_control_lab.online_compensation_experiment import _sha256, _write
 from tools import budget_public24 as public
 from tools import budget_transfer as transfer
 from tools import onset_observer_study as onset
+from tools import provenance, provenance_migration
 from tools import velocity_time_metrics as metrics
 from tools import velocity_time_runner as runner
 
@@ -36,6 +37,11 @@ def specifications():
 
 def source_identity():
     result = onset.source_identity()
+    # Narrow the inherited whole-package set to the modules this study actually
+    # imports; assets stay whole (see docs/provenance_refactor_design.md).
+    result = {name: digest for name, digest in result.items()
+              if not (name.startswith("src/") and name.endswith(".py"))}
+    result.update(provenance.closure_identity(__file__))
     for filename in (__file__, runner.__file__, metrics.__file__):
         path = Path(filename).resolve()
         result[path.relative_to(ROOT).as_posix()] = _sha256(path)
@@ -78,10 +84,14 @@ def input_archive():
     root = transfer.safe_path(ROOT, REFERENCE["directory"])
     transfer.verify_archive(root, REFERENCE["manifest_sha256"])
     onset.input_archives()
-    current = source_identity()
-    for name, digest in json.loads((root / "source_hashes.json").read_text()).items():
-        if current.get(name) != digest:
-            raise ValueError(f"parent source changed: {name}")
+    # The parent pinned the whole package; only the sources this study still
+    # imports can invalidate its reused traces.
+    provenance.verify_inherited_identity(
+        json.loads((root / "source_hashes.json").read_text()), source_identity(),
+        baseline=provenance_migration.baseline_for(
+            "tools/onset_observer_study.py", "tools/velocity_cost_study.py"
+        ),
+    )
     parent = json.loads((root / "protocol.json").read_text())
     for case, scale, budget, time, _ in specifications():
         document = runner.controller_document(scale, budget, time)
@@ -195,15 +205,24 @@ def audit_archive(directory):
     if (manifest.get("identity") != IDENTITY or manifest.get("new_simulations") != 4
             or manifest.get("reference") != REFERENCE or set(manifest["artifact_sha256"]) != files):
         raise ValueError("velocity-time archive identity, reference or inventory differs")
-    for name, value in (("protocol.json", protocol_document()), ("source_hashes.json", source_identity())):
-        if json.loads((root / name).read_text()) != value:
-            raise ValueError(f"frozen input differs: {name}")
+    if json.loads((root / "protocol.json").read_text()) != protocol_document():
+        raise ValueError("frozen input differs: protocol.json")
+    # The archive was sealed under the whole-package rule, so it records a superset
+    # of the closure; accept that rather than rewrite sealed bytes.
+    source_check = provenance.verify_frozen_source(
+        root, source_identity(),
+        baseline=provenance_migration.baseline_for(
+            "tools/velocity_time_study.py", "tools/onset_observer_study.py",
+            "tools/velocity_cost_study.py",
+        ),
+    )
     tables = collect(root, execute=False)
     for name, rows in tables.items():
         transfer.check_table(root / f"{name}.csv", rows)
     rebuilt = screen(tables["comparison"])
     onset.velocity.check_summary(json.loads((root / "screening.json").read_text()), rebuilt)
     return {"audit_status": "PASS", "new_simulations": 4, "reused_traces": 4,
+            "source_identity_check": source_check,
             "evaluated_rows": 8, "decision": rebuilt["decision"], "default_changed": False}
 
 

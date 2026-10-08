@@ -6,6 +6,9 @@ Franka Panda 7-DOF 在 MuJoCo 中沿表面擦拭，同时跟踪 12 N 法向接�
 主线是 500 Hz 柔顺控制：从阻抗／导纳／力位混合到在线切向补偿，再验证 Python 与 C++ 的实现是否一致。
 BC/PPO 保留为强基线之后的独立学习实验。
 
+需要运行学习模型：[BC/PPO 仿真部署与一键验收](docs/learning_deployment.md)提供从训练到
+离线安装的入口，训练用 CPU PyTorch，部署用 NumPy；科学性能与工程验收分别报告。
+
 ## 当前负载调度演示
 
 ![Franka 擦拭动作与同步的误差、法向力、补偿预算](results/franka_measured_budget_demo/overview.png)

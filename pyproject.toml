@@ -33,14 +33,17 @@ franka-published-results-audit = "compliant_control_lab.published_results_audit:
 franka-contact-event-analysis = "compliant_control_lab.contact_event_analysis:main"
 franka-reference-ablation = "compliant_control_lab.reference_ablation:main"
 franka-smoke = "compliant_control_lab.smoke:main"
+franka-learning-deploy = "tools.learning_deployment.cli:main"
 
 [tool.setuptools]
-package-dir = { "" = "src" }
+package-dir = { "" = "src", "tools" = "tools" }
 
 [tool.setuptools.packages.find]
-where = ["src"]
+where = ["src", "."]
+include = ["compliant_control_lab*", "tools", "tools.learning_deployment*"]
 
 [tool.setuptools.package-data]
+tools = ["*.json"]
 compliant_control_lab = [
   "assets/*.xml",
   "assets/**/*.xml",
@@ -49,12 +52,15 @@ compliant_control_lab = [
   "assets/**/*.png",
   "assets/**/LICENSE",
   "assets/**/README.md",
+  "assets/**/CHANGELOG.md",
   "assets/**/UPSTREAM.md",
 ]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["."]
+# "src" lets a fresh checkout run pytest without installing first; an installed
+# copy resolves the package the same way.
+pythonpath = [".", "src"]
 addopts = "-q"
 
 [tool.ruff]
