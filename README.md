@@ -3,69 +3,54 @@
 [![tests](https://github.com/LYHrmer/robot-arm-compliant-control-lab/actions/workflows/tests.yml/badge.svg)](https://github.com/LYHrmer/robot-arm-compliant-control-lab/actions/workflows/tests.yml)
 
 Franka Panda 7-DOF 在 MuJoCo 中沿表面擦拭，同时跟踪 12 N 法向接触力。
-主线是 500 Hz 柔顺控制：从阻抗／导纳／力位混合到在线切向补偿，再验证 Python 与 C++ 的实现是否一致。
-BC/PPO 保留为强基线之后的独立学习实验。
+项目包含 500 Hz 柔顺控制、在线切向补偿、Python/C++ 数值对齐，以及独立的 BC/PPO
+训练、NumPy 推理和离线仿真验收。当前范围是仿真，没有 ROS 2 / Franka 真机接口。
 
-需要运行学习模型：[BC/PPO 仿真部署与一键验收](docs/learning_deployment.md)提供从训练到
-离线安装的入口，训练用 CPU PyTorch，部署用 NumPy；科学性能与工程验收分别报告。
-本地离线包已验收：工程通过、PPO 达标、BC 切向误差未达标；运行
-`./scripts/accept_learning_release.sh` 可复核，完整判定与交付范围见上述文档。
+| 现在想做什么 | 从这里开始 |
+|---|---|
+| 安装并确认控制器能运行 | [快速复核](#安装后快速复核) |
+| 运行 BC/PPO，检查模型是否达标 | [部署与一键验收](docs/learning_deployment.md) |
+| 从头复现训练、选模和验收 | [学习实验复现指南](docs/learning_reproduction.md) |
+| 学习控制公式、诊断 BC 闭环问题 | [教程](docs/tutorial/README.md)、[BC 反馈实验](docs/tutorial/labs/04_bc_feedback.md) |
+| 修改代码或找某轮实验 | [项目结构与修改落点](docs/project_structure.md)、[文档导航](docs/README.md) |
 
 ## 当前负载调度演示
 
 ![Franka 擦拭动作与同步的误差、法向力、补偿预算](results/franka_measured_budget_demo/overview.png)
 
-[打开 12 秒同步视频](results/franka_measured_budget_demo/demo.mp4)。左侧按同一条仿真日志中的
-七轴关节角重放动作；右侧光标同步指向切向误差、未滤波接触力和补偿预算。约 8 s 的误差尖峰
-也保留在图中。这是单个组合误差 case 的演示，不能代替多工况回归。
+[12 秒同步视频](results/franka_measured_budget_demo/demo.mp4)按同一条仿真日志重放七轴动作、
+切向误差、原始接触力和补偿预算，保留约 8 s 的误差尖峰。这是一个组合误差 case，
+显式启用 6–8 N 负载调度；默认配置仍是固定 6 N、姿态增益 1、速度误差时间系数 0.05 s。
+单个演示不能代替多工况回归。
 
-演示显式启用 6–8 N 负载调度，姿态增益为 1，速度误差时间系数为 0.05 s。
-默认入口仍用固定 6 N。项目目前只有仿真验证，没有 ROS 2 / Franka 真机接口；命令有界不保证
-真实接触力有界。
-
-看项目取舍：[招聘方走查](docs/recruiter_walkthrough.md)。
-跟着动手：[实验一：误差到关节力矩](docs/tutorial/labs/01_wrench_to_torque.md)、
-[实验二：预算下降与缺包](docs/tutorial/labs/02_budget_drop.md)、
-[实验三：换向恢复故障分析](docs/tutorial/labs/03_reversal_recovery.md)，均附参考答案。
-需要从基础开始，按[教程目录](docs/tutorial/README.md)阅读。
-当前可运行范围、安装后的 30 分钟验收路线和未解决项：[项目状态](docs/project_status.md)。
-
-安装项目后，在仓库根目录运行一条命令即可重做演示，无需训练：
+安装后，在仓库根目录重做演示（需要 `ffmpeg`，输出目录须不存在）：
 
 ```bash
 MUJOCO_GL=egl python -m tools.diagnostics.render_measured_budget_demo --output /tmp/compliant-control-measured-demo-01
 ```
 
-需要 `ffmpeg`；输出目录须不存在。产物为 500 Hz 的 `trace.npz`、`overview.png` 和 `demo.mp4`。
-
 ### 当前结果速览
 
-| 看什么 | 已验证的结果 | 范围 |
+| 能力 | 已验证的结果 | 证据范围 |
 |---|---|---|
-| 在线切向补偿 | 相对固定前馈，切向 RMSE 中位数 1.885 → 1.359 mm | 原公开 24-case、4.5 s 配对回归；[原实验](docs/online_compensation.md) |
-| 测量误差下的负载调度 | 27 次仿真；组合误差采用检查 7/8 通过 | 幅值低估 20% 时失败，默认仍为固定 6 N；[完整对照](docs/measured_budget_robustness.md) |
-| 换向恢复候选 | 最新可逆回退小试 4/4，扩大回归 32/36，整体 `FAIL` | 修复两条高负载失败，却新增四条降载速度失败，不推广；[完整结果与取舍](docs/reversible_recovery.md)，旧 34/36 与静止回退 3/4 保留 |
-| Python/C++ 数值移植 | 168,000 周期对齐，最大分量误差 < 3.56e-15 | 含重复演示；不证明真机实时性；[核验说明](docs/cpp_core.md) |
+| 在线切向补偿 | 相对固定前馈，切向 RMSE 中位数 1.885 → 1.359 mm | [原公开 24-case、4.5 s 配对回归](docs/online_compensation.md) |
+| 测得负载调度 | 27 次仿真，组合误差采用检查 7/8 | [幅值低估 20% 时失败](docs/measured_budget_robustness.md)，默认仍为固定 6 N |
+| Python/C++ 移植 | 168,000 周期对齐，最大分量误差 < 3.56e-15 | [同输入数值回放](docs/cpp_core.md)，含重复演示，不证明真机实时性 |
+| BC/PPO 部署 | 两策略均达标；BC 最差切向 RMSE 11.494 → 2.162 mm，安装版 16 回合通过 | [当前发行与完整门槛](docs/learning_deployment.md)，[复现方法](docs/learning_reproduction.md)；单训练种子 |
 
-BC/PPO 尚无跨种子一致优于解析前馈的证据，冻结 v0.5 的 48-case 首次揭盲仍为 `FAIL`。
-完整结果和各次实验的取舍在下方折叠表中。
+历史冻结 v0.5 的 48-case 首次揭盲仍为 `FAIL`；最新换向恢复候选的扩大回归也仍为
+`FAIL`（32/36）。它们与当前 BC/PPO 部署是不同实验。达标不等于跨种子优于解析前馈。
+当前范围与未解决项见[项目状态](docs/project_status.md)，五分钟走查见[招聘方入口](docs/recruiter_walkthrough.md)。
 
 ## 安装后快速复核
 
-需要 Python 3.10+。MuJoCo 仿真不要求 ROS 2 或 Franka hardware interface。
-
-先获取代码，再选择下面一种安装方式：
+需要 Python 3.10+。复现发布数值采用 Linux x86_64 和
+[`environment/python-version`](environment/python-version)中固定的 Python；
+[环境说明](docs/reproducible_environment.md)记录依赖哈希、CPU 要求及学习依赖。
 
 ```bash
 git clone https://github.com/LYHrmer/robot-arm-compliant-control-lab.git
 cd robot-arm-compliant-control-lab
-```
-
-复现已发布实验时，使用[固定环境](docs/reproducible_environment.md)：Linux x86_64、
-Python 版本见 [`environment/python-version`](environment/python-version)，依赖及文件哈希
-保存在 `environment/`。在新的虚拟环境中安装，不覆盖已有环境：
-
-```bash
 python3.10 -m venv .venv-repro
 source .venv-repro/bin/activate
 unset PYTHONPATH
@@ -75,28 +60,9 @@ python -m tools.ci.check_replay_kernel
 franka-smoke
 ```
 
-所有命令均在仓库根目录执行。安装器会核对 Python 版本；CPU 学习环境和
-学习测试见固定环境说明。清空 `PYTHONPATH` 只影响当前终端，避免 ROS 或旧包路径
-混入新环境。旧摘要精确复核使用单线程 Haswell 数值内核，需要 CPU 支持 AVX2／FMA3；
-这项环境限定不保证任意 CPU 上的逐位一致性，原因和对照证据见固定环境说明。
-
-<details>
-<summary>其他 Python 版本或平台：范围依赖安装</summary>
-
-下面的方式用于试用和兼容性检查，与固定实验环境分开维护：
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -e ".[dev]"
-
-franka-smoke
-```
-
-</details>
-
-`franka-smoke` 先校验 384 行冻结归档，再运行 2 s torque-safe adaptive nominal 仿真。正常
-输出会同时保留“实验失败”和“工程检查通过”两个状态：
+后续命令均在仓库根目录执行。旧摘要精确复核要求单线程 Haswell 数值内核，CPU 需支持
+AVX2/FMA3；清空 `PYTHONPATH` 避免 ROS 或旧包路径混入新环境。
+`franka-smoke` 校验 384 行冻结归档，再运行 2 s torque-safe adaptive nominal 仿真：
 
 ```text
 archive: PASS (384 rows, frozen_decision=FAIL)
@@ -104,168 +70,123 @@ simulation: PASS (safe_adaptive_hybrid/nominal, steps=1000, ...)
 smoke: PASS
 ```
 
-`smoke: PASS` 不会把冻结结论改成通过，也不等于重跑 48 cases。CI 使用同一个入口。
+`smoke: PASS` 表示最短工程检查通过，不重跑 48 cases，也不改变冻结失败结论。
+
+<details>
+<summary>其他 Python 版本或平台：兼容性试用</summary>
+
+在独立环境中安装范围依赖；这种方式不保证精确复现已发布数值：
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -e ".[dev]"
+franka-smoke
+```
+
+</details>
+
+已有本地离线发行目录时，可直接执行 `./scripts/accept_learning_release.sh`。
+新 clone 不包含 `dist/`；请先按[复现指南](docs/learning_reproduction.md)准备发行目录，
+或完整复制部署页指定的离线包。训练需要 CPU PyTorch，安装版验收只使用 NumPy。
 
 ## 结果与决定
 
+各轮冻结条件、数值和采用决定集中在[实验总账](docs/experiments/README.md)。
+当前学习部署的训练来源、哈希与验收报告另见[部署记录](docs/learning_deployment.md)。
+
 <details>
-<summary>展开完整实验结果与历史取舍（保留失败项）</summary>
+<summary>阅读历史结果前，先区分数据身份与保留的失败</summary>
 
-下表列出主要结果，每行链接到对应协议与公开产物。三种实验的数据身份不同，不要互相
-覆盖：**原有 24-case、4.5 秒公开回归**用于在线补偿；**12 秒擦拭任务的 4 个开发测试 case**
-用于 BC/PPO；**48-case 首次揭盲**属于冻结的 v0.5，只能整轮引用。
-
-| 证据 | 结果与取舍 |
+| 实验 | 数据身份与结论 |
 |---|---|
-| [在线补偿：24 case、4.5 s](docs/online_compensation.md)，[96 次运行](results/franka_online_compensation_regression/) | 相对固定前馈，切向 RMSE 中位数 **1.885 → 1.359 mm**，24/24 配对改善，旧三方法指标精确复现。 |
-| [动态误差：80 次运行](docs/online_compensation.md#实测结果与没有通过的部分) | 原增益阶段检查 **40/42**；[可选姿态增益](docs/rotation_gain_comparison.md)达到 42/42，但[192 次回归](docs/rotation_gain_public24.md)显示切向位置与速度有代价，不替换默认增益。 |
-| [跨方向 36 次回归](docs/cross_surface_regression.md)与[12 次残差诊断](docs/combined_residual_diagnosis.md) | 组合误差后段仍约 **3.3 mm**；95.6%–98.0% 的采样触发内部补偿幅值限制。移除输入因素不是算法提升。 |
-| [补偿预算初筛](docs/compensation_budget.md)，12 次运行；[120 行转移检查](docs/budget_transfer.md) | 原高摩擦 RMSE **3.26–4.20 → 1.22–1.47 mm**；后续两档增益的预算筛查均为 6/6，但 public24 兼容仅 **23/48**，整体 `FAIL`。默认保持 6 N、增益 1。 |
-| [测得负载调度预算](docs/load_budget.md)，42 条新增＋18 条复用候选 | 原 public24 两档增益 **48/48**、动态 **12/12**、增益交互 **6/6** 通过；普通工况验收及追赶统计与旧 6 N 相同。组合误差后段 RMSE **1.47–1.58 mm**。新增切向力测量输入，作为已覆盖工况的可选仿真预设，不改全局默认。 |
-| [测量鲁棒性：27 次配对仿真](docs/measured_budget_robustness.md) | 完整回放 **162,000 拍**；组合误差采用检查 **7/8**。辅助力幅值低估 20% 时失败；下降负载后的换向跟踪也有代价。不扩大采用范围。 |
-| [换向恢复：停顿系数回退](docs/reversal_recovery.md) | 新增 4 对、8 次仿真。降载场景恢复初段误差降低约 40.7%；高负载反向加速仍有小幅位置和速度代价，4 对均在预定门槛内。仅实验候选，未替换默认值或完成 C++ 移植。 |
-| [换向恢复：跨方向与组合误差](docs/reversal_recovery_transfer.md) | 64 条新增＋8 条引用轨迹，36 对中 34 对通过，整体 `FAIL`。降载收益保留；−15° 无额外误差的高负载反例，两个种子均超过加速位置／速度代价门槛。72 条绝对工程检查通过，不改变默认或原测量回归的 7/8。 |
-| [换向恢复：入口限幅的可逆回退](docs/reversible_recovery.md) | 小试 4/4 后补跑 32 条候选，完整回归 **32/36，FAIL**。高负载 18/18，降载 14/18；+15° 组合误差的速度代价超限。不据局部改善替换旧候选或默认值，另保留[静止回退 3/4](docs/stationary_recovery_pilot.md)。 |
-| [BC 输入消融](docs/bc_closed_loop_transfer.md)与[bounded PPO](docs/surface_learning_pilot.md)：12 s、4 个开发 case | 解析前馈均值 **2.403 mm**；三个种子的 BC 为 2.781–2.825 mm，PPO 为 2.381–2.470 mm，均无跨种子一致优势。 |
-| [冻结 v0.5：48 case](results/franka_safety_blind/summary.md) | 五个 residual 策略通过 **22–26/48**，未达到各 44/48；主结果 **FAIL**，保留[全部 384 行数据](results/franka_safety_blind/comparison.csv)，不部署策略。 |
-| [C++ 完整控制链回放](results/franka_online_cpp_replay/report.json) | 4 份轨迹、24,000 周期，最大 wrench 分量误差 < `4.45e-15`；[新增益另 4 份](results/franka_rotation_gain_cpp_replay/report.json)也通过。这是数值移植证据，不是真机实时性保证。 |
-| [带测量包的 C++ 回放](results/franka_measured_budget_cpp_replay/report.json) | 27 次配对仿真＋1 份重复演示，共 **168,000 周期**；完整状态、wrench 和 torque 对齐，最大分量误差 < `3.56e-15`。缺包与过期处理包含在回放内；不证明测量误差下跟踪更好。 |
+| [在线补偿](docs/online_compensation.md) | 原公开 24-case、4.5 s 回归；另有 12 s 动态误差实验，不能合并通过数 |
+| [预算转移](docs/budget_transfer.md)与[测量鲁棒性](docs/measured_budget_robustness.md) | public24 兼容 23/48、鲁棒性采用检查 7/8；保留速度代价和幅值低估反例 |
+| [换向恢复](docs/reversal_recovery_transfer.md)、[静止回退](docs/stationary_recovery_pilot.md)、[可逆回退](docs/reversible_recovery.md) | 分别为 34/36、3/4、32/36，整体均 `FAIL`；局部改善不构成推广依据 |
+| [BC/PPO 历史试验](docs/surface_learning_pilot.md)、[BC 输入消融](docs/bc_closed_loop_transfer.md)、[BC 到 PPO 迁移](docs/bc_to_residual_rl.md) | 12 s 任务，24 个公开 case 按物理组分为 16 train / 4 validation / 4 development test；没有跨种子一致超过解析前馈的证据 |
+| [冻结 v0.5 首次揭盲](results/franka_safety_blind/summary.md) | 五个 residual 策略为 22–26/48，未达到各 44/48；384 行原数据和 `FAIL` 保留 |
 
-关于 BC/PPO 那一行：三种方法用同一批开发 case 和同一套门槛，但名义控制器不同——BC 模仿摩擦
-补偿，PPO 在已有摩擦前馈之上学残差，网络动作不能直接互换；PPO 另有一组固定第 32 回合的迁移
-比较（验证差值 `+0.039、+0.063、−0.092 mm`，冻结规则保留 `fresh_ep32`），不要和验证集选模的
-结果混在一起。24 个公开 case 按物理任务组固定为 16 train / 4 validation / 4 development test，
-三个种子重复的是同四个 case，不能算成 12 个独立场景或新的盲测。
-
-关于 v0.5 那一行：`Force-tracking error` 在进入稳定任务阶段后由滤波力反馈计算，`Raw peak` 取
-完整轨迹的未滤波最大接触力，所以约 2 N 稳态误差与约 60 N 瞬时峰值并不矛盾。Residual 策略确实
-改善了切向跟踪（同 case 配对后 34–35/48 个场景降低 tangent RMSE），torque projection 也把最差
-actuator saturation 降到 0%，但完整轨迹峰值仍未过 gate。揭盲后的配对效应、gate 敏感性和接触
-事件重放见[post-reveal 摘要](results/franka_safety_postreveal/summary.md)与
-[接触峰值诊断](docs/contact_event_diagnosis.md)，它们不构成新的 blind evaluation，也不回写冻结
-结论；冻结条件与哈希在[v0.5 protocol](docs/reproduction_plan_v0.5.md)。
-
-学习策略只在仿真公开开发域评价。命令限幅、4/4 通过和 100% 接触率都不是硬件安全、未知表面泛化
-或收敛证明。公开归档含全部候选与训练统计，但每轮只分发少量代表性完整轨迹。
+重复训练种子不增加独立场景数。BC 模仿补偿，PPO 在已有摩擦前馈上学残差，名义控制器
+不同，不能交换动作或 checkpoint。v0.5 揭盲后的分析属于公开数据诊断，不回写首次结论；
+详见[接触峰值诊断](docs/contact_event_diagnosis.md)与[冻结协议](docs/reproduction_plan_v0.5.md)。
 
 </details>
 
 ## 算法与源码入口
 
-| 想看什么 | 说明 | 实现 |
-|---|---|---|
-| 误差驱动的在线补偿 | 更新顺序、换向冻结、共同 6 N 上限 | [在线补偿](docs/online_compensation.md)、[`tangential_compensation.py`](src/compliant_control_lab/tangential_compensation.py) |
-| 仅高负载时开放额外预算 | 测量符号、下一拍生效、当前上限 anti-windup | [负载调度与完整回归](docs/load_budget.md)、[`load_aware_compensation.py`](tools/load_aware_compensation.py) |
-| 换向时的姿态代价 | 旋转刚度与阻尼同步缩放、同增益配对比较 | [姿态增益对照](docs/rotation_gain_comparison.md)、[`surface_control.py`](src/compliant_control_lab/surface_control.py) |
-| 摩擦强基线与 BC 教师 | 有界摩擦前馈公式、输入消融与闭环偏移 | [切向补偿](docs/tangential_tracking.md)、[BC 对照](docs/bc_closed_loop_transfer.md)、[`surface_policy.py`](src/compliant_control_lab/surface_policy.py) |
-| 擦拭任务与 49 维观测 | 50 Hz / 500 Hz 时序、数据分组、教师标签 | [学习任务](docs/surface_learning.md)、[`surface_env.py`](src/compliant_control_lab/surface_env.py)、[`surface_dataset.py`](src/compliant_control_lab/surface_dataset.py) |
-| Bounded PPO 与残差安全边界 | clipped objective、变时长 GAE、接触门控、joint-torque headroom | [学习试验](docs/surface_learning_pilot.md)、[`residual_rl.py`](src/compliant_control_lab/residual_rl.py)、[`franka_torque_safety.py`](src/compliant_control_lab/franka_torque_safety.py) |
-| Python 到 C++ 的控制链 | 表面坐标、自适应状态、接触过渡、力矩投影、输入超时 | [C++ 接口与范围](docs/cpp_core.md)、[`surface_control.cpp`](cpp/src/surface_control.cpp) |
-| 500 Hz 接触状态机与经典控制器 | 阻抗／导纳／力位混合、bias 与刚度估计、参考限速 | [`franka_control.py`](src/compliant_control_lab/franka_control.py)、[`franka_adaptive.py`](src/compliant_control_lab/franka_adaptive.py)、[`franka_reference.py`](src/compliant_control_lab/franka_reference.py) |
+| 修改目标 | 主要落点 |
+|---|---|
+| 500 Hz 接触控制与在线补偿 | [`surface_control.py`](src/compliant_control_lab/surface_control.py)、[`tangential_compensation.py`](src/compliant_control_lab/tangential_compensation.py) |
+| 49 维观测、任务时序和教师数据 | [`surface_env.py`](src/compliant_control_lab/surface_env.py)、[`surface_dataset.py`](src/compliant_control_lab/surface_dataset.py) |
+| BC/PPO 训练与模型契约 | [`tools/`](tools/)，按[学习链路地图](docs/project_structure.md#学习与部署链路)定位 trainer、actor 与 evaluator |
+| 一键准备、打包和验收 | [`tools/learning_deployment/`](tools/learning_deployment/)，用户入口为 `python -m tools.learning_deployment` |
+| C++ 控制核心与数值对齐 | [`cpp/`](cpp/)、[移植与验证说明](docs/cpp_core.md) |
 
-逐条主张对应的实现、测试与产物集中在[验证矩阵](docs/verification_matrix.md)；从 2-DOF 解析
-模型到当前任务的版本顺序、假设与被否定的结论集中在[实验记录](docs/experiments/README.md)；
-模块边界的取舍见 [ADR](docs/adr/0001-cartesian-wrench-controller-seam.md)，数据流见
-[architecture](docs/architecture.md)。
+完整目录职责和“改哪里、查什么”见[项目结构](docs/project_structure.md)。控制数据流见
+[系统架构](docs/architecture.md)，每项主张对应的源码、测试和产物见[验证矩阵](docs/verification_matrix.md)。
 
 ## 标称演示
 
-![Franka hybrid force-position control](results/franka/hybrid_demo.gif)
-
-这个 GIF 只展示 fixed hybrid 的 nominal 动作，v0.5 residual 结果见上表。想自己跑一遍，把输出
-写到仓库外的新目录，不要覆盖已发布归档（重复运行请换一个新目录）：
+[标称动作 GIF](results/franka/hybrid_demo.gif)展示 fixed hybrid nominal。
+安装后可生成 Franka 或 2-DOF 演示；每次使用新的输出目录：
 
 ```bash
 franka-control-lab --output /tmp/compliant-control-franka-quick --gif
 compliant-control-lab --output /tmp/compliant-control-planar-quick --gif
 ```
 
-无显示器的 Linux 环境可加 `MUJOCO_GL=egl`。[12 秒擦拭视频](results/franka_tangential_demo/demo.mp4)
-同步显示七轴日志、原始法向力和切向误差，它是已有仿真日志的可视化，不是真机演示。
+无显示器 Linux 可加 `MUJOCO_GL=egl`。这些命令只运行标称场景，完整实验复现按各自协议执行。
 
 ## 学习与导航
 
-| 顺序 | 动手或阅读 | 核对什么 |
-|---:|---|---|
-| 1 | 安装后运行 `franka-smoke` | 代码能运行，且冻结 v0.5 归档仍是 `FAIL` |
-| 2 | 打开[招聘方走查](docs/recruiter_walkthrough.md) | 当前结果、对照是否公平、范围限制 |
-| 3 | 做[误差到力矩](docs/tutorial/labs/01_wrench_to_torque.md)、[预算下降](docs/tutorial/labs/02_budget_drop.md)和[换向排错](docs/tutorial/labs/03_reversal_recovery.md)实验 | 先手算与提出假设，再运行命令核对参考答案 |
-| 4 | 按在线补偿页复核阶段指标 | 不只看平均误差，也看换向、测量误差和失败项 |
-| 5 | 构建 [C++ 控制核心](docs/cpp_core.md)并跑 parity | 同一输入序列下状态与命令能否逐步对齐 |
-| 6 | 读[表面学习任务](docs/surface_learning.md)，audit 学习归档 | 49 维观测、16/4/4 分组，BC/PPO 是否超过强基线 |
+从[教程目录](docs/tutorial/README.md)学习公式；用四份练习检查是否真正理解实现：
 
-系统学习柔顺控制从[教程目录](docs/tutorial/README.md)开始；[逐拍回放练习](docs/tutorial/07_measured_budget_replay.md)
-把负载调度公式、缺包处理和独立验收连在一起。其余章节由 2-DOF 推到 Franka、在线补偿与
-Residual RL；面试练习见[练习、故障定位和项目表达](docs/tutorial/06_exercises_and_interview.md)。
-完整导航和术语见 [docs/README.md](docs/README.md) 与 [CONTEXT.md](CONTEXT.md)。
+1. [误差到关节力矩](docs/tutorial/labs/01_wrench_to_torque.md)：手算 wrench 与 `J.T @ wrench`。
+2. [预算下降与缺包](docs/tutorial/labs/02_budget_drop.md)：核对目标上限、限速输出和下一拍状态。
+3. [换向恢复故障分析](docs/tutorial/labs/03_reversal_recovery.md)：解释局部改善与扩大回归失败。
+4. [BC 离线误差与闭环反馈](docs/tutorial/labs/04_bc_feedback.md)：理解输入掩码、选模和完整验收。
+
+想复现完整 BC/PPO 流程，直接使用[学习实验复现指南](docs/learning_reproduction.md)。
+查算法、历史实验或设计取舍用[文档导航](docs/README.md)，术语见 [CONTEXT.md](CONTEXT.md)。
 
 ## 验证代码
 
-三种检查回答不同问题，不能互相替代：`pytest` / `ctest` 检查代码行为，`franka-smoke` 是最短的
-可运行性冒烟检查，`*-audit` 只离线核对已发布归档是否被改动。
-以下命令使用上面的固定环境及已核验的数值内核。
+以下命令使用固定环境；完整学习测试还需[CPU 学习依赖](docs/reproducible_environment.md)。
+Python/C++ 测试检查实现，`*-audit` 只核对旧归档，模型是否达标由独立闭环验收回答。
 
 ```bash
 pytest
 ruff check src tests tools
-
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build --parallel
 ctest --test-dir build --output-on-failure
 pytest tests/test_cpp_parity.py
 ```
 
-离线审核已发布的 v0.5 产物，不联网也不重跑仿真：
+两条只读复核命令保留原判定，不重新仿真：
 
 ```bash
 franka-published-results-audit \
   --protocol results/franka_safety_preholdout/protocol.json \
   --result results/franka_safety_blind
-```
-
-它核对固定 manifest 与 `COMPLETE` 标记、文件 hash、两路 beacon 归档、blind root 与 HMAC seed
-推导、384 行 case-method 网格、policy 身份、gate 标签和 summary 通过数；不重新执行 BLS 验签或
-仿真。`audit PASS` 只表示归档未变且内部推导自洽，冻结结论仍是 `FAIL`。在线补偿与三个学习归档
-有各自的 audit 入口，命令列在[招聘方走查](docs/recruiter_walkthrough.md#3-跑最短检查约-1-分钟)。
-
-近期预算与速度误差的四项实验可用一个命令只读复核，不运行新仿真：
-
-```bash
 python -m tools.audit_velocity_evidence
 ```
 
-它覆盖预算转移、速度代价分解、内部观测和时间系数对照，逐项保留实验 `FAIL`／`do_not_expand`。
-输出字段与失败处理见[复核说明](docs/velocity_evidence_audit.md)。它只覆盖这四项，不包含全仓库所有实验。
-
-正式训练、公开验证和新一轮 first-reveal 命令放在[实验复现文档](docs/reproduction_plan_v0.5.md)，
-以免把一次正式实验误当成快速示例。
+前者核对 v0.5 冻结归档，后者覆盖预算转移、速度代价分解、内部观测和时间系数四项实验。
+`audit PASS` 不代表实验通过。完整范围见[归档复核说明](docs/velocity_evidence_audit.md)与
+[招聘方走查](docs/recruiter_walkthrough.md#3-跑最短检查约-1-分钟)。
 
 ## 当前限制
 
-- 仿真使用理想力矩接口，没有电流环、编码器量化和真实通信抖动。
-- 接触参数直接取自 MuJoCo，未做真机辨识。
-- 零空间投影采用阻尼运动学形式，尚未实现 dynamically consistent operational-space control。
-- C++ 只包含选定表面控制器的状态更新与 torque projection；加速度受限参考实验、policy 和训练
-  尚未移植，传感器采集、机器人模型计算和真实通信仍由外部接口负责。
-- torque projection 没有提供 torque-rate、碰撞阈值或硬件安全认证。
-- 默认在线补偿在 12 秒对照的反向加速段仍未通过姿态阶段门槛；组合误差后段仍有约 3.3 mm 切向
-  残差。[预算转移](docs/budget_transfer.md)在原 public24 仅通过 23/48，25 组因切向速度代价失败。
-  [窗口分解](docs/velocity_cost.md)显示平均净速度 MSE 代价主要集中在 1.5–2.0 s，最后 1 s 的两个窗口速度 MSE 在全部配对中均降低。
-  [八次内部观测复现](docs/onset_observer.md)精确匹配旧轨迹：该窗口的位置滞后驱动系数增长，速度项平均起抵消作用。
-  限幅先改变本周期请求，随后阻断用于下一周期的系数正增量。
-  [速度误差权重单因素对照](docs/velocity_time.md)降低了两档增益的速度代价，但高增益仍未过门槛，8 N 追赶略慢，暂不推广。
-  8 N 只保留为高摩擦实验配置；默认保持 6 N、增益 1。新增 C++ 回放验证了数值移植，
-  不改变上述采用门槛和失败结论。
-- 可选负载调度依赖辅助力测量的准确性。[测量误差对照](docs/measured_budget_robustness.md)中，
-  幅值 ×0.8 的后段 RMSE 为 3.010 mm，未达原采用门槛；故障只注入辅助负载通道，没有验证整个
-  F/T 传感器失效的情形。
-- 当前机器没有 Franka hardware/model interface，仓库不声称完成 ros2_control 真机插件。
+MuJoCo 使用理想力矩接口，接触参数未做真机辨识；命令限幅和仿真门槛不保证真实接触力或
+硬件安全。C++ 只移植选定的控制计算，不含训练、传感器采集或真实通信；零空间投影采用
+阻尼运动学形式。负载调度、预算转移与恢复候选的已知失败及采用范围统一记录在
+[项目状态](docs/project_status.md#当前失败与后续边界)。
 
 ## 模型与许可证
 
 Franka 模型来自 Google DeepMind
 [MuJoCo Menagerie](https://github.com/google-deepmind/mujoco_menagerie/tree/main/franka_emika_panda)，
-固定到上游 commit `da76818e269b82289eba39808e2fb91d679d6994`。模型资源使用 Apache-2.0，许可证和
-修改说明保存在
-[assets/franka_emika_panda](src/compliant_control_lab/assets/franka_emika_panda/UPSTREAM.md)。
-本项目其余代码使用 MIT License，见 [LICENSE](LICENSE)。
+固定于上游 commit `da76818e269b82289eba39808e2fb91d679d6994`，使用 Apache-2.0；
+见[资源与修改说明](src/compliant_control_lab/assets/franka_emika_panda/UPSTREAM.md)。
+本项目其余代码使用 [MIT License](LICENSE)。

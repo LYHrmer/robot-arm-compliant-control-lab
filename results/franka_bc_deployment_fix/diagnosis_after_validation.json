@@ -1,0 +1,138 @@
+{
+  "scope": "Read-only exported-mask, train/validation dataset and existing validation-rollout audit. No extra simulation or training.",
+  "plan_sha256": "98559165234d685a6e7b567208e28776a8a1d5e8e2e8f046ed65ce6db24a7878",
+  "candidate_sha256": "8f1a3e0b3b2263cfadb0a8fda40e398db9e0d9c19bb4e67ab07a21e4be9e1569",
+  "selected_epoch": 96,
+  "first_layer_previous_residual_columns_exact_zero": true,
+  "first_layer_previous_residual_columns_nonzero_count": 0,
+  "offline_splits": {
+    "train": {
+      "rows": 9600,
+      "old_same_distribution_action_mse": 0.0006786056426784618,
+      "new_raw_observation_folded_export_action_mse": 0.0018237066553540991,
+      "training_report_action_mse": 0.0018237066553540991,
+      "recomputed_vs_reported_mse_abs_difference": 0.0,
+      "previous_residual_randomized_max_abs_action_change": 0.0,
+      "previous_residual_randomized_action_exactly_equal": true
+    },
+    "validation": {
+      "rows": 2400,
+      "old_same_distribution_action_mse": 0.0029367167491480446,
+      "new_raw_observation_folded_export_action_mse": 0.009877272832683642,
+      "training_report_action_mse": 0.009877272832683642,
+      "recomputed_vs_reported_mse_abs_difference": 0.0,
+      "previous_residual_randomized_max_abs_action_change": 0.0,
+      "previous_residual_randomized_action_exactly_equal": true
+    }
+  },
+  "comparison_caveat": "New closed-loop results use validation cases g003/g007; original failed closed-loop results use development cases g000/g001. Those are different conditions, not a paired before/after comparison. Offline train/validation results below compare the same unchanged observations and labels.",
+  "validation_complete": true,
+  "validation_acceptance_met": true,
+  "validation_gates": {
+    "contact_ratio_pct": {
+      "actual": 100.0,
+      "passed": true,
+      "rule": {
+        "aggregation": "min",
+        "operator": ">=",
+        "value": 99
+      }
+    },
+    "force_rmse_n": {
+      "actual": 0.4105321634968482,
+      "passed": true,
+      "rule": {
+        "aggregation": "max",
+        "operator": "<=",
+        "value": 2
+      }
+    },
+    "max_penetration_mm": {
+      "actual": 0.846038261336491,
+      "passed": true,
+      "rule": {
+        "aggregation": "max",
+        "operator": "<=",
+        "value": 2
+      }
+    },
+    "max_speed_m_s": {
+      "actual": 0.07140899429122619,
+      "passed": true,
+      "rule": {
+        "aggregation": "max",
+        "operator": "<=",
+        "value": 0.3
+      }
+    },
+    "peak_force_n": {
+      "actual": 15.643024016860823,
+      "passed": true,
+      "rule": {
+        "aggregation": "max",
+        "operator": "<=",
+        "value": 35
+      }
+    },
+    "saturation_pct": {
+      "actual": 0.0,
+      "passed": true,
+      "rule": {
+        "aggregation": "max",
+        "operator": "<=",
+        "value": 0
+      }
+    },
+    "tangent_rmse_mm": {
+      "actual": 8.099534994852927,
+      "passed": true,
+      "rule": {
+        "aggregation": "max",
+        "operator": "<=",
+        "value": 10
+      }
+    }
+  },
+  "validation_closed_loop": [
+    {
+      "case_id": "g003_seed11",
+      "tangent_rmse_mm": 5.330137922227158,
+      "on_policy_teacher_action_mse": 0.01165837684679672,
+      "recorded_vs_export_action_max_abs_error": 6.661338147750939e-16,
+      "tangential_sign_disagreement_fraction_after_1_5s": [
+        0.013333333333333334,
+        0.024761904761904763
+      ]
+    },
+    {
+      "case_id": "g003_seed29",
+      "tangent_rmse_mm": 5.334323608163298,
+      "on_policy_teacher_action_mse": 0.011665407357687249,
+      "recorded_vs_export_action_max_abs_error": 6.938893903907228e-16,
+      "tangential_sign_disagreement_fraction_after_1_5s": [
+        0.013333333333333334,
+        0.02095238095238095
+      ]
+    },
+    {
+      "case_id": "g007_seed11",
+      "tangent_rmse_mm": 8.083089778988395,
+      "on_policy_teacher_action_mse": 0.006677186234607579,
+      "recorded_vs_export_action_max_abs_error": 7.216449660063518e-16,
+      "tangential_sign_disagreement_fraction_after_1_5s": [
+        0.011428571428571429,
+        0.0761904761904762
+      ]
+    },
+    {
+      "case_id": "g007_seed29",
+      "tangent_rmse_mm": 8.099534994852927,
+      "on_policy_teacher_action_mse": 0.006642164576581707,
+      "recorded_vs_export_action_max_abs_error": 7.216449660063518e-16,
+      "tangential_sign_disagreement_fraction_after_1_5s": [
+        0.005714285714285714,
+        0.07809523809523809
+      ]
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "bundle_manifest_sha256": "1048a6280d3231ac661a3f0b0ad86b68a208eb18f82c785a227fc52218de6961",
+  "engineering_status": "PASS",
+  "evaluation_manifest_sha256": {
+    "bc": "f7f381715092d9f6e5482cae2f11858c3d947a177e430d84df0e85049e3852ce",
+    "bc_nominal": "2b99ce068799e871bbbd20500e3188421f21269b2a1b3dfec8b18d479ffcb87b",
+    "ppo": "d0ba70926b55341fe74c10b9601f4bdfd74e4e1fc79ea2de5c7c9e5b330fffcb",
+    "ppo_nominal": "eea92552e0b0f08e04931d9f418d72b0987152628e2838062257f44efafa83b0"
+  },
+  "export_parity": {
+    "bc": {
+      "max_abs_error": 6.38378239159465e-16,
+      "observations": 256,
+      "passed": true,
+      "reference": "Torch_float64_reconstruction_of_exported_weights",
+      "tolerance": 1e-12
+    },
+    "ppo": {
+      "max_abs_error": 1.0408340855860843e-17,
+      "observations": 256,
+      "passed": true,
+      "reference": "Torch_float64_reconstruction_of_exported_weights",
+      "tolerance": 1e-12
+    }
+  },
+  "hardware_deployment": false,
+  "inference_profile": {
+    "bc": {
+      "budget_s": 0.02,
+      "cold_load_s": 0.0761889049972524,
+      "max_s": 5.841899837832898e-05,
+      "p99_s": 1.5272176242433478e-05,
+      "samples": 512,
+      "scope": "this_host_synchronous_calls_not_hard_realtime",
+      "within_budget": true
+    },
+    "ppo": {
+      "budget_s": 0.02,
+      "cold_load_s": 0.07013401500444161,
+      "max_s": 2.945199958048761e-05,
+      "p99_s": 1.0782479366753231e-05,
+      "samples": 512,
+      "scope": "this_host_synchronous_calls_not_hard_realtime",
+      "within_budget": true
+    }
+  },
+  "new_holdout": false,
+  "paired_comparisons": {
+    "bc": [
+      {
+        "case_id": "g000_seed11",
+        "force_rmse_n_delta_vs_nominal": 0.010143936915430224,
+        "tangent_rmse_mm_delta_vs_nominal": -9.52061273562122
+      },
+      {
+        "case_id": "g000_seed29",
+        "force_rmse_n_delta_vs_nominal": 0.009686632725235511,
+        "tangent_rmse_mm_delta_vs_nominal": -9.519299175095577
+      },
+      {
+        "case_id": "g001_seed11",
+        "force_rmse_n_delta_vs_nominal": 0.0018508039742383686,
+        "tangent_rmse_mm_delta_vs_nominal": -9.489578917798235
+      },
+      {
+        "case_id": "g001_seed29",
+        "force_rmse_n_delta_vs_nominal": 0.0014438607551580385,
+        "tangent_rmse_mm_delta_vs_nominal": -9.48887375310344
+      }
+    ],
+    "ppo": [
+      {
+        "case_id": "g000_seed11",
+        "force_rmse_n_delta_vs_nominal": -0.00044057645064496387,
+        "tangent_rmse_mm_delta_vs_nominal": 0.02900192055647932
+      },
+      {
+        "case_id": "g000_seed29",
+        "force_rmse_n_delta_vs_nominal": -0.0006736969769280121,
+        "tangent_rmse_mm_delta_vs_nominal": 0.02781639000935776
+      },
+      {
+        "case_id": "g001_seed11",
+        "force_rmse_n_delta_vs_nominal": -0.0018822057253206348,
+        "tangent_rmse_mm_delta_vs_nominal": 0.02553894936848322
+      },
+      {
+        "case_id": "g001_seed29",
+        "force_rmse_n_delta_vs_nominal": -0.0022686892044434387,
+        "tangent_rmse_mm_delta_vs_nominal": 0.024373349685537837
+      }
+    ]
+  },
+  "plan_sha256": "67e2cf4433dc1fd611e7e605cf3d17b8cb69d122fd0213cd0b3c400fc776784d",
+  "policy_acceptance": {
+    "bc": true,
+    "ppo": true
+  },
+  "scope": "single_seed_deployment_acceptance_not_policy_superiority_or_convergence",
+  "source_commit": "b698e84dd02ece4063ef46812b318d9260195924",
+  "training": {
+    "bc_input_mode": "drop_previous_residual",
+    "bc_selected_epoch": 96,
+    "ppo_episodes": 32,
+    "ppo_failed_training_episodes": 0
+  }
+}

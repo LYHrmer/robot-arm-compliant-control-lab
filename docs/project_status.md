@@ -3,9 +3,12 @@
 主线已经可以不经训练直接运行；换向恢复候选仍未通过采用门槛。
 数值以 `results/` 下的归档为准；各轮实验的完整顺序留在[实验总账](experiments/README.md)。
 BC/PPO 的[本地 MuJoCo 离线部署](learning_deployment.md)已完成：源码版和无 PyTorch
-安装版各 16 回合正常结束，工程验收通过；PPO 达标，BC 切向 RMSE 11.494 mm 超过
-10 mm 门槛。该单训练种子部署检查的[证据](evidence/learning_deployment_20261009.json)
-单独保存，不改变历史学习实验或默认控制器。
+安装版各 16 回合正常结束，工程验收通过；BC 和 PPO 均通过原定策略门槛。
+BC 经历史残差输入屏蔽后，最差切向 RMSE 从 11.494 降到 2.162 mm；
+[本轮证据](../results/franka_bc_deployment_fix/evidence.json)与
+[旧 full49 失败记录](evidence/learning_deployment_20261009.json)分别保存。
+从头运行见[复现指南](learning_reproduction.md)，定位代码见[项目结构](project_structure.md)，
+原理与练习见[BC 反馈实验](tutorial/labs/04_bc_feedback.md)。本轮为单训练种子部署检查。
 
 ## 可运行主线
 
@@ -62,9 +65,10 @@ BC/PPO 的[本地 MuJoCo 离线部署](learning_deployment.md)已完成：源码
 ## 学习路线
 
 从[教程目录](tutorial/README.md)按 01 → 07 读；已有机器人学基础可从
-[03 Franka 数值解算](tutorial/03_franka_numerics.md)开始。三份带答案实验分别针对力矩映射、
-预算下降和换向排错：[实验一](tutorial/labs/01_wrench_to_torque.md)、
-[实验二](tutorial/labs/02_budget_drop.md)、[实验三](tutorial/labs/03_reversal_recovery.md)。
+[03 Franka 数值解算](tutorial/03_franka_numerics.md)开始。四份带答案实验分别针对力矩映射、
+预算下降、换向排错和 BC 闭环诊断：[实验一](tutorial/labs/01_wrench_to_torque.md)、
+[实验二](tutorial/labs/02_budget_drop.md)、[实验三](tutorial/labs/03_reversal_recovery.md)、
+[实验四](tutorial/labs/04_bc_feedback.md)。
 按目的检索文档用[文档入口](README.md)；把某条主张落到源码和测试用[验证矩阵](verification_matrix.md)。
 
 ## 当前失败与后续边界

@@ -1,0 +1,9 @@
+{
+  "candidate_fixed_before_development": true,
+  "candidate_sha256": "8f1a3e0b3b2263cfadb0a8fda40e398db9e0d9c19bb4e67ab07a21e4be9e1569",
+  "development_used_for_selection": false,
+  "plan_sha256": "98559165234d685a6e7b567208e28776a8a1d5e8e2e8f046ed65ce6db24a7878",
+  "schema": "bc_validation_eligibility_v1",
+  "validation_manifest_sha256": "8a8f792e139f6a6f713a569e066b4ca1299a503a5b680c92da9282c52556cece",
+  "validation_passed": true
+}

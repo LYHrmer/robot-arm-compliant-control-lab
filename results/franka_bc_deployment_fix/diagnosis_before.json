@@ -1,0 +1,267 @@
+{
+  "scope": "Read-only diagnosis; development data disclosed; no training or selection.",
+  "model_sha256": "eca58cc54ad772640650d40682a4179d584ce865af623b0311519f64ced928c6",
+  "workspace": "/home/lyh/robot-arm-compliant-control-lab/dist/learning-run-20261009",
+  "splits": {
+    "train": {
+      "sample_count": 9600,
+      "model_action_mse": 0.0006786056426784618,
+      "zero_action_mse": 0.20746514477038694,
+      "teacher_label_max_abs_difference": 0.0,
+      "masked_observation_action_mse": {
+        "previous_residual": 0.2538109755122884,
+        "target_velocity": 0.0028169991832101395,
+        "joint_position": 0.03512627078419541,
+        "tracking_error": 0.0010248198283947683,
+        "nominal_force": 0.0019138472709354204
+      },
+      "teacher_max_tangent_rmse_mm": 6.073965646325924
+    },
+    "validation": {
+      "sample_count": 2400,
+      "model_action_mse": 0.0029367167491480446,
+      "zero_action_mse": 0.29348774631608965,
+      "teacher_label_max_abs_difference": 0.0,
+      "masked_observation_action_mse": {
+        "previous_residual": 0.3352040073158369,
+        "target_velocity": 0.0037611704793746254,
+        "joint_position": 0.03172124340881699,
+        "tracking_error": 0.0030463285514940835,
+        "nominal_force": 0.004634529011057693
+      },
+      "teacher_max_tangent_rmse_mm": 7.337413165600644
+    },
+    "development_test": {
+      "sample_count": 2400,
+      "model_action_mse": 0.0007926637517950187,
+      "zero_action_mse": 0.24004156960361245,
+      "teacher_label_max_abs_difference": 0.0,
+      "masked_observation_action_mse": {
+        "previous_residual": 0.2663647910899774,
+        "target_velocity": 0.0023019525841781697,
+        "joint_position": 0.03188395155798711,
+        "tracking_error": 0.0012003051898259577,
+        "nominal_force": 0.0024685310299858315
+      },
+      "teacher_max_tangent_rmse_mm": 2.0085671530637343
+    }
+  },
+  "closed_loop": [
+    {
+      "case_id": "g000_seed11",
+      "tangent_rmse_mm": 11.367344204524233,
+      "on_policy_teacher_action_mse": 0.2892359117380322,
+      "recorded_vs_recomputed_action_max_abs_error": 4.996003610813204e-16,
+      "tangential_sign_disagreement_fraction_after_1_5s": [
+        0.11047619047619048,
+        0.5238095238095238
+      ],
+      "local_history_gain_radius_median_after_1_5s": 0.9639188481168118,
+      "local_history_gain_radius_above_1_fraction_after_1_5s": 0.2438095238095238,
+      "local_history_gain_caveat": "Other plant/observation feedback held fixed; not a stability proof.",
+      "samples": [
+        {
+          "time_s": 2.0,
+          "actual_action": [
+            0.0012244426078072063,
+            0.7934564967935317,
+            0.7029955075285479
+          ],
+          "teacher_on_actual_observation": [
+            0.0,
+            0.7841570630898521,
+            -0.4717899196584751
+          ]
+        },
+        {
+          "time_s": 4.0,
+          "actual_action": [
+            0.0025642749975764473,
+            -0.8541186792125672,
+            0.5535515490514841
+          ],
+          "teacher_on_actual_observation": [
+            0.0,
+            -0.8907124473916767,
+            0.040755547088240675
+          ]
+        },
+        {
+          "time_s": 8.0,
+          "actual_action": [
+            -0.003948668982117098,
+            0.28379373769185473,
+            0.854826273908037
+          ],
+          "teacher_on_actual_observation": [
+            0.0,
+            -0.4347803002260249,
+            -0.7986397720889324
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "g000_seed29",
+      "tangent_rmse_mm": 11.363375539448741,
+      "on_policy_teacher_action_mse": 0.2888781893472385,
+      "recorded_vs_recomputed_action_max_abs_error": 4.440892098500626e-16,
+      "tangential_sign_disagreement_fraction_after_1_5s": [
+        0.11047619047619048,
+        0.5238095238095238
+      ],
+      "local_history_gain_radius_median_after_1_5s": 0.9642362235712069,
+      "local_history_gain_radius_above_1_fraction_after_1_5s": 0.24761904761904763,
+      "local_history_gain_caveat": "Other plant/observation feedback held fixed; not a stability proof.",
+      "samples": [
+        {
+          "time_s": 2.0,
+          "actual_action": [
+            0.0013347496227304582,
+            0.7964798449799126,
+            0.7012669311965016
+          ],
+          "teacher_on_actual_observation": [
+            0.0,
+            0.7838605168202323,
+            -0.4716115019060829
+          ]
+        },
+        {
+          "time_s": 4.0,
+          "actual_action": [
+            0.0025787403288841273,
+            -0.8531045018626232,
+            0.5545992770396978
+          ],
+          "teacher_on_actual_observation": [
+            0.0,
+            -0.8919421567471346,
+            0.04081181381908965
+          ]
+        },
+        {
+          "time_s": 8.0,
+          "actual_action": [
+            -0.0042115108087579164,
+            0.27973742267239093,
+            0.8542084658027952
+          ],
+          "teacher_on_actual_observation": [
+            0.0,
+            -0.4355029697258555,
+            -0.7999672301277174
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "g001_seed11",
+      "tangent_rmse_mm": 11.493746200866372,
+      "on_policy_teacher_action_mse": 0.29368805909350687,
+      "recorded_vs_recomputed_action_max_abs_error": 3.3306690738754696e-16,
+      "tangential_sign_disagreement_fraction_after_1_5s": [
+        0.10666666666666667,
+        0.5238095238095238
+      ],
+      "local_history_gain_radius_median_after_1_5s": 0.9735239525811139,
+      "local_history_gain_radius_above_1_fraction_after_1_5s": 0.24761904761904763,
+      "local_history_gain_caveat": "Other plant/observation feedback held fixed; not a stability proof.",
+      "samples": [
+        {
+          "time_s": 2.0,
+          "actual_action": [
+            0.0005420159284966936,
+            0.7846283752265308,
+            0.6846732449951777
+          ],
+          "teacher_on_actual_observation": [
+            0.0,
+            0.78132105969895,
+            -0.47008363162649264
+          ]
+        },
+        {
+          "time_s": 4.0,
+          "actual_action": [
+            0.003106938315634517,
+            -0.7540284571832572,
+            0.692549938357741
+          ],
+          "teacher_on_actual_observation": [
+            0.0,
+            -0.8913709545543148,
+            0.040785677822074505
+          ]
+        },
+        {
+          "time_s": 8.0,
+          "actual_action": [
+            -0.004420497605393212,
+            0.26495940693254655,
+            0.8617709330956425
+          ],
+          "teacher_on_actual_observation": [
+            0.0,
+            -0.43050483881212215,
+            -0.7907862572737504
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "g001_seed29",
+      "tangent_rmse_mm": 11.489305216561348,
+      "on_policy_teacher_action_mse": 0.2933377782519383,
+      "recorded_vs_recomputed_action_max_abs_error": 3.8510861166685117e-16,
+      "tangential_sign_disagreement_fraction_after_1_5s": [
+        0.10666666666666667,
+        0.5238095238095238
+      ],
+      "local_history_gain_radius_median_after_1_5s": 0.973050410787187,
+      "local_history_gain_radius_above_1_fraction_after_1_5s": 0.24952380952380954,
+      "local_history_gain_caveat": "Other plant/observation feedback held fixed; not a stability proof.",
+      "samples": [
+        {
+          "time_s": 2.0,
+          "actual_action": [
+            0.0006409241479228467,
+            0.7872716824629677,
+            0.6836127722033034
+          ],
+          "teacher_on_actual_observation": [
+            0.0,
+            0.78242772237525,
+            -0.47074945779795274
+          ]
+        },
+        {
+          "time_s": 4.0,
+          "actual_action": [
+            0.003108499718475721,
+            -0.7536280521718487,
+            0.6919635977360734
+          ],
+          "teacher_on_actual_observation": [
+            0.0,
+            -0.8922171389220636,
+            0.04082439593693426
+          ]
+        },
+        {
+          "time_s": 8.0,
+          "actual_action": [
+            -0.0046167801778572454,
+            0.25980215372820414,
+            0.8614370494507689
+          ],
+          "teacher_on_actual_observation": [
+            0.0,
+            -0.43189186637498955,
+            -0.7933340621676558
+          ]
+        }
+      ]
+    }
+  ]
+}

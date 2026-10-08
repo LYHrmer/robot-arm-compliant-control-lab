@@ -34,6 +34,9 @@
 | [预算下降为什么不会立即裁到 6 N](labs/02_budget_drop.md) | `python -m tools.tutorials.budget_drop` | 读完 07，核对一次预算下降后的限速输出与系数更新 |
 | [最后两秒正常，换向恢复为何仍差](labs/03_reversal_recovery.md) | `python -m tools.tutorials.reversal_recovery --events` | 读完 04 和 07，用分段误差与内部状态排除错误假设 |
 
+学习 BC 时继续做[实验四：离线误差更低，闭环为什么反而不达标](labs/04_bc_feedback.md)：
+用公开 JSON 核对数据分组、输入消融、49 维模型导出与七项验收门槛，含四个带答案练习。
+
 先自己算，再展开实验页里的答案。第一条命令打印七个关节力矩；第二条先显示
 `full-state replay: PASS (6000 cycles)`，再列出预算下降事件。答案会把中间量对应到实现。
 第三条读取三份旧轨迹，核对 18,000 拍辅助状态，区分预算、系数与实际恢复效果。

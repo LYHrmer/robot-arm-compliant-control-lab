@@ -1,163 +1,98 @@
 # 文档入口
 
-这里按阅读目的组织现有材料。首页负责交代项目结论；教程解释推导过程；算法参考记录实现
-细节；实验文档保存冻结条件和结果。遇到同一个数字在多处出现时，以 `results/` 中的 CSV
-和 summary 为准。
+先按任务选择入口。操作命令集中在复现与部署页，原始数值保存在对应实验归档；本页负责导航。
+
+| 目的 | 首选文档 | 接下来能做什么 |
+|---|---|---|
+| 第一次了解项目 | [首页](../README.md)、[项目状态](project_status.md) | 识别可运行能力、验收范围和当前失败 |
+| 跑通 BC/PPO 模型 | [部署与一键验收](learning_deployment.md) | 取得离线发行目录，在独立环境检查完整闭环 |
+| 从干净环境重做实验 | [学习实验复现指南](learning_reproduction.md)、[固定环境](reproducible_environment.md) | 采集示教、训练、选模、打包并核对报告 |
+| 学习原理和排错 | [教程目录](tutorial/README.md)、[BC 反馈实验](tutorial/labs/04_bc_feedback.md) | 从公式走到代码，并解释失败而不只看平均分 |
+| 修改或扩展项目 | [项目结构](project_structure.md)、[系统架构](architecture.md) | 找到实现、调用关系、验证入口与冻结约束 |
+| 核对某个历史结论 | [实验总账](experiments/README.md)、[验证矩阵](verification_matrix.md) | 从主张追到协议、源码、测试和原始数据 |
 
 ## 3 分钟浏览
 
-适合第一次打开仓库，或面试前快速回忆项目主线。
-
-1. 看[项目首页](../README.md)，了解 500 Hz Franka 擦拭任务、控制器范围和当前局限。
-   面试官可直接走[五分钟验收路径](recruiter_walkthrough.md)；可运行范围、验收步骤和未解决项
-   见[项目状态](project_status.md)。
-2. 沿[当前表面控制主线](#当前表面控制主线)读到测得负载预算和 C++ 回放。
-3. 快速检查可在安装后运行 `franka-smoke`；需要动手学习时，再做
-   [带答案实验](tutorial/README.md#带答案的数值实验)。
-   旧 v0.5 的实验结论仍是 `FAIL`，可从[为什么暂不部署](residual_rl_decision.md)回看。
-4. 看[系统架构](architecture.md)的当前控制链。需要核实某项说法时，到
-   [验证矩阵](verification_matrix.md)找源码、测试和实验产物。
-
-这条路线应能回答四件事：项目解决什么问题，算法加在什么位置，结果是否通过门槛，哪些
-能力还没有做到真机。
+看[首页演示](../README.md#当前负载调度演示)与[当前结果](../README.md#当前结果速览)，
+再看[项目状态](project_status.md)的采用范围。需要演示完整走查时使用
+[招聘方入口](recruiter_walkthrough.md)。快速工程检查是 `franka-smoke`；
+学习策略的逐 case 门槛检查是[部署验收](learning_deployment.md)，两者回答不同问题。
 
 ## 系统学习
 
-入口是[教程目录](tutorial/README.md)。七章从 2-DOF 解析模型走到 Franka、实验方法、
-Residual RL 和测得负载调度。三份短实验给出完整数值与答案，运行时只向终端输出。
+[教程 01–07](tutorial/README.md)依次讲 2-DOF 运动学、柔顺控制、Franka 数值解算、
+实验方法、Residual RL、故障练习和[负载调度逐拍回放](tutorial/07_measured_budget_replay.md)。
+已经学过机器人学，可从第 03 章开始。
 
-| 顺序 | 教程 | 读完以后应能做什么 |
-|---:|---|---|
-| 1 | [2-DOF 运动学](tutorial/01_2dof_kinematics.md) | 手推 FK、IK、Jacobian，并做有限差分检查 |
-| 2 | [柔顺控制](tutorial/02_compliant_control.md) | 区分阻抗、导纳和法向控力/切向控位 |
-| 3 | [Franka 数值解算](tutorial/03_franka_numerics.md) | 解释 6D wrench、`J.T @ w`、bias 和 null space |
-| 4 | [实验与验证](tutorial/04_experiments_and_validation.md) | 区分稳态指标、完整轨迹安全指标和数据身份 |
-| 5 | [Residual RL](tutorial/05_residual_rl.md) | 说明 observation、动作、安全包络和 ARS 训练 |
-| 6 | [练习与面试](tutorial/06_exercises_and_interview.md) | 独立排错，并用证据讲清项目取舍 |
-| 7 | [负载调度与回放](tutorial/07_measured_budget_replay.md) | 逐拍核对预算下降、缺包和在线系数 |
+| 动手练习 | 要核对的关系 |
+|---|---|
+| [误差到关节力矩](tutorial/labs/01_wrench_to_torque.md) | 位置／速度误差 → wrench → joint torque |
+| [预算下降与缺包](tutorial/labs/02_budget_drop.md) | 当前上限、限速输出、下一拍系数各自何时生效 |
+| [换向恢复排错](tutorial/labs/03_reversal_recovery.md) | 状态约束、局部改善和扩大回归的区别 |
+| [BC 反馈实验](tutorial/labs/04_bc_feedback.md) | 教师输入与学生闭环为何不同，输入屏蔽如何部署 |
 
 ### 当前表面控制主线
 
-按下面的顺序读。这里先放解释页，原始报告留给需要核数的人。
+按[表面坐标与 F/T](surface_frame_and_sensing.md) → [接触模型诊断](wiping_contact_diagnosis.md)
+→ [积分与摩擦前馈](tangential_tracking.md) → [在线补偿](online_compensation.md)
+→ [测得负载调度](load_budget.md) → [测量鲁棒性](measured_budget_robustness.md)阅读。
+公式移植到 C++ 后用[同输入回放](cpp_core.md)验证，已有
+[168,000 拍报告](../results/franka_measured_budget_cpp_replay/)含一份重复演示。
 
-| 顺序 | 当前表面控制主线 | 接着看 |
-|---:|---|---|
-| 1 | 表面建模与测量 | [坐标和 F/T](surface_frame_and_sensing.md)、[接触模型](wiping_contact_diagnosis.md) |
-| 2 | 经典切向补偿 | [积分与摩擦前馈](tangential_tracking.md) |
-| 3 | 在线等效负载补偿 | [更新时序与阶段失败](online_compensation.md) |
-| 4 | 按测得负载开放 6–8 N | [完整回归](load_budget.md)、[测量误差边界](measured_budget_robustness.md) |
-| 5 | Python/C++ 同输入回放 | [C++ 控制核心](cpp_core.md) |
-
-换向恢复先看[停顿系数回退的局部实验](reversal_recovery.md)，再看
-[跨方向与组合误差回归](reversal_recovery_transfer.md)。候选与当前默认控制器分开。
-后续[静止回退 pilot](stationary_recovery_pilot.md)为 3/4，最新[可逆回退](reversible_recovery.md)
-小试 4/4、完整回归 32/36，整体仍 `FAIL`：高负载改善，降载速度代价增加，不推广。
-
-BC 与 PPO 从[表面学习任务](surface_learning.md)继续。它们是经典基线之后的研究延伸；已有
-失败和没有超过解析前馈的结果均保留在相应实验页。
-
-教程读到某个公式仍不清楚时，再查对应参考页：
-
-| 范围 | 算法参考 |
-|---|---|
-| 2-DOF 控制公式 | [control_theory.md](control_theory.md) |
-| Franka 6D 控制与指标 | [franka_control.md](franka_control.md) |
-| C++17/Eigen 控制核心 | [cpp_core.md](cpp_core.md) |
-| 自适应增益与 v0.4 residual | [adaptive_residual_rl.md](adaptive_residual_rl.md) |
-| v0.5 torque projection | [torque_safe_residual_v0.5.md](torque_safe_residual_v0.5.md) |
-| 接触峰值事件诊断 | [contact_event_diagnosis.md](contact_event_diagnosis.md) |
-| 接近轨迹、参考限速与因果采样 | [reference_governor_v0.6.md](reference_governor_v0.6.md) |
-| 表面坐标、工具端六维 F/T 与标定误差 | [surface_frame_and_sensing.md](surface_frame_and_sensing.md) |
-| 擦拭微分离、接触柔度与步长检查 | [wiping_contact_diagnosis.md](wiping_contact_diagnosis.md) |
-| 接触稳定后的切向误差、积分与摩擦前馈 | [tangential_tracking.md](tangential_tracking.md) |
-| 在线等效负载补偿、停止更新条件和原有 24-case 回归 | [online_compensation.md](online_compensation.md) |
-| 换向姿态代价、旋转增益推导与同配置配对 | [rotation_gain_comparison.md](rotation_gain_comparison.md) |
-| 新姿态增益的表面方向／已知质量回归与力矩余量 | [rotation_gain_public24.md](rotation_gain_public24.md) |
-| 换向／组合误差能否转移到其他表面方向 | [cross_surface_regression.md](cross_surface_regression.md) |
-| 力矩未饱和为何仍有切向误差：幅值限幅与单因素诊断 | [combined_residual_diagnosis.md](combined_residual_diagnosis.md) |
-| 补偿预算的局部效果及跨工况／增益检查 | [6 N／8 N 高摩擦筛查](compensation_budget.md)、[预算转移](budget_transfer.md)、[速度代价分解](velocity_cost.md)；内部更新见[限幅时序](onset_observer.md) |
-| 根据测得负载开放 6–8 N 预算 | [输入、更新公式和完整回归的采用范围](load_budget.md) |
-| 从下降预算和缺包理解完整状态回放 | [公式、字段与可执行练习](tutorial/07_measured_budget_replay.md) |
-| 测量幅值低估、缺包和负载下降的采用边界 | [27 次配对仿真与保留的失败](measured_budget_robustness.md) |
-| 新表面任务的 RL / IL 环境、数据与评价准备 | [surface_learning.md](surface_learning.md) |
-| 小规模行为克隆、残差 PPO 与闭环选型 | [surface_learning_pilot.md](surface_learning_pilot.md) |
-| BC 离线拟合良好，闭环为什么偏：历史输入消融 | [bc_closed_loop_transfer.md](bc_closed_loop_transfer.md) |
-| BC 表示能否帮助 PPO：隐藏层迁移与固定预算对照 | [bc_to_residual_rl.md](bc_to_residual_rl.md) |
+学习路线沿[表面学习任务](surface_learning.md) → [BC/PPO 小规模试验](surface_learning_pilot.md)
+→ [BC 输入消融](bc_closed_loop_transfer.md) → [BC 到 PPO 迁移](bc_to_residual_rl.md)展开。
+历史实验说明方法取舍；当前可执行训练参数与发行状态分别以
+[复现指南](learning_reproduction.md)和[部署记录](learning_deployment.md)为准。
 
 ## 复现实验
 
-先选择[固定复现环境或兼容性环境](reproducible_environment.md)。BC/PPO 需要额外的 CPU
-学习依赖，独立学习测试会拒绝跳过；普通控制器的快速安装不代表学习模块已经验收。
+| 复核层级 | 入口 | 输出意味着什么 |
+|---|---|---|
+| 环境与最短仿真 | [首页安装](../README.md#安装后快速复核) | 依赖可用，冻结归档可读，2 s nominal 可运行 |
+| BC/PPO 全链路 | [学习实验复现指南](learning_reproduction.md) | 新计划、示教、模型、验证集选模及开发集验收 |
+| 已有模型独立安装 | [部署与验收](learning_deployment.md) | 安装的源码、资源、模型身份一致，闭环指标是否达标 |
+| 代码与 C++ 对齐 | [首页验证](../README.md#验证代码)、[C++ 文档](cpp_core.md) | 算法行为和同输入数值一致性 |
+| 历史结果完整性 | [只读复核](velocity_evidence_audit.md)、[实验总账](experiments/README.md) | 保存的文件、指标和判定可追溯，不代表重跑实验 |
 
-完成安装后，先做不写文件的数值实验，确认环境和符号约定：
+最近四项预算／速度实验可只读检查：
 
 ```bash
-python -m tools.tutorials.wrench_to_torque
-python -m tools.tutorials.budget_drop
-python -m tools.tutorials.reversal_recovery
+python -m tools.audit_velocity_evidence
 ```
 
-题目、逐步答案和输出解释见[带答案的数值实验](tutorial/README.md#带答案的数值实验)。
+历史正式实验使用各自协议：[v0.4](reproduction_plan_v0.4.md)、
+[v0.5 首次揭盲](reproduction_plan_v0.5.md)、[v0.6 接近参考对照](reference_governor_v0.6.md)。
+v0.5 已揭盲的 48 cases 是公开验证数据；复核时读取既有 protocol、reveal 和 manifest，
+不重新制造一次“首次揭盲”。其 `FAIL` 与[揭盲后诊断](experiments/README.md#揭盲后诊断)均保留。
 
-只想核对已发布的预算与速度误差结论，可运行 `python -m tools.audit_velocity_evidence`。
-它复核最近四项实验，不增加仿真；覆盖范围和输出解释见[复核说明](velocity_evidence_audit.md)。
+## 算法参考与历史诊断
 
-先按[教程环境说明](tutorial/README.md#环境与第一轮复现)安装 Python 依赖并运行测试。不同
-实验的数据身份不能混用：
+本表按问题定位，不重复列各轮数值。完整实验顺序、产物目录和采用决定见
+[实验总账](experiments/README.md)。
 
-| 实验 | 说明与命令 | 已保存产物 |
-|---|---|---|
-| 2-DOF 与 Franka 标称场景 | [首页标称演示](../README.md#标称演示) | [`results/`](../results/)、[`results/franka/`](../results/franka/) |
-| 固定增益随机压力测试 | [可信实验教程](tutorial/04_experiments_and_validation.md#9-复现实验) | [`results/franka_stress/`](../results/franka_stress/) |
-| v0.4 自适应与 residual 同 case 对比 | [v0.4 实现记录](reproduction_plan_v0.4.md)、[复现命令](adaptive_residual_rl.md#6-reproduction-commands) | [`results/franka_learning/`](../results/franka_learning/) |
-| v0.5 五 seed 冻结与 first reveal | [v0.5 协议](reproduction_plan_v0.5.md) | [`results/franka_safety_preholdout/`](../results/franka_safety_preholdout/)、[`results/franka_safety_blind/`](../results/franka_safety_blind/) |
-| v0.5 揭盲后 paired/event 诊断 | [实验总账](experiments/README.md#揭盲后诊断) | [`results/franka_safety_postreveal/`](../results/franka_safety_postreveal/) |
-| v0.6 开发：时序与接近参考四组对照 | [实现与复现命令](reference_governor_v0.6.md) | [`results/franka_reference_ablation/`](../results/franka_reference_ablation/) |
-| 新表面任务：24-case 法向标定开发对照 | [传感器、指标与复现命令](surface_frame_and_sensing.md) | [`results/franka_surface_development/`](../results/franka_surface_development/) |
-| 表面任务接触模型修复：24 × 4 × 2 配对 | [单因素排查与模型代价](wiping_contact_diagnosis.md) | [`results/franka_surface_contact_fix/`](../results/franka_surface_contact_fix/)、[诊断统计](../results/franka_surface_contact_diagnostics/) |
-| 固定平滑模型的切向补偿：24 × 3，加独立长时 9 次 | [公式、时序和失配边界](tangential_tracking.md) | [81 次实验](../results/franka_tangential_development/)、[单因素与静态保持](../results/franka_tangential_diagnostics/diagnosis.json) |
-| 在线补偿：原有 24 × 4 配对回归 | [更新律与共同 6 N 上限](online_compensation.md) | [96 次实验](../results/franka_online_compensation_regression/) |
-| 12 秒误差对照：10 工况 × 2 噪声种子 × 4 方法 | [阶段结果与剩余问题](online_compensation.md#实测结果与没有通过的部分) | [80 次实验](../results/franka_online_compensation_errors/)、[对照图](../results/franka_online_compensation_figures/dynamic_errors.png) |
-| 姿态阻抗常量预设：相同 80 次误差对照，所有方法统一增益 | [增益与跟踪代价](rotation_gain_comparison.md) | [新对照](../results/franka_rotation_gain_comparison/)、[新增益 C++ 回放](../results/franka_rotation_gain_cpp_replay/) |
-| 姿态预设推广检查：原 24-case × 4 方法 × 2 增益 | [采用决定与力矩余量](rotation_gain_public24.md) | [192 次运行](../results/franka_rotation_gain_public24/)、[27,000 步 C++ 回放](../results/franka_rotation_gain_public24_cpp/) |
-| 小规模跨方向动态回归：3 yaw × 2 工况 × 3 方法 × 2 增益，seed 11 | [阶段失效、残余误差与采用决定](cross_surface_regression.md) | [36 次运行与 144 个阶段](../results/franka_cross_surface_dynamic/) |
-| 组合误差后段诊断：3 yaw × 4 输入变体，原增益在线方法 | [沿轨迹滞后、限幅和误差耦合](combined_residual_diagnosis.md) | [12 次运行及配对诊断](../results/franka_combined_residual_ablation/) |
-| 补偿预算：3 yaw × 2 输入变体 × 6 N／8 N，原增益在线方法 | [收益、代价与采用范围](compensation_budget.md) | [12 次运行与六组筛查](../results/franka_compensation_budget/) |
-| 补偿预算转移：原 public24 与 6 个动态配置，两个旋转增益 | [固定协议与证据范围](budget_transfer.md) | [120 行评价：动态筛查通过，public24 兼容 23/48，整体 FAIL](../results/franka_budget_transfer/) |
-| 四对内部观测：三个表面方向，另加最高速度代价配置 | [实际输入、更新公式与限幅时序](onset_observer.md) | [8 次精确复现、18,000 周期公式校验；不改变原判定](../results/franka_onset_observer/) |
-| 速度误差时间系数：只比较 0.05 s／0.10 s，case 23 的两档增益和预算 | [速度收益与位置追赶代价](velocity_time.md) | [4 次新仿真＋4 条旧基线，高增益仍超速度门槛，不扩大回归](../results/franka_velocity_time/) |
-| 测得负载调度：42 条新增＋18 条复用候选 | [完整回归与推广决定](load_budget.md) | [public24 48/48、动态 12/12、增益交互 6/6 通过；仅推荐已覆盖仿真工况](../results/franka_measured_budget_full/) |
-| 测量误差与负载下降：9 场景 × 3 方法 | [保留 7/8 与负载下降代价](measured_budget_robustness.md) | [27 次运行、162,000 拍完整状态回放](../results/franka_measured_budget_robustness/) |
-| 换向恢复：局部实验及跨方向误差回归 | [4 对局部比较](reversal_recovery.md)、[36 对扩大回归](reversal_recovery_transfer.md) | [原 8 条轨迹](../results/franka_reversal_recovery/)、[64 条新增轨迹与完整配对结果](../results/franka_reversal_recovery_transfer/) |
-| 换向恢复：静止回退与入口限幅的可逆回退 | [静止回退 3/4](stationary_recovery_pilot.md)、[可逆回退小试 4/4、扩展 32/36](reversible_recovery.md) | [静止小试](../results/franka_stationary_recovery_pilot/)、[可逆小试](../results/franka_reversible_recovery_pilot/)、[可逆扩展](../results/franka_reversible_recovery_transfer/)；三份失败与成功判定分别保留 |
-| C++ 完整数值控制链回放 | [输入、状态与硬件边界](cpp_core.md) | [27 条鲁棒性轨迹＋1 条重复演示，共 168,000 拍](../results/franka_measured_budget_cpp_replay/) |
-| 表面任务学习前准备：24 × 3、12 次压力测试与同频教师数据 | [训练接口、标签与复现](surface_learning.md) | [数值索引](../results/franka_surface_learning_preparation/)、[三回合示例](../results/franka_surface_learning_examples/)、[分层修正记录](../results/franka_surface_learning_partition/) |
-| 小规模 BC 与 bounded Residual PPO：各三个训练种子 | [损失、更新与选择规则](surface_learning_pilot.md) | [完整种子对照](../results/franka_surface_learning_pilot/) |
-| BC 输入消融：同网络、预算和三个种子 | [输入先验与导出掩码](bc_closed_loop_transfer.md) | [完整对照与代表轨迹](../results/franka_surface_bc_transfer/) |
-| BC 隐藏层迁移到 PPO：固定第 32 回合，三个种子 | [动作语义、初始化和配对规则](bc_to_residual_rl.md) | [训练记录与最终策略对照](../results/franka_surface_ppo_transfer/) |
-
-v0.5 的 round `31756275` 已经完成 first reveal。仓库中的 48 cases 随后转为 public
-validation set（公开验证集）。复核时读取现有 `protocol.json`、`reveal.json`、
-`comparison.csv` 和 `manifest.json`。围绕这些 cases 的诊断属于 post-reveal analysis；后续
-调参若要形成新的未见数据主张，需要冻结新协议并选用尚未发布的 drand round。
-
-已有结果可以用首页的[离线 audit 命令](../README.md#验证代码)复核。失败原因的派生图和计数
-在 [post-reveal summary](../results/franka_safety_postreveal/summary.md)。事件重放在生成诊断前
-还会逐 case 对齐 7 个冻结指标，输出见 [event summary](../results/franka_safety_postreveal/contact_events/summary.md)
-和[诊断教程](contact_event_diagnosis.md)；两类分析都不写入 first-reveal 目录。
+| 问题 | 参考与证据 |
+|---|---|
+| 控制公式与安全投影 | [2-DOF](control_theory.md)、[Franka](franka_control.md)、[自适应与旧 residual](adaptive_residual_rl.md)、[v0.5 torque projection](torque_safe_residual_v0.5.md) |
+| 接触峰值与接近时序 | [事件诊断](contact_event_diagnosis.md)、[参考限速](reference_governor_v0.6.md)、[是否采用旧 residual](residual_rl_decision.md) |
+| 姿态改善为何损失跟踪 | [增益对照](rotation_gain_comparison.md)、[原 public24 回归](rotation_gain_public24.md)、[跨方向回归](cross_surface_regression.md) |
+| 力矩未饱和为何仍有残差 | [组合误差诊断](combined_residual_diagnosis.md)、[补偿预算](compensation_budget.md)、[预算转移](budget_transfer.md) |
+| 速度代价集中在哪里 | [窗口分解](velocity_cost.md)、[内部限幅时序](onset_observer.md)、[速度误差时间系数](velocity_time.md) |
+| 换向候选为什么没有推广 | [局部恢复](reversal_recovery.md)、[扩大回归](reversal_recovery_transfer.md)、[静止回退 3/4](stationary_recovery_pilot.md)、[可逆回退 32/36](reversible_recovery.md) |
+| 学习输入、动作与选模 | [49 维任务](surface_learning.md)、[BC/PPO](surface_learning_pilot.md)、[BC 闭环输入](bc_closed_loop_transfer.md)、[PPO 初始化](bc_to_residual_rl.md) |
 
 ## 设计决策
 
-ADR 记录跨模块、会影响后续实现的选择，并解释为什么边界放在这里。
+[项目结构](project_structure.md)说明目录职责和修改落点；[系统架构](architecture.md)给出
+控制数据流；[术语表](../CONTEXT.md)统一物理量、指标与数据身份。跨模块决策保存在：
 
-- [ADR-0001：控制器边界放在 Cartesian wrench](adr/0001-cartesian-wrench-controller-seam.md)
-- [ADR-0002：用未来公开信标生成 first-reveal cases](adr/0002-future-beacon-first-reveal.md)
-- [ADR-0003：Nominal 与 residual 分级投影](adr/0003-project-nominal-and-residual-separately.md)
+- [ADR-0001：控制器接口采用 Cartesian wrench](adr/0001-cartesian-wrench-controller-seam.md)
+- [ADR-0002：未来公开信标生成 first-reveal cases](adr/0002-future-beacon-first-reveal.md)
+- [ADR-0003：nominal 与 residual 分级投影](adr/0003-project-nominal-and-residual-separately.md)
+- [来源追踪整理](provenance_refactor_design.md)：静态依赖追踪与历史来源迁移的适用范围。
 
 ## 文档类型怎么区分
 
-- 教程回答“为什么这样算”，允许按章节逐步推导。
-- 算法参考回答“代码具体怎样实现”，适合结合源码查参数和状态机。
-- 实验记录回答“何时冻结、用了哪些数据、结果是什么”，不会替代算法说明。
-- ADR 回答“为什么采用这个模块边界或实验约束”，并列出后果和可复核证据。
-- `results/` 保存数值事实。决策页只解释这些事实如何影响下一步。
+教程解释公式和思考过程；复现指南给出操作顺序和预期；算法参考解释实现；实验文档解释
+冻结条件与结果；ADR 解释长期设计取舍。`results/` 保存提交过的历史数值事实，
+`docs/evidence/` 保存交付摘要，`dist/` 保存本机生成的大型训练与发行产物。
+三者的生命周期和来源关系见[项目结构](project_structure.md#结果放在哪里)。
