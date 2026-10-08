@@ -62,7 +62,11 @@ def main(argv=None):
                               "source_commit": manifest["source_commit"], "venv": str(target)}))
             return 0
         environment = {key: value for key, value in os.environ.items()
-                       if key not in {"PYTHONPATH", "PYTHONHOME", "VIRTUAL_ENV"}}
+                       if key not in {"PYTHONPATH", "PYTHONHOME", "VIRTUAL_ENV"}
+                       and not key.startswith("PIP_")}
+        # Python's -I does not disable pip environment/configuration overrides.
+        # Keep install destinations and offline sources under this installer's control.
+        environment["PIP_CONFIG_FILE"] = os.devnull
         environment.update(OPENBLAS_CORETYPE="Haswell", OPENBLAS_NUM_THREADS="1",
                            OMP_NUM_THREADS="1", MUJOCO_GL="disable", PYTHONNOUSERSITE="1")
         if not target.exists():
