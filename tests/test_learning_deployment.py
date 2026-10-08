@@ -37,11 +37,12 @@ def deployment(tmp_path):
     return output, digest
 
 
-def test_bundle_relocates_without_repository_or_torch(deployment, tmp_path):
+def test_bundle_relocates_without_repository_or_torch(deployment, tmp_path, monkeypatch):
     source, digest = deployment
     target = tmp_path / "relocated"
     shutil.copytree(source, target)
-    environment = {**os.environ, "PYTHONPATH": os.pathsep.join(sys.path)}
+    monkeypatch.setenv("MUJOCO_GL", "inherited-invalid-backend")
+    environment = {**os.environ, "PYTHONPATH": os.pathsep.join(sys.path), "MUJOCO_GL": "disable"}
     script = """
 import importlib.abc, sys
 class RejectTorch(importlib.abc.MetaPathFinder):

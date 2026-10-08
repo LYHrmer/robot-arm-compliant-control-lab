@@ -42,7 +42,8 @@ print(json.dumps(sorted(
 
 
 def runtime_closure(module_name):
-    environment = {**os.environ, "PYTHONPATH": os.pathsep.join((str(ROOT), str(ROOT / "src")))}
+    environment = {**os.environ, "PYTHONPATH": os.pathsep.join((str(ROOT), str(ROOT / "src"))),
+                   "MUJOCO_GL": "disable"}
     completed = subprocess.run(
         [sys.executable, "-c", RUNTIME_CLOSURE, str(PACKAGE_DIR), module_name],
         capture_output=True, text=True, cwd=ROOT, env=environment, check=True,
@@ -51,8 +52,9 @@ def runtime_closure(module_name):
 
 
 @pytest.mark.parametrize("entry,_archive", ENTRIES)
-def test_static_closure_matches_a_clean_interpreter(entry, _archive):
+def test_static_closure_matches_a_clean_interpreter(entry, _archive, monkeypatch):
     """The AST graph must agree with what importing actually loads."""
+    monkeypatch.setenv("MUJOCO_GL", "inherited-invalid-backend")
     module = entry.removesuffix(".py").replace("/", ".")
     assert sorted(provenance.closure_identity(ROOT / entry)) == runtime_closure(module)
 
