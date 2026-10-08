@@ -166,10 +166,15 @@ def summarize_evaluations(reports, profiles):
     """Keep software checks, absolute policy gates and relative benefits separate."""
     if set(reports) != {"bc", "bc_nominal", "ppo", "ppo_nominal"}:
         raise ValueError("both policies and both nominal baselines must be evaluated")
+    if set(profiles) != set(ALGORITHMS):
+        raise ValueError("both policies must have an inference profile")
     paired = {}
     for algorithm in ALGORITHMS:
         candidate = {r["case_id"]: r for r in reports[algorithm]["runs"]}
         nominal = {r["case_id"]: r for r in reports[f"{algorithm}_nominal"]["runs"]}
+        if (len(candidate) != len(reports[algorithm]["runs"])
+                or len(nominal) != len(reports[f"{algorithm}_nominal"]["runs"])):
+            raise ValueError("candidate/nominal case grids contain duplicate case IDs")
         if not candidate or set(candidate) != set(nominal):
             raise ValueError("candidate/nominal case grids differ")
         paired[algorithm] = [{

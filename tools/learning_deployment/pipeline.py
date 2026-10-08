@@ -1,7 +1,11 @@
 """Restartable preparation using the existing dataset, BC, PPO and evaluation code."""
 
+import inspect
 import json
+import os
+import tempfile
 from copy import deepcopy
+from pathlib import Path
 
 import numpy as np
 
@@ -53,6 +57,79 @@ def preview(**options):
             "writes": False, "training_device": "cpu", "inference_requires_torch": False}
 
 
+def _training_parameters(function, **options):
+    """Resolve the trainer's own defaults, then call it with every value explicit."""
+    signature = inspect.signature(function)
+    bound = signature.bind(None, None, **options)
+    bound.apply_defaults()
+    return {name: bound.arguments[name] for name, parameter in signature.parameters.items()
+            if parameter.kind == inspect.Parameter.KEYWORD_ONLY}
+
+
+def _training_configuration(options, identity):
+    from tools import train_surface_bc, train_surface_ppo
+
+    bc_runtime = train_surface_bc._runtime_identity(train_surface_bc._require_torch())
+    # Both trainers enter their deterministic CPU wrapper with one Torch thread.
+    bc_runtime["torch_num_threads"] = 1
+    runner = identity["runner"]
+    return {
+        "bc": {
+            "parameters": _training_parameters(
+                train_surface_bc.train_bc, seed=options["seed"], epochs=options["bc_epochs"]),
+            "manifest": {"trainer_source_sha256": train_surface_bc._source_identity(),
+                         "runtime": bc_runtime},
+        },
+        "ppo": {
+            "parameters": _training_parameters(
+                train_surface_ppo.train_ppo, seed=options["seed"],
+                episodes=options["ppo_episodes"],
+                checkpoint_episodes=(0, options["ppo_episodes"])),
+            "manifest": {
+                "source_and_assets_sha256": runner["package_source_and_assets_sha256"],
+                "script_sha256": {
+                    "train_surface_ppo.py": identity["deployment_sources"]["train_surface_ppo.py"],
+                    "surface_mlp_actor.py": runner["runner_sha256"],
+                },
+                "runtime": {"device": "cpu", "dtype": "float64", "torch_num_threads": 1,
+                            "deterministic_algorithms": True},
+                "versions": {
+                    "python": runner["python_version"], "numpy": runner["numpy_version"],
+                    "torch": train_surface_ppo._require_torch().__version__,
+                    "mujoco": runner["mujoco_version"], "gymnasium": runner["gymnasium_version"],
+                },
+            },
+        },
+    }
+
+
+def build_plan(**options):
+    """Describe this checkout's complete training invocation without writing or training."""
+    options = settings(**options)
+    identity = runtime_identity()
+    plan = {"schema": "surface_simulation_deployment_plan_v1", "settings": options,
+            "source_commit": committed_source(), "runtime_identity": identity,
+            "cases": preparation_cases(), "thresholds": deepcopy(THRESHOLDS),
+            "training": _training_configuration(options, identity),
+            "policy_selection": {"bc": "minimum_validation_action_mse_earliest_tie",
+                                 "ppo": f"fixed_final_episode_{options['ppo_episodes']}_no_dev_selection"}}
+    # Persisted cases and checkpoint tuples use JSON lists, including on resumes.
+    return json.loads(json.dumps(plan, allow_nan=False))
+
+
+def _verify_training(manifest, algorithm, configuration):
+    if any(manifest.get(name) != value for name, value in configuration["manifest"].items()):
+        raise ValueError(f"{algorithm.upper()} training source or runtime differs from the frozen plan")
+    for name, value in configuration["parameters"].items():
+        if algorithm == "ppo" and name == "seed":
+            actual = manifest.get("seed")
+        else:
+            field = "fixed_std" if algorithm == "ppo" and name == "std" else name
+            actual = manifest["hyperparameters"].get(field)
+        if actual != value:
+            raise ValueError(f"{algorithm.upper()} training parameter {name} differs from the frozen plan")
+
+
 def _export_parity(bundle, dataset):
     """Compare the exported NumPy actor with Torch using real measured observations."""
     import torch
@@ -89,18 +166,9 @@ def _export_parity(bundle, dataset):
 
 
 def prepare(workspace, *, resume=False, **options):
-    options = settings(**options)
     workspace = output_path(workspace, allow_existing=True)
-    source = committed_source()
-    identity = runtime_identity()
-    plan = {"schema": "surface_simulation_deployment_plan_v1", "settings": options,
-            "source_commit": source, "runtime_identity": identity,
-            "cases": preparation_cases(), "thresholds": deepcopy(THRESHOLDS),
-            "policy_selection": {"bc": "minimum_validation_action_mse_earliest_tie",
-                                 "ppo": f"fixed_final_episode_{options['ppo_episodes']}_no_dev_selection"}}
-    # Dataclass tuples become JSON lists; compare the persisted representation on
-    # resumes and at dataset boundaries, without relaxing any numeric equality.
-    plan = json.loads(json.dumps(plan, allow_nan=False))
+    plan = build_plan(**options)
+    options, source, identity = plan["settings"], plan["source_commit"], plan["runtime_identity"]
     if workspace.exists():
         if not resume:
             raise FileExistsError("workspace exists; use --resume to verify and reuse completed stages")
@@ -125,27 +193,23 @@ def prepare(workspace, *, resume=False, **options):
     if data["cases"] != plan["cases"] or data["source_and_assets_sha256"] != identity["runner"]["package_source_and_assets_sha256"]:
         raise ValueError("dataset cases/source differ from the deployment plan")
 
-    # Optional training dependencies are loaded only after the local plan checks.
     from tools.train_surface_bc import train_bc
     from tools.train_surface_ppo import train_ppo
 
     bc = stage("bc_training")
     if not bc.exists():
-        train_bc(dataset, bc, seed=options["seed"], epochs=options["bc_epochs"])
+        train_bc(dataset, bc, **plan["training"]["bc"]["parameters"])
     bc_manifest = verify_sealed(bc)
-    if (bc_manifest["hyperparameters"]["seed"] != options["seed"]
-            or bc_manifest["hyperparameters"]["epochs"] != options["bc_epochs"]
-            or bc_manifest["dataset"]["manifest_sha256"] != sha256(dataset / "manifest.json")):
+    _verify_training(bc_manifest, "bc", plan["training"]["bc"])
+    if bc_manifest["dataset"]["manifest_sha256"] != sha256(dataset / "manifest.json"):
         raise ValueError("BC training does not match the frozen plan/dataset")
 
     ppo = stage("ppo_training")
     if not ppo.exists():
-        train_ppo(cases_for(plan["cases"], "ppo"), ppo, seed=options["seed"],
-                  episodes=options["ppo_episodes"], checkpoint_episodes=(0, options["ppo_episodes"]))
+        train_ppo(cases_for(plan["cases"], "ppo"), ppo, **plan["training"]["ppo"]["parameters"])
     ppo_manifest = verify_sealed(ppo)
-    if (ppo_manifest["seed"] != options["seed"]
-            or ppo_manifest["hyperparameters"]["episodes"] != options["ppo_episodes"]
-            or ppo_manifest["case_plan"] != cases_for(plan["cases"], "ppo")):
+    _verify_training(ppo_manifest, "ppo", plan["training"]["ppo"])
+    if ppo_manifest["case_plan"] != cases_for(plan["cases"], "ppo"):
         raise ValueError("PPO training does not match the frozen plan")
     candidates = {"bc": bc / bc_manifest["candidate_file"],
                   "ppo": ppo / ppo_manifest["checkpoints"][str(options["ppo_episodes"])]}
@@ -192,8 +256,13 @@ def prepare(workspace, *, resume=False, **options):
         if summary["evaluation_manifest_sha256"] != evaluation_hashes:
             raise ValueError("acceptance evaluation identities differ")
     else:
-        acceptance.mkdir()
-        write_new(acceptance / "report.json", summary)
-        seal(acceptance, {"schema": "surface_deployment_acceptance_v1",
-                          "bundle_manifest_sha256": bundle_hash, "plan_sha256": plan_hash})
+        with tempfile.TemporaryDirectory(prefix=".deployment-acceptance-", dir=workspace) as temporary:
+            staging = Path(temporary) / "acceptance"
+            staging.mkdir()
+            write_new(staging / "report.json", summary)
+            seal(staging, {"schema": "surface_deployment_acceptance_v1",
+                           "bundle_manifest_sha256": bundle_hash, "plan_sha256": plan_hash})
+            if acceptance.exists():
+                raise FileExistsError("acceptance destination appeared during preparation")
+            os.rename(staging, acceptance)
     return summary

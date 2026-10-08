@@ -6,6 +6,7 @@ import shutil
 import subprocess
 import sys
 from copy import deepcopy
+from functools import wraps
 from pathlib import Path
 
 import numpy as np
@@ -48,7 +49,9 @@ class RejectTorch(importlib.abc.MetaPathFinder):
             raise AssertionError('inference imported torch')
 sys.meta_path.insert(0, RejectTorch())
 from tools.learning_deployment.bundle import verify_bundle, profile_actor
+from tools.learning_deployment.cli import main
 verify_bundle(sys.argv[1], sys.argv[2])
+assert main(['verify', '--bundle', sys.argv[1], '--expected-manifest-sha256', sys.argv[2]]) == 0
 for algorithm in ('bc', 'ppo'):
     assert profile_actor(sys.argv[1], algorithm)['samples'] == 512
 assert 'torch' not in sys.modules
@@ -56,7 +59,7 @@ print('PASS')
 """
     result = subprocess.run([sys.executable, "-c", script, str(target), digest],
                             cwd=tmp_path, env=environment, capture_output=True, text=True, check=True)
-    assert result.stdout.strip() == "PASS"
+    assert result.stdout.splitlines()[-1] == "PASS"
 
 
 def test_external_pin_rejects_resealed_model(deployment):
@@ -157,13 +160,36 @@ def test_summary_keeps_engineering_and_scientific_decisions_separate():
     assert not summary["policy_acceptance"]["bc"]
     assert summary["paired_comparisons"]["bc"][0]["tangent_rmse_mm_delta_vs_nominal"] == 0.5
     reports["ppo"]["all_episodes_succeeded"] = False
-    assert bundle.summarize_evaluations(reports, {"ppo": {"within_budget": True}})["engineering_status"] == "FAIL"
+    profiles = {name: {"within_budget": True} for name in ("bc", "ppo")}
+    assert bundle.summarize_evaluations(reports, profiles)["engineering_status"] == "FAIL"
 
 
-def test_prepare_resume_checks_real_stage_contracts_without_retraining(tmp_path, monkeypatch):
+@pytest.mark.parametrize("profiles", ({}, {"bc": {"within_budget": True}},
+                                    {"ppo": {"within_budget": True}}))
+def test_summary_refuses_missing_inference_profiles(profiles):
+    report = {"all_episodes_succeeded": True, "acceptance_met": True,
+              "runs": [{"case_id": "case1", "tangent_rmse_mm": 2.0, "force_rmse_n": 1.0}]}
+    reports = {name: deepcopy(report) for name in ("bc", "bc_nominal", "ppo", "ppo_nominal")}
+    with pytest.raises(ValueError, match="inference profile"):
+        bundle.summarize_evaluations(reports, profiles)
+
+
+@pytest.mark.parametrize("label", ("bc", "bc_nominal", "ppo", "ppo_nominal"))
+def test_summary_refuses_duplicate_cases(label):
+    report = {"all_episodes_succeeded": True, "acceptance_met": True,
+              "runs": [{"case_id": "case1", "tangent_rmse_mm": 2.0, "force_rmse_n": 1.0}]}
+    reports = {name: deepcopy(report) for name in ("bc", "bc_nominal", "ppo", "ppo_nominal")}
+    reports[label]["runs"].append(deepcopy(reports[label]["runs"][0]))
+    with pytest.raises(ValueError, match="duplicate case IDs"):
+        bundle.summarize_evaluations(reports, {a: {"within_budget": True} for a in ("bc", "ppo")})
+
+
+@pytest.fixture
+def preparation(tmp_path, monkeypatch):
     from tools import train_surface_bc, train_surface_ppo
 
     monkeypatch.setattr(pipeline, "committed_source", lambda: "a" * 40)
+    training = pipeline.build_plan()["training"]
     calls = []
 
     def collect(path, cases):
@@ -178,20 +204,25 @@ def test_prepare_resume_checks_real_stage_contracts_without_retraining(tmp_path,
             {"weights": np.zeros((3, 4)).tolist(), "bias": [0.0] * 3},
         ], contract=bundle.contract_for(cases, algorithm))
 
-    def train_bc(dataset, output, *, seed, epochs):
+    @wraps(train_surface_bc.train_bc)
+    def train_bc(dataset, output, **parameters):
         calls.append("bc")
         output.mkdir()
         candidate(output / "selected_model.json", common.read_json(dataset / "manifest.json")["cases"], "bc")
-        common.seal(output, {"hyperparameters": {"seed": seed, "epochs": epochs},
+        common.seal(output, {**training["bc"]["manifest"], "hyperparameters": parameters,
             "dataset": {"manifest_sha256": common.sha256(dataset / "manifest.json")},
             "candidate_file": "selected_model.json", "selected_epoch": 1})
 
-    def train_ppo(cases, output, *, seed, episodes, checkpoint_episodes):
+    @wraps(train_surface_ppo.train_ppo)
+    def train_ppo(cases, output, **parameters):
         calls.append("ppo")
         output.mkdir()
         candidate(output / "checkpoint.json", cases, "ppo")
-        common.seal(output, {"seed": seed, "hyperparameters": {"episodes": episodes},
-            "case_plan": cases, "checkpoints": {str(episodes): "checkpoint.json"}, "failed_episodes": 0})
+        hyperparameters = {**parameters, "fixed_std": parameters["std"]}
+        del hyperparameters["seed"], hyperparameters["std"]
+        common.seal(output, {**training["ppo"]["manifest"], "seed": parameters["seed"],
+            "hyperparameters": hyperparameters, "case_plan": cases,
+            "checkpoints": {str(parameters["episodes"]): "checkpoint.json"}, "failed_episodes": 0})
 
     def evaluate(bundle_path, digest, output, *, algorithm, nominal):
         calls.append(f"evaluate_{algorithm}_{nominal}")
@@ -212,12 +243,92 @@ def test_prepare_resume_checks_real_stage_contracts_without_retraining(tmp_path,
     monkeypatch.setattr(pipeline, "_export_parity", lambda *a: {"test": True})
     monkeypatch.setattr(pipeline, "profile_actor", lambda *a: {"within_budget": True})
     monkeypatch.setattr(pipeline, "run_bundle", evaluate)
-    work = tmp_path / "workspace"
+    return tmp_path / "workspace", calls
+
+
+def test_prepare_resume_checks_real_stage_contracts_without_retraining(preparation):
+    work, calls = preparation
     original = pipeline.prepare(work)
     assert calls == ["dataset", "bc", "ppo", "evaluate_bc_False", "evaluate_bc_True",
                      "evaluate_ppo_False", "evaluate_ppo_True"]
     calls.clear()
     assert pipeline.prepare(work, resume=True) == original
+    assert not calls
+
+
+@pytest.mark.parametrize("algorithm,section,field", (
+    ("bc", "trainer_source_sha256", "trainer"),
+    ("bc", "runtime", "torch_version"),
+    ("ppo", "script_sha256", "train_surface_ppo.py"),
+    ("ppo", "versions", "torch"),
+    ("ppo", "runtime", "deterministic_algorithms"),
+))
+def test_resume_refuses_resealed_training_source_or_runtime(preparation, algorithm, section, field):
+    work, calls = preparation
+    pipeline.prepare(work)
+    calls.clear()
+    directory = work / f"{algorithm}_training"
+    manifest = common.read_json(directory / "manifest.json")
+    manifest[section][field] = "different"
+    (directory / "manifest.json").write_text(json.dumps(manifest))
+    (directory / "COMPLETE").write_text(common.sha256(directory / "manifest.json"))
+    with pytest.raises(ValueError, match="training source or runtime differs"):
+        pipeline.prepare(work, resume=True)
+    assert not calls
+
+
+@pytest.mark.parametrize("algorithm,field", (
+    ("bc", "batch_size"), ("bc", "learning_rate"), ("bc", "overfit_steps"),
+    ("ppo", "episodes_per_update"), ("ppo", "checkpoint_episodes"), ("ppo", "gamma"),
+    ("ppo", "gae_lambda"), ("ppo", "clip_epsilon"), ("ppo", "learning_rate"),
+    ("ppo", "update_epochs"), ("ppo", "batch_size"), ("ppo", "max_grad_norm"),
+    ("ppo", "fixed_std"), ("ppo", "target_kl"),
+))
+def test_resume_refuses_resealed_training_parameters(preparation, algorithm, field):
+    work, calls = preparation
+    pipeline.prepare(work)
+    calls.clear()
+    directory = work / f"{algorithm}_training"
+    manifest = common.read_json(directory / "manifest.json")
+    value = manifest["hyperparameters"][field]
+    manifest["hyperparameters"][field] = [] if isinstance(value, list) else value * 2
+    (directory / "manifest.json").write_text(json.dumps(manifest))
+    (directory / "COMPLETE").write_text(common.sha256(directory / "manifest.json"))
+    with pytest.raises(ValueError, match="training parameter .* differs"):
+        pipeline.prepare(work, resume=True)
+    assert not calls
+
+
+def test_plan_records_all_actual_training_parameters(preparation):
+    work, _ = preparation
+    pipeline.prepare(work)
+    plan = common.read_json(work / "plan.json")
+    assert set(plan["training"]["bc"]["parameters"]) == {
+        "seed", "epochs", "batch_size", "learning_rate", "overfit_steps",
+    }
+    assert set(plan["training"]["ppo"]["parameters"]) == {
+        "seed", "episodes", "episodes_per_update", "checkpoint_episodes", "gamma", "gae_lambda",
+        "clip_epsilon", "learning_rate", "update_epochs", "batch_size", "max_grad_norm", "std", "target_kl",
+    }
+
+
+def test_acceptance_interruption_can_resume_without_partial_final_directory(preparation, monkeypatch):
+    work, calls = preparation
+    original_seal = pipeline.seal
+
+    def interrupted_seal(directory, metadata):
+        raise RuntimeError("interrupted before acceptance publication")
+
+    monkeypatch.setattr(pipeline, "seal", interrupted_seal)
+    with pytest.raises(RuntimeError, match="interrupted before acceptance"):
+        pipeline.prepare(work)
+    assert not (work / "acceptance").exists()
+    assert not list(work.glob(".deployment-acceptance-*"))
+    calls.clear()
+    monkeypatch.setattr(pipeline, "seal", original_seal)
+    result = pipeline.prepare(work, resume=True)
+    assert result["engineering_status"] == "PASS"
+    common.verify_sealed(work / "acceptance")
     assert not calls
 
 
