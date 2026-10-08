@@ -3,3 +3,4 @@ tests/test_surface_bc_transfer.py
 tests/test_surface_ppo.py
 tests/test_surface_ppo_transfer.py
 tests/test_surface_ppo_transfer_protocol.py
+tests/test_learning_deployment.py

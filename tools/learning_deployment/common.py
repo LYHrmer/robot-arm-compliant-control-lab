@@ -35,7 +35,8 @@ def runtime_identity():
     directory = Path(__file__).resolve().parent
     tools = directory.parent
     paths = [*directory.glob("*.py"), *(tools / name for name in (
-        "train_surface_bc.py", "train_surface_ppo.py", "surface_learning_pilot.py",
+        "train_surface_bc.py", "train_surface_bc_transfer.py", "train_surface_ppo.py",
+        "surface_learning_pilot.py",
     ))]
     return {
         "runner": current_runner_identity(),

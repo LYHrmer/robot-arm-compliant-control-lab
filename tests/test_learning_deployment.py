@@ -8,6 +8,7 @@ import sys
 from copy import deepcopy
 from functools import wraps
 from pathlib import Path
+from types import SimpleNamespace
 
 import numpy as np
 import pytest
@@ -115,6 +116,15 @@ def test_prepare_dry_run_writes_nothing(tmp_path, capsys):
     assert cli.main(["prepare", "--workspace", str(target), "--dry-run"]) == 0
     report = json.loads(capsys.readouterr().out)
     assert report["splits"] == {"train": 16, "validation": 4, "development_test": 4}
+    assert report["settings"]["bc_input_mode"] == "drop_previous_residual"
+    assert not target.exists()
+
+
+def test_prepare_dry_run_preserves_explicit_full49(tmp_path, capsys):
+    target = tmp_path / "workspace"
+    assert cli.main(["prepare", "--workspace", str(target), "--bc-input-mode", "full49",
+                     "--dry-run"]) == 0
+    assert json.loads(capsys.readouterr().out)["settings"]["bc_input_mode"] == "full49"
     assert not target.exists()
 
 
@@ -135,13 +145,27 @@ def test_cli_reports_policy_failure_with_nonzero_exit(tmp_path, capsys, monkeypa
     assert json.loads(capsys.readouterr().out)["policy_acceptance"]["bc"] is False
 
 
-@pytest.mark.parametrize("options", ({"seed": -1}, {"bc_epochs": 0}, {"ppo_episodes": 3}))
+@pytest.mark.parametrize("options", ({"seed": -1}, {"bc_epochs": 0}, {"ppo_episodes": 3},
+                                    {"bc_input_mode": "teacher_inputs"}))
 def test_invalid_training_configuration_fails_before_writes(options):
     with pytest.raises(ValueError):
         pipeline.preview(**options)
 
 
-def test_resume_refuses_changed_plan_before_training(tmp_path, monkeypatch):
+@pytest.fixture
+def training_runtime(monkeypatch):
+    """Stage orchestration tests use fake runtime metadata, never optional Torch."""
+    from tools import train_surface_bc, train_surface_ppo
+
+    torch = SimpleNamespace(__version__="test-fixture")
+    monkeypatch.setattr(train_surface_bc, "_require_torch", lambda: torch)
+    monkeypatch.setattr(train_surface_ppo, "_require_torch", lambda: torch)
+    monkeypatch.setattr(train_surface_bc, "_runtime_identity", lambda _: {
+        "torch_version": torch.__version__, "torch_num_threads": 1,
+    })
+
+
+def test_resume_refuses_changed_plan_before_training(tmp_path, monkeypatch, training_runtime):
     monkeypatch.setattr(pipeline, "committed_source", lambda: "a" * 40)
     common.write_new(tmp_path / "plan.json", {"tampered": True})
     monkeypatch.setattr(pipeline, "collect_demonstrations", lambda *a: pytest.fail("started training"))
@@ -185,8 +209,8 @@ def test_summary_refuses_duplicate_cases(label):
 
 
 @pytest.fixture
-def preparation(tmp_path, monkeypatch):
-    from tools import train_surface_bc, train_surface_ppo
+def preparation(tmp_path, monkeypatch, training_runtime):
+    from tools import train_surface_bc, train_surface_bc_transfer, train_surface_ppo
 
     monkeypatch.setattr(pipeline, "committed_source", lambda: "a" * 40)
     training = pipeline.build_plan()["training"]
@@ -204,14 +228,23 @@ def preparation(tmp_path, monkeypatch):
             {"weights": np.zeros((3, 4)).tolist(), "bias": [0.0] * 3},
         ], contract=bundle.contract_for(cases, algorithm))
 
-    @wraps(train_surface_bc.train_bc)
-    def train_bc(dataset, output, **parameters):
-        calls.append("bc")
+    def publish_bc(dataset, output, parameters, input_mode):
+        calls.append(f"bc_{input_mode}")
         output.mkdir()
         candidate(output / "selected_model.json", common.read_json(dataset / "manifest.json")["cases"], "bc")
-        common.seal(output, {**training["bc"]["manifest"], "hyperparameters": parameters,
+        configuration = pipeline.build_plan(bc_input_mode=input_mode)["training"]["bc"]
+        common.seal(output, {**configuration["manifest"],
+            "hyperparameters": {k: v for k, v in parameters.items() if k != "arm"},
             "dataset": {"manifest_sha256": common.sha256(dataset / "manifest.json")},
             "candidate_file": "selected_model.json", "selected_epoch": 1})
+
+    @wraps(train_surface_bc.train_bc)
+    def train_bc(dataset, output, **parameters):
+        publish_bc(dataset, output, parameters, "full49")
+
+    @wraps(train_surface_bc_transfer.train_bc_transfer)
+    def train_bc_transfer(dataset, output, **parameters):
+        publish_bc(dataset, output, parameters, "drop_previous_residual")
 
     @wraps(train_surface_ppo.train_ppo)
     def train_ppo(cases, output, **parameters):
@@ -239,6 +272,7 @@ def preparation(tmp_path, monkeypatch):
     monkeypatch.setattr(pipeline, "collect_demonstrations", collect)
     monkeypatch.setattr(pipeline, "audit_dataset", lambda *a: None)
     monkeypatch.setattr(train_surface_bc, "train_bc", train_bc)
+    monkeypatch.setattr(train_surface_bc_transfer, "train_bc_transfer", train_bc_transfer)
     monkeypatch.setattr(train_surface_ppo, "train_ppo", train_ppo)
     monkeypatch.setattr(pipeline, "_export_parity", lambda *a: {"test": True})
     monkeypatch.setattr(pipeline, "profile_actor", lambda *a: {"within_budget": True})
@@ -246,18 +280,48 @@ def preparation(tmp_path, monkeypatch):
     return tmp_path / "workspace", calls
 
 
-def test_prepare_resume_checks_real_stage_contracts_without_retraining(preparation):
+@pytest.mark.parametrize("input_mode", pipeline.BC_INPUT_MODES)
+def test_prepare_resume_checks_real_stage_contracts_without_retraining(preparation, input_mode):
     work, calls = preparation
-    original = pipeline.prepare(work)
-    assert calls == ["dataset", "bc", "ppo", "evaluate_bc_False", "evaluate_bc_True",
+    original = pipeline.prepare(work, bc_input_mode=input_mode)
+    assert calls == ["dataset", f"bc_{input_mode}", "ppo", "evaluate_bc_False", "evaluate_bc_True",
                      "evaluate_ppo_False", "evaluate_ppo_True"]
     calls.clear()
-    assert pipeline.prepare(work, resume=True) == original
+    assert pipeline.prepare(work, resume=True, bc_input_mode=input_mode) == original
+    assert not calls
+
+
+def test_resume_refuses_a_different_bc_input_mode(preparation):
+    work, calls = preparation
+    pipeline.prepare(work)
+    calls.clear()
+    with pytest.raises(ValueError, match="resume plan"):
+        pipeline.prepare(work, resume=True, bc_input_mode="full49")
+    assert not calls
+
+
+@pytest.mark.parametrize("field,value", (
+    ("schema", "surface_behavior_clone_run_v1"),
+    ("arm", "teacher_inputs"),
+    ("input_mask", [1] * 49),
+))
+def test_resume_refuses_resealed_bc_input_identity(preparation, field, value):
+    work, calls = preparation
+    pipeline.prepare(work)
+    calls.clear()
+    directory = work / "bc_training"
+    manifest = common.read_json(directory / "manifest.json")
+    manifest[field] = value
+    (directory / "manifest.json").write_text(json.dumps(manifest))
+    (directory / "COMPLETE").write_text(common.sha256(directory / "manifest.json"))
+    with pytest.raises(ValueError, match="training source or runtime differs"):
+        pipeline.prepare(work, resume=True)
     assert not calls
 
 
 @pytest.mark.parametrize("algorithm,section,field", (
     ("bc", "trainer_source_sha256", "trainer"),
+    ("bc", "trainer_source_sha256", "transfer_trainer"),
     ("bc", "runtime", "torch_version"),
     ("ppo", "script_sha256", "train_surface_ppo.py"),
     ("ppo", "versions", "torch"),
@@ -299,13 +363,22 @@ def test_resume_refuses_resealed_training_parameters(preparation, algorithm, fie
     assert not calls
 
 
-def test_plan_records_all_actual_training_parameters(preparation):
+@pytest.mark.parametrize("input_mode", pipeline.BC_INPUT_MODES)
+def test_plan_records_all_actual_training_parameters(preparation, input_mode):
     work, _ = preparation
-    pipeline.prepare(work)
+    pipeline.prepare(work, bc_input_mode=input_mode)
     plan = common.read_json(work / "plan.json")
-    assert set(plan["training"]["bc"]["parameters"]) == {
-        "seed", "epochs", "batch_size", "learning_rate", "overfit_steps",
-    }
+    parameters = {"seed", "epochs", "batch_size", "learning_rate", "overfit_steps"}
+    if input_mode == "drop_previous_residual":
+        parameters.add("arm")
+        bc = plan["training"]["bc"]
+        assert bc["parameters"]["arm"] == bc["manifest"]["arm"] == input_mode
+        assert [i for i, active in enumerate(bc["manifest"]["input_mask"]) if not active] == [14, 15, 16]
+    assert set(plan["training"]["bc"]["parameters"]) == parameters
+    assert plan["settings"]["bc_input_mode"] == input_mode
+    sources = plan["runtime_identity"]["deployment_sources"]
+    trainer = Path(__file__).resolve().parents[1] / "tools/train_surface_bc_transfer.py"
+    assert sources[trainer.name] == common.sha256(trainer)
     assert set(plan["training"]["ppo"]["parameters"]) == {
         "seed", "episodes", "episodes_per_update", "checkpoint_episodes", "gamma", "gae_lambda",
         "clip_epsilon", "learning_rate", "update_epochs", "batch_size", "max_grad_norm", "std", "target_kl",

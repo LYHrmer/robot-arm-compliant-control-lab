@@ -35,14 +35,20 @@ from tools.learning_deployment.common import (
 from tools.surface_learning_pilot import THRESHOLDS
 from tools.surface_mlp_actor import actor_from_artifact
 
+BC_INPUT_MODES = ("full49", "drop_previous_residual")
 
-def settings(*, seed=11, bc_epochs=100, ppo_episodes=32):
+
+def settings(*, seed=11, bc_epochs=100, ppo_episodes=32,
+             bc_input_mode="drop_previous_residual"):
     for name, value in (("seed", seed), ("bc_epochs", bc_epochs), ("ppo_episodes", ppo_episodes)):
         if isinstance(value, bool) or not isinstance(value, int) or value < (0 if name == "seed" else 1):
             raise ValueError(f"invalid {name}")
     if ppo_episodes % 4:
         raise ValueError("ppo_episodes must be divisible by four")
-    return {"seed": seed, "bc_epochs": bc_epochs, "ppo_episodes": ppo_episodes}
+    if bc_input_mode not in BC_INPUT_MODES:
+        raise ValueError(f"bc_input_mode must be one of {BC_INPUT_MODES}")
+    return {"seed": seed, "bc_epochs": bc_epochs, "ppo_episodes": ppo_episodes,
+            "bc_input_mode": bc_input_mode}
 
 
 def preview(**options):
@@ -66,6 +72,16 @@ def _training_parameters(function, **options):
             if parameter.kind == inspect.Parameter.KEYWORD_ONLY}
 
 
+def _bc_trainer(input_mode):
+    if input_mode == "full49":
+        from tools import train_surface_bc
+
+        return train_surface_bc, train_surface_bc.train_bc
+    from tools import train_surface_bc_transfer
+
+    return train_surface_bc_transfer, train_surface_bc_transfer.train_bc_transfer
+
+
 def _training_configuration(options, identity):
     from tools import train_surface_bc, train_surface_ppo
 
@@ -73,12 +89,20 @@ def _training_configuration(options, identity):
     # Both trainers enter their deterministic CPU wrapper with one Torch thread.
     bc_runtime["torch_num_threads"] = 1
     runner = identity["runner"]
+    bc_module, bc_train = _bc_trainer(options["bc_input_mode"])
+    bc_options = {"seed": options["seed"], "epochs": options["bc_epochs"]}
+    bc_manifest = {"schema": "surface_behavior_clone_run_v1",
+                   "trainer_source_sha256": bc_module._source_identity(),
+                   "runtime": bc_runtime}
+    if options["bc_input_mode"] == "drop_previous_residual":
+        bc_options["arm"] = options["bc_input_mode"]
+        bc_manifest.update(schema="surface_behavior_clone_transfer_run_v1",
+                           arm=options["bc_input_mode"],
+                           input_mask=bc_module._input_mask(options["bc_input_mode"]).astype(int).tolist())
     return {
         "bc": {
-            "parameters": _training_parameters(
-                train_surface_bc.train_bc, seed=options["seed"], epochs=options["bc_epochs"]),
-            "manifest": {"trainer_source_sha256": train_surface_bc._source_identity(),
-                         "runtime": bc_runtime},
+            "parameters": _training_parameters(bc_train, **bc_options),
+            "manifest": bc_manifest,
         },
         "ppo": {
             "parameters": _training_parameters(
@@ -123,6 +147,8 @@ def _verify_training(manifest, algorithm, configuration):
     for name, value in configuration["parameters"].items():
         if algorithm == "ppo" and name == "seed":
             actual = manifest.get("seed")
+        elif algorithm == "bc" and name == "arm":
+            actual = manifest.get("arm")
         else:
             field = "fixed_std" if algorithm == "ppo" and name == "std" else name
             actual = manifest["hyperparameters"].get(field)
@@ -193,9 +219,9 @@ def prepare(workspace, *, resume=False, **options):
     if data["cases"] != plan["cases"] or data["source_and_assets_sha256"] != identity["runner"]["package_source_and_assets_sha256"]:
         raise ValueError("dataset cases/source differ from the deployment plan")
 
-    from tools.train_surface_bc import train_bc
     from tools.train_surface_ppo import train_ppo
 
+    _, train_bc = _bc_trainer(options["bc_input_mode"])
     bc = stage("bc_training")
     if not bc.exists():
         train_bc(dataset, bc, **plan["training"]["bc"]["parameters"])
@@ -244,6 +270,7 @@ def prepare(workspace, *, resume=False, **options):
     summary.update(bundle_manifest_sha256=bundle_hash, plan_sha256=plan_hash, export_parity=parity,
                    evaluation_manifest_sha256=evaluation_hashes, source_commit=source)
     summary["training"] = {"bc_selected_epoch": bc_manifest["selected_epoch"],
+                           "bc_input_mode": options["bc_input_mode"],
                            "ppo_episodes": options["ppo_episodes"],
                            "ppo_failed_training_episodes": ppo_manifest["failed_episodes"]}
     acceptance = stage("acceptance")

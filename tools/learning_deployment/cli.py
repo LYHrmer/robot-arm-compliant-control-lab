@@ -11,7 +11,7 @@ from importlib.metadata import version
 from pathlib import Path
 
 from tools.learning_deployment.bundle import accept_bundle, profile_actor, run_bundle, verify_bundle
-from tools.learning_deployment.pipeline import prepare, preview
+from tools.learning_deployment.pipeline import BC_INPUT_MODES, prepare, preview
 
 
 def doctor(*, training=False):
@@ -42,6 +42,8 @@ def main(argv=None):
     build.add_argument("--workspace", type=Path, required=True)
     build.add_argument("--seed", type=int, default=11)
     build.add_argument("--bc-epochs", type=int, default=100)
+    build.add_argument("--bc-input-mode", choices=BC_INPUT_MODES,
+                       default="drop_previous_residual")
     build.add_argument("--ppo-episodes", type=int, default=32)
     build.add_argument("--resume", action="store_true")
     build.add_argument("--dry-run", action="store_true")
@@ -68,7 +70,8 @@ def main(argv=None):
             result = doctor(training=args.training)
             code = 0 if result["status"] == "PASS" else 1
         elif args.command == "prepare":
-            options = {name: getattr(args, name) for name in ("seed", "bc_epochs", "ppo_episodes")}
+            options = {name: getattr(args, name)
+                       for name in ("seed", "bc_epochs", "ppo_episodes", "bc_input_mode")}
             if args.dry_run:
                 result = preview(**options)
                 code = 0
