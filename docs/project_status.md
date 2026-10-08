@@ -2,6 +2,10 @@
 
 主线已经可以不经训练直接运行；换向恢复候选仍未通过采用门槛。
 数值以 `results/` 下的归档为准；各轮实验的完整顺序留在[实验总账](experiments/README.md)。
+BC/PPO 的[本地 MuJoCo 离线部署](learning_deployment.md)已完成：源码版和无 PyTorch
+安装版各 16 回合正常结束，工程验收通过；PPO 达标，BC 切向 RMSE 11.494 mm 超过
+10 mm 门槛。该单训练种子部署检查的[证据](evidence/learning_deployment_20261009.json)
+单独保存，不改变历史学习实验或默认控制器。
 
 ## 可运行主线
 
@@ -88,7 +92,8 @@
 测量鲁棒性采用检查 7/8（[measured_budget_robustness.md](measured_budget_robustness.md)）；
 在线补偿在 12 秒对照里有两条反向加速姿态阶段失败（[online_compensation.md](online_compensation.md)）。
 固定 8 N 预算在原 public24 只通过 23/48，整体 `FAIL`（[budget_transfer.md](budget_transfer.md)）。
-冻结 v0.5 的 48-case 首次揭盲也仍为 `FAIL`，仓库不部署这些 residual 策略。
+冻结 v0.5 的 48-case 首次揭盲也仍为 `FAIL`，这些历史 residual 策略没有被采用。
+新的 BC/PPO 部署仅开放独立 MuJoCo 仿真入口，门槛失败记录继续保留。
 
 ## 读这些结果时的边界
 

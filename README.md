@@ -8,6 +8,8 @@ BC/PPO 保留为强基线之后的独立学习实验。
 
 需要运行学习模型：[BC/PPO 仿真部署与一键验收](docs/learning_deployment.md)提供从训练到
 离线安装的入口，训练用 CPU PyTorch，部署用 NumPy；科学性能与工程验收分别报告。
+本地离线包已验收：工程通过、PPO 达标、BC 切向误差未达标；运行
+`./scripts/accept_learning_release.sh` 可复核，完整判定与交付范围见上述文档。
 
 ## 当前负载调度演示
 
